@@ -1,0 +1,341 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicarefeeforservice-apheresis"
+    }
+  ],
+  "name": "Apheresis",
+  "version": "1.0.0",
+  "title": "Apheresis",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Diagnosis/Procedure",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Relevant Diagnosis",
+          "type": "string",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RelevantDiagnosis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Date of Onset",
+          "type": "dateTime",
+          "required": false,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DateOfOnset"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Details of Relevant Procedure performed",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ProcedurePerformed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.4",
+          "text": "Date of Procedure Performed",
+          "type": "dateTime",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ProcedureDate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Complete Blood Panel",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Leukocytes [#/volume] in Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LeukocytesResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "Erythrocytes [#/volume] in Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ErythrocytesResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.3",
+          "text": "Hemoglobin [Mass/volume] in Blood",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HemoglobinResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.4",
+          "text": "Hematocrit [Volume Fraction] of Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HematocritResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.5",
+          "text": "MCV [Entitic volume] by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MCVVolumeResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.6",
+          "text": "MCH [Entitic mass] by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MCHMassResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.7",
+          "text": "MCHC [Mass/volume] by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MCHCResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.8",
+          "text": "Erythrocyte distribution width [Entitic volume] by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ErythrocyteResult"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.9",
+          "text": "Erythrocyte distribution width [Ratio] by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ErythrocyteRatio"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.10",
+          "text": "Platelets [#/volume] in Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PlateletsVolume"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.11",
+          "text": "Platelet distribution width [Entitic volume] in Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PlateletDistribution"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.12",
+          "text": "Platelet mean volume [Entitic volume] in Blood by Automated count",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PlateletMeanVolume"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.13",
+          "text": "Calcium [Mass/volume] in Serum or Plasma",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Calcium"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.14",
+          "text": "Potassium [Moles/volume] in Blood",
+          "type": "quantity",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Potassium"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

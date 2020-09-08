@@ -1,0 +1,82 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Anti-Inhibitor Coagulant Complex",
+  "name": "AntiInhibitorCoagulant",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "DiagnosticReport",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "3209-4,58410-2,3173-2,5964-2,3255-7"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "96372"
+        }
+      ]
+    },
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "D68.4,D68.311,R58,D66"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "J7179,J7182,J7183,J7185,J7186,J7187,J7190,J7192,J7207,J7170,J7209,J7210,J7211"
+        }
+      ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "J7179,J7182,J7183,J7185,J7186,J7187,J7190,J7192,J7207,J7170,J7209,J7210,J7211"
+        }
+      ]
+    }
+  ]
+}

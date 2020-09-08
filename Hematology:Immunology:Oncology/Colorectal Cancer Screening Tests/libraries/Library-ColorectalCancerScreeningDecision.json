@@ -1,0 +1,77 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Colorectal Cancer Screening Tests Decision",
+  "name": "ColorectalCancerScreeningDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-medicarefeeforservice-ColorectalCancerScreening"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "DiagnosticReport",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "82274,82270,G0328,81528"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "74263"
+        }
+      ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "29771-3"
+        }
+      ]
+    },
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "R10.30,R19.5,D12.6,C18.9,K51.90,K50.90,Z83.71,Z15.09"
+        }
+      ]
+    }
+  ]
+}

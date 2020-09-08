@@ -1,0 +1,227 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-colorectal_cancer_screening"
+    }
+  ],
+  "name": "ColorectalCancerScreening",
+  "version": "1.0.0",
+  "title": "Colorectal Cancer Screening Tests",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Information of the Test performed",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Test performed",
+          "type": "open-choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "Blood, occult by fecal hemoglobin determination by immunoassay, qualitative, feces, 103 simultaneous determinations"
+            },
+            {
+              "valueString": "Blood, occult, by peroxidaseactivity (e.g. guaiac), qualitative; feces, consecutive collected specimens with single determination, for colorectal neoplasm screening (i.e., patient was provided 3 cards or single triple cord for consecutive collection)"
+            },
+            {
+              "valueString": "Colorectal cancer screening; fecal occult blood test, immunoassay 1-3 simultaneous"
+            },
+            {
+              "valueString": "Cologuard"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TypeOfTest"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Test last performed on",
+          "type": "dateTime",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LastPerformedDate"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Test expected to be performed on",
+          "type": "date",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ExpectedDate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis/Procedures Performed",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Symptoms of colorectal disease",
+          "type": "text",
+          "required": false,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Symptoms"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "FOBT Performed",
+          "type": "text",
+          "required": false,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TestsPerformed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.3",
+          "text": "Personal history of diseases",
+          "type": "text",
+          "required": false,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PersonalHistory"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.4",
+          "text": "Family history of diseases",
+          "type": "open-choice",
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueString": "Adenomatous Polyps"
+            },
+            {
+              "valueString": "Colonic Polyps"
+            },
+            {
+              "valueString": "Nonpolyposis Colorectal Cancer"
+            },
+            {
+              "valueString": "Colorectal Cancer"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FamilyMemberHistory"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Other Tests Performed",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "3.1",
+          "text": "Screening computed tomographic colonography (CTC)",
+          "type": "text",
+          "required": false,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ScreeningCTC"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

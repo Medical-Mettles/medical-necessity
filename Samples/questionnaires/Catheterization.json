@@ -1,0 +1,368 @@
+{
+   "resourceType": "Questionnaire",
+   "meta": {
+      "profile": [
+         "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
+      ]
+   },
+   "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "united_health_care-cardiac_catheterization"
+    }
+  ],
+   "name":"cardiac_catheterization",
+   "title": "Cardiac Catheterization",
+   "status": "draft",
+   "subjectType": [
+      "Patient"
+   ],
+   "date": "2019-12-20",
+   "publisher": "Mettle Solutions",
+   "extension": [
+      {
+         "url": "http://hl7.org/fhir/StructureDefinition/cqif-library",
+         "valueReference": {
+            "reference": "Library/FHIRHelpers"
+         }
+      }
+   ],
+   "contained": [
+      {
+         "resourceType": "ValueSet",
+         "id": "gender",
+         "name": "Gender",
+         "status": "draft",
+         "description": "Gender",
+         "compose": {
+            "include": [
+               {
+                  "concept": [
+                     {
+                        "code": "male",
+                        "display": "Male"
+                     },
+                     {
+                        "code": "female",
+                        "display": "Female"
+                     },
+                     {
+                        "code": "other",
+                        "display": "Other"
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   ],
+   "item": [
+      {
+         "linkId": "1",
+         "text": "Beneficiary Information",
+         "type": "group",
+         "item": [
+            {
+               "linkId": "1.1",
+               "text": "Beneficiary’s Name",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "BeneficiaryName"
+                  }
+               ]
+            },
+            {
+               "linkId": "1.2",
+               "text": "Beneficiary’s Date Of Birth",
+               "type": "date",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "BeneficiaryDateOfBirth"
+                  }
+               ]
+            },
+            {
+               "linkId": "1.3",
+               "text": "Beneficiary’s Identification Number",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "BeneficiaryMedicareNumber"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "linkId": "2",
+         "text": "Certifying Physician/Practitioner Information",
+         "type": "group",
+         "item": [
+            {
+               "linkId": "2.1",
+               "text": "Physician/Practitioner’s Name",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "PractitionerName"
+                  }
+               ]
+            },
+            {
+               "linkId": "2.2",
+               "text": "Physician/Practitioner’s NPI",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "PractitionerNPI"
+                  }
+               ]
+            },
+            {
+               "linkId": "2.3",
+               "text": "Physician/Practitioner’s Address",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "PractitionerAddress"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "linkId": "3",
+         "text": "Indications",
+         "type": "group",
+         "item": [
+            {
+               "linkId": "3.1",
+               "text": "Diagnosis[ICD-10]",
+               "type": "string",
+               "required": true,
+               "code": {
+                  "coding": [
+                     {
+                        "system": "https://www.icd10data.com",
+                        "code": "I25.10",
+                        "display": "Coronary Artery Disease"
+                     }
+                  ]
+               },
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Coronary Artery Disease"
+                  }
+               ]
+            },
+            {
+               "linkId": "3.2",
+               "text": "Relevant Diagnosis[ICD-10]",
+               "type": "string",
+               "required": true,
+               "code": {
+                  "coding": [
+                     {
+                        "system": "https://www.icd10data.com",
+                        "code": "M17.0",
+                        "display": "Bilateral primary osteoarthritis of knee"
+                     }
+                  ]
+               },
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Arthritis"
+                  }
+               ]
+            },
+            {
+               "linkId": "3.3",
+               "text": "Noninvasive Cardiac Testing Performed",
+               "type": "string",
+               "required": true,
+               "code": {
+                  "coding": [
+                     {
+                        "system": "http://www.ama-assn.org/go/cpt",
+                        "code": "93350",
+                        "display": "Stress Echocardiography"
+                     },
+                     {
+                        "system": "http://www.ama-assn.org/go/cpt",
+                        "code": "93351",
+                        "display": "Stress Echocardiography"
+                     }
+                  ]
+               },
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "StressEchocardiogram"
+                  }
+               ]
+            },
+            {
+               "linkId": "3.4",
+               "text": "Outcome Of Noninvasive Cardiac Testing",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Abnormal"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "linkId": "4",
+         "text": "Submitter Information",
+         "type": "group",
+         "item": [
+            {
+               "linkId": "4.1",
+               "text": "Contact Name",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "SubmitterName"
+                  }
+               ]
+            },
+            {
+               "linkId": "4.2",
+               "text": "Telephone Number",
+               "type": "string",
+               "required": true,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "SubmitterTelephone"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "linkId": "5",
+         "text": "Additional Information",
+         "type": "group",
+         "item": [
+            {
+               "linkId": "5.1",
+               "text": "Is the chest pain substernal?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Chest Pain"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.2",
+               "text": "Is there arm pain?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Arm Pain"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.3",
+               "text": "Is there jaw pain?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Jaw Pain"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.4",
+               "text": "Is the pain relieved with nitroglycerin or rest?",
+               "type": "boolean",
+               "required": false
+            },
+            {
+               "linkId": "5.5",
+               "text": "Is there shortness of breath?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Shortness of Breath"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.6",
+               "text": "Does the pain wake the patient from sleep?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Patient waken due to pain"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.7",
+               "text": "Is the pain worse with exertion?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Pain with exertion"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.8",
+               "text": "Does the pain occur at rest?",
+               "type": "boolean",
+               "required": false,
+               "extension": [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString": "Pain at Rest"
+                  }
+               ]
+            },
+            {
+               "linkId": "5.9",
+               "text": "Is the pain brought on by exercise or emotional upset?",
+               "type": "boolean",
+               "required": false
+            }
+         ]
+      }
+   ]
+}

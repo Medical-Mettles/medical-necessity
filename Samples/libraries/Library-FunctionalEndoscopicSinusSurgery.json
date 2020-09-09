@@ -1,0 +1,56 @@
+{
+   "resourceType": "Library",
+   "version": "0.0.1",
+   "title": "Functional Endoscopic Sinus Surgery",
+   "status": "draft",
+   "type": {
+      "coding": [
+         {
+            "code": "logic-library"
+         }
+      ]
+   },
+   "relatedArtifact": [
+      {
+         "type": "depends-on",
+         "resource": "Library/FHIRHelpers"
+      }
+   ],
+   "dataRequirement": [
+      {
+         "type": "Condition",
+         "codeFilter": [
+            {
+               "path": "clinical-status",
+               "searchParam": "active"
+            },
+            {
+               "path": "category",
+               "searchParam": "problem-list-item"
+            },
+            {
+               "path": "code",
+               "searchParam": "J32.9,J01.91,K11.6,J34.9,C80.1,J33,A49.9,J34.89,M89.9,M89.30,R09.81,I25.82"
+            }
+         ]
+      },
+      {
+         "type": "Procedure",
+         "codeFilter": [
+            {
+               "path": "code",
+               "searchParam": "281789004,72202003"
+            }
+         ]
+      },
+      {
+         "type": "ImagingStudy"
+      },
+      {
+         "type": "MedicationAdministration"
+      },
+      {
+         "type": "Coverage"
+      }
+   ]
+}

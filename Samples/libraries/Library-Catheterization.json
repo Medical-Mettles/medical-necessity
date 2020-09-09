@@ -1,0 +1,56 @@
+{
+    "resourceType": "Library",
+    "version": "0.0.1",
+    "title": "Catheterization",
+    "status": "draft",
+    "type": {
+        "coding": [
+            {
+                "code": "logic-library"
+            }
+        ]
+    },
+    "relatedArtifact": [
+        {
+            "type": "depends-on",
+            "resource": "Library/FHIRHelpers"
+        }
+    ],
+    "dataRequirement": [
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "searchParam": "93452,93453,93454,93455,93456,93457,93458,93459,93460,93461"
+                }
+            ]
+        },
+	{
+      "type": "Condition",
+      "codeFilter": [
+	{
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "category",
+          "searchParam": "problem-list-item"
+        }
+        
+      ]
+    },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "searchParam": "I25.10,R07.9,M17.0,M79.603,R68.84,R06.02"
+                }
+            ]
+        },
+        {
+            "type": "Coverage"
+        }
+    ]
+}

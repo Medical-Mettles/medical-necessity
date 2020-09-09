@@ -1,0 +1,52 @@
+{
+   "resourceType":"Library",
+   "version":"1.0.0",
+   "name": "BariatricSurgery",
+   "title":"Bariatric Surgery",
+   "status":"draft",
+   "type":{
+      "coding":[
+         {
+            "code":"logic-library"
+         }
+      ]
+   },
+   "relatedArtifact":[
+      {
+         "type":"depends-on",
+         "resource":"Library/FHIRHelpers"
+      }
+   ],
+   "dataRequirement":[
+      {
+         "type":"Procedure",
+         "codeFilter":[
+            {
+               "path":"code",
+               "searchParam":"43644,43645,43659,43770,43771,43772,43773,43774,43775,43842,43843,43845,43846,43847,43848,43860,43865,43886,43887,43888"
+            }
+         ]
+      },
+      {
+         "type":"Practitioner",
+         "codeFilter":[
+            {
+               "path":"_id",
+               "searchParam":"4526007"
+            }
+         ]
+      },
+      {
+         "type":"Condition",
+         "codeFilter":[
+            {
+               "path":"clinical-status",
+         	"searchParam":"active"
+            }
+         ]
+      },
+      {
+         "type":"Coverage"
+      }
+   ]
+}

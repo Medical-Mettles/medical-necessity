@@ -1,0 +1,186 @@
+{
+  "resourceType": "Questionnaire",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "united_health_care-bariatric_surgery"
+    }
+  ],
+  "name": "BariatricSurgery",
+  "title": "Bariatric Surgery",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-20",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqif-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Diagnosis",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Primary Diagnosis ",
+          "type": "string",
+          "required": true,
+          "code": {
+            "coding": [
+              {
+                "system": "https://www.icd10data.com",
+                "code": "E66.01",
+                "display": "Class III Obesity"
+              },
+              {
+                "system": "https://www.icd10data.com",
+                "code": "G30.9",
+                "display": "Class II Obesity"
+              }
+            ]
+          },
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "valueString": "Class3Obesity"
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Secondary Diagnosis",
+          "type": "string",
+          "required": true,
+          "code": {
+            "coding": [
+              {
+                "system": "https://www.icd10data.com",
+                "code": "E11.9",
+                "display": "Type2 Diabetes"
+              },
+              {
+                "system": "https://www.icd10data.com",
+                "code": "I51.9",
+                "display": "Cardiovascular Disease"
+              },
+              {
+                "system": "https://www.icd10data.com",
+                "code": "I25.10",
+                "display": "Coronary Artery Disease"
+              },
+              {
+                "system": "https://www.icd10data.com",
+                "code": "G47.33",
+                "display": "Obstructive Sleep Apnea"
+              }
+            ]
+          },
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "valueString": "SecondaryDiagnosis"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "valueString": "BMIRatio"
+            }
+          ],
+          "linkId": "1.3",
+          "text": "BMI Ratio",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "1.4",
+          "text": "Any Participation in a multi-disciplinary surgical preparatory regimen?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Documentation Requirements",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Social, psychological and behavioral observations Evaluation note",
+          "type": "reference",
+          "required": true,
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "80216-5"
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "Medical treatment tried and failed including diet and exercise",
+          "type": "attachment",
+          "required": true
+        },
+        {
+
+          "linkId": "2.3",
+          "text": "Psychological evaluation",
+          "type": "reference",
+          "required": true,
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "34876-3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,352 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-transaction",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.0",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.0",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.0",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.0"
+        }
+    ],
+    "version": "Latest",
+    "name": "Malignant neoplasm of prostate",
+    "title": "Malignant neoplasm of prostate",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "C61",
+                        "display": "Malignant neoplasm of prostate"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.0"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.1",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.1",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.1",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.1"
+        }
+    ],
+    "version": "Latest",
+    "name": "Procedure Unsuccessful",
+    "title": "Procedure Unsuccessful",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "385671000",
+                        "display": "Unsuccessful"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.1"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.2",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.2",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.2",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.2"
+        }
+    ],
+    "version": "Latest",
+    "name": "Tumor Stage T2b or below",
+    "title": "Tumor Stage T2b or below",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "261646003",
+                        "display": "Tumor stage T1a"
+                    },
+                  {
+                        "code": "261647007",
+                        "display": "Tumor stage T1a1"
+                    },
+                  {
+                        "code": "261648002",
+                        "display": "Tumor stage T1a2"
+                    },
+                  {
+                        "code": "261649005",
+                        "display": "Tumor stage T1b"
+                    },
+                  {
+                        "code": "261650005",
+                        "display": "Tumor stage T1c"
+                    },
+                  {
+                        "code": "261651009",
+                        "display": "Tumor stage T2a"
+                    },
+                  {
+                        "code": "261652002",
+                        "display": "Tumor stage T2b"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.2"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.3",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.3",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.3",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.3"
+        }
+    ],
+    "version": "Latest",
+    "name": "Radiation Treatment Management",
+    "title": "Radiation Treatment Management",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "77427",
+                        "display": "Radiation treatment management, per five fractions of treatment"
+                    },
+                  {
+                        "code": "77431",
+                        "display": "Radiation therapy management with complete course of therapy, consisting of one or two fractions only"
+                    },
+                  {
+                        "code": "77432",
+                        "display": "Stereotactic radiation treatment management of cranial lesion(s), (complete course of treatment consisting of one session)"
+                    },
+                  {
+                        "code": "77435",
+                        "display": "Stereotactic Radiosurgery"
+                    },
+                  {
+                        "code": "77469",
+                        "display": "Intraoperative radiation treatment management"
+                    },
+                  {
+                        "code": "77470",
+                        "display": "Special treatment procedure (eg, total body irradiation, hemibody radiation, per oral or endocavitary irradiation)"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.3"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.4",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.4",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.4",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.4"
+        }
+    ],
+    "version": "Latest",
+    "name": "Gleason score",
+    "title": "Gleason score",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "84904-2",
+                        "display": "Gleason score at positive margin in Prostate tumor Qualitative"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.4"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.5",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.5",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.5",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.5"
+        }
+    ],
+    "version": "Latest",
+    "name": "Prostate specific Ag",
+    "title": "Prostate specific Ag",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "12841-3",
+                        "display": "Prostate Specific Ag Free/Prostate specific Ag.total in Serum or Plasma"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.5"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.6",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.6",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.6",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.6"
+        }
+    ],
+    "version": "Latest",
+    "name": "Cryosurgical ablation of the prostate",
+    "title": "Cryosurgical ablation of the prostate",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "55873",
+                        "display": "Cryosurgical ablation of the prostate(includes ultrasonic guidance and monitoring)"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.6"
+      }
+    }
+  ]
+}

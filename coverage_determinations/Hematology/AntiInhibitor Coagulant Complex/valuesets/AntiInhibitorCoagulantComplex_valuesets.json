@@ -1,0 +1,626 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-transaction",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.0",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.0",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.0",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.0"
+        }
+    ],
+    "version": "Latest",
+    "name": "Hereditary factor VIII deficiency",
+    "title": "Hereditary factor VIII deficiency",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D66",
+                        "display": "Hereditary factor VIII deficiency"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.0"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.1",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.1",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.1",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.1"
+        }
+    ],
+    "version": "Latest",
+    "name": "Major bleeding episodes",
+    "title": "Major bleeding episodes",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "R58",
+                        "display": "Hemorrhage, not elsewhere classified"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.1"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.2",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.2",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.2",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.2"
+        }
+    ],
+    "version": "Latest",
+    "name": "Hereditary factor IX deficiency",
+    "title": "Hereditary factor IX deficiency",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D67",
+                        "display": "Hereditary factor IX deficiency"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.2"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.3",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.3",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.3",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.3"
+        }
+    ],
+    "version": "Latest",
+    "name": "Von Willebrand's disease",
+    "title": "Von Willebrand's disease",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.0",
+                        "display": "Von Willebrand's disease"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.3"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.4",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.4",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.4",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.4"
+        }
+    ],
+    "version": "Latest",
+    "name": "Acquired hemophilia",
+    "title": "Acquired hemophilia",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.311",
+                        "display": "Acquired hemophilia"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.4"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.5",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.5",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.5",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.5"
+        }
+    ],
+    "version": "Latest",
+    "name": "Other coagulation factor deficiencies",
+    "title": "Other coagulation factor deficiencies",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.2",
+                        "display": "Hereditary deficiency of other clotting factors"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.5"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.6",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.6",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.6",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.6"
+        }
+    ],
+    "version": "Latest",
+    "name": "Acquired Factor VIII autoantibodies",
+    "title": "Acquired Factor VIII autoantibodies",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.4",
+                        "display": "Acquired coagulation factor deficiency"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.6"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.7",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.7",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.7",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.7"
+        }
+    ],
+    "version": "Latest",
+    "name": "Other hemorrhagic disorder due to intrinsic circulating anticoagulants, antibodies, or inhibitors",
+    "title": "Other hemorrhagic disorder due to intrinsic circulating anticoagulants, antibodies, or inhibitors",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.318",
+                        "display": "Other hemorrhagic disorder due to intrinsic circulating anticoagulants, antibodies, or inhibitors"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.7"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.8",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.8",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.8",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.8"
+        }
+    ],
+    "version": "Latest",
+    "name": "Anti-inhibitor coagulant complex",
+    "title": "Anti-inhibitor coagulant complex",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://hcpcs.codes/",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "J7198",
+                        "display": "Anti-inhibitor, per IU"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.8"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.9",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.9",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.9",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.9"
+        }
+    ],
+    "version": "Latest",
+    "name": "Antiphospholipid antibody with hemorrhagic disorder",
+    "title": "Antiphospholipid antibody with hemorrhagic disorder",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "D68.312",
+                        "display": "Antiphospholipid antibody with hemorrhagic disorder"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.9"
+      }
+    },
+      {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.10",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.10",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.10",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.10"
+        }
+    ],
+    "version": "Latest",
+    "name": "Other less expensive therapies",
+    "title": "Other less expensive therapies",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://hcpcs.codes/",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "J7179",
+                        "display": "Injection, von willebrand factor (recombinant), (vonvendi), 1 i.u. vwf:rco"
+                    },
+                    {
+                        "code": "J7182",
+                        "display": "Injection, factor viii, (antihemophilic factor, recombinant), (novoeight), per iu"
+                    },
+                    {
+                        "code": "J7183",
+                        "display": "Injection, von willebrand factor complex (human), wilate, 1 i.u. vwf:rco"
+                    },
+                    {
+                        "code": "J7185",
+                        "display": "Injection, factor viii (antihemophilic factor, recombinant) (xyntha), per i.u."
+                    },
+                    {
+                        "code": "J7186",
+                        "display": "Injection, antihemophilic factor viii/von willebrand factor complex (human), per factor viii i.u."
+                    },
+                    {
+                        "code": "J7187",
+                        "display": "Injection, von willebrand factor complex (humate-p), per iu vwf:rco"
+                    },
+                    {
+                        "code": "J7170",
+                        "display": "Injection, emicizumab-kxwh, 0.5 mg"
+                    },
+                    {
+                        "code": "J7190",
+                        "display": "Factor viii (antihemophilic factor, human) per i.u."
+                    },
+                    {
+                        "code": "J7192",
+                        "display": "Factor viii (antihemophilic factor, recombinant) per i.u., not otherwise specified"
+                    },
+                    {
+                        "code": "J7207",
+                        "display": "Injection, factor viii, (antihemophilic factor, recombinant), pegylated, 1 i.u."
+                    },
+                    {
+                        "code": "J7209",
+                        "display": "Injection, factor viii, (antihemophilic factor, recombinant), (nuwiq), 1 i.u."
+                    },
+                    {
+                        "code": "J7210",
+                        "display": "Injection, factor viii, (antihemophilic factor, recombinant), (afstyla), 1 i.u."
+                    },
+                    {
+                        "code": "J7211",
+                        "display": "Injection, factor viii, (antihemophilic factor, recombinant), (kovaltry), 1 i.u."
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.10"
+      }
+    },
+      {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.11",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.11",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.11",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.11"
+        }
+    ],
+    "version": "Latest",
+    "name": "Diagnostic Tests for hemophilia",
+    "title": "Diagnostic Tests for hemophilia",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "3209-4",
+                        "display": "Coagulation factor VIII activity actual/normal in Platelet poor plasma by Coagulation assay"
+                    },
+                    {
+                        "code": "3173-2",
+                        "display": "aPTT in Blood by Coagulation assay"
+                    },
+                    {
+                        "code": "5964-2",
+                        "display": "Prothrombin time (PT) in Blood by Coagulation assay"
+                    },
+                    {
+                        "code": "3255-7",
+                        "display": "Fibrinogen [Mass/volume] in Platelet poor plasma by Coagulation assay"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.11"
+      }
+    },
+      {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.12",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.12",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.12",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.96.12"
+        }
+    ],
+    "version": "Latest",
+    "name": "Procedure for Medication Administration",
+    "title": "Procedure for Medication Administration",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "96372",
+                        "display": "Therapeutic, prophylactic, or diagnostic injection (specify substance or drug); subcutaneous or intramuscular"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.96.12"
+      }
+    }
+  ]
+}

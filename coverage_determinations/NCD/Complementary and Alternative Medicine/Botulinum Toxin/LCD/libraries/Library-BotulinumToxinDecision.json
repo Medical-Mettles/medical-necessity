@@ -1,0 +1,43 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "BotulinumToxinDecision",
+  "name": "BotulinumToxinDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+    "type": "depends-on",
+    "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        }
+      ]
+    },
+    {
+      "type": "Procedure"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Observation"
+    }
+  ]
+}

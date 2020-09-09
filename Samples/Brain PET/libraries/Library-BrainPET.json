@@ -1,0 +1,67 @@
+{
+  "resourceType": "Library",
+  "version": "0.0.1",
+  "title": "Brain PET",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "searchParam": "G31.84,F03.91,F03.90,R41.81,G30.9,G31.09,G40.919,C80.1,C79.9,D09.9,D36.9,D48.9,D49.9"
+        },
+        {
+          "path": "category",
+          "searchParam": "problem-list-item"
+        }
+      ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "status",
+          "searchParam": "final"
+        },
+        {
+          "path": "code",
+          "searchParam": "72087-0,69966-0,52491-8,52495-9,79115-2,35088-4,72107-6,72133-2,71946-8,71947-6,2132-9,16695-9,24348-5,3024-7,3016-3,11580-8,3026-2,3050-2,32215-6"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "status",
+          "searchParam": "completed"
+        },
+        {
+          "path": "code",
+          "searchParam": "96116,96132,96133,96136,96137,96138.96139,96121"
+        }
+      ]
+    },
+    {
+      "type": "Coverage"
+    }
+  ]
+}

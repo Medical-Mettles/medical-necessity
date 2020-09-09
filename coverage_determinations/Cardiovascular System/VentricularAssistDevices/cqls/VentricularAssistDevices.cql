@@ -19,17 +19,14 @@ valueset "ACE Inhibitor or ARB or ARNI": '2.16.840.1.113883.3.526.3.1139'
 valueset "IV Positive Inotropic and Vasopressor Agents": '2.16.840.1.113883.3.666.5.2128'
 valueset "LVEF Assessment": '2.16.840.1.113762.1.4.1047.190'
 valueset "Mechanical Circulatory Assist Device": '2.16.840.1.113883.3.3157.4050'
-// Organ Procurement and Transplantation Network
-//Medicare-approved heart transplant center
-
-code "Intra-aortic balloon pump (IABP) device": '3063-5' from "CDCNHSN" display 'Intra-aortic balloon pump (IABP) device'
-code "Unsuccessful": '385671000' from "SNOMED-CT" display 'Unsuccessful'
-code "Medical care (regime/therapy)": '781087000'from "SNOMED-CT" display 'Medical care (regime/therapy)'
-code "Oxygen consumption (VO2)/Heart rate --peak during exercise": '94120-3' from "LOINC" display 'Oxygen consumption (VO2)/Heart rate --peak during exercise'
-code "Cardioassist by aortic balloon pump (procedure)": '399217008' from "SNOMED-CT" display 'Cardioassist by aortic balloon pump (procedure)'
-code "Postcardiotomy syndrome":'I97.0' from "ICD-10-CM" display 'Postcardiotomy syndrome'
-code "Open heart surgery (procedure)": '2598006' from "SNOMED-CT" display 'Open heart surgery (procedure)'
-code "Transplantation of heart (procedure)": '32413006' from "SNOMED-CT" display 'Transplantation of heart (procedure)'
+valueset "Intra-aortic balloon pump (IABP) device": '2.16.840.1.113883.3.6037.1001.23.99.49'
+valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
+valueset "Medical care (regime/therapy)": '2.16.840.1.113883.3.6037.1001.23.99.51'
+valueset "Oxygen consumption (VO2)/Heart rate --peak during exercise": '2.16.840.1.113883.3.6037.1001.23.99.52'
+valueset "Cardioassist by aortic balloon pump (procedure)": '2.16.840.1.113883.3.6037.1001.23.99.53'
+valueset "Postcardiotomy syndrome": '2.16.840.1.113883.3.6037.1001.23.99.54'
+valueset "Open heart surgery (procedure)": '2.16.840.1.113883.3.6037.1001.23.99.55'
+valueset "Transplantation of heart (procedure)": '2.16.840.1.113883.3.6037.1001.23.99.56'
 
 parameter "DeviceRequest" DeviceRequest
 
@@ -40,84 +37,84 @@ define ServiceEncounter:
 
 define function "GetId"(uri String):
 	Last(Split(uri, '/'))
-	
+
 define function "EncounterDiagnosis"(Encounter Encounter):
 	Encounter.diagnosis D
-	return First([Condition]C 
+	return First([Condition]C
 				where C.id.value = "GetId"(D.condition.reference.value)
 					and FHIRHelpers.ToInteger(D.rank) = 2)
-		
+
 define ServiceCondition:
-	"EncounterDiagnosis"("ServiceEncounter")	
-			
+	"EncounterDiagnosis"("ServiceEncounter")
+
 define PostCardiotomy:
 		First([Condition] C
 			with [Procedure] P
-			such that First(C.code.coding) = "Postcardiotomy syndrome"
-				and First(P.code.coding) = "Open heart surgery (procedure)"
+			such that First(C.code.coding) in "Postcardiotomy syndrome"
+				and First(P.code.coding) in "Open heart surgery (procedure)"
 				and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
-				
+
 define OpenHeartProcedure:
 	First([Procedure]P
-		where First(P.code.coding) = "Open heart surgery (procedure)"
-			and P.status.value = 'completed'
+		where First(P.code.coding) in "Open heart surgery (procedure)"
+			and P.status.value in 'completed'
 			and P.subject.reference.value = 'Patient/'+ Patient.id.value
 				)
-		
+
 define RelevantDiagnosis:
-		First("ServiceCondition".code.coding).display.value	
-				
+		First("ServiceCondition".code.coding).display.value
+
 define BridgeTransplant:
 		First([Procedure]T
-			where First(T.code.coding) = "Transplantation of heart (procedure)"
+			where First(T.code.coding) in "Transplantation of heart (procedure)"
 				and T.status.value = 'not-done'
 				and T.subject.reference.value = 'Patient/'+ Patient.id.value
 				)
-				
+
 define ProcedureApproved:
 	First("BridgeTransplant".code.coding).display.value
-					
+
 define DTDeviceRequest:
 	First([DeviceRequest]D)
 		//where (D.code as CodeableConcept) in "Mechanical Circulatory Assist Device")
-		//or exists([Device: "Mechanical Circulatory Assist Device"]device 
+		//or exists([Device: "Mechanical Circulatory Assist Device"]device
 				//where (D.code as Reference).reference.value = 'Device/'+device.id.value))
 
 define MechanicalDevicePrescribed:
-	First(("DTDeviceRequest".code as CodeableConcept).coding).display.value     
-				
+	First(("DTDeviceRequest".code as CodeableConcept).coding).display.value
+
 define HeartFailurePatient:
 	First([Condition:"Heart Failure"]C
 		where First(C.clinicalStatus.coding).code.value = 'active'
 		and First(C.verificationStatus.coding).code.value = 'confirmed'
 	     )
-		
+
 define BetaMedicationAdministration:
 	First([MedicationAdministration]M)
 		//where M.medication in "Beta Blocker Therapy")
-			
-		
+
+
 define ACEMedicationAdministration:
-	First([MedicationAdministration]M 
+	First([MedicationAdministration]M
 		where ((M.medication as CodeableConcept) in "ACE Inhibitor or ARB or ARNI"
-			or exists([Medication:"ACE Inhibitor or ARB or ARNI" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))	
+			or exists([Medication:"ACE Inhibitor or ARB or ARNI" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
 		and ("Normalize Interval Procedure"(M.effective)) starts after (Today()-60 days)
 	     )
 
 define function "LengthInDays"(Value Interval<DateTime>):
 	difference in days between start of Value and end of Value
-			
+
 define BallooonPumpAssist:
 	First([Procedure]P
-		where First(P.code.coding) = "Cardioassist by aortic balloon pump (procedure)"
-			and First(P.outcome.coding) = "Unsuccessful"
+		where First(P.code.coding) in "Cardioassist by aortic balloon pump (procedure)"
+			and First(P.outcome.coding) in "Unsuccessful"
 			and "LengthInDays"(P.performed) > 7 days
 	     )
-			
+
 define InotropeAdministration:
-	First([MedicationAdministration]M 
+	First([MedicationAdministration]M
 		where ((M.medication as CodeableConcept) in "IV Positive Inotropic and Vasopressor Agents"
-			or exists([Medication:"IV Positive Inotropic and Vasopressor Agents" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))	
+			or exists([Medication:"IV Positive Inotropic and Vasopressor Agents" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
 		and "LengthInDays"(M.effective) > 14 days
 	     )
 
@@ -131,7 +128,7 @@ define MedicationPrescribed:
 	if ("BetaMedicationAdministration" is not null)
 	then First(("BetaMedicationAdministration".medication as CodeableConcept).coding).display.value
 	else null
-		
+
 define MedicationPrescription:
 	if ("InotropeAdministration" is not null)
 	then "InotropeAdministration"
@@ -142,58 +139,58 @@ define MedicationPrescription:
 	if ("BetaMedicationAdministration" is not null)
 	then "BetaMedicationAdministration"
 	else null
-			
+
 define MedicationDosage:
 	FHIRHelpers.ToDecimal("MedicationPrescription".dosage.dose.value)
-	
+
 define CareTherapy:
 	First([Procedure]T
-			where First(T.code.coding) = "Medical care (regime/therapy)"
+			where First(T.code.coding) in "Medical care (regime/therapy)"
 				and T.subject.reference.value = 'Patient/'+ Patient.id.value
 				)
-		
+
 define OptimalMedicationManagement1:
 	First([Procedure]P
 		with "InotropeAdministration" I
-		such that First(P.code.coding) = "Medical care (regime/therapy)"	
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
 			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) = "Unsuccessful"
+			and First(P.outcome.coding) in "Unsuccessful"
 	     )
 
 define OptimalMedicationManagement2:
 	First([Procedure]P
 		with "ACEMedicationAdministration" I
-		such that First(P.code.coding) = "Medical care (regime/therapy)"	
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
 			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) = "Unsuccessful"
-	     )	
-	     
+			and First(P.outcome.coding) in "Unsuccessful"
+	     )
+
 define OptimalMedicationManagement3:
 	First([Procedure]P
 		with "BetaMedicationAdministration" I
-		such that First(P.code.coding) = "Medical care (regime/therapy)"	
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
 			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) = "Unsuccessful"
-	     )     
+			and First(P.outcome.coding) in "Unsuccessful"
+	     )
 define LVEFResource:
 	First([Observation]O
-		where First(O.code.coding) in "LVEF Assessment"	
+		where First(O.code.coding) in "LVEF Assessment"
 		and O.status.value = 'final')
-			
+
 define LVEFResult:
 	(First([Observation]O
-		where First(O.code.coding) in "LVEF Assessment"	
+		where First(O.code.coding) in "LVEF Assessment"
 		and O.status.value = 'final'))L
 		return FHIRHelpers.ToQuantity(L.value)
-		
+
 define PeakOxygenConsumptionResource:
 	First([Observation]O
-		where First(O.code.coding) = "Oxygen consumption (VO2)/Heart rate --peak during exercise"
+		where First(O.code.coding) in "Oxygen consumption (VO2)/Heart rate --peak during exercise"
 		and O.status.value = 'final')
-		
+
 define PeakOxygenConsumption:
 	(First([Observation]O
-		where First(O.code.coding) = "Oxygen consumption (VO2)/Heart rate --peak during exercise"
+		where First(O.code.coding) in "Oxygen consumption (VO2)/Heart rate --peak during exercise"
 		and O.status.value = 'final'))L
 		return FHIRHelpers.ToQuantity(L.value)
 
@@ -212,8 +209,8 @@ define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
 	  else null
-	
-	
+
+
 define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]

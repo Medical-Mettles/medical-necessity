@@ -10,3 +10,5 @@ We are looking for active contributors, verifiers and testers for this effort.
 If interested, please reach out to us. 
 
 
+Samples folder contains just examples which can be used as reference only.
+Coverage Determinations folder contains the artifacts which will be based on LCD or NCD.

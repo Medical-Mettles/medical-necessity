@@ -20,25 +20,6 @@ valueset "Blepharospasm": '2.16.840.1.113883.3.6037.1001.23.99.23'
 valueset "Margin reflex distance": '2.16.840.1.113883.3.6037.1001.23.99.24'
 valueset "Sockets": '2.16.840.1.113883.3.6037.1001.23.99.25'
 
-/*code "Interference with vision (finding)": '246638009' from "SNOMED-CT"
-code "Difficulty reading (finding)": '309253009' from "SNOMED-CT"
-code "Difficulty driving a car (finding)": '300638003' from "SNOMED-CT"
-code "Eyelid malposition (disorder)": '404625000' from "SNOMED-CT"
-code "Eyelid laceration without lid margin involvement (disorder)": '314535007' from "SNOMED-CT"
-code "Blepharitis of bilateral eyelids caused by staphylococcus (disorder)": '675421000119103' from "SNOMED-CT"
-code "Blepharitis of left eyelid caused by staphylococcus (disorder)": '675431000119100' from "SNOMED-CT"
-code "Blepharitis of right eyelid caused by staphylococcus (disorder)": '675441000119109' from "SNOMED-CT"
-code "Acquired absence of eye": 'Z90.01' from "ICD-10-CM"
-code "Microphthalmic socket (disorder)": '762414004' from "SNOMED-CT"
-code "Enophthalmos due to trauma or surgery, unspecified eye": 'H05.429' from "ICD-10-CM"
-code "Other anophthalmos": 'Q11.1' from "ICD-10-CM"
-code "Blepharospasm":'G24.5' from  "ICD-10-CM"
-code "Botox Cosmetic Injectable Product": '1175723' from "SNOMED-CT"
-code "Margin reflex distance": '422462002' from "SNOMED-CT"
-code "Erythematous condition, unspecified": 'L53.9' from "ICD-10-CM"
-code "Edema, unspecified": 'R60.9' from "ICD-10-CM"
-code "Changes in skin texture": 'R23.4' from "ICD-10-CM"*/
-
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
 

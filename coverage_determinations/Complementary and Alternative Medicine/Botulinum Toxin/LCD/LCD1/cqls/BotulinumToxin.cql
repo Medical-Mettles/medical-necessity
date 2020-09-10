@@ -170,3 +170,30 @@ define ServiceCode11:
 		and ("MigraineWithoutAura" is not null))
 	then true
 	else false
+
+define RelevantDiagnosis:
+	"QualifiedConditions".code.coding[0].display.value
+
+define TreatmentPerformed:
+	 	First([Procedure]P
+	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
+	 		and P.status.value = 'completed'
+	 		and "Normalize Interval Procedure"(P.performed) starts after (Today()-1 year))
+
+define TreatmentFailed:
+		"TreatmentPerformed".code.coding[0].display.value
+
+		define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+		 	 if choice is FHIR.dateTime then
+		 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+			  else if choice is FHIR.Period then
+				  FHIRHelpers.ToInterval(choice as FHIR.Period)
+				else if choice is FHIR.string then
+		    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+			  else if choice is FHIR.Age then
+			 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+		 		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+				else if choice is FHIR.Range then
+			  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+				  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+			  else null

@@ -157,8 +157,8 @@
         },
         {
           "linkId": "2.3",
-          "text": "Prostate-specific Antigen (PSA) (ng/mL)",
-          "type": "decimal",
+          "text": "Prostate-specific Antigen (PSA)",
+          "type": "quantity",
           "required": true,
           "extension": [
             {

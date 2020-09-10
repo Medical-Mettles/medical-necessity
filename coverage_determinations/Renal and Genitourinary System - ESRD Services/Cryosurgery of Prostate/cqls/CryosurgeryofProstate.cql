@@ -72,7 +72,7 @@ define ProstateSpecificAntigenObservation:
 
 define ProstateSpecificAntigen:
 	if "ProstateSpecificAntigenObservation" is not null
-	then FHIRHelpers.ToQuantity("ProstateSpecificAntigenObservation".value).value
+	then FHIRHelpers.ToQuantity("ProstateSpecificAntigenObservation".value)
 	else null
 
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):

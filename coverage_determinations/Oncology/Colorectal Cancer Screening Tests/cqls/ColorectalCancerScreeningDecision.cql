@@ -42,11 +42,11 @@ define FecalOccultBloodTests:
 	)
 
 define "FOBTPerformedDifference":
-	difference in days between end of CCS."Normalize Interval Observation"("FecalOccultBloodTests".effective) and
-		start of CCS."Normalize Interval Observation"("FOBTServiceRequestTest".occurrence) >= 365
+	difference in days between end of CCS."Normalize Interval Observation"("FecalOccultBloodTests".effective)
+	and Today() >= 365
 
 define "FOBTPatientAgeGreaterThan50":
-	AgeInYearsAt(start of CCS."Normalize Interval Observation"("FOBTServiceRequestTest".occurrence))>= 50
+	AgeInYearsAt(Today())>= 50
 
 define "CologuardServiceRequestTest":
 	"ServiceRequest"P where First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
@@ -61,12 +61,12 @@ define "MultitargetStoolDNATest":
 		sort by end of CCS."Normalize Interval Observation"(effective))
 
 define "CologuardPerformedDifference":
-	difference in days between end of CCS."Normalize Interval Observation"("MultitargetStoolDNATest".effective) and
-		start of CCS."Normalize Interval Observation"("CologuardServiceRequestTest".occurrence) >= 1095
+	difference in days between end of CCS."Normalize Interval Observation"("MultitargetStoolDNATest".effective)
+	and Today() >= 1095
 
 define "CologuardPatientAgeGreaterThan50":
-	AgeInYearsAt(start of CCS."Normalize Interval Observation"("CologuardServiceRequestTest".occurrence))>= 50
-		and AgeInYearsAt(start of CCS."Normalize Interval Observation"("CologuardServiceRequestTest".occurrence))<=85
+	AgeInYearsAt(Today())>= 50
+		and AgeInYearsAt(Today())<=85
 
 define "FOBTObservation":
 	[Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value

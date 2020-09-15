@@ -44,12 +44,10 @@ define "FecalOccultBloodTests":
 	)
 
 define "CologuardServiceRequestTest":
-	Last([ServiceRequest]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)")
+	"ServiceRequest"P where First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
 
 define "FOBTServiceRequestTest":
-	Last([ServiceRequest]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.code.coding) in "Fecal Occult Blood Tests")
+	"ServiceRequest"P where First(P.code.coding) in "Fecal Occult Blood Tests"
 
 define "ServiceRequestResource":
 	if "FOBTServiceRequestTest" is not null

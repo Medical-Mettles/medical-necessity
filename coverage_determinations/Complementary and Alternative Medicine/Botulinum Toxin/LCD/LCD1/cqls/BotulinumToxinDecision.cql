@@ -40,6 +40,7 @@ valueset "Chemodenervation of Eccrine Glands": '2.16.840.1.113883.3.6037.1001.23
 valueset "Chemodenervation of Extraocular Muscle": '2.16.840.1.113883.3.6037.1001.23.99.45'
 valueset "Chemodenervation of Muscle(s)": '2.16.840.1.113883.3.6037.1001.23.99.46'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.47'
+valueset "Onabotulinumtoxina":  '2.16.840.1.113883.3.6037.1001.23.99.78'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -222,6 +223,13 @@ define ServiceCode11:
 	then true
 	else false
 
+define ServiceCode12:
+		if ((First("ServiceRequest".code.coding) in "Onabotulinumtoxina")
+			and ("Hyperhidrosis" is not null)
+			and (("ServiceCode5" = true) and ("ServiceCode11" = true))
+		then true
+		else false
+
 define Limitations:
 	if (
 		("QualifiedConditions" is not null)
@@ -243,7 +251,8 @@ define PrimaryDecision:
 		or ("ServiceCode8" = true)
 		or ("ServiceCode9" = true)
 		or ("ServiceCode10" = true)
-		or ("ServiceCode11" = true))
+		or ("ServiceCode11" = true)
+		or ("ServiceCode12" = true))
 	    and
 	        ("Limitations" = true))
 	        then true

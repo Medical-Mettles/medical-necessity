@@ -139,9 +139,11 @@ define Headaches:
 	exists([Condition]C
 		where First(C.code.coding) in "ChemodenervationOfNeckMuscle Codes")
 
-define Preclusion:
-	FHIRHelpers.ToQuantity("ServiceRequest".quantity as Quantity).value
+define Request:
+	"ServiceRequest"
 
+define Preclusion:
+	("ServiceRequest".quantity).value
 
 define QT:
 	"QuestionnaireResponse".item
@@ -224,7 +226,8 @@ define ServiceCode11:
 	else false
 
 define ServiceCode12:
-		if ((First("ServiceRequest".code.coding) in "Onabotulinumtoxina")
+		if (
+				((First("ServiceRequest".code.coding) in "Onabotulinumtoxina") or (Last("ServiceRequest".code.coding) in "Onabotulinumtoxina"))
 			and ("Hyperhidrosis" is not null)
 			and (("ServiceCode5" = true) and ("ServiceCode11" = true))
 		then true
@@ -233,7 +236,7 @@ define ServiceCode12:
 define Limitations:
 	if (
 		("QualifiedConditions" is not null)
-		and ("Preclusion" <1)
+		and ("Preclusion" <2)
 		and (First("QA21") = false)
 	   )
 		then true

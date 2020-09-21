@@ -160,7 +160,7 @@ conventional therapy ? ",
           "required": true,
           "enableWhen": [
             {
-              "question": "2.1",
+              "question": "2.4",
               "answerBoolean": true
             }
           ]

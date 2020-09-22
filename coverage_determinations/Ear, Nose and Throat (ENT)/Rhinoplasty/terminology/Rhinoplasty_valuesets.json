@@ -1,0 +1,487 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-transaction",
+  "type": "transaction",
+  "entry": [
+      {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.7",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.7",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.7",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.7"
+        }
+    ],
+    "version": "Latest",
+    "name": "Rhinoplasty Procedures",
+    "title": "Rhinoplasty Procedures",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "30400",
+                        "display": "Rhinoplasty, primary; lateral and alar cartilages and/or elevation of nasal tip"
+                    },
+                  {
+                        "code": "30410",
+                        "display": "Rhinoplasty, primary; complete, external parts including bony pyramid, lateral and alar cartilages, and/or elevation of nasal tip"
+                    },
+                  {
+                        "code": "30420",
+                        "display": "Rhinoplasty, primary; including major septal repair"
+                    },
+                  {
+                        "code": "30430",
+                        "display": "Rhinoplasty, secondary; minor revision (small amount of nasal tip work)"
+                    },
+                  {
+                        "code": "30435",
+                        "display": "Rhinoplasty, secondary; intermediate revision (bony work with osteotomies)"
+                    },
+                  {
+                        "code": "30450",
+                        "display": "Rhinoplasty, secondary; major revision (nasal tip work and osteotomies)"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.7"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.8",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.8",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.8",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.8"
+        }
+    ],
+    "version": "Latest",
+    "name": "Rhinoplasty Diagnoses",
+    "title": "Rhinoplasty Diagnoses",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "C30.0",
+                        "display": "Malignant neoplasm of nasal cavity"
+                    },
+                  {
+                        "code": "C41.0",
+                        "display": "Malignant neoplasm of bones of skull and face"
+                    },
+                  {
+                        "code": "C43.31",
+                        "display": "Malignant melanoma of nose"
+                    },
+                  {
+                        "code": "C43.39",
+                        "display": "Malignant melanoma of other parts of face"
+                    },
+                  {
+                        "code": "C44.311",
+                        "display": "Basal cell carcinoma of skin of nose"
+                    },
+                  {
+                        "code": "C44.319",
+                        "display": "Basal cell carcinoma of skin of other parts of face"
+                    },
+                  {
+                        "code": "C44.321",
+                        "display": "Squamous cell carcinoma of skin of nose"
+                    },
+                  {
+                        "code": "C44.329",
+                        "display": "Squamous cell carcinoma of skin of other parts of face"
+                    },
+                  {
+                        "code": "C44.391",
+                        "display": "Other specified malignant neoplasm of skin of nose"
+                    },
+                  {
+                        "code": "C44.399",
+                        "display": "Other specified malignant neoplasm of skin of other parts of face"
+                    },
+                  {
+                        "code": "C76.0",
+                        "display": "Malignant neoplasm of head, face and neck"
+                    },
+                  {
+                        "code": "D03.39",
+                        "display": "Melanoma in situ of other parts of face"
+                    },
+                  {
+                        "code": "D04.39",
+                        "display": "Carcinoma in situ of skin of other parts of face"
+                    },
+                  {
+                        "code": "D14.0",
+                        "display": "Benign neoplasm of middle ear, nasal cavity and accessory sinuses"
+                    },
+                  {
+                        "code": "D16.4",
+                        "display": "Benign neoplasm of bones of skull and face"
+                    },
+                  {
+                        "code": "D22.39",
+                        "display": "Melanocytic nevi of other parts of face"
+                    },
+                  {
+                        "code": "D23.39",
+                        "display": "Other benign neoplasm of skin of other parts of face"
+                    },
+                  {
+                        "code": "J34.0",
+                        "display": "Abscess, furuncle and carbuncle of nose"
+                    },
+                  {
+                        "code": "J34.1",
+                        "display": "Cyst and mucocele of nose and nasal sinus"
+                    },
+                  {
+                        "code": "J34.89",
+                        "display": "Other specified disorders of nose and nasal sinuses"
+                    },
+                  {
+                        "code": "S02.2XXA",
+                        "display": "Fracture of nasal bones, initial encounter for closed fracture"
+                    },
+                  {
+                        "code": "S02.2XXB",
+                        "display": "Fracture of nasal bones, initial encounter for open fracture"
+                    },
+                  {
+                        "code": "S02.2XXD",
+                        "display": "Fracture of nasal bones, subsequent encounter for fracture with routine healing"
+                    },
+                  {
+                        "code": "S02.2XXG",
+                        "display": "Fracture of nasal bones, subsequent encounter for fracture with delayed healing"
+                    },
+                  {
+                        "code": "S02.2XXK",
+                        "display": "Fracture of nasal bones, subsequent encounter for fracture with nonunion"
+                    },
+                  {
+                        "code": "S02.2XXS",
+                        "display": "Fracture of nasal bones, sequela"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.8"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.9",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.9",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.9",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.9"
+        }
+    ],
+    "version": "Latest",
+    "name": "Operative / procedure report",
+    "title": "Operative / procedure report",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "28570-0",
+                        "display": "Procedure note"
+                    },
+                    {
+                        "code": "11504-8",
+                        "display": "Surgical operation note"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.9"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.10",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.10",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.10",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.10"
+        }
+    ],
+    "version": "Latest",
+    "name": "Practitioner, nurse, and ancillary progress notes",
+    "title": "Practitioner, nurse, and ancillary progress notes",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "28623-7",
+                        "display": "Nurse Progress note"
+                    },
+                    {
+                        "code": "28575-9",
+                        "display": "Nurse practitioner Progress note"
+                    },
+                    {
+                        "code": "11506-3",
+                        "display": "Progress note"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.10"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.11",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.11",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.11",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.11"
+        }
+    ],
+    "version": "Latest",
+    "name": "Physician consultations",
+    "title": "Physician consultations",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "11488-4",
+                        "display": "Consult note"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.11"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.12",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.12",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.12",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.12"
+        }
+    ],
+    "version": "Latest",
+    "name": "Advanced beneficiary notice",
+    "title": "Advanced beneficiary notice",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "53243-2",
+                        "display": "Advanced beneficiary notice"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.12"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.13",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.13",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.13",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.13"
+        }
+    ],
+    "version": "Latest",
+    "name": "Documentation of presurgical conservative measures/treatments",
+    "title": "Documentation of presurgical conservative measures/treatments",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "34775-7",
+                        "display": "General surgery Pre-operative evaluation and management note"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.13"
+      }
+    },
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.14",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.14",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.14",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.14"
+        }
+    ],
+    "version": "Latest",
+    "name": "Imaging reports prior to the visits or treatments",
+    "title": "Imaging reports prior to the visits or treatments",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "24834-4",
+                        "display": "XR Nasal bones Views"
+                    },
+                    {
+                        "code": "69211-1",
+                        "display": "MR Nasal bones"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.14"
+      }
+    }
+    ]
+}

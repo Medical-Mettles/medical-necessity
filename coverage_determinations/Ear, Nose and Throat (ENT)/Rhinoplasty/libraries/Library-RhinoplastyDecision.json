@@ -1,0 +1,55 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Rhinoplasty",
+  "name": "RhinoplastyDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "DocumentReference",
+      "codeFilter": [
+        {
+          "path": "type",
+          "searchParam": "28570-0,11504-8,28623-7,28575-9,11506-3,11488-4,53243-2,34775-7,24834-4,69211-1"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "C30.0,C41.0,C43.31,C43.39,C44.311,C44.319,C44.321,C44.329,C44.391,C44.399,C76.0,D03.39,D04.39,D14.0,D16.4,D22.39,D23.39,J34.0,J34.1,J34.89,S02.2XXA,S02.2XXB,S02.2XXD,S02.2XXG,S02.2XXK,S02.2XXS"
+        }
+      ]
+    }
+  ]
+}

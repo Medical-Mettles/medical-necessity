@@ -1,0 +1,121 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-rhinoplasty"
+    }
+  ],
+  "name": "Rhinoplasty",
+  "version": "1.0.0",
+  "title": "Rhinoplasty",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Clinical Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Primary Diagnoses",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PrimaryDiagnoses"
+              }
+            }
+          ]
+        }
+      ]
+    },
+      {
+         "linkId":"2",
+         "text":"Documentation Requirements",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"2.1",
+               "text":"Operative / procedure report",
+               "type": "display"
+            },
+            {
+               "linkId":"2.2",
+               "text":"Practitioner, nurse, and ancillary progress notes",
+               "type": "display"
+            },
+            {
+               "linkId":"2.3",
+               "text":"Physician consultations",
+               "type": "display"
+            },
+            {
+               "linkId":"2.4",
+               "text":"Documentation of presurgical conservative measures/treatments",
+               "type": "display"
+            },
+            {
+               "linkId":"2.5",
+               "text":"Imaging reports prior to the visits or treatments",
+               "type": "display"
+            },
+            {
+               "linkId":"2.6",
+               "text":"Advanced beneficiary notice",
+               "type": "display"
+            },
+            {
+               "linkId":"2.7",
+               "text":"Beneficiary name and date of service on all documentation",
+               "type": "display"
+            }
+         ]
+      }
+  ]
+}

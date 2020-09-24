@@ -1,0 +1,55 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Vagus Nerve Stimulation",
+  "name": "VNSDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "61533,61534,61535,61536,61537,61538,61539,61540,61541,61542,61543,61760"
+        }
+      ]
+    },
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "G40.209,G40.109,F33.9"
+        }
+      ]
+    }
+  ]
+}

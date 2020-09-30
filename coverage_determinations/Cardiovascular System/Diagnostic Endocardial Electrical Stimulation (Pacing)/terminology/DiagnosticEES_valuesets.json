@@ -1,0 +1,112 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-transaction",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.19",
+      "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.19",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.19",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.19"
+        }
+    ],
+    "version": "Latest",
+    "name": "Cardiac arrhythmia",
+    "title": "Cardiac arrhythmia",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "I49.9",
+                        "display": "Cardiac arrhythmia, unspecified"
+                    }
+                ]
+            }
+        ]
+    }
+},
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.19"
+      }
+    },
+    {
+  "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.20",
+  "resource": {
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.20",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.20",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.97.20"
+      }
+    ],
+    "version": "Latest",
+    "name": "Diagnostic Endocardial Electrical Stimulation (Pacing)",
+    "title": "Diagnostic Endocardial Electrical Stimulation (Pacing)",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "93619",
+              "display": "Comprehensive electrophysiologic evaluation with right atrial pacing and recording, right ventricular pacing and recording, His bundle recording, including insertion and repositioning of multiple electrode catheters, without induction or attempted induction of arrhythmia"
+            },
+            {
+              "code": "93620",
+              "display": "Comprehensive electrophysiologic evaluation including insertion and repositioning of multiple electrode catheters with induction or attempted induction of arrhythmia; with right atrial pacing and recording, right ventricular pacing and recording, His bundle recording"
+            },
+            {
+              "code": "93621",
+              "display": "Comprehensive electrophysiologic evaluation including insertion and repositioning of multiple electrode catheters with induction or attempted induction of arrhythmia; with left atrial pacing and recording from coronary sinus or left atrium"
+            },
+            {
+              "code": "93622",
+              "display": "Comprehensive electrophysiologic evaluation including insertion and repositioning of multiple electrode catheters with induction or attempted induction of arrhythmia; with left ventricular pacing and recording"
+            },
+            {
+              "code": "93623",
+              "display": "Programmed stimulation and pacing after intravenous drug infusion"
+            },
+            {
+              "code": "93624",
+              "display": "Electrophysiologic follow-up study with pacing and recording to test effectiveness of therapy, including induction or attempted induction of arrhythmia"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "request": {
+    "method": "PUT",
+    "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.97.20"
+  }
+}
+  ]
+}

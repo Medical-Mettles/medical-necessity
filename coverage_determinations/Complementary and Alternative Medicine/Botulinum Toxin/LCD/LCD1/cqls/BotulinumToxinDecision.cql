@@ -52,51 +52,51 @@ define ServiceEncounter:
 
 define QualifiedConditions:
 	First([Condition]C
-		where First(C.code.coding) in "BotulinumToxin Diagnosis Codes")
+		where exists(C.code.coding C where C in "BotulinumToxin Diagnosis Codes"))
 
 define Esophagoscopy:
 	First([Condition]C
-		where First(C.code.coding) in "Esophagoscopy Codes")
+		where exists(C.code.coding C where C in "Esophagoscopy Codes"))
 
 define Sialorrhea:
 	First([Condition]C
-		where First(C.code.coding) in "Sialorrhea Diagnosis Codes")
+		where exists(C.code.coding C where C in "Sialorrhea Diagnosis Codes"))
 
 define AnalFissure:
 	First([Condition]C
-		where First(C.code.coding) in "AnalFissure Codes")
+		where exists(C.code.coding C where C in "AnalFissure Codes"))
 
 define Cystourethroscopy:
 	First([Condition]C
-		where First(C.code.coding) in "Cystourethroscopy Codes")
+		where exists(C.code.coding C where C in "Cystourethroscopy Codes"))
 
 define Blepharospasm:
 	First([Condition]C
-		where First(C.code.coding) in "Blepharospasm Codes")
+		where exists(C.code.coding C where C in "Blepharospasm Codes"))
 
 define CervicalDystonia:
 	First([Condition]C
-		where First(C.code.coding) in "CervicalDystonia Codes")
+		where exists(C.code.coding C where C in "CervicalDystonia Codes"))
 
 define ChemodenervationOfOneExtremity:
 	First([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfOneExtremity Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfOneExtremity Codes"))
 
 define Hyperhidrosis:
 	First([Condition]C
-		where First(C.code.coding) in "Hyperhidrosis Codes")
+		where exists(C.code.coding C where C in "Hyperhidrosis Codes"))
 
 define ExtraOcularMuscle:
 	First([Condition]C
-		where First(C.code.coding) in "ExtraOcularMuscle Codes")
+		where exists(C.code.coding C where C in "ExtraOcularMuscle Codes"))
 
 define ChemodenervationOfNeckMuscle:
 	First([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes"))
 
 define MigraineWithoutAura:
 	First([Condition]C
-		where First(C.code.coding) in "MigraineWithoutAura Codes")
+		where exists(C.code.coding C where C in "MigraineWithoutAura Codes"))
 
 //have been refractory to standard and usual conventional therapy
 define QA23:
@@ -137,7 +137,7 @@ define Group10criteria:
 
 define Headaches:
 	exists([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes"))
 
 define Request:
 	"ServiceRequest"
@@ -160,76 +160,75 @@ define QA22:
 		return First(QR.answer).value
 
 define ServiceCode1:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
 		and ("Sialorrhea" is not null))
 	then true
 	else false
 
 define ServiceCode2:
-	if ((First("ServiceRequest".code.coding) in "Esophagogastroduodenoscopy")
+	if ((exists("ServiceRequest".code.coding C where C in "Esophagogastroduodenoscopy"))
 		and ("Esophagoscopy" is not null))
 	then true
 	else false
 
 define ServiceCode3:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Internal Anal Sphincter")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
 		and ("AnalFissure" is not null))
 	then true
 	else false
 
 define ServiceCode4:
-	if ((First("ServiceRequest".code.coding) in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
+	if ((exists("ServiceRequest".code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
 		and ("Cystourethroscopy" is not null))
 	then true
 	else false
 
 define ServiceCode5:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
 		and ("Blepharospasm" is not null))
 	then true
 	else false
 
 define ServiceCode6:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
 		and ("CervicalDystonia" is not null))
 	then true
 	else false
 
 define ServiceCode7:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of One Extremity, Trunk Muscles(s)")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
 		and ("ChemodenervationOfOneExtremity" is not null))
 	then true
 	else false
 
 define ServiceCode8:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Eccrine Glands")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Eccrine Glands"))
 		and ("Hyperhidrosis" is not null))
 	then true
 	else false
 
 define ServiceCode9:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Extraocular Muscle")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Extraocular Muscle"))
 		and ("ExtraOcularMuscle" is not null))
 	then true
 	else false
 
 define ServiceCode10:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s)")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s)"))
 		and ("Group10criteria" = true))
 	then true
 	else false
 
 define ServiceCode11:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
 		and ("MigraineWithoutAura" is not null))
 	then true
 	else false
 
 define ServiceCode12:
-		if (
-				((First("ServiceRequest".code.coding) in "Onabotulinumtoxina") or (Last("ServiceRequest".code.coding) in "Onabotulinumtoxina"))
+		if ((exists("ServiceRequest".code.coding C where C in "Onabotulinumtoxina"))
 			and ("Hyperhidrosis" is not null)
-			and (("ServiceCode5" = true) and ("ServiceCode11" = true))
+			and (("ServiceCode5" = true) and ("ServiceCode11" = true)))
 		then true
 		else false
 

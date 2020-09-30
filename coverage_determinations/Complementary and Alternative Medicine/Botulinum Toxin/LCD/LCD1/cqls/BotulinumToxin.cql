@@ -51,128 +51,128 @@ define ServiceEncounter:
 
 define QualifiedConditions:
 	First([Condition]C
-		where First(C.code.coding) in "BotulinumToxin Diagnosis Codes")
+		where exists(C.code.coding C where C in "BotulinumToxin Diagnosis Codes"))
 
 define Esophagoscopy:
 	First([Condition]C
-		where First(C.code.coding) in "Esophagoscopy Codes")
+		where exists(C.code.coding C where C in "Esophagoscopy Codes"))
 
 define Sialorrhea:
 	First([Condition]C
-		where First(C.code.coding) in "Sialorrhea Diagnosis Codes")
+		where exists(C.code.coding C where C in "Sialorrhea Diagnosis Codes"))
 
 define AnalFissure:
 	First([Condition]C
-		where First(C.code.coding) in "AnalFissure Codes")
+		where exists(C.code.coding C where C in "AnalFissure Codes"))
 
 define Cystourethroscopy:
 	First([Condition]C
-		where First(C.code.coding) in "Cystourethroscopy Codes")
+		where exists(C.code.coding C where C in "Cystourethroscopy Codes"))
 
 define Blepharospasm:
 	First([Condition]C
-		where First(C.code.coding) in "Blepharospasm Codes")
+		where exists(C.code.coding C where C in "Blepharospasm Codes"))
 
 define CervicalDystonia:
 	First([Condition]C
-		where First(C.code.coding) in "CervicalDystonia Codes")
+		where exists(C.code.coding C where C in "CervicalDystonia Codes"))
 
 define ChemodenervationOfOneExtremity:
 	First([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfOneExtremity Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfOneExtremity Codes"))
 
 define Hyperhidrosis:
 	First([Condition]C
-		where First(C.code.coding) in "Hyperhidrosis Codes")
+		where exists(C.code.coding C where C in "Hyperhidrosis Codes"))
 
 define ExtraOcularMuscle:
 	First([Condition]C
-		where First(C.code.coding) in "ExtraOcularMuscle Codes")
+		where exists(C.code.coding C where C in "ExtraOcularMuscle Codes"))
 
 define ChemodenervationOfNeckMuscle:
 	First([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes"))
 
 define MigraineWithoutAura:
 	First([Condition]C
-		where First(C.code.coding) in "MigraineWithoutAura Codes")
+		where exists(C.code.coding C where C in "MigraineWithoutAura Codes"))
 
 define Headaches:
 	exists([Condition]C
-		where First(C.code.coding) in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes"))
 
 define Preclusion:
 	FHIRHelpers.ToQuantity("ServiceRequest".quantity as Quantity).value
 
 
 define ServiceCode1:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
 		and ("Sialorrhea" is not null))
 	then true
 	else false
 
 define ServiceCode2:
-	if ((First("ServiceRequest".code.coding) in "Esophagogastroduodenoscopy")
+	if ((exists("ServiceRequest".code.coding C where C in "Esophagogastroduodenoscopy"))
 		and ("Esophagoscopy" is not null))
 	then true
 	else false
 
 define ServiceCode3:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Internal Anal Sphincter")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
 		and ("AnalFissure" is not null))
 	then true
 	else false
 
 define ServiceCode4:
-	if ((First("ServiceRequest".code.coding) in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
+	if ((exists("ServiceRequest".code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
 		and ("Cystourethroscopy" is not null))
 	then true
 	else false
 
 define ServiceCode5:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
 		and ("Blepharospasm" is not null))
 	then true
 	else false
 
 define ServiceCode6:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
 		and ("CervicalDystonia" is not null))
 	then true
 	else false
 
 define ServiceCode7:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of One Extremity, Trunk Muscles(s)")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
 		and ("ChemodenervationOfOneExtremity" is not null))
 	then true
 	else false
 
 define ServiceCode8:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Eccrine Glands")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Eccrine Glands"))
 		and ("Hyperhidrosis" is not null))
 	then true
 	else false
 
 define ServiceCode9:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Extraocular Muscle")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Extraocular Muscle"))
 		and ("ExtraOcularMuscle" is not null))
 	then true
 	else false
 
 define ServiceCode10:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s)")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s)"))
 		and ("Headaches" is not null))
 	then true
 	else false
 
 define ServiceCode11:
-	if ((First("ServiceRequest".code.coding) in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
 		and ("MigraineWithoutAura" is not null))
 	then true
 	else false
 
 define RelevantDiagnosis:
-	"QualifiedConditions".code.coding[0].display.value
+	First("QualifiedConditions".code.coding).display.value
 
 define TreatmentPerformed:
 	 	First([Procedure]P
@@ -181,19 +181,19 @@ define TreatmentPerformed:
 	 		and "Normalize Interval Procedure"(P.performed) starts after (Today()-1 year))
 
 define TreatmentFailed:
-		"TreatmentPerformed".code.coding[0].display.value
+		First("TreatmentPerformed".code.coding).display.value
 
-		define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-		 	 if choice is FHIR.dateTime then
-		 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
-			  else if choice is FHIR.Period then
-				  FHIRHelpers.ToInterval(choice as FHIR.Period)
-				else if choice is FHIR.string then
-		    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-			  else if choice is FHIR.Age then
-			 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
-		 		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
-				else if choice is FHIR.Range then
-			  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
-				  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-			  else null
+define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	 if choice is FHIR.dateTime then
+			Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+		else if choice is FHIR.Period then
+			FHIRHelpers.ToInterval(choice as FHIR.Period)
+		else if choice is FHIR.string then
+		Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+		else if choice is FHIR.Age then
+			Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+		else if choice is FHIR.Range then
+		Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+			FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+		else null

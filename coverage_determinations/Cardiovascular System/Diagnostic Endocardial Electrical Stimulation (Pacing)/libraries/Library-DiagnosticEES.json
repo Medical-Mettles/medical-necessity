@@ -1,0 +1,46 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Diagnostic Endocardial Electrical Stimulation (Pacing)",
+  "name": "DiagnosticEES",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "I49.9"
+        }
+      ]
+    }
+  ]
+}

@@ -132,6 +132,10 @@
                     {
                         "code": "D12.6",
                         "display": "Benign neoplasm of colon, unspecified"
+                    },
+                    {
+                        "code": "K63.5",
+                        "display": "Polyp of colon"
                     }
                 ]
             }
@@ -174,6 +178,10 @@
                     {
                         "code": "C18.9",
                         "display": "Malignant neoplasm of colon, unspecified"
+                    },
+                    {
+                        "code": "C19",
+                        "display": "Malignant neoplasm of rectosigmoid junction"
                     }
                 ]
             }
@@ -216,6 +224,10 @@
                     {
                         "code": "K51.90",
                         "display": "Ulcerative colitis, unspecified, without complications"
+                    },
+                    {
+                        "code": "K52.9",
+                        "display": "Noninfective gastroenteritis and colitis, unspecified"
                     }
                 ]
             }

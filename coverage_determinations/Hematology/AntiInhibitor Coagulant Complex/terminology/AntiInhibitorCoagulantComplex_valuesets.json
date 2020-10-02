@@ -78,6 +78,10 @@
                     {
                         "code": "R58",
                         "display": "Hemorrhage, not elsewhere classified"
+                    },
+                    {
+                        "code": "D69.9",
+                        "display": "Hemorrhagic condition, unspecified"
                     }
                 ]
             }

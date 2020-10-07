@@ -180,6 +180,11 @@ define TreatmentPerformed:
 	 		and P.status.value = 'completed'
 	 		and "Normalize Interval Procedure"(P.performed) starts after (Today()-1 year))
 
+define IsTreatmentPerformed:
+	if ("TreatmentPerformed" is not null)
+	then true
+	else false
+
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value
 

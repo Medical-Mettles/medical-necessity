@@ -43,6 +43,7 @@ valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigemi
 valueset "Onabotulinumtoxina":  '2.16.840.1.113883.3.6037.1001.23.99.78'
 
 parameter "ServiceRequest" ServiceRequest
+parameter "Claim" Claim
 parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
@@ -122,7 +123,6 @@ define QA31:
 		where I.linkId.value = '3.1')QR
 		return First(QR.answer).value
 
-
 define Group10criteria:
 	if( ("Headaches" = true)
 		and (
@@ -139,11 +139,14 @@ define Headaches:
 	exists([Condition]C
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes"))
 
+define theclaim:
+	[Claim]C
+
 define Request:
-	"ServiceRequest"
+	First([ServiceRequest]S where 'ServiceRequest/' + S.id.value = First("theclaim").referral.reference.value)
 
 define Preclusion:
-	("ServiceRequest".quantity).value
+	("Request".quantity).value.value
 
 define QT:
 	"QuestionnaireResponse".item
@@ -159,74 +162,76 @@ define QA22:
 		where I.linkId.value = '2.2')QR
 		return First(QR.answer).value
 
+
+
 define ServiceCode1:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
 		and ("Sialorrhea" is not null))
 	then true
 	else false
 
 define ServiceCode2:
-	if ((exists("ServiceRequest".code.coding C where C in "Esophagogastroduodenoscopy"))
+	if ((exists("Request".code.coding C where C in "Esophagogastroduodenoscopy"))
 		and ("Esophagoscopy" is not null))
 	then true
 	else false
 
 define ServiceCode3:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
 		and ("AnalFissure" is not null))
 	then true
 	else false
 
 define ServiceCode4:
-	if ((exists("ServiceRequest".code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
+	if ((exists("Request".code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
 		and ("Cystourethroscopy" is not null))
 	then true
 	else false
 
 define ServiceCode5:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
-		and ("Blepharospasm" is not null))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+			and ("Blepharospasm" is not null))
 	then true
 	else false
 
 define ServiceCode6:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
 		and ("CervicalDystonia" is not null))
 	then true
 	else false
 
 define ServiceCode7:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
 		and ("ChemodenervationOfOneExtremity" is not null))
 	then true
 	else false
 
 define ServiceCode8:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Eccrine Glands"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Eccrine Glands"))
 		and ("Hyperhidrosis" is not null))
 	then true
 	else false
 
 define ServiceCode9:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Extraocular Muscle"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Extraocular Muscle"))
 		and ("ExtraOcularMuscle" is not null))
 	then true
 	else false
 
 define ServiceCode10:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s)"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s)"))
 		and ("Group10criteria" = true))
 	then true
 	else false
 
 define ServiceCode11:
-	if ((exists("ServiceRequest".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
 		and ("MigraineWithoutAura" is not null))
 	then true
 	else false
 
 define ServiceCode12:
-		if ((exists("ServiceRequest".code.coding C where C in "Onabotulinumtoxina"))
+		if ((exists("Request".code.coding C where C in "Onabotulinumtoxina"))
 			and ("Hyperhidrosis" is not null)
 			and (("ServiceCode5" = true) and ("ServiceCode11" = true)))
 		then true
@@ -236,7 +241,7 @@ define Limitations:
 	if (
 		("QualifiedConditions" is not null)
 		and ("Preclusion" <2)
-		and (First("QA21") = false)
+		and (First("QA31") = false)
 	   )
 		then true
 		else false

@@ -1,0 +1,158 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-eci-proteinA"
+    }
+  ],
+  "title": "Extracorporeal Immunoadsorption (ECI)Using Protein A Columns",
+  "name": "ECIProteinA",
+  "version": "1.0.0",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Clinical Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Primary Diagnoses",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PrimaryDiagnoses"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Swollen Joints",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SwollenJoints"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Tender Joints",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TenderJoints"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.4",
+          "text": "Morning Stiffness",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MorningStiffness"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.5",
+          "text": "How many minutes does the morning stiffness last for?",
+          "type": "integer",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Disease Modifying Anti-Rheumatic Drugs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "DMARDs treatment that failed",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FailedDMARDs"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "Was the failure due to intolerance?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

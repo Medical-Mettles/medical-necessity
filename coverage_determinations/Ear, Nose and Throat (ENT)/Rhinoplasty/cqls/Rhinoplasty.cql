@@ -1,8 +1,9 @@
-library RhinoplastyDecision version '1.0.0'
+library Rhinoplasty version '1.0.0'
 
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include RhinoplastyDecision version '1.0.0' called RhinoplastyDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -26,13 +27,8 @@ parameter "ClaimResponse" ClaimResponse
 context Patient
 
 define "PrimaryDiagnosesResources":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Rhinoplasty Diagnoses"
+	RhinoplastyDecision."Diagnoses"
 
 define "PrimaryDiagnoses":
 	"PrimaryDiagnosesResources" P
 	return P.code.coding[0].display.value+'\n'
-
-//define ""

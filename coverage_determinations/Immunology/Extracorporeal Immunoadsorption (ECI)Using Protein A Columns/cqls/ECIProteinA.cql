@@ -3,6 +3,7 @@ library ECIProteinA version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include ECIProteinADecision version '1.0.0' called ECIProteinADecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -27,74 +28,30 @@ parameter "ClaimResponse" ClaimResponse
 context Patient
 
 define "ITResource":
-	([Condition]C
-			where C.subject.reference.value = 'Patient/'+ Patient.id.value
-				and First(C.clinicalStatus.coding).code.value = 'active'
-				and exists(C.code.coding C where C in "Idiopathic thrombocytopenic purpura"))
+	ECIProteinADecision."ITResource"
 
 define "RAResource":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Rheumatoid Arthritis")
+	ECIProteinADecision."RAResource"
 
 define "PrimaryDiagnoses":
 	("RAResource" union "ITResource")P
 	return (First(P.code.coding).display.value)+'\n'
 
-define "SwollenJointsResource":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Swollen joints")
-
 define "SwollenJoints":
-	"SwollenJointsResource" P
+	ECIProteinADecision."SwollenJointsResource" P
 	return First(P.code.coding).display.value+'\n'
-
-define "TenderJointsResource":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Tender joints")
 
 define "TenderJoints":
-	"TenderJointsResource" P
+	ECIProteinADecision."TenderJointsResource" P
 	return First(P.code.coding).display.value+'\n'
-
-define "MorningStiffnessResource":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Morning Stiffness")
 
 define "MorningStiffness":
-	"MorningStiffnessResource" P
+	ECIProteinADecision."MorningStiffnessResource" P
 	return First(P.code.coding).display.value+'\n'
 
-define "MedicationAdministrationResources":
-	[MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
-	and (First(((M.medication as CodeableConcept).coding) P where P in "Disease Modifying Anti-Rheumatic Drugs") is not null
-		or First([Medication]med
-							where (M.medication as Reference).reference.value = 'Medication/'+med.id.value
-							and ((med.code.coding)C where C in "Disease Modifying Anti-Rheumatic Drugs") is not null
-				) is not null
-			) is not null
-
-define "MedicationResources":
-	[Medication]med where exists(med.code.coding C where C in "Disease Modifying Anti-Rheumatic Drugs")
-
-define "ProcedureResources":
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and First(P.outcome.coding) in "Procedure Unsuccessful"
-		and exists(P.code.coding C where C in "Procedure for Medication Administration")
-
 define "FailedDMARDsResources":
-	"MedicationAdministrationResources" M
-	with "ProcedureResources" P
+	ECIProteinADecision."MedicationAdministrationResources" M
+	with ECIProteinADecision."ProcedureResources" P
 	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
 define "FailedDMARDs":

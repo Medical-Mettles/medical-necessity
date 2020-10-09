@@ -49,7 +49,6 @@ define RAResource:
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.severity.coding).display.value = 'Severe'
 		and exists(C.code.coding C where C in "Rheumatoid Arthritis")
 
 define SwollenJointsResource:
@@ -94,7 +93,7 @@ define "FailedDMARDsResources":
 
 define "DiagnosesAssessment":
 	if (exists("ITResource")
-			and Last("RAResource") is not null)
+			and exists("RAResource"R where First(R.severity.coding).display.value = 'Severe'))
 	then true
 	else false
 

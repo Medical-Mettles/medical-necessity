@@ -15,6 +15,10 @@
     {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-medicarefeeforservice-ColorectalCancerScreeningDecision"
     }
   ],
   "dataRequirement": [
@@ -23,27 +27,36 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "82274,82270,G0328,81528"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.0"
         }
-      ]
+        ]
+    },
+    {
+      "type": "DiagnosticReport",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.8"
+        }
+        ]
     },
     {
       "type": "Procedure",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "74263"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.9"
         }
-      ]
+        ]
     },
     {
       "type": "Observation",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "29771-3"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.10"
         }
-      ]
+        ]
     },
     {
       "type": "Coverage"
@@ -65,9 +78,72 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "R10.30,R19.5,D12.6,C18.9,K51.90,K50.90,Z83.71,Z15.09"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.1"
         }
-      ]
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.2"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.3"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.4"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.5"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.6"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.7"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.11"
+        }
+        ]
     }
   ]
 }

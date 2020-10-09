@@ -15,6 +15,10 @@
     {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-medicarefeeforservice-CryosurgeryofProstateDecision"
     }
   ],
   "dataRequirement": [
@@ -23,18 +27,18 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "77427,77431,77432,77435,77469,77470"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.3"
         }
-      ]
+        ]
     },
     {
       "type": "Observation",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "12841-3"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.5"
         }
-      ]
+        ]
     },
     {
       "type": "Coverage"
@@ -56,18 +60,18 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "84904-2"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.4"
         }
-      ]
+        ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "C61"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.0"
         }
-      ]
+        ]
     }
   ]
 }

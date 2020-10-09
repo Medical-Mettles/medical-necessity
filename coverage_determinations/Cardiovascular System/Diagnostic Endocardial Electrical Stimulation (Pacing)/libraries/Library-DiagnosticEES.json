@@ -15,6 +15,10 @@
     {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-medicarefeeforservice-DiagnosticEESDecision"
     }
   ],
   "dataRequirement": [
@@ -38,9 +42,9 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "I49.9"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.19"
         }
-      ]
+        ]
     }
   ]
 }

@@ -3,6 +3,7 @@ library CryosurgeryofProstate version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include CryosurgeryofProstateDecision version '1.0.0' called CryosurgeryofProstateDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -22,10 +23,7 @@ parameter "ServiceRequest" ServiceRequest
 context Patient
 
 define RadiationTherapyProcedure:
-	First(
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Radiation Treatment Management"))
+	Last(CryosurgeryofProstateDecision."RadiationTherapy")
 
 define RadiationTherapy:
 	if "RadiationTherapyProcedure" is not null
@@ -42,10 +40,7 @@ define ProcedureOutcome:
 
 define TumorCondition:
 	First(
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Malignant neoplasm of prostate"
+	CryosurgeryofProstateDecision."TumorStage"
 	)
 
 define TumorStage:
@@ -55,20 +50,16 @@ define TumorStage:
 
 define GleasonScoreObservation:
 	First(
-	[Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Gleason score")
+		CryosurgeryofProstateDecision."GleasonScore"
+	)
 
 define GleasonScore:
 	FHIRHelpers.ToQuantity("GleasonScoreObservation".value).value
 
 define ProstateSpecificAntigenObservation:
 	First(
-	[Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Prostate specific Ag")
+		CryosurgeryofProstateDecision."ProstateSpecificAntigen"
+	)
 
 define ProstateSpecificAntigen:
 	if "ProstateSpecificAntigenObservation" is not null

@@ -36,11 +36,10 @@ define "PrimaryDiagnosesResources":
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Medically refractory partial onset seizures"
 
-define "SurgeryFailure":
+define "SurgeryResources":
 	[Procedure]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value = 'completed'
-		and First(P.outcome.coding) in "Procedure Unsuccessful"
 		and First(P.code.coding) in "Epilepsy Surgery"
 
 define "DepressionCondition":
@@ -58,7 +57,7 @@ define "DepressionReasonCheck":
 
 define PrimaryDecision:
 	if ((Last("PrimaryDiagnosesResources") is not null)
-			and (Last("SurgeryFailure") is not null
+			and (exists("SurgeryResources"P where First(P.outcome.coding) in "Procedure Unsuccessful")
 					or First("QA14") = false)
 			and "DepressionReasonCheck" is null)
 	then true

@@ -15,6 +15,10 @@
     {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-medicarefeeforservice-AntiInhibitorCoagulantDecision"
     }
   ],
   "dataRequirement": [
@@ -23,18 +27,18 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "3209-4,58410-2,3173-2,5964-2,3255-7"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.11"
         }
-      ]
+        ]
     },
     {
       "type": "Procedure",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "96372"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.12"
         }
-      ]
+        ]
     },
     {
       "type": "Coverage"
@@ -56,27 +60,99 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "D68.4,D68.311,R58,D66"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.0"
         }
-      ]
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.1"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.2"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.3"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.4"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.5"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.6"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.7"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.9"
+        }
+        ]
     },
     {
       "type": "Medication",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "J7179,J7182,J7183,J7185,J7186,J7187,J7190,J7192,J7207,J7170,J7209,J7210,J7211"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.10"
         }
-      ]
+        ]
     },
     {
       "type": "MedicationAdministration",
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "J7179,J7182,J7183,J7185,J7186,J7187,J7190,J7192,J7207,J7170,J7209,J7210,J7211"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.10"
         }
-      ]
+        ]
     }
   ]
 }

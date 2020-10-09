@@ -3,7 +3,6 @@ library ColorectalCancerScreeningDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include ColorectalCancerScreening version '1.0.0' called CCS
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -38,11 +37,11 @@ define FecalOccultBloodTests:
 	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value in {'final', 'amended', 'corrected'}
 		and First(P.code.coding) in "Fecal Occult Blood Tests"
-		sort by end of CCS."Normalize Interval Observation"(effective)
+		sort by end of "Normalize Interval Observation"(effective)
 	)
 
 define "FOBTPerformedDifference":
-	difference in days between end of CCS."Normalize Interval Observation"("FecalOccultBloodTests".effective)
+	difference in days between end of "Normalize Interval Observation"("FecalOccultBloodTests".effective)
 	and Today() >= 365
 
 define "FOBTPatientAgeGreaterThan50":
@@ -58,10 +57,10 @@ define "MultitargetStoolDNATest":
 	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value in {'final', 'amended', 'corrected'}
 		and First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
-		sort by end of CCS."Normalize Interval Observation"(effective))
+		sort by end of "Normalize Interval Observation"(effective))
 
 define "CologuardPerformedDifference":
-	difference in days between end of CCS."Normalize Interval Observation"("MultitargetStoolDNATest".effective)
+	difference in days between end of "Normalize Interval Observation"("MultitargetStoolDNATest".effective)
 	and Today() >= 1095
 
 define "CologuardPatientAgeGreaterThan50":
@@ -79,6 +78,38 @@ define "FOBTPositive":
 	with "FecalOccultBloodTests".result R
 	such that R.reference.value = 'Observation/'+O.id.value
 
+define "ColorectalCancer":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Colorectal cancer"
+
+define "LowerGastrointestinalPain":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.code.coding) in "Lower gastrointestinal pain"
+
+define "BloodInStool":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.code.coding) in "Blood in stool"
+
+define "AdenomatousPolyps":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Adenomatous polyps"
+
+define "InflammatoryBowelDisease":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Inflammatory bowel disease"
+
+define "CrohnsDisease":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Crohn’s Disease"
+
 //Family Member Diagnosis History
 define "Q24":
 	("QT".item I
@@ -87,28 +118,47 @@ define "Q24":
 
 
 define "AsymptomaticAssessment":
-	if (Last(CCS."LowerGastrointestinalPain") is null and Last(CCS."BloodInStool") is null and Last(FOBTPositive) is null)
+	if (Last("LowerGastrointestinalPain") is null and Last("BloodInStool") is null and Last(FOBTPositive) is null)
 	then true
 	else false
 
 define "PersonalHistoryAssessment":
-	if (Last(CCS."AdenomatousPolyps") is null
-		and Last(CCS."ColorectalCancer") is null
-		and Last(CCS."InflammatoryBowelDisease") is null
-		and Last(CCS."CrohnsDisease") is null)
+	if (Last("AdenomatousPolyps") is null
+		and Last("ColorectalCancer") is null
+		and Last("InflammatoryBowelDisease") is null
+		and Last("CrohnsDisease") is null)
 	then true
 	else false
 
+define "FamilyMemberDiagnosisHistory":
+	if exists([FamilyMemberHistory])
+	then ([FamilyMemberHistory]F
+		where F.patient.reference.value = 'Patient/'+ Patient.id.value
+		and (F.relationship R where First(R.coding) in "Blood Relationship") is not null
+		and exists(F.condition FC where First(FC.code.coding) in "Adenomatous polyps"
+						or First(FC.code.coding) in "Family history of colonic polyps"
+						or First(FC.code.coding) in "Hereditary nonpolyposis colorectal cancer"
+						or First(FC.code.coding) in "Colorectal cancer"
+				))
+	else null
+
+define "CTCProcedure":
+	Last(
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value = 'completed'
+		and First(P.code.coding) in "Screening computed tomographic colonography (CTC)")
+
+
 define "FamilyHistoryAssessment":
-	if (Last(CCS."FamilyMemberDiagnosisHistory") is null and not exists("Q24"))
+	if (Last("FamilyMemberDiagnosisHistory") is null and not exists("Q24"))
 	then true
 	else false
 
 define "FOBTSymptomsAssessment":
-	if (Last(CCS."AdenomatousPolyps") is not null
-			or Last(CCS."ColorectalCancer") is not null
-			or Last(CCS."InflammatoryBowelDisease") is not null
-			or Last(CCS."CrohnsDisease") is not null
+	if (Last("AdenomatousPolyps") is not null
+			or Last("ColorectalCancer") is not null
+			or Last("InflammatoryBowelDisease") is not null
+			or Last("CrohnsDisease") is not null
 			or "FamilyHistoryAssessment" =true)
 	then true
 	else false
@@ -132,13 +182,20 @@ define "CologuardAssessment":
 
 define FinalDecision:
 	if ("FOBTServiceRequestTest" is not null)
-	then (if "FOBTAssessment" and CCS."CTCProcedure" is null then 'YES'
+	then (if "FOBTAssessment" and "CTCProcedure" is null then 'YES'
 				else 'NO')
 	else
 	if ("CologuardServiceRequestTest" is not null)
-	then (if "CologuardAssessment" and CCS."CTCProcedure" is null then 'YES'
+	then (if "CologuardAssessment" and "CTCProcedure" is null then 'YES'
 				else 'NO')
 	else 'NO'
+
+define function "Normalize Interval Observation"(choice Choice<FHIR.dateTime, FHIR.Period>):
+ 	 if choice is FHIR.dateTime then
+ 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+	  else if choice is FHIR.Period then
+		  FHIRHelpers.ToInterval(choice as FHIR.Period)
+	  else null
 
 
 //define "PatientLinks":

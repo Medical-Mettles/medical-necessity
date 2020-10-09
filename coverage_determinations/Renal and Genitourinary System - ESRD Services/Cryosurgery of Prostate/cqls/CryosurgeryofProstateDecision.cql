@@ -34,7 +34,6 @@ define QA14:
 define RadiationTherapy:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-		and First(P.outcome.coding) in "Procedure Unsuccessful"
 		and First(P.code.coding) in "Radiation Treatment Management"
 
 define TumorStage:
@@ -42,31 +41,29 @@ define TumorStage:
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Malignant neoplasm of prostate"
-		and (First(First(P.stage).summary.coding) in "Tumor Stage T2b or below")
 
 define GleasonScore:
 	[Observation]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value in {'final', 'amended', 'corrected'}
 		and First(P.code.coding) in "Gleason score"
-		and FHIRHelpers.ToQuantity(P.value).value < 9
 
 define ProstateSpecificAntigen:
 	[Observation]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value in {'final', 'amended', 'corrected'}
 		and First(P.code.coding) in "Prostate specific Ag"
-		and FHIRHelpers.ToQuantity(P.value).value < 8
 
 define AssessmentCriteria:
-	if ((First("QA14") = true ) and exists(RadiationTherapy))
+	if ((First("QA14") = true )
+			and exists("RadiationTherapy" P where First(P.outcome.coding) in "Procedure Unsuccessful"))
 	then true
 	else false
 
 define ObservationCriteria:
-	if (exists(TumorStage)
-		or exists(ProstateSpecificAntigen)
-		or exists(GleasonScore))
+	if (exists("TumorStage" P where (First(First(P.stage).summary.coding) in "Tumor Stage T2b or below"))
+		or exists("ProstateSpecificAntigen" A where FHIRHelpers.ToQuantity(A.value).value < 8)
+		or exists("GleasonScore" G where FHIRHelpers.ToQuantity(G.value).value < 9))
 	then true
 	else false
 

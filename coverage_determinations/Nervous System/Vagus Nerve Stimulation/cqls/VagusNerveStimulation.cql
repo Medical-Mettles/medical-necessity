@@ -3,6 +3,7 @@ library VagusNerveStimulation version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include VNSDecision version '1.0.0' called VNSDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -22,22 +23,13 @@ parameter "ClaimResponse" ClaimResponse
 
 context Patient
 
-define "PrimaryDiagnosesResources":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and (First(P.code.coding) in "Medically refractory partial onset seizures"
-        or First(P.code.coding) in "Resistant depression")
-
 define "PrimaryDiagnoses":
-	"PrimaryDiagnosesResources" P
+	(VNSDecision."PrimaryDiagnosesResources"
+	union VNSDecision."DepressionCondition") P
 	return P.code.coding[0].display.value+'\n'
 
 define "SurgeryResources":
-	[Procedure]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value = 'completed'
-		and First(P.code.coding) in "Epilepsy Surgery"
+	VNSDecision."SurgeryResources"
 
 define "SurgeryPerformed":
 	"SurgeryResources" P

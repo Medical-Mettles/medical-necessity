@@ -18,9 +18,7 @@
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueReference": {
-        "reference": "Library/FHIRHelpers"
-      }
+      "valueCanonical" : "https://fhir-dev.mettles.com/interop/fhir/Library/library-medicarefeeforservice-ColorectalCancerScreening"
     }
   ],
   "contained": [

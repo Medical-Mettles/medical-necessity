@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-ECIProteinADecision"
+      "resource": "Library/library-eciproteina-ECIProteinADecision"
     }
   ],
   "dataRequirement": [

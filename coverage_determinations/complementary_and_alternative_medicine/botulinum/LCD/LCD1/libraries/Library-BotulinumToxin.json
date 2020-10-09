@@ -1,8 +1,8 @@
 {
   "resourceType": "Library",
   "version": "1.0.0",
-  "title": "Apheresis",
-  "name": "Apheresis",
+  "title": "BotulinumToxin",
+  "name": "BotulinumToxin",
   "status": "draft",
   "type": {
     "coding": [
@@ -18,8 +18,8 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-ApheresisDecision"
-    }
+      "resource": "Library/library-LCD1-BotulinumToxinDecision"
+      }
   ],
   "dataRequirement": [
     {
@@ -31,7 +31,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.464.1003.199.11.1104"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.26"
         }
       ]
     },
@@ -44,7 +44,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.88.12.3221.7.4"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.27"
         }
       ]
     },
@@ -57,7 +57,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.57"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.28"
         }
       ]
     },
@@ -70,7 +70,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.58"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.29"
         }
       ]
     },
@@ -83,7 +83,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.59"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.30"
         }
       ]
     },
@@ -96,7 +96,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.60"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.31"
         }
       ]
     },
@@ -109,7 +109,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.61"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.32"
         }
       ]
     },
@@ -122,7 +122,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.62"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.33"
         }
       ]
     },
@@ -135,7 +135,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.63"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.34"
         }
       ]
     },
@@ -148,7 +148,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.64"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.35"
         }
       ]
     },
@@ -161,7 +161,7 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.65"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.36"
         }
       ]
     },
@@ -174,179 +174,114 @@
         },
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.66"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.48"
         }
       ]
     },
     {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.67"
-        }
-      ]
+      "type": "Procedure"
     },
     {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.68"
-        }
-      ]
+      "type": "Encounter"
     },
     {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.69"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.70"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.71"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.72"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.73"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
-          "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.74"
-        }
-      ]
-    },
-    {
-      "type": "Procedure",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.88.12.80.28"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.37"
         }
       ]
     },
     {
-      "type": "Procedure",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.75"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.38"
         }
       ]
     },
     {
-      "type": "Procedure",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.76"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.39"
         }
       ]
     },
     {
-      "type": "Procedure",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.77"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.40"
         }
       ]
     },
     {
-      "type": "Encounter",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "urn:oid:2.16.840.1.113883.3.666.5.2289"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.41"
         }
       ]
     },
     {
-      "type": "Encounter",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.464.1003.101.12.1065"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.42"
         }
       ]
     },
     {
-      "type": "Encounter",
+      "type": "ServiceRequest",
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.464.1003.101.12.1061"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.43"
         }
       ]
     },
     {
-      "type": "ServiceRequest"
+      "type": "ServiceRequest",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.44"
+        }
+      ]
+    },
+    {
+      "type": "ServiceRequest",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.45"
+        }
+      ]
+    },
+    {
+      "type": "ServiceRequest",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.46"
+        }
+      ]
+    },
+    {
+      "type": "ServiceRequest",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.47"
+        }
+      ]
     }
   ]
 }

@@ -119,16 +119,16 @@
         },
         {
           "linkId": "2.5",
-          "text": "Is there a Redundant eyelid tissue touching the eyelashes result in pseudoptosis where the “pseudo” margin produces a central "pseudo-MRD" of 2.0 mm or less ?",
+          "text": "Is there a Redundant eyelid tissue touching the eyelashes result in pseudoptosis where the “pseudo” margin produces a central pseudo-MRD of 2.0 mm or less ?",
           "type": "boolean",
           "required": true
         },
         {
           "linkId": "2.6",
-          "text": "Is there a Redundant eyelid tissue hanging over the eyelid margin resulting in pseudoptosis where the “pseudo” margin produces a central "pseudo-MRD" of 2.0 mm or less ?",
+          "text": "Is there a Redundant eyelid tissue hanging over the eyelid margin resulting in pseudoptosis where the “pseudo” margin produces a central pseudo-MRD of 2.0 mm or less ?",
           "type": "boolean",
           "required": true
-        }
+        },
         {
           "linkId": "2.7",
           "text": "Is there a Redundant eyelid tissue predominantly medially or laterally clearly obscures the line of sight incorresponding gaze?",

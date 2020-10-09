@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-ColorectalCancerScreeningDecision"
+      "resource": "Library/library-colorectalcancer-ColorectalCancerScreeningDecision"
     }
   ],
   "dataRequirement": [

@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-BlepharoplastyDecision"
+      "resource": "Library/library-LCD1-BlepharoplastyDecision"
       }
   ],
   "dataRequirement": [

@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-AntiInhibitorCoagulantDecision"
+      "resource": "Library/library-aicoagulant-AntiInhibitorCoagulantDecision"
     }
   ],
   "dataRequirement": [

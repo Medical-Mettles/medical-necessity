@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-DiagnosticEESDecision"
+      "resource": "Library/library-diagnosticeespacing-DiagnosticEESDecision"
     }
   ],
   "dataRequirement": [

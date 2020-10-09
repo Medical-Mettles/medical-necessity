@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-RhinoplastyDecision"
+      "resource": "Library/library-LCD1-RhinoplastyDecision"
     }
   ],
   "dataRequirement": [

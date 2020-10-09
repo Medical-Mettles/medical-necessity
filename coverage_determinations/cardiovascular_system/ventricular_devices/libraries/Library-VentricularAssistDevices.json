@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-medicarefeeforservice-VADDecision"
+      "resource": "Library/library-ventriculardevices-VADDecision"
     }
   ],
   "dataRequirement": [

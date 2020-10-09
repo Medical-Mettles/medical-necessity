@@ -80,13 +80,13 @@ define Case1:
 	else false
 
 define BridgeTransplant:
-		exists ([Procedure]T
+		First([Procedure]T
 			where First(T.code.coding) in "Transplantation of heart (procedure)"
 				and T.status.value = 'not-done'
 				and T.subject.reference.value = 'Patient/'+ Patient.id.value)
 
 define Case2:
-	if (("BridgeTransplant" = true)
+	if (("BridgeTransplant" is not null)
 		and (First("QA32").value = true)
 		and (First("QA31").value = true)
 		and (First("QA33").value = true)

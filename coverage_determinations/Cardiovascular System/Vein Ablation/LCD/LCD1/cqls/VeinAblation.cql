@@ -3,6 +3,7 @@ library VeinAblation version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include VeinAblationDecision version '1.0.0' called VeinAblationCommon
 
 //include otherLibrary version 'x.x' called otherLibrary
 //codesystem codeSystemName : 'OID' version 'x.x'
@@ -18,7 +19,7 @@ codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
 valueset "Oral venoactive drugs": '2.16.840.1.113883.3.6037.1001.23.99.85'
-valueset "Weight Loss (ICD10CM)": '\2.16.840.1.113762.1.4.1146.703'
+valueset "Weight Loss (ICD10CM)": '2.16.840.1.113762.1.4.1146.703'
 valueset "Daily exercise plan": '2.16.840.1.113883.3.6037.1001.23.99.87'
 valueset "Periodic leg elevation": '2.16.840.1.113883.3.6037.1001.23.99.88'
 valueset "Compression Therapy":  '2.16.840.1.113883.3.6037.1001.23.99.89'
@@ -56,7 +57,7 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 context Patient
 
 define ServiceEncounter:
-	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
+	VeinAblationCommon."ServiceEncounter"
 
 define function "GetId"(uri String):
 	Last(Split(uri, '/'))
@@ -93,97 +94,58 @@ define RelevantDiagnosis:
 	"ServiceDiagnosis".code.coding[0].display.value
 
 define CT:
-	First([Condition]C
-		where (First(C.code.coding) in "Oral venoactive drugs"
-			or First(C.code.coding) in "Weight Loss (ICD10CM)"
-			or First(C.code.coding) in "Daily exercise plan"
-			or First(C.code.coding) in "Periodic leg elevation")
-			and First(C.clinicalStatus.coding).code.value = 'active')
+	VeinAblationCommon."CT"
+
+define MedicationUsed:
+	VeinAblationCommon."MedicationUsed"
+	
+define ExercisePlan:
+	VeinAblationCommon."ExercisePlan"	
 
 define PeriodicLegElevation:
-	First(([Condition]C
-		with [Procedure]P
-		such that First(C.code.coding) in "Periodic leg elevation"
-			and First(P.code.coding) in "Compression Therapy"
-			and P.status.value = 'completed'))
+	VeinAblationCommon."PeriodicLegElevation"
 				
 define VenousStasis:
-	First([Condition]C
-		with [Condition]D
-			such that First(C.code.coding) in "Ulceration"
-			and First(D.code.coding) in "Venous insufficiency (chronic) (peripheral)")
+	VeinAblationCommon."VenousStasis"
 			
 define SaphenousReflux:
-	First([Condition]C
-		with [Condition]D
-			such that (First(C.code.coding) in "Chronic Pain"
-					or First(C.code.coding) in "Edema")
-			and First(D.code.coding) in "Venous insufficiency (chronic) (peripheral)")
+	VeinAblationCommon."SaphenousReflux"
 	
 define SuperficialVaricosity:
-	First([Condition]C
-		with [Condition]D
-			such that First(C.code.coding) in "Bleeding"
-			and First(D.code.coding) in "Saphenous Reflux")
+	VeinAblationCommon."SuperficialVaricosity"
 
 define SuperficialPhlebitis:
-	First([Condition]C
-		where First(C.code.coding) in "Superficial phlebitis"
-			and First(C.clinicalStatus.coding).code.value = 'recurrence')
+	VeinAblationCommon."SuperficialPhlebitis"
 			
 define StasisDermatitis:
-	First([Condition]C
-		where First(C.code.coding) in "Superficial phlebitis"
-			and First(C.clinicalStatus.coding).code.value = 'active')
+	VeinAblationCommon."StasisDermatitis"
 	
 define RefractoryEdema:
-	First([Condition]C
-		with [Condition]D
-			such that (First(C.code.coding) in "Dependent edema")
-			and First(D.code.coding) in "Venous insufficiency (chronic) (peripheral)")
+	VeinAblationCommon."RefractoryEdema"
 			
-	
 define PerforatorReflux:
-	First([Condition]C
-		where First(C.code.coding) in "Perforator reflux")
+	VeinAblationCommon."PerforatorReflux"
 		
 define VeinStripping:
-	First([Condition]C
-		where First(C.code.coding) in "Venous Stripping")
+	VeinAblationCommon."VeinStripping"
 		
 define SuperficialVeinTreatment:
-	First([Condition]C
-		with [Procedure]P
-		such that First(P.code.coding) in "Compression Therapy"
-		 and First(C.code.coding) in "Phlebitis and thrombophlebitis"
-		 and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days)
+	VeinAblationCommon."SuperficialVeinTreatment"
 		 
 define DeepVenousThromboembolism:
-	First([Condition]C
-		without [Condition]D
-			such that (First(C.code.coding) in "Deep venous thromboembolism")
-			and First(D.code.coding) in "Venous insufficiency (chronic) (peripheral)")
+	VeinAblationCommon."DeepVenousThromboembolism"
 			
 define DuplexStudy:
-	First([Procedure]P
-		where First(P.code.coding) in "Duplex studies of venous system"
-		and P.status.value = 'completed')
+	VeinAblationCommon."DuplexStudy"
 		
 define KTSyndrome:
-	First([Condition]C
-		where (First(C.code.coding) in "Klippel-Trenaunay Syndrome"
-			or First(C.code.coding) in "Congenital venous abnormalities"))
+	VeinAblationCommon."KTSyndrome"
 
 define Pregnancy:
-	First([Condition]C
-		where First(C.code.coding) in "Pregnancy equivalent diagnoses"
-		and First(C.clinicalStatus.coding).code.value = 'active')
+	VeinAblationCommon."Pregnancy"
 
 define Telangiectasis:
-	First([Condition]C
-		with [Condition]D
-			such that First(C.code.coding) in "Bleeding"
-			and First(D.code.coding) in "Hereditary hemorrhagic telangiectasia")
+	VeinAblationCommon."Telangiectasis"
 			
 define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

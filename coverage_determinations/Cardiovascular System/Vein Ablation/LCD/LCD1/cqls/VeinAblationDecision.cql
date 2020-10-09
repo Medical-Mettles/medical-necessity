@@ -4,6 +4,7 @@ using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
 
+
 //include otherLibrary version 'x.x' called otherLibrary
 //codesystem codeSystemName : 'OID' version 'x.x'
 //valueset valuesetName : 'OID' version 'x.x' codesystems{codeSystem1 , codeSystem2, etc}
@@ -18,7 +19,7 @@ codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
 valueset "Oral venoactive drugs": '2.16.840.1.113883.3.6037.1001.23.99.85'
-valueset "Weight Loss (ICD10CM)": '\2.16.840.1.113762.1.4.1146.703'
+valueset "Weight Loss (ICD10CM)": '2.16.840.1.113762.1.4.1146.703'
 valueset "Daily exercise plan": '2.16.840.1.113883.3.6037.1001.23.99.87'
 valueset "Periodic leg elevation": '2.16.840.1.113883.3.6037.1001.23.99.88'
 valueset "Compression Therapy":  '2.16.840.1.113883.3.6037.1001.23.99.89'
@@ -59,11 +60,20 @@ define ServiceEncounter:
 
 define CT:
 	First([Condition]C
-		where (First(C.code.coding) in "Oral venoactive drugs"
-			or First(C.code.coding) in "Weight Loss (ICD10CM)"
-			or First(C.code.coding) in "Daily exercise plan"
+		where ( First(C.code.coding) in "Weight Loss (ICD10CM)"
 			or First(C.code.coding) in "Periodic leg elevation")
 			and First(C.clinicalStatus.coding).code.value = 'active')
+
+define MedicationUsed:
+	First([MedicationAdministration]M
+			where ((M.medication as CodeableConcept) in "Oral venoactive drugs")
+			or exists([Medication:"Oral venoactive drugs" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
+
+define ExercisePlan:
+		First([Procedure]P
+				where P.status.value = 'completed'
+				and First(P.code.coding) in "Daily exercise plan")
+
 
 define PeriodicLegElevation:
 	First(([Condition]C
@@ -73,14 +83,15 @@ define PeriodicLegElevation:
 			and P.status.value = 'completed'))
 			
 define ConservativeTherapy:
-	if ("CT" is not null)
+	if (("CT" is not null)
+		or ("MedicationUsed" is not null)
+		or ("ExercisePlan" is not null))
 	then true
 	else
 	if("PeriodicLegElevation" is not null)
 	then true
 	else false
-	
-	
+
 define VenousStasis:
 	First([Condition]C
 		with [Condition]D

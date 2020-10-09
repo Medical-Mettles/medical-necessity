@@ -3,6 +3,7 @@ library BlepharoplastyPrepopulation version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include Blepharoplasty version '1.0.0' called BLCommon
 
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
@@ -19,8 +20,9 @@ valueset "Changes in skin texture": '2.16.840.1.113883.3.6037.1001.23.99.22'
 valueset "Blepharospasm": '2.16.840.1.113883.3.6037.1001.23.99.23'
 valueset "Margin reflex distance": '2.16.840.1.113883.3.6037.1001.23.99.24'
 valueset "Sockets": '2.16.840.1.113883.3.6037.1001.23.99.25'
+valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
 
-code "Unsuccessful": '385671000' from "SNOMED-CT" display 'Unsuccessful'
+
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -28,46 +30,30 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 context Patient
 
 define ServiceEncounter:
-	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
-
-define function "EncounterDiagnosis"(Encounter Encounter):
-	Encounter.diagnosis D
-	return First([Condition]C
-				where C.id.value = "GetId"(D.condition.reference.value)
-					and FHIRHelpers.ToInteger(D.rank) = 2)
-define function "GetId"(uri String):
-	Last(Split(uri, '/'))
-
+	BLCommon."ServiceEncounter"
+	
 define ServiceCondition:
-	"EncounterDiagnosis"("ServiceEncounter")
+	BLCommon."ServiceCondition"
 
 define ServiceDiagnosis:
-	First("ServiceCondition" S
-			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
-			)
+	BLCommon."ServiceDiagnosis"
 
 define ServiceDiagnosis1:
-	First("ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-			)
-
+	BLCommon."ServiceDiagnosis1"
+	
 define RelevantDiagnosis:
 	First("ServiceDiagnosis".code.coding).display.value
 
 define ServiceDiagnosis2:
-	First("ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes"
-			)
-
+	BLCommon."ServiceDiagnosis2"
+	
 define FunctionalDeficits:
-	[Condition]C
-		where (First(C.code.coding) in "Functional Deficits in EyeLid")
+	BLCommon."FunctionalDeficits"
 
 define Botox:
 	First([Procedure]P
 		where First(P.code.coding) in "Botox Cosmetic Injectable Product"
-		 and First(P.outcome.coding) = "Unsuccessful")
+		 and First(P.outcome.coding) in "Unsuccessful")
 
 define TreatmentFailed:
 	First("Botox".code.coding).display.value
@@ -75,25 +61,16 @@ define TreatmentFailed:
 
 
 define BlepharospasmCondition:
-	First([Condition]C
-		with [Procedure]P
-		such that First(C.code.coding) in "Blepharospasm"
-		and First(P.code.coding) in "Botox Cosmetic Injectable Product")
+	BLCommon."BlepharospasmCondition"
 
 define Blepharoptosis:
-	First([Observation]O
-		where First(O.code.coding) in "Margin reflex distance"
-			and FHIRHelpers.ToQuantity(O.value) <= 2)
+	BLCommon."Blepharoptosis"
 
 define MRD:
-	(First([Observation]O
-		where First(O.code.coding) in "Margin reflex distance"
-			and FHIRHelpers.ToQuantity(O.value) <= 2))M
-		 return FHIRHelpers.ToQuantity(M.value)
-
+	BLCommon."MRD"
+	
 define BrowRepair:
-	First([Condition]C
-		where First(C.code.coding) in "Changes in skin texture")
+	BLCommon."BrowRepair"
 
 define BlepharospasmDescription:
 	if ("BlepharospasmCondition" is not null)

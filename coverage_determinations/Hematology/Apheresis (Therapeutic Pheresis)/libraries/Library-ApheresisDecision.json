@@ -24,20 +24,325 @@
         {
           "path": "clinical-status",
           "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.464.1003.199.11.1104"
         }
       ]
     },
     {
-      "type": "Procedure"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.88.12.3221.7.4"
+        }
+      ]
     },
     {
-      "type": "Encounter"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.57"
+        }
+      ]
     },
     {
-      "type": "DeviceRequest"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.58"
+        }
+      ]
     },
     {
-      "type": "Observation"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.59"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.60"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.61"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.62"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.63"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.64"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.65"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.66"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.67"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.68"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.69"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.70"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.71"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.72"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.73"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.74"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.88.12.80.28"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.75"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.76"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.77"
+        }
+      ]
+    },
+    {
+      "type": "Encounter",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.666.5.2289"
+        }
+      ]
+    },
+    {
+      "type": "Encounter",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.464.1003.101.12.1065"
+        }
+      ]
+    },
+    {
+      "type": "Encounter",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.464.1003.101.12.1061"
+        }
+      ]
+    },
+    {
+      "type": "ServiceRequest"
     }
   ]
 }

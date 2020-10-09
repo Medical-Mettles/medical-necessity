@@ -19,25 +19,141 @@
   ],
   "dataRequirement": [
     {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "medication",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1174"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1174"
+        }
+      ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "medication",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1139"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1139"
+        }
+      ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "medication",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.666.5.2128"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.666.5.2128"
+        }
+      ]
+    },
+    {
+      "type": "DeviceRequest",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.3157.4050"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.51"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.53"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.55"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.56"
+        }
+      ]
+    },
+    {
       "type": "Condition",
       "codeFilter": [
         {
           "path": "clinical-status",
           "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113762.1.4.1182.93"
         }
       ]
     },
     {
-      "type": "Procedure"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.54"
+        }
+      ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113762.1.4.1047.190"
+        }
+      ]
     },
     {
       "type": "Encounter"
-    },
-    {
-      "type": "DeviceRequest"
-    },
-    {
-      "type": "Observation"
     }
   ]
 }

@@ -24,20 +24,59 @@
           {
             "path": "clinical-status",
             "searchParam": "active"
+          },
+          {
+            "path": "code",
+            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.81"
           }
         ]
       },
       {
-        "type": "Procedure"
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          },
+          {
+            "path": "code",
+            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.82"
+          }
+        ]
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          },
+          {
+            "path": "code",
+            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.84"
+          }
+        ]
+      },
+      {
+        "type": "Procedure",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.83"
+          }
+        ]
       },
       {
         "type": "Encounter"
       },
       {
-        "type": "ServiceRequest"
-      },
-      {
-        "type": "Observation"
+        "type": "ServiceRequest",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.80"
+          }
+        ]
       }
     ]
   }

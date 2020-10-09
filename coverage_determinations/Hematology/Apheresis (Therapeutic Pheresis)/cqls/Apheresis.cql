@@ -3,6 +3,7 @@ library Apheresis version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include ApheresisDecision version '1.0.0' called ApheresisCommon
 //include otherLibrary version 'x.x' called otherLibrary
 //codesystem codeSystemName : 'OID' version 'x.x'
 //valueset valuesetName : 'OID' version 'x.x' codesystems{codeSystem1 , codeSystem2, etc}
@@ -18,18 +19,21 @@ codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 codesystem "CDCNHSN": '2.16.840.1.113883.6.277'
 
 valueset "Apheresis (procedure)":'2.16.840.1.113883.3.88.12.80.28'
-valueset "Serious or Life Threatening Illness":'2.16.840.1.113883.3.464.1003.199.11.1104'
 valueset "Plasma filtration (procedure)":'2.16.840.1.113883.3.88.12.80.28'
 valueset "Perfusion (procedure)":'2.16.840.1.113883.3.88.12.80.28'
-valueset "Plasma (substance)":'2.16.840.1.113762.1.4.1010.2'
-valueset "Charcoal [Chemical/Ingredient]":'2.16.840.1.113883.3.26.1.5'
-valueset "Goodpasture's syndrome (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
-valueset "Chronic progressive renal failure (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
-valueset "Pulmonary hemorrhage (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
+valueset "Plasmapheresis": '2.16.840.1.113883.3.6037.1001.23.99.75'
+valueset "Therapeutic plasma exchange": '2.16.840.1.113883.3.6037.1001.23.99.76'
+valueset "Leukopheresis": '2.16.840.1.113883.3.6037.1001.23.99.77'
+
 valueset "Acute care hospital Inpatient Encounter": '2.16.840.1.113883.3.666.5.2289'
 valueset "Adult Outpatient Visit": '2.16.840.1.113883.3.464.1003.101.12.1065'
 valueset "Ambulatory/ED Visit": '2.16.840.1.113883.3.464.1003.101.12.1061'
 
+
+valueset "Serious or Life Threatening Illness":'2.16.840.1.113883.3.464.1003.199.11.1104'
+valueset "Goodpasture's syndrome (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
+valueset "Chronic progressive renal failure (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
+valueset "Pulmonary hemorrhage (disorder)":'2.16.840.1.113883.3.88.12.3221.7.4'
 valueset "Leukemia, unspecified not having achieved remission": '2.16.840.1.113883.3.6037.1001.23.99.57'
 valueset "Toxic liver disease with cholestasis": '2.16.840.1.113883.3.6037.1001.23.99.58'
 valueset "Absence of therapeutic response (finding)": '2.16.840.1.113883.3.6037.1001.23.99.59'
@@ -48,9 +52,9 @@ valueset "Systemic sclerosis with lung involvement":'2.16.840.1.113883.3.6037.10
 valueset "Polymyositis, organ involvement unspecified": '2.16.840.1.113883.3.6037.1001.23.99.72'
 valueset "Guillain-Barre syndrome": '2.16.840.1.113883.3.6037.1001.23.99.73'
 valueset "Systemic lupus erythematosus, unspecified": '2.16.840.1.113883.3.6037.1001.23.99.74'
-valueset "Plasmapheresis": '2.16.840.1.113883.3.6037.1001.23.99.75'
-valueset "Therapeutic plasma exchange": '2.16.840.1.113883.3.6037.1001.23.99.76'
-valueset "Leukopheresis": '2.16.840.1.113883.3.6037.1001.23.99.77'
+
+
+
 
 parameter "ServiceRequest" ServiceRequest
 parameter "ClaimResponse" ClaimResponse
@@ -58,116 +62,55 @@ parameter "ClaimResponse" ClaimResponse
 context Patient
 
 define ServiceEncounter:
-	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
+	ApheresisCommon."ServiceEncounter"
 
 define QualifyingEncounter:
-	"ServiceEncounter" S
-	where S.type in "Acute care hospital Inpatient Encounter"
-	or S.type in "Adult Outpatient Visit"
-	or S.type in "Ambulatory/ED Visit"
+	ApheresisCommon."QualifyingEncounter"
 
 define Condition1:
-	First([Condition]C
-	 	with [Procedure]P
-	 	such that First(C.code.coding) in "Myasthenia gravis"
-	 	and First(P.code.coding) in "Therapeutic plasma exchange"
-	 	and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
+	ApheresisCommon."Condition1"
 
 define Condition2:
-	First([Condition]C
-		with [Procedure]P
-		such that First(C.code.coding) in "Leukemia, unspecified not having achieved remission"
-		and First(P.code.coding) in "Leukopheresis"
-		and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
+	ApheresisCommon."Condition2"
 
 define Condition3:
-	First([Condition]C
-	with [Procedure]P
-	such that First(C.code.coding) in "Waldenstrom macroglobulinemia"
-	and First(P.code.coding) in "Plasmapheresis"
-	and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
-
+	ApheresisCommon."Condition3"
+	
 define Condition4A:
-	First([Condition]C
-		where First(C.code.coding) in "Hypergammaglobulinemia")
-
+	ApheresisCommon."Condition4A"
+	
 define Condition4B:
-	First([Condition]C
-		where First(C.code.coding) in "Multiple myeloma not having achieved remission"
-				or First(C.code.coding) in "Cryoglobulinemia"
-				or First(C.code.coding) in "Other specified diseases of blood and blood-forming organs")
+	ApheresisCommon."Condition4B"
+	
 define Condition4:
-		"Condition4A" A
-		with "Condition4B" B
-		such that "Normalize Onset"(A.onset) overlaps "Normalize Onset"(B.onset)
+	ApheresisCommon."Condition4"
 
 define Condition5:
-	First([Condition]C
-	with [Procedure]P
-	such that First(C.code.coding) in "Thrombotic microangiopathy"
-		and (First(P.code.coding) in "Plasmapheresis"
-			or First(P.code.coding) in "Therapeutic plasma exchange")
-		and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
+	ApheresisCommon."Condition5"
 
 define Condition6:
-	First([Condition]C
-	with [Procedure]P
-	such that First(C.code.coding) in "Rheumatoid vasculitis with rheumatoid arthritis of unspecified site"
-			//or  C.code in "Serious or Life Threatening Illness"
-
-		and (First(P.code.coding) in "Plasmapheresis"
-			or First(P.code.coding) in "Therapeutic plasma exchange")
-		and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
-
+	ApheresisCommon."Condition6"
+	
 define Condition7:
-	First([Condition]C
-		with [Procedure]P
-			such that First(C.code.coding) in "Toxic liver disease with cholestasis"
-			and First(P.code.coding) in  "Plasmapheresis"
-			and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
-
+	ApheresisCommon."Condition7"
 
 define Condition8:
-	First([Condition]C
-	with [Procedure]P
-	such that  First(C.code.coding) in "Hypersensitivity angiitis"
-		and First(P.code.coding) in "Therapeutic plasma exchange"
-		and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
+	ApheresisCommon."Condition8"
 
 define Condition9:
-	First([Condition]C
-		with [Procedure]P
-		such that First(C.code.coding) in "Nephrotic syndrome with unspecified morphologic changes"
-			and First(P.code.coding) in "Therapeutic plasma exchange"
-			and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
-
+	ApheresisCommon."Condition9"
+	
 define Condition10:
-	First([Condition]C
-	where First(C.code.coding) in "Chronic inflammatory demyelinating polyneuritis"
-		and First(C.code.coding) in "Absence of therapeutic response (finding)"
-		//and C.code in "Serious or Life Threatening Illness"
-			)
+	ApheresisCommon."Condition10"
 
 define Condition11:
-	First([Condition]C
-	where  (First(C.code.coding) in "Systemic sclerosis with lung involvement"
-			//and First(C.code.coding) in "Serious or Life Threatening Illness"
-			and First(C.code.coding)  in "Absence of therapeutic response (finding)")
-	    or (First(C.code.coding)  in "Polymyositis, organ involvement unspecified"
-			//and  First(C.code.coding) in "Serious or Life Threatening Illness"
-			and  First(C.code.coding) in "Absence of therapeutic response (finding)"))
-
+	ApheresisCommon."Condition11"
 
 define Condition12:
-	First([Condition]C
-	where First(C.code.coding) in "Guillain-Barre syndrome")
+	ApheresisCommon."Condition12"
 
 define Condition13:
-	First([Condition]C
-	where First(C.code.coding) in "Systemic lupus erythematosus, unspecified"
-		and First(C.code.coding) in "Absence of therapeutic response (finding)"
-		//and C.code in "Serious or Life Threatening Illness"
-			)
+	ApheresisCommon."Condition13"
 
 define ServiceCondition:
 	First([Condition]C

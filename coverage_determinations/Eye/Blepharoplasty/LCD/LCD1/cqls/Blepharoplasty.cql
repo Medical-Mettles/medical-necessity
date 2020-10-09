@@ -19,6 +19,8 @@ valueset "Changes in skin texture": '2.16.840.1.113883.3.6037.1001.23.99.22'
 valueset "Blepharospasm": '2.16.840.1.113883.3.6037.1001.23.99.23'
 valueset "Margin reflex distance": '2.16.840.1.113883.3.6037.1001.23.99.24'
 valueset "Sockets": '2.16.840.1.113883.3.6037.1001.23.99.25'
+valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
+
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse

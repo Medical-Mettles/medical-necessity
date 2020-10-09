@@ -3,6 +3,7 @@ library VentricularAssistDevices version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include VADDecision version '1.0.0' called VADCommon
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -48,11 +49,7 @@ define ServiceCondition:
 	"EncounterDiagnosis"("ServiceEncounter")
 
 define PostCardiotomy:
-		First([Condition] C
-			with [Procedure] P
-			such that First(C.code.coding) in "Postcardiotomy syndrome"
-				and First(P.code.coding) in "Open heart surgery (procedure)"
-				and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
+		VADCommon."PostCardiotomy"
 
 define OpenHeartProcedure:
 	First([Procedure]P
@@ -65,58 +62,35 @@ define RelevantDiagnosis:
 		First("ServiceCondition".code.coding).display.value
 
 define BridgeTransplant:
-		First([Procedure]T
-			where First(T.code.coding) in "Transplantation of heart (procedure)"
-				and T.status.value = 'not-done'
-				and T.subject.reference.value = 'Patient/'+ Patient.id.value
-				)
+	VADCommon."BridgeTransplant"	
 
 define ProcedureApproved:
 	First("BridgeTransplant".code.coding).display.value
 
 define DTDeviceRequest:
-	First([DeviceRequest]D)
-		//where (D.code as CodeableConcept) in "Mechanical Circulatory Assist Device")
-		//or exists([Device: "Mechanical Circulatory Assist Device"]device
-				//where (D.code as Reference).reference.value = 'Device/'+device.id.value))
+	VADCommon."DTDeviceRequest"
 
 define MechanicalDevicePrescribed:
 	First(("DTDeviceRequest".code as CodeableConcept).coding).display.value
 
 define HeartFailurePatient:
-	First([Condition:"Heart Failure"]C
-		where First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.verificationStatus.coding).code.value = 'confirmed'
-	     )
+	VADCommon."HeartFailurePatient"
 
 define BetaMedicationAdministration:
-	First([MedicationAdministration]M)
-		//where M.medication in "Beta Blocker Therapy")
+	VADCommon."BetaMedicationAdministration"
 
 
 define ACEMedicationAdministration:
-	First([MedicationAdministration]M
-		where ((M.medication as CodeableConcept) in "ACE Inhibitor or ARB or ARNI"
-			or exists([Medication:"ACE Inhibitor or ARB or ARNI" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
-		and ("Normalize Interval Procedure"(M.effective)) starts after (Today()-60 days)
-	     )
-
+	VADCommon."ACEMedicationAdministration"
+	
 define function "LengthInDays"(Value Interval<DateTime>):
 	difference in days between start of Value and end of Value
 
 define BallooonPumpAssist:
-	First([Procedure]P
-		where First(P.code.coding) in "Cardioassist by aortic balloon pump (procedure)"
-			and First(P.outcome.coding) in "Unsuccessful"
-			and "LengthInDays"(P.performed) > 7 days
-	     )
-
+	VADCommon."BallooonPumpAssist"
+	
 define InotropeAdministration:
-	First([MedicationAdministration]M
-		where ((M.medication as CodeableConcept) in "IV Positive Inotropic and Vasopressor Agents"
-			or exists([Medication:"IV Positive Inotropic and Vasopressor Agents" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
-		and "LengthInDays"(M.effective) > 14 days
-	     )
+	VADCommon."InotropeAdministration"
 
 define MedicationPrescribed:
 	if ("InotropeAdministration" is not null)
@@ -148,30 +122,16 @@ define CareTherapy:
 			where First(T.code.coding) in "Medical care (regime/therapy)"
 				and T.subject.reference.value = 'Patient/'+ Patient.id.value
 				)
-
+				
 define OptimalMedicationManagement1:
-	First([Procedure]P
-		with "InotropeAdministration" I
-		such that First(P.code.coding) in "Medical care (regime/therapy)"
-			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) in "Unsuccessful"
-	     )
+	VADCommon."OptimalMedicationManagement1"
 
 define OptimalMedicationManagement2:
-	First([Procedure]P
-		with "ACEMedicationAdministration" I
-		such that First(P.code.coding) in "Medical care (regime/therapy)"
-			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) in "Unsuccessful"
-	     )
-
+	VADCommon."OptimalMedicationManagement2"
+	
 define OptimalMedicationManagement3:
-	First([Procedure]P
-		with "BetaMedicationAdministration" I
-		such that First(P.code.coding) in "Medical care (regime/therapy)"
-			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
-			and First(P.outcome.coding) in "Unsuccessful"
-	     )
+	VADCommon."OptimalMedicationManagement3"
+	
 define LVEFResource:
 	First([Observation]O
 		where First(O.code.coding) in "LVEF Assessment"

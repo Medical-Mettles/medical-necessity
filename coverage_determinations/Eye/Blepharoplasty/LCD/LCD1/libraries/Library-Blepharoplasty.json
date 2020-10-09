@@ -24,11 +24,86 @@
         {
           "path": "clinical-status",
           "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.18"
         }
       ]
     },
     {
-      "type": "Procedure"
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.19"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.20"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.22"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.23"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "clinical-status",
+          "searchParam": "active"
+        },
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.25"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.21"
+        }
+      ]
     },
     {
       "type": "Encounter"
@@ -37,7 +112,13 @@
       "type": "ServiceRequest"
     },
     {
-      "type": "Observation"
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.24"
+        }
+      ]
     }
   ]
 }

@@ -19,7 +19,7 @@ valueset "Crohn’s Disease": '2.16.840.1.113883.3.6037.1001.23.98.5'
 valueset "Family history of colonic polyps": '2.16.840.1.113883.3.6037.1001.23.98.6'
 valueset "Hereditary nonpolyposis colorectal cancer": '2.16.840.1.113883.3.6037.1001.23.98.7'
 valueset "The CologuardTM - Multitarget Stool DNA (sDNA)": '2.16.840.1.113883.3.6037.1001.23.98.8'
-valueset "Screening computed tomographic colonography (CTC)": '2.16.840.1.113883.3.6037.1001.23.98.9'
+valueset "CT Colonography": '2.16.840.1.113883.3.464.1003.108.12.1038'
 valueset "Fecal Occult Blood": '2.16.840.1.113883.3.6037.1001.23.98.10'
 valueset "Blood in stool": '2.16.840.1.113883.3.6037.1001.23.98.11'
 valueset "Blood Relationship": '2.16.840.1.113883.3.6037.1001.23.98.12'
@@ -144,9 +144,9 @@ define "FamilyMemberDiagnosisHistory":
 
 define "CTCProcedure":
 	Last(
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and First(P.code.coding) in "Screening computed tomographic colonography (CTC)")
+	[DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "CT Colonography")
 
 
 define "FamilyHistoryAssessment":

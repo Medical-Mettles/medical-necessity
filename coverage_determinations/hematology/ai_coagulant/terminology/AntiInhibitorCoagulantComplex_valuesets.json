@@ -609,12 +609,12 @@
         "include": [
 
             {
-                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "system": "http://snomed.info/sct",
                 "version": "2020-03",
                 "concept": [
                     {
-                        "code": "96372",
-                        "display": "Therapeutic, prophylactic, or diagnostic injection (specify substance or drug); subcutaneous or intramuscular"
+                        "code": "18629005",
+                        "display": "Administration of drug or medicament (procedure)"
                     }
                 ]
             }

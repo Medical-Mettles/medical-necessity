@@ -408,36 +408,56 @@
       }
     },
     {
-      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.9",
+      "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038",
       "resource": {
     "resourceType": "ValueSet",
-    "id": "2.16.840.1.113883.3.6037.1001.23.98.9",
+    "id": "2.16.840.1.113883.3.464.1003.108.12.1038",
     "meta": {
         "versionId": "1",
         "lastUpdated": "2020-08-26T13:26:57.000+00:00",
         "source": "#qgnpL15bkw7uae2V"
     },
-    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.9",
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038",
     "identifier": [
         {
             "system": "urn:ietf:rfc:3986",
-            "value": "2.16.840.1.113883.3.6037.1001.23.98.9"
+            "value": "2.16.840.1.113883.3.464.1003.108.12.1038"
         }
     ],
     "version": "Latest",
-    "name": "Screening computed tomographic colonography (CTC)",
-    "title": "Screening computed tomographic colonography (CTC)",
+    "name": "CT Colonography",
+    "title": "CT Colonography",
     "status": "active",
     "publisher": "Mettles",
     "compose": {
         "include": [
             {
-                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "system": "http://loinc.org",
                 "version": "2020-03",
                 "concept": [
                     {
-                        "code": "74263",
-                        "display": "Computed tomographic (CT) colonography, screening, including image postprocessing"
+                        "code": "60515-4",
+                        "display": "CT Colon and Rectum W air contrast PR"
+                    },
+                    {
+                        "code": "72531-7",
+                        "display": "CT Colon and Rectum W contrast IV and W air contrast PR"
+                    },
+                    {
+                        "code": "79069-1",
+                        "display": "CT Colon and Rectum for screening WO contrast IV and W air contrast PR"
+                    },
+                    {
+                        "code": "79071-7",
+                        "display": "CT Colon and Rectum WO contrast IV and W air contrast PR"
+                    },
+                    {
+                        "code": "79101-2",
+                        "display": "CT Colon and Rectum for screening W air contrast PR"
+                    },
+                    {
+                        "code": "82688-3",
+                        "display": "CT Colon and Rectum WO and W contrast IV and W air contrast PR"
                     }
                 ]
             }
@@ -446,7 +466,7 @@
 },
       "request": {
         "method": "PUT",
-        "url": "ValueSet/2.16.840.1.113883.3.6037.1001.23.98.9"
+        "url": "ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038"
       }
     },
     {

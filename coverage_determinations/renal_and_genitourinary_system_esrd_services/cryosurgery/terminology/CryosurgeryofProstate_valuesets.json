@@ -182,32 +182,128 @@
         "include": [
 
             {
-                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-icd10pcs",
                 "version": "2020-03",
                 "concept": [
                     {
-                        "code": "77427",
-                        "display": "Radiation treatment management, per five fractions of treatment"
+                        "code": "DV000ZZ",
+                        "display": "Beam Radiation of Prostate using Photons <1 MeV"
                     },
                   {
-                        "code": "77431",
-                        "display": "Radiation therapy management with complete course of therapy, consisting of one or two fractions only"
+                        "code": "DV001ZZ",
+                        "display": "Beam Radiation of Prostate using Photons 1 - 10 MeV"
                     },
                   {
-                        "code": "77432",
-                        "display": "Stereotactic radiation treatment management of cranial lesion(s), (complete course of treatment consisting of one session)"
+                        "code": "DV003Z0",
+                        "display": "Beam Radiation of Prostate using Electrons, Intraoperative"
                     },
                   {
-                        "code": "77435",
-                        "display": "Stereotactic Radiosurgery"
+                        "code": "DV003ZZ",
+                        "display": "Beam Radiation of Prostate using Electrons"
                     },
                   {
-                        "code": "77469",
-                        "display": "Intraoperative radiation treatment management"
+                        "code": "DV004ZZ",
+                        "display": "Beam Radiation of Prostate using Heavy Particles (Protons,Ions)"
                     },
                   {
-                        "code": "77470",
-                        "display": "Special treatment procedure (eg, total body irradiation, hemibody radiation, per oral or endocavitary irradiation)"
+                        "code": "DV005ZZ",
+                        "display": "Beam Radiation of Prostate using Neutrons"
+                    },
+                  {
+                        "code": "DV006ZZ",
+                        "display": "Beam Radiation of Prostate using Neutron Capture"
+                    },
+                  {
+                        "code": "DV002ZZ",
+                        "display": "Beam Radiation of Prostate using Photons >10 MeV"
+                    },
+                  {
+                        "code": "DV1097Z",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Cesium 137 (Cs-137)"
+                    },
+                  {
+                        "code": "DV1098Z",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Iridium 192 (Ir-192)"
+                    },
+                  {
+                        "code": "DV1099Z",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Iodine 125 (I-125)"
+                    },
+                  {
+                        "code": "DV109BZ",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Palladium 103 (Pd-103)"
+                    },
+                  {
+                        "code": "DV109CZ",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Californium 252 (Cf-252)"
+                    },
+                  {
+                        "code": "DV109YZ",
+                        "display": "High Dose Rate (HDR) Brachytherapy of Prostate using Other Isotope"
+                    },
+                  {
+                        "code": "DV10B6Z",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Cesium 131 (Cs-131)"
+                    },
+                  {
+                        "code": "DV10B7Z",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Cesium 137 (Cs-137)"
+                    },
+                  {
+                        "code": "DV10B8Z",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Iridium 192 (Ir-192)"
+                    },
+                  {
+                        "code": "DV10B9Z",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Iodine 125 (I-125)"
+                    },
+                  {
+                        "code": "DV10BB1",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Palladium 103 (Pd-103), Unidirectional Source"
+                    },
+                  {
+                        "code": "DV10BBZ",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Palladium 103 (Pd-103)"
+                    },
+                  {
+                        "code": "DV10BCZ",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Californium 252 (Cf-252)"
+                    },
+                  {
+                        "code": "DV10BYZ",
+                        "display": "Low Dose Rate (LDR) Brachytherapy of Prostate using Other Isotope"
+                    },
+                  {
+                        "code": "DV20DZZ",
+                        "display": "Stereotactic Other Photon Radiosurgery of Prostate"
+                    },
+                  {
+                        "code": "DV20HZZ",
+                        "display": "Stereotactic Particulate Radiosurgery of Prostate"
+                    },
+                  {
+                        "code": "DV20JZZ",
+                        "display": "Stereotactic Gamma Beam Radiosurgery of Prostate"
+                    },
+                  {
+                        "code": "DVY07ZZ",
+                        "display": "Contact Radiation of Prostate"
+                    },
+                  {
+                        "code": "DVY08ZZ",
+                        "display": "Hyperthermia of Prostate"
+                    },
+                  {
+                        "code": "DVY0CZZ",
+                        "display": "Intraoperative Radiation Therapy (IORT) of Prostate"
+                    },
+                  {
+                        "code": "DVY0FZZ",
+                        "display": "Plaque Radiation of Prostate"
+                    },
+                  {
+                        "code": "DVY0KZZ",
+                        "display": "Laser Interstitial Thermal Therapy of Prostate"
                     }
                 ]
             }

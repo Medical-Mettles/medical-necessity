@@ -3,6 +3,7 @@ library AntiInhibitorCoagulantDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include AntiInhibitorCoagulant version '1.0.0' called AICC
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -35,58 +36,16 @@ define QT:
 	"QuestionnaireResponse".item
 
 define "HemophiliaDiagnosis":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Acquired hemophilia"
+	AICC."HemophiliaDiagnosis"
 
 define "FactorVIIIDiagnosis":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Hereditary factor VIII deficiency"
+	AICC."FactorVIIIDiagnosis"
 
 define "CoagulationFactorDiagnosis":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Acquired Factor VIII autoantibodies"
+	AICC."CoagulationFactorDiagnosis"
 
 define "HemorrhageDiagnosis":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Major bleeding episodes"
-
-define "MedicationAdministrationResources":
-	[MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
-	and (First((M.medication as CodeableConcept).coding) in "Other less expensive therapies"
-		or First([Medication]med
-							where (M.medication as Reference).reference.value = 'Medication/'+med.id.value
-							and (First(med.code.coding) in "Other less expensive therapies") is not null
-				) is not null
-			) is not null
-
-define "MedicationResources":
-	[Medication]med where (First(med.code.coding) in "Other less expensive therapies") is not null
-
-define "ProcedureResources":
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and First(P.outcome.coding) in "Procedure Unsuccessful"
-		and First(P.code.coding) in "Procedure for Medication Administration"
-
-define "OtherFailedTherapyResources":
-	"MedicationAdministrationResources" M
-	with "ProcedureResources" P
-	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
-
-define "DiagnosticTestResources":
-	[DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Diagnostic Tests for hemophilia"
+	AICC."HemorrhageDiagnosis"
 
 define "DiagnosesAssessment":
 	if (Last("HemophiliaDiagnosis") is not null
@@ -97,12 +56,12 @@ define "DiagnosesAssessment":
 	else false
 
 define "OtherTherapiesAssessment":
-	if (Last("OtherFailedTherapyResources") is not null)
+	if (Last(AICC."OtherFailedTherapyResources") is not null)
 	then true
 	else false
 
 define "DiagnosticTestsAssessment":
-	if (Last("DiagnosticTestResources") is not null)
+	if (Last(AICC."DiagnosticTestResources") is not null)
 	then true
 	else false
 

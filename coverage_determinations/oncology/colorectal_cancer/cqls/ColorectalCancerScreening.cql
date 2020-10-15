@@ -3,7 +3,6 @@ library ColorectalCancerScreening version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include ColorectalCancerScreeningDecision version '1.0.0' called CCSD
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -32,10 +31,18 @@ parameter "ClaimResponse" ClaimResponse
 context Patient
 
 define "MultitargetStoolDNATest":
-	CCSD."MultitargetStoolDNATest"
+	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
+		sort by end of "Normalize Interval Observation"(effective))
 
 define "FecalOccultBloodTests":
-	CCSD."FecalOccultBloodTests"
+	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "Fecal Occult Blood Tests"
+		sort by end of "Normalize Interval Observation"(effective)
+	)
+
 
 define "CologuardServiceRequestTest":
 	"ServiceRequest"P where First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
@@ -63,24 +70,39 @@ define "TypeOfTest":
 	else ''
 
 define "LastPerformedDate":
-	end of CCSD."Normalize Interval Observation"("DiagnosticReportResource".effective)
+	end of "Normalize Interval Observation"("DiagnosticReportResource".effective)
 
 define "ExpectedDate":
-	start of CCSD."Normalize Interval Observation"("ServiceRequestResource".occurrence)
+	start of "Normalize Interval Observation"("ServiceRequestResource".occurrence)
 
 define "FOBTObservation":
-	CCSD."FOBTObservation"
+	[Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "Fecal Occult Blood"
+		and FHIRHelpers.ToConcept(P.value).codes[0].code in {'10828004','POSITIVE'}
 
 define "FOBTPositive":
 	"FOBTObservation" O
 	with "FecalOccultBloodTests".result R
 	such that R.reference.value = 'Observation/'+O.id.value
 
+define "LowerGastrointestinalPain":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.code.coding) in "Lower gastrointestinal pain"
+
+define "BloodInStool":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.code.coding) in "Blood in stool"
+
 define "Symptom1":
-	if Last(CCSD."LowerGastrointestinalPain") is not null then 'Lower Gastrointestinal Pain' else ''
+	if Last("LowerGastrointestinalPain") is not null then 'Lower Gastrointestinal Pain' else ''
 
 define "Symptom2":
-	if Last(CCSD."BloodInStool") is not null then ', Blood In Stool' else ''
+	if Last("BloodInStool") is not null then ', Blood In Stool' else ''
 
 define "SymptomsFinal":
 	"Symptom1"+"Symptom2"
@@ -95,17 +117,37 @@ define "Symptoms":
 define "TestsPerformed":
 	if Last("FOBTPositive")  is not null then 'Positive Fecal Occult Blood Test' else ''
 
+define "AdenomatousPolyps":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Adenomatous polyps"
+
+define "InflammatoryBowelDisease":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Inflammatory bowel disease"
+
+define "CrohnsDisease":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Crohn’s Disease"
+
+define "ColorectalCancer":
+	[Condition]C
+	where C.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and First(C.code.coding) in "Colorectal cancer"
+
 define "Condition1":
-	if exists(CCSD."AdenomatousPolyps") then 'Adenomatous Polyps' else ''
+	if exists("AdenomatousPolyps") then 'Adenomatous Polyps' else ''
 
 define "Condition2":
-	if exists(CCSD."InflammatoryBowelDisease")  then ', Inflammatory Bowel Disease' else ''
+	if exists("InflammatoryBowelDisease")  then ', Inflammatory Bowel Disease' else ''
 
 define "Condition3":
-	if exists(CCSD."CrohnsDisease") then ', Crohns Disease' else ''
+	if exists("CrohnsDisease") then ', Crohns Disease' else ''
 
 define "Condition4":
-	if exists(CCSD."ColorectalCancer") then ', Colorectal Cancer' else ''
+	if exists("ColorectalCancer") then ', Colorectal Cancer' else ''
 
 define "PersonalHistoryFinal":
 	"Condition1"+ "Condition2"+ "Condition3"+ "Condition4"
@@ -117,9 +159,21 @@ define "PersonalHistory":
 				else "PersonalHistoryFinal")
 	else ''
 
+define "FamilyMemberDiagnosisHistory":
+	if exists([FamilyMemberHistory])
+	then ([FamilyMemberHistory]F
+		where F.patient.reference.value = 'Patient/'+ Patient.id.value
+		and (F.relationship R where First(R.coding) in "Blood Relationship") is not null
+		and exists(F.condition FC where First(FC.code.coding) in "Adenomatous polyps"
+						or First(FC.code.coding) in "Family history of colonic polyps"
+						or First(FC.code.coding) in "Hereditary nonpolyposis colorectal cancer"
+						or First(FC.code.coding) in "Colorectal cancer"
+				))
+	else null
+
 define "FamilyHistory":
-	if Last(CCSD."FamilyMemberDiagnosisHistory") is not null
-	then CCSD."FamilyMemberDiagnosisHistory"
+	if Last("FamilyMemberDiagnosisHistory") is not null
+	then "FamilyMemberDiagnosisHistory"
 	else null
 
 define "Adenomatous Polyps Resource":
@@ -146,6 +200,12 @@ define "Colorectal Cancer Resource":
 	then true
 	else false
 
+define "CTCProcedure":
+	Last(
+	[DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "CT Colonography")
+
 define "FamilyMemberHistory":
 	{if "Adenomatous Polyps Resource" then 'Adenomatous Polyps' else '',
 		if "Colonic Polyps Resource" then 'Colonic Polyps' else '',
@@ -153,7 +213,13 @@ define "FamilyMemberHistory":
 		if "Colorectal Cancer Resource" then 'Colorectal Cancer' else ''}
 
 define "ScreeningCTC":
-	if CCSD."CTCProcedure" is not null
+	if "CTCProcedure" is not null
 	then 'Screening computed tomographic colonography (CTC)'
 	else ''
 
+define function "Normalize Interval Observation"(choice Choice<FHIR.dateTime, FHIR.Period>):
+ 	 if choice is FHIR.dateTime then
+ 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+	  else if choice is FHIR.Period then
+		  FHIRHelpers.ToInterval(choice as FHIR.Period)
+	  else null

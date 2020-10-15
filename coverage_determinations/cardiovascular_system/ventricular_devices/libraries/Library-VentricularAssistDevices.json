@@ -15,10 +15,6 @@
     {
     "type": "depends-on",
     "resource": "Library/FHIRHelpers"
-    },
-    {
-      "type": "depends-on",
-      "resource": "Library/library-ventriculardevices-VADDecision"
     }
   ],
   "dataRequirement": [
@@ -156,6 +152,15 @@
         }
       ]
     },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.52"
+        }
+      ]
+    }
     {
       "type": "Encounter"
     }

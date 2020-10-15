@@ -3,7 +3,6 @@ library VentricularAssistDevices version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include VADDecision version '1.0.0' called VADCommon
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -14,13 +13,11 @@ codesystem "CDCNHSN": '2.16.840.1.113883.6.277'
 
 
 valueset "Beta Blocker Therapy": '2.16.840.1.113883.3.526.3.1174'
-valueset "ECMO": '2.16.840.1.113762.1.4.1029.22'
 valueset "Heart Failure": '2.16.840.1.113762.1.4.1182.93'
 valueset "ACE Inhibitor or ARB or ARNI": '2.16.840.1.113883.3.526.3.1139'
 valueset "IV Positive Inotropic and Vasopressor Agents": '2.16.840.1.113883.3.666.5.2128'
 valueset "LVEF Assessment": '2.16.840.1.113762.1.4.1047.190'
 valueset "Mechanical Circulatory Assist Device": '2.16.840.1.113883.3.3157.4050'
-valueset "Intra-aortic balloon pump (IABP) device": '2.16.840.1.113883.3.6037.1001.23.99.49'
 valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
 valueset "Medical care (regime/therapy)": '2.16.840.1.113883.3.6037.1001.23.99.51'
 valueset "Oxygen consumption (VO2)/Heart rate --peak during exercise": '2.16.840.1.113883.3.6037.1001.23.99.52'
@@ -48,8 +45,14 @@ define function "EncounterDiagnosis"(Encounter Encounter):
 define ServiceCondition:
 	"EncounterDiagnosis"("ServiceEncounter")
 
+
+		
 define PostCardiotomy:
-		VADCommon."PostCardiotomy"
+		First([Condition] C
+			with [Procedure] P
+			such that First(C.code.coding) in "Postcardiotomy syndrome"
+				and First(P.code.coding) in "Open heart surgery (procedure)"
+		and "Normalize Onset"(C.onset) starts after "Normalize Interval Procedure"(P.performed))
 
 define OpenHeartProcedure:
 	First([Procedure]P
@@ -61,36 +64,65 @@ define OpenHeartProcedure:
 define RelevantDiagnosis:
 		First("ServiceCondition".code.coding).display.value
 
-define BridgeTransplant:
-	VADCommon."BridgeTransplant"	
 
+
+define BridgeTransplant:
+		First([Procedure]T
+			where First(T.code.coding) in "Transplantation of heart (procedure)"
+				and T.status.value = 'not-done'
+				and T.subject.reference.value = 'Patient/'+ Patient.id.value)
+				
 define ProcedureApproved:
 	First("BridgeTransplant".code.coding).display.value
 
+	
 define DTDeviceRequest:
-	VADCommon."DTDeviceRequest"
+	First([DeviceRequest]D
+		where (D.code as CodeableConcept) in "Mechanical Circulatory Assist Device"
+				or exists([Device: "Mechanical Circulatory Assist Device"]device
+					where (D.code as Reference).reference.value = 'Device/'+device.id.value))
 
 define MechanicalDevicePrescribed:
 	First(("DTDeviceRequest".code as CodeableConcept).coding).display.value
 
 define HeartFailurePatient:
-	VADCommon."HeartFailurePatient"
+	First([Condition:"Heart Failure"]C
+		where First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.verificationStatus.coding).code.value = 'confirmed'
+	     )
 
 define BetaMedicationAdministration:
-	VADCommon."BetaMedicationAdministration"
+	First([MedicationAdministration]M
+		where ((M.medication as CodeableConcept) in "Beta Blocker Therapy"
+			and  ("Normalize Interval Procedure"(M.effective)) starts after Today()-60 days)
+			or exists([Medication:"Beta Blocker Therapy" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
 
 
 define ACEMedicationAdministration:
-	VADCommon."ACEMedicationAdministration"
+	First([MedicationAdministration]M
+		where ((M.medication as CodeableConcept) in "ACE Inhibitor or ARB or ARNI"
+			or exists([Medication:"ACE Inhibitor or ARB or ARNI" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
+		and ("Normalize Interval Procedure"(M.effective)) starts after (Today()-60 days)
+	     )
+	     
+
 	
 define function "LengthInDays"(Value Interval<DateTime>):
 	difference in days between start of Value and end of Value
 
 define BallooonPumpAssist:
-	VADCommon."BallooonPumpAssist"
-	
+	First([Procedure]P
+		where First(P.code.coding) in "Cardioassist by aortic balloon pump (procedure)"
+			and First(P.outcome.coding) in "Unsuccessful"
+			and "LengthInDays"(P.performed) > 7 days
+	     )
+
 define InotropeAdministration:
-	VADCommon."InotropeAdministration"
+	First([MedicationAdministration]M
+		where ((M.medication as CodeableConcept) in "IV Positive Inotropic and Vasopressor Agents"
+			or exists([Medication:"IV Positive Inotropic and Vasopressor Agents" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
+		and "LengthInDays"(M.effective) > 14 days
+	     )
 
 define MedicationPrescribed:
 	if ("InotropeAdministration" is not null)
@@ -124,18 +156,34 @@ define CareTherapy:
 				)
 				
 define OptimalMedicationManagement1:
-	VADCommon."OptimalMedicationManagement1"
+	First([Procedure]P
+		with "InotropeAdministration" I
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
+			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
+			and First(P.outcome.coding) in "Unsuccessful"
+	     )
 
 define OptimalMedicationManagement2:
-	VADCommon."OptimalMedicationManagement2"
-	
+	First([Procedure]P
+		with "ACEMedicationAdministration" I
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
+			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
+			and First(P.outcome.coding) in "Unsuccessful"
+	     )
+
 define OptimalMedicationManagement3:
-	VADCommon."OptimalMedicationManagement3"
+	First([Procedure]P
+		with "BetaMedicationAdministration" I
+		such that First(P.code.coding) in "Medical care (regime/therapy)"
+			and First(P.partOf).reference.value = 'MedicationAdministration/' + I.id.value
+			and First(P.outcome.coding) in "Unsuccessful"
+	     )
 	
-define LVEFResource:
+define LVEF:
 	First([Observation]O
 		where First(O.code.coding) in "LVEF Assessment"
-		and O.status.value = 'final')
+		and O.status.value = 'final'
+		and FHIRHelpers.ToQuantity(O.value) < 25)
 
 define LVEFResult:
 	(First([Observation]O
@@ -146,7 +194,8 @@ define LVEFResult:
 define PeakOxygenConsumptionResource:
 	First([Observation]O
 		where First(O.code.coding) in "Oxygen consumption (VO2)/Heart rate --peak during exercise"
-		and O.status.value = 'final')
+		and O.status.value = 'final'
+		and FHIRHelpers.ToQuantity(O.value) <= 14)
 
 define PeakOxygenConsumption:
 	(First([Observation]O

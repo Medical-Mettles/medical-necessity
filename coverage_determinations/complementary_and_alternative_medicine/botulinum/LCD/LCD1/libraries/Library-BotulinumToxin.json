@@ -15,11 +15,7 @@
     {
     "type": "depends-on",
     "resource": "Library/FHIRHelpers"
-    },
-    {
-      "type": "depends-on",
-      "resource": "Library/library-LCD1-BotulinumToxinDecision"
-      }
+    }
   ],
   "dataRequirement": [
     {

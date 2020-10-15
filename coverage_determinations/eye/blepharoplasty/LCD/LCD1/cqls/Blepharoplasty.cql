@@ -3,8 +3,6 @@ library Blepharoplasty version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include BlepharoplastyDecision version '1.0.0' called BLCommon
-
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -30,47 +28,103 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 context Patient
 
 define ServiceEncounter:
-	BLCommon."ServiceEncounter"
-	
+	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
+
+define function "EncounterDiagnosis1"(Encounter Encounter):
+	Encounter.diagnosis D
+	return First([Condition]C
+				where C.id.value = "GetId"(D.condition.reference.value)
+					and FHIRHelpers.ToInteger(D.rank) = 2)
+
+define function "EncounterDiagnosis"(Encounter Encounter):
+	Encounter.diagnosis D
+	return First([Condition]C
+				where C.id.value = "GetId"(D.condition.reference.value)
+					and FHIRHelpers.ToInteger(D.rank) = 1)
+
+define function "GetId"(uri String):
+	Last(Split(uri, '/'))
+
 define ServiceCondition:
-	BLCommon."ServiceCondition"
+	"EncounterDiagnosis"("ServiceEncounter")
+
+define ServiceCondition1:
+	"EncounterDiagnosis1"("ServiceEncounter")
 
 define ServiceDiagnosis:
-	BLCommon."ServiceDiagnosis"
+	First("ServiceCondition" S
+			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
+				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
+			)
+
+define RelevantServiceDiagnosis:
+	First("ServiceCondition1" S
+			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
+				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
+			)
+
+define RelevantDiagnosis:
+	First("RelevantServiceDiagnosis".code.coding).display.value
 
 define ServiceDiagnosis1:
-	BLCommon."ServiceDiagnosis1"
-	
-define RelevantDiagnosis:
-	First("ServiceDiagnosis".code.coding).display.value
+	First("ServiceCondition" S
+			where First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
+			)
 
 define ServiceDiagnosis2:
-	BLCommon."ServiceDiagnosis2"
-	
+	First("ServiceCondition" S
+			where First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes"
+			)
+
+define FunctionalDef:
+	First([Condition]C
+		where First(C.code.coding) in "Functional Deficits in EyeLid" 
+			and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
+
 define FunctionalDeficits:
-	BLCommon."FunctionalDeficits"
+	First([Condition]C
+		where First(C.code.coding) in "Sockets"
+			and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Botox:
 	First([Procedure]P
 		where First(P.code.coding) in "Botox Cosmetic Injectable Product"
-		 and First(P.outcome.coding) in "Unsuccessful")
+			and P.status.value ='completed'
+		 	and First(P.outcome.coding) in "Unsuccessful")
 
 define TreatmentFailed:
 	First("Botox".code.coding).display.value
 
-
-
 define BlepharospasmCondition:
-	BLCommon."BlepharospasmCondition"
+	First([Condition]C
+		with [Procedure]P
+		such that First(C.code.coding) in "Blepharospasm"
+		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.verificationStatus.coding).code.value = 'confirmed'
+		and First(P.code.coding) in "Botox Cosmetic Injectable Product"
+		and P.status.value ='completed'
+		)
 
 define Blepharoptosis:
-	BLCommon."Blepharoptosis"
+	First([Observation]O
+		where First(O.code.coding) in "Margin reflex distance"
+			and O.status.value = 'final'
+			and FHIRHelpers.ToQuantity(O.value) <= 2)
 
 define MRD:
-	BLCommon."MRD"
-	
+	(First([Observation]O
+		where First(O.code.coding) in "Margin reflex distance"
+			and O.status.value = 'final'
+			and FHIRHelpers.ToQuantity(O.value) <= 2))M
+		 return FHIRHelpers.ToQuantity(M.value)
+
 define BrowRepair:
-	BLCommon."BrowRepair"
+	First([Condition]C
+		where First(C.code.coding) in "Changes in skin texture"
+		and First(C.clinicalStatus.coding).code.value = 'active'
+		and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define BlepharospasmDescription:
 	if ("BlepharospasmCondition" is not null)

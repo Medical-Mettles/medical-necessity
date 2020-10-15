@@ -15,11 +15,7 @@
       {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
-      },
-      {
-        "type": "depends-on",
-        "resource": "Library/library-LCD1-VeinAblationDecision"
-        }
+      }
     ],
     "dataRequirement": [
       {
@@ -351,13 +347,13 @@
         "type": "Encounter"
       },
       {
-        "type": "ServiceRequest",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.95.3"
-          }
-        ]
+        "type": "MedicationAdministration"
+      },
+      {
+        "type": "Medication"
+      },
+      {
+        "type": "Encounter"
       },
       {
         "type": "ServiceRequest",
@@ -403,15 +399,6 @@
             "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.95.13"
           }
         ]
-      },
-      {
-        "type": "MedicationAdministration"
-      },
-      {
-        "type": "Medication"
-      },
-      {
-        "type": "Encounter"
       }
     ]
   }

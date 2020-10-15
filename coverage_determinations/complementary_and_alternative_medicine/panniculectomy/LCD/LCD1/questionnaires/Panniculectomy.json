@@ -18,7 +18,7 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-medicarefeeforservice-Panniculectomy"
+        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-Panniculectomy"
       }
     ],
     "contained": [
@@ -71,23 +71,9 @@
               }
             ]
           },
+          
           {
             "linkId": "1.2",
-            "text": "Date of Onset of Primary Diagnosis",
-            "type": "dateTime",
-            "required": false,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "OnsetDate"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "1.3",
             "text": "Was Bariatric Surgery performed ?",
             "type": "boolean",
             "required": true,
@@ -103,7 +89,7 @@
             ]
           },
           {
-            "linkId": "1.4",
+            "linkId": "1.3",
             "text": "Date of Surgery performed",
             "type": "dateTime",
             "required": true,

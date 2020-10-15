@@ -3,7 +3,7 @@ library BlepharoplastyDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-
+include Blepharoplasty version '1.0.0' called BLCommon
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -28,62 +28,38 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 context Patient
 
 define ServiceEncounter:
-	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
-
-define function "EncounterDiagnosis"(Encounter Encounter):
-	Encounter.diagnosis D
-	return First([Condition]C
-				where C.id.value = "GetId"(D.condition.reference.value)
-					and FHIRHelpers.ToInteger(D.rank) = 2)
-define function "GetId"(uri String):
-	Last(Split(uri, '/'))
-
+	BLCommon."ServiceEncounter"
+	
 define ServiceCondition:
-	"EncounterDiagnosis"("ServiceEncounter")
+	BLCommon."ServiceCondition"
 
 define ServiceDiagnosis:
-	First("ServiceCondition" S
-			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
-			)
+	BLCommon."ServiceDiagnosis"
 
 define ServiceDiagnosis1:
-	First("ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-			)
-
+	BLCommon."ServiceDiagnosis1"
+	
 define ServiceDiagnosis2:
-	First("ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes"
-			)
+	BLCommon."ServiceDiagnosis2"
 
 define FunctionalDef:
-	[Condition]C
-		where (First(C.code.coding) in "Functional Deficits in EyeLid" )
+	BLCommon."FunctionalDef"
 
 define FunctionalDeficits:
-	[Condition]C
-		where (First(C.code.coding) in "Sockets"
-			and (First("QA31".value) = true))
+	BLCommon."FunctionalDeficits"
 
 define BlepharospasmCondition:
-	First([Condition]C
-		with [Procedure]P
-		such that First(C.code.coding) in "Blepharospasm"
-		and First(P.code.coding) in "Botox Cosmetic Injectable Product")
+	BLCommon."BlepharospasmCondition"
 
 define Blepharoptosis:
-	First([Observation]O
-		where First(O.code.coding) in "Margin reflex distance"
-			and FHIRHelpers.ToQuantity(O.value) <= 2)
+	BLCommon."Blepharoptosis"
 
 define MRD:
-	(First([Observation]O
-		where First(O.code.coding) in "Margin reflex distance"
-			and FHIRHelpers.ToQuantity(O.value) <= 2))M
-		 return FHIRHelpers.ToQuantity(M.value)
-
-
+	BLCommon."MRD"
+	
+define BrowRepair:
+	BLCommon."BrowRepair"
+	
 define QT:
 	"QuestionnaireResponse".item
 
@@ -138,10 +114,6 @@ define BothEyelidsBlepharoptosis:
  		then true
  		else false
 
-define BrowRepair:
-	First([Condition]C
-		where First(C.code.coding) in "Changes in skin texture")
-
 define UpperBlepharoplasty:
 	if ( ((First("QA25".value) = true)
 		or (First("QA26".value) = true)
@@ -157,20 +129,20 @@ define BlepharospasmDescription:
 
 define UpperPrimaryDecision:
 	if( "ServiceDiagnosis1" is not null
-		and "FunctionalDeficits" is not null
+		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true))
 		and ("UpperBlepharoplasty" = true))
 		then true
 		else false
 
 define LowerPrimaryDecision:
 	if( "ServiceDiagnosis2" is not null
-		and "FunctionalDeficits" is not null)
+		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true)))
 		then true
 		else false
 
 define BothEyelidPrimaryDecision:
 	if( "ServiceDiagnosis" is not null
-		and "FunctionalDeficits" is not null
+		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true))
 		and ("BothEyelidsBlepharoptosis" = true))
 		then true
 		else false

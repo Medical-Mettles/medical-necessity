@@ -3,7 +3,6 @@ library CryosurgeryofProstate version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include CryosurgeryofProstateDecision version '1.0.0' called CryosurgeryofProstateDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -22,8 +21,13 @@ parameter "ServiceRequest" ServiceRequest
 
 context Patient
 
+define RadiationTherapyResource:
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value = 'completed'
+		and First(P.code.coding) in "Radiation Treatment Management"
+
 define RadiationTherapyProcedure:
-	Last(CryosurgeryofProstateDecision."RadiationTherapy")
+	Last("RadiationTherapyResource")
 
 define RadiationTherapy:
 	if "RadiationTherapyProcedure" is not null
@@ -38,9 +42,15 @@ define ProcedureOutcome:
 	then First("RadiationTherapyProcedure".outcome.coding).display.value
 	else ''
 
+define TumorStageResource:
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+		and First(P.code.coding) in "Malignant neoplasm of prostate"
+
 define TumorCondition:
 	First(
-	CryosurgeryofProstateDecision."TumorStage"
+	"TumorStageResource"
 	)
 
 define TumorStage:
@@ -48,9 +58,21 @@ define TumorStage:
 	then First(First(TumorCondition.stage).summary.coding).display.value
 	else ''
 
+define GleasonScoreResource:
+	[Observation]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "Gleason score"
+
+define ProstateSpecificAntigenResource:
+	[Observation]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "Prostate specific Ag"
+
 define GleasonScoreObservation:
 	First(
-		CryosurgeryofProstateDecision."GleasonScore"
+		"GleasonScoreResource"
 	)
 
 define GleasonScore:
@@ -58,7 +80,7 @@ define GleasonScore:
 
 define ProstateSpecificAntigenObservation:
 	First(
-		CryosurgeryofProstateDecision."ProstateSpecificAntigen"
+		"ProstateSpecificAntigenResource"
 	)
 
 define ProstateSpecificAntigen:

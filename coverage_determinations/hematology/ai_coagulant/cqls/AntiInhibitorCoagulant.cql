@@ -3,7 +3,6 @@ library AntiInhibitorCoagulant version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include AntiInhibitorCoagulantDecision version '1.0.0' called AICCDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -31,16 +30,29 @@ parameter "ServiceRequest" ServiceRequest
 context Patient
 
 define "HemophiliaDiagnosis":
-	AICCDecision."HemophiliaDiagnosis"
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+		and First(P.code.coding) in "Acquired hemophilia"
+
 
 define "FactorVIIIDiagnosis":
-	AICCDecision."FactorVIIIDiagnosis"
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+		and First(P.code.coding) in "Hereditary factor VIII deficiency"
 
 define "CoagulationFactorDiagnosis":
-	AICCDecision."CoagulationFactorDiagnosis"
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+		and First(P.code.coding) in "Acquired Factor VIII autoantibodies"
 
 define "HemorrhageDiagnosis":
-	AICCDecision."HemorrhageDiagnosis"
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+		and First(P.code.coding) in "Major bleeding episodes"
 
 define "BleedingEpisodeDate":
 	start of "Normalize Interval"(Last("HemorrhageDiagnosis").recordedDate)
@@ -73,16 +85,46 @@ define "ActiveDiagnoses":
 				else "ActiveDiagnosesFinal")
 	else ''
 
+define "DiagnosticTestResources":
+	[DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value in {'final', 'amended', 'corrected'}
+		and First(P.code.coding) in "Diagnostic Tests for hemophilia"
+
 define "DiagnosticTestsPerformed":
-	AICCDecision."DiagnosticTestResources" P
+	"DiagnosticTestResources" P
 	return P.code.coding[0].display.value+'\n'
+
+define "MedicationAdministrationResources":
+	[MedicationAdministration]M
+	where M.subject.reference.value = 'Patient/'+ Patient.id.value
+	and M.status.value = 'completed'
+	and (First((M.medication as CodeableConcept).coding) in "Other less expensive therapies"
+		or First([Medication]med
+							where (M.medication as Reference).reference.value = 'Medication/'+med.id.value
+							and (First(med.code.coding) in "Other less expensive therapies") is not null
+				) is not null
+			) is not null
+
+define "MedicationResources":
+	[Medication]med where (First(med.code.coding) in "Other less expensive therapies") is not null
+
+define "ProcedureResources":
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value = 'completed'
+		and First(P.outcome.coding) in "Procedure Unsuccessful"
+		and First(P.code.coding) in "Procedure for Medication Administration"
+
+define "OtherFailedTherapyResources":
+	"MedicationAdministrationResources" M
+	with "ProcedureResources" P
+	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
 define "APPTObservation":
 	FHIRHelpers.ToTime(Last([Observation]O
 	where O.code.coding[0].code.value= '3173-2').value as time)
 
 define "OtherFailedTherapies":
-	AICCDecision."OtherFailedTherapyResources" P
+	"OtherFailedTherapyResources" P
 	return (if (P.medication as CodeableConcept) is not null
 					then ((P.medication as CodeableConcept).coding[0].display.value+'\n')
 					else (First([Medication]med
@@ -97,7 +139,7 @@ define "OtherFailedTherapies":
 //	else ''
 
 define "TherapyDate":
-	start of "Normalize Interval"(Last(AICCDecision."OtherFailedTherapyResources").effective)
+	start of "Normalize Interval"(Last("OtherFailedTherapyResources").effective)
 
 define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Period>):
  	 if choice is FHIR.dateTime then

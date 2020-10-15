@@ -3,6 +3,7 @@ library CryosurgeryofProstateDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include CryosurgeryofProstate version '1.0.0' called CryosurgeryofProstate
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -32,27 +33,16 @@ define QA14:
 		return First(QR.answer).value
 
 define RadiationTherapy:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and First(P.code.coding) in "Radiation Treatment Management"
+	CryosurgeryofProstate."RadiationTherapyResource"
 
 define TumorStage:
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Malignant neoplasm of prostate"
+	CryosurgeryofProstate."TumorStageResource"
 
 define GleasonScore:
-	[Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Gleason score"
+	CryosurgeryofProstate."GleasonScoreResource"
 
 define ProstateSpecificAntigen:
-	[Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Prostate specific Ag"
+	CryosurgeryofProstate."ProstateSpecificAntigenResource"
 
 define AssessmentCriteria:
 	if ((First("QA14") = true )

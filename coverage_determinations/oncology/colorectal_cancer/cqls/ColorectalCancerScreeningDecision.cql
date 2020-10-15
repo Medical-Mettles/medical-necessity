@@ -3,6 +3,7 @@ library ColorectalCancerScreeningDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include ColorectalCancerScreening version '1.0.0' called CCST
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -34,14 +35,10 @@ define QT:
 	"QuestionnaireResponse".item
 
 define FecalOccultBloodTests:
-	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Fecal Occult Blood Tests"
-		sort by end of "Normalize Interval Observation"(effective)
-	)
+	CCST."FecalOccultBloodTests"
 
 define "FOBTPerformedDifference":
-	difference in days between end of "Normalize Interval Observation"("FecalOccultBloodTests".effective)
+	difference in days between end of CCST."Normalize Interval Observation"("FecalOccultBloodTests".effective)
 	and Today() >= 365
 
 define "FOBTPatientAgeGreaterThan50":
@@ -54,13 +51,10 @@ define "FOBTServiceRequestTest":
 	"ServiceRequest"P where First(P.code.coding) in "Fecal Occult Blood Tests"
 
 define "MultitargetStoolDNATest":
-	Last([DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "The CologuardTM - Multitarget Stool DNA (sDNA)"
-		sort by end of "Normalize Interval Observation"(effective))
+	CCST."MultitargetStoolDNATest"
 
 define "CologuardPerformedDifference":
-	difference in days between end of "Normalize Interval Observation"("MultitargetStoolDNATest".effective)
+	difference in days between end of CCST."Normalize Interval Observation"("MultitargetStoolDNATest".effective)
 	and Today() >= 1095
 
 define "CologuardPatientAgeGreaterThan50":
@@ -68,10 +62,7 @@ define "CologuardPatientAgeGreaterThan50":
 		and AgeInYearsAt(Today())<=85
 
 define "FOBTObservation":
-	[Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Fecal Occult Blood"
-		and FHIRHelpers.ToConcept(P.value).codes[0].code in {'10828004','POSITIVE'}
+	CCST."FOBTObservation"
 
 define "FOBTPositive":
 	"FOBTObservation" O
@@ -79,36 +70,22 @@ define "FOBTPositive":
 	such that R.reference.value = 'Observation/'+O.id.value
 
 define "ColorectalCancer":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.code.coding) in "Colorectal cancer"
+	CCST."ColorectalCancer"
 
 define "LowerGastrointestinalPain":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding) in "Lower gastrointestinal pain"
+	CCST."LowerGastrointestinalPain"
 
 define "BloodInStool":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding) in "Blood in stool"
+	CCST."BloodInStool"
 
 define "AdenomatousPolyps":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.code.coding) in "Adenomatous polyps"
+	CCST."AdenomatousPolyps"
 
 define "InflammatoryBowelDisease":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.code.coding) in "Inflammatory bowel disease"
+	CCST."InflammatoryBowelDisease"
 
 define "CrohnsDisease":
-	[Condition]C
-	where C.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and First(C.code.coding) in "Crohn’s Disease"
+	CCST."CrohnsDisease"
 
 //Family Member Diagnosis History
 define "Q24":
@@ -131,23 +108,10 @@ define "PersonalHistoryAssessment":
 	else false
 
 define "FamilyMemberDiagnosisHistory":
-	if exists([FamilyMemberHistory])
-	then ([FamilyMemberHistory]F
-		where F.patient.reference.value = 'Patient/'+ Patient.id.value
-		and (F.relationship R where First(R.coding) in "Blood Relationship") is not null
-		and exists(F.condition FC where First(FC.code.coding) in "Adenomatous polyps"
-						or First(FC.code.coding) in "Family history of colonic polyps"
-						or First(FC.code.coding) in "Hereditary nonpolyposis colorectal cancer"
-						or First(FC.code.coding) in "Colorectal cancer"
-				))
-	else null
+	CCST."FamilyMemberDiagnosisHistory"
 
 define "CTCProcedure":
-	Last(
-	[DiagnosticReport]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "CT Colonography")
-
+	CCST."CTCProcedure"
 
 define "FamilyHistoryAssessment":
 	if (Last("FamilyMemberDiagnosisHistory") is null and not exists("Q24"))
@@ -189,52 +153,3 @@ define FinalDecision:
 	then (if "CologuardAssessment" and "CTCProcedure" is null then 'YES'
 				else 'NO')
 	else 'NO'
-
-define function "Normalize Interval Observation"(choice Choice<FHIR.dateTime, FHIR.Period>):
- 	 if choice is FHIR.dateTime then
- 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
-	  else if choice is FHIR.Period then
-		  FHIRHelpers.ToInterval(choice as FHIR.Period)
-	  else null
-
-
-//define "PatientLinks":
-//	Patient.link L where First(Split(L.other.reference.value, '/')) = 'Patient'
-//		and L.type.value = 'refer'
-//
-//define "RelatedPersonLinks":
-//	Patient.link L where First(Split(L.other.reference.value, '/')) = 'RelatedPerson'
-//		and L.type.value = 'refer'
-//
-//define "RelatedPersonResources":
-//	if exists("RelatedPersonLinks")
-//	then ([RelatedPerson]RP
-//				with "RelatedPersonLinks"L
-//				such that L.other.reference.value = 'RelatedPerson/'+RP.id.value)
-//	else null
-
-//define "RelatedPersonPatients":
-//	[Patient]P
-//	with "RelatedPersonResources"RP
-//	such that RP.patient.reference.value = 'Patient/'+P.id.value
-//		and exists(RP.relationship R where First(R.coding) in "Blood Relationship")
-
-//define "PatientFamilyMemberHistory":
-//	[Condition]C
-//	with "PatientLinks" L
-//	such that C.subject.reference.value = L.other.reference.value
-// 		and (First(C.code.coding) in "Adenomatous polyps"
-//					or First(C.code.coding) in "Family history of colonic polyps"
-//					or First(C.code.coding) in "Hereditary nonpolyposis colorectal cancer"
-//					or First(C.code.coding) in "Colorectal cancer"
-//				)
-//
-//define "RelatedPersonFamilyMemberHistory":
-//	[Condition]C
-//	with "RelatedPersonPatients" P
-//	such that C.subject.reference.value = 'Patient/'+P.id.value
-// 		and (First(C.code.coding) in "Adenomatous polyps"
-//					or First(C.code.coding) in "Family history of colonic polyps"
-//					or First(C.code.coding) in "Hereditary nonpolyposis colorectal cancer"
-//					or First(C.code.coding) in "Colorectal cancer"
-//				)

@@ -3,7 +3,6 @@ library DiagnosticEES version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include DiagnosticEESDecision version '1.0.0' called DiagnosticEESDecision
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -21,7 +20,11 @@ parameter "ClaimResponse" ClaimResponse
 context Patient
 
 define "PrimaryDiagnosesResources":
-	DiagnosticEESDecision."PrimaryDiagnosesResources"
+	[Condition]P
+		where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and First(P.clinicalStatus.coding).code.value = 'active'
+    and First(P.severity.coding).display.value = 'Severe'
+		and First(P.code.coding) in "Cardiac arrhythmia"
 
 define "PrimaryDiagnoses":
 	First("PrimaryDiagnosesResources").code.coding[0].display.value

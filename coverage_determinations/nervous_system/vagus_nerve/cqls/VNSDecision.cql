@@ -3,6 +3,7 @@ library VNSDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include VagusNerveStimulation version '1.0.0' called VNS
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -31,22 +32,13 @@ define QA14:
 		return First(QR.answer).value
 
 define "PrimaryDiagnosesResources":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Medically refractory partial onset seizures"
+	VNS."PrimaryDiagnosesResources"
 
 define "SurgeryResources":
-	[Procedure]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value = 'completed'
-		and First(P.code.coding) in "Epilepsy Surgery"
+	VNS."SurgeryResources"
 
 define "DepressionCondition":
-	[Condition]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Resistant depression"
+	VNS."DepressionCondition"
 
 define "DepressionReasonCheck":
 	"ServiceRequest" P

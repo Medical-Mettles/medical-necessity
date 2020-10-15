@@ -15,6 +15,10 @@
     {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-aicoagulant-AntiInhibitorCoagulant"
     }
   ],
   "dataRequirement": [

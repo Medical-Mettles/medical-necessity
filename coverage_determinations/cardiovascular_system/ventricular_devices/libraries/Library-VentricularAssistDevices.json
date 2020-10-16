@@ -22,8 +22,8 @@
       "type": "MedicationAdministration",
       "codeFilter": [
         {
-          "path": "medication",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1174"
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.526.3.1174"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1174"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.526.3.1174"
         }
       ]
     },
@@ -40,8 +40,8 @@
       "type": "MedicationAdministration",
       "codeFilter": [
         {
-          "path": "medication",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1139"
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.526.3.1139"
         }
       ]
     },
@@ -50,7 +50,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.526.3.1139"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.526.3.1139"
         }
       ]
     },
@@ -58,8 +58,8 @@
       "type": "MedicationAdministration",
       "codeFilter": [
         {
-          "path": "medication",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.666.5.2128"
+          "path": "code",
+          "valueSet": "urn:oid:2.16.840.1.113883.3.666.5.2128"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.666.5.2128"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.666.5.2128"
         }
       ]
     },
@@ -77,7 +77,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.3157.4050"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.3157.4050"
         }
       ]
     },
@@ -86,7 +86,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.51"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.51"
         }
       ]
     },
@@ -95,7 +95,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.53"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.53"
         }
       ]
     },
@@ -104,7 +104,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.55"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.55"
         }
       ]
     },
@@ -113,7 +113,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.56"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.56"
         }
       ]
     },
@@ -126,7 +126,7 @@
         },
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113762.1.4.1182.93"
+          "valueSet": "urn:oid:2.16.840.1.113762.1.4.1182.93"
         }
       ]
     },
@@ -139,7 +139,7 @@
         },
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.54"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.54"
         }
       ]
     },
@@ -148,7 +148,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113762.1.4.1047.190"
+          "valueSet": "urn:oid:2.16.840.1.113762.1.4.1047.190"
         }
       ]
     },
@@ -157,10 +157,10 @@
       "codeFilter": [
         {
           "path": "code",
-          "searchParam": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.52"
+          "valueSet": "urn:oid:2.16.840.1.113883.3.6037.1001.23.99.52"
         }
       ]
-    }
+    },
     {
       "type": "Encounter"
     }

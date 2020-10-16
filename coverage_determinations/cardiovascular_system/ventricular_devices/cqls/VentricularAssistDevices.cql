@@ -44,8 +44,6 @@ define function "EncounterDiagnosis"(Encounter Encounter):
 
 define ServiceCondition:
 	"EncounterDiagnosis"("ServiceEncounter")
-
-
 		
 define PostCardiotomy:
 		First([Condition] C
@@ -57,14 +55,12 @@ define PostCardiotomy:
 define OpenHeartProcedure:
 	First([Procedure]P
 		where First(P.code.coding) in "Open heart surgery (procedure)"
-			and P.status.value in 'completed'
+			and P.status.value = 'completed'
 			and P.subject.reference.value = 'Patient/'+ Patient.id.value
 				)
 
 define RelevantDiagnosis:
 		First("ServiceCondition".code.coding).display.value
-
-
 
 define BridgeTransplant:
 		First([Procedure]T
@@ -80,7 +76,8 @@ define DTDeviceRequest:
 	First([DeviceRequest]D
 		where (D.code as CodeableConcept) in "Mechanical Circulatory Assist Device"
 				or exists([Device: "Mechanical Circulatory Assist Device"]device
-					where (D.code as Reference).reference.value = 'Device/'+device.id.value))
+					where (D.code as Reference).reference.value = 'Device/'+device.id.value)
+					)
 
 define MechanicalDevicePrescribed:
 	First(("DTDeviceRequest".code as CodeableConcept).coding).display.value
@@ -95,7 +92,8 @@ define BetaMedicationAdministration:
 	First([MedicationAdministration]M
 		where ((M.medication as CodeableConcept) in "Beta Blocker Therapy"
 			and  ("Normalize Interval Procedure"(M.effective)) starts after Today()-60 days)
-			or exists([Medication:"Beta Blocker Therapy" ]med where (M.medication as Reference).reference = 'Medication/'+med.id))
+			or exists([Medication:"Beta Blocker Therapy" ]med where (M.medication as Reference).reference = 'Medication/'+med.id)
+			)
 
 
 define ACEMedicationAdministration:

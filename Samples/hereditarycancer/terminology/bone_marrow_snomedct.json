@@ -1,0 +1,95 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.666.5.335",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2020-10-23T10:18:32.000+00:00",
+        "source": "#4hsMfZmmsqEl8eKZ"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.666.5.335",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.666.5.335"
+        }
+    ],
+    "version": "Latest",
+    "name": "BoneMarrowTransplantSNOMEDCT",
+    "title": "Bone Marrow Transplant SNOMED CT",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2020-09",
+                "concept": [
+                    {
+                        "code": "19944001",
+                        "display": "Autologous bone marrow transplant without purging (procedure)"
+                    },
+                    {
+                        "code": "234331007",
+                        "display": "Syngeneic bone marrow transplant (procedure)"
+                    },
+                    {
+                        "code": "234332000",
+                        "display": "T-cell depleted allogeneic bone marrow graft (procedure)"
+                    },
+                    {
+                        "code": "234333005",
+                        "display": "Imperfect T-cell depleted allogeneic bone marrow graft (procedure)"
+                    },
+                    {
+                        "code": "234334004",
+                        "display": "Allogeneic related bone marrow transplant (procedure)"
+                    },
+                    {
+                        "code": "234335003",
+                        "display": "Allogeneic unrelated bone marrow transplant (procedure)"
+                    },
+                    {
+                        "code": "234336002",
+                        "display": "Hemopoietic stem cell transplant (procedure)"
+                    },
+                    {
+                        "code": "23719005",
+                        "display": "Transplantation of bone marrow (procedure)"
+                    },
+                    {
+                        "code": "426425001",
+                        "display": "Allograft of bone marrow from sibling donor (procedure)"
+                    },
+                    {
+                        "code": "427423003",
+                        "display": "Allograft of bone marrow from matched unrelated donor (procedure)"
+                    },
+                    {
+                        "code": "442557006",
+                        "display": "Grafting of bone marrow using allograft from unmatched unrelated donor (procedure)"
+                    },
+                    {
+                        "code": "445757003",
+                        "display": "Allogeneic bone marrow transplantation without purging (procedure)"
+                    },
+                    {
+                        "code": "446253009",
+                        "display": "Allogeneic bone marrow transplantation with purging (procedure)"
+                    },
+                    {
+                        "code": "46280001",
+                        "display": "Autologous bone marrow transplant with purging (procedure)"
+                    },
+                    {
+                        "code": "58390007",
+                        "display": "Allogeneic bone marrow transplantation (procedure)"
+                    },
+                    {
+                        "code": "58776007",
+                        "display": "Autologous bone marrow transplant (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

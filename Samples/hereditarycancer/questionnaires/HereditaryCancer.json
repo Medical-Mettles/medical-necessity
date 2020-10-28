@@ -18,7 +18,7 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-hereditarycancertesting-HereditaryCancer"
+        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-hereditarycancertesting-hereditarycancer"
       }
     ],
     "contained": [
@@ -60,6 +60,7 @@
             "linkId": "1.1",
             "text": "Single Gene Test performed",
             "type": "choice",
+            "repeats": true,
             "required": true,
             "answerOption": [
               {
@@ -93,6 +94,7 @@
             "text": "Multi Gene Test performed",
             "type": "choice",
             "required": true,
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Comprehensive - 27 Genes"
@@ -151,8 +153,16 @@
           {
             "linkId": "2.1",
             "text": "Patient Gender",
-            "type": "string",
+            "type": "choice",
             "required": true,
+            "answerOption": [
+              {
+                "valueString": "Male"
+              },
+              {
+                "valueString": "Female"
+              }
+            ],
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -339,7 +349,7 @@
           {
             "linkId": "4.3",
             "text": "Type of breast cancer ?",
-            "type": "open-choice",
+            "type": "choice",
             "required": true,
             "enableWhen": [
               {
@@ -872,9 +882,8 @@
             "required": false,
             "enableWhen": [
               {
-                "question": "5.4",
-                "operator": ">",
-                "answerInteger": "0"
+                "question": "6.5",
+                "answerBoolean": true
               }
             ]
           },
@@ -1025,9 +1034,8 @@
             "required": false,
             "enableWhen": [
               {
-                "question": "5.4",
-                "operator": ">",
-                "answerInteger": "1"
+                "question": "6.12",
+                "answerBoolean": true
               }
             ]
           },
@@ -1178,9 +1186,8 @@
             "required": false,
             "enableWhen": [
               {
-                "question": "5.4",
-                "operator": ">",
-                "answerInteger": "2"
+                "question": "6.19",
+                "answerBoolean": true
               }
             ]
           },

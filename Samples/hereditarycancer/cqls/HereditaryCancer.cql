@@ -110,12 +110,12 @@ define "ServiceRequestMultiReason":
 	such that RR.reference.value = 'DiagnosticReport/'+D.id.value
 
 define "SingleGeneTest":
-	"ServiceRequestSingleReason"SR
-	return (SR.identifier I where I.system.value = 'https://www.labcorp.com/').type.coding[0].display.value
+	{"ServiceRequestSingleReason"SR
+	return (SR.identifier I where I.system.value = 'https://www.labcorp.com/').type.coding[0].display.value}
 
 define "MultiGeneTest":
-	"ServiceRequestMultiReason"SR
-	return (SR.identifier I where I.system.value = 'https://www.labcorp.com/').type.coding[0].display.value
+	{"ServiceRequestMultiReason"SR
+	return (SR.identifier I where I.system.value = 'https://www.labcorp.com/').type.coding[0].display.value}
 
 define "PreviousTesting":
 	if (exists("DiagnosticReportSingleGeneTests") or exists("DiagnosticReportMultiGeneTests"))
@@ -340,6 +340,11 @@ define "PaternalRelationship":
 define "NumberOfRelatives":
 	Count("FamilyMemberDiagnosisHistory")
 
+define "LimitedFamilyHistory":
+	if ("NumberOfRelatives"=0)
+	then true
+	else false
+
 define "Relative1":
 	First("FamilyMemberDiagnosisHistory")
 
@@ -410,6 +415,20 @@ define "R3CancerType":
 define "R3CancerOnsetAge":
 	AgeInYearsAt(start of "Normalize Interval"("R3CancerTypeCondition".onset))
 
+define "R1Mutation":
+	if ("R1CancerTypeCondition" is null)
+	then false
+	else true
+
+define "R2Mutation":
+	if ("R2CancerTypeCondition" is null)
+	then false
+	else true
+
+define "R3Mutation":
+	if ("R3CancerTypeCondition" is null)
+	then false
+	else true
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

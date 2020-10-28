@@ -1,0 +1,95 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.24",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.24",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.24"
+    }
+  ],
+  "version": "Latest",
+  "name": "Ductal carcinoma in situ",
+  "title": "Ductal carcinoma in situ",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "D05.0",
+            "display": "Lobular carcinoma in situ of breast"
+          },
+          {
+            "code": "D05.00",
+            "display": "Lobular carcinoma in situ of unspecified breast"
+          },
+          {
+            "code": "D05.01",
+            "display": "Lobular carcinoma in situ of right breast"
+          },
+          {
+            "code": "D05.02",
+            "display": "Lobular carcinoma in situ of left breast"
+          },
+          {
+            "code": "D05.1",
+            "display": "Intraductal carcinoma in situ of breast"
+          },
+          {
+            "code": "D05.10",
+            "display": "Intraductal carcinoma in situ of unspecified breast"
+          },
+          {
+            "code": "D05.11",
+            "display": "Intraductal carcinoma in situ of right breast"
+          },
+          {
+            "code": "D05.12",
+            "display": "Intraductal carcinoma in situ of left breast"
+          },
+          {
+            "code": "D05.8",
+            "display": "Other specified type of carcinoma in situ of breast"
+          },
+          {
+            "code": "D05.80",
+            "display": "Other specified type of carcinoma in situ of unspecified breast"
+          },
+          {
+            "code": "D05.81",
+            "display": "Other specified type of carcinoma in situ of right breast"
+          },
+          {
+            "code": "D05.82",
+            "display": "Other specified type of carcinoma in situ of left breast"
+          },
+          {
+            "code": "D05.9",
+            "display": "Unspecified type of carcinoma in situ of breast"
+          },
+          {
+            "code": "D05.90",
+            "display": "Unspecified type of carcinoma in situ of unspecified breast"
+          },
+          {
+            "code": "D05.91",
+            "display": "Unspecified type of carcinoma in situ of right breast"
+          },
+          {
+            "code": "D05.92",
+            "display": "Unspecified type of carcinoma in situ of left breast"
+          }
+        ]
+      }
+    ]
+  }
+}

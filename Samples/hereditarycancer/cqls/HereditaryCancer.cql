@@ -48,6 +48,8 @@ valueset "BRCA1 Targeted Analysis": '2.16.840.1.113883.3.6037.1001.23.98.45'
 valueset "BRCA2 Targeted Analysis": '2.16.840.1.113883.3.6037.1001.23.98.46'
 valueset "Gleason score": '2.16.840.1.113883.3.6037.1001.23.97.4'
 valueset "Metastatic Cancer": '2.16.840.1.113883.3.6037.1001.23.98.47'
+valueset "Paternal Blood Relationship": '2.16.840.1.113883.3.6037.1001.23.98.48'
+valueset "Maternal Blood Relationship": '2.16.840.1.113883.3.6037.1001.23.98.49'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -329,6 +331,12 @@ define "FamilyMemberDiagnosisHistory":
 		)
 	else null
 
+define "MaternalRelationship":
+	"FamilyMemberDiagnosisHistory" F where ((F.relationship.coding R where R in "Maternal Blood Relationship") is not null)
+
+define "PaternalRelationship":
+	"FamilyMemberDiagnosisHistory" F where ((F.relationship.coding R where R in "Paternal Blood Relationship") is not null)
+
 define "NumberOfRelatives":
 	Count("FamilyMemberDiagnosisHistory")
 
@@ -337,6 +345,13 @@ define "Relative1":
 
 define "Relative1Name":
 	"Relative1".name.value
+
+define "R1MaternalPaternal":
+	if ("Relative1".relationship.coding R where R in "Maternal Blood Relationship") is not null
+	then 'Maternal'
+	else (if ("Relative1".relationship.coding R where R in "Paternal Blood Relationship") is not null
+				then 'Paternal'
+				else '')
 
 define "R1CancerTypeCondition":
 	First("Relative1".condition C where exists(C.code.coding x where x in "Cancer"))
@@ -360,6 +375,13 @@ define "Relative3":
 define "Relative2Name":
 	"Relative2".name.value
 
+define "R2MaternalPaternal":
+	if ("Relative2".relationship.coding R where R in "Maternal Blood Relationship") is not null
+	then 'Maternal'
+	else (if ("Relative2".relationship.coding R where R in "Paternal Blood Relationship") is not null
+				then 'Paternal'
+				else '')
+
 define "R2CancerTypeCondition":
 	First("Relative2".condition C where exists(C.code.coding x where x in "Cancer"))
 
@@ -371,6 +393,13 @@ define "R2CancerOnsetAge":
 
 define "Relative3Name":
 	"Relative3".name.value
+
+define "R3MaternalPaternal":
+	if ("Relative3".relationship.coding R where R in "Maternal Blood Relationship") is not null
+	then 'Maternal'
+	else (if ("Relative3".relationship.coding R where R in "Paternal Blood Relationship") is not null
+				then 'Paternal'
+				else '')
 
 define "R3CancerTypeCondition":
 	First("Relative3".condition C where exists(C.code.coding x where x in "Cancer"))

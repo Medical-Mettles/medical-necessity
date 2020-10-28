@@ -72,7 +72,7 @@ define "ServiceRequestCode":
 
 define "SingleGeneTest":
 	{
-		(if exists("ServiceRequestCode" P where P in "BRCA1/2 Comprehensive Analysis" then 'BRCA1/2 Comprehensive Analysis' else ''),
+		(if exists("ServiceRequestCode" P where P in "BRCA1/2 Comprehensive Analysis") then 'BRCA1/2 Comprehensive Analysis' else ''),
 		(if exists("ServiceRequestCode" P where P in "BRCA1/2 Ashkenazi Jewish Profile") then 'BRCA1/2 Ashkenazi Jewish Profile' else ''),
 		(if exists("ServiceRequestCode" P where P in "BRCA1/2 Deletion/Duplication Analysis") then 'BRCA1/2 Deletion/Duplication Analysis' else ''),
 		(if exists("ServiceRequestCode" P where P in "BRCA1 Targeted Analysis") then 'BRCA1 Targeted Analysis' else ''),
@@ -375,6 +375,11 @@ define "PaternalRelationship":
 define "NumberOfRelatives":
 	Count("FamilyMemberDiagnosisHistory")
 
+define "LimitedFamilyHistory":
+	if ("NumberOfRelatives"=0)
+	then true
+	else false
+
 define "Relative1":
 	First("FamilyMemberDiagnosisHistory")
 
@@ -389,13 +394,13 @@ define "R1MaternalPaternal":
 				else '')
 
 define "R1CancerTypeCondition":
-	First("Relative1".condition C where exists(C.code.coding x where x in "Cancer"))
+	"Relative1".condition C where exists(C.code.coding x where x in "Cancer")
 
 define "R1CancerType":
-	"R1CancerTypeCondition".code.coding[0].display.value
+	First("R1CancerTypeCondition").code.coding[0].display.value
 
 define "R1CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"("R1CancerTypeCondition".onset))
+	AgeInYearsAt(start of "Normalize Interval"(First("R1CancerTypeCondition").onset))
 
 define "Relative2":
 	if "NumberOfRelatives">1
@@ -418,13 +423,13 @@ define "R2MaternalPaternal":
 				else '')
 
 define "R2CancerTypeCondition":
-	First("Relative2".condition C where exists(C.code.coding x where x in "Cancer"))
+	"Relative2".condition C where exists(C.code.coding x where x in "Cancer")
 
 define "R2CancerType":
-	"R2CancerTypeCondition".code.coding[0].display.value
+	First("R2CancerTypeCondition").code.coding[0].display.value
 
 define "R2CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"("R2CancerTypeCondition".onset))
+	AgeInYearsAt(start of "Normalize Interval"(First("R2CancerTypeCondition").onset))
 
 define "Relative3Name":
 	"Relative3".name.value
@@ -437,14 +442,28 @@ define "R3MaternalPaternal":
 				else '')
 
 define "R3CancerTypeCondition":
-	First("Relative3".condition C where exists(C.code.coding x where x in "Cancer"))
+	"Relative3".condition C where exists(C.code.coding x where x in "Cancer")
 
 define "R3CancerType":
-	"R3CancerTypeCondition".code.coding[0].display.value
+	First("R3CancerTypeCondition").code.coding[0].display.value
 
 define "R3CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"("R3CancerTypeCondition".onset))
+	AgeInYearsAt(start of "Normalize Interval"(First("R3CancerTypeCondition").onset))
 
+define "R1Mutation":
+	if exists("R1CancerTypeCondition")
+	then false
+	else true
+
+define "R2Mutation":
+	if exists("R2CancerTypeCondition")
+	then false
+	else true
+
+define "R3Mutation":
+	if exists("R3CancerTypeCondition")
+	then false
+	else true
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

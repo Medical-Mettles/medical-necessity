@@ -157,10 +157,10 @@
             "required": true,
             "answerOption": [
               {
-                "valueString": "Male"
+                "valueString": "male"
               },
               {
-                "valueString": "Female"
+                "valueString": "female"
               }
             ],
             "extension": [

@@ -53,12 +53,12 @@
     "item": [
       {
         "linkId": "1",
-        "text": "Information of the Test performed",
+        "text": "Information of the Test",
         "type": "group",
         "item": [
           {
             "linkId": "1.1",
-            "text": "Single Gene Test performed",
+            "text": "Single Gene Test applicable",
             "type": "choice",
             "repeats": true,
             "required": true,
@@ -91,7 +91,7 @@
           },
           {
             "linkId": "1.2",
-            "text": "Multi Gene Test performed",
+            "text": "Multi Gene Test applicable",
             "type": "choice",
             "required": true,
             "repeats": true,
@@ -157,16 +157,10 @@
             "required": true,
             "answerOption": [
               {
-                "valueCoding": {
-                  "code": "female",
-                  "display": "Female"
-                }
+                "valueString":"female"
               },
               {
-                "valueCoding": {
-                  "code": "male",
-                  "display": "Male"
-                }
+                "valueString":"male"
               }
             ],
             "extension": [
@@ -754,6 +748,12 @@
                 }
               }
             ]
+          },
+          {
+            "linkId": "5.5",
+            "text": "Relationships to consider include parents, siblings, offspring (1st degree), half-brothers/sisters, aunts/uncles, grandparents, grandchildren, nieces/nephews (2nd degree); first cousins, great-aunts/uncles, great-grandchildren, great grandparents (3rd degree).",
+            "type": "display",
+            "required": true
           }
         ]
       },
@@ -888,7 +888,7 @@
             "enableWhen": [
               {
                 "question": "6.5",
-                "answerBoolean": true
+                "answerBoolean": false
               }
             ]
           },
@@ -1040,7 +1040,7 @@
             "enableWhen": [
               {
                 "question": "6.12",
-                "answerBoolean": true
+                "answerBoolean": false
               }
             ]
           },
@@ -1192,7 +1192,7 @@
             "enableWhen": [
               {
                 "question": "6.19",
-                "answerBoolean": true
+                "answerBoolean": false
               }
             ]
           },
@@ -1242,27 +1242,6 @@
                 "valueExpression": {
                   "language": "text/cql",
                   "expression": "GeneticCounselingReport"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "7.2",
-            "text": "Report of previous Hereditary Cancer Testing",
-            "type": "attachment",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.2",
-                "answerBoolean": true
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "TestingReport"
                 }
               }
             ]

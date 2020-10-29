@@ -354,9 +354,8 @@
           },
           {
             "linkId": "4.3",
-            "text": "Type of breast cancer ?",
+            "text": "Type of breast cancer if applicable ?",
             "type": "choice",
-            "required": true,
             "enableWhen": [
               {
                 "question": "4.1",

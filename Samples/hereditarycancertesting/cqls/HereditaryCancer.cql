@@ -402,7 +402,7 @@ define "R1CancerType":
 	First("R1CancerTypeCondition").code.coding[0].display.value
 
 define "R1CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"(First("R1CancerTypeCondition").onset))
+	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative1".born),start of "Normalize Interval"(First("R1CancerTypeCondition").onset))
 
 define "Relative2":
 	if "NumberOfRelatives">1
@@ -431,7 +431,7 @@ define "R2CancerType":
 	First("R2CancerTypeCondition").code.coding[0].display.value
 
 define "R2CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"(First("R2CancerTypeCondition").onset))
+	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative2".born),start of "Normalize Interval"(First("R2CancerTypeCondition").onset))
 
 define "Relative3Name":
 	"Relative3".name.value
@@ -450,7 +450,7 @@ define "R3CancerType":
 	First("R3CancerTypeCondition").code.coding[0].display.value
 
 define "R3CancerOnsetAge":
-	AgeInYearsAt(start of "Normalize Interval"(First("R3CancerTypeCondition").onset))
+	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative3".born),start of "Normalize Interval"(First("R3CancerTypeCondition").onset))
 
 define "R1Mutation":
 	if exists("R1CancerTypeCondition")

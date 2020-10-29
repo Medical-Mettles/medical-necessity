@@ -61,6 +61,8 @@ context Patient
 
 define "Gender":
 	Patient.gender.value
+//	if Patient.gender.value = 'female' then {"code":'female',"display":'Female'}
+//	else (if Patient.gender.value = 'male' then {"code":'male',"display":'Male'} else {"code":'',"display":''})
 
 define "Email":
 	(First (
@@ -452,18 +454,18 @@ define "R3CancerOnsetAge":
 
 define "R1Mutation":
 	if exists("R1CancerTypeCondition")
-	then false
-	else true
+	then true
+	else false
 
 define "R2Mutation":
 	if exists("R2CancerTypeCondition")
-	then false
-	else true
+	then true
+	else false
 
 define "R3Mutation":
 	if exists("R3CancerTypeCondition")
-	then false
-	else true
+	then true
+	else false
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

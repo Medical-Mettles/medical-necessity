@@ -1,0 +1,36 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.4",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+        "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.4",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.97.4"
+        }
+    ],
+    "version": "Latest",
+    "name": "Gleason score",
+    "title": "Gleason score",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+
+            {
+                "system": "http://loinc.org",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "84904-2",
+                        "display": "Gleason score at positive margin in Prostate tumor Qualitative"
+                    }
+                ]
+            }
+        ]
+    }
+}

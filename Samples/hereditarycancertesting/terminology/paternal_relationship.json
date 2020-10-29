@@ -59,7 +59,19 @@
                 {
                   "code": "PUNCLE",
                   "display": "paternal uncle"
-                }
+                },
+                    {
+                        "code": "FTH",
+                        "display": "father"
+                    },
+                    {
+                        "code": "NFTH",
+                        "display": "natural father"
+                    },
+                    {
+                        "code": "NFTHF",
+                        "display": "natural father of fetus"
+                    }
               ]
             }
           ]

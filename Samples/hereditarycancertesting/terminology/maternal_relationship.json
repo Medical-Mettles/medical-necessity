@@ -59,7 +59,23 @@
                 {
                   "code": "MUNCLE",
                   "display": "maternal uncle"
-                }
+                },
+                    {
+                        "code": "MTH",
+                        "display": "mother"
+                    },
+                    {
+                        "code": "GESTM",
+                        "display": "gestational mother"
+                    },
+                    {
+                        "code": "NMTH",
+                        "display": "natural mother"
+                    },
+                    {
+                        "code": "NMTHF",
+                        "display": "natural mother of fetus"
+                    }
               ]
             }
           ]

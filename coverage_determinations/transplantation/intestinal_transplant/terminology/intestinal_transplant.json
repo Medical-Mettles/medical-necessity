@@ -1,0 +1,43 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.37",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.37",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.97.37"
+      }
+    ],
+    "version": "Latest",
+    "name": "Intestinal and Multi-Visceral Transplantation",
+    "title": "Intestinal and Multi-Visceral Transplantation",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "44132",
+              "display": "Donor enterectomy (including cold preservation), open; from cadaver donor"
+            },
+            {
+              "code": "44133",
+              "display": "Donor enterectomy(including cold preservation), open; partial, from living donor"
+            },
+            {
+              "code": "44135",
+              "display": "Intestinal allotransplantation; from cadaver donor"
+            }
+          ]
+        }
+      ]
+    }
+  }

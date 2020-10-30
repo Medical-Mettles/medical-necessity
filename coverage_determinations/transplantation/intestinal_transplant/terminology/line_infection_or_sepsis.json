@@ -1,0 +1,39 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.35",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.35",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.97.35"
+      }
+    ],
+    "version": "Latest",
+    "name": "Line infection or sepsis",
+    "title": "Line infection or sepsis",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "T80.211A",
+              "display": "Bloodstream infection due to central venous catheter, initial encounter"
+            },
+            {
+              "code": "A41.9",
+              "display": "Sepsis, unspecified organism"
+            }
+          ]
+        }
+      ]
+    }
+  }

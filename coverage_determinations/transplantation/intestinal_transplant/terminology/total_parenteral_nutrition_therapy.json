@@ -1,0 +1,139 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.28",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.28",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.97.28"
+      }
+    ],
+    "version": "Latest",
+    "name": "Total parenteral nutrition therapy",
+    "title": "Total parenteral nutrition therapy",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "https://hcpcs.codes/",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "B4164",
+              "display": "Parenteral nutrition solution: carbohydrates (dextrose), 50% or less (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4168",
+              "display": "Parenteral nutrition solution; amino acid, 3.5%, (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4172",
+              "display": "Parenteral nutrition solution; amino acid, 5.5% through 7%, (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4176",
+              "display": "Parenteral nutrition solution; amino acid, 7% through 8.5%, (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4178",
+              "display": "Parenteral nutrition solution: amino acid, greater than 8.5% (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4180",
+              "display": "Parenteral nutrition solution; carbohydrates (dextrose), greater than 50% (500 ml = 1 unit) - home mix"
+            },
+            {
+              "code": "B4185",
+              "display": "Parenteral nutrition solution, not otherwise specified, 10 grams lipids"
+            },
+            {
+              "code": "B4189",
+              "display": "Parenteral nutrition solution; compounded amino acid and carbohydrates with electrolytes, trace elements, and vitamins, including preparation, any strength, 10 to 51 grams of protein - premix"
+            },
+            {
+              "code": "B4193",
+              "display": "Parenteral nutrition solution; compounded amino acid and carbohydrates with electrolytes, trace elements, and vitamins, including preparation, any strength, 52 to 73 grams of protein - premix"
+            },
+            {
+              "code": "B4197",
+              "display": "Parenteral nutrition solution; compounded amino acid and carbohydrates with electrolytes, trace elements and vitamins, including preparation, any strength, 74 to 100 grams of protein - premix"
+            },
+            {
+              "code": "B4199",
+              "display": "Parenteral nutrition solution; compounded amino acid and carbohydrates with electrolytes, trace elements and vitamins, including preparation, any strength, over 100 grams of protein - premix"
+            },
+            {
+              "code": "B4216",
+              "display": "Parenteral nutrition; additives (vitamins, trace elements, heparin, electrolytes), home mix, per day"
+            },
+            {
+              "code": "B4220",
+              "display": "Parenteral nutrition supply kit; premix, per day"
+            },
+            {
+              "code": "B4222",
+              "display": "Parenteral nutrition supply kit; home mix, per day"
+            },
+            {
+              "code": "B4224",
+              "display": "Parenteral nutrition administration kit, per day"
+            },
+            {
+              "code": "B5000",
+              "display": "Parenteral nutrition solution compounded amino acid and carbohydrates with electrolytes, trace elements, and vitamins, including preparation, any strength, renal-aminosyn-rf, nephramine, renamine-premix"
+            },
+            {
+              "code": "B5100",
+              "display": "Parenteral nutrition solution compounded amino acid and carbohydrates with electrolytes, trace elements, and vitamins, including preparation, any strength, hepatic, hepatamine-premix"
+            },
+            {
+              "code": "B5200",
+              "display": "Parenteral nutrition solution compounded amino acid and carbohydrates with electrolytes, trace elements, and vitamins, including preparation, any strength, stress-branch chain amino acids-freamine-hbc-premix"
+            },
+            {
+              "code": "S9364",
+              "display": "Home infusion therapy, total parenteral nutrition (tpn); administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment including standard tpn formula (lipids, specialty amino acid formulas, drugs other than in standard formula and nursing visits coded separately), per diem (do not use with home infusion codes s9365-s9368 using daily volume scales)"
+            },
+            {
+              "code": "S9365",
+              "display": "Home infusion therapy, total parenteral nutrition (tpn); one liter per day, administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment including standard tpn formula (lipids, specialty amino acid formulas, drugs other than in standard formula and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S9366",
+              "display": "Home infusion therapy, total parenteral nutrition (tpn); more than one liter but no more than two liters per day, administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment including standard tpn formula (lipids, specialty amino acid formulas, drugs other than in standard formula and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S9367",
+              "display": "Home infusion therapy, total parenteral nutrition (tpn); more than two liters but no more than three liters per day, administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment including standard tpn formula (lipids, specialty amino acid formulas, drugs other than in standard formula and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S9368",
+              "display": "Home infusion therapy, total parenteral nutrition (tpn); more than three liters per day, administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment including standard tpn formula (lipids, specialty amino acid formulas, drugs other than in standard formula and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S5497",
+              "display": "Home infusion therapy, catheter care / maintenance, not otherwise classified; includes administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment (drugs and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S5498",
+              "display": "Home infusion therapy, catheter care / maintenance, simple (single lumen), includes administrative services, professional pharmacy services, care coordination and all necessary supplies and equipment, (drugs and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S5501",
+              "display": "Home infusion therapy, catheter care / maintenance, complex (more than one lumen), includes administrative services, professional pharmacy services, care coordination, and all necessary supplies and equipment (drugs and nursing visits coded separately), per diem"
+            },
+            {
+              "code": "S5502",
+              "display": "Home infusion therapy, catheter care / maintenance, implanted access device, includes administrative services, professional pharmacy services, care coordination and all necessary supplies and equipment, (drugs and nursing visits coded separately), per diem (use this code for interim maintenance of vascular access not currently in use)"
+            }
+          ]
+        }
+      ]
+    }
+  }

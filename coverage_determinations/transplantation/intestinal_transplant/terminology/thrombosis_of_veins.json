@@ -1,0 +1,159 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.97.32",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.32",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.97.32"
+      }
+    ],
+    "version": "Latest",
+    "name": "Thrombosis of jugular, subclavian, and femoral veins",
+    "title": "Thrombosis of jugular, subclavian, and femoral veins",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "I82.41",
+              "display": "Acute embolism and thrombosis of femoral vein"
+            },
+            {
+              "code": "I82.411",
+              "display": "Acute embolism and thrombosis of right femoral vein"
+            },
+            {
+              "code": "I82.412",
+              "display": "Acute embolism and thrombosis of left femoral vein"
+            },
+            {
+              "code": "I82.413",
+              "display": "Acute embolism and thrombosis of femoral vein, bilateral"
+            },
+            {
+              "code": "I82.419",
+              "display": "Acute embolism and thrombosis of unspecified femoral vein"
+            },
+            {
+              "code": "I82.51",
+              "display": "Chronic embolism and thrombosis of femoral vein"
+            },
+            {
+              "code": "I82.511",
+              "display": "Chronic embolism and thrombosis of right femoral vein"
+            },
+            {
+              "code": "I82.512",
+              "display": "Chronic embolism and thrombosis of left femoral vein"
+            },
+            {
+              "code": "I82.513",
+              "display": "Chronic embolism and thrombosis of femoral vein, bilateral"
+            },
+            {
+              "code": "I82.519",
+              "display": "Chronic embolism and thrombosis of unspecified femoral vein"
+            },
+            {
+              "code": "I82.C1",
+              "display": "Acute embolism and thrombosis of internal jugular vein"
+            },
+            {
+              "code": "I82.C11",
+              "display": "Acute embolism and thrombosis of right internal jugular vein"
+            },
+            {
+              "code": "I82.C12",
+              "display": "Acute embolism and thrombosis of left internal jugular vein"
+            },
+            {
+              "code": "I82.C13",
+              "display": "Acute embolism and thrombosis of internal jugular vein, bilateral"
+            },
+            {
+              "code": "I82.C19",
+              "display": "Acute embolism and thrombosis of unspecified internal jugular vein"
+            },
+            {
+              "code": "I82.C2",
+              "display": "Chronic embolism and thrombosis of internal jugular vein"
+            },
+            {
+              "code": "I82.C21",
+              "display": "Chronic embolism and thrombosis of right internal jugular vein"
+            },
+            {
+              "code": "I82.C22",
+              "display": "Chronic embolism and thrombosis of left internal jugular vein"
+            },
+            {
+              "code": "I82.C23",
+              "display": "Chronic embolism and thrombosis of internal jugular vein, bilateral"
+            },
+            {
+              "code": "I82.C29",
+              "display": "Chronic embolism and thrombosis of unspecified internal jugular vein"
+            },
+            {
+              "code": "I82.C",
+              "display": "Embolism and thrombosis of internal jugular vein"
+            },
+            {
+              "code": "I82.B",
+              "display": "Embolism and thrombosis of subclavian vein"
+            },
+            {
+              "code": "I82.B1",
+              "display": "Acute embolism and thrombosis of subclavian vein"
+            },
+            {
+              "code": "I82.B11",
+              "display": "Acute embolism and thrombosis of right subclavian vein"
+            },
+            {
+              "code": "I82.B12",
+              "display": "Acute embolism and thrombosis of left subclavian vein"
+            },
+            {
+              "code": "I82.B13",
+              "display": "Acute embolism and thrombosis of subclavian vein, bilateral"
+            },
+            {
+              "code": "I82.B19",
+              "display": "Acute embolism and thrombosis of unspecified subclavian vein"
+            },
+            {
+              "code": "I82.B2",
+              "display": "Chronic embolism and thrombosis of subclavian vein"
+            },
+            {
+              "code": "I82.B21",
+              "display": "Chronic embolism and thrombosis of right subclavian vein"
+            },
+            {
+              "code": "I82.B22",
+              "display": "Chronic embolism and thrombosis of left subclavian vein"
+            },
+            {
+              "code": "I82.B23",
+              "display": "Chronic embolism and thrombosis of subclavian vein, bilateral"
+            },
+            {
+              "code": "I82.B29",
+              "display": "Chronic embolism and thrombosis of unspecified subclavian vein"
+            }
+          ]
+        }
+      ]
+    }
+  }

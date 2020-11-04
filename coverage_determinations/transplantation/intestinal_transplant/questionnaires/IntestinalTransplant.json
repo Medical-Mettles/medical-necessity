@@ -58,7 +58,7 @@
       "item": [
         {
           "linkId": "1.1",
-          "text": "Primary Diagnoses",
+          "text": "Complications due to TPN",
           "type": "text",
           "required": true,
           "extension": [
@@ -97,6 +97,21 @@
               "valueExpression": {
                 "language": "text/cql",
                 "expression": "ThromboticVesselsCount"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.4",
+          "text": "Other clinical manifestations",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ClinicalManifestations"
               }
             }
           ]

@@ -60,121 +60,144 @@ define "LiverInjuryResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Liver injury")
+		and First(C.code.coding C where C in "Liver injury") is not null
 
 define "LiverFailureManifestationsResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Liver injury clinical manifestations")
+		and First(C.code.coding C where C in "Liver injury clinical manifestations") is not null
 
 define "LiverFailureResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.verificationStatus.coding).code.value in {'provisional', 'confirmed'}
-		and exists(C.code.coding C where C in "Liver failure")
-    and exists(C.evidence E
+		and First(C.code.coding C where C in "Liver failure") is not null
+    and First(C.evidence E
               where First(E.code D
-                          where exists(D.coding F where (F in "Liver injury clinical manifestations" or F in "Liver injury"))
+                          where First(D.coding F where (F in "Liver injury clinical manifestations" or F in "Liver injury")) is not null
                           ) is not null
                   or First(E.detail D
                             with ("LiverInjuryResource" union "LiverFailureManifestationsResource") L
                             such that D.reference.value = 'Condition/'+L.id.value) is not null
-              )
+              ) is not null
 
 define "LiverComplicationsDueToTPN":
   "TPNProcedure"P
-  where exists(P.complication C where C in "Liver injury")
-    or exists(P.complicationDetail D
+  where First(P.complication C where First(C.coding co where co in "Liver injury") is not null) is not null
+    or First(P.complicationDetail D
               with "LiverInjuryResource" L
-              such that D.reference.value = 'Condition/'+L.id.value)
+              such that D.reference.value = 'Condition/'+L.id.value) is not null
 
 define "ThrombosisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Thrombosis of jugular, subclavian, and femoral veins")
+		and First(C.code.coding C where C in "Thrombosis of jugular, subclavian, and femoral veins") is not null
 
 define "SequelaeOfThrombosisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Sequelae of venous thrombosis")
-    and exists(C.evidence E
+		and First(C.code.coding C where C in "Sequelae of venous thrombosis") is not null
+    and First(C.evidence E
               where First(E.code D
-                          where exists(D.coding F where F in "Thrombosis of jugular, subclavian, and femoral veins")
+                          where First(D.coding F where F in "Thrombosis of jugular, subclavian, and femoral veins") is not null
                           ) is not null
                   or First(E.detail D
                             with "ThrombosisResource" L
                             such that D.reference.value = 'Condition/'+L.id.value) is not null
-              )
+              ) is not null
 
 define "ThrombosisDueToTPN":
   "TPNProcedure"P
-  where exists(P.complication C where C in "Thrombosis of jugular, subclavian, and femoral veins")
-    or exists(P.complicationDetail D
+  where First(P.complication C where C in "Thrombosis of jugular, subclavian, and femoral veins") is not null
+    or First(P.complicationDetail D
               with "ThrombosisResource" L
-              such that D.reference.value = 'Condition/'+L.id.value)
-    or exists(P.statusReason.coding S where S in "Thrombolysis contraindication")
+              such that D.reference.value = 'Condition/'+L.id.value) is not null
+    or First(P.statusReason.coding S where S in "Thrombolysis contraindication") is not null
 
 define "LineInfectionResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Line infection or sepsis")
+		and First(C.code.coding C where C in "Line infection or sepsis") is not null
     and FHIRHelpers.ToDateTime(C.recordedDate) during Interval[Today()-1 year, Today()]
 
 define "OtherSepsisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Other Sepsis Conditions")
+		and First(C.code.coding C where C in "Other Sepsis Conditions") is not null
     and FHIRHelpers.ToDateTime(C.recordedDate) during Interval[Today()-1 year, Today()]
 
 define "SepsisDueToTPN":
   "TPNProcedure"P
-  where exists(P.complication C where C in "Line infection or sepsis" or C in "Other Sepsis Conditions")
-    or exists(P.complicationDetail D
+  where First(P.complication C where C in "Line infection or sepsis" or C in "Other Sepsis Conditions") is not null
+    or First(P.complicationDetail D
               with ("LineInfectionResource" union "OtherSepsisResource") L
               such that D.reference.value = 'Condition/'+L.id.value
-                and First(L.severity.coding).display.value = 'Severe')
+                and First(L.severity.coding).display.value = 'Severe') is not null
 
 define "DehydrationResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding C where C in "Frequent episodes of severe dehydration")
+		and First(C.code.coding C where C in "Frequent episodes of severe dehydration") is not null
 
 define "DehydrationDueToTPN":
   "TPNProcedure"P
-  where exists(P.complication C where C in "Frequent episodes of severe dehydration")
-    or exists(P.complicationDetail D
+  where First(P.complication C where C in "Frequent episodes of severe dehydration") is not null
+    or First(P.complicationDetail D
               with "DehydrationResource" L
               such that D.reference.value = 'Condition/'+L.id.value
-                and First(L.severity.coding).display.value = 'Severe')
+                and First(L.severity.coding).display.value = 'Severe') is not null
 
 define "PrimaryDiagnosesCodes":
-  ("LiverComplicationsDueToTPN"
+("LiverComplicationsDueToTPN"
   union "DehydrationDueToTPN"
   union "SepsisDueToTPN"
   union "ThrombosisDueToTPN")L
-  return (L.complication
+  return ((L.complication
           union (("LiverInjuryResource"
                         union "ThrombosisResource"
                         union "LineInfectionResource"
                         union "OtherSepsisResource"
                         union "DehydrationResource") D
                 with (L.complicationDetail) C
-                such that C.reference.value = 'Condition/'+D.id.value)E return E.code)
+                such that C.reference.value = 'Condition/'+D.id.value)E return E.code)F return First(F.coding).display+'\n')
 
 define "PrimaryDiagnoses":
-	("PrimaryDiagnosesCodes")P
-	return (First(P.coding).display.value)+'\n'
+  "PrimaryDiagnosesCodes"P
+  return P
 
 define "RelevantDiagnoses":
   ("LiverFailureResource"
   union "SequelaeOfThrombosisResource")L
   return (First(L.code.coding).display.value)+'\n'
+
+define "ClinicalManifestationsEvidenceCode":
+  ("LiverFailureResource"
+  union "SequelaeOfThrombosisResource")M
+  return M.evidence N
+    return (N.code)Q return First(Q.coding).display.value
+
+define "ClinicalManifestationsEvidenceDetail":
+  ("LiverFailureResource"
+  union "SequelaeOfThrombosisResource")M
+  return M.evidence N
+    return ((("ThrombosisResource"
+                    union "LiverInjuryResource"
+                    union "LiverFailureManifestationsResource") O
+                  with (N.detail) X
+                  such that X.reference.value = 'Condition/'+O.id.value)P return P.code)Q
+                  return First(Q.coding).display.value
+
+define "ClinicalManifestations":
+("ClinicalManifestationsEvidenceCode" union "ClinicalManifestationsEvidenceDetail")CE
+  return (if First(CE) is not null
+          then (CE c return c)
+          else null)
 
 //define "ThromboticVesselsCount":
 define "TPNPerformed":

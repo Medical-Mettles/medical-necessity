@@ -1,0 +1,107 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicarefeeforservice-LARDPrepopulationPalmetto"
+    }
+  ],
+  "name": "LARDPrepopulationPalmetto",
+  "version": "1.0.0",
+  "title": "LARDPrepopulationPalmetto",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueReference": {
+        "reference": "Library/FHIRHelpers"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Diagnosis/Procedure",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Relevant Diagnosis",
+          "type": "string",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RelevantDiagnosis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Is a prior artificial disc replacement performed ?",
+          "type": "boolean",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnyPriorReplacement"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Functional Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Has the patient undergone any conventional treatment ?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

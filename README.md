@@ -27,5 +27,3 @@ Hematology|Apheresis (Therapeutic Pheresis)|Yes|0
 
 
 Samples folder contains just examples which can be used as reference only.
-
-This is for testing purpose

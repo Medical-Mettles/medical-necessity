@@ -1,0 +1,35 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.98.55",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.55",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.98.55"
+      }
+    ],
+    "version": "Latest",
+    "name": "Fasting C peptide Test",
+    "title": "Fasting C peptide Test",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://loinc.org",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "13037-7",
+              "display": "C peptide [Mass/volume] in Serum or Plasma --fasting"
+            }
+          ]
+        }
+      ]
+    }
+  }

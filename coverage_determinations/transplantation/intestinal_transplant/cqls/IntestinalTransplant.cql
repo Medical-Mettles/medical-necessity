@@ -60,19 +60,19 @@ define "LiverInjuryResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Liver injury") is not null
+		and First(C.code.coding c where c in "Liver injury") is not null
 
 define "LiverFailureManifestationsResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Liver injury clinical manifestations") is not null
+		and First(C.code.coding c where c in "Liver injury clinical manifestations") is not null
 
 define "LiverFailureResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.verificationStatus.coding).code.value in {'provisional', 'confirmed'}
-		and First(C.code.coding C where C in "Liver failure") is not null
+		and First(C.code.coding c where c in "Liver failure") is not null
     and First(C.evidence E
               where First(E.code D
                           where First(D.coding F where (F in "Liver injury clinical manifestations" or F in "Liver injury")) is not null
@@ -93,13 +93,13 @@ define "ThrombosisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Thrombosis of jugular, subclavian, and femoral veins") is not null
+		and First(C.code.coding c where c in "Thrombosis of jugular, subclavian, and femoral veins") is not null
 
 define "SequelaeOfThrombosisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Sequelae of venous thrombosis") is not null
+		and First(C.code.coding c where c in "Sequelae of venous thrombosis") is not null
     and First(C.evidence E
               where First(E.code D
                           where First(D.coding F where F in "Thrombosis of jugular, subclavian, and femoral veins") is not null
@@ -121,14 +121,14 @@ define "LineInfectionResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Line infection or sepsis") is not null
+		and First(C.code.coding c where c in "Line infection or sepsis") is not null
     and FHIRHelpers.ToDateTime(C.recordedDate) during Interval[Today()-1 year, Today()]
 
 define "OtherSepsisResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Other Sepsis Conditions") is not null
+		and First(C.code.coding c where c in "Other Sepsis Conditions") is not null
     and FHIRHelpers.ToDateTime(C.recordedDate) during Interval[Today()-1 year, Today()]
 
 define "SepsisDueToTPN":
@@ -143,7 +143,7 @@ define "DehydrationResource":
 	[Condition]C
 	where C.subject.reference.value = 'Patient/'+ Patient.id.value
  		and First(C.clinicalStatus.coding).code.value = 'active'
-		and First(C.code.coding C where C in "Frequent episodes of severe dehydration") is not null
+		and First(C.code.coding c where c in "Frequent episodes of severe dehydration") is not null
 
 define "DehydrationDueToTPN":
   "TPNProcedure"P

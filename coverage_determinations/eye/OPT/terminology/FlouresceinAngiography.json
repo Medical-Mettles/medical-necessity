@@ -1,0 +1,35 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.95.18",
+    "meta": {
+      "versionId": "1",
+      "lastUpdated": "2020-10-29T12:30:37.135+05:30",
+      "source": "#uKnmP96N90AUCy6g"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.18",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.95.18"
+      }
+    ],
+    "version": "Latest",
+    "name": "Fluorescein angiography of eye",
+    "title": "Fluorescein angiography of eye",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "172581008",
+              "display": "Fluorescein angiography of eye (procedure)"
+            }
+          ]
+        }
+      ]
+    }
+  }

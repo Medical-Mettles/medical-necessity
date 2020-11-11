@@ -1,0 +1,112 @@
+{
+    "resourceType": "Questionnaire",
+    "identifier": [
+      {
+        "system": "http://identifiers.mettles.com/prior_authorization",
+        "value": "medicare_fee_for_service-Photodynamic_therapy"
+      }
+    ],
+    "title": "OPTPrepopulation",
+    "name": "OPTPrepopulation",
+    "version": "1.0.0",
+    "status": "draft",
+    "subjectType": [
+      "Patient"
+    ],
+    "date": "2019-12-03",
+    "publisher": "Mettle Solutions",
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+        "valueCanonical" : "https://fhir-dev.mettles.com/interop/fhir/Library/library-opt-OPTPrepopulation"
+      }
+    ],
+    "contained": [
+      {
+        "resourceType": "ValueSet",
+        "id": "gender",
+        "name": "Gender",
+        "status": "draft",
+        "description": "Gender",
+        "compose": {
+          "include": [
+            {
+              "concept": [
+                {
+                  "code": "male",
+                  "display": "Male"
+                },
+                {
+                  "code": "female",
+                  "display": "Female"
+                },
+                {
+                  "code": "other",
+                  "display": "Other"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "item": [
+      {
+        "linkId": "1",
+        "text": "Clinical Assessment",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "1.1",
+            "text": "Relevant Diagnoses",
+            "type": "text",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "RelevantDiagnoses"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "1.2",
+            "text": "Date of Initial Diagnosis",
+            "type": "integer",
+            "required": false,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "DateOfOnset"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "linkId": "2",
+        "text": "Imaging Study Interpretation",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "2.1",
+            "text": "Does the area of classic CNV occupy, greater than 50% of the area of the entire lesion ?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "linkId": "2.2",
+            "text": "Is there adequate evidence to draw conclusions about the net health benefits, that is, whether or not the risks and benefits of treatment outweigh the risks and benefits of non-treatment of OPT with verteporfin?",
+            "type": "boolean",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+  

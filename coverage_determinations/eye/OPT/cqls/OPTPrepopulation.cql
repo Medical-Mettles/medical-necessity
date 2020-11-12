@@ -35,7 +35,7 @@ define DateOfOnset:
 
 define DiagnosisEncounter:
    First([Encounter]E 
-    where E.id.value = "PrimaryDiagnosis".encounter.reference.value)
+        where 'Encounter/' + E.id.value = "PrimaryDiagnosis".encounter.reference.value)
 
 define NotCoveredCondition:
     First([Condition]C
@@ -48,7 +48,7 @@ define FAProcedure:
     First([Procedure]I
         where exists(I.code.coding F where F in "Ocular age-related macular degeneration")
             and I.status.value = 'completed'
-            and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("DiagnosisEncounter".period)
+            //and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("DiagnosisEncounter".period)
             and I.encounter.reference.value = "PrimaryDiagnosis".encounter.reference.value)
 
 
@@ -60,12 +60,12 @@ define OCTProcedure:
 
 define FAResult:
     First([Observation]O
-        where  First(O.partOf.reference).value = 'Procedure' + "FAProcedure".id.value
+        where  First(O.partOf.reference).value = 'Procedure/' + "FAProcedure".id.value
             and First(O.interpretation.coding).code.value in {'A','AA','HH','LL','H','HU'})
 
 define OCTResult:
     First([Observation]O
-        where  First(O.partOf.reference).value = 'Procedure' + "OCTProcedure".id.value
+        where  First(O.partOf.reference).value = 'Procedure/' + "OCTProcedure".id.value
             and First(O.interpretation.coding).code.value in {'A','AA','HH','LL','H','HU'})
 
 define VerteporfinAdministration:

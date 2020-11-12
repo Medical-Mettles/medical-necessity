@@ -46,9 +46,9 @@ define NotCoveredCondition:
 
 define FAProcedure:
     First([Procedure]I
-        where exists(I.code.coding F where F in "Ocular age-related macular degeneration")
+        where exists(I.code.coding F where F in "Fluorescein angiography of eye")
             and I.status.value = 'completed'
-            //and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("DiagnosisEncounter".period)
+            and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("DiagnosisEncounter".period)
             and I.encounter.reference.value = "PrimaryDiagnosis".encounter.reference.value)
 
 

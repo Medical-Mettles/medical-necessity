@@ -66,9 +66,9 @@ define OPTProcedure:
 define PrimaryDecision:
     if (("PrimaryDiagnosis" is not null)
         and ("FAResult" is not null))
-        and ("NotCoveredCondition" is null)
-        and (First("QA21").value = true)
-        and (First("QA22").value = true)
+       // and ("NotCoveredCondition" is null)
+        //and (First("QA21").value = true)
+        //and (First("QA22").value = true)
         and ("OPTProcedure" is not null)
         then true
         else false

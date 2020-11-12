@@ -34,9 +34,8 @@ define DateOfOnset:
     start of "Normalize Onset"("PrimaryDiagnosis".onset)
 
 define DiagnosisEncounter:
-    First([Encounter]E
-            where E.id.value = "PrimaryDiagnosis".encounter.reference.value)
-
+   First([Encounter]E 
+    where E.id.value = "PrimaryDiagnosis".encounter.reference.value)
 
 define NotCoveredCondition:
     First([Condition]C
@@ -57,7 +56,7 @@ define OCTProcedure:
     First([Procedure]I
         where exists(I.code.coding F where F in "Optical coherence tomography (OCT)")
             and I.status.value = 'completed'
-            and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("FAProcedure".started))
+            and start of "Normalize Interval Procedure"(I.performed) after start of "Normalize Interval Procedure"("FAProcedure".performed))
 
 define FAResult:
     First([Observation]O

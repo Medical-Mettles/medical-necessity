@@ -378,9 +378,9 @@ define "NumberOfRelatives":
 	Count("FamilyMemberDiagnosisHistory")
 
 define "LimitedFamilyHistory":
-	if ("NumberOfRelatives"=0)
-	then true
-	else false
+	if ("FamilyMemberDiagnosisHistory" is not null)
+	then false
+	else true
 
 define "Relative1":
 	First("FamilyMemberDiagnosisHistory")
@@ -396,10 +396,33 @@ define "R1MaternalPaternal":
 				else '')
 
 define "R1CancerTypeCondition":
-	"Relative1".condition C where exists(C.code.coding x where x in "Cancer")
+	"Relative1".condition
 
 define "R1CancerType":
-	First("R1CancerTypeCondition").code.coding[0].display.value
+	{
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Breast Cancer")) is not null then 'Breast Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Colorectal Cancer")) is not null then 'Colorectal Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Colonic polyps")) is not null then 'History of Colon Polyps' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Ovarian Cancer")) is not null then 'Ovarian Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Pancreatic Cancer")) is not null then 'Pancreatic Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Endometrial Cancer")) is not null then 'Endometrial Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Prostate Cancer")) is not null then 'Prostate Cancer' else ''),
+		(if First("R1CancerTypeCondition" C where exists(C.code.coding x where x in "Renal Cancer")) is not null then 'Renal Cancer' else ''),
+		(if First("R1OtherCancer") is not null then 'Other Cancer' else '')
+	}
+
+define "R1OtherCancer":
+	"R1CancerTypeCondition" C
+		where exists(C.code.coding x where x in "Cancer")
+			and not exists(C.code.coding x where x in "Breast Cancer")
+			and not exists(C.code.coding x where x in "Prostate Cancer")
+			and not exists(C.code.coding x where x in "Ovarian Cancer")
+			and not exists(C.code.coding x where x in "Colorectal Cancer")
+			and not exists(C.code.coding x where x in "Colonic polyps")
+			and not exists(C.code.coding x where x in "Ductal carcinoma in situ")
+			and not exists(C.code.coding x where x in "Pancreatic Cancer")
+			and not exists(C.code.coding x where x in "Endometrial Cancer")
+			and not exists(C.code.coding x where x in "Renal Cancer")
 
 define "R1CancerOnsetAge":
 	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative1".born),start of "Normalize Interval"(First("R1CancerTypeCondition").onset))
@@ -425,10 +448,33 @@ define "R2MaternalPaternal":
 				else '')
 
 define "R2CancerTypeCondition":
-	"Relative2".condition C where exists(C.code.coding x where x in "Cancer")
+	"Relative2".condition
 
 define "R2CancerType":
-	First("R2CancerTypeCondition").code.coding[0].display.value
+	{
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Breast Cancer")) is not null then 'Breast Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Colorectal Cancer")) is not null then 'Colorectal Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Colonic polyps")) is not null then 'History of Colon Polyps' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Ovarian Cancer")) is not null then 'Ovarian Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Pancreatic Cancer")) is not null then 'Pancreatic Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Endometrial Cancer")) is not null then 'Endometrial Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Prostate Cancer")) is not null then 'Prostate Cancer' else ''),
+		(if First("R2CancerTypeCondition" C where exists(C.code.coding x where x in "Renal Cancer")) is not null then 'Renal Cancer' else ''),
+		(if First("R2OtherCancer") is not null then 'Other Cancer' else '')
+	}
+
+define "R2OtherCancer":
+	"R2CancerTypeCondition" C
+		where exists(C.code.coding x where x in "Cancer")
+			and not exists(C.code.coding x where x in "Breast Cancer")
+			and not exists(C.code.coding x where x in "Prostate Cancer")
+			and not exists(C.code.coding x where x in "Ovarian Cancer")
+			and not exists(C.code.coding x where x in "Colorectal Cancer")
+			and not exists(C.code.coding x where x in "Colonic polyps")
+			and not exists(C.code.coding x where x in "Ductal carcinoma in situ")
+			and not exists(C.code.coding x where x in "Pancreatic Cancer")
+			and not exists(C.code.coding x where x in "Endometrial Cancer")
+			and not exists(C.code.coding x where x in "Renal Cancer")
 
 define "R2CancerOnsetAge":
 	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative2".born),start of "Normalize Interval"(First("R2CancerTypeCondition").onset))
@@ -444,10 +490,33 @@ define "R3MaternalPaternal":
 				else '')
 
 define "R3CancerTypeCondition":
-	"Relative3".condition C where exists(C.code.coding x where x in "Cancer")
+	"Relative3".condition
 
 define "R3CancerType":
-	First("R3CancerTypeCondition").code.coding[0].display.value
+	{
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Breast Cancer")) is not null then 'Breast Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Colorectal Cancer")) is not null then 'Colorectal Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Colonic polyps")) is not null then 'History of Colon Polyps' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Ovarian Cancer")) is not null then 'Ovarian Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Pancreatic Cancer")) is not null then 'Pancreatic Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Endometrial Cancer")) is not null then 'Endometrial Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Prostate Cancer")) is not null then 'Prostate Cancer' else ''),
+		(if First("R3CancerTypeCondition" C where exists(C.code.coding x where x in "Renal Cancer")) is not null then 'Renal Cancer' else ''),
+		(if First("R3OtherCancer") is not null then 'Other Cancer' else '')
+	}
+
+define "R3OtherCancer":
+	"R3CancerTypeCondition" C
+		where exists(C.code.coding x where x in "Cancer")
+			and not exists(C.code.coding x where x in "Breast Cancer")
+			and not exists(C.code.coding x where x in "Prostate Cancer")
+			and not exists(C.code.coding x where x in "Ovarian Cancer")
+			and not exists(C.code.coding x where x in "Colorectal Cancer")
+			and not exists(C.code.coding x where x in "Colonic polyps")
+			and not exists(C.code.coding x where x in "Ductal carcinoma in situ")
+			and not exists(C.code.coding x where x in "Pancreatic Cancer")
+			and not exists(C.code.coding x where x in "Endometrial Cancer")
+			and not exists(C.code.coding x where x in "Renal Cancer")
 
 define "R3CancerOnsetAge":
 	CalculateAgeInYearsAt(FHIRHelpers.ToDate("Relative3".born),start of "Normalize Interval"(First("R3CancerTypeCondition").onset))

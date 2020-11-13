@@ -53,105 +53,11 @@
     "item": [
       {
         "linkId": "1",
-        "text": "Information of the Test",
-        "type": "group",
-        "item": [
-          {
-            "linkId": "1.1",
-            "text": "Single Gene Test applicable",
-            "type": "choice",
-            "repeats": true,
-            "required": true,
-            "answerOption": [
-              {
-                "valueString": "BRCA1/2 Comprehensive Analysis"
-              },
-              {
-                "valueString": "BRCA1/2 Ashkenazi Jewish Profile"
-              },
-              {
-                "valueString": "BRCA1/2 Deletion/Duplication Analysis"
-              },
-              {
-                "valueString": "BRCA1 Targeted Analysis*"
-              },
-              {
-                "valueString": "BRCA2 Targeted Analysis*"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "SingleGeneTest"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "1.2",
-            "text": "Multi Gene Test applicable",
-            "type": "choice",
-            "required": true,
-            "repeats": true,
-            "answerOption": [
-              {
-                "valueString": "Comprehensive - 27 Genes"
-              },
-              {
-                "valueString": "Comprehensive w/o BRCA - 25 Genes"
-              },
-              {
-                "valueString": "Breast - 19 Genes"
-              },
-              {
-                "valueString": "Breast - 9 Genes"
-              },
-              {
-                "valueString": "Breast & Gyn - 25 Genes"
-              },
-              {
-                "valueString": "Gyn - 11 Genes"
-              },
-              {
-                "valueString": "Colorectal - 7 Genes"
-              },
-              {
-                "valueString": "Colorectal - 22 Genes"
-              },
-              {
-                "valueString": "Pancreatic - 14 Genes"
-              },
-              {
-                "valueString": "Endocrine - 13 Genes"
-              },
-              {
-                "valueString": "Renal - 19 Genes"
-              },
-              {
-                "valueString": "Brain/CNS/PNS - 17 Genes"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "MultiGeneTest"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "linkId": "2",
         "text": "Patient Demographics",
         "type": "group",
         "item": [
           {
-            "linkId": "2.1",
+            "linkId": "1.1",
             "text": "Patient Gender",
             "type": "choice",
             "required": true,
@@ -174,7 +80,7 @@
             ]
           },
           {
-            "linkId": "2.2",
+            "linkId": "1.2",
             "text": "Patient Email",
             "type": "string",
             "required": true,
@@ -191,12 +97,12 @@
         ]
       },
       {
-        "linkId": "3",
+        "linkId": "2",
         "text": "Patient History",
         "type": "group",
         "item": [
           {
-            "linkId": "3.1",
+            "linkId": "2.1",
             "text": "Is Genetic counseling performed prior to the test ?",
             "type": "boolean",
             "required": true,
@@ -211,7 +117,7 @@
             ]
           },
           {
-            "linkId": "3.2",
+            "linkId": "2.2",
             "text": "Did the patient had previous hereditary cancer testing ?",
             "type": "boolean",
             "required": true,
@@ -226,7 +132,7 @@
             ]
           },
           {
-            "linkId": "3.3",
+            "linkId": "2.3",
             "text": "Does the patient have a history of bone marrow/stem cell transplant ?",
             "type": "boolean",
             "required": true,
@@ -241,7 +147,7 @@
             ]
           },
           {
-            "linkId": "3.4",
+            "linkId": "2.4",
             "text": "Does the patient have a history of blood transfusion ?",
             "type": "boolean",
             "required": true,
@@ -256,7 +162,7 @@
             ]
           },
           {
-            "linkId": "3.5",
+            "linkId": "2.5",
             "text": "Does the patient have a personal history of cancer ?",
             "type": "boolean",
             "required": true,
@@ -273,12 +179,12 @@
         ]
       },
       {
-        "linkId": "4",
+        "linkId": "3",
         "text": "Cancer History",
         "type": "group",
         "item": [
           {
-            "linkId": "4.1",
+            "linkId": "3.1",
             "text": "The type of Cancer that is applicable to the patient ?",
             "type": "open-choice",
             "required": true,
@@ -323,13 +229,13 @@
             ]
           },
           {
-            "linkId": "4.2",
+            "linkId": "3.2",
             "text": "Age at which the patient was diagnosed with breast cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerCoding": {
                   "code": "Breast Cancer",
                   "display": "Breast Cancer"
@@ -347,12 +253,12 @@
             ]
           },
           {
-            "linkId": "4.3",
+            "linkId": "3.3",
             "text": "Type of breast cancer if applicable ?",
             "type": "choice",
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerCoding": {
                   "code": "Breast Cancer",
                   "display": "Breast Cancer"
@@ -381,13 +287,13 @@
             ]
           },
           {
-            "linkId": "4.4",
+            "linkId": "3.4",
             "text": "Age at which the patient was diagnosed with Colorectal cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -402,13 +308,13 @@
             ]
           },
           {
-            "linkId": "4.5",
+            "linkId": "3.5",
             "text": "MSI Results of Colorectal Cancer",
             "type": "open-choice",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -434,13 +340,13 @@
             ]
           },
           {
-            "linkId": "4.6",
+            "linkId": "3.6",
             "text": "IHC Results of Colorectal Cancer",
             "type": "string",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -455,13 +361,13 @@
             ]
           },
           {
-            "linkId": "4.7",
+            "linkId": "3.7",
             "text": "Age at which the patient was diagnosed with Colon Polyps ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "History of Colon Polyps"
               }
             ],
@@ -476,13 +382,13 @@
             ]
           },
           {
-            "linkId": "4.8",
+            "linkId": "3.8",
             "text": "Number of colon polyps detected ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "History of Colon Polyps"
               }
             ],
@@ -497,13 +403,13 @@
             ]
           },
           {
-            "linkId": "4.9",
+            "linkId": "3.9",
             "text": "Age at which the patient was diagnosed with Ovarian cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Ovarian Cancer"
               }
             ],
@@ -518,13 +424,13 @@
             ]
           },
           {
-            "linkId": "4.10",
+            "linkId": "3.10",
             "text": "Age at which the patient was diagnosed with Pancreatic cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Pancreatic Cancer"
               }
             ],
@@ -539,13 +445,13 @@
             ]
           },
           {
-            "linkId": "4.11",
+            "linkId": "3.11",
             "text": "Age at which the patient was diagnosed with Endometrial cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Endometrial Cancer"
               }
             ],
@@ -560,13 +466,13 @@
             ]
           },
           {
-            "linkId": "4.12",
+            "linkId": "3.12",
             "text": "Age at which the patient was diagnosed with Renal cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Renal Cancer"
               }
             ],
@@ -581,13 +487,13 @@
             ]
           },
           {
-            "linkId": "4.13",
+            "linkId": "3.13",
             "text": "Description of the Other cancer type diagnosed for the patient?",
             "type": "text",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Other Cancer"
               }
             ],
@@ -602,13 +508,13 @@
             ]
           },
           {
-            "linkId": "4.14",
+            "linkId": "3.14",
             "text": "Age at which the patient was diagnosed with Other cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Other Cancer"
               }
             ],
@@ -623,13 +529,13 @@
             ]
           },
           {
-            "linkId": "4.15",
+            "linkId": "3.15",
             "text": "Age at which the patient was diagnosed with Prostate cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -644,13 +550,13 @@
             ]
           },
           {
-            "linkId": "4.16",
+            "linkId": "3.16",
             "text": "Gleason Score ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -665,13 +571,13 @@
             ]
           },
           {
-            "linkId": "4.17",
+            "linkId": "3.17",
             "text": "Is the prostate cancer metastatic ?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "4.1",
+                "question": "3.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -688,12 +594,12 @@
         ]
       },
       {
-        "linkId": "5",
+        "linkId": "4",
         "text": "Family History",
         "type": "group",
         "item": [
           {
-            "linkId": "5.1",
+            "linkId": "4.1",
             "text": "Does the patient have Ashkenazi Jewish ancestry?",
             "type": "boolean",
             "required": true,
@@ -708,7 +614,7 @@
             ]
           },
           {
-            "linkId": "5.2",
+            "linkId": "4.2",
             "text": "Does the patient have limited/unknown family history ?",
             "type": "boolean",
             "required": true,
@@ -723,19 +629,19 @@
             ]
           },
           {
-            "linkId": "5.3",
+            "linkId": "4.3",
             "text": "Explain the reason for limited/unknown family history?",
             "type": "text",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.2",
+                "question": "4.2",
                 "answerBoolean": true
               }
             ]
           },
           {
-            "linkId": "5.4",
+            "linkId": "4.4",
             "text": "Number of 1st degree, 2nd degree and 3rd degree relatives of the patient with Cancer history?",
             "type": "integer",
             "required": true,
@@ -750,7 +656,7 @@
             ]
           },
           {
-            "linkId": "5.5",
+            "linkId": "4.5",
             "text": "Relationships to consider include parents, siblings, offspring (1st degree), half-brothers/sisters, aunts/uncles, grandparents, grandchildren, nieces/nephews (2nd degree); first cousins, great-aunts/uncles, great-grandchildren, great grandparents (3rd degree).",
             "type": "display",
             "required": true
@@ -758,18 +664,18 @@
         ]
       },
       {
-        "linkId": "6",
+        "linkId": "5",
         "text": "Details of Family History",
         "type": "group",
         "item": [
           {
-            "linkId": "6.1",
+            "linkId": "5.1",
             "text": "Name of Relative 1?",
             "type": "string",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
@@ -785,7 +691,7 @@
             ]
           },
           {
-            "linkId": "6.2",
+            "linkId": "5.2",
             "text": "Is the relation with Relative 1 maternal/paternal?",
             "type": "choice",
             "answerOption": [
@@ -798,7 +704,7 @@
             ],
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
@@ -815,17 +721,46 @@
             ]
           },
           {
-            "linkId": "6.3",
+            "linkId": "5.3",
             "text": "Type of Cancer of Relative 1?",
-            "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
             ],
             "required": true,
+            "type": "open-choice",
+            "answerOption": [
+              {
+                "valueString": "Breast Cancer"
+              },
+              {
+                "valueString": "Colorectal Cancer"
+              },
+              {
+                "valueString": "History of Colon Polyps"
+              },
+              {
+                "valueString": "Ovarian Cancer"
+              },
+              {
+                "valueString": "Pancreatic Cancer"
+              },
+              {
+                "valueString": "Prostate Cancer"
+              },
+              {
+                "valueString": "Endometrial Cancer"
+              },
+              {
+                "valueString": "Renal Cancer"
+              },
+              {
+                "valueString": "Other Cancer"
+              }
+            ],
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -837,12 +772,12 @@
             ]
           },
           {
-            "linkId": "6.4",
+            "linkId": "5.4",
             "text": "Age at which the Relative 1 was diagnosed with Cancer?",
             "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
@@ -859,13 +794,13 @@
             ]
           },
           {
-            "linkId": "6.5",
+            "linkId": "5.5",
             "text": "Is Relative 1 available for testing?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
@@ -881,25 +816,25 @@
             ]
           },
           {
-            "linkId": "6.6",
+            "linkId": "5.6",
             "text": "Please specify the reason for non-availability of Relative 1?",
             "type": "text",
             "required": false,
             "enableWhen": [
               {
-                "question": "6.5",
+                "question": "5.5",
                 "answerBoolean": false
               }
             ]
           },
           {
-            "linkId": "6.7",
+            "linkId": "5.7",
             "text": "Does Relative 1 have any known mutation?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "0"
               }
@@ -915,13 +850,13 @@
             ]
           },
           {
-            "linkId": "6.8",
+            "linkId": "5.8",
             "text": "Name of Relative 2?",
             "type": "string",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
@@ -937,7 +872,7 @@
             ]
           },
           {
-            "linkId": "6.9",
+            "linkId": "5.9",
             "text": "Is the relation with Relative 2 maternal/paternal?",
             "type": "choice",
             "answerOption": [
@@ -950,7 +885,7 @@
             ],
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
@@ -967,17 +902,46 @@
             ]
           },
           {
-            "linkId": "6.10",
+            "linkId": "5.10",
             "text": "Type of Cancer of Relative 2?",
-            "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
             ],
             "required": true,
+            "type": "open-choice",
+            "answerOption": [
+              {
+                "valueString": "Breast Cancer"
+              },
+              {
+                "valueString": "Colorectal Cancer"
+              },
+              {
+                "valueString": "History of Colon Polyps"
+              },
+              {
+                "valueString": "Ovarian Cancer"
+              },
+              {
+                "valueString": "Pancreatic Cancer"
+              },
+              {
+                "valueString": "Prostate Cancer"
+              },
+              {
+                "valueString": "Endometrial Cancer"
+              },
+              {
+                "valueString": "Renal Cancer"
+              },
+              {
+                "valueString": "Other Cancer"
+              }
+            ],
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -989,12 +953,12 @@
             ]
           },
           {
-            "linkId": "6.11",
+            "linkId": "5.11",
             "text": "Age at which the Relative 2 was diagnosed with Cancer?",
             "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
@@ -1011,13 +975,13 @@
             ]
           },
           {
-            "linkId": "6.12",
+            "linkId": "5.12",
             "text": "Is Relative 2 available for testing?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
@@ -1033,25 +997,25 @@
             ]
           },
           {
-            "linkId": "6.13",
+            "linkId": "5.13",
             "text": "Please specify the reason for non-availability of Relative 2?",
             "type": "text",
             "required": false,
             "enableWhen": [
               {
-                "question": "6.12",
+                "question": "5.12",
                 "answerBoolean": false
               }
             ]
           },
           {
-            "linkId": "6.14",
+            "linkId": "5.14",
             "text": "Does Relative 2 have any known mutation?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "1"
               }
@@ -1067,13 +1031,13 @@
             ]
           },
           {
-            "linkId": "6.15",
+            "linkId": "5.15",
             "text": "Name of Relative 3?",
             "type": "string",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }
@@ -1089,7 +1053,7 @@
             ]
           },
           {
-            "linkId": "6.16",
+            "linkId": "5.16",
             "text": "Is the relation with Relative 3 maternal/paternal?",
             "type": "choice",
             "answerOption": [
@@ -1102,7 +1066,7 @@
             ],
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }
@@ -1119,17 +1083,46 @@
             ]
           },
           {
-            "linkId": "6.17",
+            "linkId": "5.17",
             "text": "Type of Cancer of Relative 3?",
-            "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }
             ],
             "required": true,
+            "type": "open-choice",
+            "answerOption": [
+              {
+                "valueString": "Breast Cancer"
+              },
+              {
+                "valueString": "Colorectal Cancer"
+              },
+              {
+                "valueString": "History of Colon Polyps"
+              },
+              {
+                "valueString": "Ovarian Cancer"
+              },
+              {
+                "valueString": "Pancreatic Cancer"
+              },
+              {
+                "valueString": "Prostate Cancer"
+              },
+              {
+                "valueString": "Endometrial Cancer"
+              },
+              {
+                "valueString": "Renal Cancer"
+              },
+              {
+                "valueString": "Other Cancer"
+              }
+            ],
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -1141,12 +1134,12 @@
             ]
           },
           {
-            "linkId": "6.18",
+            "linkId": "5.18",
             "text": "Age at which the Relative 3 was diagnosed with Cancer?",
             "type": "string",
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }
@@ -1163,13 +1156,13 @@
             ]
           },
           {
-            "linkId": "6.19",
+            "linkId": "5.19",
             "text": "Is Relative 3 available for testing?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }
@@ -1185,25 +1178,25 @@
             ]
           },
           {
-            "linkId": "6.20",
+            "linkId": "5.20",
             "text": "Please specify the reason for non-availability of Relative 3?",
             "type": "text",
             "required": false,
             "enableWhen": [
               {
-                "question": "6.19",
+                "question": "5.19",
                 "answerBoolean": false
               }
             ]
           },
           {
-            "linkId": "6.21",
+            "linkId": "5.21",
             "text": "Does Relative 3 have any known mutation?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "5.4",
+                "question": "4.4",
                 "operator": ">",
                 "answerInteger": "2"
               }

@@ -96,7 +96,7 @@
           {
             "linkId": "2.1",
             "text": "Does the area of classic CNV occupy, greater than 50% of the area of the entire lesion ?",
-            "type": "text",
+            "type": "boolean",
             "required": true
           },
           {

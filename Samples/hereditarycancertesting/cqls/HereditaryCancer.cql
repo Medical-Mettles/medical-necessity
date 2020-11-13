@@ -226,13 +226,13 @@ define "MSIResults":
 	FHIRHelpers.ToConcept(Last([Observation]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "MSI Test").value).display
+		and First(P.code.coding) in "MSI Test").value).codes[0].display
 
 define "IHCResults":
 	FHIRHelpers.ToString(Last([Observation]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "MSI Test").value)
+		and First(P.code.coding) in "IHC Test").value)
 
 define "ColonPolypsResource":
 	[Condition]C

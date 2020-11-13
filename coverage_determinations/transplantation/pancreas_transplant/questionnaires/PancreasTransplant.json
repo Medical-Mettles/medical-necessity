@@ -75,7 +75,7 @@
           "linkId": "1.2",
           "text": "Beta Cell Autoantibody Test Result",
           "type": "string",
-          "required": true,
+          "required": false,
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",

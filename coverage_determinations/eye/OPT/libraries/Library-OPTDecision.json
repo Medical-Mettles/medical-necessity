@@ -1,0 +1,100 @@
+{
+    "resourceType": "Library",
+    "version": "1.0.0",
+    "title": "OPTDecision",
+    "name": "OPTDecision",
+    "status": "draft",
+    "type": {
+      "coding": [
+        {
+          "code": "logic-library"
+        }
+      ]
+    },
+    "relatedArtifact": [
+      {
+        "type": "depends-on",
+        "resource": "Library/FHIRHelpers"
+      },
+      {
+        "type": "depends-on",
+        "resource": "Library/library-OPT-OPTPrepopulation"
+      }
+    ],
+    "dataRequirement": [
+      {
+        "type": "Procedure",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.19"
+          }
+          ]
+      },
+      {
+        "type": "ImagingStudy",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113762.1.4.1047.541"
+          }
+          ]
+      },
+      {
+        "type": "Encounter"
+      },
+      {
+        "type": "ServiceRequest"
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.16"
+          }
+          ]
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.17"
+          }
+          ]
+      },
+      
+      {
+        "type": "Medication",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.20"
+          }
+          ]
+      },
+      {
+        "type": "MedicationAdministration",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.20"
+          }
+          ]
+      },
+      {
+        "type": "Observation"
+      },
+      {
+        "type": "ImagingStudy",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.18"
+          }
+          ]
+      }
+    ]
+  }
+  

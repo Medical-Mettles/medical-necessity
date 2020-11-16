@@ -520,7 +520,7 @@
         "type": "group",
         "item": [
           {
-            "linkId": "2.1",
+            "linkId": "3.1",
             "text": "Is Genetic counseling performed prior to the test ?",
             "type": "boolean",
             "required": true,
@@ -535,7 +535,7 @@
             ]
           },
           {
-            "linkId": "2.2",
+            "linkId": "3.2",
             "text": "Did the patient had previous hereditary cancer testing ?",
             "type": "boolean",
             "required": true,
@@ -550,7 +550,7 @@
             ]
           },
           {
-            "linkId": "2.3",
+            "linkId": "3.3",
             "text": "Does the patient have a history of bone marrow/stem cell transplant ?",
             "type": "boolean",
             "required": true,
@@ -565,7 +565,7 @@
             ]
           },
           {
-            "linkId": "2.4",
+            "linkId": "3.4",
             "text": "Does the patient have a history of blood transfusion ?",
             "type": "boolean",
             "required": true,
@@ -580,7 +580,7 @@
             ]
           },
           {
-            "linkId": "2.5",
+            "linkId": "3.5",
             "text": "Does the patient have a personal history of cancer ?",
             "type": "boolean",
             "required": true,

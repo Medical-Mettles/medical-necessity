@@ -98,6 +98,424 @@
       },
       {
         "linkId": "2",
+        "text": "Cancer History",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "2.1",
+            "text": "The type of Cancer that is applicable to the patient ?",
+            "type": "open-choice",
+            "required": true,
+            "repeats": true,
+            "answerOption": [
+              {
+                "valueString": "Breast Cancer"
+              },
+              {
+                "valueString": "Colorectal Cancer"
+              },
+              {
+                "valueString": "History of Colon Polyps"
+              },
+              {
+                "valueString": "Ovarian Cancer"
+              },
+              {
+                "valueString": "Pancreatic Cancer"
+              },
+              {
+                "valueString": "Prostate Cancer"
+              },
+              {
+                "valueString": "Endometrial Cancer"
+              },
+              {
+                "valueString": "Renal Cancer"
+              },
+              {
+                "valueString": "Other Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "CancerType"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.2",
+            "text": "Age at which the patient was diagnosed with breast cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerCoding": {
+                  "code": "Breast Cancer",
+                  "display": "Breast Cancer"
+                  }
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "BreastCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.3",
+            "text": "Type of breast cancer if applicable ?",
+            "type": "choice",
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerCoding": {
+                  "code": "Breast Cancer",
+                  "display": "Breast Cancer"
+                  }
+              }
+            ],
+            "answerOption": [
+              {
+                "valueString": "Bilateral"
+              },
+              {
+                "valueString": "Premenopausal"
+              },
+              {
+                "valueString": "Triple negative (ER-,PR-,HER2-)"
+              },
+              {
+                "valueString": "None"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "BreastCancerType"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.4",
+            "text": "Age at which the patient was diagnosed with Colorectal cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Colorectal Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "ColorectalCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.5",
+            "text": "MSI Results of Colorectal Cancer",
+            "type": "open-choice",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Colorectal Cancer"
+              }
+            ],
+            "answerOption": [
+              {
+                "valueString": "High"
+              },
+              {
+                "valueString": "Low"
+              },
+              {
+                "valueString": "Stable"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "MSIResults"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.6",
+            "text": "IHC Results of Colorectal Cancer",
+            "type": "string",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Colorectal Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "IHCResults"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.7",
+            "text": "Age at which the patient was diagnosed with Colon Polyps ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "History of Colon Polyps"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "ColonPolypsOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.8",
+            "text": "Number of colon polyps detected ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "History of Colon Polyps"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "PolypsCount"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.9",
+            "text": "Age at which the patient was diagnosed with Ovarian cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Ovarian Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "OvarianCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.10",
+            "text": "Age at which the patient was diagnosed with Pancreatic cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Pancreatic Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "PancreaticCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.11",
+            "text": "Age at which the patient was diagnosed with Endometrial cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Endometrial Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "EndometrialCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.12",
+            "text": "Age at which the patient was diagnosed with Renal cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Renal Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "RenalCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.13",
+            "text": "Description of the Other cancer type diagnosed for the patient?",
+            "type": "text",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Other Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "OtherCancer"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.14",
+            "text": "Age at which the patient was diagnosed with Other cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Other Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "OtherCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.15",
+            "text": "Age at which the patient was diagnosed with Prostate cancer ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Prostate Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "ProstateCancerOnset"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.16",
+            "text": "Gleason Score ?",
+            "type": "integer",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Prostate Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "GleasonScore"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "2.17",
+            "text": "Is the prostate cancer metastatic ?",
+            "type": "boolean",
+            "required": true,
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerString": "Prostate Cancer"
+              }
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "ProstateCancerMetastatic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "linkId": "3",
         "text": "Patient History",
         "type": "group",
         "item": [
@@ -172,421 +590,6 @@
                 "valueExpression": {
                   "language": "text/cql",
                   "expression": "CancerHistory"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "linkId": "3",
-        "text": "Cancer History",
-        "type": "group",
-        "item": [
-          {
-            "linkId": "3.1",
-            "text": "The type of Cancer that is applicable to the patient ?",
-            "type": "open-choice",
-            "required": true,
-            "repeats": true,
-            "answerOption": [
-              {
-                "valueString": "Breast Cancer"
-              },
-              {
-                "valueString": "Colorectal Cancer"
-              },
-              {
-                "valueString": "History of Colon Polyps"
-              },
-              {
-                "valueString": "Ovarian Cancer"
-              },
-              {
-                "valueString": "Pancreatic Cancer"
-              },
-              {
-                "valueString": "Prostate Cancer"
-              },
-              {
-                "valueString": "Endometrial Cancer"
-              },
-              {
-                "valueString": "Renal Cancer"
-              },
-              {
-                "valueString": "Other Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "CancerType"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.2",
-            "text": "Age at which the patient was diagnosed with breast cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerCoding": {
-                  "code": "Breast Cancer",
-                  "display": "Breast Cancer"
-                  }
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "BreastCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.3",
-            "text": "Type of breast cancer if applicable ?",
-            "type": "choice",
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerCoding": {
-                  "code": "Breast Cancer",
-                  "display": "Breast Cancer"
-                  }
-              }
-            ],
-            "answerOption": [
-              {
-                "valueString": "Bilateral"
-              },
-              {
-                "valueString": "Premenopausal"
-              },
-              {
-                "valueString": "Triple negative (ER-,PR-,HER2-)"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "BreastCancerType"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.4",
-            "text": "Age at which the patient was diagnosed with Colorectal cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Colorectal Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "ColorectalCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.5",
-            "text": "MSI Results of Colorectal Cancer",
-            "type": "open-choice",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Colorectal Cancer"
-              }
-            ],
-            "answerOption": [
-              {
-                "valueString": "High"
-              },
-              {
-                "valueString": "Low"
-              },
-              {
-                "valueString": "Stable"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "MSIResults"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.6",
-            "text": "IHC Results of Colorectal Cancer",
-            "type": "string",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Colorectal Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "IHCResults"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.7",
-            "text": "Age at which the patient was diagnosed with Colon Polyps ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "History of Colon Polyps"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "ColonPolypsOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.8",
-            "text": "Number of colon polyps detected ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "History of Colon Polyps"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "PolypsCount"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.9",
-            "text": "Age at which the patient was diagnosed with Ovarian cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Ovarian Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "OvarianCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.10",
-            "text": "Age at which the patient was diagnosed with Pancreatic cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Pancreatic Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "PancreaticCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.11",
-            "text": "Age at which the patient was diagnosed with Endometrial cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Endometrial Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "EndometrialCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.12",
-            "text": "Age at which the patient was diagnosed with Renal cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Renal Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "RenalCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.13",
-            "text": "Description of the Other cancer type diagnosed for the patient?",
-            "type": "text",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Other Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "OtherCancer"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.14",
-            "text": "Age at which the patient was diagnosed with Other cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Other Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "OtherCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.15",
-            "text": "Age at which the patient was diagnosed with Prostate cancer ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Prostate Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "ProstateCancerOnset"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.16",
-            "text": "Gleason Score ?",
-            "type": "integer",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Prostate Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "GleasonScore"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "3.17",
-            "text": "Is the prostate cancer metastatic ?",
-            "type": "boolean",
-            "required": true,
-            "enableWhen": [
-              {
-                "question": "3.1",
-                "answerString": "Prostate Cancer"
-              }
-            ],
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "ProstateCancerMetastatic"
                 }
               }
             ]
@@ -732,6 +735,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"

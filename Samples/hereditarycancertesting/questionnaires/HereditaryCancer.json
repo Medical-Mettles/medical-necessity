@@ -917,6 +917,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"
@@ -1098,6 +1099,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"

@@ -1,0 +1,122 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "Sacral Nerve Stimulation For Urinary Incontinence Decision",
+  "name": "SacralNerveDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-sacralnervestimulation-SacralNerve"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.62"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.63"
+        }
+        ]
+    },
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.64"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.66"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.68"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.12"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.65"
+        }
+        ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.67"
+        }
+        ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.67"
+        }
+        ]
+    }
+  ]
+}

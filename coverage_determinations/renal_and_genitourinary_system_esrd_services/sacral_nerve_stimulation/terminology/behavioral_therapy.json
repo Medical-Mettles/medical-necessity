@@ -1,0 +1,51 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.66",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.66",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.66"
+    }
+  ],
+  "version": "Latest",
+  "name": "Behavioral Therapy",
+  "title": "Behavioral Therapy",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "37799002",
+            "display": "Urinary bladder training (regime/therapy)"
+          },
+          {
+            "code": "713075008",
+            "display": "Management of fluid therapy (procedure)"
+          },
+          {
+            "code": "424928005",
+            "display": "Dietary management surveillance (regime/therapy)"
+          },
+          {
+            "code": "52285000",
+            "display": "Voiding pressure studies of bladder"
+          },
+          {
+            "code": "60800007",
+            "display": "Bladder retraining"
+          }
+        ]
+      }
+    ]
+  }
+}

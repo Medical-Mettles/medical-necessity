@@ -206,7 +206,7 @@ define "BreastCancerType":
 	{
 		(if "BilateralBreastCancer" then 'Bilateral' else ''),
 		(if exists("BreastCancerTypeResource" B where B in "Premenopausal Breast Cancer") then 'Premenopausal' else ''),
-		(if exists("BreastCancerTypeResource" B where B in "Triple Negative Breast Cancer") then 'Triple negative (ER-,PR-,HER2-)' else '')
+		(if exists("BreastCancerTypeResource" B where B in "Triple Negative Breast Cancer") then 'Triple negative (ER-,PR-,HER2-)' else 'None')
 	}
 	
 define "ColorectalCancerResource":

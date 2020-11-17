@@ -98,93 +98,11 @@
       },
       {
         "linkId": "2",
-        "text": "Patient History",
-        "type": "group",
-        "item": [
-          {
-            "linkId": "2.1",
-            "text": "Is Genetic counseling performed prior to the test ?",
-            "type": "boolean",
-            "required": true,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "Counseling"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "2.2",
-            "text": "Did the patient had previous hereditary cancer testing ?",
-            "type": "boolean",
-            "required": true,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "PreviousTesting"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "2.3",
-            "text": "Does the patient have a history of bone marrow/stem cell transplant ?",
-            "type": "boolean",
-            "required": true,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "HistoryOfTransplant"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "2.4",
-            "text": "Does the patient have a history of blood transfusion ?",
-            "type": "boolean",
-            "required": true,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "BloodTransfusion"
-                }
-              }
-            ]
-          },
-          {
-            "linkId": "2.5",
-            "text": "Does the patient have a personal history of cancer ?",
-            "type": "boolean",
-            "required": true,
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "CancerHistory"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "linkId": "3",
         "text": "Cancer History",
         "type": "group",
         "item": [
           {
-            "linkId": "3.1",
+            "linkId": "2.1",
             "text": "The type of Cancer that is applicable to the patient ?",
             "type": "open-choice",
             "required": true,
@@ -229,13 +147,13 @@
             ]
           },
           {
-            "linkId": "3.2",
+            "linkId": "2.2",
             "text": "Age at which the patient was diagnosed with breast cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerCoding": {
                   "code": "Breast Cancer",
                   "display": "Breast Cancer"
@@ -253,12 +171,12 @@
             ]
           },
           {
-            "linkId": "3.3",
+            "linkId": "2.3",
             "text": "Type of breast cancer if applicable ?",
             "type": "choice",
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerCoding": {
                   "code": "Breast Cancer",
                   "display": "Breast Cancer"
@@ -274,6 +192,9 @@
               },
               {
                 "valueString": "Triple negative (ER-,PR-,HER2-)"
+              },
+              {
+                "valueString": "None"
               }
             ],
             "extension": [
@@ -287,13 +208,13 @@
             ]
           },
           {
-            "linkId": "3.4",
+            "linkId": "2.4",
             "text": "Age at which the patient was diagnosed with Colorectal cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -308,13 +229,13 @@
             ]
           },
           {
-            "linkId": "3.5",
+            "linkId": "2.5",
             "text": "MSI Results of Colorectal Cancer",
             "type": "open-choice",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -340,13 +261,13 @@
             ]
           },
           {
-            "linkId": "3.6",
+            "linkId": "2.6",
             "text": "IHC Results of Colorectal Cancer",
             "type": "string",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Colorectal Cancer"
               }
             ],
@@ -361,13 +282,13 @@
             ]
           },
           {
-            "linkId": "3.7",
+            "linkId": "2.7",
             "text": "Age at which the patient was diagnosed with Colon Polyps ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "History of Colon Polyps"
               }
             ],
@@ -382,13 +303,13 @@
             ]
           },
           {
-            "linkId": "3.8",
+            "linkId": "2.8",
             "text": "Number of colon polyps detected ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "History of Colon Polyps"
               }
             ],
@@ -403,13 +324,13 @@
             ]
           },
           {
-            "linkId": "3.9",
+            "linkId": "2.9",
             "text": "Age at which the patient was diagnosed with Ovarian cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Ovarian Cancer"
               }
             ],
@@ -424,13 +345,13 @@
             ]
           },
           {
-            "linkId": "3.10",
+            "linkId": "2.10",
             "text": "Age at which the patient was diagnosed with Pancreatic cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Pancreatic Cancer"
               }
             ],
@@ -445,13 +366,13 @@
             ]
           },
           {
-            "linkId": "3.11",
+            "linkId": "2.11",
             "text": "Age at which the patient was diagnosed with Endometrial cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Endometrial Cancer"
               }
             ],
@@ -466,13 +387,13 @@
             ]
           },
           {
-            "linkId": "3.12",
+            "linkId": "2.12",
             "text": "Age at which the patient was diagnosed with Renal cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Renal Cancer"
               }
             ],
@@ -487,13 +408,13 @@
             ]
           },
           {
-            "linkId": "3.13",
+            "linkId": "2.13",
             "text": "Description of the Other cancer type diagnosed for the patient?",
             "type": "text",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Other Cancer"
               }
             ],
@@ -508,13 +429,13 @@
             ]
           },
           {
-            "linkId": "3.14",
+            "linkId": "2.14",
             "text": "Age at which the patient was diagnosed with Other cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Other Cancer"
               }
             ],
@@ -529,13 +450,13 @@
             ]
           },
           {
-            "linkId": "3.15",
+            "linkId": "2.15",
             "text": "Age at which the patient was diagnosed with Prostate cancer ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -550,13 +471,13 @@
             ]
           },
           {
-            "linkId": "3.16",
+            "linkId": "2.16",
             "text": "Gleason Score ?",
             "type": "integer",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -571,13 +492,13 @@
             ]
           },
           {
-            "linkId": "3.17",
+            "linkId": "2.17",
             "text": "Is the prostate cancer metastatic ?",
             "type": "boolean",
             "required": true,
             "enableWhen": [
               {
-                "question": "3.1",
+                "question": "2.1",
                 "answerString": "Prostate Cancer"
               }
             ],
@@ -587,6 +508,88 @@
                 "valueExpression": {
                   "language": "text/cql",
                   "expression": "ProstateCancerMetastatic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "linkId": "3",
+        "text": "Patient History",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "3.1",
+            "text": "Is Genetic counseling performed prior to the test ?",
+            "type": "boolean",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "Counseling"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "3.2",
+            "text": "Did the patient had previous hereditary cancer testing ?",
+            "type": "boolean",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "PreviousTesting"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "3.3",
+            "text": "Does the patient have a history of bone marrow/stem cell transplant ?",
+            "type": "boolean",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "HistoryOfTransplant"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "3.4",
+            "text": "Does the patient have a history of blood transfusion ?",
+            "type": "boolean",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "BloodTransfusion"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "3.5",
+            "text": "Does the patient have a personal history of cancer ?",
+            "type": "boolean",
+            "required": true,
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "CancerHistory"
                 }
               }
             ]
@@ -732,6 +735,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"
@@ -913,6 +917,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"
@@ -1094,6 +1099,7 @@
             ],
             "required": true,
             "type": "open-choice",
+            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Breast Cancer"

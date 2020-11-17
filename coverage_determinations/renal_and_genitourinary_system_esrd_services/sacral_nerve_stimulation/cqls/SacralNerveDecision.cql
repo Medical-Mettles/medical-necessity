@@ -63,7 +63,7 @@ define "TestStimulationAssessment":
   if exists("TestStimulationProcedure".outcome.coding C where C in "Procedure Successful")
   then true
   else (if (exists("TestStimulationProcedure".outcome.coding C where C in "Procedure Partially Successful")
-          and First("QA14")>50)
+          and First("QA14")>=50)
         then true
         else false
       )

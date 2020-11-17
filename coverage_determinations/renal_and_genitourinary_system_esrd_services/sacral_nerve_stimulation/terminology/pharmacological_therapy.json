@@ -1,0 +1,71 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.67",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.67",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.67"
+    }
+  ],
+  "version": "Latest",
+  "name": "Pharmacological Therapy",
+  "title": "Pharmacological Therapy",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "407030007",
+            "display": "Solifenacin (substance)"
+          },
+          {
+            "code": "703803006",
+            "display": "Mirabegron"
+          },
+          {
+            "code": "768784003",
+            "display": "Product containing tolterodine in oral dose form (medicinal product form)"
+          },
+          {
+            "code": "777804005",
+            "display": "Product containing only tolterodine (medicinal product)"
+          },
+          {
+            "code": "35768004",
+            "display": "Product containing oxybutynin (medicinal product)"
+          },
+          {
+            "code": "416140008",
+            "display": "Darifenacin (substance)"
+          },
+          {
+            "code": "775970004",
+            "display": "Product containing only flavoxate (medicinal product)"
+          },
+          {
+            "code": "48899009",
+            "display": "Hyoscyamine"
+          },
+          {
+            "code": "432255001",
+            "display": "Fesoterodine (substance)"
+          },
+          {
+            "code": "412604005",
+            "display": "Trospium (substance)"
+          }
+        ]
+      }
+    ]
+  }
+}

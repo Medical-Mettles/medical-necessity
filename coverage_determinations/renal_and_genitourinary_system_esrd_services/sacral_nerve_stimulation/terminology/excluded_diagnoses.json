@@ -1,0 +1,65 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.63",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.63",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.63"
+    }
+  ],
+  "version": "Latest",
+  "name": "Excluded Diagnoses for Sacral Nerve Stimulation",
+  "title": "Excluded Diagnoses for Sacral Nerve Stimulation",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "N39.3",
+            "display": "Stress incontinence (female) (male)"
+          },
+          {
+            "code": "N13.9",
+            "display": "Obstructive and reflux uropathy, unspecified"
+          },
+          {
+            "code": "N13. 8",
+            "display": "Other obstructive and reflux uropathy"
+          },
+          {
+            "code": "E11.40",
+            "display": "Type 2 diabetes mellitus with diabetic neuropathy, unspecified"
+          },
+          {
+            "code": "E10.42",
+            "display": "Type 1 diabetes mellitus with diabetic polyneuropathy"
+          }
+        ]
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "1511000119107",
+            "display": "Peripheral neuropathy due to type 2 diabetes mellitus (disorder)"
+          },
+          {
+            "code": "7163005",
+            "display": "Urinary tract obstruction (disorder)"
+          }
+        ]
+      }
+    ]
+  }
+}

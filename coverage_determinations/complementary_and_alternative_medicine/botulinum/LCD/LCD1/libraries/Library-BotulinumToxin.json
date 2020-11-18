@@ -13,8 +13,8 @@
   },
   "relatedArtifact": [
     {
-    "type": "depends-on",
-    "resource": "Library/FHIRHelpers"
+      "type": "depends-on",
+      "resource": "http://localhost:8080/interop/fhir/Library/FHIRHelpers"
     }
   ],
   "dataRequirement": [
@@ -27,7 +27,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.26"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.26"
         }
       ]
     },
@@ -40,7 +40,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.27"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.27"
         }
       ]
     },
@@ -53,7 +53,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.28"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.28"
         }
       ]
     },
@@ -66,7 +66,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.29"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.29"
         }
       ]
     },
@@ -79,7 +79,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.30"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.30"
         }
       ]
     },
@@ -92,7 +92,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.31"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.31"
         }
       ]
     },
@@ -105,7 +105,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.32"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.32"
         }
       ]
     },
@@ -118,7 +118,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.33"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.33"
         }
       ]
     },
@@ -131,7 +131,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.34"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.34"
         }
       ]
     },
@@ -144,7 +144,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.35"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.35"
         }
       ]
     },
@@ -157,7 +157,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.36"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.36"
         }
       ]
     },
@@ -170,7 +170,7 @@
         },
         {
           "path": "code",
-          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.48"
+          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.48"
         }
       ]
     },

@@ -17,18 +17,18 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "BotulinumToxin Diagnosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.26'
-valueset "Sialorrhea Diagnosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.27'
-valueset "Esophagoscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.28'
-valueset "AnalFissure Codes": '2.16.840.1.113883.3.6037.1001.23.99.29'
-valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
-valueset "Blepharospasm Codes": '2.16.840.1.113883.3.6037.1001.23.99.31'
-valueset "CervicalDystonia Codes": '2.16.840.1.113883.3.6037.1001.23.99.32'
-valueset "ChemodenervationOfOneExtremity Codes": '2.16.840.1.113883.3.6037.1001.23.99.33'
-valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
-valueset "ExtraOcularMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.35'
-valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
-valueset "MigraineWithoutAura Codes": '2.16.840.1.113883.3.6037.1001.23.99.48'
+valueset "BotulinumToxin Diagnosis Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.26'
+valueset "Sialorrhea Diagnosis Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.27'
+valueset "Esophagoscopy Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.28'
+valueset "AnalFissure Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.29'
+valueset "Cystourethroscopy Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.30'
+valueset "Blepharospasm Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.31'
+valueset "CervicalDystonia Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.32'
+valueset "ChemodenervationOfOneExtremity Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.33'
+valueset "Hyperhidrosis Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.34'
+valueset "ExtraOcularMuscle Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.35'
+valueset "ChemodenervationOfNeckMuscle Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.36'
+valueset "MigraineWithoutAura Codes": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.48'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -103,27 +103,13 @@ define TreatmentPerformed:
 	 	First([Procedure]P
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
-	 		and "Normalize Interval Procedure"(P.performed) starts after (Today()-1 year))
+	 		and (P.performed as dateTime) begins after (Today()-1 year))
 
 define IsTreatmentPerformed:
-	if ("TreatmentPerformed" is not null)
-	then true
-	else false
+	if ("TreatmentPerformed" = null)
+	then false
+	else true
 
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value
 
-define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-	 if choice is FHIR.dateTime then
-			Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
-		else if choice is FHIR.Period then
-			FHIRHelpers.ToInterval(choice as FHIR.Period)
-		else if choice is FHIR.string then
-		Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-		else if choice is FHIR.Age then
-			Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
-		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
-		else if choice is FHIR.Range then
-		Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
-			FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-		else null

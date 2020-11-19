@@ -14,11 +14,11 @@
   "relatedArtifact": [
     {
       "type": "depends-on",
-      "resource": "Library/FHIRHelpers"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-vagusnerve-VagusNerveStimulation"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-vagusnerve-VagusNerveStimulation"
     }
   ],
   "dataRequirement": [
@@ -27,7 +27,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.16"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.16"
         }
         ]
     },
@@ -51,7 +51,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.15"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.15"
         }
         ]
     },
@@ -60,7 +60,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.97.17"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.17"
         }
         ]
     }

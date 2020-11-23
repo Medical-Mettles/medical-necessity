@@ -13,17 +13,25 @@ Coverage Determinations folder contains the artifacts which will be based on LCD
 
 Category|Use Case|NCD|No of LCDs
 --------|--------|---|----------
-Eye|Blepharoplasty|No|1
-Renal and Genitourinary System - ESRD Services|Cryosurgery of Prostate|Yes|0
-Complementary and Alternative Medicine|Botulinum Toxin|No|1
-Complementary and Alternative Medicine|Panniculectomy|No|1
-Cardiovascular System|VentricularAssistDevices|Yes|0
-Cardiovascular System|Diagnostic Endocardial Electrical Stimulation (Pacing)|Yes|0
-Ear, Nose and Throat (ENT)|Rhinoplasty|Yes|0
-Oncology|Colorectal Cancer Screening Tests|Yes|0
-Nervous System|Vagus Nerve Stimulation|Yes|0
-Hematology|AntiInhibitor Coagulant Complex|Yes|0
-Hematology|Apheresis (Therapeutic Pheresis)|Yes|0
+eye|blepharoplasty
+eye|OPT
+transplantation|intestinal_transplant
+transplantation|pancreas_transplant
+renal_and_genitourinary_system_esrd_services|cryosurgery
+renal_and_genitourinary_system_esrd_services|sacral_nerve_stimulation
+renal_and_genitourinary_system_esrd_services|cryosurgery_of_prostate
+ear_nose_and_throat|rhinoplasty
+cardiovascular_system|ventricular_devices
+cardiovascular_system|vein_ablation
+cardiovascular_system|diagnostic_ees_pacing
+immunology|eci_proteina
+oncology|colorectal_cancer
+nervous_system|vagus_nerve
+nervous_system|LARD
+complementary_and_alternative_medicine|botulinum
+complementary_and_alternative_medicine|panniculectomy
+hematology|apheresis
+hematology|ai_coagulant
 
 
 Samples folder contains just examples which can be used as reference only.

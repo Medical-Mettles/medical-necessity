@@ -14,7 +14,7 @@
     "relatedArtifact": [
       {
       "type": "depends-on",
-      "resource": "Library/FHIRHelpers"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
       }
     ],
     "dataRequirement": [

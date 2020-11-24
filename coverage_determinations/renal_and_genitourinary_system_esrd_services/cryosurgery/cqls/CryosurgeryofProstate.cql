@@ -10,12 +10,12 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Malignant neoplasm of prostate": '2.16.840.1.113883.3.6037.1001.23.97.0'
-valueset "Procedure Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.97.1'
-valueset "Tumor Stage T2b or below": '2.16.840.1.113883.3.6037.1001.23.97.2'
-valueset "Radiation Treatment Management": '2.16.840.1.113883.3.6037.1001.23.97.3'
-valueset "Gleason score": '2.16.840.1.113883.3.6037.1001.23.97.4'
-valueset "Prostate specific Ag": '2.16.840.1.113883.3.6037.1001.23.97.5'
+valueset "Malignant neoplasm of prostate": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.0'
+valueset "Procedure Unsuccessful": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.1'
+valueset "Tumor Stage T2b or below": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.2'
+valueset "Radiation Treatment Management": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.3'
+valueset "Gleason score": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.4'
+valueset "Prostate specific Ag": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.5'
 
 parameter "ServiceRequest" ServiceRequest
 

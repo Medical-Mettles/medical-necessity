@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.72",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.72",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.72"
+    }
+  ],
+  "version": "Latest",
+  "name": "Valvuloplasty Procedure",
+  "title": "Valvuloplasty Procedure",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "112816004",
+            "display": "Valvuloplasty of aortic valve (procedure)"
+          },
+          {
+            "code": "4387005",
+            "display": "Valvuloplasty of pulmonary valve in total repair of tetralogy of Fallot (procedure)"
+          },
+          {
+            "code": "77166000",
+            "display": "Percutaneous balloon valvuloplasty of aortic valve (procedure)"
+          },
+          {
+            "code": "24394009",
+            "display": "Percutaneous balloon valvuloplasty of heart (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

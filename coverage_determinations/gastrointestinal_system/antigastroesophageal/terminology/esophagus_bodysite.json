@@ -1,0 +1,51 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.75",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.75",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.75"
+    }
+  ],
+  "version": "Latest",
+  "name": "Esophagus bodysite",
+  "title": "Esophagus bodysite",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "110604002",
+            "display": "Esophago-gastric mucosal junction (body structure)"
+          },
+          {
+            "code": "110772008",
+            "display": "Esophagus and esophagus (combined site) (body structure)"
+          },
+          {
+            "code": "119211000",
+            "display": "Esophageal part (body structure)"
+          },
+          {
+            "code": "32849002",
+            "display": "Esophageal structure (body structure)"
+          },
+          {
+            "code": "302185003",
+            "display": "Esophageal and/or gastric structures (body structure)"
+          }
+        ]
+      }
+    ]
+  }
+}

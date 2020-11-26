@@ -21,7 +21,7 @@ pipeline {
                     for j in $(cat dir_list.txt | sort | uniq); 
                     do
                         echo "FOLDER_PATH=$(pwd)/${j}" >> props.txt
-                        echo "CHOICE=3" >> props.txt
+                        echo "CHOICE=coverage_determinations" >> props.txt
                         echo "FHIR_SERVER_URL=https://fhir-dev.mettles.com/interop/fhir/" >> props.txt
                         java -jar ../Measure_creator/target/converter-1.0.0.jar  props.txt
                         rm props.txt

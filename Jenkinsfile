@@ -23,7 +23,7 @@ pipeline {
                         echo "FOLDER_PATH=$(pwd)/${j}" >> props.txt
                         echo "CHOICE=3" >> props.txt
                         echo "FHIR_SERVER_URL=https://fhir-dev.mettles.com/interop/fhir/" >> props.txt
-                        java -jar ../creator/target/converter-1.0.0.jar  props.txt
+                        java -jar ../Measure_creator/target/converter-1.0.0.jar  props.txt
                         rm props.txt
                     done
                     rm dir_list.txt

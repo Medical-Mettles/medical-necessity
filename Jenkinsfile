@@ -29,7 +29,7 @@ pipeline {
                     rm dir_list.txt
                 
                 '''
-                sh 'echo "..Done.."'
+                sh 'echo "...Done.."'
             }
         }
     }

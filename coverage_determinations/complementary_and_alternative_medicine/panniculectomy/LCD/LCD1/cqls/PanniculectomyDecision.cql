@@ -17,10 +17,10 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Panniculectomy": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80'
-valueset "Abdominal lipectomy Diagnosis": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81'
-valueset "Erythema intertrigo": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82'
-valueset "Panniculectomy related diagnoses": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84'
+valueset "Panniculectomy": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80'
+valueset "Abdominal lipectomy Diagnosis": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81'
+valueset "Erythema intertrigo": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82'
+valueset "Panniculectomy related diagnoses": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse

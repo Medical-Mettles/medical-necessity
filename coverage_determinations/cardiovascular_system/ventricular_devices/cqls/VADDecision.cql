@@ -12,8 +12,8 @@ codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 codesystem "CDCNHSN": '2.16.840.1.113883.6.277'
 
-valueset "LVEF Assessment": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1047.190'
-valueset "Oxygen consumption (VO2)/Heart rate --peak during exercise": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.52'
+valueset "LVEF Assessment": 'https://ValueSet/2.16.840.1.113762.1.4.1047.190'
+valueset "Oxygen consumption (VO2)/Heart rate --peak during exercise": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.99.52'
 
 parameter "DeviceRequest" DeviceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse

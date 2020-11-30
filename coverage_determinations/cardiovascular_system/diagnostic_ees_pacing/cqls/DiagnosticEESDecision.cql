@@ -11,8 +11,8 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Cardiac arrhythmia": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.19'
-valueset "Diagnostic Endocardial Electrical Stimulation (Pacing)":'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.97.20'
+valueset "Cardiac arrhythmia": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.19'
+valueset "Diagnostic Endocardial Electrical Stimulation (Pacing)":'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.20'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse

@@ -1,0 +1,426 @@
+{
+    "resourceType": "Questionnaire",
+    "meta": {
+      "versionId": "1",
+      "lastUpdated": "2020-11-24T13:03:02.780+00:00",
+      "profile": [
+        "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
+      ]
+    },
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+        "valueCanonical": "http://localhost:8080/interop/fhir/Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+      }
+    ],
+    "identifier": [
+      {
+        "system": "http://identifiers.mettles.com/prior_authorization",
+        "value": "medicare-LowerLimbProsthesis"
+      }
+    ],
+    "name": "LowerLimbProsthesis",
+    "title": "LowerLimbProsthesis",
+    "status": "draft",
+    "subjectType": [
+      "Patient"
+    ],
+    "date": "2020-05-10",
+    "publisher": "Mettle Solutions",
+    "item": [
+      {
+        "linkId": "1",
+        "text": "Certification",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "1.1",
+            "text": "Type of Request",
+            "type": "choice",
+            "required": true,
+            "repeats": true,
+            "answerOption": [
+              {
+                "valueString": "Initial"
+              },
+              {
+                "valueString": "Revision or change in shoes or inserts"
+              },
+              {
+                "valueString": "Replacement"
+              }
+            ],
+            "initial": [
+              {
+                "valueString": "Initial"
+              }
+            ]
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "DescriptionOfItem"
+              }
+            ],
+            "linkId": "1.2",
+            "text": "Description of the item or device being ordered",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "QuantityOfItem"
+              }
+            ],
+            "linkId": "1.3",
+            "text": "Quantity of the item to be dispensed",
+            "type": "text",
+            "required": true
+          }
+        ]
+      },
+      {
+        "linkId": "2",
+        "text": "Clinical Assessment of the Patient",
+        "type": "group",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "RelevantDiagnosis"
+              }
+            ],
+            "linkId": "2.1",
+            "text": "Relevant Diagnosis",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "PhysicalExamination"
+              }
+            ],
+            "linkId": "2.2",
+            "text": "Is Physical Examination of the patient performed",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "PhysicalExaminationType"
+              }
+            ],
+            "linkId": "2.3",
+            "text": "Type of Physical Examination performed",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "Comorbidities"
+              }
+            ],
+            "linkId": "2.4",
+            "text": "Is the patient diagnosed with any co-morbidities?",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "ComorbiditiesDetails"
+              }
+            ],
+            "linkId": "2.5",
+            "text": "Diagnosis of the Cormorbidity",
+            "type": "text",
+            "required": true
+          }
+        ]
+      },
+      {
+        "linkId": "3",
+        "text": "Prostheses Order Details",
+        "type": "group",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "DateOfOrder"
+              }
+            ],
+            "linkId": "3.1",
+            "text": "Date of Order",
+            "type": "date",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "StartDate"
+              }
+            ],
+            "linkId": "3.2",
+            "text": "Start Date",
+            "type": "date",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "FFEncounter"
+              }
+            ],
+            "linkId": "3.3",
+            "text": "Does the patient have Face-Face Encounter with Ordering Practitioner?" ,
+            "type": "display",
+            "required": true
+          },
+          {
+            "linkId": "3.4",
+            "text": "Face-Face Encounter requirement is relaxed for encounters post 1st, March 2020",
+            "type": "display",
+            "enable-when": [
+              {
+                "question": "3.3",
+                "answerBoolean": false
+              }
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "linkId": "4",
+        "text": "Supplier Information",
+        "type": "group",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "SupplierName"
+              }
+            ],
+            "linkId": "4.1",
+            "text": "Supplier Name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "SupplierNPI"
+              }
+            ],
+            "linkId": "4.2",
+            "text": "Supplier NPI",
+            "type": "string",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "SupplierAddress"
+              }
+            ],
+            "linkId": "4.3",
+            "text": "Supplier Address",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "SupplierContact"
+              }
+            ],
+            "linkId": "4.4",
+            "text": "Supplier Contact number",
+            "type": "text",
+            "required": true
+          }
+        ]
+      },
+      {
+        "linkId": "5",
+        "text": "Functional Analysis of the patient",
+        "type": "group",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "Mobility"
+              }
+            ],
+            "linkId": "5.1",
+            "text": "Does the patient have mobility dysfunction ?",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "MobilityEstimation"
+              }
+            ],
+            "linkId": "5.2",
+            "text": "Details of the mobility dysfunction",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "MusculoskeletalAnalysis"
+              }
+            ],
+            "linkId": "5.3",
+            "text": "Did the patient go through Musculoskeletal Assessment?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "MusculoskeletalEstimation"
+              }
+            ],
+            "linkId": "5.4",
+            "text": "Details of the Musculoskeletal Assessment",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "NeurologicalAnalysis"
+              }
+            ],
+            "linkId": "5.5",
+            "text": "Did the patient go through Neurological Assessment?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "NeurologicalEstimation"
+              }
+            ],
+            "linkId": "5.6",
+            "text": "Details of the Neurological Assessment",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "CardioPulmonaryAnalysis"
+              }
+            ],
+            "linkId": "5.7",
+            "text": "Did the patient go through CardioPulmonary examination?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueString": "CardioPulmonaryEstimation"
+              }
+            ],
+            "linkId": "5.8",
+            "text": "Details of the CardioPulmonary examination",
+            "type": "text",
+            "required": true
+          }
+        ]
+      },
+      {
+        "linkId": "6",
+        "text": "Functional Assessment",
+        "type": "group",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "RightorLeft"
+              }
+            ],
+            "linkId": "6.1",
+            "text": "Side affected",
+            "type": "choice",
+            "required": true,
+            "answerOption": [
+                {
+                  "valueString": "Right"
+                },
+                {
+                  "valueString": "Left"
+                },
+                {
+                  "valueString": "Both"
+                }
+              ]
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                "valueString": "FunctionLevel"
+              }
+            ],
+            "linkId": "6.2",
+            "text": "Level of Functionality",
+            "type": "choice",
+            "required": true,
+            "answerOption": [
+                {
+                  "valueString": "Level 0"
+                },
+                {
+                  "valueString": "Level 1"
+                },
+                {
+                  "valueString": "Level 2"
+                },
+                {
+                  "valueString": "Level 3"
+                },
+                {
+                  "valueString": "Level 4"
+                }
+              ]
+          }
+        ]
+      }
+    ]
+  }
+  

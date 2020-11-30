@@ -20,11 +20,11 @@ codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
 
-valueset "Injection/Compression Sclerotherapy": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.9'
-valueset "Stab Phlebectomy": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.10'
-valueset "Subfascial Endoscopic Perforator Surgery (SEPS)": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.11'
-valueset "Laser ablation of veins": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.12'
-valueset "Treatment of spider veins": 'https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.13'
+valueset "Injection/Compression Sclerotherapy": '2.16.840.1.113883.3.6037.1001.23.95.9'
+valueset "Stab Phlebectomy": '2.16.840.1.113883.3.6037.1001.23.95.10'
+valueset "Subfascial Endoscopic Perforator Surgery (SEPS)": '2.16.840.1.113883.3.6037.1001.23.95.11'
+valueset "Laser ablation of veins": '2.16.840.1.113883.3.6037.1001.23.95.12'
+valueset "Treatment of spider veins": '2.16.840.1.113883.3.6037.1001.23.95.13'
 
 
 parameter "ServiceRequest" ServiceRequest

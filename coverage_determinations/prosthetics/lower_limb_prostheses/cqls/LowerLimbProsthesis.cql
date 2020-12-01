@@ -32,6 +32,7 @@ valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
 
 
 parameter "DeviceRequest" DeviceRequest
+
 parameter "MeasurementPeriod" default Interval[@2020-01-03T00:00:00.0, @2021-01-01T00:00:00.0]
 
 context Patient
@@ -174,7 +175,6 @@ define FunctionalLevel:
         if ("FL4" is not null)
         then 'Level 4'
         else null
-    
 
 define PhysicalExamination:
     First([Procedure] P

@@ -1,3 +1,4 @@
+
 # Medical Necessity determination.
 # NCDs and LCDs
 
@@ -13,25 +14,25 @@ Coverage Determinations folder contains the artifacts which will be based on LCD
 
 Category|Use Case|NCD|No of LCDs
 --------|--------|---|----------
-eye|blepharoplasty
-eye|OPT
-transplantation|intestinal_transplant
-transplantation|pancreas_transplant
-renal_and_genitourinary_system_esrd_services|cryosurgery
-renal_and_genitourinary_system_esrd_services|sacral_nerve_stimulation
-renal_and_genitourinary_system_esrd_services|cryosurgery_of_prostate
-ear_nose_and_throat|rhinoplasty
-cardiovascular_system|ventricular_devices
-cardiovascular_system|vein_ablation
-cardiovascular_system|diagnostic_ees_pacing
-immunology|eci_proteina
-oncology|colorectal_cancer
-nervous_system|vagus_nerve
-nervous_system|LARD
-complementary_and_alternative_medicine|botulinum
-complementary_and_alternative_medicine|panniculectomy
-hematology|apheresis
-hematology|ai_coagulant
+eye|blepharoplasty||1
+eye|opt||0
+transplantation|intestinalTransplant||0
+transplantation|pancreasTransplant||0
+renalAndGenitourinarySystemEsrdServices|cryosurgery||0
+renalAndGenitourinarySystemEsrdServices|sacralNerveStimulation||0
+earNoseAndThroat|rhinoplasty||1
+cardiovascularSystem|ventricularDevices||0
+cardiovascularSystem|veinAblation||1
+cardiovascularSystem|diagnosticEesPacing||0
+immunology|eciProteina||0
+oncology|colorectalCancer||0
+nervousSystem|vagusNerve||0
+nervousSystem|lard||1
+gastrointestinalSystem|antigastroesophageal||0
+complementaryAndAlternativeMedicine|botulinum||1
+complementaryAndAlternativeMedicine|panniculectomy||1
+hematology|apheresis||0
+hematology|aiCoagulant||0
 
 
 Samples folder contains just examples which can be used as reference only.

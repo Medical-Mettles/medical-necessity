@@ -297,7 +297,7 @@
             ],
             "linkId": "4.3",
             "text": "Supplier Address",
-            "type": "string",
+            "type": "text",
             "required": true
           },
           {

@@ -134,9 +134,9 @@
             ],
             "linkId": "2.2",
             "text": "Type of Physical Examination performed",
-            "type": "choice",
+            "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.11.20.9.65",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "2.1",
                 "answerBoolean": true
@@ -171,9 +171,9 @@
             ],
             "linkId": "2.4",
             "text": "Diagnosis of the Cormorbidity",
-            "type": "choice",
+            "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.3.464.1003.199.12.1055",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "2.3",
                 "answerBoolean": true
@@ -237,7 +237,7 @@
             "linkId": "3.4",
             "text": "Face-Face Encounter requirement is relaxed for encounters post 1st, March 2020",
             "type": "display",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "3.3",
                 "answerBoolean": false
@@ -347,8 +347,8 @@
             "linkId": "5.2",
             "text": "Details of the mobility dysfunction",
             "answerValueSet": "2.16.840.1.113883.17.4077.2.2006",
-            "type": "choice",
-            "enable-when": [
+            "type": "open-choice",
+            "enableWhen": [
               {
                 "question": "5.1",
                 "answerBoolean": true
@@ -383,9 +383,9 @@
             ],
             "linkId": "5.4",
             "text": "Details of the Musculoskeletal Assessment",
-            "type": "choice",
+            "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.3.7643.3.1031",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "5.3",
                 "answerBoolean": true
@@ -420,9 +420,9 @@
             ],
             "linkId": "5.6",
             "text": "Details of the Neurological Assessment",
-            "type": "choice",
+            "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.3.7643.3.1032",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "5.5",
                 "answerBoolean": true
@@ -457,9 +457,9 @@
             ],
             "linkId": "5.8",
             "text": "Details of the CardioPulmonary examination",
-            "type": "choice",
+            "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.3.6037.1001.23.95.21",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "5.7",
                 "answerBoolean": true

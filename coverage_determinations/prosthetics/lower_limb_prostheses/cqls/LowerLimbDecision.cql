@@ -55,10 +55,6 @@ define DescriptionOfItem:
 define DeviceOrderType: 
     LLP."DeviceOrderType"
 
-define QuantityOfItem:
-    LLP."QuantityOfItem"
-
-
 define StartDate: 
     LLP."StartDate"
 

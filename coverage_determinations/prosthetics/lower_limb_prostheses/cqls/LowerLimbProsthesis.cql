@@ -102,8 +102,8 @@ define FaceToFaceEncounter:
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
 
 define FaceToFace:
-    "EncounterResource" G
-        where G.period starts before "MeasurementPeriod"
+    "FaceToFaceEncounter" G
+        where G.period starts before start of "MeasurementPeriod"
 
 define FFEncounter:
     if ("FaceToFace" is not null)
@@ -182,7 +182,7 @@ define PhyExam:
 
 
 define PhysicalExaminationType:
-    "PhyExam".code
+    PhyExam.code
 
 define PhysicalExamination:
     if (exists([Procedure] P
@@ -201,7 +201,7 @@ define ComorbiditiesDetails:
     "ComorbitiesType".code
 
 
-define Comorbities:
+define Comorbidities:
     if exists([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'

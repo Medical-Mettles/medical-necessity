@@ -233,7 +233,7 @@
             ],
             "linkId": "3.3",
             "text": "Does the patient have Face-Face Encounter with Ordering Practitioner?" ,
-            "type": "display",
+            "type": "boolean",
             "required": true
           },
           {

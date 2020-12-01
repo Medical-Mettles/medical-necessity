@@ -10,7 +10,7 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "http://localhost:8080/interop/fhir/Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+        "valueCanonical": "library-lowerlimbprostheses-LowerLimbProsthesis"
       }
     ],
     "identifier": [

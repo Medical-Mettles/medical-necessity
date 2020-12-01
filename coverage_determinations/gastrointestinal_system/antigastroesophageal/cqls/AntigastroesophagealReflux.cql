@@ -26,7 +26,7 @@ context Patient
 
 define "ValvuloplastyContraindicated":
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'not-done'
+ 		and P.status.value in {'not-done', 'completed'}
 		and exists(P.code.coding C where C in "Valvuloplasty Procedure")
 		and (P.statusReason.coding in "Procedure Contraindicated"
 				or exists(P.outcome.coding C where C in "Procedure Unsuccessful"))

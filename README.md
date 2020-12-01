@@ -12,27 +12,29 @@ If interested, please reach out to us.
 
 Coverage Determinations folder contains the artifacts which will be based on LCD or NCD.
 
+
+
 Category|Use Case|NCD|No of LCDs
 --------|--------|---|----------
-eye|blepharoplasty||1
-eye|opt||0
-transplantation|intestinalTransplant||0
-transplantation|pancreasTransplant||0
-renalAndGenitourinarySystemEsrdServices|cryosurgery||0
-renalAndGenitourinarySystemEsrdServices|sacralNerveStimulation||0
-earNoseAndThroat|rhinoplasty||1
-cardiovascularSystem|ventricularDevices||0
-cardiovascularSystem|veinAblation||1
-cardiovascularSystem|diagnosticEesPacing||0
-immunology|eciProteina||0
-oncology|colorectalCancer||0
-nervousSystem|vagusNerve||0
-nervousSystem|lard||1
-gastrointestinalSystem|antigastroesophageal||0
-complementaryAndAlternativeMedicine|botulinum||1
-complementaryAndAlternativeMedicine|panniculectomy||1
-hematology|apheresis||0
-hematology|aiCoagulant||0
+Eye |Blepharoplasty ||1
+Eye |Opt ||0
+Transplantation |Intestinal Transplant ||0
+Transplantation |Pancreas Transplant ||0
+Renal and Genitourinary System Esrd Services |Cryosurgery ||0
+Renal and Genitourinary System Esrd Services |Sacral Nerve Stimulation ||0
+Ear Nose and Throat |Rhinoplasty ||1
+Cardiovascular System |Ventricular Devices ||0
+Cardiovascular System |Vein Ablation ||1
+Cardiovascular System |Diagnostic Ees Pacing ||0
+Immunology |Eci Proteina ||0
+Oncology |Colorectal Cancer ||0
+Nervous System |Vagus Nerve ||0
+Nervous System |Lard ||1
+Gastrointestinal System |Antigastroesophageal ||0
+Complementary and Alternative Medicine |Botulinum ||1
+Complementary and Alternative Medicine |Panniculectomy ||1
+Hematology |Apheresis ||0
+Hematology |Ai Coagulant ||0
 
 
 Samples folder contains just examples which can be used as reference only.

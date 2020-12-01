@@ -65,14 +65,12 @@ define SupplierPTAN:
         where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 
 define SupplierAddressObject:
-	First("Supplier".address A
-            where A.use.value = 'home')
+	"Supplier".address 
 
 define SupplierAddress:
-	if ("SupplierAddressObject" is not null) then
-	"SupplierAddressObject".line[0].value +', ' +"SupplierAddressObject".city.value +', ' +"SupplierAddressObject".state.value+', ' +"SupplierAddressObject".postalCode.value
-	else ''
-
+	"Supplier".address A
+	return A.line[0].value +', ' + A.city.value +', ' + A.state.value+', ' + A.postalCode.value
+	
 define StartDate:
     start of "Normalize Interval"("DeviceRequest".occurrence)
 
@@ -102,8 +100,8 @@ define FaceToFaceEncounter:
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
 
 define FaceToFace:
-    "EncounterResource" G
-        where G.period starts before "MeasurementPeriod"
+    "FaceToFaceEncounter" G
+        where G.period starts before start of "MeasurementPeriod"
 
 define FFEncounter:
     if ("FaceToFace" is not null)
@@ -120,58 +118,58 @@ define FirstModifier:
             where (First(E.extension).value as CodeableConcept) is not null)
 
 define RightLowerLimb:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Right Modifier")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Right Modifier"))
 
 define LeftLowerLimb:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Left Modifier")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Left Modifier"))
 
 define FL0:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 0")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 0"))
 
 define FL1:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 1")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 1"))
 
 define FL2:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 2")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 2"))
 
 define FL3:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 3")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 3"))
 
 define FL4:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 4")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 4"))
 
 define RightorLeft:
-    if (("RightLowerLimb" is not null) and ("LeftLowerLimb" is null))
+    if (("RightLowerLimb" = true) and ("LeftLowerLimb" = false))
         then 'Right'
         else
-        if (("LeftLowerLimb" is not null) and ("RightLowerLimb" is not null))
+        if (("LeftLowerLimb" = true) and ("RightLowerLimb" = false))
         then 'Left' 
         else
-        if (("RightLowerLimb" is not null) and ("LeftLowerLimb" is not null))
+        if (("RightLowerLimb"  = true) and ("LeftLowerLimb" = false))
         then 'Both' 
         else null
 
 define FunctionalLevel:
-    if ("FL0" is not null)
+    if ("FL0" = true)
         then 'Level 0'
         else
-        if ("FL1" is not null)
+        if ("FL1" = true)
         then 'Level 1' 
         else
-        if ("FL2" is not null)
+        if ("FL2" = true)
         then 'Level 2' 
         else
-        if ("FL3" is not null)
+        if ("FL3" = true)
         then 'Level 3'
         else
-        if ("FL4" is not null)
+        if ("FL4" = true)
         then 'Level 4'
         else null
 
@@ -182,7 +180,7 @@ define PhyExam:
 
 
 define PhysicalExaminationType:
-    "PhyExam".code
+    PhyExam.code
 
 define PhysicalExamination:
     if (exists([Procedure] P
@@ -201,7 +199,7 @@ define ComorbiditiesDetails:
     "ComorbitiesType".code
 
 
-define Comorbities:
+define Comorbidities:
     if exists([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'

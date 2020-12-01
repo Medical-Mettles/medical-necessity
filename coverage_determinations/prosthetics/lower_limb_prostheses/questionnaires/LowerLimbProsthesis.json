@@ -113,26 +113,11 @@
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
                 "valueExpression": {
                   "language": "text/cql",
-                  "expression": "RelevantDiagnosis"
-                }
-              }
-            ],
-            "linkId": "2.1",
-            "text": "Relevant Diagnosis",
-            "type": "open-choice",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
                   "expression": "PhysicalExamination"
                 }
               }
             ],
-            "linkId": "2.2",
+            "linkId": "2.1",
             "text": "Is Physical Examination of the patient performed",
             "type": "boolean",
             "required": true
@@ -147,10 +132,16 @@
                 }
               }
             ],
-            "linkId": "2.3",
+            "linkId": "2.2",
             "text": "Type of Physical Examination performed",
             "type": "choice",
             "answerValueSet": "2.16.840.1.113883.11.20.9.65",
+            "enable-when": [
+              {
+                "question": "2.1",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
@@ -163,7 +154,7 @@
                 }
               }
             ],
-            "linkId": "2.4",
+            "linkId": "2.3",
             "text": "Is the patient diagnosed with any co-morbidities?",
             "type": "boolean",
             "required": true
@@ -178,10 +169,16 @@
                 }
               }
             ],
-            "linkId": "2.5",
+            "linkId": "2.4",
             "text": "Diagnosis of the Cormorbidity",
             "type": "choice",
             "answerValueSet": "2.16.840.1.113883.3.464.1003.199.12.1055",
+            "enable-when": [
+              {
+                "question": "2.3",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           }
         ]
@@ -233,7 +230,7 @@
             ],
             "linkId": "3.3",
             "text": "Does the patient have Face-Face Encounter with Ordering Practitioner?" ,
-            "type": "display",
+            "type": "boolean",
             "required": true
           },
           {
@@ -297,7 +294,7 @@
             ],
             "linkId": "4.3",
             "text": "Supplier Address",
-            "type": "string",
+            "type": "text",
             "required": true
           },
           {
@@ -351,6 +348,12 @@
             "text": "Details of the mobility dysfunction",
             "answerValueSet": "2.16.840.1.113883.17.4077.2.2006",
             "type": "choice",
+            "enable-when": [
+              {
+                "question": "5.1",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
@@ -382,6 +385,12 @@
             "text": "Details of the Musculoskeletal Assessment",
             "type": "choice",
             "answerValueSet": "2.16.840.1.113883.3.7643.3.1031",
+            "enable-when": [
+              {
+                "question": "5.3",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
@@ -413,6 +422,12 @@
             "text": "Details of the Neurological Assessment",
             "type": "choice",
             "answerValueSet": "2.16.840.1.113883.3.7643.3.1032",
+            "enable-when": [
+              {
+                "question": "5.5",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
@@ -444,6 +459,12 @@
             "text": "Details of the CardioPulmonary examination",
             "type": "choice",
             "answerValueSet": "2.16.840.1.113883.3.6037.1001.23.95.21",
+            "enable-when": [
+              {
+                "question": "5.7",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           }
         ]

@@ -3,12 +3,7 @@ library LowerLimbDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-<<<<<<< HEAD
-include LowerLimbProstheses version '1.0.0' called LLP
-
-=======
 include LowerLimbProsthesis version '1.0.0' called LLP
->>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD-9-CM": 'http://hl7.org/fhir/sid/icd-9'
@@ -60,19 +55,11 @@ define DescriptionOfItem:
 define DeviceOrderType: 
     LLP."DeviceOrderType"
 
-define QuantityOfItem:
-    LLP."QuantityOfItem"
-
-
 define StartDate: 
     LLP."StartDate"
 
 define SupplyRequestObject:
-<<<<<<< HEAD
-	First("SupplyRequest")
-=======
 	"SupplyRequest"
->>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
 
 
 define Supplier: 
@@ -121,13 +108,8 @@ define FFEncounter:
 define InpatientEncounter:
     LLP."InpatientEncounter"
 
-<<<<<<< HEAD
-define Modifier:
-    LLP."Modifier"
-=======
 //define Modifier:
 //    LLP."Modifier"
->>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
 
 define RightLowerLimb:
     LLP."RightLowerLimb"
@@ -204,13 +186,8 @@ define CardioPulmonaryAnalysis:
 define Weight:
     LLP."Weight"
 
-<<<<<<< HEAD
-define Height:
-    LLP."Height"
-=======
 define PatientHeight:
     LLP."PatientHeight"
->>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
 
 define OrderDetails:
     if (("DateOfOrder" is not null)
@@ -234,11 +211,7 @@ define ClinicalAnalysis:
         and ("NeurologicalAnalysis" = true)
         and ("CardioPulmonaryAnalysis" = true)
         and ("Weight" is not null)
-<<<<<<< HEAD
-        and ("Height" is not null))
-=======
         and ("PatientHeight" is not null))
->>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
         then true
         else false
 

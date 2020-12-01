@@ -1,5 +1,12 @@
 {
   "resourceType": "Questionnaire",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-11-24T13:03:02.780+00:00",
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
+    ]
+  },
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
@@ -7,8 +14,8 @@
     }
   ],
   "name": "LowerLimbProsthesis",
-    "title": "LowerLimbProsthesis",
-    "status": "draft",
+  "title": "LowerLimbProsthesis",
+  "status": "draft",
   "subjectType": [
     "Patient"
   ],
@@ -17,7 +24,7 @@
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-hereditarycancertesting-hereditarycancer"
+      "valueCanonical": "Library/library-lowerlimbprostheses-LowerLimbProsthesis"
     }
   ],
   "contained": [
@@ -49,36 +56,6 @@
       }
     }
   ],
-
-
-    "resourceType": "Questionnaire",
-    "meta": {
-      "versionId": "1",
-      "lastUpdated": "2020-11-24T13:03:02.780+00:00",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
-      ]
-    },
-    "extension": [
-      {
-        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "Library/library-lowerlimbprostheses-LowerLimbProsthesis"
-      }
-    ],
-    "identifier": [
-      {
-        "system": "http://identifiers.mettles.com/prior_authorization",
-        "value": "medicare-LowerLimbProsthesis"
-      }
-    ],
-    "name": "LowerLimbProsthesis",
-    "title": "LowerLimbProsthesis",
-    "status": "draft",
-    "subjectType": [
-      "Patient"
-    ],
-    "date": "2020-05-10",
-    "publisher": "Mettle Solutions",
     "item": [
       {
         "linkId": "1",

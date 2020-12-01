@@ -182,7 +182,7 @@ define PhyExam:
 
 
 define PhysicalExaminationType:
-    ("PhyExam".code as CodeableConcept)
+    "PhyExam".code
 
 define PhysicalExamination:
     if (exists([Procedure] P

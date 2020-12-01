@@ -32,7 +32,6 @@ valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
 
 
 parameter "DeviceRequest" DeviceRequest
-
 parameter "MeasurementPeriod" default Interval[@2020-01-03T00:00:00.0, @2021-01-01T00:00:00.0]
 
 context Patient
@@ -43,7 +42,7 @@ define DeviceRequestHcpcsCoding:
                     return FHIRHelpers."ToCode"(D))
 
 define DateOfOrder:
-    FHIRHelpers.ToDateTime("DeviceRequest".authoredOn)
+    "DeviceRequest".authoredOn
 
 define DescriptionOfItem:
     'HCPCS ' + "DeviceRequestHcpcsCoding".code + ' - ' + ("DeviceRequestHcpcsCoding".display)
@@ -84,7 +83,7 @@ define ServiceCondition:
 	"EncounterDiagnosis"("ServiceEncounter")
 
 define RelevantDiagnosis:
-		First("ServiceCondition".code.coding).display.value
+		First("ServiceCondition".code.coding)
 
 define EncounterResource:
 	First([Encounter]E where 'Encounter/' + E.id.value = "DeviceRequest".encounter.reference.value )
@@ -176,26 +175,30 @@ define FunctionalLevel:
         then 'Level 4'
         else null
 
-define PhysicalExamination:
+define PhyExam:
     First([Procedure] P
     where exists(P.code.coding C where C in "Physical Exam Type")
     and P.status.value = 'completed')
 
 
 define PhysicalExaminationType:
+    "PhyExam".code
+
+define PhysicalExamination:
     if (exists([Procedure] P
     where exists(P.code.coding C where C in "Physical Exam Type")
     and P.status.value = 'completed'))
     then true
     else false
 
-
-
 define ComorbitiesType:
     First([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
             and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define ComorbiditiesDetails:
+    "ComorbitiesType".code
 
 
 define Comorbities:
@@ -205,7 +208,6 @@ define Comorbities:
             and First(C.verificationStatus.coding).code.value = 'confirmed')
             then true
             else false
-
 
 
 define MobilityDiagnosis:
@@ -223,9 +225,8 @@ define Mobility:
     then true
     else false
 
-
 define MobilityEstimation:
-    First("MobilityDiagnosis".code.coding).code.value
+    "MobilityDiagnosis".code
 
 
 define Musculoskeletal:
@@ -240,7 +241,7 @@ define MusculoskeletalAnalysis:
     else false
 
 define MusculoskeletalEstimation:
-    First("Musculoskeletal".code.coding).code.value
+    "Musculoskeletal".code
 
 
 define Neurological:
@@ -256,7 +257,7 @@ define NeurologicalAnalysis:
 
 
 define NeurologicalEstimation:
-    First("Neurological".code.coding).code.value
+    "Neurological".code
 
 
 define CardioPulmonary:
@@ -272,7 +273,7 @@ define CardioPulmonaryAnalysis:
 
 
 define CardioPulmonaryEstimation:
-    First("CardioPulmonary".code.coding).code.value
+    "CardioPulmonary".code
 
 
 define Weight:

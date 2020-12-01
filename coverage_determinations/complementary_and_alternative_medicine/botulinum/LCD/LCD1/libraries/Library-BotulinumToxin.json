@@ -13,8 +13,8 @@
   },
   "relatedArtifact": [
     {
-      "type": "depends-on",
-      "resource": "http://localhost:8080/interop/fhir/Library/FHIRHelpers"
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
     }
   ],
   "dataRequirement": [
@@ -22,156 +22,156 @@
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.26"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.26"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.27"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.27"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.28"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.28"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.29"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.29"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.30"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.30"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.31"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.31"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.32"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.32"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.33"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.33"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.34"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.34"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.35"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.35"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.36"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.36"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {
       "type": "Condition",
       "codeFilter": [
         {
-          "path": "clinical-status",
-          "searchParam": "active"
-        },
-        {
           "path": "code",
-          "valueSet": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.48"
-        }
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.48"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
       ]
     },
     {

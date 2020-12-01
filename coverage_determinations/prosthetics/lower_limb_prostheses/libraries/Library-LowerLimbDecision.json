@@ -14,11 +14,19 @@
     "relatedArtifact": [
       {
         "type": "depends-on",
+<<<<<<< HEAD
         "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
       },
       {
         "type": "depends-on",
         "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+=======
+        "resource": "Library/FHIRHelpers"
+      },
+      {
+        "type": "depends-on",
+        "resource": "Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
       }
     ],
     "dataRequirement": [
@@ -27,7 +35,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.7643.3.1031"
+=======
+            "valueSet": "2.16.840.1.113883.3.7643.3.1031"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -36,7 +48,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.7643.3.1032"
+=======
+            "valueSet": "2.16.840.1.113883.3.7643.3.1032"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -45,7 +61,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.11.20.9.65"
+=======
+            "valueSet": "2.16.840.1.113883.11.20.9.65"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -54,7 +74,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.17.4077.2.2006"
+=======
+            "valueSet": "2.16.840.1.113883.17.4077.2.2006"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -63,7 +87,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1206.13"
+=======
+            "valueSet": "2.16.840.1.113762.1.4.1206.13"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -72,7 +100,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1055"
+=======
+            "valueSet": "2.16.840.1.113883.3.464.1003.199.12.1055"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -81,7 +113,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.21"
+=======
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.21"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
           ]
       },
@@ -90,7 +126,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1047.428"
+=======
+            "valueSet": "2.16.840.1.113762.1.4.1047.428"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
         ]
       },
@@ -99,7 +139,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.23"
+=======
+            "valueSet": "2.16.840.1.113883.3.117.1.7.1.23"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
         ]
       },
@@ -108,7 +152,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1045.159"
+=======
+            "valueSet": "2.16.840.1.113762.1.4.1045.159"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
         ]
       },
@@ -117,7 +165,11 @@
         "codeFilter": [
           {
             "path": "code",
+<<<<<<< HEAD
             "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.464.1003.121.12.1014"
+=======
+            "valueSet": "2.16.840.1.113883.3.464.1003.121.12.1014"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
           }
         ]
       },

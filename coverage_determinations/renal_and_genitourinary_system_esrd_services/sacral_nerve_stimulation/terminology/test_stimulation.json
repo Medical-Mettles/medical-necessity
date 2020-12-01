@@ -1,0 +1,39 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.64",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.64",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.64"
+    }
+  ],
+  "version": "Latest",
+  "name": "Test Stimulation",
+  "title": "Test Stimulation",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "64561",
+            "display": "Percutaneous implantation of neurostimulator electrode array; sacral nerve (transforaminal placement) including image guidance if performed"
+          },
+          {
+            "code": "64581",
+            "display": "Incision for implantation of neurostimulator electrode array; sacral nerve (transforaminal placement)"
+          }
+        ]
+      }
+    ]
+  }
+}

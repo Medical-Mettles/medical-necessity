@@ -10,12 +10,12 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Optical coherence tomography (OCT)":  '2.16.840.1.113762.1.4.1047.541'
-valueset "Photodynamic therapy": '2.16.840.1.113883.3.6037.1001.23.95.19'
-valueset "verteporfin": '2.16.840.1.113883.3.6037.1001.23.95.20'
-valueset "Fluorescein angiography of eye": '2.16.840.1.113883.3.6037.1001.23.95.18'
-valueset "Neovascular age-related macular degeneration": '2.16.840.1.113883.3.6037.1001.23.95.16'
-valueset "Ocular age-related macular degeneration": '2.16.840.1.113883.3.6037.1001.23.95.17' 
+valueset "Optical coherence tomography (OCT)":  'https://ValueSet/2.16.840.1.113762.1.4.1047.541'
+valueset "Photodynamic therapy": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.19'
+valueset "verteporfin": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.20'
+valueset "Fluorescein angiography of eye": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.18'
+valueset "Neovascular age-related macular degeneration": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.16'
+valueset "Ocular age-related macular degeneration": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.17'
 
 parameter "ServiceRequest" ServiceRequest
 

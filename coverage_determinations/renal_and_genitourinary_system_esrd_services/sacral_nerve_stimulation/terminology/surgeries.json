@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.98.68",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.68",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.98.68"
+    }
+  ],
+  "version": "Latest",
+  "name": "Other Surgeries",
+  "title": "Other Surgeries",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "287775004",
+            "display": "Urinary incontinence/sling operation (procedure)"
+          },
+          {
+            "code": "236242002",
+            "display": "Fixed suspension procedure of bladder neck (procedure)"
+          },
+          {
+            "code": "238034001",
+            "display": "Repair of vaginal wall prolapse (procedure)"
+          },
+          {
+            "code": "57867007",
+            "display": "Implantation of artificial urinary bladder sphincter (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

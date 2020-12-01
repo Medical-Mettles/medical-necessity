@@ -10,7 +10,11 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+<<<<<<< HEAD
         "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+=======
+        "valueCanonical": "library-lowerlimbprostheses-LowerLimbProsthesis"
+>>>>>>> fecbc123a174d770e6af0fee15b616177ba468c5
       }
     ],
     "identifier": [

@@ -14,11 +14,11 @@
   "relatedArtifact": [
     {
       "type": "depends-on",
-      "resource": "Library/FHIRHelpers"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-colorectalcancer-ColorectalCancerScreening"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-colorectalcancer-ColorectalCancerScreening"
     }
   ],
   "dataRequirement": [
@@ -27,7 +27,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.0"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.0"
         }
         ]
     },
@@ -36,7 +36,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.8"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.8"
         }
         ]
     },
@@ -45,7 +45,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.464.1003.108.12.1038"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038"
         }
         ]
     },
@@ -54,7 +54,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.10"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.10"
         }
         ]
     },
@@ -78,7 +78,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.1"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.1"
         }
         ]
     },
@@ -87,7 +87,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.2"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.2"
         }
         ]
     },
@@ -96,7 +96,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.3"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.3"
         }
         ]
     },
@@ -105,7 +105,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.4"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.4"
         }
         ]
     },
@@ -114,7 +114,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.5"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.5"
         }
         ]
     },
@@ -123,7 +123,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.6"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.6"
         }
         ]
     },
@@ -132,7 +132,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.7"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.7"
         }
         ]
     },
@@ -141,7 +141,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.11"
+          "valueSet": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.11"
         }
         ]
     }

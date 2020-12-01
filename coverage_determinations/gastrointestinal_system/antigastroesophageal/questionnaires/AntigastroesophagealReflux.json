@@ -1,0 +1,148 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-antigastroesophageal_reflux"
+    }
+  ],
+  "name": "AntigastroesophagealReflux",
+  "version": "1.0.0",
+  "title": "Implantation of Anti-Gastroesophageal Reflux Device",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical" : "https://fhir-dev.mettles.com/interop/fhir/Library/library-antigastroesophageal-AntigastroesophagealReflux"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Clinical Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Primary Diagnoses",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PrimaryDiagnoses"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Relevant Diagnoses",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RelevantDiagnoses"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Are the conditions life-threatening and resistant to medical treatment?",
+          "type": "boolean",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LifeThreatenment"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Medical Treatments Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Contraindicated or failed Procedures",
+          "type": "text",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ContraindicatedProcedures"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "Are surgical risks involved in a valvuloplasty procedure?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+      {
+        "linkId": "3",
+        "text": "Additional Documentation Requirements",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "3.1",
+            "text": "Documentation of the life-threatening gastroesophageal reflux disease",
+            "type": "attachment",
+            "required": true
+          }
+        ]
+      }
+  ]
+}

@@ -14,11 +14,11 @@
     "relatedArtifact": [
       {
       "type": "depends-on",
-      "resource": "Library/FHIRHelpers"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
       },
       {
         "type": "depends-on",
-        "resource": "Library/library-LCD1-Panniculectomy"
+        "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-LCD1-Panniculectomy"
         }
     ]
   }

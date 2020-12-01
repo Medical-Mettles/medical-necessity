@@ -11,11 +11,11 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Medically refractory partial onset seizures": '2.16.840.1.113883.3.6037.1001.23.97.15'
-valueset "Epilepsy Surgery": '2.16.840.1.113883.3.6037.1001.23.97.16'
-valueset "Resistant depression": '2.16.840.1.113883.3.6037.1001.23.97.17'
-valueset "Vagus Nerve Stimulation": '2.16.840.1.113883.3.6037.1001.23.97.18'
-valueset "Procedure Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.97.1'
+valueset "Medically refractory partial onset seizures": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.15'
+valueset "Epilepsy Surgery": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.16'
+valueset "Resistant depression": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.17'
+valueset "Vagus Nerve Stimulation": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.18'
+valueset "Procedure Unsuccessful": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.97.1'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse

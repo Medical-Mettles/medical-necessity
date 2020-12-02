@@ -205,7 +205,8 @@ define Comorbidities:
     if exists([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+            and C.encounter.reference.value = "EncounterResource".id.value)
             then true
             else false
 

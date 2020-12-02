@@ -63,11 +63,19 @@
         "type": "group",
         "item": [
           {
+            "extension" : [
+              {
+                "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression" : {
+                  "language" : "text/cql",
+                  "expression" : "RequestType"
+                }
+              }
+            ],
             "linkId": "1.1",
             "text": "Type of Request",
             "type": "choice",
             "required": true,
-            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Initial"

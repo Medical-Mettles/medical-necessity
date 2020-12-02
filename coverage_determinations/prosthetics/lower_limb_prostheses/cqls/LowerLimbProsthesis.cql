@@ -7,7 +7,7 @@ include FHIRHelpers version '4.0.0' called FHIRHelpers
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD-9-CM": 'http://hl7.org/fhir/sid/icd-9'
 codesystem "LOINC": 'http://loinc.org'
-codesystem "HCPCS": 'https://bluebutton.cms.gov/resources/codesystem/hcpcs'
+codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NUCCPT/sourcerepresentation.html'
@@ -29,6 +29,7 @@ valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
 valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
 valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
 valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
+valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
 parameter "DeviceRequest" DeviceRequest
@@ -38,7 +39,7 @@ context Patient
 
 define DeviceRequestHcpcsCoding:
     First(((cast "DeviceRequest".code as CodeableConcept).coding) D
-                where D.system.value = 'https://bluebutton.cms.gov/resources/codesystem/hcpcs'
+                where D.system.value = 'https://hcpcs.codes/'
                     return FHIRHelpers."ToCode"(D))
 
 define DateOfOrder:
@@ -175,7 +176,7 @@ define FunctionalLevel:
 
 define PhyExam:
     First([Procedure] P
-    where exists(P.code.coding C where C in "Physical Exam Type")
+    where exists(P.code.coding C where C in "Physical Examination")
     and P.status.value = 'completed')
 
 
@@ -184,7 +185,7 @@ define PhysicalExaminationType:
 
 define PhysicalExamination:
     if (exists([Procedure] P
-    where exists(P.code.coding C where C in "Physical Exam Type")
+    where exists(P.code.coding C where C in "Physical Examination")
     and P.status.value = 'completed'))
     then true
     else false
@@ -193,7 +194,8 @@ define ComorbitiesType:
     First([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+            and C.encounter.reference.value = "EncounterResource".id.value)
 
 define ComorbiditiesDetails:
     "ComorbitiesType".code

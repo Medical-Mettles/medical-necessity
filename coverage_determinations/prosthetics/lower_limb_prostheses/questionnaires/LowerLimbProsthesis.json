@@ -133,7 +133,7 @@
               }
             ],
             "linkId": "2.2",
-            "text": "Type of Physical Examination performed",
+            "text": "Details of Physical Examination performed",
             "type": "open-choice",
             "answerValueSet": "2.16.840.1.113883.11.20.9.65",
             "enableWhen": [
@@ -215,7 +215,7 @@
             ],
             "linkId": "3.2",
             "text": "Start Date",
-            "type": "dateTime",
+            "type": "date",
             "required": true
           },
           {

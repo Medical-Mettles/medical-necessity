@@ -7,7 +7,7 @@ include FHIRHelpers version '4.0.0' called FHIRHelpers
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD-9-CM": 'http://hl7.org/fhir/sid/icd-9'
 codesystem "LOINC": 'http://loinc.org'
-codesystem "HCPCS": 'https://bluebutton.cms.gov/resources/codesystem/hcpcs'
+codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NUCCPT/sourcerepresentation.html'
@@ -29,21 +29,21 @@ valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
 valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
 valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
 valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
+valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
 parameter "DeviceRequest" DeviceRequest
-parameter "SupplyRequest" SupplyRequest
 parameter "MeasurementPeriod" default Interval[@2020-01-03T00:00:00.0, @2021-01-01T00:00:00.0]
 
 context Patient
 
 define DeviceRequestHcpcsCoding:
     First(((cast "DeviceRequest".code as CodeableConcept).coding) D
-                where D.system.value = 'https://bluebutton.cms.gov/resources/codesystem/hcpcs'
+                where D.system.value = 'https://hcpcs.codes/'
                     return FHIRHelpers."ToCode"(D))
 
 define DateOfOrder:
-    FHIRHelpers.ToDateTime("DeviceRequest".authoredOn)
+    "DeviceRequest".authoredOn
 
 define DescriptionOfItem:
     'HCPCS ' + "DeviceRequestHcpcsCoding".code + ' - ' + ("DeviceRequestHcpcsCoding".display)
@@ -51,13 +51,8 @@ define DescriptionOfItem:
 define DeviceOrderType:
     "DeviceRequest".intent.value
 
-define SupplyRequestObject:
-	"SupplyRequest"
-
 define Supplier:
-	First([Organization] org
-    		with ("SupplyRequestObject".supplier) P
-    		such that P.reference.value = ('Organization/' + org.id.value))
+	First([Organization]O where 'Organization/' + O.id.value = "DeviceRequest".performer.reference.value )
 
 define SupplierName:
 	"Supplier".name.value
@@ -71,19 +66,14 @@ define SupplierPTAN:
         where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 
 define SupplierAddressObject:
-	First("Supplier".address A
-            where A.use.value = 'home')
+	"Supplier".address 
 
 define SupplierAddress:
-	if ("SupplierAddressObject" is not null) then
-	"SupplierAddressObject".line[0].value +', ' +"SupplierAddressObject".city.value +', ' +"SupplierAddressObject".state.value+', ' +"SupplierAddressObject".postalCode.value
-	else ''
-
-define QuantityOfItem:
-    "SupplyRequestObject".quantity.value
-
+	"Supplier".address A
+	return A.line[0].value +', ' + A.city.value +', ' + A.state.value+', ' + A.postalCode.value
+	
 define StartDate:
-    start of "Normalize Interval"("SupplyRequestObject".occurrence)
+    start of "Normalize Interval"("DeviceRequest".occurrence)
 
 define ServiceEncounter:
 	First([Encounter]E where 'Encounter/' + E.id.value = "DeviceRequest".encounter.reference.value)
@@ -92,23 +82,27 @@ define ServiceCondition:
 	"EncounterDiagnosis"("ServiceEncounter")
 
 define RelevantDiagnosis:
-		First("ServiceCondition".code.coding).display.value
+		First("ServiceCondition".code.coding)
 
 define EncounterResource:
 	First([Encounter]E where 'Encounter/' + E.id.value = "DeviceRequest".encounter.reference.value )
 
+define EncPractitioner:
+    First([Practitioner]P
+        where 'Practitioner/' + P.id.value = "DeviceRequest".requester.reference.value)
+
 define FaceToFaceEncounter:
 	"EncounterResource" F2FEncounter
 	where First(First(F2FEncounter.type).coding) in "Face to Face Encounter"
-	and First(F2FEncounter.participant).individual.type = 'http://hl7.org/fhir/StructureDefinition/Practitioner'
+	and First(F2FEncounter.participant).individual.reference.value = 'Practitioner/' + "EncPractitioner".id.value
 	and (First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'MD'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
 
 define FaceToFace:
-    "EncounterResource" G
-        where G.period starts before "MeasurementPeriod"
+    "FaceToFaceEncounter" G
+        where G.period starts before start of "MeasurementPeriod"
 
 define FFEncounter:
     if ("FaceToFace" is not null)
@@ -124,86 +118,97 @@ define FirstModifier:
     First("DeviceRequest".extension E
             where (First(E.extension).value as CodeableConcept) is not null)
 
-//define Modifier:
-//    "DeviceRequest".extension ext
-//    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Modifiers For LowerLimb Prosthetics")
-
 define RightLowerLimb:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Right Modifier")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Right Modifier"))
 
 define LeftLowerLimb:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Left Modifier")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Left Modifier"))
 
 define FL0:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 0")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 0"))
 
 define FL1:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 1")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 1"))
 
 define FL2:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 2")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 2"))
 
 define FL3:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 3")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 3"))
 
 define FL4:
-    "DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 4")
+    exists("DeviceRequest".extension ext
+    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 4"))
 
-/**
 define RightorLeft:
-    {
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'RT') is not null then 'Right' else null),
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'LT') is not null then 'Right' else null),
-    (if "Modifier" M where (exists(First(M.value as CodeableConcept).code.value  = 'RT')
-                            and exists(First(M.value as CodeableConcept).code.value  = 'LT')) is not null then 'Both' else null)
-    }
+    if (("RightLowerLimb" = true) and ("LeftLowerLimb" = false))
+        then 'Right'
+        else
+        if (("LeftLowerLimb" = true) and ("RightLowerLimb" = false))
+        then 'Left' 
+        else
+        if (("RightLowerLimb"  = true) and ("LeftLowerLimb" = false))
+        then 'Both' 
+        else null
 
 define FunctionalLevel:
-    {
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'K0') is not null then 'Right' else null),
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'K1') is not null then 'Right' else null),
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'K2') is not null then 'Both' else null),
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'K3') is not null then 'Both' else null),
-    (if "Modifier" M where exists(First(M.value as CodeableConcept).code.value  = 'K4') is not null then 'Both' else null)
-    }
-**/
-define PhysicalExamination:
+    if ("FL0" = true)
+        then 'Level 0'
+        else
+        if ("FL1" = true)
+        then 'Level 1' 
+        else
+        if ("FL2" = true)
+        then 'Level 2' 
+        else
+        if ("FL3" = true)
+        then 'Level 3'
+        else
+        if ("FL4" = true)
+        then 'Level 4'
+        else null
+
+define PhyExam:
     First([Procedure] P
-    where exists(P.code.coding C where C in "Physical Exam Type")
+    where exists(P.code.coding C where C in "Physical Examination")
     and P.status.value = 'completed')
 
 
 define PhysicalExaminationType:
+    PhyExam.code
+
+define PhysicalExamination:
     if (exists([Procedure] P
-    where exists(P.code.coding C where C in "Physical Exam Type")
+    where exists(P.code.coding C where C in "Physical Examination")
     and P.status.value = 'completed'))
     then true
     else false
-
-
 
 define ComorbitiesType:
     First([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+            and C.encounter.reference.value = "EncounterResource".id.value)
+
+define ComorbiditiesDetails:
+    "ComorbitiesType".code
 
 
-define Comorbities:
+define Comorbidities:
     if exists([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+            and C.encounter.reference.value = "EncounterResource".id.value)
             then true
             else false
-
 
 
 define MobilityDiagnosis:
@@ -221,9 +226,8 @@ define Mobility:
     then true
     else false
 
-
 define MobilityEstimation:
-    First("MobilityDiagnosis".code.coding).code.value
+    "MobilityDiagnosis".code
 
 
 define Musculoskeletal:
@@ -238,7 +242,7 @@ define MusculoskeletalAnalysis:
     else false
 
 define MusculoskeletalEstimation:
-    First("Musculoskeletal".code.coding).code.value
+    "Musculoskeletal".code
 
 
 define Neurological:
@@ -254,7 +258,7 @@ define NeurologicalAnalysis:
 
 
 define NeurologicalEstimation:
-    First("Neurological".code.coding).code.value
+    "Neurological".code
 
 
 define CardioPulmonary:
@@ -270,7 +274,7 @@ define CardioPulmonaryAnalysis:
 
 
 define CardioPulmonaryEstimation:
-    First("CardioPulmonary".code.coding).code.value
+    "CardioPulmonary".code
 
 
 define Weight:
@@ -313,4 +317,4 @@ define function "EncounterDiagnosis"(Encounter Encounter):
 
 define function "EncounterPractitioner"(Encounter Encounter):
 	Encounter.participant PR
-	return singleton from ([Practitioner]P where 'Practitioner/' + P.id.value = PR.individual.reference.value)
+	return First([Practitioner]P where 'Practitioner/' + P.id.value = PR.individual.reference.value)

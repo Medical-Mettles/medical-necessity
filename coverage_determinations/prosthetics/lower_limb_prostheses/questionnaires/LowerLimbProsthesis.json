@@ -1,32 +1,61 @@
 {
-    "resourceType": "Questionnaire",
-    "meta": {
-      "versionId": "1",
-      "lastUpdated": "2020-11-24T13:03:02.780+00:00",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
-      ]
-    },
-    "extension": [
-      {
-        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "library-lowerlimbprostheses-LowerLimbProsthesis"
+  "resourceType": "Questionnaire",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-11-24T13:03:02.780+00:00",
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare-LowerLimbProsthesis"
+    }
+  ],
+  "name": "LowerLimbProsthesis",
+  "title": "LowerLimbProsthesis",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "Library/library-lowerlimbprostheses-LowerLimbProsthesis"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
       }
-    ],
-    "identifier": [
-      {
-        "system": "http://identifiers.mettles.com/prior_authorization",
-        "value": "medicare-LowerLimbProsthesis"
-      }
-    ],
-    "name": "LowerLimbProsthesis",
-    "title": "LowerLimbProsthesis",
-    "status": "draft",
-    "subjectType": [
-      "Patient"
-    ],
-    "date": "2020-05-10",
-    "publisher": "Mettle Solutions",
+    }
+  ],
     "item": [
       {
         "linkId": "1",
@@ -34,11 +63,19 @@
         "type": "group",
         "item": [
           {
+            "extension" : [
+              {
+                "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression" : {
+                  "language" : "text/cql",
+                  "expression" : "RequestType"
+                }
+              }
+            ],
             "linkId": "1.1",
             "text": "Type of Request",
             "type": "choice",
             "required": true,
-            "repeats": true,
             "answerOption": [
               {
                 "valueString": "Initial"
@@ -59,24 +96,15 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "DescriptionOfItem"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "DescriptionOfItem"
+                }
               }
             ],
             "linkId": "1.2",
             "text": "Description of the item or device being ordered",
-            "type": "text",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "QuantityOfItem"
-              }
-            ],
-            "linkId": "1.3",
-            "text": "Quantity of the item to be dispensed",
             "type": "text",
             "required": true
           }
@@ -90,23 +118,14 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "RelevantDiagnosis"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "PhysicalExamination"
+                }
               }
             ],
             "linkId": "2.1",
-            "text": "Relevant Diagnosis",
-            "type": "text",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "PhysicalExamination"
-              }
-            ],
-            "linkId": "2.2",
             "text": "Is Physical Examination of the patient performed",
             "type": "boolean",
             "required": true
@@ -114,23 +133,36 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "PhysicalExaminationType"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "PhysicalExaminationType"
+                }
               }
             ],
-            "linkId": "2.3",
-            "text": "Type of Physical Examination performed",
-            "type": "text",
+            "linkId": "2.2",
+            "text": "Details of Physical Examination performed",
+            "type": "open-choice",
+            "answerValueSet": "2.16.840.1.113883.11.20.9.65",
+            "enableWhen": [
+              {
+                "question": "2.1",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "Comorbidities"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "Comorbidities"
+                }
               }
             ],
-            "linkId": "2.4",
+            "linkId": "2.3",
             "text": "Is the patient diagnosed with any co-morbidities?",
             "type": "boolean",
             "required": true
@@ -138,13 +170,23 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "ComorbiditiesDetails"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "ComorbiditiesDetails"
+                }
               }
             ],
-            "linkId": "2.5",
+            "linkId": "2.4",
             "text": "Diagnosis of the Cormorbidity",
-            "type": "text",
+            "type": "open-choice",
+            "answerValueSet": "2.16.840.1.113883.3.464.1003.199.12.1055",
+            "enableWhen": [
+              {
+                "question": "2.3",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           }
         ]
@@ -157,20 +199,26 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "DateOfOrder"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "DateOfOrder"
+                }
               }
             ],
             "linkId": "3.1",
             "text": "Date of Order",
-            "type": "date",
+            "type": "dateTime",
             "required": true
           },
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "StartDate"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "StartDate"
+                }
               }
             ],
             "linkId": "3.2",
@@ -181,80 +229,28 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "FFEncounter"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "FFEncounter"
+                }
               }
             ],
             "linkId": "3.3",
             "text": "Does the patient have Face-Face Encounter with Ordering Practitioner?" ,
-            "type": "display",
+            "type": "boolean",
             "required": true
           },
           {
             "linkId": "3.4",
             "text": "Face-Face Encounter requirement is relaxed for encounters post 1st, March 2020",
             "type": "display",
-            "enable-when": [
+            "enableWhen": [
               {
                 "question": "3.3",
                 "answerBoolean": false
               }
             ],
-            "required": true
-          }
-        ]
-      },
-      {
-        "linkId": "4",
-        "text": "Supplier Information",
-        "type": "group",
-        "item": [
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "SupplierName"
-              }
-            ],
-            "linkId": "4.1",
-            "text": "Supplier Name",
-            "type": "string",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "SupplierNPI"
-              }
-            ],
-            "linkId": "4.2",
-            "text": "Supplier NPI",
-            "type": "string",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "SupplierAddress"
-              }
-            ],
-            "linkId": "4.3",
-            "text": "Supplier Address",
-            "type": "text",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "SupplierContact"
-              }
-            ],
-            "linkId": "4.4",
-            "text": "Supplier Contact number",
-            "type": "text",
             "required": true
           }
         ]
@@ -268,7 +264,10 @@
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "Mobility"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "Mobility"
+                }
               }
             ],
             "linkId": "5.1",
@@ -280,11 +279,36 @@
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "MobilityEstimation"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "MobilityEstimation"
+                }
               }
             ],
             "linkId": "5.2",
             "text": "Details of the mobility dysfunction",
+            "answerValueSet": "2.16.840.1.113883.17.4077.2.2006",
+            "type": "open-choice",
+            "enableWhen": [
+              {
+                "question": "5.1",
+                "answerBoolean": true
+              }
+            ],
+            "required": true
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "MusculoskeletalAnalysis"
+                }
+              }
+            ],
+            "linkId": "5.3",
+            "text": "Did the patient go through Musculoskeletal Assessment?",
             "type": "boolean",
             "required": true
           },
@@ -292,72 +316,96 @@
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "MusculoskeletalAnalysis"
-              }
-            ],
-            "linkId": "5.3",
-            "text": "Did the patient go through Musculoskeletal Assessment?",
-            "type": "text",
-            "required": true
-          },
-          {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "MusculoskeletalEstimation"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "MusculoskeletalEstimation"
+                }
               }
             ],
             "linkId": "5.4",
             "text": "Details of the Musculoskeletal Assessment",
-            "type": "text",
+            "type": "open-choice",
+            "answerValueSet": "2.16.840.1.113883.3.7643.3.1031",
+            "enableWhen": [
+              {
+                "question": "5.3",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "NeurologicalAnalysis"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "NeurologicalAnalysis"
+                }
               }
             ],
             "linkId": "5.5",
             "text": "Did the patient go through Neurological Assessment?",
-            "type": "text",
+            "type": "boolean",
             "required": true
           },
           {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "NeurologicalEstimation"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "NeurologicalEstimation"
+                }
               }
             ],
             "linkId": "5.6",
             "text": "Details of the Neurological Assessment",
-            "type": "text",
+            "type": "open-choice",
+            "answerValueSet": "2.16.840.1.113883.3.7643.3.1032",
+            "enableWhen": [
+              {
+                "question": "5.5",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           },
           {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "CardioPulmonaryAnalysis"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "CardioPulmonaryAnalysis"
+                }
               }
             ],
             "linkId": "5.7",
             "text": "Did the patient go through CardioPulmonary examination?",
-            "type": "text",
+            "type": "boolean",
             "required": true
           },
           {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueString": "CardioPulmonaryEstimation"
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "CardioPulmonaryEstimation"
+                }
               }
             ],
             "linkId": "5.8",
             "text": "Details of the CardioPulmonary examination",
-            "type": "text",
+            "type": "open-choice",
+            "answerValueSet": "2.16.840.1.113883.3.6037.1001.23.95.21",
+            "enableWhen": [
+              {
+                "question": "5.7",
+                "answerBoolean": true
+              }
+            ],
             "required": true
           }
         ]
@@ -370,12 +418,15 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "RightorLeft"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "RightorLeft"
+                }
               }
             ],
             "linkId": "6.1",
-            "text": "Side affected",
+            "text": "Side of the body affected",
             "type": "choice",
             "required": true,
             "answerOption": [
@@ -393,8 +444,11 @@
           {
             "extension": [
               {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                "valueString": "FunctionLevel"
+                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "FunctionLevel"
+                }
               }
             ],
             "linkId": "6.2",

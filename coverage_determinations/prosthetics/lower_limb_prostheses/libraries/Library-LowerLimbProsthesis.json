@@ -46,6 +46,15 @@
           ]
       },
       {
+        "type": "Procedure",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.31"
+          }
+          ]
+      },
+      {
         "type": "Condition",
         "codeFilter": [
           {
@@ -82,24 +91,6 @@
           ]
       },
       {
-        "type": "Encounter",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1047.428"
-          }
-        ]
-      },
-      {
-        "type": "Encounter",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.117.1.7.1.23"
-          }
-        ]
-      },
-      {
         "type": "Observation",
         "codeFilter": [
           {
@@ -116,11 +107,7 @@
             "valueSet": "2.16.840.1.113883.3.464.1003.121.12.1014"
           }
         ]
-      },
-      {
-        "type": "Organization"
       }
-      
     ]
   }
   

@@ -94,6 +94,7 @@
           "enableWhen": [
             {
               "question": "1.2",
+		"operator": "=",
               "answerBoolean": true
             }
           ],
@@ -143,6 +144,7 @@
           "enableWhen": [
             {
               "question": "2.1",
+"operator": "=",
               "answerBoolean": true
             }
           ]
@@ -155,6 +157,7 @@
           "enableWhen": [
             {
               "question": "2.1",
+"operator": "=",
               "answerBoolean": true
             }
           ]
@@ -167,6 +170,7 @@
           "enableWhen": [
             {
               "question": "2.1",
+"operator": "=",
               "answerBoolean": true
             }
           ]
@@ -179,6 +183,7 @@
           "enableWhen": [
             {
               "question": "2.4",
+"operator": "=",
               "answerBoolean": true
             }
           ]

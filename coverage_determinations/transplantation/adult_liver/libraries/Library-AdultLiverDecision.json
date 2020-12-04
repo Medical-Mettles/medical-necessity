@@ -1,0 +1,77 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "name": "AdultLiverDecision",
+  "title": "Adult Liver Transplantation Decision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-adultliver-AdultLiverTransplant"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.79"
+        }
+        ]
+    },
+    {
+      "type": "Coverage"
+    },
+    {
+      "type": "Encounter"
+    },
+    {
+      "type": "Organization"
+    },
+    {
+      "type": "Practitioner"
+    },
+    {
+      "type": "ServiceRequest"
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.80"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.83"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.81"
+        }
+        ]
+    }
+  ]
+}

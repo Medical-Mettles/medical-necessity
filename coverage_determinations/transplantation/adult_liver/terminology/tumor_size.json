@@ -1,0 +1,39 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.98.81",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.98.81",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.98.81"
+      }
+    ],
+    "version": "Latest",
+    "name": "Tumor size",
+    "title": "Tumor size",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://loinc.org",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "42079-4",
+              "display": "Tumor size.collaborative staging"
+            },
+            {
+              "code": "21889-1",
+              "display": "Size Tumor"
+            }
+          ]
+        }
+      ]
+    }
+  }

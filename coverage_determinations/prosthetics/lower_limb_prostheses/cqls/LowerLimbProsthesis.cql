@@ -190,7 +190,7 @@ define PhysicalExamination:
     then true
     else false
 
-define ComorbitiesType:
+define ComorbiditiesType:
     First([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
@@ -198,7 +198,7 @@ define ComorbitiesType:
             and C.encounter.reference.value = "EncounterResource".id.value)
 
 define ComorbiditiesDetails:
-    "ComorbitiesType".code
+    "ComorbiditiesType".code
 
 
 define Comorbidities:

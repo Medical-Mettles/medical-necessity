@@ -35,10 +35,13 @@ valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
 
 
 parameter "DeviceRequest" DeviceRequest
-parameter "SupplyRequest" SupplyRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
+parameter "Claim" Claim
 
 context Patient
+
+define QT:
+	"QuestionnaireResponse".item
 
 define DeviceRequestHcpcsCoding: 
     LLP."DeviceRequestHcpcsCoding"
@@ -57,10 +60,6 @@ define DeviceOrderType:
 
 define StartDate: 
     LLP."StartDate"
-
-define SupplyRequestObject:
-	"SupplyRequest"
-
 
 define Supplier: 
 	LLP."Supplier"
@@ -108,9 +107,6 @@ define FFEncounter:
 define InpatientEncounter:
     LLP."InpatientEncounter"
 
-//define Modifier:
-//    LLP."Modifier"
-
 define RightLowerLimb:
     LLP."RightLowerLimb"
 
@@ -140,12 +136,12 @@ define PhysicalExaminationType:
     LLP."PhysicalExaminationType"
 
 
-define ComorbitiesType:
-    LLP."ComorbitiesType"
+define ComorbiditiesType:
+    LLP."ComorbiditiesType"
 
 
-define Comorbities:
-    LLP."Comorbities"
+define Comorbidities:
+    LLP."Comorbidities"
 
 
 define MobilityDiagnosis: 
@@ -189,10 +185,23 @@ define Weight:
 define PatientHeight:
     LLP."PatientHeight"
 
+define QuantityOfItem:
+    First("Claim".item).quantity.value
+
+define QA61:
+	("QT".item I
+		where I.linkId.value = '6.1')QR
+		return First(QR.answer).value
+
+define QA62:
+	("QT".item I
+		where I.linkId.value = '6.2')QR
+		return First(QR.answer).value
+
+
 define OrderDetails:
     if (("DateOfOrder" is not null)
         and ("DescriptionOfItem" is not null)
-        and ("QuantityOfItem" is not null)
         and ("StartDate" is not null))
         then true
         else false
@@ -220,6 +229,16 @@ define EncounterFF:
         or ("FFEncounter" = true) and ("FaceToFaceEncounter" is null))
         then true
         else false
+
+define ModifierDecision:
+    if (((First("QA61").value = 'Left') or (First("QA61").value = 'Right') or (First("QA61").value = 'Both'))
+        and ((First("QA62").value  = 'Level 0')
+                or (First("QA62").value = 'Level 1')
+                 or (First("QA62").value  = 'Level 2')
+                  or (First("QA62").value  = 'Level 3')
+                   or (First("QA62").value = 'Level 4')))
+                   then true
+                   else false
 
 define PrimaryDecision:
     if (("OrderDetails" = true)

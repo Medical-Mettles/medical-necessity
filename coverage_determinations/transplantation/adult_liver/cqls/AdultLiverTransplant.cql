@@ -39,10 +39,10 @@ define "CarcinomaCondition":
 		and First(C.code.coding c where c in "Hepatocellular carcinoma") is not null
 
 define "PrimaryDiagnoses":
-	("EndStageCondition"
+	{("EndStageCondition"
 	union "Malignancies"
 	union "CarcinomaCondition") L
-	return (First(L.code.coding).display.value)+'\n'
+	return L.code}
 
 define "LiverCellCarcinoma":
 	if First("CarcinomaCondition") is not null

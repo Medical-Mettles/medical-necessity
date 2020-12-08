@@ -59,7 +59,17 @@
         {
           "linkId": "1.1",
           "text": "Primary Diagnoses",
-          "type": "text",
+          "type": "open-choice",
+          "answerOption": [{
+            "valueReference": "ValueSet/2.16.840.1.113883.3.6037.1001.23.98.79"
+          },
+          {
+            "valueReference": "ValueSet/2.16.840.1.113883.3.6037.1001.23.98.80"
+          },
+          {
+            "valueReference": "ValueSet/2.16.840.1.113883.3.6037.1001.23.98.83"
+          }],
+          "repeats": true,
           "required": true,
           "extension": [
             {

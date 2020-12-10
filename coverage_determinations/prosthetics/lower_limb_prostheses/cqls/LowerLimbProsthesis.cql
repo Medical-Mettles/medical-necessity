@@ -72,7 +72,7 @@ define SupplierAddress:
 	return A.line[0].value +', ' + A.city.value +', ' + A.state.value+', ' + A.postalCode.value
 	
 define StartDate:
-    start of "Normalize Interval"("DeviceRequest".occurrence)
+    ToDate(start of "Normalize Interval"("DeviceRequest".occurrence))
 
 define ServiceEncounter:
 	First([Encounter]E where 'Encounter/' + E.id.value = "DeviceRequest".encounter.reference.value)

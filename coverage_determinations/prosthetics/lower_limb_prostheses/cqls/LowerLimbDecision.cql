@@ -15,15 +15,12 @@ codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/cur
 
 valueset "Musculoskeletal Assessment": '2.16.840.1.113883.3.7643.3.1031'
 valueset "Findings of Neurological Assessment for Orientation or Balance": '2.16.840.1.113883.3.7643.3.1032'
-valueset "Physical Exam Type": '2.16.840.1.113883.11.20.9.65'
 valueset "Immobilization": '2.16.840.1.113883.17.4077.2.2006'
-valueset "Comorbidity Risk Factors": '2.16.840.1.113762.1.4.1206.13'
 valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.199.12.1055'
 valueset "CardioPulmonary Examination": '2.16.840.1.113883.3.6037.1001.23.95.21'
 valueset "Body weight": '2.16.840.1.113762.1.4.1045.159'
 valueset "Height": '2.16.840.1.113883.3.464.1003.121.12.1014'
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
-valueset "Modifiers For LowerLimb Prosthetics": '2.16.840.1.113883.3.6037.1001.23.95.22'
 valueset "Inpatient Encounter": '2.16.840.1.113883.3.117.1.7.1.23'
 valueset "Right Modifier": '2.16.840.1.113883.3.6037.1001.23.95.24'
 valueset "Left Modifier": '2.16.840.1.113883.3.6037.1001.23.95.25'
@@ -32,6 +29,7 @@ valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
 valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
 valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
 valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
+valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
 parameter "DeviceRequest" DeviceRequest

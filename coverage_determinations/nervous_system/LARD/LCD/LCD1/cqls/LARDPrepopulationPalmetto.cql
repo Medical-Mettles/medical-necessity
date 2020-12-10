@@ -17,7 +17,7 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Artifical Disc Replacement Procedures": 'https://ValueSet/2.16.840.1.113883.3.6037.1001.23.95.16'
+valueset "Artifical Disc Replacement Procedures": '2.16.840.1.113883.3.6037.1001.23.95.16'
 
 
 parameter "ServiceRequest" ServiceRequest

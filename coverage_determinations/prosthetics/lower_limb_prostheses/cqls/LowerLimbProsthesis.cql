@@ -42,7 +42,7 @@ define DeviceRequestHcpcsCoding:
                     return FHIRHelpers."ToCode"(D))
 
 define DateOfOrder:
-    "DeviceRequest".authoredOn.value
+    ToDate("DeviceRequest".authoredOn)
 
 define DescriptionOfItem:
     'HCPCS ' + "DeviceRequestHcpcsCoding".code + ' - ' + ("DeviceRequestHcpcsCoding".display)

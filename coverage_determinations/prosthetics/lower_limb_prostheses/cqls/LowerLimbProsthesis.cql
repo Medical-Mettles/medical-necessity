@@ -14,7 +14,6 @@ codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/cur
 
 valueset "Musculoskeletal Assessment": '2.16.840.1.113883.3.7643.3.1031'
 valueset "Findings of Neurological Assessment for Orientation or Balance": '2.16.840.1.113883.3.7643.3.1032'
-valueset "Physical Exam Type": '2.16.840.1.113883.11.20.9.65'
 valueset "Immobilization": '2.16.840.1.113883.17.4077.2.2006'
 valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.199.12.1055'
 valueset "CardioPulmonary Examination": '2.16.840.1.113883.3.6037.1001.23.95.21'

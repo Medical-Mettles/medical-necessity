@@ -45,15 +45,6 @@
         "codeFilter": [
           {
             "path": "code",
-            "valueSet": "2.16.840.1.113883.11.20.9.65"
-          }
-          ]
-      },
-      {
-        "type": "Procedure",
-        "codeFilter": [
-          {
-            "path": "code",
             "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.31"
           }
           ]
@@ -64,15 +55,6 @@
           {
             "path": "code",
             "valueSet": "2.16.840.1.113883.17.4077.2.2006"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1206.13"
           }
           ]
       },

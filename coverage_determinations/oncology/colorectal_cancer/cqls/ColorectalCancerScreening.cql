@@ -222,4 +222,4 @@ define function "Normalize Interval Observation"(choice Choice<FHIR.dateTime, FH
  		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
 	  else if choice is FHIR.Period then
 		  FHIRHelpers.ToInterval(choice as FHIR.Period)
-	  else ''  
+	  else null

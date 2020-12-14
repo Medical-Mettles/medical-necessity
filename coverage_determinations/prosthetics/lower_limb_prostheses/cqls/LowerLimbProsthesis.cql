@@ -14,8 +14,7 @@ codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/cur
 
 valueset "Musculoskeletal Assessment": '2.16.840.1.113883.3.7643.3.1031'
 valueset "Findings of Neurological Assessment for Orientation or Balance": '2.16.840.1.113883.3.7643.3.1032'
-valueset "Physical Exam Type": '2.16.840.1.113883.11.20.9.65'
-valueset "Immobilization": '2.16.840.1.113883.17.4077.2.2006'
+valueset "Immobilization": '2.16.840.1.113883.17.4077.3.2006'
 valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.199.12.1055'
 valueset "CardioPulmonary Examination": '2.16.840.1.113883.3.6037.1001.23.95.21'
 valueset "Body weight": '2.16.840.1.113762.1.4.1045.159'
@@ -43,7 +42,7 @@ define DeviceRequestHcpcsCoding:
                     return FHIRHelpers."ToCode"(D))
 
 define DateOfOrder:
-    "DeviceRequest".authoredOn
+    ToDate("DeviceRequest".authoredOn)
 
 define DescriptionOfItem:
     'HCPCS ' + "DeviceRequestHcpcsCoding".code + ' - ' + ("DeviceRequestHcpcsCoding".display)
@@ -73,7 +72,7 @@ define SupplierAddress:
 	return A.line[0].value +', ' + A.city.value +', ' + A.state.value+', ' + A.postalCode.value
 	
 define StartDate:
-    start of "Normalize Interval"("DeviceRequest".occurrence)
+    ToDate(start of "Normalize Interval"("DeviceRequest".occurrence))
 
 define ServiceEncounter:
 	First([Encounter]E where 'Encounter/' + E.id.value = "DeviceRequest".encounter.reference.value)
@@ -190,7 +189,7 @@ define PhysicalExamination:
     then true
     else false
 
-define ComorbitiesType:
+define ComorbiditiesType:
     First([Condition]C
         where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
             and First(C.clinicalStatus.coding).code.value = 'active'
@@ -198,7 +197,7 @@ define ComorbitiesType:
             and C.encounter.reference.value = "EncounterResource".id.value)
 
 define ComorbiditiesDetails:
-    "ComorbitiesType".code
+    "ComorbiditiesType".code
 
 
 define Comorbidities:

@@ -15,15 +15,12 @@ codesystem "NUCCPT":'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/cur
 
 valueset "Musculoskeletal Assessment": '2.16.840.1.113883.3.7643.3.1031'
 valueset "Findings of Neurological Assessment for Orientation or Balance": '2.16.840.1.113883.3.7643.3.1032'
-valueset "Physical Exam Type": '2.16.840.1.113883.11.20.9.65'
-valueset "Immobilization": '2.16.840.1.113883.17.4077.2.2006'
-valueset "Comorbidity Risk Factors": '2.16.840.1.113762.1.4.1206.13'
+valueset "Immobilization": '2.16.840.1.113883.17.4077.3.2006'
 valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.199.12.1055'
 valueset "CardioPulmonary Examination": '2.16.840.1.113883.3.6037.1001.23.95.21'
 valueset "Body weight": '2.16.840.1.113762.1.4.1045.159'
 valueset "Height": '2.16.840.1.113883.3.464.1003.121.12.1014'
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
-valueset "Modifiers For LowerLimb Prosthetics": '2.16.840.1.113883.3.6037.1001.23.95.22'
 valueset "Inpatient Encounter": '2.16.840.1.113883.3.117.1.7.1.23'
 valueset "Right Modifier": '2.16.840.1.113883.3.6037.1001.23.95.24'
 valueset "Left Modifier": '2.16.840.1.113883.3.6037.1001.23.95.25'
@@ -32,13 +29,17 @@ valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
 valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
 valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
 valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
+valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
 parameter "DeviceRequest" DeviceRequest
-parameter "SupplyRequest" SupplyRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
+parameter "Claim" Claim
 
 context Patient
+
+define QT:
+	"QuestionnaireResponse".item
 
 define DeviceRequestHcpcsCoding: 
     LLP."DeviceRequestHcpcsCoding"
@@ -57,10 +58,6 @@ define DeviceOrderType:
 
 define StartDate: 
     LLP."StartDate"
-
-define SupplyRequestObject:
-	"SupplyRequest"
-
 
 define Supplier: 
 	LLP."Supplier"
@@ -108,9 +105,6 @@ define FFEncounter:
 define InpatientEncounter:
     LLP."InpatientEncounter"
 
-//define Modifier:
-//    LLP."Modifier"
-
 define RightLowerLimb:
     LLP."RightLowerLimb"
 
@@ -140,12 +134,12 @@ define PhysicalExaminationType:
     LLP."PhysicalExaminationType"
 
 
-define ComorbitiesType:
-    LLP."ComorbitiesType"
+define ComorbiditiesType:
+    LLP."ComorbiditiesType"
 
 
-define Comorbities:
-    LLP."Comorbities"
+define Comorbidities:
+    LLP."Comorbidities"
 
 
 define MobilityDiagnosis: 
@@ -189,10 +183,23 @@ define Weight:
 define PatientHeight:
     LLP."PatientHeight"
 
+define QuantityOfItem:
+    First("Claim".item).quantity.value
+
+define QA61:
+	("QT".item I
+		where I.linkId.value = '6.1')QR
+		return First(QR.answer).value
+
+define QA62:
+	("QT".item I
+		where I.linkId.value = '6.2')QR
+		return First(QR.answer).value
+
+
 define OrderDetails:
     if (("DateOfOrder" is not null)
         and ("DescriptionOfItem" is not null)
-        and ("QuantityOfItem" is not null)
         and ("StartDate" is not null))
         then true
         else false
@@ -220,6 +227,16 @@ define EncounterFF:
         or ("FFEncounter" = true) and ("FaceToFaceEncounter" is null))
         then true
         else false
+
+define ModifierDecision:
+    if (((First("QA61").value = 'Left') or (First("QA61").value = 'Right') or (First("QA61").value = 'Both'))
+        and ((First("QA62").value  = 'Level 0')
+                or (First("QA62").value = 'Level 1')
+                 or (First("QA62").value  = 'Level 2')
+                  or (First("QA62").value  = 'Level 3')
+                   or (First("QA62").value = 'Level 4')))
+                   then true
+                   else false
 
 define PrimaryDecision:
     if (("OrderDetails" = true)

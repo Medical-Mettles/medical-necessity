@@ -176,9 +176,6 @@
     },
     {
       "type": "Procedure"
-    },
-    {
-      "type": "Encounter"
     }
   ]
 }

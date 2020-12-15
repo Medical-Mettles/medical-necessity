@@ -1,12 +1,5 @@
 {
   "resourceType": "Questionnaire",
-  "meta": {
-    "versionId": "1",
-    "lastUpdated": "2020-11-24T13:03:02.780+00:00",
-    "profile": [
-      "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
-    ]
-  },
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
@@ -208,7 +201,7 @@
             ],
             "linkId": "3.1",
             "text": "Date of Order",
-            "type": "dateTime",
+            "type": "date",
             "required": true
           },
           {

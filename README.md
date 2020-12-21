@@ -14,27 +14,30 @@ Coverage Determinations folder contains the artifacts which will be based on LCD
 
 
 
-Category|Use Case|NCD|No of LCDs
---------|--------|---|----------
-Eye |Blepharoplasty ||1
-Eye |Opt ||0
-Transplantation |Intestinal Transplant ||0
-Transplantation |Pancreas Transplant ||0
-Renal and Genitourinary System Esrd Services |Cryosurgery ||0
-Renal and Genitourinary System Esrd Services |Sacral Nerve Stimulation ||0
-Ear Nose and Throat |Rhinoplasty ||1
-Cardiovascular System |Ventricular Devices ||0
-Cardiovascular System |Vein Ablation ||1
-Cardiovascular System |Diagnostic Ees Pacing ||0
-Immunology |Eci Proteina ||0
-Oncology |Colorectal Cancer ||0
-Nervous System |Vagus Nerve ||0
-Nervous System |Lard ||1
-Gastrointestinal System |Antigastroesophageal ||0
-Complementary and Alternative Medicine |Botulinum ||1
-Complementary and Alternative Medicine |Panniculectomy ||1
-Hematology |Apheresis ||0
-Hematology |Ai Coagulant ||0
+Category|Use Case
+--------|--------
+Eye | Blepharoplasty
+Eye | Opt
+Transplantation | Intestinal Transplant
+Transplantation | Pancreas Transplant
+Transplantation | Adult Liver Transplant
+Renal And Genitourinary System Esrd Services | Cryosurgery
+Renal And Genitourinary System Esrd Services | Sacral Nerve Stimulation
+Ear Nose And Throat | Rhinoplasty
+Cardiovascular System | Ventricular Devices
+Cardiovascular System | Vein Ablation
+Cardiovascular System | Diagnostic Ees Pacing
+Immunology | Eci Proteina
+Oncology | Colorectal Cancer Screening
+Prosthetics | Lower Limb Prostheses
+Nervous System | Vagus Nerve
+Nervous System | Lard
+Gastrointestinal System | Anti Gastroesophageal
+Complementary And Alternative Medicine | Botulinum
+Complementary And Alternative Medicine | Panniculectomy
+Hematology | Apheresis
+Hematology | Ai Coagulant
+
 
 
 Samples folder contains just examples which can be used as reference only.

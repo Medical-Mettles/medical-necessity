@@ -29,6 +29,7 @@ valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
 valueset "ExtraOcularMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.35'
 valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
 valueset "MigraineWithoutAura Codes": '2.16.840.1.113883.3.6037.1001.23.99.48'
+valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -103,12 +104,20 @@ define TreatmentPerformed:
 	 	First([Procedure]P
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
-	 		and (P.performed as dateTime) begins after (Today()-1 year))
+			and First(P.outcome.coding) in "Unsuccessful"
+	 		and ToDate(P.performed as dateTime) after (Today()-1 year))
+
+define ExistsProcedure:
+	exists([Procedure]P
+	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
+	 		and P.status.value = 'completed'
+			and First(P.outcome.coding) in "Unsuccessful"
+	 		and ToDate(P.performed as dateTime) after (Today()-1 year))
 
 define IsTreatmentPerformed:
-	if ("TreatmentPerformed" = null)
-	then false
-	else true
+	if ("ExistsProcedure" = true)
+	then true
+	else false
 
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value

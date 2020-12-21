@@ -140,6 +140,7 @@
             "enableWhen": [
               {
                 "question": "2.1",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],
@@ -177,6 +178,7 @@
             "enableWhen": [
               {
                 "question": "2.3",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],
@@ -241,6 +243,7 @@
             "enableWhen": [
               {
                 "question": "3.3",
+                "operator": "=",
                 "answerBoolean": false
               }
             ],
@@ -285,6 +288,7 @@
             "enableWhen": [
               {
                 "question": "5.1",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],
@@ -322,6 +326,7 @@
             "enableWhen": [
               {
                 "question": "5.3",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],
@@ -359,6 +364,7 @@
             "enableWhen": [
               {
                 "question": "5.5",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],
@@ -396,6 +402,7 @@
             "enableWhen": [
               {
                 "question": "5.7",
+                "operator": "=",
                 "answerBoolean": true
               }
             ],

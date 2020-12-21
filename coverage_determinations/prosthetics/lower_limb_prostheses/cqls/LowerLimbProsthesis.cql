@@ -180,7 +180,7 @@ define PhyExam:
 
 
 define PhysicalExaminationType:
-    PhyExam.code
+   First(PhyExam.code.coding)
 
 define PhysicalExamination:
     if (exists([Procedure] P
@@ -197,7 +197,7 @@ define ComorbiditiesType:
             and C.encounter.reference.value = "EncounterResource".id.value)
 
 define ComorbiditiesDetails:
-    "ComorbiditiesType".code
+    First("ComorbiditiesType".code.coding)
 
 
 define Comorbidities:
@@ -226,7 +226,7 @@ define Mobility:
     else false
 
 define MobilityEstimation:
-    "MobilityDiagnosis".code
+    First("MobilityDiagnosis".code.coding)
 
 
 define Musculoskeletal:
@@ -241,7 +241,7 @@ define MusculoskeletalAnalysis:
     else false
 
 define MusculoskeletalEstimation:
-    "Musculoskeletal".code
+    First("Musculoskeletal".code.coding)
 
 
 define Neurological:
@@ -257,7 +257,7 @@ define NeurologicalAnalysis:
 
 
 define NeurologicalEstimation:
-    "Neurological".code
+    First("Neurological".code.coding)
 
 
 define CardioPulmonary:
@@ -273,7 +273,7 @@ define CardioPulmonaryAnalysis:
 
 
 define CardioPulmonaryEstimation:
-    "CardioPulmonary".code
+    First("CardioPulmonary".code.coding)
 
 
 define Weight:

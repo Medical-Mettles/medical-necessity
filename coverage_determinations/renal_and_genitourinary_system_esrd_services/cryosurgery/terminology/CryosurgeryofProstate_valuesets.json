@@ -37,6 +37,16 @@
                         "display": "Malignant neoplasm of prostate"
                     }
                 ]
+            },
+          {
+                "system": "http://snomed.info/sct",
+                "version": "2020-03",
+                "concept": [
+                    {
+                        "code": "399068003",
+                        "display": "Malignant tumor of prostate (disorder)"
+                    }
+                ]
             }
         ]
     }
@@ -306,7 +316,17 @@
                         "display": "Laser Interstitial Thermal Therapy of Prostate"
                     }
                 ]
+            },
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "53438000",
+              "display": "Radiation therapy procedure or service (procedure)"
             }
+          ]
+        }
         ]
     }
 },

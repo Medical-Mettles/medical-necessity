@@ -375,14 +375,13 @@ define AmbulanceSupplier:
         such that P.reference.value = ('Organization/' + org.id.value))
 
 
-define AmbulanceSupplierName:
+define "AmbulanceSupplierName":
 	"AmbulanceSupplier".name.value
 
-define AmbulanceSupplierNPI:
-    First("AmbulanceSupplier".identifier identifier
-    	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi').value.value
+define "AmbulanceSupplierNPI":
+    First("AmbulanceSupplier".identifier).value.value
 
-define AmbulanceSupplierAddressObject:
+define "AmbulanceSupplierAddressObject":
 	First("AmbulanceSupplier".address)
 
 define "SupplierAddressLine":
@@ -434,10 +433,20 @@ define "OtherPurpose":
     return (First(R.coding).display.value)+'\n'
     //else null
 
+define "EncounterResource":
+    Last([Encounter])
+
+define "LocationFromObject":
+	First([Location] L
+	where 'Location/' + L.id.value = "EncounterResource".hospitalization.origin.reference.value)
+
+define "TransportFrom":
+    "LocationFromObject".address.line[0].value +', ' +"LocationFromObject".address.city.value +', ' +"LocationFromObject".address.state.value+', ' +"LocationFromObject".address.postalCode.value
+
 define "LocationToObject":
 	First([Location] L
-	with ServiceRequest.locationReference S
-	such that ('Location/' + L.id.value) = S.reference.value)
+	with "EncounterResource".location S
+	such that ('Location/' + L.id.value) = S.location.reference.value)
 
 define "TransportTo":
     "LocationToObject".address.line[0].value +', ' +"LocationToObject".address.city.value +', ' +"LocationToObject".address.state.value+', ' +"LocationToObject".address.postalCode.value

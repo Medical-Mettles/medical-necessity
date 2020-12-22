@@ -91,13 +91,17 @@ define "ErectPositionIssue":
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Unable to maintain erect position"
-        and First(P.evidence E
-              where First(E.code D
-                          where First(D.coding F where (F in "Muscular weakness")) is not null
+
+
+define "ErectPositionEvidence":
+    "ErectPositionIssue" D
+    where First(D.evidence evid
+              where First(evid.code c
+                          where First(c.coding co where co in "Muscular weakness") is not null
                           ) is not null
-                  or First(E.detail D
-                            with ("MuscleWeakIssue") L
-                            such that D.reference.value = 'Condition/'+L.id.value) is not null
+                  or First(evid.detail c
+                            with ("MuscleWeakIssue") R
+                            such that c.reference.value = 'Condition/'+R.id.value) is not null
               ) is not null
 
 define "FallingRisk":
@@ -108,13 +112,13 @@ define "FallingRisk":
 
 define "MobilityIssues":
     {(if "BedConfinement"= true then 'Bed confined' else null),
-     (if Last("ErectPositionIssue") is not null then 'Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and de-conditioning' else null),
+     (if Last("ErectPositionEvidence") is not null then 'Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and de-conditioning' else null),
      (if Last("FallingRisk") is not null then 'Risk of falling off wheelchair or stretcher while in motion' else null)
     }
 
 define "MobilityBoolean":
     if ("BedConfinement"= true
-        or Last("ErectPositionIssue") is not null
+        or Last("ErectPositionEvidence") is not null
         or Last("FallingRisk") is not null)
     then true
     else false
@@ -136,13 +140,16 @@ define "ContracturesCondition":
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Contractures"
-		and First(P.evidence E
-              where First(E.code D
-                          where First(D.coding F where (F in "Impaired mobility")) is not null
+
+define "ContracturesEvidence":
+    "ContracturesCondition" D
+    where First(D.evidence evid
+              where First(evid.code c
+                          where First(c.coding co where co in "Impaired mobility") is not null
                           ) is not null
-                  or First(E.detail D
-                            with ("ImpairedMobilityCondition") L
-                            such that D.reference.value = 'Condition/'+L.id.value) is not null
+                  or First(evid.detail c
+                            with ("ImpairedMobilityCondition") R
+                            such that c.reference.value = 'Condition/'+R.id.value) is not null
               ) is not null
 
 define "OsteoarthritisCondition":
@@ -163,13 +170,16 @@ define "LackOfExercise":
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Lack of physical exercise"
-		and First(P.evidence E
-              where First(E.code D
-                          where First(D.coding F where (F in "Physical deconditioning")) is not null
+
+define "LackOfExerciseEvidence":
+    "LackOfExercise" D
+    where First(D.evidence evid
+              where First(evid.code c
+                          where First(c.coding co where co in "Physical deconditioning") is not null
                           ) is not null
-                  or First(E.detail D
-                            with ("DeconditioningResource") L
-                            such that D.reference.value = 'Condition/'+L.id.value) is not null
+                  or First(evid.detail c
+                            with ("DeconditioningResource") R
+                            such that c.reference.value = 'Condition/'+R.id.value) is not null
               ) is not null
 
 define "OrthopedicDeviceRequired":
@@ -186,18 +196,18 @@ define "AmputationsCondition":
 
 define "MusculoskeletalIssues":
     {(if Last("Fractures") is not null then 'Non-healed fractures requiring ambulance' else null),
-     (if (Last("ContracturesCondition") is not null and Last("BedConfinedObservation") is not null) then 'Contractures that impair mobility and result in bed confinement' else null),
+     (if (Last("ContracturesEvidence") is not null and Last("BedConfinedObservation") is not null) then 'Contractures that impair mobility and result in bed confinement' else null),
      (if Last("OsteoarthritisCondition") is not null then 'Incapacitating Osteoarthritis' else null),
-     (if Last("LackOfExercise") is not null then 'Severe muscular weakness and de-conditioned state precludes any significant physical activity' else null),
+     (if Last("LackOfExerciseEvidence") is not null then 'Severe muscular weakness and de-conditioned state precludes any significant physical activity' else null),
      (if Last("OrthopedicDeviceRequired") is not null then 'Orthopedic device required in transit' else null),
      (if Last("AmputationsCondition") is not null then 'Amputation(s)' else null)
     }
 
 define "MusculoskeletalBoolean":
     if (Last("Fractures") is not null
-        or (Last("ContracturesCondition") is not null and Last("BedConfinedObservation") is not null)
+        or (Last("ContracturesEvidence") is not null and Last("BedConfinedObservation") is not null)
         or Last("OsteoarthritisCondition") is not null
-        or Last("LackOfExercise") is not null
+        or Last("LackOfExerciseEvidence") is not null
         or Last("OrthopedicDeviceRequired") is not null
         or Last("AmputationsCondition") is not null)
     then true
@@ -208,13 +218,16 @@ define "SequelaeCondition":
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "CVA with sequelae"
-		and First(P.evidence E
-              where First(E.code D
-                          where First(D.coding F where (F in "Impaired mobility")) is not null
+
+define "SequelaeEvidence":
+    "SequelaeCondition" D
+    where First(D.evidence evid
+              where First(evid.code c
+                          where First(c.coding co where co in "Impaired mobility") is not null
                           ) is not null
-                  or First(E.detail D
-                            with ("ImpairedMobilityCondition") L
-                            such that D.reference.value = 'Condition/'+L.id.value) is not null
+                  or First(evid.detail c
+                            with ("ImpairedMobilityCondition") R
+                            such that c.reference.value = 'Condition/'+R.id.value) is not null
               ) is not null
 
 define "DVTCondition":
@@ -224,12 +237,12 @@ define "DVTCondition":
 		and First(P.code.coding) in "DVT requires elevation of lower extremity"
 
 define "CardiovascularIssues":
-    {(if (Last("SequelaeCondition") is not null and Last("BedConfinedObservation") is not null) then 'CVA with sequelae (late effect of CVA) that impair mobility and result in be confinement' else null),
+    {(if (Last("SequelaeEvidence") is not null and Last("BedConfinedObservation") is not null) then 'CVA with sequelae (late effect of CVA) that impair mobility and result in be confinement' else null),
      (if Last("DVTCondition") is not null then 'DVT requires elevation of lower extremity' else null)
     }
 
 define "CardiovascularBoolean":
-    if ((Last("SequelaeCondition") is not null and Last("BedConfinedObservation") is not null)
+    if ((Last("SequelaeEvidence") is not null and Last("BedConfinedObservation") is not null)
         or Last("DVTCondition") is not null)
     then true
     else false
@@ -300,7 +313,10 @@ define "DependenceCondition":
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
 		and First(P.code.coding) in "Dependence on equipments"
-		and First(P.evidence evid
+
+define "DependenceConditionEvidence":
+    "DependenceCondition" D
+    where First(D.evidence evid
               where First(evid.code c
                           where First(c.coding co where co in "Morbid obesity") is not null
                           ) is not null
@@ -310,11 +326,11 @@ define "DependenceCondition":
               ) is not null
 
 define "AttendantReasons":
-    {(if Last("DependenceCondition") is not null then 'Morbid obesity requires additional personnel/equipment to handle' else null)
+    {(if Last("DependenceConditionEvidence") is not null then 'Morbid obesity requires additional personnel/equipment to handle' else null)
     }
 
 define "AttendantBoolean":
-    if Last("DependenceCondition") is not null
+    if Last("DependenceConditionEvidence") is not null
     then true
     else false
 
@@ -343,12 +359,12 @@ define "MentalBoolean":
 
 define "ReasonOfTransport":
     {
-    (if ("AttendantBoolean") then 'Attendant required during transport' else null),
     (if ("MobilityBoolean") then 'Mobility issues' else null),
     (if ("MusculoskeletalBoolean") then 'Musculoskeletal issues' else null),
     (if ("CardiovascularBoolean") then 'Cardiovascular issues' else null),
     (if ("NeurologicalBoolean") then 'Neurological issues' else null),
     (if ("WoundsBoolean") then 'Wounds' else null),
+    (if ("AttendantBoolean") then 'Attendant required during transport' else null),
     (if ("MentalBoolean") then 'Mental issues' else null),
     (if ("MobilityBoolean"=false and "MusculoskeletalBoolean"=false and "CardiovascularBoolean"=false and "NeurologicalBoolean"=false and "WoundsBoolean"=false and "AttendantBoolean"=false and "MentalBoolean"=false) then 'Other issues' else null)
     }

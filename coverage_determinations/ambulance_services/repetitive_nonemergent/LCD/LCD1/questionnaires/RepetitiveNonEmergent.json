@@ -152,6 +152,7 @@
           "enableWhen": [
             {
               "question": "2.1",
+              "operator": "=",
               "answerCoding": {
                 "code": "Other",
                 "display": "Other"
@@ -218,6 +219,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Mobility issues",
                 "display": "Mobility issues"
@@ -254,6 +256,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Musculoskeletal issues",
                 "display": "Musculoskeletal issues"
@@ -299,6 +302,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Neurological issues",
                 "display": "Neurological issues"
@@ -335,6 +339,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Cardiovascular issues",
                 "display": "Cardiovascular issues"
@@ -368,6 +373,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Wounds",
                 "display": "Wounds"
@@ -401,6 +407,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Attendant required during transport",
                 "display": "Attendant required during transport"
@@ -443,6 +450,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Mental issues",
                 "display": "Mental issues"
@@ -476,6 +484,7 @@
           "enableWhen": [
             {
               "question": "2.3",
+              "operator": "=",
               "answerCoding": {
                 "code": "Other issues",
                 "display": "Other issues"

@@ -111,6 +111,7 @@
           "text": "Purpose of transport ",
           "type": "open-choice",
           "required": true,
+          "repeats": true,
           "answerOption": [
             {
               "valueString": "Dialysis"
@@ -534,7 +535,7 @@
           "text": "State where the ambulance is garaged",
           "type": "open-choice",
           "required": true,
-          "answerValueSet": "#states"
+          "answerValueSet": "2.16.840.1.113883.4.642.3.40"
         },
         {
           "linkId": "3.4",
@@ -552,13 +553,6 @@
           "linkId": "3.5",
           "text": "Origin of Transport",
           "type": "text",
-          "enableWhen": [
-            {
-              "question": "3.4",
-              "operator": "=",
-              "answerBoolean": false
-            }
-          ],
           "required": true
         },
         {

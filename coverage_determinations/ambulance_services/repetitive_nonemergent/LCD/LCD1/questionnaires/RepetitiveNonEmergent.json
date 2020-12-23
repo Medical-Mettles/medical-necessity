@@ -30,72 +30,72 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "AmbulanceSupplierName"
             }
           ],
           "linkId": "1.1",
-          "text": "Ambulance Supplier/Provider Name",
+          "text": "Name",
           "type": "string",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "AmbulanceSupplierNPI"
             }
           ],
           "linkId": "1.2",
-          "text": "Ambulance Supplier/Provider NPI",
+          "text": "NPI",
           "type": "string",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "SupplierAddressLine"
             }
           ],
           "linkId": "1.3",
-          "text": "Ambulance Supplier Address Line",
+          "text": "Address Line",
           "type": "string",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "SupplierAddressCity"
             }
           ],
           "linkId": "1.4",
-          "text": "Ambulance Supplier Address City",
+          "text": "Address City",
           "type": "string",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "SupplierAddressState"
             }
           ],
           "linkId": "1.5",
-          "text": "Ambulance Supplier Address State",
+          "text": "Address State",
           "type": "string",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "SupplierAddressPostalCode"
             }
           ],
           "linkId": "1.6",
-          "text": "Ambulance Supplier Address Postal Code",
+          "text": "Address Postal Code",
           "type": "string",
           "required": true
         }
@@ -502,7 +502,7 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "NumofTransports"
             }
           ],
@@ -514,19 +514,19 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "StartDate"
             }
           ],
           "linkId": "3.2",
           "text": "Start of 60 Day Period",
-          "type": "dateTime",
+          "type": "date",
           "required": true
         },
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "TransportState"
             }
           ],
@@ -545,7 +545,7 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "TransportFrom"
             }
           ],
@@ -564,38 +564,13 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueString": "TransportTo"
             }
           ],
           "linkId": "3.6",
           "text": "Destination of Transport",
           "type": "text",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "4",
-      "text": "Additional Documentation Required",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "4.1",
-          "text": "Physician Certification Statement  indicating the origin and/or destination of the transport",
-          "type": "attachment",
-          "required": true
-        },
-        {
-          "linkId": "4.2",
-          "text": "Documentation from the medical record to support the medical necessity of repetitive,scheduled non-emergent ambulance transport",
-          "type": "attachment",
-          "required": true
-        },
-        {
-          "linkId": "4.3",
-          "text": "Information on the origin and destination of the transports",
-          "type": "attachment",
           "required": true
         }
       ]

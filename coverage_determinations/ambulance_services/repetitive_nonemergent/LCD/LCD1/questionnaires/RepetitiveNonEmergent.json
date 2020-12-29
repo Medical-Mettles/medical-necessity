@@ -648,6 +648,7 @@
           "enableWhen": [
             {
               "question": "3.7",
+              "operator": "=",
               "answerCoding": {
                 "code": "Expedite this request"
               }

@@ -71,8 +71,19 @@ define Botox:
 			and P.status.value ='completed'
 		 	and First(P.outcome.coding) in "Unsuccessful")
 
+define ExistsProcedure:
+	exists([Procedure]P
+		where First(P.code.coding) in "Botox Cosmetic Injectable Product"
+			and P.status.value ='completed'
+		 	and First(P.outcome.coding) in "Unsuccessful")
+
 define TreatmentFailed:
 	First("Botox".code.coding)
+
+define IsTreatmentPerformed:
+	if ("ExistsProcedure" = true)
+	then true
+	else false
 
 define BlepharospasmCondition:
 	First([Condition]C

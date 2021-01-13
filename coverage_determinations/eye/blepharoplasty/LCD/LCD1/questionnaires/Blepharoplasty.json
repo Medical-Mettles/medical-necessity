@@ -73,9 +73,31 @@
         },
         {
           "linkId": "1.2",
+          "text": "Is any prior Prior Treatment performed ?",
+          "type": "boolean",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IsTreatmentPerformed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
           "text": "Details of Prior Treatment performed that was unsuccessful",
           "type": "open-choice",
           "required": true,
+          "enableWhen": [
+            {
+              "question": "1.2",
+		          "operator": "=",
+              "answerBoolean": true
+            }
+          ],
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",

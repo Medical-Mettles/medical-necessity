@@ -30,51 +30,28 @@ context Patient
 define ServiceEncounter:
 	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
 
-define function "EncounterDiagnosis1"(Encounter Encounter):
-	Encounter.diagnosis D
-	return First([Condition]C
-				where C.id.value = "GetId"(D.condition.reference.value)
-					and FHIRHelpers.ToInteger(D.rank) = 2)
-
-define function "EncounterDiagnosis"(Encounter Encounter):
-	Encounter.diagnosis D
-	return First([Condition]C
-				where C.id.value = "GetId"(D.condition.reference.value)
-					and FHIRHelpers.ToInteger(D.rank) = 1)
-
-define function "GetId"(uri String):
-	Last(Split(uri, '/'))
 
 define ServiceCondition:
-	"EncounterDiagnosis"("ServiceEncounter")
+	First([Condition]C
+			where exists(C.code.coding C 
+							where C in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
+									or C in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+            and C.encounter.reference.value = 'Encounter/' + "ServiceEncounter".id.value)
 
-define ServiceCondition1:
-	"EncounterDiagnosis1"("ServiceEncounter")
-
-define ServiceDiagnosis:
-	First("ServiceCondition" S
-			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
-			)
-
-define RelevantServiceDiagnosis:
-	First("ServiceCondition1" S
-			where (First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-				or First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
-			)
 
 define RelevantDiagnosis:
-	First("RelevantServiceDiagnosis".code.coding)
+	First("ServiceCondition".code.coding)
 
 define ServiceDiagnosis1:
-	First("ServiceCondition" S
+	"ServiceCondition" S
 			where First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
-			)
+			
 
 define ServiceDiagnosis2:
-	First("ServiceCondition" S
+	"ServiceCondition" S
 			where First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes"
-			)
 
 define FunctionalDef:
 	First([Condition]C

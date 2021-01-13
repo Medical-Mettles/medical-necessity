@@ -33,9 +33,6 @@ define ServiceEncounter:
 define ServiceCondition:
 	BLCommon."ServiceCondition"
 
-define ServiceDiagnosis:
-	BLCommon."ServiceDiagnosis"
-
 define ServiceDiagnosis1:
 	BLCommon."ServiceDiagnosis1"
 	
@@ -128,8 +125,7 @@ define BlepharospasmDescription:
 	else null
 
 define UpperPrimaryDecision:
-	if( "ServiceDiagnosis1" is not null
-		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true))
+	if((("FunctionalDeficits" is not null) and (First("QA31".value) = true))
 		and ("UpperBlepharoplasty" = true))
 		then true
 		else false
@@ -141,8 +137,7 @@ define LowerPrimaryDecision:
 		else false
 
 define BothEyelidPrimaryDecision:
-	if( "ServiceDiagnosis" is not null
-		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true))
+	if((("FunctionalDeficits" is not null) and (First("QA31".value) = true))
 		and ("BothEyelidsBlepharoptosis" = true))
 		then true
 		else false

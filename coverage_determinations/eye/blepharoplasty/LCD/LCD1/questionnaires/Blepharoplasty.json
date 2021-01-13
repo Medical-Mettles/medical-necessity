@@ -59,7 +59,7 @@
         {
           "linkId": "1.1",
           "text": "Relevant Diagnosis",
-          "type": "string",
+          "type": "open-choice",
           "required": true,
           "extension": [
             {
@@ -74,7 +74,7 @@
         {
           "linkId": "1.2",
           "text": "Details of Prior Treatment performed that was unsuccessful",
-          "type": "text",
+          "type": "open-choice",
           "required": true,
           "extension": [
             {

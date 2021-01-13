@@ -64,7 +64,7 @@ define RelevantServiceDiagnosis:
 			)
 
 define RelevantDiagnosis:
-	First("RelevantServiceDiagnosis".code.coding).display.value
+	First("RelevantServiceDiagnosis".code.coding)
 
 define ServiceDiagnosis1:
 	First("ServiceCondition" S
@@ -95,7 +95,7 @@ define Botox:
 		 	and First(P.outcome.coding) in "Unsuccessful")
 
 define TreatmentFailed:
-	First("Botox".code.coding).display.value
+	First("Botox".code.coding)
 
 define BlepharospasmCondition:
 	First([Condition]C

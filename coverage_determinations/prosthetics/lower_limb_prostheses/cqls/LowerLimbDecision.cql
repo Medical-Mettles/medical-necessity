@@ -211,7 +211,7 @@ define SupplierDetails:
         then true
         else false
 
-define ClinicalAnalysis:
+define ClinicalExamination:
     if (("ServiceCondition" is not null)
         and ("PhysicalExamination" is not null)
         and ("MusculoskeletalAnalysis" = true)
@@ -222,7 +222,7 @@ define ClinicalAnalysis:
         then true
         else false
 
-define EncounterFF:
+define EncounterFaceToFace:
     if (("FFEncounter" = false) and ("FaceToFaceEncounter" is not null)
         or ("FFEncounter" = true) and ("FaceToFaceEncounter" is null))
         then true
@@ -241,8 +241,9 @@ define ModifierDecision:
 define PrimaryDecision:
     if (("OrderDetails" = true)
         and ("SupplierDetails" = true)
-        and ("ClinicalAnalysis" = true)
-        and ("EncounterFF" = true))
+        and ("ClinicalExamination" = true)
+        and ("EncounterFaceToFace" = true)
+        and ("ModifierDecision" = true))
         then true 
         else false
 

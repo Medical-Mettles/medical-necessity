@@ -105,14 +105,14 @@ define TreatmentPerformed:
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
 			and First(P.outcome.coding) in "Unsuccessful"
-	 		and ToDate(P.performed as dateTime) after (Today()-1 year))
+	 		and ToDate(P.performed) after (Today()-1 year))
 
 define ExistsProcedure:
 	exists([Procedure]P
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
 			and First(P.outcome.coding) in "Unsuccessful"
-	 		and ToDate(P.performed as dateTime) after (Today()-1 year))
+	 		and ToDate(P.performed) after (Today()-1 year))
 
 define IsTreatmentPerformed:
 	if ("ExistsProcedure" = true)

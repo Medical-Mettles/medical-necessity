@@ -45,35 +45,45 @@ define RelevantDiagnosis:
 	First("ServiceCondition".code.coding)
 
 define ServiceDiagnosis1:
-	"ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Upper Eyelid Diagnosis Codes"
+	"ServiceCondition" C
+			where exists(C.code.coding C 
+							where C in "Blepharoplasty of Upper Eyelid Diagnosis Codes")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
 			
 
 define ServiceDiagnosis2:
-	"ServiceCondition" S
-			where First(S.code.coding) in "Blepharoplasty of Lower Eyelid Diagnosis Codes"
+	"ServiceCondition" C
+			where exists(C.code.coding C 
+							where C in "Blepharoplasty of Lower Eyelid Diagnosis Codes")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define FunctionalDef:
 	First([Condition]C
-		where First(C.code.coding) in "Functional Deficits in EyeLid" 
+		where exists(C.code.coding C 
+							where C in "Functional Deficits in EyeLid")
 			and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define FunctionalDeficits:
 	First([Condition]C
-		where First(C.code.coding) in "Sockets"
+		where exists(C.code.coding C 
+							where C in "Sockets")
 			and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Botox:
 	First([Procedure]P
-		where First(P.code.coding) in "Botox Cosmetic Injectable Product"
+		where exists(P.code.coding P
+							where P in "Botox Cosmetic Injectable Product")
 			and P.status.value ='completed'
 		 	and First(P.outcome.coding) in "Unsuccessful")
 
 define ExistsProcedure:
 	exists([Procedure]P
-		where First(P.code.coding) in "Botox Cosmetic Injectable Product"
+		where exists(P.code.coding P
+							where P in "Botox Cosmetic Injectable Product")
 			and P.status.value ='completed'
 		 	and First(P.outcome.coding) in "Unsuccessful")
 
@@ -88,7 +98,8 @@ define IsTreatmentPerformed:
 define BlepharospasmCondition:
 	First([Condition]C
 		with [Procedure]P
-		such that First(C.code.coding) in "Blepharospasm"
+		such that exists(C.code.coding C 
+							where C in "Blepharospasm")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 		and First(C.verificationStatus.coding).code.value = 'confirmed'
 		and First(P.code.coding) in "Botox Cosmetic Injectable Product"
@@ -110,7 +121,8 @@ define MRD:
 
 define BrowRepair:
 	First([Condition]C
-		where First(C.code.coding) in "Changes in skin texture"
+		where exists(C.code.coding C 
+							where C in "Changes in skin texture")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 		and First(C.verificationStatus.coding).code.value = 'confirmed')
 

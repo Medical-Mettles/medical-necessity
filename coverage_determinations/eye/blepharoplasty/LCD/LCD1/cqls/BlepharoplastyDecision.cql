@@ -56,6 +56,11 @@ define MRD:
 	
 define BrowRepair:
 	BLCommon."BrowRepair"
+
+define BlepharospasmDescription:
+	if ("BlepharospasmCondition" is not null)
+	then "BlepharospasmCondition".stage.summary.coding.display.value
+	else null
 	
 define QT:
 	"QuestionnaireResponse".item
@@ -111,7 +116,7 @@ define BothEyelidsBlepharoptosis:
  		then true
  		else false
 
-define UpperBlepharoplasty:
+define UpperEyelidBlepharoplasty:
 	if ( ((First("QA25".value) = true)
 		or (First("QA26".value) = true)
 		or (First("QA27".value) = true))
@@ -119,18 +124,13 @@ define UpperBlepharoplasty:
 		then true
 		else false
 
-define BlepharospasmDescription:
-	if ("BlepharospasmCondition" is not null)
-	then "BlepharospasmCondition".stage.summary.coding.display.value
-	else null
-
-define UpperPrimaryDecision:
+define UpperEyelidPrimaryDecision:
 	if((("FunctionalDeficits" is not null) and (First("QA31".value) = true))
-		and ("UpperBlepharoplasty" = true))
+		and ("UpperEyelidBlepharoplasty" = true))
 		then true
 		else false
 
-define LowerPrimaryDecision:
+define LowerEyelidPrimaryDecision:
 	if( "ServiceDiagnosis2" is not null
 		and (("FunctionalDeficits" is not null) and (First("QA31".value) = true)))
 		then true
@@ -143,10 +143,10 @@ define BothEyelidPrimaryDecision:
 		else false
 
 define IntermediateDecision:
-	if ("UpperPrimaryDecision" = true)
+	if ("UpperEyelidPrimaryDecision" = true)
 	then 'YES FOR UPPER EYELID.PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
 	else
-	if ("LowerPrimaryDecision" = true)
+	if ("LowerEyelidPrimaryDecision" = true)
 	then 'YES FOR LOWER EYELID.PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
 	else
 	if ("BothEyelidPrimaryDecision" = true)

@@ -172,8 +172,8 @@
         },
         {
           "linkId": "3.2",
-          "text": "Marginal Reflex Distance",
-          "type": "quantity",
+          "text": "Marginal Reflex Distance in mm",
+          "type": "integer",
           "required": true,
           "extension": [
             {

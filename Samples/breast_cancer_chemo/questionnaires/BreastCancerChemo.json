@@ -1,0 +1,540 @@
+{
+    "resourceType": "Questionnaire",
+    "id": "questionnaire-breastcancerchemo-breastcancerchemo",
+    "meta": {
+        "versionId": "3",
+        "lastUpdated": "2021-01-29T13:51:00.000+00:00",
+        "source": "#1a3wHlADT6JwOxCd"
+    },
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-breastcancerchemo-BreastCancerChemo"
+        }
+    ],
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-breastcancerchemo-breastcancerchemo",
+    "identifier": [
+        {
+            "system": "http://identifiers.mettles.com/prior_authorization",
+            "value": "medicare_fee_for_service-breast_cancer_chemo"
+        }
+    ],
+    "version": "1.0.0",
+    "name": "BreastsCancerChemo",
+    "title": "BreastsCancerChemo",
+    "status": "draft",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2019-12-03",
+    "publisher": "Mettle Solutions",
+    "item": [
+        {
+            "linkId": "1",
+            "text": "Staging of Cancer",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "StagingType"
+                            }
+                        }
+                    ],
+                    "linkId": "1.1",
+                    "text": "Type of Cancer Staging?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "Clinical"
+                        },
+                        {
+                            "valueString": "Pathological"
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "TumourSize"
+                            }
+                        }
+                    ],
+                    "linkId": "1.2",
+                    "text": "Size of the tumour in cm?",
+                    "type": "decimal",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "Laterality"
+                            }
+                        }
+                    ],
+                    "linkId": "1.3",
+                    "text": "Laterality of the Cancer",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "left"
+                        },
+                        {
+                            "valueString": "right"
+                        },
+                        {
+                            "valueString": "bilateral"
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "pTStage"
+                            }
+                        }
+                    ],
+                    "linkId": "1.4",
+                    "text": "Stage of Primary Tumour(T)",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "pNStageClinical"
+                            }
+                        }
+                    ],
+                    "linkId": "1.5",
+                    "text": "Stage of Regional Lymph nodes (N)",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "question": "1.1",
+                            "answerCoding": {
+                                "code": "Clinical",
+                                "display": "Clinical"
+                            }
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "pNStagePathological"
+                            }
+                        }
+                    ],
+                    "linkId": "1.6",
+                    "text": "Stage of Regional Lymph nodes (N)",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "pMStageClinical"
+                            }
+                        }
+                    ],
+                    "linkId": "1.7",
+                    "text": "Stage of Metastasis (M)",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "question": "1.1",
+                            "answerCoding": {
+                                "code": "Clinical",
+                                "display": "Clinical"
+                            }
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "pMStagePathological"
+                            }
+                        }
+                    ],
+                    "linkId": "1.8",
+                    "text": "Stage of Metastasis (M)",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "AnatomicStage"
+                            }
+                        }
+                    ],
+                    "linkId": "1.9",
+                    "text": "Anatomic Stage of Cancer",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "Stage0"
+                        },
+                        {
+                            "valueString": "StageIA"
+                        },
+                        {
+                            "valueString": "StageIB"
+                        },
+                        {
+                            "valueString": "StageIIA"
+                        },
+                        {
+                            "valueString": "StageIIB"
+                        },
+                        {
+                            "valueString": "StageIIIA"
+                        },
+                        {
+                            "valueString": "StageIIIB"
+                        },
+                        {
+                            "valueString": "StageIIIC"
+                        },
+                        {
+                            "valueString": "StageIV"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "2",
+            "text": "Prognosis",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ERPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "2.1",
+                    "text": "Is Estrogen receptor (ER) positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PRPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "2.2",
+                    "text": "Is Progesterone receptor (PR) positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HER2Positive"
+                            }
+                        }
+                    ],
+                    "linkId": "2.3",
+                    "text": "Is HER2 positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "LineOfTherapy"
+                            }
+                        }
+                    ],
+                    "linkId": "2.4",
+                    "text": "Is there a prior treatment with Chemotherapy?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PreviousChemotherapyDrug"
+                            }
+                        }
+                    ],
+                    "linkId": "2.5",
+                    "text": "Drugs used during the Chemotherapy",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "question": "2.4",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true,
+                    "repeats": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ChemotherapyAdverseEffectsBoolean"
+                            }
+                        }
+                    ],
+                    "linkId": "2.6",
+                    "text": "Were there any adverse effects during previous treatment?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.5",
+                            "answerBoolean": true
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "AdverseEffectsManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "2.7",
+                    "text": "Are the adverse affects being managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.6",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "KnownAllergies"
+                            }
+                        }
+                    ],
+                    "linkId": "2.8",
+                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.4",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PreExistingConditions"
+                            }
+                        }
+                    ],
+                    "linkId": "2.9",
+                    "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.4",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ConditionsManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "2.10",
+                    "text": "Are the conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.9",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryDiseaseHistory"
+                            }
+                        }
+                    ],
+                    "linkId": "2.11",
+                    "text": "Does the patient have a history of pulmonary disease?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.4",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "2.12",
+                    "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.11",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Pathology Details",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BleedingDisorder"
+                            }
+                        }
+                    ],
+                    "linkId": "3.1",
+                    "text": "Does the patient have any bleeding disorders?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BleedingDisorderManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "3.2",
+                    "text": "Is the patient under medication for the management of bleeding disorders?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.1",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "NeutrophilCount"
+                            }
+                        }
+                    ],
+                    "linkId": "3.3",
+                    "text": "Is the neutroplil count of the patient < 1500/mm3?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.4",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

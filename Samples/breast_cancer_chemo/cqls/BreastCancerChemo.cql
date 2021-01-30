@@ -38,6 +38,11 @@ valueset "Procedure for Medication Administration": '2.16.840.1.113883.3.6037.10
 valueset "Mastectomy and Lumpectomy": '2.16.840.1.113883.3.6037.1001.23.96.22'
 valueset "Stage type Clinical": '2.16.840.1.113883.3.6037.1001.23.96.23'
 valueset "Stage type Pathological": '2.16.840.1.113883.3.6037.1001.23.96.24'
+valueset "Clinical Tumor stage": '2.16.840.1.113883.3.6037.1001.23.96.25'
+valueset "Pathological Regional Lymph Nodes": '2.16.840.1.113883.3.6037.1001.23.96.26'
+valueset "Clinical Regional Lymph Nodes": '2.16.840.1.113883.3.6037.1001.23.96.27'
+valueset "Pathological Metastasis Stages": '2.16.840.1.113883.3.6037.1001.23.96.28'
+valueset "Clinical Metastasis Stages": '2.16.840.1.113883.3.6037.1001.23.96.29'
 
 parameter "MedicationRequest" MedicationRequest
 
@@ -67,34 +72,42 @@ define "BreastCancerStageType":
 			)
 
 define "HER2Observation":
-  [Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and exists(P.code.coding x where x in "HER2 Presence in Tissue")
-    and (P.value as CodeableConcept) in "Positive"
+	([Observation]P
+			where P.subject.reference.value = 'Patient/'+ Patient.id.value
+			and P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "HER2 Presence in Tissue")
+			and (P.value as CodeableConcept) in "Positive") O
+		with "MastectomyProcedure" P
+		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(effective)
 
 define "PRObservation":
-  [Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and exists(P.code.coding x where x in "Progesterone receptor")
-    and (P.value as CodeableConcept) in "Positive"
+	([Observation]P
+			where P.subject.reference.value = 'Patient/'+ Patient.id.value
+			and P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "Progesterone receptor")
+			and (P.value as CodeableConcept) in "Positive") O
+		with "MastectomyProcedure" P
+		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(effective)
 
 define "ERObservation":
-  [Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and exists(P.code.coding x where x in "Estrogen receptor")
-    and (P.value as CodeableConcept) in "Positive"
+	([Observation]P
+			where P.subject.reference.value = 'Patient/'+ Patient.id.value
+			and P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "Estrogen receptor")
+			and (P.value as CodeableConcept) in "Positive") O
+		with "MastectomyProcedure" P
+		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(effective)
 
 define "NeutrophilObservation":
-  Last([Observation]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value in {'final', 'amended', 'corrected'}
-		and exists(P.code.coding x where x in "Neutrophil")
+  Last(([Observation]P
+			where P.subject.reference.value = 'Patient/'+ Patient.id.value
+			and P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "Neutrophil")) O
+		with "MastectomyProcedure" P
+		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(effective)
 	)
 
@@ -179,10 +192,12 @@ define "BleedingConditions":
     and exists(C.code.coding x where x in "Bleeding Disorder")
 
 define "TumorSizeObservation":
-  Last([Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding C where C in "Tumor size") is not null
-		and exists(P.bodySite.coding co where co in "Breasts BodySite")
+  Last(([Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+			and P.status.value in {'final', 'amended', 'corrected'}
+			and First(P.code.coding C where C in "Tumor size") is not null
+			and exists(P.bodySite.coding co where co in "Breasts BodySite")) O
+		with "MastectomyProcedure" P
+		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(effective)
 	)
 
@@ -253,7 +268,7 @@ define "BleedingDisorder":
 	else false
 
 define "NeutrophilCount":
-	FHIRHelpers.ToQuantity("NeutrophilObservation".value).value<1500
+	FHIRHelpers.ToQuantity("NeutrophilObservation".value).value < 1500
 
 //define "TumorStage":
 //	if First(TumorCondition.stage).summary is not null

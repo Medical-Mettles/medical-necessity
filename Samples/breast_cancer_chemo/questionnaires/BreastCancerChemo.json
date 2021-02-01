@@ -69,7 +69,7 @@
                         }
                     ],
                     "linkId": "1.2",
-                    "text": "Size of tumour in cm",
+                    "text": "Tumor Size (cm)",
                     "type": "decimal",
                     "required": true
                 },
@@ -110,7 +110,7 @@
                         }
                     ],
                     "linkId": "1.4",
-                    "text": "Primary Tumour(T)",
+                    "text": "Primary Tumour (pT)",
                     "type": "text",
                     "required": true
                 },
@@ -149,7 +149,7 @@
                         }
                     ],
                     "linkId": "1.6",
-                    "text": "Regional Lymph nodes (N)",
+                    "text": "Regional Lymph nodes (pN)",
                     "type": "text",
                     "required": true
                 },
@@ -188,7 +188,7 @@
                         }
                     ],
                     "linkId": "1.8",
-                    "text": "Distant Metastasis (M)",
+                    "text": "Distant Metastasis (pM)",
                     "type": "text",
                     "required": true
                 },
@@ -240,7 +240,7 @@
         },
         {
             "linkId": "2",
-            "text": "Hormone Receptor Status / HER2 Status",
+            "text": "Tumor Markers",
             "type": "group",
             "item": [
                 {
@@ -254,7 +254,7 @@
                         }
                     ],
                     "linkId": "2.1",
-                    "text": "Is Estrogen receptor (ER) positive?",
+                    "text": "Hormone Receptor Status, ER Positive?",
                     "type": "boolean",
                     "required": true
                 },
@@ -269,7 +269,7 @@
                         }
                     ],
                     "linkId": "2.2",
-                    "text": "Is Progesterone receptor (PR) positive?",
+                    "text": "Hormone Receptor Status, PR Positive?",
                     "type": "boolean",
                     "required": true
                 },
@@ -284,134 +284,8 @@
                         }
                     ],
                     "linkId": "2.3",
-                    "text": "Is HER2 positive?",
+                    "text": "HER2 Status: HER2 positive?",
                     "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "LineOfTherapy"
-                            }
-                        }
-                    ],
-                    "linkId": "2.4",
-                    "text": "Is there a prior treatment with Chemotherapy?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "KnownAllergies"
-                            }
-                        }
-                    ],
-                    "linkId": "2.5",
-                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PreExistingConditions"
-                            }
-                        }
-                    ],
-                    "linkId": "2.6",
-                    "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ConditionsManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.7",
-                    "text": "Are the conditions managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.6",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "linkId": "2.8",
-                    "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.7",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryDiseaseHistory"
-                            }
-                        }
-                    ],
-                    "linkId": "2.9",
-                    "text": "Does the patient have a history of pulmonary disease?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.10",
-                    "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.9",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "linkId": "2.11",
-                    "text": "Specify the line of treatment used for managing pulmonary condition",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.10",
-                            "answerBoolean": true
-                        }
-                    ],
                     "required": true
                 }
 
@@ -419,7 +293,7 @@
         },
         {
             "linkId": "3",
-            "text": "Pathology Details",
+            "text": "Pre-existing Co-morbidities",
             "type": "group",
             "item": [
                 {
@@ -469,7 +343,147 @@
                         }
                     ],
                     "linkId": "3.3",
-                    "text": "Is the neutroplil count of the patient < 1500/mm3?",
+                    "text": "Are Neutrophil counts < 1500 /mm3?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PreExistingConditions"
+                            }
+                        }
+                    ],
+                    "linkId": "3.4",
+                    "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ConditionsManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "3.5",
+                    "text": "Are the conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.5",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "3.6",
+                    "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.5",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryDiseaseHistory"
+                            }
+                        }
+                    ],
+                    "linkId": "3.7",
+                    "text": "Does the patient have a history of pulmonary disease?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "3.8",
+                    "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.7",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "3.9",
+                    "text": "Specify the line of treatment used for managing pulmonary condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.9",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Allergies to Regimen Drugs",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "KnownAllergies"
+                            }
+                        }
+                    ],
+                    "linkId": "4.1",
+                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Line of Therapy",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "LineOfTherapy"
+                            }
+                        }
+                    ],
+                    "linkId": "5.1",
+                    "text": "Line of Therapy",
                     "type": "boolean",
                     "required": true
                 }

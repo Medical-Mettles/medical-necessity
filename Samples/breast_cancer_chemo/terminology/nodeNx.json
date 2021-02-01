@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.19",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.19",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.19"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes Nx",
+  "title": "Regional Lymph Nodes Nx",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "54452005",
+            "display": "pNX category (finding)"
+          },
+          {
+            "code": "373173008",
+            "display": "pNX: Regional lymph nodes cannot be assessed (e.g., previously removed, or not removed for pathologic study) (breast)"
+          },
+          {
+            "code": "79420006",
+            "display": "NX category (finding)"
+          },
+          {
+            "code": "436191000124102",
+            "display": "Neoplasm of breast regional lymph node staging category NX: Regional lymph nodes cannot be assessed (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -51,6 +51,7 @@
                     "answerOption": [
                         {
                             "valueString": "Clinical"
+                            
                         },
                         {
                             "valueString": "Pathological"
@@ -308,74 +309,11 @@
                             "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
                             "valueExpression": {
                                 "language": "text/cql",
-                                "expression": "PreviousChemotherapyDrug"
-                            }
-                        }
-                    ],
-                    "linkId": "2.5",
-                    "text": "Drugs used during the Chemotherapy",
-                    "type": "text",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true,
-                    "repeats": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ChemotherapyAdverseEffectsBoolean"
-                            }
-                        }
-                    ],
-                    "linkId": "2.6",
-                    "text": "Were there any adverse effects during previous treatment?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": true
-                        }
-                    ]
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "AdverseEffectsManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.7",
-                    "text": "Are the adverse affects being managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.6",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
                                 "expression": "KnownAllergies"
                             }
                         }
                     ],
-                    "linkId": "2.8",
+                    "linkId": "2.5",
                     "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
                     "type": "boolean",
                     "required": true
@@ -390,7 +328,7 @@
                             }
                         }
                     ],
-                    "linkId": "2.9",
+                    "linkId": "2.6",
                     "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
                     "type": "boolean",
                     "required": true
@@ -405,12 +343,24 @@
                             }
                         }
                     ],
-                    "linkId": "2.10",
+                    "linkId": "2.7",
                     "text": "Are the conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
                     "enableWhen": [
                         {
-                            "question": "2.9",
+                            "question": "2.6",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.8",
+                    "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.7",
                             "answerBoolean": true
                         }
                     ],
@@ -426,7 +376,7 @@
                             }
                         }
                     ],
-                    "linkId": "2.11",
+                    "linkId": "2.9",
                     "text": "Does the patient have a history of pulmonary disease?",
                     "type": "boolean",
                     "required": true
@@ -441,17 +391,30 @@
                             }
                         }
                     ],
-                    "linkId": "2.12",
+                    "linkId": "2.10",
                     "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
                     "enableWhen": [
                         {
-                            "question": "2.11",
+                            "question": "2.9",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.11",
+                    "text": "Specify the line of treatment used for managing pulmonary condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.10",
                             "answerBoolean": true
                         }
                     ],
                     "required": true
                 }
+
             ]
         },
         {

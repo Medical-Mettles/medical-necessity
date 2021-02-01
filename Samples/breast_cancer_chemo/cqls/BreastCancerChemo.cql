@@ -60,7 +60,13 @@ valueset "Tumor stage T4b": '2.16.840.1.113883.3.6037.1001.23.94.14'
 valueset "Tumor stage T4c": '2.16.840.1.113883.3.6037.1001.23.94.15'
 valueset "Tumor stage T4d": '2.16.840.1.113883.3.6037.1001.23.94.16'
 valueset "Regional Lymph Nodes N0": '2.16.840.1.113883.3.6037.1001.23.94.17'
-valueset "Metastasis Stages": '2.16.840.1.113883.3.6037.1001.23.94.18'
+valueset "Metastasis Stages M1": '2.16.840.1.113883.3.6037.1001.23.94.18'
+valueset "Regional Lymph Nodes Nx": '2.16.840.1.113883.3.6037.1001.23.94.19'
+valueset "Regional Lymph Nodes N1": '2.16.840.1.113883.3.6037.1001.23.94.20'
+valueset "Regional Lymph Nodes N2": '2.16.840.1.113883.3.6037.1001.23.94.21'
+valueset "Regional Lymph Nodes N3": '2.16.840.1.113883.3.6037.1001.23.94.22'
+valueset "Metastasis stage M0": '2.16.840.1.113883.3.6037.1001.23.94.23'
+
 
 parameter "MedicationRequest" MedicationRequest
 
@@ -114,15 +120,30 @@ define "pTStage":
 
 define "pNStagePathological":
 	if exists("BreastCancerCondition".stage S
-		where exists(S.summary.coding C where C in "Regional Lymph Nodes N0"))
-				then 'N0'
-				else ''
+		where exists(S.summary.coding C where C in "Regional Lymph Nodes Nx"))
+				then 'Nx'
+				else if exists("BreastCancerCondition".stage S
+							where exists(S.summary.coding C where C in "Regional Lymph Nodes N0"))
+									then 'N0'
+						else if exists("BreastCancerCondition".stage S
+								where exists(S.summary.coding C where C in "Regional Lymph Nodes N1"))
+										then 'N1'
+								else if exists("BreastCancerCondition".stage S
+										where exists(S.summary.coding C where C in "Regional Lymph Nodes N2"))
+												then 'N2'
+										else if exists("BreastCancerCondition".stage S
+												where exists(S.summary.coding C where C in "Regional Lymph Nodes N3"))
+														then 'N3'
+														else ''
 
 define "pMStagePathological":
     if exists("BreastCancerCondition".stage S
-		where exists(S.summary.coding C where C in "Metastasis Stages"))
-				then 'M1'
-				else 'M0'
+			where exists(S.summary.coding C where C in "Metastasis Stages M1"))
+			then 'M1'
+			else if exists("BreastCancerCondition".stage S
+					where exists(S.summary.coding C where C in "Metastasis stage M0"))
+							then 'M0'
+							else ''
 
 define "StagingType":
 	if exists("BreastCancerCondition"B
@@ -133,6 +154,37 @@ define "StagingType":
 				then 'Clinical'
 				else ''
 			)
+
+define "AnatomicStage":
+	if ({'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+	then 'Stage0'
+	else (if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
+				then 'StageIA'
+				else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
+							then 'StageIB'
+							else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+										then 'StageIIA'
+										else (if ({'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+												then 'StageIIB'
+												else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+															then 'StageIIIA'
+															else (if ({'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																		then 'StageIIIB'
+																		else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																					then 'StageIIIC'
+																					else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																								then 'StageIV'
+																								else ''
+																							)
+																				)
+																	)
+														)
+												)
+										)
+							)
+				)
+
+
 
 define "HER2Observation":
 	([Observation]P
@@ -210,6 +262,12 @@ define "ChemoDrugsAllergy":
 		where A.patient.reference.value = 'Patient/'+ Patient.id.value
     and First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Chemotherapy drugs allergy")
+
+define "AdverseEventsDrugs":
+	[AdverseEvent]A
+		where A.subject.reference.value = 'Patient/'+ Patient.id.value
+    and A.actuality in {'actual', 'potential'}
+    and exists(A.event.coding x where x in "Chemotherapy drugs allergy")
 
 define "MastectomyProcedure":
 	Last([Procedure]P
@@ -310,6 +368,11 @@ define "PreviousChemotherapyDrug":
 							where (P.medication as Reference).reference.value = 'Medication/'+med.id.value).code.coding[0].display.value+'\n')
 				)
 
+define "ChemotherapyAdverseEffectsBoolean":
+	if Last("AdverseEventsDrugs") is not null
+	then true
+	else false
+
 define "KnownAllergies":
 	if Last("ChemoDrugsAllergy") is not null
 	then true
@@ -368,3 +431,4 @@ define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Per
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).low),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).high) + 1 year)
 	else null
+

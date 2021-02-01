@@ -120,14 +120,14 @@ define QA25:
 		where I.linkId.value = '2.5')QR
 		return First(QR.answer).value
 
+define QA26:
+    ("QT".item I
+		where I.linkId.value = '2.6')QR
+		return First(QR.answer).value
+
 define QA27:
     ("QT".item I
 		where I.linkId.value = '2.7')QR
-		return First(QR.answer).value
-
-define QA28:
-    ("QT".item I
-		where I.linkId.value = '2.8')QR
 		return First(QR.answer).value
 
 define QA29:
@@ -137,17 +137,7 @@ define QA29:
 
 define QA210:
     ("QT".item I
-		where I.linkId.value = '2.10')QR
-		return First(QR.answer).value
-
-define QA211:
-    ("QT".item I
-		where I.linkId.value = '2.11')QR
-		return First(QR.answer).value
-
-define QA212:
-    ("QT".item I
-		where I.linkId.value = '2.12')QR
+		where I.linkId.value = '2.9')QR
 		return First(QR.answer).value
 
 define QA31:
@@ -170,23 +160,22 @@ define ChemoNotNeeded:
         ((First("QA21") = true)
         and (First("QA22")= true)
         and (First("QA23")= true)
-        and (First("QA24")= true)
-        and (First("QA27")= false))
+        and (First("QA24")= true))
         or
         ((First("QA21") = true)
         and (First("QA22")= true)
         and (First("QA23")= true)
         and (First("QA24")= false)
-        and (First("QA28") = false)
-        and (First("QA29") = true))
+        and (First("QA25") = false)
+        and (First("QA26") = true))
         or
         ((First("QA21") = true)
         and (First("QA22")= true)
         and (First("QA23")= true)
         and (First("QA24")= false)
-        and (First("QA28")= false)
+        and (First("QA25")= false)
+        and (First("QA26")= false)
         and (First("QA29")= false)
-        and (First("QA211")= false)
         and (First("QA31")= false)
         and (First("QA32")= true))
         )
@@ -195,27 +184,27 @@ define ChemoNotNeeded:
 
 define TrastuzumabNotNeeded:
     if ((First("QA24") = false)
-        and (First("QA28") = false)
-        and (First("QA29")= false)
-        and (First("QA210")= true))
+        and (First("QA25") = false)
+        and (First("QA26")= false)
+        and (First("QA27")= true))
         then true
         else false
 
 define DocetaxelNotNeeded:
     if ((First("QA24") = false)
-        and (First("QA28") = false)
-        and (First("QA29")= false)
-        and (First("QA211")= true)
-        and (First("QA212")= true))
+        and (First("QA25") = false)
+        and (First("QA26")= false)
+        and (First("QA29")= true)
+        and (First("QA210")= true))
         then true
         else false
 
 define CarboplatinNotNeeded:
     if ((First("QA24") = false)
-        and (First("QA28") = false)
-        and (First("QA29")= false)
-        and ((First("QA211")= false)
-                or (First("QA212")= true))
+        and (First("QA25") = false)
+        and (First("QA26")= false)
+        and ((First("QA29")= false)
+                or (First("QA210")= true))
         and (First("QA31") = true)
         and (First("QA32") = false))
         then true
@@ -226,11 +215,11 @@ define PrimaryDecision:
         and (First("QA22")= true)
         and (First("QA23")= true)
         and (First("QA24")= false)
-        and (First("QA28")= false)
+        and (First("QA25")= false)
+        and (First("QA26")= false)
         and (First("QA29")= false)
-        and (First("QA211")= false)
         and (First("QA31")= false)
-        and (First("QA32")= false))
+        and (First("QA33")= true))
         then true
         else false
 

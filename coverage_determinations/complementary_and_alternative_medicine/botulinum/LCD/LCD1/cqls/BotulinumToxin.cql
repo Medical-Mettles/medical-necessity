@@ -105,15 +105,15 @@ define TreatmentPerformed:
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
 			and First(P.outcome.coding) in "Unsuccessful"
-	 		and ToDate(start of "Normalize Interval"(P.performed)) after (Today()-1 year))
+	 		and "ProcedurePerformedInLastYear"(P.performed))
 
 define ExistsProcedure:
 	exists([Procedure]P
 	 	where P.subject.reference.value = 'Patient/'+ "Patient".id.value
 	 		and P.status.value = 'completed'
 			and First(P.outcome.coding) in "Unsuccessful"
-	 		and ToDate(start of "Normalize Interval"(P.performed)) after (Today()-1 year))
-
+	 		and "ProcedurePerformedInLastYear"(P.performed))
+		
 define IsTreatmentPerformed:
 	if ("ExistsProcedure" = true)
 	then true
@@ -121,6 +121,11 @@ define IsTreatmentPerformed:
 
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value
+
+define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if performed is null
+	then false
+	else ToDate(start of "Normalize Interval"(performed)) after (Today()-1 year)
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

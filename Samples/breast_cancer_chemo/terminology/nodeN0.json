@@ -1,0 +1,43 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.17",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.17",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.17"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes N0",
+  "title": "Regional Lymph Nodes N0",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "21917009",
+            "display": "pN0 category (finding)"
+          },
+          {
+            "code": "373151001",
+            "display": "pN0: No regional lymph node metastasis histologically (i.e., none greater than 0.2 mm), no additional examination for isolated tumor cells (breast) (finding)"
+          },
+          {
+            "code": "436231000124107",
+            "display": "Neoplasm of breast regional lymph node staging category pN0 as per American Joint Committee on Cancer 7th edition (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

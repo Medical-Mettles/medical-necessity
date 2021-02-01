@@ -89,8 +89,8 @@ define BleedingConditions:
 define TumorSizeObservation:
    BCChemo."TumorSizeObservation"
 
-define SizeofTumor:
-   BCChemo."SizeofTumor"
+define TumourSize:
+   BCChemo."TumourSize"
 
 define QT:
 	"QuestionnaireResponse".item
@@ -171,7 +171,6 @@ define ChemoNotNeeded:
         and (First("QA22")= true)
         and (First("QA23")= true)
         and (First("QA24")= true)
-        and (First("QA26")= true)
         and (First("QA27")= false))
         or
         ((First("QA21") = true)
@@ -191,7 +190,6 @@ define ChemoNotNeeded:
         and (First("QA31")= false)
         and (First("QA32")= true))
         )
-
         then true
         else false
 

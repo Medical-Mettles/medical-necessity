@@ -1,0 +1,44 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.06",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.06",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.06"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage Tis(Pagets)",
+  "title": "Tumor stage Tis(Pagets)",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          
+          {
+            "code": "436171000124103",
+            "display": "Neoplasm of breast primary tumor staging category Tis(Paget's) (finding)"
+          },
+          {
+            "code": "369907000",
+            "display": "Tis: Carcinoma in situ, breast: Intraductal carcinoma,lobular carcinoma in situ, or Paget's disease of the nipple with no tumour"
+          },
+          {
+            "code": "373178004",
+            "display": "pTis: Paget disease without invasive carcinoma (breast)(finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

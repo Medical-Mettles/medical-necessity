@@ -339,7 +339,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
-                            "question": "2.5",
+                            "question": "2.4",
                             "answerBoolean": true
                         }
                     ]
@@ -378,12 +378,6 @@
                     "linkId": "2.8",
                     "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
                     "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": false
-                        }
-                    ],
                     "required": true
                 },
                 {
@@ -399,12 +393,6 @@
                     "linkId": "2.9",
                     "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
                     "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": false
-                        }
-                    ],
                     "required": true
                 },
                 {
@@ -441,12 +429,6 @@
                     "linkId": "2.11",
                     "text": "Does the patient have a history of pulmonary disease?",
                     "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": false
-                        }
-                    ],
                     "required": true
                 },
                 {
@@ -526,12 +508,6 @@
                     "linkId": "3.3",
                     "text": "Is the neutroplil count of the patient < 1500/mm3?",
                     "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": true
-                        }
-                    ],
                     "required": true
                 }
             ]

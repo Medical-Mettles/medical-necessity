@@ -59,7 +59,7 @@
         {
           "linkId": "1.1",
           "text": "Relevant Diagnosis",
-          "type": "string",
+          "type": "open-choice",
           "required": true,
           "extension": [
             {
@@ -73,9 +73,31 @@
         },
         {
           "linkId": "1.2",
-          "text": "Details of Prior Treatment performed that was unsuccessful",
-          "type": "text",
+          "text": "Is any prior Prior Treatment performed ?",
+          "type": "boolean",
           "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IsTreatmentPerformed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Details of Prior Treatment performed that was unsuccessful",
+          "type": "open-choice",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "1.2",
+		          "operator": "=",
+              "answerBoolean": true
+            }
+          ],
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -150,8 +172,8 @@
         },
         {
           "linkId": "3.2",
-          "text": "Marginal Reflex Distance",
-          "type": "quantity",
+          "text": "Marginal Reflex Distance in mm",
+          "type": "integer",
           "required": true,
           "extension": [
             {

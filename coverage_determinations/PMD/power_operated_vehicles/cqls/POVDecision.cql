@@ -1,9 +1,9 @@
-library LowerLimbDecision version '1.0.0'
+library POVDecision version '1.0.0'
 
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include LowerLimbProsthesis version '1.0.0' called LLP
+include PowerOperatedVehicles version '1.0.0' called POV
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD-9-CM": 'http://hl7.org/fhir/sid/icd-9'
@@ -22,13 +22,6 @@ valueset "Body weight": '2.16.840.1.113762.1.4.1045.159'
 valueset "Height": '2.16.840.1.113883.3.464.1003.121.12.1014'
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Inpatient Encounter": '2.16.840.1.113883.3.117.1.7.1.23'
-valueset "Right Modifier": '2.16.840.1.113883.3.6037.1001.23.95.24'
-valueset "Left Modifier": '2.16.840.1.113883.3.6037.1001.23.95.25'
-valueset "Functionality Level 0": '2.16.840.1.113883.3.6037.1001.23.95.26'
-valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
-valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
-valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
-valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
 valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
@@ -42,146 +35,126 @@ define QT:
 	"QuestionnaireResponse".item
 
 define DeviceRequestHcpcsCoding: 
-    LLP."DeviceRequestHcpcsCoding"
+    POV."DeviceRequestHcpcsCoding"
 
 
 define DateOfOrder: 
-    LLP."DateOfOrder"
+    POV."DateOfOrder"
 
 
 define DescriptionOfItem: 
-    LLP."DescriptionOfItem"
+    POV."DescriptionOfItem"
 
 
 define DeviceOrderType: 
-    LLP."DeviceOrderType"
+    POV."DeviceOrderType"
 
 define StartDate: 
-    LLP."StartDate"
+    POV."StartDate"
 
 define Supplier: 
-	LLP."Supplier"
+	POV."Supplier"
 
 
 define SupplierName: 
-	LLP."SupplierName"
+	POV."SupplierName"
 
 
 define SupplierNPI:
-    LLP."SupplierNPI"
+    POV."SupplierNPI"
 
 
 define SupplierPTAN: 
-    LLP."SupplierPTAN"
+    POV."SupplierPTAN"
 
     
 define SupplierAddressObject: 
-	LLP."SupplierAddressObject"
+	POV."SupplierAddressObject"
 
 
 define SupplierAddress: 
-	LLP."SupplierAddress"
+	POV."SupplierAddress"
 
 define ServiceEncounter:
-	LLP."ServiceEncounter"
+	POV."ServiceEncounter"
 
 
 define ServiceCondition:
-	LLP."ServiceCondition"
+	POV."ServiceCondition"
 
 
 define RelevantDiagnosis:
-	LLP."RelevantDiagnosis"
+	POV."RelevantDiagnosis"
 
 define EncounterResource: 
-	LLP."EncounterResource"
+	POV."EncounterResource"
 
 define FaceToFaceEncounter:
-	LLP."FaceToFaceEncounter"
+	POV."FaceToFaceEncounter"
 
 define FFEncounter:
-    LLP."FFEncounter"
+    POV."FFEncounter"
         
 define InpatientEncounter:
-    LLP."InpatientEncounter"
+    POV."InpatientEncounter"
 
-define RightLowerLimb:
-    LLP."RightLowerLimb"
-
-define LeftLowerLimb:
-    LLP."LeftLowerLimb"
-
-define FL0:
-    LLP."FL0"
-
-define FL1:
-    LLP."FL1"
-
-define FL2:
-    LLP."FL2"
-
-define FL3:
-    LLP."FL3"
-
-define FL4:
-    LLP."FL4"
 
 define PhysicalExamination:
-    LLP."PhysicalExamination"
+    POV."PhysicalExamination"
 
 
 define PhysicalExaminationType:
-    LLP."PhysicalExaminationType"
+    POV."PhysicalExaminationType"
 
 
 define ComorbiditiesType:
-    LLP."ComorbiditiesType"
+    POV."ComorbiditiesType"
 
 
 define Comorbidities:
-    LLP."Comorbidities"
+    POV."Comorbidities"
 
 
 define MobilityDiagnosis: 
-    LLP."MobilityDiagnosis"
+    POV."MobilityDiagnosis"
 
 
 define Mobility:
-    LLP."Mobility"
+    POV."Mobility"
 
 
 define MobilityEstimation:
-    LLP."MobilityEstimation"
+    POV."MobilityEstimation"
 
 
 define Musculoskeletal:
-    LLP."Musculoskeletal"
+    POV."Musculoskeletal"
 
 
 define MusculoskeletalAnalysis:
-    LLP."MusculoskeletalAnalysis"
+    POV."MusculoskeletalAnalysis"
 
 
 define Neurological:
-    LLP."Neurological"
+    POV."Neurological"
 
 
 define NeurologicalAnalysis:
-    LLP."NeurologicalAnalysis"
+    POV."NeurologicalAnalysis"
 
 
 define CardioPulmonary:
-    LLP."CardioPulmonary"
+    POV."CardioPulmonary"
 
 
 define CardioPulmonaryAnalysis:
-    LLP."CardioPulmonaryAnalysis"
+    POV."CardioPulmonaryAnalysis"
 
 define Weight:
-    LLP."Weight"
+    POV."Weight"
 
 define PatientHeight:
-    LLP."PatientHeight"
+    POV."PatientHeight"
 
 define QuantityOfItem:
     First("Claim".item).quantity.value
@@ -194,6 +167,57 @@ define QA61:
 define QA62:
 	("QT".item I
 		where I.linkId.value = '6.2')QR
+		return First(QR.answer).value
+
+define QA63:
+	("QT".item I
+		where I.linkId.value = '6.3')QR
+		return First(QR.answer).value
+
+define QA64:
+	("QT".item I
+		where I.linkId.value = '6.4')QR
+		return First(QR.answer).value
+
+define QA65:
+	("QT".item I
+		where I.linkId.value = '6.5')QR
+		return First(QR.answer).value
+
+define QA66:
+	("QT".item I
+		where I.linkId.value = '6.6')QR
+		return First(QR.answer).value
+
+define QA67:
+	("QT".item I
+		where I.linkId.value = '6.7')QR
+		return First(QR.answer).value
+
+define QA68:
+	("QT".item I
+		where I.linkId.value = '6.8')QR
+		return First(QR.answer).value
+
+define QA69:
+	("QT".item I
+		where I.linkId.value = '6.9')QR
+		return First(QR.answer).value
+
+define QA610:
+	("QT".item I
+		where I.linkId.value = '6.10')QR
+		return First(QR.answer).value
+
+define QA611:
+	("QT".item I
+		where I.linkId.value = '6.11')QR
+		return First(QR.answer).value
+
+
+define QA612:
+	("QT".item I
+		where I.linkId.value = '6.12')QR
 		return First(QR.answer).value
 
 
@@ -211,7 +235,7 @@ define SupplierDetails:
         then true
         else false
 
-define ClinicalExamination:
+define ClinicalAnalysis:
     if (("ServiceCondition" is not null)
         and ("PhysicalExamination" is not null)
         and ("MusculoskeletalAnalysis" = true)
@@ -222,26 +246,41 @@ define ClinicalExamination:
         then true
         else false
 
-define EncounterFaceToFace:
+define EncounterFF:
     if (("FFEncounter" = false) and ("FaceToFaceEncounter" is not null)
         or ("FFEncounter" = true) and ("FaceToFaceEncounter" is null))
         then true
         else false
 
 define ModifierDecision:
-    if (((First("QA61").value = 'Left') or (First("QA61").value = 'Right') or (First("QA61").value = 'Both'))
-        and ((First("QA62").value  = 'Level 0')
-                or (First("QA62").value = 'Level 1')
-                 or (First("QA62").value  = 'Level 2')
-                  or (First("QA62").value  = 'Level 3')
-                   or (First("QA62").value = 'Level 4')))
-                   then true
-                   else false
+    if ((First("QA71").value = 'GA') or (First("QA71").value = 'GZ'))
+        then true
+        else false
+
+define QuestionnaireRequirements:
+    if ((First("QA61").value  = true)
+        and (First("QA62").value  = true)
+        and (First("QA63").value  = true)
+        and (First("QA64").value  = true)
+        and (First("QA65").value  = true)
+        and (First("QA66").value  = true)
+        and (First("QA67").value  = true)
+        and (First("QA68").value  = true)
+        and (First("QA69").value  = true)
+        and (First("QA610").value  = true)
+        and (First("QA611").value  = true)
+        and (First("QA612").value  = true))
+        then true
+        else false
+
 
 define PrimaryDecision:
     if (("OrderDetails" = true)
-        and ("ClinicalExamination" = true)
-        and ("ModifierDecision" = true))
+        and ("SupplierDetails" = true)
+        and ("ClinicalAnalysis" = true)
+        and ("EncounterFF" = true)
+        and ("QuestionnaireRequirements" = true)
+        and ("ModifierDecision" = false))
         then true 
         else false
 

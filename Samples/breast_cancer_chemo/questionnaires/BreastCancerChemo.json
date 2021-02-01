@@ -31,7 +31,7 @@
     "item": [
         {
             "linkId": "1",
-            "text": "Staging of Cancer",
+            "text": "Staging",
             "type": "group",
             "item": [
                 {
@@ -45,7 +45,7 @@
                         }
                     ],
                     "linkId": "1.1",
-                    "text": "Type of Cancer Staging?",
+                    "text": "Cancer Staging Type",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
@@ -69,7 +69,7 @@
                         }
                     ],
                     "linkId": "1.2",
-                    "text": "Size of the tumour in cm?",
+                    "text": "Size of tumour in cm",
                     "type": "decimal",
                     "required": true
                 },
@@ -84,18 +84,18 @@
                         }
                     ],
                     "linkId": "1.3",
-                    "text": "Laterality of the Cancer",
+                    "text": "Laterality of Tumor",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
                         {
-                            "valueString": "left"
+                            "valueString": "Left"
                         },
                         {
-                            "valueString": "right"
+                            "valueString": "Right"
                         },
                         {
-                            "valueString": "bilateral"
+                            "valueString": "Bilateral"
                         }
                     ]
                 },
@@ -110,7 +110,7 @@
                         }
                     ],
                     "linkId": "1.4",
-                    "text": "Stage of Primary Tumour(T)",
+                    "text": "Primary Tumour(T)",
                     "type": "text",
                     "required": true
                 },
@@ -125,7 +125,7 @@
                         }
                     ],
                     "linkId": "1.5",
-                    "text": "Stage of Regional Lymph nodes (N)",
+                    "text": "Regional Lymph nodes (N)",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -149,7 +149,7 @@
                         }
                     ],
                     "linkId": "1.6",
-                    "text": "Stage of Regional Lymph nodes (N)",
+                    "text": "Regional Lymph nodes (N)",
                     "type": "text",
                     "required": true
                 },
@@ -164,7 +164,7 @@
                         }
                     ],
                     "linkId": "1.7",
-                    "text": "Stage of Metastasis (M)",
+                    "text": "Distant Metastasis (M)",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -188,7 +188,7 @@
                         }
                     ],
                     "linkId": "1.8",
-                    "text": "Stage of Metastasis (M)",
+                    "text": "Distant Metastasis (M)",
                     "type": "text",
                     "required": true
                 },
@@ -203,7 +203,7 @@
                         }
                     ],
                     "linkId": "1.9",
-                    "text": "Anatomic Stage of Cancer",
+                    "text": "TNM Staging",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
@@ -240,7 +240,7 @@
         },
         {
             "linkId": "2",
-            "text": "Prognosis",
+            "text": "Hormone Receptor Status / HER2 Status",
             "type": "group",
             "item": [
                 {

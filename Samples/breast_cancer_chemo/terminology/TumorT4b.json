@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.14",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.14",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.14"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T4b",
+  "title": "Tumor stage T4b",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "373187008",
+            "display": "pT4b: Tumour of any size with oedema (including peaud'orange) or ulceration of the skin of the breast or satellite skin nodules confined to the same breast"
+          },
+          {
+            "code": "443736009",
+            "display": "pT4b category (finding)"
+          },
+          {
+            "code": "433501000124105",
+            "display": "Neoplasm of colon primary tumor staging category T4b:Tumor directly invades or is adherent to other organ or structure (finding)"
+          },
+          {
+            "code": "436141000124106",
+            "display": "Neoplasm of breast primary tumor staging category T4b: Ulceration and/or ipsilateral satellite nodules and/or edema (including peau d'orange) of the skin, excluding inflammatory carcinoma (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -94,13 +94,22 @@
             "required": true,
             "answerOption": [
               {
-                "valueString": "left"
+                "valueCoding": {
+                    "code": "left",
+                    "display": "left"
+              }
+            },
+              {
+                "valueCoding": {
+                    "code": "right",
+                    "display": "right"
+                }
               },
               {
-                "valueString": "right"
-              },
-              {
-                "valueString": "bilateral"
+                "valueCoding": {
+                    "code": "bilateral",
+                    "display": "bilateral"
+                }
               }
             ]
           },
@@ -213,31 +222,58 @@
             "required": true,
             "answerOption": [
               {
-                "valueString": "Stage0"
+                "valueCoding": {
+                    "code": "Stage0",
+                    "display": "Stage0"
+                }
               },
               {
-                "valueString": "StageIA"
+                "valueCoding": {
+                    "code": "StageIA",
+                    "display": "StageIA"
+                }
               },
               {
-                "valueString": "StageIB"
+                "valueCoding": {
+                    "code": "StageIB",
+                    "display": "StageIB"
+                }
               },
               {
-                "valueString": "StageIIA"
+                "valueCoding": {
+                    "code": "StageIIA",
+                    "display": "StageIIA"
+                }
               },
               {
-                "valueString": "StageIIB"
+                "valueCoding": {
+                    "code": "StageIIB",
+                    "display": "StageIIB"
+                }
               },
               {
-                "valueString": "StageIIIA"
+                "valueCoding": {
+                    "code": "StageIIIA",
+                    "display": "StageIIIA"
+                }
               },
               {
-                "valueString": "StageIIIB"
+                "valueCoding": {
+                    "code": "StageIIIB",
+                    "display": "StageIIIB"
+                }
               },
               {
-                "valueString": "StageIIIC"
+                "valueCoding": {
+                    "code": "StageIIIC",
+                    "display": "StageIIIC"
+                }
               },
               {
-                "valueString": "StageIV"
+                "valueCoding": {
+                    "code": "StageIV",
+                    "display": "StageIV"
+                }
               }
             ]
           }

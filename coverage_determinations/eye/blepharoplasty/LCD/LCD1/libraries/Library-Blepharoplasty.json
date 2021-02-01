@@ -106,12 +106,6 @@
       ]
     },
     {
-      "type": "Encounter"
-    },
-    {
-      "type": "ServiceRequest"
-    },
-    {
       "type": "Observation",
       "codeFilter": [
         {

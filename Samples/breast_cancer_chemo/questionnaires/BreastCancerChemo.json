@@ -310,7 +310,7 @@
                         }
                     ],
                     "linkId": "2.2",
-                    "text": "Hormone Receptor Status, PR Positive?",
+                    "text": "Progesterone Receptor Status, PR Positive?",
                     "type": "boolean",
                     "required": true
                 },

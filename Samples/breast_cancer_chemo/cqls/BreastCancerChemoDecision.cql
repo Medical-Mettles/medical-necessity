@@ -133,7 +133,7 @@ define QA51:
 define QA41:
     ("QT".item I
 		where I.linkId.value = '4.1')QR
-		return First(QR.answer).value.value
+		return First(QR.answer).value
 
 define QA24:
     ("QT".item I
@@ -304,7 +304,7 @@ define PrimaryDecision:
     if ((First("QA31") = true)
         and (First("QA32")= true)
         and (First("QA33")= true)
-        //and (First("QA41")= 1)
+        and (First("QA41")= 1)
         and (First("QA51")= false)
         and (First("QA24")= false)
         and (First("QA27")= false)

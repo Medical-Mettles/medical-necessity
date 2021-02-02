@@ -1,0 +1,373 @@
+{
+    "resourceType":"Questionnaire",
+      "identifier": [
+        {
+          "system": "http://identifiers.mettles.com/prior_authorization",
+          "value": "medicare-HomeHealthService"
+        }
+      ],
+      "name": "HomeHealthService",
+      "title": "HomeHealthService",
+      "status": "draft",
+      "subjectType": [
+        "Patient"
+      ],
+      "date": "2019-12-03",
+      "publisher": "Mettle Solutions",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+          "valueCanonical": "Library/library-homehealth-HomeHealthService"
+        }
+      ],
+      "contained": [
+        {
+          "resourceType": "ValueSet",
+          "id": "gender",
+          "name": "Gender",
+          "status": "draft",
+          "description": "Gender",
+          "compose": {
+            "include": [
+              {
+                "concept": [
+                  {
+                    "code": "male",
+                    "display": "Male"
+                  },
+                  {
+                    "code": "female",
+                    "display": "Female"
+                  },
+                  {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+    "item":[
+       {
+          "linkId":"1",
+          "text":"Home Health Agency Information",
+          "type":"group",
+          "item":[
+             {
+                "linkId":"1.1",
+                "text":"Agency Name",
+                "type":"string",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"AgencyName"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"1.2",
+                "text":"Agency’s NPI",
+                "type":"string",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"AgencyNPI"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"1.3",
+                "text":"CMS Certification Number",
+                "type":"string",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"CMSCertificationNumber"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"1.4",
+                "text":"Agency PTAN",
+                "type":"string",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"AgencyPTAN"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"1.5",
+                "text":"Agency’s Address",
+                "type":"string",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"AgencyAddress"
+                        }
+                   }
+                ]
+             }
+          ]
+       },
+       {
+          "linkId":"2",
+          "text":"Order Information",
+          "type":"group",
+          "item":[
+             {
+                "linkId":"2.1",
+                "text":"Benefit period requested",
+                "type":"choice",
+                "required":true,
+                "answerOption":[
+                   {
+                      "valueCoding":{
+                         "code":"Initial"
+                      } 
+                   },
+                   {
+                      "valueCoding":{
+                         "code":"Subsequent"
+                      }
+                   }
+                ],
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"BenefitPeriodType"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.2",
+                "text":"Submission Date",
+                "type":"date",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"SubmissionDate"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.4",
+                "text":"Start Date of the 60-day episode of care",
+                "type":"date",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"StartDateEpisode"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.5",
+                "text":"End Date of the 60-day episode of care",
+                "type":"date",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"EndDate"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.6",
+                "text":"Type of request",
+                "type":"open-choice",
+                "required":true,
+                "answerOption":[
+                   {
+                      "valueCoding":{
+                         "code":"Initial"
+                      }
+                   },
+                   {
+                      "valueCoding":{
+                         "code":"Resubmission review"
+                      }
+                   }
+                ],
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"TypeOfRequest"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.7",
+                "text":"Is the number of episodes being requested more than one?",
+                "type":"boolean",
+                "required":true
+             },
+             {
+                "linkId":"2.8",
+                "text":"Number of episodes being requested",
+                "type":"integer",
+                "required":true,
+                "enableWhen":[
+                   {
+                      "question":"2.7",
+                      "answerBoolean":true
+                   }
+                ],
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                          "language" : "text/cql",
+                          "expression" :"NumofEpisodes"
+                        }
+                   }
+                ]
+             },
+             {
+                "linkId":"2.9",
+                "text":"State where service is rendered",
+                "type":"open-choice",
+                "required":true,
+                "answerValueSet": "#states",
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" :"start"
+                     }
+                  }
+                ]
+             }
+          ]
+       },
+       {
+          "linkId":"3",
+          "text":"Clinical Information",
+          "type":"group",
+          "item":[
+             {
+                "linkId":"3.1",
+                "text":"Is the beneficiary confined to the home at the time of services?",
+                "type":"boolean",
+                "required":true,
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" :"InabilityToLeaveHome"
+                     }
+                  }
+                ]
+             },
+             {
+                "linkId":"3.2",
+                "text":"Is the beneficiary receiving services under a plan of care established and periodically reviewed by a physician?",
+                "type":"boolean",
+                "required":true,
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" : "UnderCare"
+                     }
+                   }
+                ]
+             },
+             {
+                "linkId":"3.3",
+                "text":"Is the beneficiary in need of skilled services",
+                "type":"boolean",
+                "required":true,
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" : "NeedSkilledServices"
+                     }
+                   }
+                ]
+             },
+             {
+                "linkId":"3.4",
+                "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
+                "type":"boolean",
+                "required":true,
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" : "FToFEncounter"
+                     }
+                   }
+                ]
+             },
+             {
+                "linkId":"3.5",
+                "text":"Date of face-to-face encounter",
+                "type":"date",
+                "enableWhen":[
+                   {
+                      "question":"3.4",
+                      "answerBoolean":true
+                   }
+                ],
+                "extension":[
+                  {
+                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                     "valueExpression" : {
+                       "language" : "text/cql",
+                       "expression" : "FToFEncounterDate"
+                     }
+                   }
+                ]
+             }
+          ]
+       }
+    ]
+ }
+ 

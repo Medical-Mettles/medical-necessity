@@ -1,4 +1,4 @@
-library LowerLimbProsthesis version '1.0.0'
+library PowerOperatedVehicles version '1.0.0'
 
 using FHIR version '4.0.0'
 
@@ -21,13 +21,6 @@ valueset "Body weight": '2.16.840.1.113762.1.4.1045.159'
 valueset "Height": '2.16.840.1.113883.3.464.1003.121.12.1014'
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Inpatient Encounter": '2.16.840.1.113883.3.117.1.7.1.23'
-valueset "Right Modifier": '2.16.840.1.113883.3.6037.1001.23.95.24'
-valueset "Left Modifier": '2.16.840.1.113883.3.6037.1001.23.95.25'
-valueset "Functionality Level 0": '2.16.840.1.113883.3.6037.1001.23.95.26'
-valueset "Functionality Level 1": '2.16.840.1.113883.3.6037.1001.23.95.27'
-valueset "Functionality Level 2": '2.16.840.1.113883.3.6037.1001.23.95.28'
-valueset "Functionality Level 3": '2.16.840.1.113883.3.6037.1001.23.95.29'
-valueset "Functionality Level 4": '2.16.840.1.113883.3.6037.1001.23.95.30'
 valueset "Physical Examination": '2.16.840.1.113883.3.6037.1001.23.95.31'
 
 
@@ -125,53 +118,6 @@ define LeftLowerLimb:
     exists("DeviceRequest".extension ext
     where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Left Modifier"))
 
-define FL0:
-    exists("DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 0"))
-
-define FL1:
-    exists("DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 1"))
-
-define FL2:
-    exists("DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 2"))
-
-define FL3:
-    exists("DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 3"))
-
-define FL4:
-    exists("DeviceRequest".extension ext
-    where exists(ext.extension E where First((E.value as CodeableConcept).coding) in "Functionality Level 4"))
-
-define RightorLeft:
-    if (("RightLowerLimb" = true) and ("LeftLowerLimb" = false))
-        then 'Right'
-        else
-        if (("LeftLowerLimb" = true) and ("RightLowerLimb" = false))
-        then 'Left' 
-        else
-        if (("RightLowerLimb"  = true) and ("LeftLowerLimb" = false))
-        then 'Both' 
-        else null
-
-define FunctionalLevel:
-    if ("FL0" = true)
-        then 'Level 0'
-        else
-        if ("FL1" = true)
-        then 'Level 1' 
-        else
-        if ("FL2" = true)
-        then 'Level 2' 
-        else
-        if ("FL3" = true)
-        then 'Level 3'
-        else
-        if ("FL4" = true)
-        then 'Level 4'
-        else null
 
 define PhyExam:
     First([Procedure] P

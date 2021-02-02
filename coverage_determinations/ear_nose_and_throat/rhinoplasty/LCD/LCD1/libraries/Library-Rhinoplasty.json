@@ -19,21 +19,6 @@
   ],
   "dataRequirement": [
     {
-      "type": "Coverage"
-    },
-    {
-      "type": "Encounter"
-    },
-    {
-      "type": "Organization"
-    },
-    {
-      "type": "Practitioner"
-    },
-    {
-      "type": "ServiceRequest"
-    },
-    {
       "type": "DocumentReference",
       "codeFilter": [
         {

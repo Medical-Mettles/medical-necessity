@@ -35,9 +35,12 @@ valueset "Breasts BodySite": '2.16.840.1.113883.3.6037.1001.23.96.18'
 valueset "Left breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.19'
 valueset "Right breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.20'
 valueset "Bilateral breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.21'
+valueset "Docetaxel": '2.16.840.1.113883.3.6037.1001.23.94.24'
+valueset "Trastuzumab": '2.16.840.1.113883.3.6037.1001.23.94.25'
+valueset "Carboplatin": '2.16.840.1.113883.3.6037.1001.23.94.26'
 
-parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
+
 
 context Patient
 
@@ -92,56 +95,23 @@ define TumorSizeObservation:
 define TumourSize:
    BCChemo."TumourSize"
 
+define DocetaxelMedication:
+   exists([MedicationRequest] MR
+      where First((MR.medication as CodeableConcept).coding) in "Docetaxel")
+
+define CarboplatinMedication:
+   exists([MedicationRequest] MR
+      where First((MR.medication as CodeableConcept).coding) in "Carboplatin")
+
+define TrastuzumabMedication:
+   exists([MedicationRequest] MR
+      where First((MR.medication as CodeableConcept).coding) in "Trastuzumab")
+
 define QT:
 	"QuestionnaireResponse".item
 
-define QA21:
-	("QT".item I
-		where I.linkId.value = '2.1')QR
-		return First(QR.answer).value
-
-define QA22:
-    ("QT".item I
-		where I.linkId.value = '2.2')QR
-		return First(QR.answer).value
-
-define QA23:
-    ("QT".item I
-		where I.linkId.value = '2.3')QR
-		return First(QR.answer).value
-
-define QA24:
-    ("QT".item I
-		where I.linkId.value = '2.4')QR
-		return First(QR.answer).value
-
-define QA25:
-    ("QT".item I
-		where I.linkId.value = '2.5')QR
-		return First(QR.answer).value
-
-define QA26:
-    ("QT".item I
-		where I.linkId.value = '2.6')QR
-		return First(QR.answer).value
-
-define QA27:
-    ("QT".item I
-		where I.linkId.value = '2.7')QR
-		return First(QR.answer).value
-
-define QA29:
-    ("QT".item I
-		where I.linkId.value = '2.9')QR
-		return First(QR.answer).value
-
-define QA210:
-    ("QT".item I
-		where I.linkId.value = '2.9')QR
-		return First(QR.answer).value
-
 define QA31:
-    ("QT".item I
+	("QT".item I
 		where I.linkId.value = '3.1')QR
 		return First(QR.answer).value
 
@@ -155,78 +125,209 @@ define QA33:
 		where I.linkId.value = '3.3')QR
 		return First(QR.answer).value
 
+define QA51:
+    ("QT".item I
+		where I.linkId.value = '5.1')QR
+		return First(QR.answer).value
+
+define QA41:
+    ("QT".item I
+		where I.linkId.value = '4.1')QR
+		return First(QR.answer).value
+
+define QA24:
+    ("QT".item I
+		where I.linkId.value = '2.4')QR
+		return First(QR.answer).value
+
+define QA25:
+    ("QT".item I
+		where I.linkId.value = '2.5')QR
+		return First(QR.answer).value
+
+define QA27:
+    ("QT".item I
+		where I.linkId.value = '2.7')QR
+		return First(QR.answer).value
+
+define QA28:
+    ("QT".item I
+		where I.linkId.value = '2.8')QR
+		return First(QR.answer).value
+
+define QA21:
+    ("QT".item I
+		where I.linkId.value = '2.1')QR
+		return First(QR.answer).value
+
+define QA22:
+    ("QT".item I
+		where I.linkId.value = '2.2')QR
+		return First(QR.answer).value
+
+define QA23:
+    ("QT".item I
+		where I.linkId.value = '2.3')QR
+		return First(QR.answer).value
+
 define ChemoNotNeeded:
     if (
-        ((First("QA21") = true)
-        and (First("QA22")= true)
-        and (First("QA23")= true)
-        and (First("QA24")= true))
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41") >1))
         or
-        ((First("QA21") = true)
-        and (First("QA22")= true)
-        and (First("QA23")= true)
-        and (First("QA24")= false)
-        and (First("QA25") = false)
-        and (First("QA26") = true))
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51") = false)
+        and (First("QA24") = true)
+        and (First("QA25") = false))
         or
-        ((First("QA21") = true)
-        and (First("QA22")= true)
-        and (First("QA23")= true)
-        and (First("QA24")= false)
-        and (First("QA25")= false)
-        and (First("QA26")= false)
-        and (First("QA29")= false)
-        and (First("QA31")= false)
-        and (First("QA32")= true))
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51")= false)
+        and (First("QA21") = false)
+        and (First("QA23")= true))
+        or
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51")= false)
+        and (First("QA21") = true)
+        and (First("QA22") = true)
+        and (First("QA23")= true))
+        or 
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51") = false)
+        and (First("QA27") = true)
+        and (First("QA28") = false))
+        or 
+        ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51") = false)
+        and (First("QA21") = true)
+        and (First("QA22") = false))
         )
         then true
         else false
 
 define TrastuzumabNotNeeded:
-    if ((First("QA24") = false)
-        and (First("QA25") = false)
-        and (First("QA26")= false)
-        and (First("QA27")= true))
+    if ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51") = false)
+        and (First("QA24")= false)
+        and (First("QA25")= true))
         then true
         else false
+
+define TrastuzumabFinal:
+   if (("ChemoNotNeeded" = false)
+         and ("TrastuzumabMedication" = true)
+         and ("TrastuzumabNotNeeded" = false)
+         and (First("QA31") = true)
+         and (First("QA32")= true)
+         and (First("QA33")= true)
+         and (First("QA41")= 1)
+         and (First("QA51")= false)
+         and (First("QA24")= false)
+         and (First("QA27")= false)
+         and (First("QA21")= false)
+         and (First("QA23")= false))
+         then 'YES'
+         else 'NO'
 
 define DocetaxelNotNeeded:
-    if ((First("QA24") = false)
-        and (First("QA25") = false)
-        and (First("QA26")= false)
-        and (First("QA29")= true)
-        and (First("QA210")= true))
+    if ((First("QA41") = 1)
+        and (First("QA51") = false)
+        and (First("QA24")= false)
+        and (First("QA27")= true)
+        and (First("QA28")= true))
         then true
         else false
+
+define DocetaxelFinal:
+   if (("ChemoNotNeeded" = false)
+         and ("DocetaxelMedication" = true)
+         and ("DocetaxelNotNeeded" = false)
+         and (First("QA31") = true)
+         and (First("QA32")= true)
+         and (First("QA33")= true)
+         and (First("QA41")= 1)
+         and (First("QA51")= false)
+         and (First("QA24")= false)
+         and (First("QA27")= false)
+         and (First("QA21")= false)
+         and (First("QA23")= false))
+         then 'YES'
+         else 'NO'
 
 define CarboplatinNotNeeded:
-    if ((First("QA24") = false)
-        and (First("QA25") = false)
-        and (First("QA26")= false)
-        and ((First("QA29")= false)
-                or (First("QA210")= true))
-        and (First("QA31") = true)
-        and (First("QA32") = false))
+    if ((First("QA41") = 1)
+        and (First("QA51") = false)
+        and (First("QA24")= false)
+        and ((First("QA27")= false)
+                or (First("QA28")= true))
+        and (First("QA21") = true)
+        and (First("QA22") = false))
         then true
         else false
 
+define CarboplatinFinal:
+    if (("ChemoNotNeeded" = false)
+         and ("CarboplatinMedication" = true)
+         and ("CarboplatinNotNeeded" = false)
+         and (First("QA31") = true)
+         and (First("QA32")= true)
+         and (First("QA33")= true)
+         and (First("QA41")= 1)
+         and (First("QA51")= false)
+         and (First("QA24")= false)
+         and (First("QA27")= false)
+         and (First("QA21")= false)
+         and (First("QA23")= false))
+         then 'YES'
+         else 'NO'
+
 define PrimaryDecision:
-    if ((First("QA21") = true)
-        and (First("QA22")= true)
-        and (First("QA23")= true)
+    if ((First("QA31") = true)
+        and (First("QA32")= true)
+        and (First("QA33")= true)
+        and (First("QA41")= 1)
+        and (First("QA51")= false)
         and (First("QA24")= false)
-        and (First("QA25")= false)
-        and (First("QA26")= false)
-        and (First("QA29")= false)
-        and (First("QA31")= false)
-        and (First("QA33")= true))
+        and (First("QA27")= false)
+        and (First("QA21")= false)
+        and (First("QA23")= false)
+        and ("DocetaxelMedication" = true)
+        and ("CarboplatinMedication" = true)
+        and ("TrastuzumabMedication" = true))
         then true
         else false
 
 define FinalDecision:
-    if (("PrimaryDecision" = true))
-        then 'YES'
-        else 'NO'
+    if (("PrimaryDecision" = true) and ("ChemoNotNeeded" = true))
+        then 'NO'
+        else if (("PrimaryDecision" = true) and  ("TrastuzumabNotNeeded" = true))
+            then 'TRASTUZUMAB NOT NEEDED FOR TREATMENT REGIMEN'
+               else if (("PrimaryDecision" = true) and  ("DocetaxelNotNeeded" = true))
+                  then 'DOCETAXEL NOT NEEDED FOR TREATMENT REGIMEN'
+                     else if (("PrimaryDecision" = true) and  ("CarboplatinNotNeeded" = true))
+                        then 'CARBOPLATIN NOT NEEDED FOR TREATMENT REGIMEN'
+                           else if (("PrimaryDecision" = true) and ("ChemoNotNeeded" = false) and ("TrastuzumabNotNeeded" = false) and ("DocetaxelNotNeeded" = false) and ("CarboplatinNotNeeded" = false))
+                              then 'YES'
+                              else 'NO'
 
 
 

@@ -13,6 +13,35 @@
   "subjectType": [
     "Patient"
   ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "states",
+      "name": "States",
+      "status": "draft",
+      "description": "States",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "VT",
+                "display": "Vermont"
+              },
+              {
+                "code": "WA",
+                "display": "Washington"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
   "date": "2019-12-03",
   "publisher": "Mettle Solutions",
   "extension": [
@@ -31,7 +60,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "AmbulanceSupplierName"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AmbulanceSupplierName"
+              }
             }
           ],
           "linkId": "1.1",
@@ -43,7 +75,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "AmbulanceSupplierNPI"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AmbulanceSupplierNPI"
+              }
             }
           ],
           "linkId": "1.2",
@@ -55,7 +90,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "SupplierAddressLine"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressLine"
+              }
             }
           ],
           "linkId": "1.3",
@@ -67,7 +105,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "SupplierAddressCity"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressCity"
+              }
             }
           ],
           "linkId": "1.4",
@@ -79,7 +120,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "SupplierAddressState"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressState"
+              }
             }
           ],
           "linkId": "1.5",
@@ -91,7 +135,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "SupplierAddressPostalCode"
+              "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "SupplierAddressPostalCode"
+              }
             }
           ],
           "linkId": "1.6",
@@ -111,6 +158,7 @@
           "text": "Purpose of transport ",
           "type": "open-choice",
           "required": true,
+          "repeats": true,
           "answerOption": [
             {
               "valueString": "Dialysis"
@@ -503,7 +551,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "NumofTransports"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NumofTransports"
+              }
             }
           ],
           "linkId": "3.1",
@@ -515,7 +566,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "StartDate"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StartDate"
+              }
             }
           ],
           "linkId": "3.2",
@@ -527,7 +581,10 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "TransportState"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TransportState"
+              }
             }
           ],
           "linkId": "3.3",
@@ -546,31 +603,86 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "TransportFrom"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TransportFrom"
+              }
             }
           ],
           "linkId": "3.5",
           "text": "Origin of Transport",
           "type": "text",
-          "enableWhen": [
-            {
-              "question": "3.4",
-              "operator": "=",
-              "answerBoolean": false
-            }
-          ],
           "required": true
         },
         {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueString": "TransportTo"
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TransportTo"
+              }
             }
           ],
           "linkId": "3.6",
           "text": "Destination of Transport",
           "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Typeofrequest"
+              }
+            }
+          ],
+          "linkId": "3.7",
+          "text": "Type of request",
+          "type": "choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Initial"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Resubmission review"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Expedite this request"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ReasonExpeditedRequest"
+              }
+            }
+          ],
+          "linkId": "3.8",
+          "text": "Reason for the request to be expedited",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "3.7",
+              "operator": "=",
+              "answerCoding": {
+                "code": "Expedite this request"
+              }
+            }
+          ],
           "required": true
         }
       ]

@@ -49,13 +49,18 @@
                     "type": "choice",
                     "required": true,
                     "answerOption": [
-                        {
-                            "valueString": "Clinical"
-                            
-                        },
-                        {
-                            "valueString": "Pathological"
+                      {
+                        "valueCoding": {
+                          "code": "Clinical",
+                          "display": "Clinical"
                         }
+                      },
+                      {
+                        "valueCoding": {
+                          "code": "Pathological",
+                          "display": "Pathological"
+                        }
+                      }
                     ]
                 },
                 {
@@ -88,15 +93,24 @@
                     "type": "choice",
                     "required": true,
                     "answerOption": [
-                        {
-                            "valueString": "Left"
-                        },
-                        {
-                            "valueString": "Right"
-                        },
-                        {
-                            "valueString": "Bilateral"
+                      {
+                        "valueCoding": {
+                            "code": "left",
+                            "display": "left"
+                      }
+                    },
+                      {
+                        "valueCoding": {
+                            "code": "right",
+                            "display": "right"
                         }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "bilateral",
+                            "display": "bilateral"
+                        }
+                      }
                     ]
                 },
                 {
@@ -207,33 +221,60 @@
                     "type": "choice",
                     "required": true,
                     "answerOption": [
-                        {
-                            "valueString": "Stage0"
-                        },
-                        {
-                            "valueString": "StageIA"
-                        },
-                        {
-                            "valueString": "StageIB"
-                        },
-                        {
-                            "valueString": "StageIIA"
-                        },
-                        {
-                            "valueString": "StageIIB"
-                        },
-                        {
-                            "valueString": "StageIIIA"
-                        },
-                        {
-                            "valueString": "StageIIIB"
-                        },
-                        {
-                            "valueString": "StageIIIC"
-                        },
-                        {
-                            "valueString": "StageIV"
+                      {
+                        "valueCoding": {
+                            "code": "Stage0",
+                            "display": "Stage0"
                         }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIA",
+                            "display": "StageIA"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIB",
+                            "display": "StageIB"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIIA",
+                            "display": "StageIIA"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIIB",
+                            "display": "StageIIB"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIIIA",
+                            "display": "StageIIIA"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIIIB",
+                            "display": "StageIIIB"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIIIC",
+                            "display": "StageIIIC"
+                        }
+                      },
+                      {
+                        "valueCoding": {
+                            "code": "StageIV",
+                            "display": "StageIV"
+                        }
+                      }
                     ]
                 }
             ]

@@ -1,0 +1,55 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.21",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.21",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.21"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes N2",
+  "title": "Regional Lymph Nodes N2",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "373162001",
+            "display": "pN2: Metastasis in 4 to 9 axillary lymph nodes, or in clinically apparent internal mammary lymph nodes in the absence of axillary lymph node metastasis (breast)"
+          },
+          {
+            "code": "15076001",
+            "display": "pN2 category (finding)"
+          },
+          {
+            "code": "373163006",
+            "display": "pN2a: Metastasis in 4 to 9 axillary lymph nodes (at least one tumour deposit greater than 2.0 mm) (breast)"
+          },
+          {
+            "code": "443867001",
+            "display": "pN2a category (finding)"
+          },
+          {
+            "code": "373164000",
+            "display": "pN2b: Metastasis in clinically apparent internal mammary lymph nodes in the absence of axillary lymph node metastasis (breast)"
+          },
+          {
+            "code": "443452006",
+            "display": "pN2b category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

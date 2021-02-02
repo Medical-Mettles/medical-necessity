@@ -1,239 +1,238 @@
 {
-    "resourceType": "Library",
-    "version": "1.0.0",
-    "title": "BreastsCancerChemo",
-    "name": "BreastsCancerChemo",
-    "status": "draft",
-    "type": {
-      "coding": [
-        {
-          "code": "logic-library"
-        }
-      ]
-    },
-    "relatedArtifact": [
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "BreastsCancerChemo",
+  "name": "BreastsCancerChemo",
+  "status": "draft",
+  "type": {
+    "coding": [
       {
-        "type": "depends-on",
-        "resource": "Library/FHIRHelpers"
-      }
-    ],
-    "dataRequirement": [
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.1434.1000.1095"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1116.320"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.526.3.1305"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.526.3.1164"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.526.3.1310"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.526.3.1302"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.1444.5.207"
-          }
-          ]
-      },
-    {
-      "type": "Medication",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.13"
-        }
-        ]
-    },
-    {
-      "type": "MedicationAdministration",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.13"
-        }
-        ]
-    },
-    {
-      "type": "AllergyIntolerance",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.14"
-        }
-        ]
-    },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1029.341"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.17.4077.3.2063"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1047.42"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1029.335"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113762.1.4.1029.287"
-          }
-          ]
-      },
-      {
-        "type": "Procedure",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.12"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.81"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.16"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.15"
-          }
-          ]
-      },
-      {
-        "type": "Observation",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.17"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.19"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.20"
-          }
-          ]
-      },
-      {
-        "type": "Condition",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.21"
-          }
-          ]
-      },
-      {
-        "type": "Procedure",
-        "codeFilter": [
-          {
-            "path": "code",
-            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.22"
-          }
-          ]
+        "code": "logic-library"
       }
     ]
-  }
-  
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.1434.1000.1095"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1116.320"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.526.3.1305"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.526.3.1164"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.526.3.1310"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.526.3.1302"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.1444.5.207"
+        }
+        ]
+    },
+  {
+    "type": "Medication",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.13"
+      }
+      ]
+  },
+  {
+    "type": "MedicationAdministration",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.13"
+      }
+      ]
+  },
+  {
+    "type": "AllergyIntolerance",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.14"
+      }
+      ]
+  },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1029.341"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.17.4077.3.2063"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1047.42"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1029.335"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1029.287"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.12"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.81"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.16"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.15"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.17"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.19"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.20"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.21"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.22"
+        }
+        ]
+    }
+  ]
+}

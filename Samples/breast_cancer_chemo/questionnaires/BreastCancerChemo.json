@@ -31,7 +31,7 @@
     "item": [
         {
             "linkId": "1",
-            "text": "Staging of Cancer",
+            "text": "Staging",
             "type": "group",
             "item": [
                 {
@@ -45,12 +45,13 @@
                         }
                     ],
                     "linkId": "1.1",
-                    "text": "Type of Cancer Staging?",
+                    "text": "Cancer Staging Type",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
                         {
                             "valueString": "Clinical"
+                            
                         },
                         {
                             "valueString": "Pathological"
@@ -68,7 +69,7 @@
                         }
                     ],
                     "linkId": "1.2",
-                    "text": "Size of the tumour in cm?",
+                    "text": "Tumor Size (cm)",
                     "type": "decimal",
                     "required": true
                 },
@@ -83,18 +84,18 @@
                         }
                     ],
                     "linkId": "1.3",
-                    "text": "Laterality of the Cancer",
+                    "text": "Laterality of Tumor",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
                         {
-                            "valueString": "left"
+                            "valueString": "Left"
                         },
                         {
-                            "valueString": "right"
+                            "valueString": "Right"
                         },
                         {
-                            "valueString": "bilateral"
+                            "valueString": "Bilateral"
                         }
                     ]
                 },
@@ -109,7 +110,7 @@
                         }
                     ],
                     "linkId": "1.4",
-                    "text": "Stage of Primary Tumour(T)",
+                    "text": "Primary Tumour (pT)",
                     "type": "text",
                     "required": true
                 },
@@ -124,7 +125,7 @@
                         }
                     ],
                     "linkId": "1.5",
-                    "text": "Stage of Regional Lymph nodes (N)",
+                    "text": "Regional Lymph nodes (N)",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -148,7 +149,7 @@
                         }
                     ],
                     "linkId": "1.6",
-                    "text": "Stage of Regional Lymph nodes (N)",
+                    "text": "Regional Lymph nodes (pN)",
                     "type": "text",
                     "required": true
                 },
@@ -163,7 +164,7 @@
                         }
                     ],
                     "linkId": "1.7",
-                    "text": "Stage of Metastasis (M)",
+                    "text": "Distant Metastasis (M)",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -187,7 +188,7 @@
                         }
                     ],
                     "linkId": "1.8",
-                    "text": "Stage of Metastasis (M)",
+                    "text": "Distant Metastasis (pM)",
                     "type": "text",
                     "required": true
                 },
@@ -202,7 +203,7 @@
                         }
                     ],
                     "linkId": "1.9",
-                    "text": "Anatomic Stage of Cancer",
+                    "text": "TNM Staging",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
@@ -239,7 +240,7 @@
         },
         {
             "linkId": "2",
-            "text": "Prognosis",
+            "text": "Tumor Markers",
             "type": "group",
             "item": [
                 {
@@ -253,7 +254,7 @@
                         }
                     ],
                     "linkId": "2.1",
-                    "text": "Is Estrogen receptor (ER) positive?",
+                    "text": "Hormone Receptor Status, ER Positive?",
                     "type": "boolean",
                     "required": true
                 },
@@ -268,7 +269,7 @@
                         }
                     ],
                     "linkId": "2.2",
-                    "text": "Is Progesterone receptor (PR) positive?",
+                    "text": "Hormone Receptor Status, PR Positive?",
                     "type": "boolean",
                     "required": true
                 },
@@ -283,180 +284,16 @@
                         }
                     ],
                     "linkId": "2.3",
-                    "text": "Is HER2 positive?",
+                    "text": "HER2 Status: HER2 positive?",
                     "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "LineOfTherapy"
-                            }
-                        }
-                    ],
-                    "linkId": "2.4",
-                    "text": "Is there a prior treatment with Chemotherapy?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PreviousChemotherapyDrug"
-                            }
-                        }
-                    ],
-                    "linkId": "2.5",
-                    "text": "Drugs used during the Chemotherapy",
-                    "type": "text",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true,
-                    "repeats": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ChemotherapyAdverseEffectsBoolean"
-                            }
-                        }
-                    ],
-                    "linkId": "2.6",
-                    "text": "Were there any adverse effects during previous treatment?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.4",
-                            "answerBoolean": true
-                        }
-                    ]
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "AdverseEffectsManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.7",
-                    "text": "Are the adverse affects being managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.6",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "KnownAllergies"
-                            }
-                        }
-                    ],
-                    "linkId": "2.8",
-                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PreExistingConditions"
-                            }
-                        }
-                    ],
-                    "linkId": "2.9",
-                    "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ConditionsManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.10",
-                    "text": "Are the conditions managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.9",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryDiseaseHistory"
-                            }
-                        }
-                    ],
-                    "linkId": "2.11",
-                    "text": "Does the patient have a history of pulmonary disease?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "2.12",
-                    "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "2.11",
-                            "answerBoolean": true
-                        }
-                    ],
                     "required": true
                 }
+
             ]
         },
         {
             "linkId": "3",
-            "text": "Pathology Details",
+            "text": "Pre-existing Co-morbidities",
             "type": "group",
             "item": [
                 {
@@ -506,7 +343,147 @@
                         }
                     ],
                     "linkId": "3.3",
-                    "text": "Is the neutroplil count of the patient < 1500/mm3?",
+                    "text": "Are Neutrophil counts < 1500 /mm3?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PreExistingConditions"
+                            }
+                        }
+                    ],
+                    "linkId": "3.4",
+                    "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ConditionsManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "3.5",
+                    "text": "Are the conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.5",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "3.6",
+                    "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.5",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryDiseaseHistory"
+                            }
+                        }
+                    ],
+                    "linkId": "3.7",
+                    "text": "Does the patient have a history of pulmonary disease?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PulmonaryManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "3.8",
+                    "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.7",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "3.9",
+                    "text": "Specify the line of treatment used for managing pulmonary condition",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "3.9",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Allergies to Regimen Drugs",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "KnownAllergies"
+                            }
+                        }
+                    ],
+                    "linkId": "4.1",
+                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Line of Therapy",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "LineOfTherapy"
+                            }
+                        }
+                    ],
+                    "linkId": "5.1",
+                    "text": "Line of Therapy",
                     "type": "boolean",
                     "required": true
                 }

@@ -248,9 +248,9 @@ define "ProcedureResources":
 		and exists(P.code.coding C where C in "Procedure for Medication Administration")
 
 define "ChemoDrugsProcedure":
-  "ProcedureResources" P
+  Count("ProcedureResources" P
 	with "ChemoDrugsAdministration" M
-	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value))
 
 define "DrugsAdministration":
 	"ChemoDrugsAdministration" M
@@ -356,9 +356,9 @@ define "HER2Positive":
 	else false
 
 define "LineOfTherapy":
-	if Last("ChemoDrugsProcedure") is not null
-	then true
-	else false
+	if ("ChemoDrugsProcedure" =0 )
+	then 1
+	else "ChemoDrugsProcedure"
 
 define "PreviousChemotherapyDrug":
 	"DrugsAdministration" P

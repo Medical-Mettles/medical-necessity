@@ -301,7 +301,7 @@ define "RenalConditions":
 
 define "PreExistingConditionsResources":
 	("CardiacConditions" union "LiverConditions" union "RenalConditions")C
-	with "BreastCancerStaging" S
+	with "BreastCancerCondition" S
 	such that start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset)
 
 define "PulmonaryConditionsHistory":

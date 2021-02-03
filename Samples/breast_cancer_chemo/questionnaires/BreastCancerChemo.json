@@ -21,7 +21,7 @@
     ],
     "version": "1.0.0",
     "name": "BreastsCancerChemo",
-    "title": "BreastsCancerChemo",
+    "title": "Systemic Adjuvant Chemotherapy",
     "status": "draft",
     "subjectType": [
         "Patient"
@@ -29,6 +29,81 @@
     "date": "2019-12-03",
     "publisher": "Mettle Solutions",
     "item": [
+        {
+            "linkId": "4",
+            "text": "Line of Therapy",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "LineOfTherapy"
+                            }
+                        }
+                    ],
+                    "linkId": "4.1",
+                    "text": "Line of Therapy",
+                    "type": "integer",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Tumor Markers",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ERPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.1",
+                    "text": "Hormone Receptor Status, ER Positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PRPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.2",
+                    "text": "Progesterone Receptor Status, PR Positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HER2Positive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.3",
+                    "text": "HER2 Status: HER2 positive?",
+                    "type": "boolean",
+                    "required": true
+                }
+
+            ]
+        },
         {
             "linkId": "1",
             "text": "Staging",
@@ -95,20 +170,20 @@
                     "answerOption": [
                       {
                         "valueCoding": {
-                            "code": "left",
-                            "display": "left"
+                            "code": "Left",
+                            "display": "Left"
                       }
                     },
                       {
                         "valueCoding": {
-                            "code": "right",
-                            "display": "right"
+                            "code": "Right",
+                            "display": "Right"
                         }
                       },
                       {
                         "valueCoding": {
-                            "code": "bilateral",
-                            "display": "bilateral"
+                            "code": "Bilateral",
+                            "display": "Bilateral"
                         }
                       }
                     ]
@@ -281,113 +356,9 @@
         },
         {
             "linkId": "2",
-            "text": "Tumor Markers",
-            "type": "group",
-            "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ERPositive"
-                            }
-                        }
-                    ],
-                    "linkId": "2.1",
-                    "text": "Hormone Receptor Status, ER Positive?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PRPositive"
-                            }
-                        }
-                    ],
-                    "linkId": "2.2",
-                    "text": "Hormone Receptor Status, PR Positive?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "HER2Positive"
-                            }
-                        }
-                    ],
-                    "linkId": "2.3",
-                    "text": "HER2 Status: HER2 positive?",
-                    "type": "boolean",
-                    "required": true
-                }
-
-            ]
-        },
-        {
-            "linkId": "3",
             "text": "Pre-existing Co-morbidities",
             "type": "group",
             "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "BleedingDisorder"
-                            }
-                        }
-                    ],
-                    "linkId": "3.1",
-                    "text": "Does the patient have any bleeding disorders?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "BleedingDisorderManagement"
-                            }
-                        }
-                    ],
-                    "linkId": "3.2",
-                    "text": "Is the patient under medication for the management of bleeding disorders?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "question": "3.1",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "NeutrophilCount"
-                            }
-                        }
-                    ],
-                    "linkId": "3.3",
-                    "text": "Are Neutrophil counts < 1500 /mm3?",
-                    "type": "boolean",
-                    "required": true
-                },
                 {
                     "extension": [
                         {
@@ -398,7 +369,7 @@
                             }
                         }
                     ],
-                    "linkId": "3.4",
+                    "linkId": "2.4",
                     "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
                     "type": "boolean",
                     "required": true
@@ -413,24 +384,24 @@
                             }
                         }
                     ],
-                    "linkId": "3.5",
+                    "linkId": "2.5",
                     "text": "Are the conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
                     "enableWhen": [
                         {
-                            "question": "3.5",
+                            "question": "2.4",
                             "answerBoolean": true
                         }
                     ],
                     "required": true
                 },
                 {
-                    "linkId": "3.6",
+                    "linkId": "2.6",
                     "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
-                    "type": "boolean",
+                    "type": "text",
                     "enableWhen": [
                         {
-                            "question": "3.5",
+                            "question": "2.5",
                             "answerBoolean": true
                         }
                     ],
@@ -446,7 +417,7 @@
                             }
                         }
                     ],
-                    "linkId": "3.7",
+                    "linkId": "2.7",
                     "text": "Does the patient have a history of pulmonary disease?",
                     "type": "boolean",
                     "required": true
@@ -461,33 +432,96 @@
                             }
                         }
                     ],
-                    "linkId": "3.8",
+                    "linkId": "2.8",
                     "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
                     "enableWhen": [
                         {
-                            "question": "3.7",
+                            "question": "2.7",
                             "answerBoolean": true
                         }
                     ],
                     "required": true
                 },
                 {
-                    "linkId": "3.9",
+                    "linkId": "2.9",
                     "text": "Specify the line of treatment used for managing pulmonary condition",
-                    "type": "boolean",
+                    "type": "text",
                     "enableWhen": [
                         {
-                            "question": "3.9",
+                            "question": "2.8",
                             "answerBoolean": true
                         }
                     ],
                     "required": true
-                }
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BleedingDisorder"
+                            }
+                        }
+                    ],
+                    "linkId": "2.1",
+                    "text": "Does the patient have any bleeding disorders?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BleedingDisorderManagement"
+                            }
+                        }
+                    ],
+                    "linkId": "2.2",
+                    "text": "Is the patient under medication for the management of bleeding disorders?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "2.1",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.10",
+                    "text": "Specify the line of treatment used for managing bleeding disorders",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "question": "2.2",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "NeutrophilCount"
+                            }
+                        }
+                    ],
+                    "linkId": "2.3",
+                    "text": "Are Neutrophil counts < 1500 /mm3?",
+                    "type": "boolean",
+                    "required": true
+                }   
             ]
         },
         {
-            "linkId": "4",
+            "linkId": "5",
             "text": "Allergies to Regimen Drugs",
             "type": "group",
             "item": [
@@ -501,34 +535,13 @@
                             }
                         }
                     ],
-                    "linkId": "4.1",
-                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
-                    "type": "boolean",
-                    "required": true
-                }
-            ]
-        },
-        {
-            "linkId": "5",
-            "text": "Line of Therapy",
-            "type": "group",
-            "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "LineOfTherapy"
-                            }
-                        }
-                    ],
                     "linkId": "5.1",
-                    "text": "Line of Therapy",
+                    "text": "Does the patient have any known allergies to any of the drugs indicated in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
                     "type": "boolean",
                     "required": true
                 }
             ]
         }
+        
     ]
 }

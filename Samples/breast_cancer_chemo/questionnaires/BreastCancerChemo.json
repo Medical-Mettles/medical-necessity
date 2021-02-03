@@ -30,6 +30,28 @@
     "publisher": "Mettle Solutions",
     "item": [
         {
+            "linkId": "4",
+            "text": "Line of Therapy",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "LineOfTherapy"
+                            }
+                        }
+                    ],
+                    "linkId": "4.1",
+                    "text": "Line of Therapy",
+                    "type": "integer",
+                    "required": true
+                }
+            ]
+        },
+        {
             "linkId": "1",
             "text": "Staging",
             "type": "group",
@@ -280,6 +302,81 @@
             ]
         },
         {
+            "linkId": "3",
+            "text": "Tumor Markers",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ERPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.1",
+                    "text": "Hormone Receptor Status, ER Positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PRPositive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.2",
+                    "text": "Progesterone Receptor Status, PR Positive?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HER2Positive"
+                            }
+                        }
+                    ],
+                    "linkId": "3.3",
+                    "text": "HER2 Status: HER2 positive?",
+                    "type": "boolean",
+                    "required": true
+                }
+
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Allergies to Regimen Drugs",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "KnownAllergies"
+                            }
+                        }
+                    ],
+                    "linkId": "5.1",
+                    "text": "Does the patient have any known allergies to any of the drugs indicated in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        },
+        {
             "linkId": "2",
             "text": "Pre-existing Co-morbidities",
             "type": "group",
@@ -432,104 +529,6 @@
                     "required": true
                 }
             ]
-        },
-        {
-            "linkId": "3",
-            "text": "Tumor Markers",
-            "type": "group",
-            "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ERPositive"
-                            }
-                        }
-                    ],
-                    "linkId": "3.1",
-                    "text": "Hormone Receptor Status, ER Positive?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PRPositive"
-                            }
-                        }
-                    ],
-                    "linkId": "3.2",
-                    "text": "Progesterone Receptor Status, PR Positive?",
-                    "type": "boolean",
-                    "required": true
-                },
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "HER2Positive"
-                            }
-                        }
-                    ],
-                    "linkId": "3.3",
-                    "text": "HER2 Status: HER2 positive?",
-                    "type": "boolean",
-                    "required": true
-                }
-
-            ]
-        },
-        {
-            "linkId": "4",
-            "text": "Line of Therapy",
-            "type": "group",
-            "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "LineOfTherapy"
-                            }
-                        }
-                    ],
-                    "linkId": "4.1",
-                    "text": "Line of Therapy",
-                    "type": "integer",
-                    "required": true
-                }
-            ]
-        },
-        {
-            "linkId": "5",
-            "text": "Allergies to Regimen Drugs",
-            "type": "group",
-            "item": [
-                {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "KnownAllergies"
-                            }
-                        }
-                    ],
-                    "linkId": "5.1",
-                    "text": "Does the patient have any known allergies to any of the drugs prescribed in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
-                    "type": "boolean",
-                    "required": true
-                }
-            ]
         }
-        
     ]
 }

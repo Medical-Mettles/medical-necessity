@@ -51,25 +51,25 @@ define "AmbulationIssue":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Unable to ambulate"
+		and exists(P.code.coding C where C in "Unable to ambulate")
 
 define "AssistanceNeeded":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Unable to get out of bed without assistance"
+		and exists(P.code.coding C where C in "Unable to get out of bed without assistance")
 
 define "SittingIssue":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Unable to sit"
+		and exists(P.code.coding C where C in "Unable to sit")
 
 define "BedConfinedObservation":
 	[Observation]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding) in "Bed confinement observation"
+		and exists(P.code.coding C where C in "Bed confinement observation")
 		and exists(((P.value as CodeableConcept).coding) c where c in "Qualifier value Yes")
 
 define "BedConfinement":
@@ -84,13 +84,13 @@ define "MuscleWeakIssue":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Muscular weakness"
+		and exists(P.code.coding C where C in "Muscular weakness")
 
 define "ErectPositionIssue":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Unable to maintain erect position"
+		and exists(P.code.coding C where C in "Unable to maintain erect position")
 
 
 define "ErectPositionEvidence":
@@ -108,7 +108,7 @@ define "FallingRisk":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Risk of falling"
+		and exists(P.code.coding C where C in "Risk of falling")
 
 define "MobilityIssues":
     {(if "BedConfinement"= true then 'Bed confined' else null),
@@ -127,19 +127,19 @@ define "Fractures":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Non-healed fractures"
+		and exists(P.code.coding C where C in "Non-healed fractures")
 
 define "ImpairedMobilityCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Impaired mobility"
+		and exists(P.code.coding C where C in "Impaired mobility")
 
 define "ContracturesCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Contractures"
+		and exists(P.code.coding C where C in "Contractures")
 
 define "ContracturesEvidence":
     "ContracturesCondition" D
@@ -156,20 +156,20 @@ define "OsteoarthritisCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Osteoarthritis"
+		and exists(P.code.coding C where C in "Osteoarthritis")
 
 define "DeconditioningResource":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Physical deconditioning"
+		and exists(P.code.coding C where C in "Physical deconditioning")
 		and P.severity.coding[0].display.value='Severe'
 
 define "LackOfExercise":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Lack of physical exercise"
+		and exists(P.code.coding C where C in "Lack of physical exercise")
 
 define "LackOfExerciseEvidence":
     "LackOfExercise" D
@@ -186,13 +186,13 @@ define "OrthopedicDeviceRequired":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Orthopedic device required in transit"
+		and exists(P.code.coding C where C in "Orthopedic device required in transit")
 
 define "AmputationsCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Amputations"
+		and exists(P.code.coding C where C in "Amputations")
 
 define "MusculoskeletalIssues":
     {(if Last("Fractures") is not null then 'Non-healed fractures requiring ambulance' else null),
@@ -217,7 +217,7 @@ define "SequelaeCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "CVA with sequelae"
+		and exists(P.code.coding C where C in "CVA with sequelae")
 
 define "SequelaeEvidence":
     "SequelaeCondition" D
@@ -234,7 +234,7 @@ define "DVTCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "DVT requires elevation of lower extremity"
+		and exists(P.code.coding C where C in "DVT requires elevation of lower extremity")
 
 define "CardiovascularIssues":
     {(if (Last("SequelaeEvidence") is not null and Last("BedConfinedObservation") is not null) then 'CVA with sequelae (late effect of CVA) that impair mobility and result in be confinement' else null),
@@ -251,19 +251,19 @@ define "ParalysisCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Spinal Cord Injury – Paralysis"
+		and exists(P.code.coding C where C in "Spinal Cord Injury – Paralysis")
 
 define "DemyelinatingCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Progressive demyelinating disease"
+		and exists(P.code.coding C where C in "Progressive demyelinating disease")
 
 define "MovementPainCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Pain on movement"
+		and exists(P.code.coding C where C in "Pain on movement")
 		and P.severity.coding[0].display.value in {'Severe', 'Moderate'}
 
 define "NeurologicalIssues":
@@ -283,13 +283,13 @@ define "UlcersCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Grade II or greater decubitus ulcers on buttocks"
+		and exists(P.code.coding C where C in "Grade II or greater decubitus ulcers on buttocks")
 
 define "ChronicWoundCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Chronic wound"
+		and exists(P.code.coding C where C in "Chronic wound")
 
 define "Wounds":
     {(if (Last("UlcersCondition") is not null and Last("SittingIssue") is not null) then 'Unable to sit in chair or wheelchair due to Grade II or greater decubitus ulcers on buttocks' else null),
@@ -306,13 +306,13 @@ define "ObesityCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Morbid obesity"
+		and exists(P.code.coding C where C in "Morbid obesity")
 
 define "DependenceCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Dependence on equipments"
+		and exists(P.code.coding C where C in "Dependence on equipments")
 
 define "DependenceConditionEvidence":
     "DependenceCondition" D
@@ -338,13 +338,13 @@ define "DangerCondition":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Danger to self or others"
+		and exists(P.code.coding C where C in "Danger to self or others")
 
 define "MentalConditions":
 	[Condition]P
 		where P.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(P.clinicalStatus.coding).code.value = 'active'
-		and First(P.code.coding) in "Confused, combative, lethargic, comatose"
+		and exists(P.code.coding C where C in "Confused, combative, lethargic, comatose")
 
 define "MentalIssues":
     {(if Last("DangerCondition") is not null then 'Danger to self or others' else null),
@@ -368,6 +368,7 @@ define "ReasonOfTransport":
     (if ("MentalBoolean") then 'Mental issues' else null),
     (if ("MobilityBoolean"=false and "MusculoskeletalBoolean"=false and "CardiovascularBoolean"=false and "NeurologicalBoolean"=false and "WoundsBoolean"=false and "AttendantBoolean"=false and "MentalBoolean"=false) then 'Other issues' else null)
     }
+    except {null}
 
 define AmbulanceSupplier:
 	First([Organization] org
@@ -385,7 +386,11 @@ define "AmbulanceSupplierAddressObject":
 	First("AmbulanceSupplier".address)
 
 define "SupplierAddressLine":
-	First(AmbulanceSupplierAddressObject.line).value
+  if exists(AmbulanceSupplierAddressObject.line)
+	then (if Length(AmbulanceSupplierAddressObject.line)>1
+				then (AmbulanceSupplierAddressObject.line[0].value+', '+AmbulanceSupplierAddressObject.line[1].value)
+				else AmbulanceSupplierAddressObject.line[0].value)
+	else ''
 
 define "SupplierAddressCity":
 	AmbulanceSupplierAddressObject.city.value
@@ -426,6 +431,7 @@ define "PurposeOfTransport":
     (if Last("ImagingReason") is not null then 'Imaging' else null),
     (if (Last("DialysisReason") is null and Last("WoundCareReason") is null and Last("RadiationTherapyReason") is null and Last("ChemotherapyReason") is null and Last("ImagingReason") is null) then 'Other' else null)
     }
+    except {null}
 
 define "OtherPurpose":
     //if (Last("DialysisReason") is null and Last("WoundCareReason") is null and Last("RadiationTherapyReason") is null and Last("ChemotherapyReason") is null and Last("ImagingReason") is null)

@@ -57,22 +57,22 @@ define QA35:
 define "PCS":
 	First([DocumentReference]D
 		where D.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(D.type.coding) in "Physician certification for transport")
+		and exists(D.type.coding C where C in "Physician certification for transport"))
 
 define "MedicalReason":
 	First([DocumentReference]D
 		where D.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(D.type.coding) in "Medical Reason for Transport")
+		and exists(D.type.coding C where C in "Medical Reason for Transport"))
 
 define "Origination":
 	First([DocumentReference]D
 		where D.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(D.type.coding) in "Origination site")
+		and exists(D.type.coding C where C in "Origination site"))
 
 define "Destination":
 	First([DocumentReference]D
 		where D.subject.reference.value = 'Patient/'+ Patient.id.value
-		and First(D.type.coding) in "Destination site")
+		and exists(D.type.coding C where C in "Destination site"))
 
 define "SupplierDetails":
     if ((RepetitiveNonEmergent."AmbulanceSupplierName")!=''

@@ -331,11 +331,11 @@ define "TumourSize":
 
 define "Laterality":
 	if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Left breast cancer"))
-	then 'left'
+	then 'Left'
 	else (if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Right breast cancer"))
-				then 'right'
+				then 'Right'
 				else (if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Bilateral breast cancer"))
-							then 'bilateral'
+							then 'Bilateral'
 							else ''
 							)
 				)

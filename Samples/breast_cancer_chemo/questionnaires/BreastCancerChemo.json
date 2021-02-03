@@ -371,7 +371,7 @@
                     ],
                     "linkId": "2.4",
                     "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
-                    "type": "choice",
+                    "type": "boolean",
                     "required": true
                 },
                 {
@@ -492,6 +492,18 @@
                     "required": true
                 },
                 {
+                    "linkId": "2.10",
+                    "text": "Specify the line of treatment used for managing bleeding disorders",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "question": "2.2",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
                     "extension": [
                         {
                             "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -507,8 +519,6 @@
                     "required": true
                 }   
             ]
-        },
-        {
         },
         {
             "linkId": "5",

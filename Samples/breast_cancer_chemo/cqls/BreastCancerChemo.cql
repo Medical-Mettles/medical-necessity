@@ -263,6 +263,10 @@ define "ChemoDrugsAllergy":
     and First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Chemotherapy drugs allergy")
 
+define "SpecificAllergies":
+	"ChemoDrugsAllergy" A
+	return A.code.coding[0].display.value+'\n'
+
 define "AdverseEventsDrugs":
 	[AdverseEvent]A
 		where A.subject.reference.value = 'Patient/'+ Patient.id.value

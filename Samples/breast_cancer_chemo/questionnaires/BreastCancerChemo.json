@@ -82,7 +82,7 @@
                         }
                     ],
                     "linkId": "3.2",
-                    "text": "Progesterone Receptor Status, PR Positive?",
+                    "text": "Hormone Receptor Status, PR Positive?",
                     "type": "boolean",
                     "required": true
                 },
@@ -539,6 +539,27 @@
                     "text": "Does the patient have any known allergies to any of the drugs indicated in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
                     "type": "boolean",
                     "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "SpecificAllergies"
+                            }
+                        }
+                    ],
+                    "linkId": "5.2",
+                    "text": "Specify the Allergies",
+                    "type": "text",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "5.1",
+                            "answerBoolean": true
+                        }
+                    ]
                 }
             ]
         }

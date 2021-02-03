@@ -263,6 +263,10 @@ define "ChemoDrugsAllergy":
     and First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Chemotherapy drugs allergy")
 
+define "SpecificAllergies":
+	"ChemoDrugsAllergy" A
+	return A.code.coding[0].display.value+'\n'
+
 define "AdverseEventsDrugs":
 	[AdverseEvent]A
 		where A.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -305,7 +309,7 @@ define "PreExistingConditionsResources":
 										or (x in "Cardiac Disease"))
 	and exists(S.code.coding x where x in "Breast Cancer")
 	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset)
-	
+
 define "PulmonaryConditionsHistory":
 	[Condition]C
 		where C.subject.reference.value = 'Patient/'+ Patient.id.value

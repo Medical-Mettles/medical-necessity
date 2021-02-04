@@ -300,7 +300,7 @@ define "RenalConditions":
     and exists(C.code.coding x where x in "Renal Disease"))
 
 define "PreExistingConditionsResources":
-	[Condition]C
+	exists([Condition]C
 	with [Condition]S
 	such that C.subject.reference.value = 'Patient/'+ Patient.id.value
     and First(C.clinicalStatus.coding).code.value = 'active'
@@ -308,7 +308,7 @@ define "PreExistingConditionsResources":
 										or (x in "Liver Disease")
 										or (x in "Cardiac Disease"))
 	and exists(S.code.coding x where x in "Breast Cancer")
-	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset)
+	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset))
 
 define "PulmonaryConditionsHistory":
 	[Condition]C
@@ -389,7 +389,7 @@ define "KnownAllergies":
 	else false
 
 define "PreExistingConditions":
-	if ("PreExistingConditionsResources") is not null
+	if ("PreExistingConditionsResources" = true) 
 	then true
 	else false
 

@@ -227,8 +227,8 @@ define TrastuzumabNotNeeded:
         and (First("QA33")= true)
         and (First("QA41")= 1)
         and (First("QA51") = false)
-        and (First("QA24")= false)
-        and (First("QA25")= true))
+        and (First("QA24")= true)
+        and (First("QA25")= false))
         then true
         else false
 
@@ -241,9 +241,12 @@ define TrastuzumabFinal:
          and (First("QA33")= true)
          and (First("QA41")= 1)
          and (First("QA51")= false)
-         and (First("QA24")= false)
-         and (First("QA27")= false)
-         and (First("QA21")= false)
+         and ((First("QA24")= false)
+               or ((First("QA24")= true) and (First("QA25")= true)))
+         and ((First("QA27")= false)
+               or ((First("QA27")= true) and (First("QA28")= true)))
+         and ((First("QA21")= false)
+               or ((First("QA21")= true) and (First("QA22")= true)))
          and (First("QA23")= false))
          then 'YES'
          else 'NO'
@@ -253,7 +256,7 @@ define DocetaxelNotNeeded:
         and (First("QA51") = false)
         and (First("QA24")= false)
         and (First("QA27")= true)
-        and (First("QA28")= true))
+        and (First("QA28")= false))
         then true
         else false
 
@@ -266,9 +269,12 @@ define DocetaxelFinal:
          and (First("QA33")= true)
          and (First("QA41")= 1)
          and (First("QA51")= false)
-         and (First("QA24")= false)
-         and (First("QA27")= false)
-         and (First("QA21")= false)
+         and ((First("QA24")= false)
+               or ((First("QA24")= true) and (First("QA25")= true)))
+         and ((First("QA27")= false)
+               or ((First("QA27")= true) and (First("QA28")= true)))
+         and ((First("QA21")= false)
+               or ((First("QA21")= true) and (First("QA22")= true)))
          and (First("QA23")= false))
          then 'YES'
          else 'NO'
@@ -293,9 +299,12 @@ define CarboplatinFinal:
          and (First("QA33")= true)
          and (First("QA41")= 1)
          and (First("QA51")= false)
-         and (First("QA24")= false)
-         and (First("QA27")= false)
-         and (First("QA21")= false)
+         and ((First("QA24")= false)
+               or ((First("QA24")= true) and (First("QA25")= true)))
+         and ((First("QA27")= false)
+               or ((First("QA27")= true) and (First("QA28")= true)))
+         and ((First("QA21")= false)
+               or ((First("QA21")= true) and (First("QA22")= true)))
          and (First("QA23")= false))
          then 'YES'
          else 'NO'
@@ -306,9 +315,12 @@ define PrimaryDecision:
         and (First("QA33")= true)
         and (First("QA41")= 1)
         and (First("QA51")= false)
-        and (First("QA24")= false)
-        and (First("QA27")= false)
-        and (First("QA21")= false)
+        and ((First("QA24")= false)
+               or ((First("QA24")= true) and (First("QA25")= true)))
+        and ((First("QA27")= false)
+               or ((First("QA27")= true) and (First("QA28")= true)))
+        and ((First("QA21")= false)
+               or ((First("QA21")= true) and (First("QA22")= true)))
         and (First("QA23")= false)
         and ("DocetaxelMedication" = true)
         and ("CarboplatinMedication" = true)

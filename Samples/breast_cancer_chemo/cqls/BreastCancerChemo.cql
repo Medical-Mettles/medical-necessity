@@ -263,6 +263,10 @@ define "ChemoDrugsAllergy":
     and First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Chemotherapy drugs allergy")
 
+define "SpecificAllergies":
+	"ChemoDrugsAllergy" A
+	return A.code.coding[0].display.value+'\n'
+
 define "AdverseEventsDrugs":
 	[AdverseEvent]A
 		where A.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -278,27 +282,33 @@ define "MastectomyProcedure":
 		)
 
 define "CardiacConditions":
-	[Condition]C
+	First([Condition]C
 		where C.subject.reference.value = 'Patient/'+ Patient.id.value
     and First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Cardiac Disease")
+    and exists(C.code.coding x where x in "Cardiac Disease"))
 
 define "LiverConditions":
-	[Condition]C
+	First([Condition]C
 		where C.subject.reference.value = 'Patient/'+ Patient.id.value
     and First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Liver Disease")
+    and exists(C.code.coding x where x in "Liver Disease"))
 
 define "RenalConditions":
-	[Condition]C
+	First([Condition]C
 		where C.subject.reference.value = 'Patient/'+ Patient.id.value
     and First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Renal Disease")
+    and exists(C.code.coding x where x in "Renal Disease"))
 
 define "PreExistingConditionsResources":
-	("CardiacConditions" union "LiverConditions" union "RenalConditions")C
-	with "BreastCancerStaging" S
-	such that start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset)
+	exists([Condition]C
+	with [Condition]S
+	such that C.subject.reference.value = 'Patient/'+ Patient.id.value
+    and First(C.clinicalStatus.coding).code.value = 'active'
+    and exists(C.code.coding x where (x in "Renal Disease")
+										or (x in "Liver Disease")
+										or (x in "Cardiac Disease"))
+	and exists(S.code.coding x where x in "Breast Cancer")
+	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset))
 
 define "PulmonaryConditionsHistory":
 	[Condition]C
@@ -331,11 +341,11 @@ define "TumourSize":
 
 define "Laterality":
 	if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Left breast cancer"))
-	then 'left'
+	then 'Left'
 	else (if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Right breast cancer"))
-				then 'right'
+				then 'Right'
 				else (if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Bilateral breast cancer"))
-							then 'bilateral'
+							then 'Bilateral'
 							else ''
 							)
 				)
@@ -379,7 +389,7 @@ define "KnownAllergies":
 	else false
 
 define "PreExistingConditions":
-	if Last("PreExistingConditionsResources") is not null
+	if ("PreExistingConditionsResources" = true) 
 	then true
 	else false
 

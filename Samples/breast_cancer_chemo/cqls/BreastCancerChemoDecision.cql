@@ -227,8 +227,8 @@ define TrastuzumabNotNeeded:
         and (First("QA33")= true)
         and (First("QA41")= 1)
         and (First("QA51") = false)
-        and (First("QA24")= false)
-        and (First("QA25")= true))
+        and (First("QA24")= true)
+        and (First("QA25")= false))
         then true
         else false
 
@@ -256,7 +256,7 @@ define DocetaxelNotNeeded:
         and (First("QA51") = false)
         and (First("QA24")= false)
         and (First("QA27")= true)
-        and (First("QA28")= true))
+        and (First("QA28")= false))
         then true
         else false
 

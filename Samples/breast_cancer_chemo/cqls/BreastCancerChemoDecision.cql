@@ -245,8 +245,8 @@ define TrastuzumabFinalDecision:
          and ((First("BleedingDisorderBoolean")= false)
                or ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
          and (First("NeutrophilGreaterThan1500")= false))
-         then 'YES'
-         else 'NO'
+         then true
+         else false
 
 define DocetaxelNotNeeded:
     if ((First("LineOfTherapy") = 1)
@@ -273,8 +273,8 @@ define DocetaxelFinalDecision:
          and ((First("BleedingDisorderBoolean")= false)
                or ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
          and (First("NeutrophilGreaterThan1500")= false))
-         then 'YES'
-         else 'NO'
+         then true
+         else false
 
 define CarboplatinNotNeeded:
     if ((First("LineOfTherapy") = 1)
@@ -303,12 +303,14 @@ define CarboplatinFinalDecision:
          and ((First("BleedingDisorderBoolean")= false)
                or ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
          and (First("NeutrophilGreaterThan1500")= false))
+         then true
+         else false
+
+define FinalDecision:
+   if (
+         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true))
+         or (("DocetaxelFinalDecision" = true) and ("DocetaxelMedication" = true))
+         or (("CarboplatinFinalDecision" = true) and ("CarboplatinMedication" = true))
+         )
          then 'YES'
          else 'NO'
-
-
-
-
-
-
-

@@ -218,6 +218,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -257,6 +258,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -389,6 +391,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.4",
                             "answerBoolean": true
                         }
@@ -401,6 +404,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.5",
                             "answerBoolean": true
                         }
@@ -437,6 +441,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.7",
                             "answerBoolean": true
                         }
@@ -449,6 +454,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.8",
                             "answerBoolean": true
                         }
@@ -485,6 +491,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.1",
                             "answerBoolean": true
                         }
@@ -497,6 +504,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.2",
                             "answerBoolean": true
                         }
@@ -556,6 +564,7 @@
                     "required": true,
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "5.1",
                             "answerBoolean": true
                         }

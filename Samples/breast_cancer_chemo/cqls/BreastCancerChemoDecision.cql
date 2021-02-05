@@ -106,7 +106,9 @@ define TrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "Trastuzumab"
 
 define BiosimilarDrugSuggestion:
-      "suggest_biosimilar"
+      if("suggest_biosimilar" = true)
+         then true
+         else false
 
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item

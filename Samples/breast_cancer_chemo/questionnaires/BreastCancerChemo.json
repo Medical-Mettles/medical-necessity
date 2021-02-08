@@ -218,6 +218,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -257,6 +258,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -389,6 +391,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.4",
                             "answerBoolean": true
                         }
@@ -401,6 +404,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.4",
                             "answerBoolean": true
                         }
@@ -413,6 +417,7 @@
                     "type": "choice",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.5",
                             "answerBoolean": false
                         }
@@ -445,6 +450,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.5",
                             "answerBoolean": false
                         }
@@ -481,6 +487,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.7",
                             "answerBoolean": true
                         }
@@ -493,6 +500,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.7",
                             "answerBoolean": true
                         }
@@ -505,6 +513,7 @@
                     "type": "choice",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.8",
                             "answerBoolean": false
                         }
@@ -537,6 +546,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.8",
                             "answerBoolean": false
                         }
@@ -573,6 +583,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.1",
                             "answerBoolean": true
                         }
@@ -585,6 +596,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.1",
                             "answerBoolean": true
                         }
@@ -597,6 +609,7 @@
                     "type": "choice",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.2",
                             "answerBoolean": false
                         }
@@ -629,6 +642,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.2",
                             "answerBoolean": false
                         }
@@ -688,6 +702,7 @@
                     "required": true,
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "5.1",
                             "answerBoolean": true
                         }

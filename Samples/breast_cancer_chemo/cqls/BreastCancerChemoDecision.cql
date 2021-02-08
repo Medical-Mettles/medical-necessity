@@ -105,10 +105,13 @@ define CarboplatinMedication:
 define TrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "Trastuzumab"
 
+define Biosimilar:
+      "suggest_biosimilar"
+
 define BiosimilarDrugSuggestion:
-      if("suggest_biosimilar" = true)
-         then true
-         else false
+      if ("suggest_biosimilar" = true)
+      then true
+      else false
 
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
@@ -334,7 +337,7 @@ define PrimaryDecision:
 
 define FinalDecision:
       if 
-         (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = true))
+         (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion"= true))
       then 'HUMAN REVIEW NEEDED'
          else if 
             (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))

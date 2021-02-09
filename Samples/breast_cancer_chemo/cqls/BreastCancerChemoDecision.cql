@@ -337,10 +337,10 @@ define PrimaryDecision:
 
 define FinalDecision:
       if 
-         (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion"= true))
+         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
       then 'HUMAN REVIEW NEEDED'
          else if 
             (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
          then 'YES'
-            else 'NO'
+            else 'HUMAN REVIEW NEEDED'
 

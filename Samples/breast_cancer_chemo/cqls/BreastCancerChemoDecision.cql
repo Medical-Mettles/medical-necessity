@@ -40,308 +40,307 @@ valueset "Trastuzumab": '2.16.840.1.113883.3.6037.1001.23.94.25'
 valueset "Carboplatin": '2.16.840.1.113883.3.6037.1001.23.94.26'
 
 parameter "QuestionnaireResponse" QuestionnaireResponse
-
+parameter "MedicationRequest" MedicationRequest
+parameter "suggest_biosimilar" Boolean
 
 context Patient
 
 define BreastCancerCondition:
-   BCChemo."BreastCancerCondition"
+      BCChemo."BreastCancerCondition"
 
 define BreastCancerStaging:
-   BCChemo."BreastCancerStaging"
+      BCChemo."BreastCancerStaging"
 
 define HER2Observation:
-   BCChemo."HER2Observation"
+      BCChemo."HER2Observation"
 
 define PRObservation:
-   BCChemo."PRObservation"
+      BCChemo."PRObservation"
 
 define ERObservation:
-   BCChemo."ERObservation"
+      BCChemo."ERObservation"
 
 define NeutrophilObservation:
-   BCChemo."NeutrophilObservation"
+      BCChemo."NeutrophilObservation"
 
 define NeutrophilResult:
-	BCChemo."NeutrophilResult"
+	   BCChemo."NeutrophilResult"
 
 define ChemoDrugsAdministration:
-   BCChemo."ChemoDrugsAdministration"
+      BCChemo."ChemoDrugsAdministration"
 
 define ChemoDrugsAllergy:
-   BCChemo."ChemoDrugsAllergy"
+      BCChemo."ChemoDrugsAllergy"
 
 define CardiacConditions:
-   BCChemo."CardiacConditions"
+      BCChemo."CardiacConditions"
 
 define LiverConditions:
-   BCChemo."LiverConditions"
+      BCChemo."LiverConditions"
 
 define RenalConditions:
-   BCChemo."RenalConditions"
+      BCChemo."RenalConditions"
 
 define PreExistingConditions:
-   BCChemo."PreExistingConditions"
+      BCChemo."PreExistingConditions"
 
 define PulmonaryConditionsHistory:
-   BCChemo."PulmonaryConditionsHistory"
+      BCChemo."PulmonaryConditionsHistory"
 
 define BleedingConditions:
-   BCChemo."BleedingConditions"
+      BCChemo."BleedingConditions"
 
 define TumorSizeObservation:
-   BCChemo."TumorSizeObservation"
+      BCChemo."TumorSizeObservation"
 
 define TumourSize:
-   BCChemo."TumourSize"
+      BCChemo."TumourSize"
 
 define DocetaxelMedication:
-   exists([MedicationRequest] MR
-      where First((MR.medication as CodeableConcept).coding) in "Docetaxel")
+      First(("MedicationRequest".medication as CodeableConcept).coding) in "Docetaxel"
 
 define CarboplatinMedication:
-   exists([MedicationRequest] MR
-      where First((MR.medication as CodeableConcept).coding) in "Carboplatin")
+      First(("MedicationRequest".medication as CodeableConcept).coding) in "Carboplatin"
 
 define TrastuzumabMedication:
-   exists([MedicationRequest] MR
-      where First((MR.medication as CodeableConcept).coding) in "Trastuzumab")
+      First(("MedicationRequest".medication as CodeableConcept).coding) in "Trastuzumab"
 
-define QT:
-	"QuestionnaireResponse".item
+define Biosimilar:
+      "suggest_biosimilar"
 
-define QA31:
-	("QT".item I
-		where I.linkId.value = '3.1')QR
-		return First(QR.answer).value
+define BiosimilarDrugSuggestion:
+      if ("suggest_biosimilar" = true)
+      then true
+      else false
 
-define QA32:
-    ("QT".item I
-		where I.linkId.value = '3.2')QR
-		return First(QR.answer).value
+define QuestionnaireResponseItems:
+	   "QuestionnaireResponse".item
 
-define QA33:
-    ("QT".item I
-		where I.linkId.value = '3.3')QR
-		return First(QR.answer).value
+define IsERPositive:
+	   ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '3.1')QR
+		      return First(QR.answer).value
 
-define QA51:
-    ("QT".item I
-		where I.linkId.value = '5.1')QR
-		return First(QR.answer).value
+define IsPRPositive:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '3.2')QR
+		      return First(QR.answer).value
 
-define QA41:
-    ("QT".item I
-		where I.linkId.value = '4.1')QR
-		return First(QR.answer).value
+define IsHER2Positive:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '3.3')QR
+		      return First(QR.answer).value
 
-define QA24:
-    ("QT".item I
-		where I.linkId.value = '2.4')QR
-		return First(QR.answer).value
+define KnownAllergiesBoolean:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '5.1')QR
+		      return First(QR.answer).value
 
-define QA25:
-    ("QT".item I
-		where I.linkId.value = '2.5')QR
-		return First(QR.answer).value
+define LineOfTherapy:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '4.1')QR
+		      return First(QR.answer).value
 
-define QA27:
-    ("QT".item I
-		where I.linkId.value = '2.7')QR
-		return First(QR.answer).value
+define PreExistingConditionsBoolean:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.4')QR
+		      return First(QR.answer).value
 
-define QA28:
-    ("QT".item I
-		where I.linkId.value = '2.8')QR
-		return First(QR.answer).value
+define ConditionsManagementBoolean:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.5')QR
+		      return First(QR.answer).value
 
-define QA21:
-    ("QT".item I
-		where I.linkId.value = '2.1')QR
-		return First(QR.answer).value
+define PulmonaryDiseaseHistory:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.7')QR
+		   return First(QR.answer).value
 
-define QA22:
-    ("QT".item I
-		where I.linkId.value = '2.2')QR
-		return First(QR.answer).value
+define IsPulmonaryDiseaseManaged:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.8')QR
+		      return First(QR.answer).value
 
-define QA23:
-    ("QT".item I
-		where I.linkId.value = '2.3')QR
-		return First(QR.answer).value
+define BleedingDisorderBoolean:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.1')QR
+		      return First(QR.answer).value
+
+define IsBleedingDisorderManaged:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.2')QR
+		      return First(QR.answer).value
+
+define NeutrophilGreaterThan1500:
+    ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '2.3')QR
+		      return First(QR.answer).value
 
 define ChemoNotNeeded:
     if (
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41") >1))
+        ((First("IsERPositive") = true)
+            and (First("IsPRPositive")= true)
+               and (First("IsHER2Positive")= true)
+                  and (First("LineOfTherapy") >1))
         or
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51") = false)
-        and (First("QA24") = true)
-        and (First("QA25") = false))
+            ((First("IsERPositive") = true)
+                  and (First("IsPRPositive")= true)
+                     and (First("IsHER2Positive")= true)
+                        and (First("LineOfTherapy")= 1)
+                           and (First("KnownAllergiesBoolean") = false)
+                              and (First("PreExistingConditionsBoolean") = true)
+                                 and (First("ConditionsManagementBoolean") = false))
         or
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51")= false)
-        and (First("QA21") = false)
-        and (First("QA23")= true))
+            ((First("IsERPositive") = true)
+               and (First("IsPRPositive")= true)
+                  and (First("IsHER2Positive")= true)
+                     and (First("LineOfTherapy")= 1)
+                        and (First("KnownAllergiesBoolean")= false)
+                           and (First("BleedingDisorderBoolean") = false)
+                              and (First("NeutrophilGreaterThan1500")= true))
         or
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51")= false)
-        and (First("QA21") = true)
-        and (First("QA22") = true)
-        and (First("QA23")= true))
+            ((First("IsERPositive") = true)
+               and (First("IsPRPositive")= true)
+                  and (First("IsHER2Positive")= true)
+                     and (First("LineOfTherapy")= 1)
+                        and (First("KnownAllergiesBoolean")= false)
+                           and (First("BleedingDisorderBoolean") = true)
+                              and (First("IsBleedingDisorderManaged") = true)
+                                 and (First("NeutrophilGreaterThan1500")= true))
         or 
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51") = false)
-        and (First("QA27") = true)
-        and (First("QA28") = false))
+            ((First("IsERPositive") = true)
+               and (First("IsPRPositive")= true)
+                  and (First("IsHER2Positive")= true)
+                     and (First("LineOfTherapy")= 1)
+                        and (First("KnownAllergiesBoolean") = false)
+                           and (First("PulmonaryDiseaseHistory") = true)
+                              and (First("IsPulmonaryDiseaseManaged") = false))
         or 
-        ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51") = false)
-        and (First("QA21") = true)
-        and (First("QA22") = false))
+            ((First("IsERPositive") = true)
+               and (First("IsPRPositive")= true)
+                  and (First("IsHER2Positive")= true)
+                     and (First("LineOfTherapy")= 1)
+                        and (First("KnownAllergiesBoolean") = false)
+                           and (First("BleedingDisorderBoolean") = true)
+                              and (First("IsBleedingDisorderManaged") = false))
         )
         then true
         else false
 
 define TrastuzumabNotNeeded:
-    if ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51") = false)
-        and (First("QA24")= true)
-        and (First("QA25")= false))
-        then true
-        else false
+      if ((First("IsERPositive") = true)
+         and (First("IsPRPositive")= true)
+            and (First("IsHER2Positive")= true)
+               and (First("LineOfTherapy")= 1)
+                  and (First("KnownAllergiesBoolean") = false)
+                     and (First("PreExistingConditionsBoolean")= true)
+                        and (First("ConditionsManagementBoolean")= false))
+      then true
+      else false
 
-define TrastuzumabFinal:
-   if (("ChemoNotNeeded" = false)
-         and ("TrastuzumabMedication" = true)
-         and ("TrastuzumabNotNeeded" = false)
-         and (First("QA31") = true)
-         and (First("QA32")= true)
-         and (First("QA33")= true)
-         and (First("QA41")= 1)
-         and (First("QA51")= false)
-         and ((First("QA24")= false)
-               or ((First("QA24")= true) and (First("QA25")= true)))
-         and ((First("QA27")= false)
-               or ((First("QA27")= true) and (First("QA28")= true)))
-         and ((First("QA21")= false)
-               or ((First("QA21")= true) and (First("QA22")= true)))
-         and (First("QA23")= false))
-         then 'YES'
-         else 'NO'
+define TrastuzumabFinalDecision:
+      if (("ChemoNotNeeded" = false)
+            and ("TrastuzumabMedication" = true)
+               and ("TrastuzumabNotNeeded" = false)
+                  and (First("IsERPositive") = true)
+                     and (First("IsPRPositive")= true)
+                        and (First("IsHER2Positive")= true)
+                           and (First("LineOfTherapy")= 1)
+                              and (First("KnownAllergiesBoolean")= false)
+                                 and ((First("PreExistingConditionsBoolean")= false)
+                                       or 
+                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                                    and ((First("PulmonaryDiseaseHistory")= false)
+                                          or 
+                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                       and ((First("BleedingDisorderBoolean")= false)
+                                             or 
+                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                          and (First("NeutrophilGreaterThan1500")= false))
+                                          then true
+                                          else false
 
 define DocetaxelNotNeeded:
-    if ((First("QA41") = 1)
-        and (First("QA51") = false)
-        and (First("QA24")= false)
-        and (First("QA27")= true)
-        and (First("QA28")= false))
-        then true
-        else false
+      if ((First("LineOfTherapy") = 1)
+         and (First("KnownAllergiesBoolean") = false)
+            and (First("PreExistingConditionsBoolean")= false)
+               and (First("PulmonaryDiseaseHistory")= true)
+                  and (First("IsPulmonaryDiseaseManaged")= false))
+      then true
+      else false
 
-define DocetaxelFinal:
-   if (("ChemoNotNeeded" = false)
-         and ("DocetaxelMedication" = true)
-         and ("DocetaxelNotNeeded" = false)
-         and (First("QA31") = true)
-         and (First("QA32")= true)
-         and (First("QA33")= true)
-         and (First("QA41")= 1)
-         and (First("QA51")= false)
-         and ((First("QA24")= false)
-               or ((First("QA24")= true) and (First("QA25")= true)))
-         and ((First("QA27")= false)
-               or ((First("QA27")= true) and (First("QA28")= true)))
-         and ((First("QA21")= false)
-               or ((First("QA21")= true) and (First("QA22")= true)))
-         and (First("QA23")= false))
-         then 'YES'
-         else 'NO'
+define DocetaxelFinalDecision:
+      if (("ChemoNotNeeded" = false)
+            and ("DocetaxelMedication" = true)
+               and ("DocetaxelNotNeeded" = false)
+                  and (First("IsERPositive") = true)
+                     and (First("IsPRPositive")= true)
+                        and (First("IsHER2Positive")= true)
+                           and (First("LineOfTherapy")= 1)
+                              and (First("KnownAllergiesBoolean")= false)
+                                 and ((First("PreExistingConditionsBoolean")= false)
+                                       or 
+                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                                    and ((First("PulmonaryDiseaseHistory")= false)
+                                          or 
+                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                       and ((First("BleedingDisorderBoolean")= false)
+                                             or 
+                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                          and (First("NeutrophilGreaterThan1500")= false))
+      then true
+      else false
 
 define CarboplatinNotNeeded:
-    if ((First("QA41") = 1)
-        and (First("QA51") = false)
-        and (First("QA24")= false)
-        and ((First("QA27")= false)
-                or (First("QA28")= true))
-        and (First("QA21") = true)
-        and (First("QA22") = false))
-        then true
-        else false
+      if ((First("LineOfTherapy") = 1)
+            and (First("KnownAllergiesBoolean") = false)
+               and (First("PreExistingConditionsBoolean")= false)
+                  and ((First("PulmonaryDiseaseHistory")= false)
+                        or (First("IsPulmonaryDiseaseManaged")= true))
+                     and (First("BleedingDisorderBoolean") = true)
+                        and (First("IsBleedingDisorderManaged") = false))
+      then true
+      else false
 
-define CarboplatinFinal:
-    if (("ChemoNotNeeded" = false)
+define CarboplatinFinalDecision:
+      if (("ChemoNotNeeded" = false)
          and ("CarboplatinMedication" = true)
-         and ("CarboplatinNotNeeded" = false)
-         and (First("QA31") = true)
-         and (First("QA32")= true)
-         and (First("QA33")= true)
-         and (First("QA41")= 1)
-         and (First("QA51")= false)
-         and ((First("QA24")= false)
-               or ((First("QA24")= true) and (First("QA25")= true)))
-         and ((First("QA27")= false)
-               or ((First("QA27")= true) and (First("QA28")= true)))
-         and ((First("QA21")= false)
-               or ((First("QA21")= true) and (First("QA22")= true)))
-         and (First("QA23")= false))
-         then 'YES'
-         else 'NO'
+            and  ("CarboplatinNotNeeded" = false)
+               and  (First("IsERPositive") = true)
+                  and  (First("IsPRPositive")= true)
+                     and  (First("IsHER2Positive")= true)
+                        and  (First("LineOfTherapy")= 1)
+                           and  (First("KnownAllergiesBoolean")= false)
+                              and  ((First("PreExistingConditionsBoolean")= false)
+                                          or 
+                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                                 and ((First("PulmonaryDiseaseHistory")= false)
+                                          or 
+                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                    and ((First("BleedingDisorderBoolean")= false)
+                                             or 
+                                          ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                       and (First("NeutrophilGreaterThan1500")= false))
+         then true
+         else false
 
 define PrimaryDecision:
-    if ((First("QA31") = true)
-        and (First("QA32")= true)
-        and (First("QA33")= true)
-        and (First("QA41")= 1)
-        and (First("QA51")= false)
-        and ((First("QA24")= false)
-               or ((First("QA24")= true) and (First("QA25")= true)))
-        and ((First("QA27")= false)
-               or ((First("QA27")= true) and (First("QA28")= true)))
-        and ((First("QA21")= false)
-               or ((First("QA21")= true) and (First("QA22")= true)))
-        and (First("QA23")= false)
-        and ("DocetaxelMedication" = true)
-        and ("CarboplatinMedication" = true)
-        and ("TrastuzumabMedication" = true))
-        then true
-        else false
+      if (
+               (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true))
+            or 
+               (("DocetaxelFinalDecision" = true) and ("DocetaxelMedication" = true))
+            or 
+               (("CarboplatinFinalDecision" = true) and ("CarboplatinMedication" = true))
+         )
+      then true
+      else false
 
 define FinalDecision:
-    if (("PrimaryDecision" = true) and ("ChemoNotNeeded" = true))
-        then 'NO'
-        else if (("PrimaryDecision" = true) and  ("TrastuzumabNotNeeded" = true))
-            then 'TRASTUZUMAB NOT NEEDED FOR TREATMENT REGIMEN'
-               else if (("PrimaryDecision" = true) and  ("DocetaxelNotNeeded" = true))
-                  then 'DOCETAXEL NOT NEEDED FOR TREATMENT REGIMEN'
-                     else if (("PrimaryDecision" = true) and  ("CarboplatinNotNeeded" = true))
-                        then 'CARBOPLATIN NOT NEEDED FOR TREATMENT REGIMEN'
-                           else if (("PrimaryDecision" = true) and ("ChemoNotNeeded" = false) and ("TrastuzumabNotNeeded" = false) and ("DocetaxelNotNeeded" = false) and ("CarboplatinNotNeeded" = false))
-                              then 'YES'
-                              else 'NO'
-
-
-
-
+      if 
+         (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion"= true))
+      then 'HUMAN REVIEW NEEDED'
+         else if 
+            (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
+         then 'YES'
+            else 'NO'
 

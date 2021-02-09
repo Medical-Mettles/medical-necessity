@@ -218,6 +218,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -257,6 +258,7 @@
                     "type": "text",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "1.1",
                             "answerCoding": {
                                 "code": "Clinical",
@@ -385,10 +387,11 @@
                         }
                     ],
                     "linkId": "2.5",
-                    "text": "Are the conditions managed before commencement of chemotherapy?",
+                    "text": "Are the pre-existing cardiac/renal/liver conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.4",
                             "answerBoolean": true
                         }
@@ -397,12 +400,59 @@
                 },
                 {
                     "linkId": "2.6",
-                    "text": "Specify the line of treatment used for managing the cardiac/renal/liver condition",
+                    "text": "Specify the treatment used for managing the cardiac/renal/liver condition",
                     "type": "text",
                     "enableWhen": [
                         {
-                            "question": "2.5",
+                            "operator": "=",
+                            "question": "2.4",
                             "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.11",
+                    "text": "Is the patient’s cardiac/renal/liver condition stable/unstable/improving/worsening ?",
+                    "type": "choice",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.5",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true,
+                    "answerOption": [
+                        {
+                          "valueCoding": {
+                              "code": "Unstable",
+                              "display": "Unstable"
+                          }
+                        },
+                        {
+                          "valueCoding": {
+                              "code": "Improving",
+                              "display": "Improving"
+                          }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Worsening",
+                                "display": "Worsening"
+                            }
+                          }
+                      ]
+                },
+                {
+                    "linkId": "2.12",
+                    "text": "Specify the reason for patient's condition",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.5",
+                            "answerBoolean": false
                         }
                     ],
                     "required": true
@@ -437,6 +487,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.7",
                             "answerBoolean": true
                         }
@@ -445,12 +496,59 @@
                 },
                 {
                     "linkId": "2.9",
-                    "text": "Specify the line of treatment used for managing pulmonary condition",
+                    "text": "Specify the treatment used for managing pulmonary condition",
                     "type": "text",
                     "enableWhen": [
                         {
-                            "question": "2.8",
+                            "operator": "=",
+                            "question": "2.7",
                             "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.13",
+                    "text": "Is the patient’s pulmonary condition stable/unstable/improving/worsening ?",
+                    "type": "choice",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.8",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true,
+                    "answerOption": [
+                        {
+                          "valueCoding": {
+                              "code": "Unstable",
+                              "display": "Unstable"
+                          }
+                        },
+                        {
+                          "valueCoding": {
+                              "code": "Improving",
+                              "display": "Improving"
+                          }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Worsening",
+                                "display": "Worsening"
+                            }
+                          }
+                      ]
+                },
+                {
+                    "linkId": "2.14",
+                    "text": "Specify the reason for patient's pulmonary condition",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.8",
+                            "answerBoolean": false
                         }
                     ],
                     "required": true
@@ -485,6 +583,7 @@
                     "type": "boolean",
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "2.1",
                             "answerBoolean": true
                         }
@@ -493,12 +592,59 @@
                 },
                 {
                     "linkId": "2.10",
-                    "text": "Specify the line of treatment used for managing bleeding disorders",
+                    "text": "Specify the treatment used for managing bleeding disorders",
                     "type": "text",
                     "enableWhen": [
                         {
-                            "question": "2.2",
+                            "operator": "=",
+                            "question": "2.1",
                             "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "linkId": "2.15",
+                    "text": "Is the patient’s bleeding disorder stable/unstable/improving/worsening ?",
+                    "type": "choice",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.2",
+                            "answerBoolean": false
+                        }
+                    ],
+                    "required": true,
+                    "answerOption": [
+                        {
+                          "valueCoding": {
+                              "code": "Unstable",
+                              "display": "Unstable"
+                          }
+                        },
+                        {
+                          "valueCoding": {
+                              "code": "Improving",
+                              "display": "Improving"
+                          }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Worsening",
+                                "display": "Worsening"
+                            }
+                          }
+                      ]
+                },
+                {
+                    "linkId": "2.16",
+                    "text": "Specify the reason for patient's Bleeding disorder",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "2.2",
+                            "answerBoolean": false
                         }
                     ],
                     "required": true
@@ -556,6 +702,7 @@
                     "required": true,
                     "enableWhen": [
                         {
+                            "operator": "=",
                             "question": "5.1",
                             "answerBoolean": true
                         }

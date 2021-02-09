@@ -109,9 +109,13 @@ define Biosimilar:
       "suggest_biosimilar"
 
 define BiosimilarDrugSuggestion:
-      if ("suggest_biosimilar" = true)
-      then true
-      else false
+      if (("suggest_biosimilar" = true) and ("TrastuzumabMedication" = true))
+         then true
+            else if (("suggest_biosimilar" = true) and ("DocetaxelMedication" = true))
+               then false
+                  else if (("suggest_biosimilar" = true) and ("CarboplatinMedication" = true))
+                     then false
+                     else false
 
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
@@ -337,10 +341,10 @@ define PrimaryDecision:
 
 define FinalDecision:
       if 
-         (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion"= true))
+         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
       then 'HUMAN REVIEW NEEDED'
          else if 
             (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
          then 'YES'
-            else 'NO'
+            else 'HUMAN REVIEW NEEDED'
 

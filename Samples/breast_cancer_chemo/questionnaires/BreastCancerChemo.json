@@ -442,7 +442,7 @@
                 },
                 {
                     "linkId": "2.12",
-                    "text": "Specify the treatment being used for the condition",
+                    "text": "Additional information on the cardiac/renal/liver condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -541,7 +541,7 @@
                 },
                 {
                     "linkId": "2.14",
-                    "text": "Specify the treatment being used for condition",
+                    "text": "Additional information on the pulmonary condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -590,7 +590,7 @@
                 },
                 {
                     "linkId": "2.10",
-                    "text": "Additional information on the pulmonary condition",
+                    "text": "Additional information on the bleeding condition",
                     "type": "text",
                     "enableWhen": [
                         {

@@ -413,7 +413,7 @@
                 },
                 {
                     "linkId": "2.11",
-                    "text": "Is the patient’s cardiac/renal/liver condition stable/unstable/improving/worsening ?",
+                    "text": "What is the status of the Patient's condition?",
                     "type": "choice",
                     "enableWhen": [
                         {
@@ -452,7 +452,7 @@
                 },
                 {
                     "linkId": "2.12",
-                    "text": "Specify the reason for patient's cardiac/renal/liver condition",
+                    "text": "Specify the treatment being used for the condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -515,7 +515,7 @@
                 },
                 {
                     "linkId": "2.13",
-                    "text": "Is the patient’s pulmonary condition stable/unstable/improving/worsening ?",
+                    "text": "What is the status of the Patient's condition?",
                     "type": "choice",
                     "enableWhen": [
                         {
@@ -554,7 +554,7 @@
                 },
                 {
                     "linkId": "2.14",
-                    "text": "Specify the reason for patient's pulmonary condition",
+                    "text": "Specify the treatment being used for condition",
                     "type": "text",
                     "enableWhen": [
                         {

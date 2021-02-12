@@ -122,7 +122,6 @@
                     "linkId": "1.1",
                     "text": "Cancer Staging Type",
                     "type": "choice",
-                    "required": true,
                     "answerOption": [
                       {
                         "valueCoding": {
@@ -150,8 +149,7 @@
                     ],
                     "linkId": "1.2",
                     "text": "Tumor Size (cm)",
-                    "type": "decimal",
-                    "required": true
+                    "type": "decimal"
                 },
                 {
                     "extension": [
@@ -166,7 +164,6 @@
                     "linkId": "1.3",
                     "text": "Laterality of Tumor",
                     "type": "choice",
-                    "required": true,
                     "answerOption": [
                       {
                         "valueCoding": {
@@ -200,8 +197,7 @@
                     ],
                     "linkId": "1.4",
                     "text": "Primary Tumor (pT)",
-                    "type": "text",
-                    "required": true
+                    "type": "text"
                 },
                 {
                     "extension": [
@@ -225,8 +221,7 @@
                                 "display": "Clinical"
                             }
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "extension": [
@@ -240,8 +235,7 @@
                     ],
                     "linkId": "1.6",
                     "text": "Regional Lymph nodes (pN)",
-                    "type": "text",
-                    "required": true
+                    "type": "text"
                 },
                 {
                     "extension": [
@@ -265,8 +259,7 @@
                                 "display": "Clinical"
                             }
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "extension": [
@@ -280,8 +273,7 @@
                     ],
                     "linkId": "1.8",
                     "text": "Distant Metastasis (pM)",
-                    "type": "text",
-                    "required": true
+                    "type": "text"
                 },
                 {
                     "extension": [
@@ -296,7 +288,6 @@
                     "linkId": "1.9",
                     "text": "TNM Staging",
                     "type": "choice",
-                    "required": true,
                     "answerOption": [
                       {
                         "valueCoding": {
@@ -400,7 +391,7 @@
                 },
                 {
                     "linkId": "2.6",
-                    "text": "Specify the treatment used for managing the cardiac/renal/liver condition",
+                    "text": "Additional information on the cardiac/renal/liver condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -408,8 +399,8 @@
                             "question": "2.5",
                             "answerBoolean": true
                         }
-                    ],
-                    "required": true
+                    ]
+                    
                 },
                 {
                     "linkId": "2.11",
@@ -422,7 +413,6 @@
                             "answerBoolean": false
                         }
                     ],
-                    "required": true,
                     "answerOption": [
                         {
                             "valueCoding": {
@@ -460,8 +450,7 @@
                             "question": "2.5",
                             "answerBoolean": false
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "extension": [
@@ -502,7 +491,7 @@
                 },
                 {
                     "linkId": "2.9",
-                    "text": "Specify the treatment used for managing pulmonary condition",
+                    "text": "Additional information on the pulmonary condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -510,8 +499,7 @@
                             "question": "2.8",
                             "answerBoolean": true
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "linkId": "2.13",
@@ -524,7 +512,6 @@
                             "answerBoolean": false
                         }
                     ],
-                    "required": true,
                     "answerOption": [
                         {
                             "valueCoding": {
@@ -562,8 +549,7 @@
                             "question": "2.8",
                             "answerBoolean": false
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "extension": [
@@ -604,7 +590,7 @@
                 },
                 {
                     "linkId": "2.10",
-                    "text": "Specify the treatment used for managing bleeding disorders",
+                    "text": "Additional information on the pulmonary condition",
                     "type": "text",
                     "enableWhen": [
                         {
@@ -612,8 +598,7 @@
                             "question": "2.1",
                             "answerBoolean": true
                         }
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "extension": [

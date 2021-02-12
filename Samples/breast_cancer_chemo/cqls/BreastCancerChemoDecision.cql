@@ -175,7 +175,7 @@ define IsBleedingDisorderManaged:
 		   where I.linkId.value = '2.2')QR
 		      return First(QR.answer).value
 
-define NeutrophilGreaterThan1500:
+define NeutrophilLessThan1500:
     ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '2.3')QR
 		      return First(QR.answer).value
@@ -200,17 +200,16 @@ define ChemoNotNeeded:
                   and (First("IsHER2Positive")= true)
                      and (First("LineOfTherapy")= 1)
                         and (First("KnownAllergiesBoolean")= false)
-                           and (First("BleedingDisorderBoolean") = false)
-                              and (First("NeutrophilGreaterThan1500")= true))
-        or
-            ((First("IsERPositive") = true)
-               and (First("IsPRPositive")= true)
-                  and (First("IsHER2Positive")= true)
-                     and (First("LineOfTherapy")= 1)
-                        and (First("KnownAllergiesBoolean")= false)
-                           and (First("BleedingDisorderBoolean") = true)
-                              and (First("IsBleedingDisorderManaged") = true)
-                                 and (First("NeutrophilGreaterThan1500")= true))
+                           and ((First("PreExistingConditionsBoolean")= false)
+                                       or 
+                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                                    and ((First("PulmonaryDiseaseHistory")= false)
+                                          or 
+                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                       and ((First("BleedingDisorderBoolean")= false)
+                                             or 
+                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                 and (First("NeutrophilLessThan1500")= true))
         or 
             ((First("IsERPositive") = true)
                and (First("IsPRPositive")= true)
@@ -260,7 +259,7 @@ define TrastuzumabFinalDecision:
                                        and ((First("BleedingDisorderBoolean")= false)
                                              or 
                                              ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                          and (First("NeutrophilGreaterThan1500")= false))
+                                          and (First("NeutrophilLessThan1500")= false))
                                           then true
                                           else false
 
@@ -291,7 +290,7 @@ define DocetaxelFinalDecision:
                                        and ((First("BleedingDisorderBoolean")= false)
                                              or 
                                              ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                          and (First("NeutrophilGreaterThan1500")= false))
+                                          and (First("NeutrophilLessThan1500")= false))
       then true
       else false
 
@@ -324,7 +323,7 @@ define CarboplatinFinalDecision:
                                     and ((First("BleedingDisorderBoolean")= false)
                                              or 
                                           ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                       and (First("NeutrophilGreaterThan1500")= false))
+                                       and (First("NeutrophilLessThan1500")= false))
          then true
          else false
 

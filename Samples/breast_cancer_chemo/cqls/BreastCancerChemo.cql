@@ -404,7 +404,9 @@ define "BleedingDisorder":
 	else false
 
 define "NeutrophilCount":
-	FHIRHelpers.ToQuantity("NeutrophilObservation".value).value < 1500
+	if ("NeutrophilObservation" is not null)
+	then FHIRHelpers.ToQuantity("NeutrophilObservation".value).value < 1500
+	else false
 
 //define "TumorStage":
 //	if First(TumorCondition.stage).summary is not null

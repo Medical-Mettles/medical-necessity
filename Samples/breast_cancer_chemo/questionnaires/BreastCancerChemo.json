@@ -590,7 +590,7 @@
                 },
                 {
                     "linkId": "2.10",
-                    "text": "Additional information on the pulmonary condition",
+                    "text": "Additional information on the bleeding condition",
                     "type": "text",
                     "enableWhen": [
                         {

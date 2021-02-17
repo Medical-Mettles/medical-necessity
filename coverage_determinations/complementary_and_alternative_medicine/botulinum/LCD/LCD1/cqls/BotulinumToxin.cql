@@ -43,80 +43,80 @@ define ServiceEncounter:
 define QualifiedConditions:
 	First([Condition]C
 		where exists(C.code.coding C where C in "BotulinumToxin Diagnosis Codes")
-			and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+			and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Esophagoscopy:
 	First([Condition]C
 		where exists(C.code.coding C where C in "Esophagoscopy Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Sialorrhea:
 	First([Condition]C
 		where exists(C.code.coding C where C in "Sialorrhea Diagnosis Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define AnalFissure:
 	First([Condition]C
 		where exists(C.code.coding C where C in "AnalFissure Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Cystourethroscopy:
 	First([Condition]C
 		where exists(C.code.coding C where C in "Cystourethroscopy Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Blepharospasm:
 	First([Condition]C
 		where exists(C.code.coding C where C in "Blepharospasm Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define CervicalDystonia:
 	First([Condition]C
 		where exists(C.code.coding C where C in "CervicalDystonia Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ChemodenervationOfOneExtremity:
 	First([Condition]C
 		where exists(C.code.coding C where C in "ChemodenervationOfOneExtremity Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Hyperhidrosis:
 	First([Condition]C
 		where exists(C.code.coding C where C in "Hyperhidrosis Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ExtraOcularMuscle:
 	First([Condition]C
 		where exists(C.code.coding C where C in "ExtraOcularMuscle Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ChemodenervationOfNeckMuscle:
 	First([Condition]C
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define MigraineWithoutAura:
 	First([Condition]C
 		where exists(C.code.coding C where C in "MigraineWithoutAura Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Headaches:
 	exists([Condition]C
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
-		and First(A.clinicalStatus.coding).code.value = 'active'
-			and First(A.verificationStatus.coding).code.value = 'confirmed')
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 
 define Preclusion:
@@ -155,7 +155,7 @@ define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, F
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
 	if onset is FHIR.date then
-	  Interval[FHIRHelpers.ToDate(onset as FHIR.date), FHIRHelpers.ToDateTime(onset as FHIR.date)]
+	  Interval[FHIRHelpers.ToDate(onset as FHIR.date), FHIRHelpers.ToDate(onset as FHIR.date)]
         else if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then

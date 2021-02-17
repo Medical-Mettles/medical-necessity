@@ -76,6 +76,7 @@ define Blepharospasm:
 		and First(A.clinicalStatus.coding).code.value = 'active'
 			and First(A.verificationStatus.coding).code.value = 'confirmed')
 
+
 define CervicalDystonia:
 	First([Condition]C
 		where exists(C.code.coding C where C in "CervicalDystonia Codes")

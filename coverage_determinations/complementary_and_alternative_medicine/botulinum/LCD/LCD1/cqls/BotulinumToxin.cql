@@ -122,13 +122,15 @@ define IsTreatmentPerformed:
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value
 
-define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
 	if performed is null
 	then false
 	else ToDate(start of "Normalize Interval"(performed)) after (Today()-1 year)
 
-define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-  if onset is FHIR.dateTime then
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.date then
+	  Interval[FHIRHelpers.ToDate(onset as FHIR.date), FHIRHelpers.ToDateTime(onset as FHIR.date)]
+        else if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then
 	  FHIRHelpers.ToInterval(onset as FHIR.Period)

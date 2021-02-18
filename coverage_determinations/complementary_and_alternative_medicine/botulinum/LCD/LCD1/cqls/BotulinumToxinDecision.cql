@@ -117,10 +117,10 @@ define theclaim:
 	[Claim]C
 
 define Request:
-	First([ServiceRequest]S where 'ServiceRequest/' + S.id.value = First("theclaim").referral.reference.value)
+	"ServiceRequest"
 
 define Preclusion:
-	("Request".quantity).value.value
+	("ServiceRequest".quantity).value.value
 
 define QT:
 	"QuestionnaireResponse".item

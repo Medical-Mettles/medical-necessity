@@ -38,17 +38,6 @@ context Patient
 
 define ServiceEncounter:
 	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value)
-
-define function "GetId"(uri String):
-	Last(Split(uri, '/'))
-
-define function "EncounterDiagnosis"(Encounter Encounter):
-	Encounter.diagnosis D
-	return First([Condition]C
-				where C.id.value = "GetId"(D.condition.reference.value))
-
-define ServiceCondition:
-	"EncounterDiagnosis"("ServiceEncounter")
 	
 define QualifiedConditions:
 	First([Condition]C

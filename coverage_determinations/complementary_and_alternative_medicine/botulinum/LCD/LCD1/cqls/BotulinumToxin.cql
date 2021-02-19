@@ -151,7 +151,7 @@ define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, F
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
 	if onset is FHIR.date then
-	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.date), FHIRHelpers.ToDate(onset as FHIR.date)]
+	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
         else if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then

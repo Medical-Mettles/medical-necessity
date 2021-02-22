@@ -32,7 +32,6 @@ valueset "MigraineWithoutAura Codes": '2.16.840.1.113883.3.6037.1001.23.99.48'
 valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
 
 parameter "ServiceRequest" ServiceRequest
-parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
 
@@ -124,35 +123,28 @@ define Preclusion:
 define RelevantDiagnosis:
 	First("QualifiedConditions".code.coding).display.value
 
-define TreatmentPerformed:
-	 	First([Procedure]P
-	 	where P.status.value = 'completed'
-			and "ProcedurePerformedInLastYear"(P.performed)
-			and First(P.outcome.coding) in "Unsuccessful")
+define ProcedurePerformed:
+	First([Procedure]P
+	 	where P.status.value = 'completed')
 
-define ExistsProcedure:
-	exists([Procedure]P
-	 	where P.status.value = 'completed'
-			and "ProcedurePerformedInLastYear"(P.performed)
+define TreatmentPerformed:
+	if (IsNull("ProcedurePerformed".performed) = false)
+	 	then 
+		 ( "ProcedurePerformed" P
+			where ToDate(start of "Normalize Interval"(P.performed)) after (Today()-1 year)
 			and First(P.outcome.coding) in "Unsuccessful")
+		else null
 		
 define IsTreatmentPerformed:
-	if ("ExistsProcedure" = true)
+	if ("TreatmentPerformed" is not null)
 	then true
 	else false
 
 define TreatmentFailed:
 		First("TreatmentPerformed".code.coding).display.value
 
-define function "ProcedurePerformedInLastYear"(performed Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-	if performed is null
-	then false
-	else ToDate(start of "Normalize Interval"(performed)) after (Today()-1 year)
-
-define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-	if onset is FHIR.date then
-	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
-        else if onset is FHIR.dateTime then
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then
 	  FHIRHelpers.ToInterval(onset as FHIR.Period)

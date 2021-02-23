@@ -18,6 +18,7 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
+valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
 valueset "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.37'
 valueset "Esophagogastroduodenoscopy" : '2.16.840.1.113883.3.6037.1001.23.99.38'
 valueset "Chemodenervation of Internal Anal Sphincter": '2.16.840.1.113883.3.6037.1001.23.99.39'
@@ -30,6 +31,13 @@ valueset "Chemodenervation of Extraocular Muscle": '2.16.840.1.113883.3.6037.100
 valueset "Chemodenervation of Muscle(s)": '2.16.840.1.113883.3.6037.1001.23.99.46'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.47'
 valueset "Onabotulinumtoxina":  '2.16.840.1.113883.3.6037.1001.23.99.78'
+valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
+valueset "Successful": '2.16.840.1.113883.3.6037.1001.23.94.50'
+
+valueset "Status of Patient Condition": '2.16.840.1.113762.1.4.1096.114'
+valueset "Treatment Failure": '2.16.840.1.113762.1.4.1111.93'
+valueset "Medical Contraindication": '2.16.840.1.113883.3.117.1.7.1.412'
+valueset "Recommended Treatment Contraindicated or Ineffective": '2.16.840.1.113762.1.4.1034.557'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "Claim" Claim
@@ -79,6 +87,164 @@ define MigraineWithoutAura:
 define Headaches:
 	BTCommon."Headaches"
 
+define Duration:
+		[Condition] C
+		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and C.onset 15 days before C.abatement
+			and C.onset after (Today()-120 days)
+
+define ThreeMonthHeadaches:
+		if (Count("Duration") > 2)
+			then true
+			else false
+
+define BotulinumBefore:
+		exists([Procedure]P
+			where P.status.value = 'completed'
+			and (   exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+					or exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
+					or exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
+					or exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
+					or exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
+					or exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
+					or exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+					or exists(P.code.coding C where C in "Onabotulinumtoxina")
+				))
+
+define RefractoryToTherapy:
+		exists([Procedure]P
+			where P.status.value = 'completed'
+			and (   exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+					or exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
+					or exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
+					or exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
+					or exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
+					or exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
+					or exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
+					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+					or exists(P.code.coding C where C in "Onabotulinumtoxina")
+				)
+			and First(P.outcome.coding) in "Unsuccessful"
+			and First(First(P.complication).coding) in "Medical Contraindication")
+
+		
+define BotoxAdministered:
+		exists([Procedure]P
+				with [Procedure]R
+				such that P.status.value = 'completed'
+				and R.status.value = 'completed'
+				and (	(exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
+						or 
+						(exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
+							and exists(R.code.coding C where C in "Esophagogastroduodenoscopy"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
+							and exists(R.code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
+						or 
+						(exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
+							and exists(R.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
+							and exists(R.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
+							and exists(R.code.coding C where C in "Chemodenervation of Eccrine Glands"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
+							and exists(R.code.coding C where C in "Chemodenervation of Extraocular Muscle"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s)"))
+						or 
+						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+						or 
+						(exists(P.code.coding C where C in "Onabotulinumtoxina")
+							and exists(R.code.coding C where C in "Onabotulinumtoxina"))
+					)
+				and First(P.outcome.coding) in "Unsuccessful"
+				and First(R.outcome.coding) in "Unsuccessful"
+				and "Normalize Interval"(P.performed) starts before "Normalize Interval"(R.performed)
+				and "Normalize Interval"(R.performed) starts after (Today()-1 year))
+
+
+
+define ConsecutiveBotoxFailure:
+		if ("BotoxAdministered" = true)
+		then true
+		else false
+
+define ImprovementInHeadaches:
+		exists([Condition] C
+		with [Procedure]P
+		such that exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
+			and P.status.value = 'completed'
+			and First(P.outcome.coding) in "Successful"
+			and First(First(C.stage).summary.coding) in "Status of Patient Condition")
+
+define HeadacheFrequencyReduction:
+		exists([Condition] C
+		with [Procedure]P
+		such that exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
+			and P.status.value = 'completed'
+			and "Normalize Interval"(P.performed) before C.onset
+			and C.onset in Interval[start of "Normalize Interval"(P.performed), start of "Normalize Interval"(P.performed) + 120 days])
+			
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.date then
+	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
+        else if onset is FHIR.dateTime then
+	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
+	else if onset is FHIR.Period then
+	  FHIRHelpers.ToInterval(onset as FHIR.Period)
+	else if onset is FHIR.Age then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
+	else null
+
+
+
+define QT:
+	"QuestionnaireResponse".item
+
+define QA14:
+	("QT".item I
+		where I.linkId.value = '1.4')QR
+		return First(QR.answer).value
+
+define QA21:
+	("QT".item I
+		where I.linkId.value = '2.1')QR
+		return First(QR.answer).value
+
+//headache disorders occurring greaterthan 15 days a month for a period of at least 3months
+define QA22:
+	("QT".item I
+		where I.linkId.value = '2.2')QR
+		return First(QR.answer).value
+
 //have been refractory to standard and usual conventional therapy
 define QA23:
 	("QT".item I
@@ -97,19 +263,43 @@ define QA25:
 		where I.linkId.value = '2.5')QR
 		return First(QR.answer).value
 
-//response to Conventional Treatment
+//failure of two definitive, consecutive, treatment sessions involving a muscle or group of muscles when treated with botulinum toxin
 define QA31:
 	("QT".item I
 		where I.linkId.value = '3.1')QR
 		return First(QR.answer).value
 
 define Group10criteria:
-	if( ("Headaches" = true)
-		and (
-			((First("QA22") = true) and (First("QA23") = true))
-			or ((First("QA24") = true) and (First("QA25") = true))
-		    )
-	   )
+	if	( 
+			("Headaches" = true)
+			and 
+			(
+				(
+					(
+						(First("QA22") = true) 
+						and (First("QA23") = true)
+					)
+					or 
+					(	
+						(First("QA24") = true) 
+						and (First("QA25") = true)
+					)
+				)
+				or
+				(
+					(
+						("ThreeMonthHeadaches"= true)
+						and ("RefractoryToTherapy" = true)
+					)
+					or 
+					(
+						("BotulinumBefore" = true)
+						and (("ImprovementInHeadaches"= true)
+								or ("HeadacheFrequencyReduction" = true))
+					)
+				)
+			)
+	    )
 		then true
 		else false
 
@@ -122,37 +312,42 @@ define Request:
 define Preclusion:
 	("ServiceRequest".quantity).value.value
 
-define QT:
-	"QuestionnaireResponse".item
-
-define QA21:
-	("QT".item I
-		where I.linkId.value = '2.1')QR
-		return First(QR.answer).value
-
-//headache disorders occurring greaterthan 15 days a month for a period of at least 3months
-define QA22:
-	("QT".item I
-		where I.linkId.value = '2.2')QR
-		return First(QR.answer).value
-
-
-
 define ServiceCode1:
 	if ((exists("Request".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
-		and ("Sialorrhea" is not null))
+		and ("Sialorrhea" is not null)
+		and ((First("QA14") = true)
+				or
+			exists([Procedure]P
+						where P.status.value = 'completed'
+							and exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
+							and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
+			))
 	then true
 	else false
 
 define ServiceCode2:
 	if ((exists("Request".code.coding C where C in "Esophagogastroduodenoscopy"))
-		and ("Esophagoscopy" is not null))
+		and ("Esophagoscopy" is not null)
+		and ((First("QA14") = true)
+			or
+				exists([Procedure]P
+							where P.status.value = 'completed'
+								and exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
+								and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
+		))
 	then true
 	else false
 
 define ServiceCode3:
 	if ((exists("Request".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
-		and ("AnalFissure" is not null))
+		and ("AnalFissure" is not null)
+		and ((First("QA14") = true)
+			or
+				exists([Procedure]P
+							where P.status.value = 'completed'
+								and exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
+								and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
+		))
 	then true
 	else false
 
@@ -215,7 +410,8 @@ define Limitations:
 	if (
 		("QualifiedConditions" is not null)
 		and ("Preclusion" <2)
-		and (First("QA31") = false)
+		and ((First("QA31") = false)
+				or ("ConsecutiveBotoxFailure" = false))
 	   )
 		then true
 		else false
@@ -240,6 +436,8 @@ define PrimaryDecision:
 	        else false
 
 define FinalDecision:
-	if ("PrimaryDecision" = true)
+	if (("PrimaryDecision" = true) and (IsNull("Blepharospasm")= false))
+		then 'HUMAN REVIEW NEEDED'
+		else if (("PrimaryDecision" = true) and (IsNull("Blepharospasm")= true))
 		then 'YES'
 		else 'NO'

@@ -45,6 +45,19 @@
       ]
     },
     {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1034.557"
+        },
+          {
+            "path": "clinical-status",
+            "searchParam": "active"
+          }
+      ]
+    },
+    {
       "type": "Procedure",
       "codeFilter": [
         {

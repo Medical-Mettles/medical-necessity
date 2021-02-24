@@ -40,7 +40,6 @@ valueset "Medical Contraindication": '2.16.840.1.113883.3.117.1.7.1.412'
 valueset "Recommended Treatment Contraindicated or Ineffective": '2.16.840.1.113762.1.4.1034.557'
 
 parameter "ServiceRequest" ServiceRequest
-parameter "Claim" Claim
 parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
@@ -92,8 +91,8 @@ define Duration:
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed'
-			and C.onset 15 days before C.abatement
-			and C.onset after (Today()-120 days)
+			and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 14 days
+			and "Normalize Interval"(C.onset) after (Today()-120 days)
 
 define ThreeMonthHeadaches:
 		if (Count("Duration") > 2)
@@ -120,23 +119,9 @@ define BotulinumBefore:
 define RefractoryToTherapy:
 		exists([Procedure]P
 			where P.status.value = 'completed'
-			and (   exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
-					or exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
-					or exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
-					or exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
-					or exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
-					or exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
-					or exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
-					or exists(P.code.coding C where C in "Onabotulinumtoxina")
-				)
-			and First(P.outcome.coding) in "Unsuccessful"
-			and First(First(P.complication).coding) in "Medical Contraindication")
-
-		
+			and First(First(P.reasonCode).coding) in "ChemodenervationOfNeckMuscle Codes"
+			and First(P.outcome.coding) in "Medical Contraindication")
+				
 define BotoxAdministered:
 		exists([Procedure]P
 				with [Procedure]R
@@ -269,7 +254,7 @@ define QA31:
 		where I.linkId.value = '3.1')QR
 		return First(QR.answer).value
 
-define Group10criteria:
+define HeadachesCriteria:
 	if	( 
 			("Headaches" = true)
 			and 
@@ -389,7 +374,7 @@ define ServiceCode9:
 
 define ServiceCode10:
 	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s)"))
-		and ("Group10criteria" = true))
+		and ("HeadachesCriteria" = true))
 	then true
 	else false
 

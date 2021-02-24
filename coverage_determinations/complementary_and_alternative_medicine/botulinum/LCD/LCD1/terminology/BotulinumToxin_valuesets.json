@@ -3660,10 +3660,6 @@
                 "version": "2020-03",
                 "concept": [
                     {
-                        "code": "64612",
-                        "display": "Chemodenervation Of Muscle(S); Muscle(S) Innervated By Facial Nerve, Unilateral (Eg, For Blepharospasm, Hemifacial Spasm)"
-                    },
-                    {
                         "code": "64616",
                         "display": "Chemodenervation Of Muscle(S); Neck Muscle(S), Excluding Muscles Of The Larynx, Unilateral (Eg, For Cervical Dystonia, Spasmodic Torticollis)"
                     },

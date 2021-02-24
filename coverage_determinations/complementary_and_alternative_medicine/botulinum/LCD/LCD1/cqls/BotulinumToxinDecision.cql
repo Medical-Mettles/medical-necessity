@@ -407,7 +407,6 @@ define PrimaryDecision:
 		or ("ServiceCode2" = true)
 		or ("ServiceCode3" = true)
 		or ("ServiceCode4" = true)
-		or ("ServiceCode5" = true)
 		or ("ServiceCode6" = true)
 		or ("ServiceCode7" = true)
 		or ("ServiceCode8" = true)
@@ -421,8 +420,10 @@ define PrimaryDecision:
 	        else false
 
 define FinalDecision:
-	if (("PrimaryDecision" = true) and (IsNull("Blepharospasm")= false))
+	if (("ServiceCode5" = true) 
+			and (IsNull("Blepharospasm")= false)
+			and ("Limitations" = true))
 		then 'HUMAN REVIEW NEEDED'
-		else if (("PrimaryDecision" = true) and (IsNull("Blepharospasm")= true))
+		else if ("PrimaryDecision" = true)
 		then 'YES'
 		else 'NO'

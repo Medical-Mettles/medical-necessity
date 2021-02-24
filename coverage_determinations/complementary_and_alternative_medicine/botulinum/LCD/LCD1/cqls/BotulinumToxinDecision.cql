@@ -102,26 +102,22 @@ define ThreeMonthHeadaches:
 define BotulinumBefore:
 		exists([Procedure]P
 			where P.status.value = 'completed'
-			and (   exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
-					or exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
-					or exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
-					or exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
-					or exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
-					or exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
-					or exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
-					or exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
-					or exists(P.code.coding C where C in "Onabotulinumtoxina")
-				))
+			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s)"))
 
 define RefractoryToTherapy:
-		exists([Procedure]P
-			where P.status.value = 'completed'
-			and First(First(P.reasonCode).coding) in "ChemodenervationOfNeckMuscle Codes"
-			and First(P.outcome.coding) in "Medical Contraindication")
-				
+		exists([Condition]C
+				with [Condition]R
+				such that exists(C.code.coding C where C in "Recommended Treatment Contraindicated or Ineffective")
+				and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
+				and exists(R.code.coding Q where Q in "ChemodenervationOfNeckMuscle Codes")
+				and First(R.clinicalStatus.coding).code.value = 'active'
+				and First(R.verificationStatus.coding).code.value = 'confirmed'
+				and "Normalize Interval"(C.onset) starts after end of "Normalize Interval"(R.onset))
+
+
+
+							
 define BotoxAdministered:
 		exists([Procedure]P
 				with [Procedure]R

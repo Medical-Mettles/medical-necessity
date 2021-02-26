@@ -74,8 +74,7 @@ context Patient
 
 define "BreastCancerCondition":
   [Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
+		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Breast Cancer")
 
 define "BreastCancerStaging":
@@ -188,8 +187,7 @@ define "AnatomicStage":
 
 define "HER2Observation":
 	([Observation]P
-			where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value in {'final', 'amended', 'corrected'}
+			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "HER2 Presence in Tissue")
 			and (P.value as CodeableConcept) in "Positive") O
 		with "MastectomyProcedure" P
@@ -198,8 +196,7 @@ define "HER2Observation":
 
 define "PRObservation":
 	([Observation]P
-			where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value in {'final', 'amended', 'corrected'}
+			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Progesterone receptor")
 			and (P.value as CodeableConcept) in "Positive") O
 		with "MastectomyProcedure" P
@@ -208,8 +205,7 @@ define "PRObservation":
 
 define "ERObservation":
 	([Observation]P
-			where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value in {'final', 'amended', 'corrected'}
+			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Estrogen receptor")
 			and (P.value as CodeableConcept) in "Positive") O
 		with "MastectomyProcedure" P
@@ -218,8 +214,7 @@ define "ERObservation":
 
 define "NeutrophilObservation":
   Last(([Observation]P
-			where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value in {'final', 'amended', 'corrected'}
+			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Neutrophil")) O
 		with "MastectomyProcedure" P
 		such that start of "Normalize Interval"(O.effective) after end of "Normalize Interval"(P.performed)
@@ -233,8 +228,7 @@ define "NeutrophilResult":
 
 define "ChemoDrugsAdministration":
   [MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
+	where M.status.value = 'completed'
 	and (First((M.medication as CodeableConcept).coding) in "Docetaxel, Carboplatin and Trastuzumab Chemotherapy drugs"
 		or First([Medication]med
 							where (M.medication as Reference).reference.value = 'Medication/'+med.id.value
@@ -243,8 +237,7 @@ define "ChemoDrugsAdministration":
 			) is not null
 
 define "ProcedureResources":
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
+	[Procedure]P where P.status.value = 'completed'
 		and exists(P.code.coding C where C in "Procedure for Medication Administration")
 
 define "ChemoDrugsProcedure":
@@ -259,8 +252,7 @@ define "DrugsAdministration":
 
 define "ChemoDrugsAllergy":
 	[AllergyIntolerance]A
-		where A.patient.reference.value = 'Patient/'+ Patient.id.value
-    and First(A.clinicalStatus.coding).code.value = 'active'
+		where First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Chemotherapy drugs allergy")
 
 define "SpecificAllergies":
@@ -269,34 +261,29 @@ define "SpecificAllergies":
 
 define "AdverseEventsDrugs":
 	[AdverseEvent]A
-		where A.subject.reference.value = 'Patient/'+ Patient.id.value
-    and A.actuality in {'actual', 'potential'}
+		where A.actuality in {'actual', 'potential'}
     and exists(A.event.coding x where x in "Chemotherapy drugs allergy")
 
 define "MastectomyProcedure":
 	Last([Procedure]P
-		where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value = 'completed'
+		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "Mastectomy and Lumpectomy")
 		sort by end of "Normalize Interval"(performed)
 		)
 
 define "CardiacConditions":
 	First([Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
+		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Cardiac Disease"))
 
 define "LiverConditions":
 	First([Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
+		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Liver Disease"))
 
 define "RenalConditions":
 	First([Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
+		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Renal Disease"))
 
 define "PreExistingConditionsResources":
@@ -312,19 +299,16 @@ define "PreExistingConditionsResources":
 
 define "PulmonaryConditionsHistory":
 	[Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value in {'active', 'recurrence', 'relapse','remission','resolved'}
+		where First(C.clinicalStatus.coding).code.value in {'active', 'recurrence', 'relapse','remission','resolved'}
     and exists(C.code.coding x where x in "Chronic Obstructive Pulmonary Diseases")
 
 define "BleedingConditions":
 	[Condition]C
-		where C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
+		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Bleeding Disorder")
 
 define "TumorSizeObservation":
-  Last(([Observation]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
-			and P.status.value in {'final', 'amended', 'corrected'}
+  Last(([Observation]P where P.status.value in {'final', 'amended', 'corrected'}
 			and First(P.code.coding C where C in "Tumor size") is not null
 			and exists(P.bodySite.coding co where co in "Breasts BodySite")) O
 		with "MastectomyProcedure" P

@@ -38,6 +38,7 @@ valueset "Bilateral breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.21'
 valueset "Docetaxel": '2.16.840.1.113883.3.6037.1001.23.94.24'
 valueset "Trastuzumab": '2.16.840.1.113883.3.6037.1001.23.94.25'
 valueset "Carboplatin": '2.16.840.1.113883.3.6037.1001.23.94.26'
+valueset "ado-trastuzumab emtansine": '2.16.840.1.113883.3.6037.1001.23.94.27'
 
 parameter "QuestionnaireResponse" QuestionnaireResponse
 parameter "MedicationRequest" MedicationRequest
@@ -104,6 +105,9 @@ define CarboplatinMedication:
 
 define TrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "Trastuzumab"
+
+define ado_TransmutazabMedication:
+      First(("MedicationRequest".medication as CodeableConcept).coding) in "ado-trastuzumab emtansine"
 
 define Biosimilar:
       "suggest_biosimilar"
@@ -263,6 +267,27 @@ define TrastuzumabFinalDecision:
                                           then true
                                           else false
 
+define ado_TrastuzumabFinalDecision:
+      if (("ChemoNotNeeded" = false)
+            and ("ado_TrastuzumabMedication" = true)
+                  and (First("IsERPositive") = true)
+                     and (First("IsPRPositive")= true)
+                        and (First("IsHER2Positive")= true)
+                           and (First("LineOfTherapy")= 1)
+                              and (First("KnownAllergiesBoolean")= false)
+                                 and ((First("PreExistingConditionsBoolean")= false)
+                                       or 
+                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                                    and ((First("PulmonaryDiseaseHistory")= false)
+                                          or 
+                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                       and ((First("BleedingDisorderBoolean")= false)
+                                             or 
+                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                          and (First("NeutrophilLessThan1500")= false))
+                                          then true
+                                          else false
+
 define DocetaxelNotNeeded:
       if ((First("LineOfTherapy") = 1)
          and (First("KnownAllergiesBoolean") = false)
@@ -342,8 +367,12 @@ define FinalDecision:
       if 
          (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
       then 'HUMAN REVIEW NEEDED'
-         else if 
-            (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
-         then 'YES'
-            else 'HUMAN REVIEW NEEDED'
+         else if
+               (("ado_TrastuzumabFinalDecision" = true) and ("ado_TrastuzumabMedication" = true))
+            then 'HUMAN REVIEW NEEDED. PATHOLOGY REPORT REQUIRED'
+               else if 
+                  (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
+                     then 'YES'
+                  else
+                     'HUMAN REVIEW NEEDED'
 

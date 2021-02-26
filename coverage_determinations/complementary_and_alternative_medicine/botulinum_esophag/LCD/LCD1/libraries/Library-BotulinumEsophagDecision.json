@@ -1,0 +1,53 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "BotulinumEsophagDecision",
+  "name": "BotulinumEsophagDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-BotulinumEsophag"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "outcome",
+          "valueSet": "2.16.840.1.113762.1.4.1034.557"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "outcome",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.50"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.38"
+        }
+      ]
+    }
+  ]
+}

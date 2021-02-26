@@ -1,9 +1,9 @@
-library BotulinumToxinDecision version '1.0.0'
+library BotulinumMuscleDecision version '1.0.0'
 
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include BotulinumToxin version '1.0.0' called BTCommon
+include BotulinumMuscle version '1.0.0' called BTCommon
 
 //include otherLibrary version 'x.x' called otherLibrary
 //codesystem codeSystemName : 'OID' version 'x.x'
@@ -419,7 +419,7 @@ define FinalDecision:
 	if (("ServiceCode5" = true) 
 			and (IsNull("Blepharospasm")= false)
 			and ("Limitations" = true))
-		then 'HUMAN REVIEW NEEDED'
+		then 'HUMAN REVIEW NEEDED. PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
 		else if ("PrimaryDecision" = true)
 		then 'YES'
 		else 'NO'

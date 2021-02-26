@@ -94,17 +94,17 @@ define Duration:
 			and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 14 days
 			and "Normalize Interval"(C.onset) after (Today()-120 days)
 
-define ThreeMonthHeadaches:
+define HeadachesForLastThreeMonths:
 		if (Count("Duration") > 2)
 			then true
 			else false
 
-define BotulinumAdministeredBefore:
+define IsBotulinumAdministeredBefore:
 		exists([Procedure]P
 			where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s)"))
 
-define RefractoryToTherapy:
+define RefractoryToConventionalTherapy:
 		exists([Condition]C
 				with [Condition]R
 				such that exists(C.code.coding C where C in "Recommended Treatment Contraindicated or Ineffective")
@@ -269,12 +269,12 @@ define HeadachesCriteria:
 				or
 				(
 					(
-						("ThreeMonthHeadaches"= true)
-						and ("RefractoryToTherapy" = true)
+						("HeadachesForLastThreeMonths"= true)
+						and ("RefractoryToConventionalTherapy" = true)
 					)
 					or 
 					(
-						("BotulinumAdministeredBefore" = true)
+						("IsBotulinumAdministeredBefore" = true)
 						and (("ImprovementInHeadachesAfterBotoxAdministration"= true)
 								or ("HeadacheFrequencyReductionAfterBotoxAdministration" = true))
 					)
@@ -387,7 +387,7 @@ define ServiceCode12:
 		then true
 		else false
 
-define Limitations:
+define LimitationsNullified:
 	if (
 		("QualifiedConditions" is not null)
 		and ("Preclusion" <2)
@@ -418,7 +418,7 @@ define PrimaryDecision:
 define FinalDecision:
 	if (("ServiceCode5" = true) 
 			and (IsNull("Blepharospasm")= false)
-			and ("Limitations" = true))
+			and ("LimitationsNullified" = true))
 		then 'HUMAN REVIEW NEEDED. PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
 		else if ("PrimaryDecision" = true)
 		then 'YES'

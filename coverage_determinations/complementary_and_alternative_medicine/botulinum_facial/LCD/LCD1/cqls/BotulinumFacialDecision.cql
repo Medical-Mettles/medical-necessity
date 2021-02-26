@@ -1,9 +1,9 @@
-library BotulinumToxinDecision version '1.0.0'
+library BotulinumFacialDecision version '1.0.0'
 
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include BotulinumToxin version '1.0.0' called BTCommon
+include BotulinumFacial version '1.0.0' called BTCommon
 
 //include otherLibrary version 'x.x' called otherLibrary
 //codesystem codeSystemName : 'OID' version 'x.x'
@@ -18,6 +18,7 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
+valueset "Blepharospasm Codes": '2.16.840.1.113883.3.6037.1001.23.99.31'
 valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
 valueset "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.37'
 valueset "Esophagogastroduodenoscopy" : '2.16.840.1.113883.3.6037.1001.23.99.38'
@@ -86,6 +87,11 @@ define MigraineWithoutAura:
 define Headaches:
 	BTCommon."Headaches"
 
+define BlepharospasmDiagnosis:
+	if (IsNull("Blepharospasm")= false)
+		then true
+		else false
+
 define Duration:
 		[Condition] C
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
@@ -99,12 +105,13 @@ define ThreeMonthHeadaches:
 			then true
 			else false
 
-define BotulinumAdministeredBefore:
+define IsBotulinumAdministeredBefore:
 		exists([Procedure]P
 			where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s)"))
+			and exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
 
-define RefractoryToTherapy:
+
+define RefractoryToConventionalTherapy:
 		exists([Condition]C
 				with [Condition]R
 				such that exists(C.code.coding C where C in "Recommended Treatment Contraindicated or Ineffective")
@@ -116,8 +123,6 @@ define RefractoryToTherapy:
 				and "Normalize Interval"(C.onset) starts after end of "Normalize Interval"(R.onset))
 
 
-
-							
 define BotoxAdministered:
 		exists([Procedure]P
 				with [Procedure]R
@@ -270,11 +275,11 @@ define HeadachesCriteria:
 				(
 					(
 						("ThreeMonthHeadaches"= true)
-						and ("RefractoryToTherapy" = true)
+						and ("RefractoryToConventionalTherapy" = true)
 					)
 					or 
 					(
-						("BotulinumAdministeredBefore" = true)
+						("IsBotulinumAdministeredBefore" = true)
 						and (("ImprovementInHeadachesAfterBotoxAdministration"= true)
 								or ("HeadacheFrequencyReductionAfterBotoxAdministration" = true))
 					)
@@ -290,7 +295,7 @@ define theclaim:
 define Request:
 	"ServiceRequest"
 
-define Preclusion:
+define MorethanOneBotoxForSameMuscle:
 	("ServiceRequest".quantity).value.value
 
 define ServiceCode1:
@@ -387,12 +392,13 @@ define ServiceCode12:
 		then true
 		else false
 
-define Limitations:
+define LimitationsNullified:
 	if (
 		("QualifiedConditions" is not null)
-		and ("Preclusion" <2)
+		and ("MorethanOneBotoxForSameMuscle" <2)
 		and ((First("QA31") = false)
 				or ("ConsecutiveBotoxFailure" = false))
+		and ("RefractoryToConventionalTherapy" = true)
 	   )
 		then true
 		else false
@@ -411,15 +417,15 @@ define PrimaryDecision:
 		or ("ServiceCode11" = true)
 		or ("ServiceCode12" = true))
 	    and
-	        ("Limitations" = true))
+	        ("LimitationsNullified" = true))
 	        then true
 	        else false
 
 define FinalDecision:
 	if (("ServiceCode5" = true) 
 			and (IsNull("Blepharospasm")= false)
-			and ("Limitations" = true))
-		then 'HUMAN REVIEW NEEDED'
+			and ("LimitationsNullified" = true))
+		then 'HUMAN REVIEW NEEDED. PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
 		else if ("PrimaryDecision" = true)
 		then 'YES'
 		else 'NO'

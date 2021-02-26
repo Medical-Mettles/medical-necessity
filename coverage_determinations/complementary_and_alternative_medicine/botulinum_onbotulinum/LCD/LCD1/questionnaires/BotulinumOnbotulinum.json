@@ -1,0 +1,207 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicarefeeforservice-BotulinumOnbotulinum"
+    }
+  ],
+  "name": "BotulinumToxin",
+  "version": "1.0.0",
+  "title": "BotulinumToxin",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-BotulinumOnbotulinum"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Diagnosis/Procedure",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Relevant Diagnosis",
+          "type": "string",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RelevantDiagnosis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Is any prior Prior Treatment performed ?",
+          "type": "boolean",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IsTreatmentPerformed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.3",
+          "text": "Details of Prior Treatment performed that was unsuccessful",
+          "type": "text",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "1.2",
+		"operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TreatmentFailed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.4",
+          "text": "Has the patient not responded satisfactorily to conventional therapy ? ",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Functional Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Does the patient suffer from chronic headaches or migraine ?",
+          "type": "boolean",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Headaches"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.2",
+          "text": "Do headache disorders occur for  greater than 15 days a month, for a period of at least 3months ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.3",
+          "text": "Is the patient refractory to standard and usual conventional therapy ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.4",
+          "text": "Is the patient administered botulin toxin before ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.5",
+          "text": "Does the patient demonstrate a significant decrease, in the number and frequency of headaches and an improvement in function, upon receiving Botulinum toxin ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.4",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Clinical Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "3.1",
+          "text": "Is there a failure of two definitive, consecutive, treatment sessions involving a muscle or group of muscles when treated with botulinum toxin ? ",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

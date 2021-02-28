@@ -106,7 +106,7 @@ define CarboplatinMedication:
 define TrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "Trastuzumab"
 
-define ado_TransmutazabMedication:
+define adoTrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "ado-trastuzumab emtansine"
 
 define Biosimilar:
@@ -267,26 +267,27 @@ define TrastuzumabFinalDecision:
                                           then true
                                           else false
 
-define ado_TrastuzumabFinalDecision:
+define adoTrastuzumabFinalDecision:
       if (("ChemoNotNeeded" = false)
-            and ("ado_TrastuzumabMedication" = true)
-                  and (First("IsERPositive") = true)
-                     and (First("IsPRPositive")= true)
-                        and (First("IsHER2Positive")= true)
-                           and (First("LineOfTherapy")= 1)
-                              and (First("KnownAllergiesBoolean")= false)
-                                 and ((First("PreExistingConditionsBoolean")= false)
+            and (First("IsERPositive") = true)
+               and (First("IsPRPositive")= true)
+                  and (First("IsHER2Positive")= true)
+                     and (First("LineOfTherapy")= 1)
+                        and (First("KnownAllergiesBoolean")= false)
+                           and ((First("PreExistingConditionsBoolean")= false)
+                                 or 
+                                 ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
+                              and ((First("PulmonaryDiseaseHistory")= false)
+                                     or 
+                                    ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
+                                 and ((First("BleedingDisorderBoolean")= false)
                                        or 
-                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                                    and ((First("PulmonaryDiseaseHistory")= false)
-                                          or 
-                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                       and ((First("BleedingDisorderBoolean")= false)
-                                             or 
-                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                          and (First("NeutrophilLessThan1500")= false))
-                                          then true
-                                          else false
+                                       ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
+                                    and (First("NeutrophilLessThan1500")= false)
+                                       and ("adoTrastuzumabMedication" = true))
+                                    then true
+                                    else false
+
 
 define DocetaxelNotNeeded:
       if ((First("LineOfTherapy") = 1)
@@ -363,13 +364,18 @@ define PrimaryDecision:
       then true
       else false
 
+define Reason:
+      if (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
+            then 'THE NCCN GUIDELINES DONOT APPROVE ADO-TRANSTUZUMAB AS FIRST LINE OF THERAPY FOR ADJUVANT THERAPY'
+            else null
+
 define FinalDecision:
       if 
          (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
       then 'HUMAN REVIEW NEEDED'
          else if
-               (("ado_TrastuzumabFinalDecision" = true) and ("ado_TrastuzumabMedication" = true))
-            then 'HUMAN REVIEW NEEDED. PATHOLOGY REPORT REQUIRED'
+               (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
+            then 'HUMAN REVIEW NEEDED. PATHOLOGY REPORT TO BE REVIEWED'
                else if 
                   (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
                      then 'YES'

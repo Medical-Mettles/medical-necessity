@@ -32,24 +32,6 @@
     ]
   },
   {
-    "type": "Procedure",
-    "codeFilter": [
-      {
-        "path": "outcome",
-        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.50"
-      }
-    ]
-  },
-  {
-    "type": "Procedure",
-    "codeFilter": [
-      {
-        "path": "stage",
-        "valueSet": "2.16.840.1.113762.1.4.1096.114"
-      }
-    ]
-  },
-  {
     "type": "Condition",
     "codeFilter": [
       {
@@ -59,24 +41,6 @@
       {
         "path": "clinical-status",
         "searchParam": "active"
-      }
-    ]
-  },
-  {
-    "type": "Procedure",
-    "codeFilter": [
-      {
-        "path": "outcome",
-        "valueSet": "2.16.840.1.113883.3.117.1.7.1.412"
-      }
-    ]
-  },
-  {
-    "type": "Procedure",
-    "codeFilter": [
-      {
-        "path": "outcome",
-        "valueSet": "2.16.840.1.113762.1.4.1034.557"
       }
     ]
   },

@@ -411,7 +411,7 @@ define PrimaryDecision:
 		or ("ServiceCode11" = true)
 		or ("ServiceCode12" = true))
 	    and
-	        ("Limitations" = true))
+	        ("LimitationsNullified" = true))
 	        then true
 	        else false
 

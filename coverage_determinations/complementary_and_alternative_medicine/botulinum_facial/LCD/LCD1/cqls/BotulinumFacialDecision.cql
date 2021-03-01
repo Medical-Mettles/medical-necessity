@@ -397,7 +397,7 @@ define LimitationsNullified:
 		("QualifiedConditions" is not null)
 		and ("MorethanOneBotoxForSameMuscle" <2)
 		and ((First("QA31") = false)
-				or ("ConsecutiveBotoxFailure" = false))
+				or (true))
 		and ("RefractoryToConventionalTherapy" = true)
 	   )
 		then true

@@ -31,6 +31,15 @@
       }
     ]
   },
+    {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.36"
+      }
+    ]
+  },    
   {
     "type": "Procedure",
     "codeFilter": [

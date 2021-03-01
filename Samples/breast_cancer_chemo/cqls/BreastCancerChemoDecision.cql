@@ -364,7 +364,7 @@ define PrimaryDecision:
       then true
       else false
 
-define Reason:
+define ReasonMessage:
       if (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
             then 'THE NCCN GUIDELINES DONOT APPROVE ADO-TRANSTUZUMAB AS FIRST LINE OF THERAPY FOR ADJUVANT THERAPY'
             else null

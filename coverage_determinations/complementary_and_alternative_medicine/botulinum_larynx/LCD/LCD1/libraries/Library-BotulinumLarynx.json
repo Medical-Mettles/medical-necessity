@@ -18,182 +18,182 @@
     }
   ],
   "dataRequirement": [
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.26"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.27"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.28"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.29"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.30"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.31"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.32"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.33"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.34"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.35"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.36"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.48"
-        },
-          {
-            "path": "clinical-status",
-            "searchParam": "active"
-          }
-      ]
-    },
-    {
-      "type": "Procedure"
-    },
-    {
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "outcome",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.50"
-        }
-      ]
-    },
-    {
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.42"
-        }
-      ]
-    }
-  ]
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.26"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.27"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.28"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.29"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.30"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.31"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.32"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.33"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.34"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.35"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.36"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Condition",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.48"
+      },
+      {
+        "path": "clinical-status",
+        "searchParam": "active"
+      }
+    ]
+  },
+  {
+    "type": "Procedure"
+  },
+  {
+    "type": "Procedure",
+    "codeFilter": [
+      {
+        "path": "outcome",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.50"
+      }
+    ]
+  },
+  {
+    "type": "Procedure",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.42"
+      }
+    ]
+  }
+]
 }

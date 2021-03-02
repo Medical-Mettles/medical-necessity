@@ -668,7 +668,7 @@
             "item": [
                 {
                     "linkId": "6.1",
-                    "text": "Please upload the latest Pathology Report.",
+                    "text": "Please attach the latest Post Surgical Pathology Report for additional information.",
                     "type": "display"
                 }
             ]

@@ -364,9 +364,9 @@ define PrimaryDecision:
       then true
       else false
 
-define "adoTranstuzumabConsideration":
+define "ado-transtuzumabConsideration":
       if (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
-            then 'The NCCN Guidelines do not approve Ado-transtuzumab as first line of therapy for adjuvant therapy'
+            then 'The NCCN Guidelines do not approve ado-trastuzumab emtansine as first line of therapy for adjuvant therapy'
             else null
 
 define FinalDecision:

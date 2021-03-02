@@ -366,7 +366,7 @@ define PrimaryDecision:
 
 define "ado-transtuzumabConsideration":
       if (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
-            then 'The NCCN Guidelines do not approve ado-trastuzumab emtansine as first line of therapy for adjuvant therapy'
+            then 'As per NCCN Guidelines Ado-transtuzumab emtansine is not approved for adjuvant therapy for the first line of therapy. Please check pathology report.'
             else null
 
 define FinalDecision:

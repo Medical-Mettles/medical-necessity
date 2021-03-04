@@ -100,7 +100,7 @@ define Duration:
 			and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 14 days
 			and "Normalize Interval"(C.onset) after (Today()-120 days)
 
-define ThreeMonthHeadaches:
+define HeadachesForLastThreeMonths:
 		if (Count("Duration") > 2)
 			then true
 			else false
@@ -274,7 +274,7 @@ define HeadachesCriteria:
 				or
 				(
 					(
-						("ThreeMonthHeadaches"= true)
+						("HeadachesForLastThreeMonths"= true)
 						and ("RefractoryToConventionalTherapy" = true)
 					)
 					or 
@@ -397,7 +397,7 @@ define LimitationsNullified:
 		("QualifiedConditions" is not null)
 		and ("MorethanOneBotoxForSameMuscle" <2)
 		and ((First("QA31") = false)
-				or ("ConsecutiveBotoxFailure" = false))
+				or (true))
 		and ("RefractoryToConventionalTherapy" = true)
 	   )
 		then true

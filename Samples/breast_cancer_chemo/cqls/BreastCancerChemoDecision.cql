@@ -126,15 +126,6 @@ define adoTrastuzumabMedication:
 define Biosimilar:
       "suggest_biosimilar"
 
-define BiosimilarDrugSuggestion:
-      if (("suggest_biosimilar" = true) and ("TrastuzumabMedication" = true))
-         then true
-            else if (("suggest_biosimilar" = true) and ("DocetaxelMedication" = true))
-               then false
-                  else if (("suggest_biosimilar" = true) and ("CarboplatinMedication" = true))
-                     then false
-                     else false
-
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
 
@@ -204,23 +195,17 @@ define ChemoNotNeeded:
             and (First("IsPRPositive")= true)
                and (First("IsHER2Positive")= true)
                   and (First("LineOfTherapy") >1))
+         or
+         ((First("IsERPositive") = false)
+            or (First("IsPRPositive")= false)
+               or (First("IsHER2Positive")= false))
         )
         then true
         else false
 
-define TrastuzumabNotNeeded:
-      if ((First("IsERPositive") = true)
-         and (First("IsPRPositive")= true)
-            and (First("IsHER2Positive")= true)
-               and (First("LineOfTherapy")= 1)
-                  and ("CancerStage" = true))
-      then true
-      else false
-
 define TrastuzumabFinalDecision:
       if (("ChemoNotNeeded" = false)
             and ("TrastuzumabMedication" = true)
-               and ("TrastuzumabNotNeeded" = false)
                   and (First("IsERPositive") = true)
                      and (First("IsPRPositive")= true)
                         and (First("IsHER2Positive")= true)
@@ -239,17 +224,9 @@ define adoTrastuzumabFinalDecision:
                                     then true
                                     else false
 
-
-define DocetaxelNotNeeded:
-      if ((First("LineOfTherapy") = 1)
-            and ("CancerStage" = true))
-      then true
-      else false
-
 define DocetaxelFinalDecision:
       if (("ChemoNotNeeded" = false)
             and ("DocetaxelMedication" = true)
-               and ("DocetaxelNotNeeded" = false)
                   and (First("IsERPositive") = true)
                      and (First("IsPRPositive")= true)
                         and (First("IsHER2Positive")= true)
@@ -258,16 +235,10 @@ define DocetaxelFinalDecision:
       then true
       else false
 
-define CarboplatinNotNeeded:
-      if ((First("LineOfTherapy") = 1)
-            and ("CancerStage" = true))
-      then true
-      else false
 
 define CarboplatinFinalDecision:
       if (("ChemoNotNeeded" = false)
          and ("CarboplatinMedication" = true)
-            and  ("CarboplatinNotNeeded" = false)
                and  (First("IsERPositive") = true)
                   and  (First("IsPRPositive")= true)
                      and  (First("IsHER2Positive")= true)
@@ -294,13 +265,13 @@ define "ado-transtuzumabConsideration":
 
 define FinalDecision:
       if 
-         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
+         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("suggest_biosimilar"= true) )
       then 'HUMAN REVIEW NEEDED'
          else if
                (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
             then 'HUMAN REVIEW NEEDED. PATHOLOGY REPORT TO BE REVIEWED'
                else if 
-                  (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
+                  (("PrimaryDecision" = true))
                      then 'YES'
                   else
                      'HUMAN REVIEW NEEDED'

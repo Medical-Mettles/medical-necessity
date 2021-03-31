@@ -123,7 +123,7 @@ define TrastuzumabMedication:
 define adoTrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "ado-trastuzumab emtansine"
 
-define Biosimilar:
+define BiosimilarDrugSuggestion:
       "suggest_biosimilar"
 
 define QuestionnaireResponseItems:
@@ -267,7 +267,7 @@ define "ado-transtuzumabConsideration":
 
 define FinalDecision:
       if 
-         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("suggest_biosimilar"= true) )
+         (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )
       then 'HUMAN REVIEW NEEDED'
          else if
                (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))

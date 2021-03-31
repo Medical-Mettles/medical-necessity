@@ -199,6 +199,8 @@ define ChemoNotNeeded:
          ((First("IsERPositive") = false)
             or (First("IsPRPositive")= false)
                or (First("IsHER2Positive")= false))
+         or
+         ("CancerStage" = false)
         )
         then true
         else false

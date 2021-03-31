@@ -273,6 +273,9 @@ define FinalDecision:
                else if 
                   (("PrimaryDecision" = true))
                      then 'YES'
-                  else
-                     'HUMAN REVIEW NEEDED'
+                  else if 
+                        ("ChemoNotNeeded" = true)
+                              then 'NO'
+                        else
+                              'HUMAN REVIEW NEEDED'
 

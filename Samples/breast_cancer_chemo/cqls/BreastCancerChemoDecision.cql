@@ -52,6 +52,20 @@ define BreastCancerCondition:
 define BreastCancerStaging:
       BCChemo."BreastCancerStaging"
 
+define pTStage:
+      BCChemo."pTStage"
+
+define pNStagePathological:
+      BCChemo.pNStagePathological
+
+define pMStagePathological:
+      BCChemo.pMStagePathological
+
+define CancerStage:
+      if (("pTStage" = 'T1') and ("pNStagePathological" = 'N0') and ("pMStagePathological" = 'M0'))
+      then true
+      else false
+
 define HER2Observation:
       BCChemo."HER2Observation"
 
@@ -109,17 +123,8 @@ define TrastuzumabMedication:
 define adoTrastuzumabMedication:
       First(("MedicationRequest".medication as CodeableConcept).coding) in "ado-trastuzumab emtansine"
 
-define Biosimilar:
-      "suggest_biosimilar"
-
 define BiosimilarDrugSuggestion:
-      if (("suggest_biosimilar" = true) and ("TrastuzumabMedication" = true))
-         then true
-            else if (("suggest_biosimilar" = true) and ("DocetaxelMedication" = true))
-               then false
-                  else if (("suggest_biosimilar" = true) and ("CarboplatinMedication" = true))
-                     then false
-                     else false
+      "suggest_biosimilar"
 
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
@@ -190,80 +195,24 @@ define ChemoNotNeeded:
             and (First("IsPRPositive")= true)
                and (First("IsHER2Positive")= true)
                   and (First("LineOfTherapy") >1))
-        or
-            ((First("IsERPositive") = true)
-                  and (First("IsPRPositive")= true)
-                     and (First("IsHER2Positive")= true)
-                        and (First("LineOfTherapy")= 1)
-                           and (First("KnownAllergiesBoolean") = false)
-                              and (First("PreExistingConditionsBoolean") = true)
-                                 and (First("ConditionsManagementBoolean") = false))
-        or
-            ((First("IsERPositive") = true)
-               and (First("IsPRPositive")= true)
-                  and (First("IsHER2Positive")= true)
-                     and (First("LineOfTherapy")= 1)
-                        and (First("KnownAllergiesBoolean")= false)
-                           and ((First("PreExistingConditionsBoolean")= false)
-                                       or 
-                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                                    and ((First("PulmonaryDiseaseHistory")= false)
-                                          or 
-                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                       and ((First("BleedingDisorderBoolean")= false)
-                                             or 
-                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                 and (First("NeutrophilLessThan1500")= true))
-        or 
-            ((First("IsERPositive") = true)
-               and (First("IsPRPositive")= true)
-                  and (First("IsHER2Positive")= true)
-                     and (First("LineOfTherapy")= 1)
-                        and (First("KnownAllergiesBoolean") = false)
-                           and (First("PulmonaryDiseaseHistory") = true)
-                              and (First("IsPulmonaryDiseaseManaged") = false))
-        or 
-            ((First("IsERPositive") = true)
-               and (First("IsPRPositive")= true)
-                  and (First("IsHER2Positive")= true)
-                     and (First("LineOfTherapy")= 1)
-                        and (First("KnownAllergiesBoolean") = false)
-                           and (First("BleedingDisorderBoolean") = true)
-                              and (First("IsBleedingDisorderManaged") = false))
+         or
+         ((First("IsERPositive") = false)
+            or (First("IsPRPositive")= false)
+               or (First("IsHER2Positive")= false))
+         or
+         ("CancerStage" = false)
         )
         then true
         else false
 
-define TrastuzumabNotNeeded:
-      if ((First("IsERPositive") = true)
-         and (First("IsPRPositive")= true)
-            and (First("IsHER2Positive")= true)
-               and (First("LineOfTherapy")= 1)
-                  and (First("KnownAllergiesBoolean") = false)
-                     and (First("PreExistingConditionsBoolean")= true)
-                        and (First("ConditionsManagementBoolean")= false))
-      then true
-      else false
-
 define TrastuzumabFinalDecision:
       if (("ChemoNotNeeded" = false)
             and ("TrastuzumabMedication" = true)
-               and ("TrastuzumabNotNeeded" = false)
                   and (First("IsERPositive") = true)
                      and (First("IsPRPositive")= true)
                         and (First("IsHER2Positive")= true)
                            and (First("LineOfTherapy")= 1)
-                              and (First("KnownAllergiesBoolean")= false)
-                                 and ((First("PreExistingConditionsBoolean")= false)
-                                       or 
-                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                                    and ((First("PulmonaryDiseaseHistory")= false)
-                                          or 
-                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                       and ((First("BleedingDisorderBoolean")= false)
-                                             or 
-                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                          and (First("NeutrophilLessThan1500")= false))
+                              and ("CancerStage" = true))
                                           then true
                                           else false
 
@@ -273,83 +222,30 @@ define adoTrastuzumabFinalDecision:
                and (First("IsPRPositive")= true)
                   and (First("IsHER2Positive")= true)
                      and (First("LineOfTherapy")= 1)
-                        and (First("KnownAllergiesBoolean")= false)
-                           and ((First("PreExistingConditionsBoolean")= false)
-                                 or 
-                                 ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                              and ((First("PulmonaryDiseaseHistory")= false)
-                                     or 
-                                    ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                 and ((First("BleedingDisorderBoolean")= false)
-                                       or 
-                                       ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                    and (First("NeutrophilLessThan1500")= false)
-                                       and ("adoTrastuzumabMedication" = true))
+                        and ("CancerStage" = true))
                                     then true
                                     else false
-
-
-define DocetaxelNotNeeded:
-      if ((First("LineOfTherapy") = 1)
-         and (First("KnownAllergiesBoolean") = false)
-            and (First("PreExistingConditionsBoolean")= false)
-               and (First("PulmonaryDiseaseHistory")= true)
-                  and (First("IsPulmonaryDiseaseManaged")= false))
-      then true
-      else false
 
 define DocetaxelFinalDecision:
       if (("ChemoNotNeeded" = false)
             and ("DocetaxelMedication" = true)
-               and ("DocetaxelNotNeeded" = false)
                   and (First("IsERPositive") = true)
                      and (First("IsPRPositive")= true)
                         and (First("IsHER2Positive")= true)
                            and (First("LineOfTherapy")= 1)
-                              and (First("KnownAllergiesBoolean")= false)
-                                 and ((First("PreExistingConditionsBoolean")= false)
-                                       or 
-                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                                    and ((First("PulmonaryDiseaseHistory")= false)
-                                          or 
-                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                       and ((First("BleedingDisorderBoolean")= false)
-                                             or 
-                                             ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                          and (First("NeutrophilLessThan1500")= false))
+                              and ("CancerStage" = true))
       then true
       else false
 
-define CarboplatinNotNeeded:
-      if ((First("LineOfTherapy") = 1)
-            and (First("KnownAllergiesBoolean") = false)
-               and (First("PreExistingConditionsBoolean")= false)
-                  and ((First("PulmonaryDiseaseHistory")= false)
-                        or (First("IsPulmonaryDiseaseManaged")= true))
-                     and (First("BleedingDisorderBoolean") = true)
-                        and (First("IsBleedingDisorderManaged") = false))
-      then true
-      else false
 
 define CarboplatinFinalDecision:
       if (("ChemoNotNeeded" = false)
          and ("CarboplatinMedication" = true)
-            and  ("CarboplatinNotNeeded" = false)
                and  (First("IsERPositive") = true)
                   and  (First("IsPRPositive")= true)
                      and  (First("IsHER2Positive")= true)
                         and  (First("LineOfTherapy")= 1)
-                           and  (First("KnownAllergiesBoolean")= false)
-                              and  ((First("PreExistingConditionsBoolean")= false)
-                                          or 
-                                       ((First("PreExistingConditionsBoolean")= true) and (First("ConditionsManagementBoolean")= true)))
-                                 and ((First("PulmonaryDiseaseHistory")= false)
-                                          or 
-                                          ((First("PulmonaryDiseaseHistory")= true) and (First("IsPulmonaryDiseaseManaged")= true)))
-                                    and ((First("BleedingDisorderBoolean")= false)
-                                             or 
-                                          ((First("BleedingDisorderBoolean")= true) and (First("IsBleedingDisorderManaged")= true)))
-                                       and (First("NeutrophilLessThan1500")= false))
+                           and ("CancerStage" = true))
          then true
          else false
 
@@ -364,7 +260,7 @@ define PrimaryDecision:
       then true
       else false
 
-define "ado-transtuzumabConsideration":
+define "ado-trastuzumabConsideration":
       if (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
             then 'As per NCCN Guidelines Ado-transtuzumab emtansine is not approved for adjuvant therapy for the first line of therapy. Please check pathology report.'
             else null
@@ -377,8 +273,11 @@ define FinalDecision:
                (("adoTrastuzumabFinalDecision" = true) and ("adoTrastuzumabMedication" = true))
             then 'HUMAN REVIEW NEEDED. PATHOLOGY REPORT TO BE REVIEWED'
                else if 
-                  (("PrimaryDecision" = true) and ("BiosimilarDrugSuggestion" = false))
+                  (("PrimaryDecision" = true))
                      then 'YES'
-                  else
-                     'HUMAN REVIEW NEEDED'
+                  else if 
+                        ("ChemoNotNeeded" = true)
+                              then 'NO'
+                        else
+                              'HUMAN REVIEW NEEDED'
 

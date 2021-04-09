@@ -1,0 +1,206 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-colorectal_cancer_treatment"
+    }
+  ],
+  "name": "ColorectalCancerTreatment",
+  "version": "1.0.0",
+  "title": "Colorectal Cancer Treatment",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2021-04-09",
+  "publisher": "Mettle Solutions",
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Cancer Staging",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "1.1",
+          "text": "Cancer Staging Type",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pathological",
+                "display": "Pathological"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "1.2",
+          "text": "Primary Tumor (pT)",
+          "type": "text"
+        },
+        {
+          "linkId": "1.3",
+          "text": "Regional Lymph nodes (N)",
+          "type": "text"
+        },
+        {
+          "linkId": "1.4",
+          "text": "Regional Lymph nodes (pN)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Pathological Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "2.1",
+          "text": "Was Excisional Biopsy Polyp carried out at the time of Colonoscopy?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "2.2",
+          "text": "What is the Histopathological Grade of the excised specimen ( polyp)?",
+          "type": "open-choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "Grade I"
+            },
+            {
+              "valueString": "Grade II"
+            },
+            {
+              "valueString": "Grade III"
+            },
+            {
+              "valueString": "Grade IV"
+            }
+          ]
+        },
+        {
+          "linkId": "2.3",
+          "text": "Did the specimen have clear margins?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Clinical Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "3.1",
+          "text": "What was the morphology of the polyp?",
+          "type": "open-choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "Sessile with invasive cancer"
+            },
+            {
+              "valueString": "Pedunculated with invasive cancer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "4",
+      "text": "Comorbidities",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "4.1",
+          "text": "Does the patient have any pre-existing Cardiac/Pulmonary/Renal/Hepatic conditions?",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "linkId": "4.2",
+          "text": "Are the pre-existing Cardiac/Pulmonary/Renal/Hepatic conditions being managed with appropriate treatment?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.1",
+              "answerBoolean": true
+            }
+          ],
+          "required": false
+        },
+        {
+          "linkId": "4.3",
+          "text": "Does the patient have any Bleeding/Clotting disorders?",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "linkId": "4.4",
+          "text": "Are the Bleeding/Clotting conditions being managed with appropriate treatment?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.3",
+              "answerBoolean": true
+            }
+          ],
+          "required": false
+        },
+        {
+          "linkId": "4.5",
+          "text": "Is the patient's age>80?",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "linkId": "4.6",
+          "text": "Is the patient’s BMI>30kg/m2?",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

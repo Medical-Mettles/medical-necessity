@@ -198,6 +198,7 @@
         {
           "linkId": "4.6",
           "text": "Is the patient’s BMI>30kg/m2?",
+          "type": "boolean",
           "required": false
         }
       ]

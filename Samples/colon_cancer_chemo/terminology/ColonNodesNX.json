@@ -1,0 +1,36 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.07",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.07",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.07"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Regional Lymph Nodes NX",
+  "title": "Colon Regional Lymph Nodes NX",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "79420006",
+            "display": "NX category (finding)"
+          },
+          {
+            "code": "54452005",
+            "display": "pNX category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.31",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.31",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.31"
+    }
+  ],
+  "version": "Latest",
+  "name": "FOLFOX Chemotherapy drugs allergy",
+  "title": "FOLFOX Chemotherapy drugs allergy",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "293776000",
+            "display": "Allergy to fluorouracil (finding)"
+          },
+          {
+            "code": "294931002",
+            "display": "Allergy to folinic acid (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

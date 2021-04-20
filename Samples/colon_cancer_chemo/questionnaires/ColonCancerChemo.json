@@ -1,0 +1,522 @@
+{
+  "resourceType": "Questionnaire",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-coloncancerchemo-ColonCancerChemo"
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-coloncancerchemo-coloncancerchemo",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-colorectal_cancer_chemo"
+    }
+  ],
+  "name": "ColonCancerChemo",
+  "version": "1.0.0",
+  "title": "FOLFOX Chemotherapy Regimen",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2021-04-15",
+  "publisher": "Mettle Solutions",
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Cancer Staging",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StagingType"
+              }
+            }
+          ],
+          "linkId": "1.1",
+          "text": "Cancer Staging Type",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pathological",
+                "display": "Pathological"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TStage"
+              }
+            }
+          ],
+          "linkId": "1.2",
+          "text": "Primary Tumor (pT)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NStage"
+              }
+            }
+          ],
+
+          "linkId": "1.3",
+          "text": "Regional Lymph nodes (N)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MStage"
+              }
+            }
+          ],
+
+          "linkId": "1.4",
+          "text": "Distant Metastasis (M)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorSize"
+              }
+            }
+          ],
+          "linkId": "1.2",
+          "text": "Tumor Size (cm)",
+          "type": "decimal"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnatomicStage"
+              }
+            }
+          ],
+
+          "linkId": "1.5",
+          "text": "TNM Staging",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stage0",
+                "display": "Stage0"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageI",
+                "display": "StageI"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIA",
+                "display": "StageIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIB",
+                "display": "StageIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIC",
+                "display": "StageIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIA",
+                "display": "StageIIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIB",
+                "display": "StageIIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIC",
+                "display": "StageIIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIVA",
+                "display": "StageIVA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIVB",
+                "display": "StageIVB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIVC",
+                "display": "StageIVC"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Tumor Markers",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MMRDeficiency"
+              }
+            }
+          ],
+          "linkId": "2.1",
+          "text": "Has the patient been tested for MMR Deficiency?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MMRDeficiency"
+              }
+            }
+          ],
+          "linkId": "2.2",
+          "text": "Is the MMR Deficiency test normal?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "2.1",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MSIResult"
+              }
+            }
+          ],
+          "linkId": "2.3",
+          "text": "Is the Microsatellite Instability high?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CEALevelInBlood"
+              }
+            }
+          ],
+          "linkId": "2.4",
+          "text": "Is the CEA level in blood (carcinoembryonic antigen) <2.5ng/ml?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Tumor Genomics",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorGenomicsObservations"
+              }
+            }
+          ],
+          "linkId": "3.1",
+          "text": "Has the patient undergone screening for genetic mutations?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorGenomics"
+              }
+            }
+          ],
+          "linkId": "3.2",
+          "text": "Does the patient have any of the following mutations?",
+          "type": "open-choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "KRAS"
+            },
+            {
+              "valueString": "NRAS"
+            },
+            {
+              "valueString": "BRAF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "4",
+      "text": "Allergies to Regimen Drugs",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "KnownAllergies"
+              }
+            }
+          ],
+          "linkId": "4.1",
+          "text": "Does the patient have known allergies to any of the drugs indicated in the chemotherapy regimen? (Oxaloplatin, Folinic Acid, 5-fluorouracil)",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecificAllergies"
+              }
+            }
+          ],
+          "linkId": "4.2",
+          "text": "Specify the Allergies",
+          "type": "text",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.1",
+              "answerBoolean": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Comorbidities",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NeutrophilCount"
+              }
+            }
+          ],
+          "linkId": "5.1",
+          "text": "Are neutrophil counts < 1500 /mm3?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DPDCondition"
+              }
+            }
+          ],
+          "linkId": "5.2",
+          "text": "Does the patient have any documented deficiency of enzyme Dihydropyrimidine Dehydrogenase(DPD)?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "5.3",
+          "text": "Is the DPD Deficiency being managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "5.2",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+        },
+        {
+          "linkId": "5.4",
+          "text": "Additional information on the DPD Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.3",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VitB12Deficiency"
+              }
+            }
+          ],
+          "linkId": "5.5",
+          "text": "Does the patient have any documented Vitamin B12 deficiency?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "5.6",
+          "text": "Is the Vitamin B12 Deficiency being managed before commencement of chemotherapy?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "5.5",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+        },
+        {
+          "linkId": "5.7",
+          "text": "Additional information on the Vitamin B12 Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.6",
+              "answerBoolean": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "6",
+      "text": "Histology",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyColectomyProcedure"
+              }
+            }
+          ],
+          "linkId": "6.1",
+          "text": "What was the Procedure that was carried out?",
+          "type": "text",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

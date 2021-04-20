@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.06",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.06",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.06"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Tumor Stage T4b",
+  "title": "Colon Tumor Stage T4b",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "261660001",
+            "display": "Tumor stage T4b (finding)"
+          },
+          {
+            "code": "369922005",
+            "display": "T4b: Colon/rectum tumor penetrates the visceral peritoneum (finding)"
+          },
+          {
+            "code": "433501000124105",
+            "display": "Neoplasm of colon primary tumor staging category T4b: Tumor directly invades or is adherent to other organ or structure (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

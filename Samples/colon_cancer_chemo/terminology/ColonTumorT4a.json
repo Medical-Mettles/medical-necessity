@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.05",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.05",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.05"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Tumor Stage T4a",
+  "title": "Colon Tumor Stage T4a",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "261659006",
+            "display": "Tumor stage T4a (finding)"
+          },
+          {
+            "code": "369919008",
+            "display": "T4a: Colon/rectum tumor directly invades other organs or structures (finding)"
+          },
+          {
+            "code": "433491000124102",
+            "display": "Neoplasm of colon primary tumor staging category T4a: Tumor penetrates to surface of visceral peritoneum (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

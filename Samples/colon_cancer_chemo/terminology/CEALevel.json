@@ -1,0 +1,44 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.25",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.25",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.25"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "CEA Level In Blood",
+  "title": "CEA Level In Blood",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "2039-6",
+            "display": "Carcinoembryonic Ag [Mass/volume] in Serum or Plasma"
+          },
+          {
+            "code": "19167-6",
+            "display": "Carcinoembryonic Ag [Moles/volume] in Serum or Plasma"
+          },
+          {
+            "code": "19166-8",
+            "display": "Carcinoembryonic Ag [Units/volume] in Serum or Plasma"
+          },
+          {
+            "code": "12515-3",
+            "display": "Carcinoembryonic Ag [Mass/volume] in Body fluid"
+          }
+        ]
+      }
+    ]
+  }
+}

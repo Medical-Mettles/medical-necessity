@@ -1,0 +1,49 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.32",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.32",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.32"
+    }
+  ],
+  "version": "Latest",
+  "name": "DPD Condition",
+  "title": "DPD Condition",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "738543008",
+            "display": "Dihydropyrimidine dehydrogenase intermediate metabolizer (finding)"
+          },
+          {
+            "code": "738544002",
+            "display": "Dihydropyrimidine dehydrogenase normal metabolizer (finding)"
+          },
+          {
+            "code": "738542003",
+            "display": "Dihydropyrimidine dehydrogenase poor metabolizer (finding)"
+          }
+        ]
+      },
+      {
+       "system": "https://hcpcs.codes",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "81232",
+            "display": "Gene analysis (dihydropyrimidine dehydrogenase) for common variant"
+          }
+        ]
+      }
+    ]
+  }
+}

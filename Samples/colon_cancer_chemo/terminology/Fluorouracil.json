@@ -1,0 +1,45 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.36",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.36",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.36"
+    }
+  ],
+  "version": "Latest",
+  "name": "5-fluorouracil",
+  "title": "5-fluorouracil",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "239177",
+            "display": "fluorouracil 50 MG/ML Injectable Solution"
+          },
+          {
+            "code": "4492",
+            "display": "fluorouracil"
+          }
+        ]
+      },
+      {
+        "system": "https://hcpcs.codes/",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "J9190",
+            "display": "Injection, fluorouracil, 500 mg"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.23",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.23",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.23"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "MMR Deficiency Test",
+  "title": "MMR Deficiency Test",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "764946008",
+            "display": "Constitutional mismatch repair deficiency syndrome (disorder)"
+          },
+          {
+            "code": "28965003",
+            "display": "Deficiency of deoxyribonucleic acid repair (finding)"
+          }
+        ]
+      },
+      {
+        "system": "http://loinc.org",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "81691-8",
+            "display": "DNA mismatch repair protein Mlh1 [Presence] in Cancer specimen by Immune stain"
+          },
+          {
+            "code": "81692-6",
+            "display": "DNA mismatch repair protein Msh2 [Presence] in Cancer specimen by Immune stain"
+          },
+          {
+            "code": "58010-0",
+            "display": "MSH2 gene+MLH1 gene+MSH6 gene mutations found [Identifier] in Blood or Tissue by Molecular genetics method Nominal"
+          }
+        ]
+      }
+    ]
+  }
+}

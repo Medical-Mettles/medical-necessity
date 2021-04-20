@@ -1,0 +1,84 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.24",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.24",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.24"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "MSI Test",
+  "title": "MSI Test",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "81695-9",
+            "display": "Microsatellite instability [Interpretation] in Cancer specimen Qualitative"
+          },
+          {
+            "code": "43368-0",
+            "display": "Microsatellite instability [Identifier] in Tissue by Molecular genetics method Nominal"
+          },
+          {
+            "code": "62862-8",
+            "display": "Microsatellite instability [Presence] in Tissue by Immune stain"
+          },
+          {
+            "code": "81696-7",
+            "display": "Microsatellite instability markers assessed [#] in Cancer specimen"
+          },
+          {
+            "code": "81697-5",
+            "display": "Microsatellite instability marker BAT25 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81698-3",
+            "display": "Microsatellite instability marker BAT26 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81699-1",
+            "display": "Microsatellite instability marker NR21 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81700-7",
+            "display": "Microsatellite instability marker NR24 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81701-5",
+            "display": "Microsatellite instability marker MONO27 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81702-3",
+            "display": "Microsatellite instability marker D2S123 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81703-1",
+            "display": "Microsatellite instability marker D5S346 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81704-9",
+            "display": "Microsatellite instability marker D17S250 in Cancer specimen Qualitative"
+          },
+          {
+            "code": "81709-8",
+            "display": "Microsatellite markers exhibiting instability [#] in Cancer specimen"
+          },
+          {
+            "code": "81708-0",
+            "display": "Microsatellite markers exhibiting instability/Microsatellite instability markers assessed in Cancer specimen"
+          }
+        ]
+      }
+    ]
+  }
+}

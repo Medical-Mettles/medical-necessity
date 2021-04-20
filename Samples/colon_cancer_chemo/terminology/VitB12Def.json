@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.33",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.33",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.33"
+    }
+  ],
+  "version": "Latest",
+  "name": "Vit B12 Deficiency",
+  "title": "Vit B12 Deficiency",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "64117007",
+            "display": "Vitamin B12 deficiency (non anemic) (disorder)"
+          },
+          {
+            "code": "717947009",
+            "display": "Vitamin B12 deficiency anemia caused by drug (disorder)"
+          },
+          {
+            "code": "267517008",
+            "display": "Vitamin B12 deficiency anemia due to dietary causes (disorder)"
+          },
+          {
+            "code": "191142007",
+            "display": "Vitamin B12 deficiency anemia due to malabsorption with proteinuria (disorder)"
+          },
+          {
+            "code": "403453004",
+            "display": "Vitamin B12 deficiency glossitis (disorder)"
+          }
+        ]
+      }
+    ]
+  }
+}

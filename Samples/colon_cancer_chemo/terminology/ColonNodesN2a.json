@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.14",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.14",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.14"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Regional Lymph Nodes N2a",
+  "title": "Colon Regional Lymph Nodes N2a",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "433561000124106",
+            "display": "Neoplasm of colon regional lymph node staging category N2a: Metastasis in 4-6 regional lymph nodes (finding)"
+          },
+          {
+            "code": "261967001",
+            "display": "Node stage N2a (finding)"
+          },
+          {
+            "code": "443867001",
+            "display": "pN2a category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

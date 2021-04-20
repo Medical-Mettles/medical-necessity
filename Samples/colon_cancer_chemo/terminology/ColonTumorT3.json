@@ -1,0 +1,44 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.04",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.04",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.04"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Tumor Stage T3",
+  "title": "Colon Tumor Stage T3",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "14410001",
+            "display": "T3 category (finding)"
+          },
+          {
+            "code": "369921003",
+            "display": "T3: Colon/rectum tumor invades through the muscularis propria into the subserosa or the nonperitonealized pericolic or perirectal soft tissues (finding)"
+          },
+          {
+            "code": "395707006",
+            "display": "pT3: Tumor invades through the muscularis propria into the subserosa or into non-peritonealized pericolic or perirectal tissues (colon/rectum) (finding)"
+          },
+          {
+            "code": "433481000124100",
+            "display": "Neoplasm of colon primary tumor staging category T3: Tumor invades through muscularis propria into pericolorectal tissues (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

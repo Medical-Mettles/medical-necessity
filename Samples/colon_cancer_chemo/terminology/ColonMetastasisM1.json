@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.17",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.17",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.17"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Metastasis Stage M1",
+  "title": "Colon Metastasis Stage M1",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "436331000124104",
+            "display": "Neoplasm of colon distant metastasis staging category M1: Distant metastasis (finding)"
+          },
+          {
+            "code": "55440008",
+            "display": "M1 category (finding)"
+          },
+          {
+            "code": "14926007",
+            "display": "pM1 category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

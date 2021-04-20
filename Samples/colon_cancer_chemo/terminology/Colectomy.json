@@ -1,0 +1,48 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.29",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.29",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.29"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Sigmoid Colectomy",
+  "title": "Sigmoid Colectomy",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "1390003",
+            "display": "Laparoscopic-assisted sigmoid colectomy (procedure)"
+          },
+          {
+            "code": "174101001",
+            "display": "Sigmoid colectomy and anastomosis of colon to rectum (procedure)"
+          },
+          {
+            "code": "315326006",
+            "display": "Sigmoid colectomy with anastomosis (procedure)"
+          },
+          {
+            "code": "315327002",
+            "display": "Sigmoid colectomy with stoma (procedure)"
+          },
+          {
+            "code": "84604002",
+            "display": "Sigmoid colectomy (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.09",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.09",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.09"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Regional Lymph Nodes N1",
+  "title": "Colon Regional Lymph Nodes N1",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "53623008",
+            "display": "N1 category (finding)"
+          },
+          {
+            "code": "369992000",
+            "display": "N1: Metastasis in 1-3 lymph nodes (finding)"
+          },
+          {
+            "code": "370023009",
+            "display": "N1: Metastasis in regional lymph node or nodes (finding)"
+          },
+          {
+            "code": "370123006",
+            "display": "N1: Regional lymph node metastasis (finding)"
+          },
+          {
+            "code": "433511000124108",
+            "display": "Neoplasm of colon regional lymph node staging category N1: Metastasis in 1-3 regional lymph nodes (finding)"
+          },
+          {
+            "code": "395711000",
+            "display": "pN1: Metastasis in 1 to 3 regional lymph nodes (colon/rectum) (finding)"
+          },
+          {
+            "code": "45552005",
+            "display": "pN1 category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.27",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.27",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.27"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "NRAS Mutation Test",
+  "title": "NRAS Mutation Test",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "21720-8",
+            "display": "NRAS gene mutations tested for in Blood or Tissue by Molecular genetics method Nominal"
+          },
+          {
+            "code": "83060-4",
+            "display": "NRAS gene [VCF] in Cancer specimen by Sequencing"
+          }
+        ]
+      }
+    ]
+  }
+}

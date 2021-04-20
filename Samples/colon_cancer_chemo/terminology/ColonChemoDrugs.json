@@ -1,0 +1,87 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.30",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.30",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.30"
+    }
+  ],
+  "version": "Latest",
+  "name": "Folinic acid, 5-fluorouracil and Oxaliplatin Chemotherapy drugs",
+  "title": "Folinic acid, 5-fluorouracil and Oxaliplatin Chemotherapy drugs",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "197860",
+            "display": "leucovorin 10 MG Oral Tablet"
+          },
+          {
+            "code": "197861",
+            "display": "leucovorin 15 MG Oral Tablet"
+          },
+          {
+            "code": "197862",
+            "display": "leucovorin 25 MG Oral Tablet"
+          },
+          {
+            "code": "197863",
+            "display": "leucovorin 5 MG Oral Tablet"
+          },
+          {
+            "code": "237788",
+            "display": "leucovorin 350 MG Injection"
+          },
+          {
+            "code": "311282",
+            "display": "leucovorin 10 MG/ML Injectable Solution"
+          },
+          {
+            "code": "1720760",
+            "display": "levoleucovorin 50 MG Injection"
+          },
+          {
+            "code": "239177",
+            "display": "fluorouracil 50 MG/ML Injectable Solution"
+          },
+          {
+            "code": "4492",
+            "display": "fluorouracil"
+          },
+          {
+            "code": "1736776",
+            "display": "10 ML oxaliplatin 5 MG/ML Injection"
+          },
+          {
+            "code": "1736781",
+            "display": "20 ML oxaliplatin 5 MG/ML Injection"
+          },
+          {
+            "code": "1736784",
+            "display": "oxaliplatin 50 MG Injection"
+          },
+          {
+            "code": "1736786",
+            "display": "oxaliplatin 100 MG Injection"
+          },
+          {
+            "code": "1797528",
+            "display": "40 ML oxaliplatin 5 MG/ML Injection"
+          },
+          {
+            "code": "32592",
+            "display": "oxaliplatin"
+          }
+        ]
+      }
+    ]
+  }
+}

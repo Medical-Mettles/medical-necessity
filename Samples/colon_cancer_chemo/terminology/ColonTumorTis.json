@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.01",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.01",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.01"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Tumor Stage Tis",
+  "title": "Colon Tumor Stage Tis",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "44401000",
+            "display": "Tis category (finding)"
+          },
+          {
+            "code": "369981001",
+            "display": "Tis: Tumor invades muscularis mucosae (colon/rectum) (finding)"
+          },
+          {
+            "code": "373199001",
+            "display": "pTis: Tumor invades muscularis mucosae (colon/rectum) (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

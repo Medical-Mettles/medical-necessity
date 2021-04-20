@@ -1,0 +1,65 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.35",
+
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.35",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.35"
+    }
+  ],
+  "version": "Latest",
+  "name": "Folinic acid",
+  "title": "Folinic acid",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "197860",
+            "display": "leucovorin 10 MG Oral Tablet"
+          },
+          {
+            "code": "197861",
+            "display": "leucovorin 15 MG Oral Tablet"
+          },
+          {
+            "code": "197862",
+            "display": "leucovorin 25 MG Oral Tablet"
+          },
+          {
+            "code": "197863",
+            "display": "leucovorin 5 MG Oral Tablet"
+          },
+          {
+            "code": "237788",
+            "display": "leucovorin 350 MG Injection"
+          },
+          {
+            "code": "311282",
+            "display": "leucovorin 10 MG/ML Injectable Solution"
+          },
+          {
+            "code": "1720760",
+            "display": "levoleucovorin 50 MG Injection"
+          }
+        ]
+      },
+      {
+        "system": "https://hcpcs.codes/",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "J0640",
+            "display": "Injection, leucovorin calcium, per 50 mg"
+          }
+        ]
+      }
+    ]
+  }
+}

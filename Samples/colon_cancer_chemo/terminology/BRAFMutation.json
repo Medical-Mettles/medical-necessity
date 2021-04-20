@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.28",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.28",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.28"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "BRAF Mutation Test",
+  "title": "BRAF Mutation Test",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "53844-7",
+            "display": "BRAF gene targeted mutation analysis in Blood or Tissue by Molecular genetics method"
+          }
+        ]
+      }
+    ]
+  }
+}

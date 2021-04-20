@@ -1,0 +1,44 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.11",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.11",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.11"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Regional Lymph Nodes N1b",
+  "title": "Colon Regional Lymph Nodes N1b",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "370028000",
+            "display": "N1b: Metastasis in multiple regional lymph nodes (finding)"
+          },
+          {
+            "code": "277674001",
+            "display": "Node stage N1b (finding)"
+          },
+          {
+            "code": "433531000124102",
+            "display": "Neoplasm of colon regional lymph node staging category N1b: Metastasis in 2-3 regional lymph nodes (finding)"
+          },
+          {
+            "code": "443599002",
+            "display": "pN1b category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

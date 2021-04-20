@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.02",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.02",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.02"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Tumor Stage T1",
+  "title": "Colon Tumor Stage T1",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "373200003",
+            "display": "pT1: Tumor invades submucosa (colon/rectum) (finding)"
+          },
+          {
+            "code": "433461000124105",
+            "display": "Neoplasm of colon primary tumor staging category T1: Tumor invades submucosa (finding)"
+          },
+          {
+            "code": "23351008",
+            "display": "T1 category(finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

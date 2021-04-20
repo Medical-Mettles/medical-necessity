@@ -1,0 +1,44 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.18",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.18",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.18"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Colon Metastasis Stage M1a",
+  "title": "Colon Metastasis Stage M1a",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "436341000124109",
+            "display": "Neoplasm of colon distant metastasis staging category M1a: Metastasis confine to one organ or site (finding)"
+          },
+          {
+            "code": "261927002",
+            "display": "Metastasis stage M1a (finding)"
+          },
+          {
+            "code": "370034007",
+            "display": "M1a: non-regional lymph node metastasis (finding)"
+          },
+          {
+            "code": "443841006",
+            "display": "pM1a category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

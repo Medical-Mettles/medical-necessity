@@ -53,6 +53,102 @@
   ],
   "item": [
     {
+      "linkId": "7",
+      "text": "Cancer Data",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PrevColonCancer"
+              }
+            }
+          ],
+          "linkId": "7.1",
+          "text": "What was the Cancer Condition?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyColectomyProcedure"
+              }
+            }
+          ],
+          "linkId": "7.2",
+          "text": "What was the Procedure that was carried out?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyColonCancer"
+              }
+            }
+          ],
+          "linkId": "7.3",
+          "text": "What is the histologic type of the Cancer?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ColonCancerLocation"
+              }
+            }
+          ],
+          "linkId": "7.3",
+          "text": "What is the Location of the Cancer?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyCancerGrade"
+              }
+            }
+          ],
+          "linkId": "7.4",
+          "text": "What is the Histologic Grade of the Cancer?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorSize"
+              }
+            }
+          ],
+          "linkId": "7.5",
+          "text": "What is the size of the Tumor (in cm)?",
+          "type": "decimal"
+        }
+      ]
+    },
+    {
       "linkId": "1",
       "text": "Cancer Staging",
       "type": "group",
@@ -139,7 +235,7 @@
               }
             }
           ],
-          "linkId": "1.2",
+          "linkId": "1.5",
           "text": "Tumor Size (cm)",
           "type": "decimal"
         },
@@ -154,7 +250,7 @@
             }
           ],
 
-          "linkId": "1.5",
+          "linkId": "1.6",
           "text": "TNM Staging",
           "type": "choice",
           "answerOption": [
@@ -493,28 +589,6 @@
               "answerBoolean": true
             }
           ]
-        }
-      ]
-    },
-    {
-      "linkId": "6",
-      "text": "Histology",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SpecifyColectomyProcedure"
-              }
-            }
-          ],
-          "linkId": "6.1",
-          "text": "What was the Procedure that was carried out?",
-          "type": "text",
-          "required": true
         }
       ]
     }

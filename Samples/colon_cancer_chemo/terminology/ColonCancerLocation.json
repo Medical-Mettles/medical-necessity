@@ -1,0 +1,47 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.38",
+  
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.38",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.38"
+      }
+    ],
+    "version": "Latest",
+    "name": "Colon Cancer Location",
+    "title": "Colon Cancer Location",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2021-04",
+          "concept": [
+            {
+              "code": "362166007",
+              "display": "Entire sigmoid colon (body structure)"
+            },
+            {
+                "code": "784196004",
+                "display": "Entire lumen of sigmoid colon (body structure)"
+            },
+            {
+                "code": "245459001",
+                "display": "Entire sigmoid mesocolon (body structure)"
+            },
+            {
+                "code": "85033007",
+                "display": "Structure of mesentery of sigmoid colon (body structure)"
+            },
+            {
+                "code": "782688006",
+                "display": "Entire mucous membrane of sigmoid colon (body structure)"
+            }
+          ]
+        }
+      ]
+    }
+  }

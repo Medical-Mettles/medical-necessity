@@ -54,7 +54,9 @@ valueset "DPD Condition": '2.16.840.1.113883.3.6037.1001.23.93.32'
 valueset "Vit B12 Deficiency": '2.16.840.1.113883.3.6037.1001.23.93.33'
 valueset "Positive": '2.16.840.1.113883.17.4077.3.2025'
 valueset "Negative Result": '2.16.840.1.113762.1.4.1116.292'
-
+valueset "Clinical Colon Cancer": '2.16.840.1.113883.3.6037.1001.23.93.37'
+valueset "Colon Cancer Location": '2.16.840.1.113883.3.6037.1001.23.93.38'
+valueset "Histologic Cancer Grade": '2.16.840.1.113883.3.6037.1001.23.93.39'
 
 parameter "MedicationRequest" MedicationRequest
 
@@ -371,6 +373,35 @@ define "VitB12Deficiency":
 	if Last("VitB12DeficiencyCondition") is not null
 	then true
 	else false
+
+define "ColonCancerLocation":
+	if exists ("ColonCancerCondition".bodySite.coding co where co in "Colon Cancer Location") L
+			then L.code.coding[0].display.value+'\n'
+			else ''
+
+define "ClinicalColonCancer":
+	 [Condition]C
+		where First(C.clinicalStatus.coding).code.value = 'active'
+    and exists(C.code.coding x where x in "Clinical Colon Cancer")
+
+define "PrevColonCancer":
+	"ClinicalColonCancer" C
+		return C.code.coding[0].display.value+'\n'
+
+define "SpecifyColonCancer":
+	"ColonCancerCondition" C
+		return C.code.coding[0].display.value+'\n'
+
+define "HistologicCancerGrade":
+	([Observation]O
+			where O.status.value in {'final', 'amended', 'corrected'}
+			and exists(O.code.coding x where x in "Histologic Cancer Grade")
+			and (O.value as boolean in true))
+
+define "SpecifyCancerGrade":
+	"HistologicCancerGrade" C
+		return C.code.coding[0].display.value+'\n'
+
 
 define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then

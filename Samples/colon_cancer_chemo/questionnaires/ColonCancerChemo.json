@@ -113,7 +113,7 @@
             }
           ],
           "linkId": "7.3",
-          "text": "What is the Location of the Cancer?",
+          "text": "Location of the Cancer",
           "type": "text",
           "required": true
         },

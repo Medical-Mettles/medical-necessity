@@ -54,9 +54,10 @@ valueset "DPD Condition": '2.16.840.1.113883.3.6037.1001.23.93.32'
 valueset "Vit B12 Deficiency": '2.16.840.1.113883.3.6037.1001.23.93.33'
 valueset "Positive": '2.16.840.1.113883.17.4077.3.2025'
 valueset "Negative Result": '2.16.840.1.113762.1.4.1116.292'
-valueset "Clinical Colon Cancer": '2.16.840.1.113883.3.6037.1001.23.93.37'
+valueset "Type of Colon Cancer": '2.16.840.1.113883.3.6037.1001.23.93.37'
 valueset "Colon Cancer Location": '2.16.840.1.113883.3.6037.1001.23.93.38'
 valueset "Histologic Cancer Grade": '2.16.840.1.113883.3.6037.1001.23.93.39'
+valueset "Lymph Node Excision": '2.16.840.1.113883.3.6037.1001.23.93.40'
 
 parameter "MedicationRequest" MedicationRequest
 
@@ -161,44 +162,55 @@ define "StagingType":
 
 define "AnatomicStage":
 	if ({'Tis', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
-	then 'Stage0'
-	else (if ({'T1','T2', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
-				then 'StageI'
-				else (if ({'T3', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+		then 'Stage0'
+			else if (({'T1', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
+						or ({'T2','N0','M0'} included in {"TStage", "NStage", "MStage"}))
+					then 'StageI'
+						else if ({'T3', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
 							then 'StageIIA'
-							else (if ({'T4a', 'N0', 'M0' } included in {"TStage", "NStage", "MStage"})
-										then 'StageIIB'
-										else (if ({'T4b', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
-												then 'StageIIC'
-												else (if (({'T1','T2','N1','N1a', 'N1b', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
-                                or ({'T1','N2a','M0'} included in {"TStage", "NStage", "MStage"}))
-															then 'StageIIIA'
-															else (if (({'T3','T4a','N1', 'N1a', 'N1b', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
-                                    or ({'T2','T3','N2a','M0'} included in {"TStage", "NStage", "MStage"})
-                                    or ({'T1','T2','N2b','M0'} included in {"TStage", "NStage", "MStage"}))
+								else if ({'T4a', 'N0', 'M0' } included in {"TStage", "NStage", "MStage"})
+									then 'StageIIB'
+										else if ({'T4b', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
+											then 'StageIIC'
+												else if (({'T1', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T1', 'N1a','M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T1', 'N1b', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T1', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T2', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T2', 'N1a', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T2', 'N1b', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T2', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
+															or ({'T1', 'N2a', 'M0'} included in {"TStage", "NStage", "MStage"}))
+																then 'StageIIIA'
+																	else if (({'T3', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T3', 'N1a', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T3', 'N1b', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T3', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T4a', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T4a', 'N1a', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T4a', 'N1b', 'M0'} included in {"TStage", "NStage", "MStage"})
+																				or ({'T4a', 'N1c', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                    		or ({'T2', 'N2a', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                    		or ({'T3', 'N2a', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                    		or ({'T1', 'N2b', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                    		or ({'T2', 'N2b', 'M0'} included in {"TStage", "NStage", "MStage"}))
 																		    then 'StageIIIB'
-                                        else (if (({'T4a','N2a', 'M0'} included in {"TStage", "NStage", "MStage"})
-                                              or ({'T3','T4a','N2b','M0'} included in {"TStage", "NStage", "MStage"})
-                                              or ({'T4b','N1','N2','M0'} included in {"TStage", "NStage", "MStage"}))
-																		              then 'StageIIIC'
-                                                      else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1a'} included in {"TStage", "NStage", "MStage"})
-																								          then 'StageIVA'
-                                                          else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1b'} included in {"TStage", "NStage", "MStage"})
-																								              then 'StageIVB'
-                                                              else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1c'} included in {"TStage", "NStage", "MStage"})
-																								                  then 'StageIVC'
-																								                  else ''
-																							                      )
-																				                      )
-																	                        )
-                                                      )
-												                      )
-										                  )
-							                )
-				                )
-                    )
-              )
-
+                                        else if (({'T4a', 'N2a', 'M0'} included in {"TStage", "NStage", "MStage"})
+																							or ({'T3', 'N2b', 'M0'} included in {"TStage", "NStage", "MStage"})
+																							or ({'T4a', 'N2b', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                              or ({'T4b','N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+                                              or ({'T4b', 'N2','M0'} included in {"TStage", "NStage", "MStage"}))
+																								then 'StageIIIC'
+																									else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1a'} properly includes {"TStage", "NStage", "MStage"})
+																										then 'StageIVA'
+																											else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1b'} properly includes {"TStage", "NStage", "MStage"})
+																												then 'StageIVB'
+																													else (if ({'Tis','T0', 'T1','TX', 'T2', 'T3', 'T4', 'T4a', 'T4b', 'NX', 'N0','N1', 'N1a','N1b','N1c','N2', 'N2a', 'N2b', 'M1c'} properly includes {"TStage", "NStage", "MStage"})
+																														then 'StageIVC'
+																															else ''
+																																)
+																														)
+																												)
 
 define "MMRDeficiencyObservation":
 	exists([Observation]P
@@ -206,19 +218,19 @@ define "MMRDeficiencyObservation":
 			and exists(P.code.coding x where x in "MMR Deficiency Test")
 			and (P.value as boolean) = true)
 
-define "MMRDeficiency":
+define "MMRDeficiencyResult":
 	if ("MMRDeficiencyObservation"  is true)
 	then true
 	else false
 
 define "MicrosatelliteInstabilityObservation":
-	([Observation]P
+	exists([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "MSI Test")
 			and (P.value as CodeableConcept) in "Negative Result")
 
 define "MSIResult":
-	if (Last ("MicrosatelliteInstabilityObservation") is not null)
+	if ("MicrosatelliteInstabilityObservation" is true)
 	then true
 	else false
 
@@ -257,9 +269,9 @@ define "BRAFMutation":
 			and (P.value as CodeableConcept) in "Positive")
 
 define "TumorGenomicsObservations":
-	if (("KRASMutation" is not null)
-     	   or ("NRASMutation" is not null)
-	   or ("BRAFMutation" is not null))
+	if ((exists "KRASMutation")
+     	   or (exists "NRASMutation")
+	   or (exists "BRAFMutation"))
 	     then true
 	      else false
 
@@ -306,15 +318,20 @@ define "TumorSize":
         else 0)
 
 define "ColectomyProcedure":
-	Last([Procedure]P
+	([Procedure]P
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "Sigmoid Colectomy")
 		)
 
-define "SpecifyColectomyProcedure":
-	"ColectomyProcedure" C
-		return C.code.coding[0].display.value+'\n'
+define "LymphNodeExcision":
+	([Procedure]P
+		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Lymph Node Excision")
+		)
 
+define "SpecifyPrevProcedures":
+	("ColectomyProcedure" union "LymphNodeExcision")P
+	return (First(P.code.coding).display.value)+'\n'
 
 define "ChemoDrugsAdministration":
   [MedicationAdministration]M
@@ -375,17 +392,16 @@ define "VitB12Deficiency":
 	else false
 
 define "ColonCancerLocation":
-	if exists ("ColonCancerCondition".bodySite.coding co where co in "Colon Cancer Location") L
-			then L.code.coding[0].display.value+'\n'
-			else ''
+	"ColonCancerCondition".bodySite.coding[0].display.value+'\n'
 
-define "ClinicalColonCancer":
-	 [Condition]C
-		where First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Clinical Colon Cancer")
+define "TypeColonCancer":
+	([Observation]O
+		where O.status.value in {'final', 'amended', 'corrected'}
+    and exists(O.code.coding x where x in "Type of Colon Cancer")
+		and (O.value as boolean) = true)
 
-define "PrevColonCancer":
-	"ClinicalColonCancer" C
+define "SpecifyTypeCancer":
+	"TypeColonCancer" C
 		return C.code.coding[0].display.value+'\n'
 
 define "SpecifyColonCancer":
@@ -393,14 +409,14 @@ define "SpecifyColonCancer":
 		return C.code.coding[0].display.value+'\n'
 
 define "HistologicCancerGrade":
-	([Observation]O
-			where O.status.value in {'final', 'amended', 'corrected'}
-			and exists(O.code.coding x where x in "Histologic Cancer Grade")
-			and (O.value as boolean in true))
+	([Observation]P
+			where P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "Histologic Cancer Grade")
+			and (P.value as boolean) = true)
 
 define "SpecifyCancerGrade":
-	"HistologicCancerGrade" C
-		return C.code.coding[0].display.value+'\n'
+	"HistologicCancerGrade" P
+		return P.code.coding[0].display.value+'\n'
 
 
 define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):

@@ -63,12 +63,12 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "PrevColonCancer"
+                "expression": "SpecifyColonCancer"
               }
             }
           ],
           "linkId": "7.1",
-          "text": "What was the Cancer Condition?",
+          "text": "Cancer Condition",
           "type": "text",
           "required": true
         },
@@ -78,12 +78,12 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "SpecifyColectomyProcedure"
+                "expression": "SpecifyPrevProcedures"
               }
             }
           ],
           "linkId": "7.2",
-          "text": "What was the Procedure that was carried out?",
+          "text": "What are the Procedures that were carried out?",
           "type": "text",
           "required": true
         },
@@ -93,7 +93,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "SpecifyColonCancer"
+                "expression": "SpecifyTypeCancer"
               }
             }
           ],
@@ -231,20 +231,6 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "TumorSize"
-              }
-            }
-          ],
-          "linkId": "1.5",
-          "text": "Tumor Size (cm)",
-          "type": "decimal"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
                 "expression": "AnatomicStage"
               }
             }
@@ -335,7 +321,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "MMRDeficiency"
+                "expression": "MMRDeficiencyObservation"
               }
             }
           ],
@@ -350,7 +336,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "MMRDeficiency"
+                "expression": "MMRDeficiencyResult"
               }
             }
           ],
@@ -377,7 +363,7 @@
             }
           ],
           "linkId": "2.3",
-          "text": "Is the Microsatellite Instability high?",
+          "text": "Is the Microsatellite Instability low?",
           "type": "boolean",
           "required": true
         },
@@ -430,17 +416,26 @@
           ],
           "linkId": "3.2",
           "text": "Does the patient have any of the following mutations?",
-          "type": "open-choice",
+          "type": "choice",
           "required": true,
           "answerOption": [
             {
-              "valueString": "KRAS"
+              "valueCoding": {
+                "code": "KRAS",
+                "display": "KRAS"
+              }
             },
             {
-              "valueString": "NRAS"
+              "valueCoding": {
+                "code": "NRAS",
+                "display": "NRAS"
+              }
             },
             {
-              "valueString": "BRAF"
+              "valueCoding": {
+                "code": "BRAF",
+                "display": "BRAF"
+              }
             }
           ]
         }
@@ -516,7 +511,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "DPDCondition"
+                "expression": "DPD"
               }
             }
           ],

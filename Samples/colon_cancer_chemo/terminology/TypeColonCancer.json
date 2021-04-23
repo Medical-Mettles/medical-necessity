@@ -1,0 +1,63 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.37",
+  
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.37",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.37"
+      }
+    ],
+    "version": "Latest",
+    "name": "Type of Colon Cancer",
+    "title": "Type of Colon Cancer",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+          "version": "2021-04",
+          "concept": [
+            {
+              "code": "373375007",
+              "display": "Well differentiated histological grade finding (finding)"
+            },
+            {
+              "code": "395530002",
+              "display": "High grade (poorly differentiated to undifferentiated) (finding)"
+            },
+            {
+              "code": "395529007",
+              "display": "Low grade (well to moderately differentiated) (finding)"
+            },
+            {
+              "code": "399415002",
+              "display": "Low grade histologic differentiation (finding)"
+            },
+            {
+              "code": "399611001",
+              "display": "High grade histologic differentiation (finding)"
+            },
+            {
+              "code": "405986005",
+              "display": "Intermediate grade histologic differentiation (finding)"
+            },
+            {
+              "code": "373374006",
+              "display": "Undifferentiated histological grade finding (finding)"
+            },
+            {
+              "code": "373377004",
+              "display": "Moderately differentiated histological grade finding (finding)"
+            },
+            {
+              "code": "373373000",
+              "display": "Poorly differentiated histological grade finding (finding)"
+            }
+          ]
+        }
+      ]
+    }
+  }

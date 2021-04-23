@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.40",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.40",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.40"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Lymph Node Excision",
+  "title": "Lymph Node Excision",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "58347006",
+            "display": "Excision of lymph node (procedure)"
+          },
+          {
+            "code": "234264009",
+            "display": "Excision of abdominal lymph node (procedure)"
+          },
+          {
+            "code": "234255004",
+            "display": "Excision of abdominal lymph nodes group (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

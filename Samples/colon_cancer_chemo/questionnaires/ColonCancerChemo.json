@@ -146,7 +146,8 @@
           "text": "What is the size of the Tumor (in cm)?",
           "type": "decimal"
         }
-      ]
+      ],
+      "required": true
     },
     {
       "linkId": "1",

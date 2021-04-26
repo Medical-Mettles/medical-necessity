@@ -86,51 +86,6 @@
         ]
     },
     {
-      "type": "Observation",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.17"
-        }
-        ]
-    },
-    {
-      "type": "Observation",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.81"
-        }
-        ]
-    },
-  {
-    "type": "Medication",
-    "codeFilter": [
-      {
-        "path": "code",
-        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.30"
-      }
-      ]
-  },
-  {
-    "type": "MedicationAdministration",
-    "codeFilter": [
-      {
-        "path": "code",
-        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.30"
-      }
-      ]
-  },
-  {
-    "type": "AllergyIntolerance",
-    "codeFilter": [
-      {
-        "path": "code",
-        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.31"
-      }
-      ]
-  },
-    {
       "type": "Condition",
       "codeFilter": [
         {
@@ -149,22 +104,31 @@
         ]
     },
     {
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.29"
-        }
-        ]
+    "type": "Medication",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.34"
+      }
+      ]
     },
     {
-      "type": "Observation",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.98.81"
-        }
-        ]
+    "type": "Medication",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.35"
+      }
+      ]
+    },
+    {
+    "type": "Medication",
+    "codeFilter": [
+      {
+        "path": "code",
+        "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.36"
+      }
+      ]
     }
-  ]
+    ]
 }

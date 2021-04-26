@@ -395,14 +395,14 @@ define "ColonCancerLocation":
 	"ColonCancerCondition".bodySite.coding[0].display.value+'\n'
 
 define "TypeColonCancer":
-	([Observation]O
-		where O.status.value in {'final', 'amended', 'corrected'}
-    and exists(O.code.coding x where x in "Type of Colon Cancer")
-		and (O.value as boolean) = true)
+	([Observation]P
+		where P.status.value in {'final', 'amended', 'corrected'}
+    and exists(P.code.coding x where x in "Type of Colon Cancer")
+		and (P.value as boolean) = true)
 
 define "SpecifyTypeCancer":
-	"TypeColonCancer" C
-		return C.code.coding[0].display.value+'\n'
+	"TypeColonCancer" P
+		return P.code.coding[0].display.value+'\n'
 
 define "SpecifyColonCancer":
 	"ColonCancerCondition" C

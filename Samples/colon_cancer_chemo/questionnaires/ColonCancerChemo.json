@@ -53,7 +53,7 @@
   ],
   "item": [
     {
-      "linkId": "7",
+      "linkId": "6",
       "text": "Cancer Data",
       "type": "group",
       "item": [
@@ -67,7 +67,7 @@
               }
             }
           ],
-          "linkId": "7.1",
+          "linkId": "6.1",
           "text": "Cancer Condition",
           "type": "text",
           "required": true
@@ -82,7 +82,7 @@
               }
             }
           ],
-          "linkId": "7.2",
+          "linkId": "6.2",
           "text": "What are the Procedures that were carried out?",
           "type": "text",
           "required": true
@@ -97,7 +97,7 @@
               }
             }
           ],
-          "linkId": "7.3",
+          "linkId": "6.3",
           "text": "What is the histologic type of the Cancer?",
           "type": "text",
           "required": true
@@ -112,7 +112,7 @@
               }
             }
           ],
-          "linkId": "7.3",
+          "linkId": "6.4",
           "text": "What is the Location of the Cancer?",
           "type": "text",
           "required": true
@@ -127,7 +127,7 @@
               }
             }
           ],
-          "linkId": "7.4",
+          "linkId": "6.5",
           "text": "What is the Histologic Grade of the Cancer?",
           "type": "text",
           "required": true
@@ -142,7 +142,7 @@
               }
             }
           ],
-          "linkId": "7.5",
+          "linkId": "6.6",
           "text": "What is the size of the Tumor (in cm)?",
           "type": "decimal"
         }
@@ -236,7 +236,7 @@
             }
           ],
 
-          "linkId": "1.6",
+          "linkId": "1.5",
           "text": "TNM Staging",
           "type": "choice",
           "answerOption": [
@@ -546,6 +546,56 @@
           ]
         },
         {
+          "linkId": "5.5",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.3",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "5.6",
+          "text": "Additional information on the DPD Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.3",
+              "answerBoolean": false
+            }
+          ]
+        },
+        {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -555,33 +605,84 @@
               }
             }
           ],
-          "linkId": "5.5",
+          "linkId": "5.7",
           "text": "Does the patient have any documented Vitamin B12 deficiency?",
           "type": "boolean",
           "required": true
         },
         {
-          "linkId": "5.6",
+          "linkId": "5.8",
           "text": "Is the Vitamin B12 Deficiency being managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "operator": "=",
-                            "question": "5.5",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.7",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
         },
         {
-          "linkId": "5.7",
+          "linkId": "5.9",
           "text": "Additional information on the Vitamin B12 Deficiency",
           "type": "text",
           "enableWhen": [
             {
               "operator": "=",
-              "question": "5.6",
+              "question": "5.8",
               "answerBoolean": true
+            }
+          ],
+          "required": false
+        },
+        {
+          "linkId": "5.10",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.8",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "5.11",
+          "text": "Additional information on the DPD Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.8",
+              "answerBoolean": false
             }
           ]
         }

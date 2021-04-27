@@ -458,7 +458,7 @@
             }
           ],
           "linkId": "4.1",
-          "text": "Does the patient have known allergies to any of the drugs indicated in the chemotherapy regimen? (Oxaloplatin, Folinic Acid, 5-fluorouracil)",
+          "text": "Does the patient have known allergies to any of the drugs indicated in the chemotherapy regimen? (Oxaliplatin, Folinic Acid, 5-fluorouracil)",
           "type": "boolean",
           "required": true
         },

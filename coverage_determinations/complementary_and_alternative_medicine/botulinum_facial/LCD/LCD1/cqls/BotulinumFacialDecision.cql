@@ -426,6 +426,7 @@ define IntermediateDecision:
 			and ("LimitationsNullified" = true))
 			then
 			'PHOTOGRAPHIC EVIDENCE TO BE REVIEWED.HUMAN REVIEW NEEDED.'
+			else 'HUMAN REVIEW NOT NEEDED'
 
 define FinalDecision:
 	if (("ServiceCode5" = true) 

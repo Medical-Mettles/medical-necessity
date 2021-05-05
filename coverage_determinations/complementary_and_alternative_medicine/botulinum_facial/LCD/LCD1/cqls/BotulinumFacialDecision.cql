@@ -420,12 +420,18 @@ define PrimaryDecision:
 	        ("LimitationsNullified" = true))
 	        then true
 	        else false
+define IntermediateDecision:
+	if (("ServiceCode5" = true) 
+			and (IsNull("Blepharospasm")= false)
+			and ("LimitationsNullified" = true))
+			then
+			'PHOTOGRAPHIC EVIDENCE TO BE REVIEWED.HUMAN REVIEW NEEDED.'
 
 define FinalDecision:
 	if (("ServiceCode5" = true) 
 			and (IsNull("Blepharospasm")= false)
 			and ("LimitationsNullified" = true))
-		then 'HUMAN REVIEW NEEDED. PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
+		then 'HUMAN REVIEW NEEDED'
 		else if ("PrimaryDecision" = true)
 		then 'YES'
 		else 'NO'

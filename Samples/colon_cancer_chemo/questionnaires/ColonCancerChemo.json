@@ -53,40 +53,10 @@
   ],
   "item": [
     {
-      "linkId": "7",
+      "linkId": "6",
       "text": "Cancer Data",
       "type": "group",
       "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PrevColonCancer"
-              }
-            }
-          ],
-          "linkId": "7.1",
-          "text": "What was the Cancer Condition?",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SpecifyColectomyProcedure"
-              }
-            }
-          ],
-          "linkId": "7.2",
-          "text": "What was the Procedure that was carried out?",
-          "type": "text",
-          "required": true
-        },
         {
           "extension": [
             {
@@ -97,7 +67,37 @@
               }
             }
           ],
-          "linkId": "7.3",
+          "linkId": "6.1",
+          "text": "Cancer Condition",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyPrevProcedures"
+              }
+            }
+          ],
+          "linkId": "6.2",
+          "text": "What are the Procedures that were carried out?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyTypeCancer"
+              }
+            }
+          ],
+          "linkId": "6.3",
           "text": "What is the histologic type of the Cancer?",
           "type": "text",
           "required": true
@@ -112,7 +112,7 @@
               }
             }
           ],
-          "linkId": "7.3",
+          "linkId": "6.4",
           "text": "What is the Location of the Cancer?",
           "type": "text",
           "required": true
@@ -127,7 +127,7 @@
               }
             }
           ],
-          "linkId": "7.4",
+          "linkId": "6.5",
           "text": "What is the Histologic Grade of the Cancer?",
           "type": "text",
           "required": true
@@ -142,11 +142,12 @@
               }
             }
           ],
-          "linkId": "7.5",
+          "linkId": "6.6",
           "text": "What is the size of the Tumor (in cm)?",
           "type": "decimal"
         }
-      ]
+      ],
+      "required": true
     },
     {
       "linkId": "1",
@@ -231,26 +232,12 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "TumorSize"
-              }
-            }
-          ],
-          "linkId": "1.5",
-          "text": "Tumor Size (cm)",
-          "type": "decimal"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
                 "expression": "AnatomicStage"
               }
             }
           ],
 
-          "linkId": "1.6",
+          "linkId": "1.5",
           "text": "TNM Staging",
           "type": "choice",
           "answerOption": [
@@ -335,7 +322,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "MMRDeficiency"
+                "expression": "MMRDeficiencyObservation"
               }
             }
           ],
@@ -350,7 +337,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "MMRDeficiency"
+                "expression": "MMRDeficiencyResult"
               }
             }
           ],
@@ -377,7 +364,7 @@
             }
           ],
           "linkId": "2.3",
-          "text": "Is the Microsatellite Instability high?",
+          "text": "Is the Microsatellite Instability low?",
           "type": "boolean",
           "required": true
         },
@@ -430,17 +417,26 @@
           ],
           "linkId": "3.2",
           "text": "Does the patient have any of the following mutations?",
-          "type": "open-choice",
+          "type": "choice",
           "required": true,
           "answerOption": [
             {
-              "valueString": "KRAS"
+              "valueCoding": {
+                "code": "KRAS",
+                "display": "KRAS"
+              }
             },
             {
-              "valueString": "NRAS"
+              "valueCoding": {
+                "code": "NRAS",
+                "display": "NRAS"
+              }
             },
             {
-              "valueString": "BRAF"
+              "valueCoding": {
+                "code": "BRAF",
+                "display": "BRAF"
+              }
             }
           ]
         }
@@ -462,7 +458,7 @@
             }
           ],
           "linkId": "4.1",
-          "text": "Does the patient have known allergies to any of the drugs indicated in the chemotherapy regimen? (Oxaloplatin, Folinic Acid, 5-fluorouracil)",
+          "text": "Does the patient have known allergies to any of the drugs indicated in the chemotherapy regimen? (Oxaliplatin, Folinic Acid, 5-fluorouracil)",
           "type": "boolean",
           "required": true
         },
@@ -516,7 +512,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "DPDCondition"
+                "expression": "DPD"
               }
             }
           ],
@@ -551,6 +547,56 @@
           ]
         },
         {
+          "linkId": "5.5",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.3",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "5.6",
+          "text": "Additional information on the DPD Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.3",
+              "answerBoolean": false
+            }
+          ]
+        },
+        {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -560,33 +606,84 @@
               }
             }
           ],
-          "linkId": "5.5",
+          "linkId": "5.7",
           "text": "Does the patient have any documented Vitamin B12 deficiency?",
           "type": "boolean",
           "required": true
         },
         {
-          "linkId": "5.6",
+          "linkId": "5.8",
           "text": "Is the Vitamin B12 Deficiency being managed before commencement of chemotherapy?",
-                    "type": "boolean",
-                    "enableWhen": [
-                        {
-                            "operator": "=",
-                            "question": "5.5",
-                            "answerBoolean": true
-                        }
-                    ],
-                    "required": true
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.7",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
         },
         {
-          "linkId": "5.7",
+          "linkId": "5.9",
           "text": "Additional information on the Vitamin B12 Deficiency",
           "type": "text",
           "enableWhen": [
             {
               "operator": "=",
-              "question": "5.6",
+              "question": "5.8",
               "answerBoolean": true
+            }
+          ],
+          "required": false
+        },
+        {
+          "linkId": "5.10",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.8",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "5.11",
+          "text": "Additional information on the Vitamin B12 Deficiency",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "5.8",
+              "answerBoolean": false
             }
           ]
         }

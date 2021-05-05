@@ -81,6 +81,24 @@
             "display": "oxaliplatin"
           }
         ]
+      },
+      {
+        "system": "https://hcpcs.codes/",
+        "version": "2021-04",
+        "concept": [
+          {
+            "code": "J9263",
+            "display": "Injection, oxaliplatin, 0.5 mg"
+          },
+          {
+            "code": "J0640",
+            "display": "Injection, leucovorin calcium, per 50 mg"
+          },
+          {
+            "code": "J9190",
+            "display": "Injection, fluorouracil, 500 mg"
+          }
+        ]
       }
     ]
   }

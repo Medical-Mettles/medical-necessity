@@ -79,7 +79,7 @@ define CancerStage:
       then true
       else false
 
-define TumorGenomicsPositive:
+/*define TumorGenomicsPositive:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '3.2')QR
 		      return First(QR.answer).value
@@ -87,12 +87,10 @@ define TumorGenomicsPositive:
 define TumorGeneMutation:
       if ("TumorGenomics" = 'BRAF')
       then true
-      else false
+      else false*/
 
 define ChemoNotNeeded:
-    if (("TumorGeneMutation" = true)
-        or ("CancerStage" = false)
-        )
+    if ("CancerStage" = false)
         then true
         else false
 

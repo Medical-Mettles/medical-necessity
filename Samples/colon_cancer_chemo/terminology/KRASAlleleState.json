@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.44",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.44",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.44"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "KRAS Allele State",
+  "title": "KRAS Allele State",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "https://loinc.org/",
+        "version": "2021-05",
+        "concept": [
+          {
+            "code": "LA6705-3",
+            "display": "Homozygous"
+          }
+        ]
+      }
+    ]
+  }
+}

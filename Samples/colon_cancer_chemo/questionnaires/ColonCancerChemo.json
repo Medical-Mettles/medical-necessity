@@ -144,7 +144,8 @@
           ],
           "linkId": "6.6",
           "text": "What is the size of the Tumor (in cm)?",
-          "type": "decimal"
+          "type": "decimal",
+          "required": true
         }
       ],
       "required": true
@@ -401,7 +402,7 @@
             }
           ],
           "linkId": "3.1",
-          "text": "Has the patient undergone screening for genetic mutations?",
+          "text": "Does the patient have any pathogenic/likely pathogenic gene mutation?",
           "type": "boolean",
           "required": true
         },
@@ -411,34 +412,59 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "TumorGenomics"
+                "expression": "KRASMutation"
               }
             }
           ],
           "linkId": "3.2",
-          "text": "Does the patient have any of the following mutations?",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
+          "text": "Gene",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
             {
-              "valueCoding": {
-                "code": "KRAS",
-                "display": "KRAS"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "NRAS",
-                "display": "NRAS"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "BRAF",
-                "display": "BRAF"
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyDNARegionName"
               }
             }
-          ]
+          ],
+          "linkId": "3.3",
+          "text": "Variant",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "KRASClinVarID"
+              }
+            }
+          ],
+          "linkId": "3.4",
+          "text": "ClinVar ID",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "KRASAlleleState"
+              }
+            }
+          ],
+          "linkId": "3.5",
+          "text": "Zygosity",
+          "type": "text",
+          "required": true
         }
       ]
     },

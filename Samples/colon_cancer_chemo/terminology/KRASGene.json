@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.42",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.42",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.42"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "KRAS Gene",
+  "title": "KRAS Gene",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.genenames.org",
+        "version": "2021-05",
+        "concept": [
+          {
+            "code": "6407",
+            "display": "KRAS"
+          }
+        ]
+      }
+    ]
+  }
+}

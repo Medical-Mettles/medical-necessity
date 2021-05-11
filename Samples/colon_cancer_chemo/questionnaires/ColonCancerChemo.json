@@ -365,7 +365,7 @@
             }
           ],
           "linkId": "2.3",
-          "text": "Is the Microsatellite Instability low?",
+          "text": "Is the Microsatellite Instability (MSI) low?",
           "type": "boolean",
           "required": true
         },
@@ -380,7 +380,7 @@
             }
           ],
           "linkId": "2.4",
-          "text": "Is the CEA level in blood (carcinoembryonic antigen) <2.5ng/ml?",
+          "text": "Is the CEA level in blood (Serum carcinoembryonic antigen) <2.5ng/ml?",
           "type": "boolean",
           "required": true
         }
@@ -712,6 +712,18 @@
               "answerBoolean": false
             }
           ]
+        },
+        {
+            "linkId": "7",
+            "text": "Reports",
+            "type": "group",
+            "item": [
+                {
+                    "linkId": "7.1",
+                    "text": "Please attach the Tumor Genomics Report for additional information.",
+                    "type": "display"
+                }
+            ]
         }
       ]
     }

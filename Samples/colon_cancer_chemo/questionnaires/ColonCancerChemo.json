@@ -417,7 +417,7 @@
             }
           ],
           "linkId": "3.2",
-          "text": "Gene",
+          "text": "Gene-mutation detected on which gene?",
           "type": "text",
           "required": true
         },
@@ -432,7 +432,7 @@
             }
           ],
           "linkId": "3.3",
-          "text": "Variant",
+          "text": "Exon location of the mutation",
           "type": "text",
           "required": true
         },
@@ -447,7 +447,7 @@
             }
           ],
           "linkId": "3.4",
-          "text": "ClinVar ID",
+          "text": "ClinVar ID of the Variant",
           "type": "text",
           "required": true
         },
@@ -462,7 +462,7 @@
             }
           ],
           "linkId": "3.5",
-          "text": "Zygosity",
+          "text": "Zygosity of the mutation",
           "type": "text",
           "required": true
         }

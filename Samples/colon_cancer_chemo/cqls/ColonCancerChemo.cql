@@ -260,18 +260,8 @@ define "GenomicsReport":
     and exists(O.code.coding C where C in "Gene Mutation Test")
     and exists(O.extension E
                 where E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsGene'
-                and exists(((E.value as CodeableConcept).coding) C  where C in "KRAS Gene"))
-    and exists(O.extension E
-                where E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsDNARegionName'
-                and ((E.value as string) = 'Exon 2'))
-    and exists(O.extension E
-					where (E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsVariant')
-							and exists(E.extension ext
-                			where exists(((ext.value as CodeableConcept).coding) C where C in "KRAS ClinVar ID")))
-    and exists(O.extension E
-                	where (E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsAllele')
-											and exists(E.extension ext
-                				where exists(((ext.value as CodeableConcept).coding) C  where C in "KRAS Allele State"))))
+                and exists(((E.value as CodeableConcept).coding) C  where C in "KRAS Gene")))
+
 
 define "TumorGenomicsObservations":
 	if "GenomicsReport" is not null
@@ -288,36 +278,39 @@ define "KRASMutation":
 	"KRASMutationExtension".coding ext
 		return (ext.display.value)
 
-define "DNARegionName":
+define "SpecifyDNARegionName":
 	"GenomicsReport".extension G
 			where G.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsDNARegionName'
 				and ((G.value as string) = 'Exon 2')
 				return G.value
 
-define "SpecifyDNARegionName":
-	if "DNARegionName" is not null
-			then 'Exon 2'
-			else ' '
-
 define "KRASClinVarIDExtension":
 	"GenomicsReport".extension E
 					where (E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsVariant')
 							and exists(E.extension ext
-                			where exists(((ext.value as CodeableConcept).coding) C where C in "KRAS ClinVar ID"))
+                			return (((ext.value as CodeableConcept).coding) C where C in "KRAS ClinVar ID"))
+
+define "KRASClinVarCode":
+	"KRASClinVarIDExtension".extension E
+				return E.value
 
 define "KRASClinVarID":
-	"KRASClinVarIDExtension".extension ext
-		return (((ext.value as CodeableConcept).coding).code.value)
+	"KRASClinVarCode".coding ext
+		return (ext.code.value)
 
 define "KRASAlleleStateExtension":
 	"GenomicsReport".extension E
 				where (E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsAllele')
 						and exists(E.extension ext
-								where exists(((ext.value as CodeableConcept).coding) C  where C in "KRAS Allele State"))
+								return (((ext.value as CodeableConcept).coding) C  where C in "KRAS Allele State"))
+
+define "KRASAlleleCode":
+	"KRASAlleleStateExtension".extension E
+				return E.value
 
 define "KRASAlleleState":
-	"KRASAlleleStateExtension".extension ext
-			return (((ext.value as CodeableConcept).coding).display.value)
+	"KRASAlleleCode".coding ext
+		return (ext.display.value)
 
 define "NeutrophilObservation":
   Last([Observation]P

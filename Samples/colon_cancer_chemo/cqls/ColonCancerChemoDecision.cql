@@ -30,21 +30,6 @@ define ColonCancerCondition:
 define ColonCancerStaging:
       ColonChemo."ColonCancerStaging"
 
-define KRASMutation:
-      ColonChemo."KRASMutation"
-
-define NRASMutation:
-      ColonChemo."NRASMutation"
-
-define BRAFMutation:
-      ColonChemo."BRAFMutation"
-
-define TumorGenomicsObservations:
-      ColonChemo."TumorGenomicsObservations"
-
-define TumorGenomics:
-      ColonChemo."TumorGenomics"
-
 define OxaliplatinMedication:
      First(("MedicationRequest".medication as CodeableConcept).coding) in "Oxaliplatin"
 
@@ -78,16 +63,6 @@ define CancerStage:
         and (First("MStageM0") = 'M0'))
       then true
       else false
-
-/*define TumorGenomicsPositive:
-      ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = '3.2')QR
-		      return First(QR.answer).value
-
-define TumorGeneMutation:
-      if ("TumorGenomics" = 'BRAF')
-      then true
-      else false*/
 
 define ChemoNotNeeded:
     if ("CancerStage" = false)

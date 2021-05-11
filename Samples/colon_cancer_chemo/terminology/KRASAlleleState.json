@@ -18,7 +18,7 @@
   "compose": {
     "include": [
       {
-        "system": "https://loinc.org/",
+        "system": "https://loinc.org",
         "version": "2021-05",
         "concept": [
           {

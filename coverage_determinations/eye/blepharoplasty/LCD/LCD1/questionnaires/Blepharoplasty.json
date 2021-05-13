@@ -131,7 +131,12 @@
           "linkId": "2.3",
           "text": "Does lifting the more ptotic lid with tape cause the less ptotic lid to drop downward ?",
           "type": "boolean",
-          "required": true
+          "required": true,
+          "initial": [
+            {
+            "valueBoolean": true
+            }
+          ]
         },
         {
           "linkId": "2.4",
@@ -155,7 +160,12 @@
           "linkId": "2.7",
           "text": "Is there a Redundant eyelid tissue predominantly medially or laterally clearly obscures the line of sight incorresponding gaze?",
           "type": "boolean",
-          "required": true
+          "required": true,
+          "initial": [
+            {
+            "valueBoolean": true
+            }
+          ]
         }
       ]
     },
@@ -168,7 +178,12 @@
           "linkId": "3.1",
           "text": "Is there a difficulty fitting or wearing a prosthesis",
           "type": "boolean",
-          "required": true
+          "required": true,
+          "initial": [
+            {
+            "valueBoolean": true
+            }
+          ]
         },
         {
           "linkId": "3.2",
@@ -197,7 +212,6 @@
           "type": "display",
           "required": true
         }
-
       ]
     }
   ]

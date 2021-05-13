@@ -184,7 +184,20 @@
               }
             }
           ]
+        },
+        {
+          "linkId": "3.3",
+          "text": "COLOR photographs are required to support upper eyelid surgery as medically necessary.The photographs must be of sufficient size and detail as to make those structures easily recognizable. The patient’s head must be parallel to the camera and not tilted",
+          "type": "display",
+          "required": true
+        },
+        {
+          "linkId": "3.4",
+          "text": "(e.g., a downward head tilt might artificially reduce the apparent measurement of a MRD). Digital or film photographs are acceptable. Photographs must be identified with the beneficiary’s name and the date",
+          "type": "display",
+          "required": true
         }
+
       ]
     }
   ]

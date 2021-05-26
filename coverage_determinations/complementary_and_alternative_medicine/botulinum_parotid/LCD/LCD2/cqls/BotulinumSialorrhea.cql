@@ -38,6 +38,7 @@ valueset "Constipation": '2.16.840.1.113883.3.6037.1001.23.93.53'
 valueset "Down’s Syndrome": '2.16.840.1.113883.3.6037.1001.23.93.54'
 valueset "Allergy to Clostridium Botulinum": '2.16.840.1.113883.3.6037.1001.23.93.55'
 valueset "Procedure for Medication Administration": '2.16.840.1.113883.3.6037.1001.23.96.12'
+valueset "Botulinum Toxin Type A (BoNT A) Injection (RXNORM)": '2.16.840.1.113762.1.4.1034.433'
 
 
 parameter "MedicationRequest" MedicationRequest
@@ -99,7 +100,8 @@ define LocalFactors:
 define AdverseEffectSialorrhea:
 		[AdverseEvent]A
 					where A.actuality in {'actual', 'potential'}
-      			and exists(A.event.coding x where x in "Adverse Effects causing Sialorrhea")
+      			and First((A.event as CodeableConcept).coding) in "Adverse Effects causing Sialorrhea"
+
 
 define CheckAdverseEffectSialorrhea:
 	"Sialorrhea" S
@@ -132,13 +134,13 @@ define PostBiofeedbackImprovement:
       else false
 
 define "MedicationAdministrationResources":
-	[MedicationAdministration]M
+		[MedicationAdministration]M
 	where M.subject.reference.value = 'Patient/'+ Patient.id.value
 	and M.status.value = 'completed'
-	and First((M.medication as CodeableConcept).coding) in "Onabotulinumtoxina"
+	and First((M.medication as CodeableConcept).coding) in "Botulinum Toxin Type A (BoNT A) Injection (RXNORM)"
 
 define "MedicationResources":
-	[Medication]med where (First(med.code.coding) in "Onabotulinumtoxina") is not null
+	[Medication]med where (First(med.code.coding) in "Botulinum Toxin Type A (BoNT A) Injection (RXNORM)") is not null
 
 define "ProcedureResources":
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value

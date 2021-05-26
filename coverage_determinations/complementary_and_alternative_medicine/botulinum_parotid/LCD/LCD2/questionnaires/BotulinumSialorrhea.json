@@ -173,7 +173,8 @@
           ],
           "linkId": "2.3",
           "text": "Has the patient been administered botulinum toxin before ?",
-          "type": "boolean"
+          "type": "boolean",
+          "required": true
         },
         {
           "extension": [

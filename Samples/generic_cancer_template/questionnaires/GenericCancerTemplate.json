@@ -1,0 +1,98 @@
+{
+    "resourceType": "Questionnaire",
+    "id": "questionnaire-genericcancer-genericcancer",
+    "meta": {
+        "versionId": "3",
+        "lastUpdated": "2021-01-29T13:51:00.000+00:00",
+        "source": "#1a3wHlADT6JwOxCd"
+    },
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-genericcancer-GenericCancer"
+        }
+    ],
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-genericcancer-genericcancer",
+    "identifier": [
+        {
+            "system": "http://identifiers.mettles.com/prior_authorization",
+            "value": "medicare_fee_for_service-generic-cancer"
+        }
+    ],
+    "version": "1.0.0",
+    "name": "GenericCancer",
+    "title": "Generic Cancer Template",
+    "status": "draft",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2019-12-03",
+    "publisher": "Mettle Solutions",
+    "item": [
+        {
+            "linkId": "4",
+            "text": "Line of Therapy",
+            "type": "group",
+            "item": [{
+                "linkId": "4.1",
+                "text": "Display your questions here",
+                "type": "display"
+            }]
+        },
+        {
+            "linkId": "3",
+            "text": "Tumor Markers",
+            "type": "group",
+            "item": [{
+                "linkId": "3.1",
+                "text": "Display your questions here",
+                "type": "display"
+            }]
+        },
+        {
+            "linkId": "1",
+            "text": "Staging",
+            "type": "group",
+            "item": [{
+                "linkId": "1.1",
+                "text": "Display your questions here",
+                "type": "display"
+            }]
+        },
+        {
+            "linkId": "2",
+            "text": "Pre-existing Co-morbidities",
+            "type": "group",
+            "item": [{
+                "linkId": "2.1",
+                "text": "Display your questions here",
+                "type": "display"
+            }]
+        },
+        {
+            "linkId": "5",
+            "text": "Allergies to Regimen Drugs",
+            "type": "group",
+            "item": [
+                {
+                    "linkId": "5.1",
+                    "text": "Display your questions here",
+                    "type": "display"
+                }
+            ]
+        },
+        {
+            "linkId": "6",
+            "text": "Reports",
+            "type": "group",
+            "item": [
+                {
+                    "linkId": "6.1",
+                    "text": "Please attach the latest Post Surgical Pathology Report for additional information.",
+                    "type": "display"
+                }
+            ]
+        }
+
+    ]
+}

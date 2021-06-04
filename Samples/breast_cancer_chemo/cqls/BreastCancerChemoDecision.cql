@@ -173,7 +173,7 @@ define LineOfTherapy:
 define "SequenceOfLineOfTherapy":
   if((First("LineOfTherapy") <2) and (First("LineOfTherapy") >0))
     then '1'
-      else '0
+      else '0'
 
 define PreExistingConditionsBoolean:
       ("QuestionnaireResponseItems".item I

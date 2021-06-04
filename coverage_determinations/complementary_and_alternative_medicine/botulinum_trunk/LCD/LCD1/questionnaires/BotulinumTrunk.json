@@ -138,31 +138,53 @@
         },
         {
           "linkId": "2.2",
-          "text": "Is the patient refractory to standard and usual conventional therapy ?",
+          "text": "Do headache disorders occur for  greater than 15 days a month, for a period of at least 3months ?",
           "type": "boolean",
           "required": true,
-          "extension": [
+          "enableWhen": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "RefractoryToTherapy"
-              }
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
             }
           ]
         },
         {
           "linkId": "2.3",
+          "text": "Is the patient refractory to standard and usual conventional therapy ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.4",
           "text": "Is the patient administered botulin toxin before ?",
           "type": "boolean",
           "required": true,
-          "extension": [
+          "enableWhen": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BotoxBefore"
-              }
+              "question": "2.1",
+"operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.5",
+          "text": "Does the patient demonstrate a significant decrease, in the number and frequency of headaches and an improvement in function, upon receiving Botulinum toxin ?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "2.4",
+"operator": "=",
+              "answerBoolean": true
             }
           ]
         }

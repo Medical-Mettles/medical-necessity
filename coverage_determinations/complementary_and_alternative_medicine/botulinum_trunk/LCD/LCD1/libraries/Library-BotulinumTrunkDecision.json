@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-BotulinumTrunk"
+      "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-BotulinumToxin"
     }
   ],
   "dataRequirement": []

@@ -220,29 +220,18 @@ define QA21:
 		where I.linkId.value = '2.1')QR
 		return First(QR.answer).value
 
-//headache disorders occurring greaterthan 15 days a month for a period of at least 3months
+//have been refractory to standard and usual conventional therapy
 define QA22:
 	("QT".item I
 		where I.linkId.value = '2.2')QR
 		return First(QR.answer).value
 
-//have been refractory to standard and usual conventional therapy
+//Is the patient administered botulin toxin before
 define QA23:
 	("QT".item I
 		where I.linkId.value = '2.3')QR
 		return First(QR.answer).value
 
-//Is the patient administered botulin toxin before
-define QA24:
-	("QT".item I
-		where I.linkId.value = '2.4')QR
-		return First(QR.answer).value
-
-// the patients must demonstrate a significant decrease in the number and frequency ofheadaches and an improvement in function upon receiving Botulinum toxin
-define QA25:
-	("QT".item I
-		where I.linkId.value = '2.5')QR
-		return First(QR.answer).value
 
 //failure of two definitive, consecutive, treatment sessions involving a muscle or group of muscles when treated with botulinum toxin
 define QA31:
@@ -250,39 +239,6 @@ define QA31:
 		where I.linkId.value = '3.1')QR
 		return First(QR.answer).value
 
-define HeadachesCriteria:
-	if	( 
-			("Headaches" = true)
-			and 
-			(
-				(
-					(
-						(First("QA22") = true) 
-						and (First("QA23") = true)
-					)
-					or 
-					(	
-						(First("QA24") = true) 
-						and (First("QA25") = true)
-					)
-				)
-				or
-				(
-					(
-						("ThreeMonthHeadaches"= true)
-						and ("RefractoryToTherapy" = true)
-					)
-					or 
-					(
-						("BotulinumAdministeredBefore" = true)
-						and (("ImprovementInHeadachesAfterBotoxAdministration"= true)
-								or ("HeadacheFrequencyReductionAfterBotoxAdministration" = true))
-					)
-				)
-			)
-	    )
-		then true
-		else false
 
 define theclaim:
 	[Claim]C
@@ -293,99 +249,13 @@ define Request:
 define Preclusion:
 	("ServiceRequest".quantity).value.value
 
-define ServiceCode1:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
-		and ("Sialorrhea" is not null)
-		and ((First("QA14") = true)
-				or
-			exists([Procedure]P
-						where P.status.value = 'completed'
-							and exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
-							and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
-			))
-	then true
-	else false
 
-define ServiceCode2:
-	if ((exists("Request".code.coding C where C in "Esophagogastroduodenoscopy"))
-		and ("Esophagoscopy" is not null)
-		and ((First("QA14") = true)
-			or
-				exists([Procedure]P
-							where P.status.value = 'completed'
-								and exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
-								and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
-		))
-	then true
-	else false
-
-define ServiceCode3:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
-		and ("AnalFissure" is not null)
-		and ((First("QA14") = true)
-			or
-				exists([Procedure]P
-							where P.status.value = 'completed'
-								and exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
-								and First(P.outcome.coding) in "Recommended Treatment Contraindicated or Ineffective")
-		))
-	then true
-	else false
-
-define ServiceCode4:
-	if ((exists("Request".code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
-		and ("Cystourethroscopy" is not null))
-	then true
-	else false
-
-define ServiceCode5:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
-			and ("Blepharospasm" is not null))
-	then true
-	else false
-
-define ServiceCode6:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
-		and ("CervicalDystonia" is not null))
-	then true
-	else false
 
 define ServiceCode7:
 	if ((exists("Request".code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
 		and ("ChemodenervationOfOneExtremity" is not null))
 	then true
 	else false
-
-define ServiceCode8:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Eccrine Glands"))
-		and ("Hyperhidrosis" is not null))
-	then true
-	else false
-
-define ServiceCode9:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Extraocular Muscle"))
-		and ("ExtraOcularMuscle" is not null))
-	then true
-	else false
-
-define ServiceCode10:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s)"))
-		and ("HeadachesCriteria" = true))
-	then true
-	else false
-
-define ServiceCode11:
-	if ((exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
-		and ("MigraineWithoutAura" is not null))
-	then true
-	else false
-
-define ServiceCode12:
-		if ((exists("Request".code.coding C where C in "Onabotulinumtoxina"))
-			and ("Hyperhidrosis" is not null)
-			and (("ServiceCode5" = true) and ("ServiceCode11" = true)))
-		then true
-		else false
 
 define Limitations:
 	if (
@@ -398,28 +268,12 @@ define Limitations:
 		else false
 
 define PrimaryDecision:
-	if(
-		(("ServiceCode1" = true)
-		or ("ServiceCode2" = true)
-		or ("ServiceCode3" = true)
-		or ("ServiceCode4" = true)
-		or ("ServiceCode6" = true)
-		or ("ServiceCode7" = true)
-		or ("ServiceCode8" = true)
-		or ("ServiceCode9" = true)
-		or ("ServiceCode10" = true)
-		or ("ServiceCode11" = true)
-		or ("ServiceCode12" = true))
-	    and
-	        ("Limitations" = true))
+	if(("ServiceCode7" = true)
+	and ("Limitations" = true))
 	        then true
 	        else false
 
 define FinalDecision:
-	if (("ServiceCode5" = true) 
-			and (IsNull("Blepharospasm")= false)
-			and ("Limitations" = true))
-		then 'HUMAN REVIEW NEEDED'
-		else if ("PrimaryDecision" = true)
+	if ("PrimaryDecision" = true)
 		then 'YES'
-		else 'NO'
+		else 'HUMAN REVIEW NEEDED'

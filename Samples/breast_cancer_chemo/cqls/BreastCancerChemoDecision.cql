@@ -171,7 +171,9 @@ define LineOfTherapy:
 		      return First(QR.answer).value
 
 define "SequenceOfLineOfTherapy":
-  First("LineOfTherapy").value
+  if((First("LineOfTherapy") <2) and (First("LineOfTherapy") >0))
+    then '1'
+      else '0
 
 define PreExistingConditionsBoolean:
       ("QuestionnaireResponseItems".item I

@@ -65,30 +65,12 @@
             "type": "group",
             "item": [
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PreExistingConditions"
-                            }
-                        }
-                    ],
                     "linkId": "2.4",
                     "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
                     "type": "boolean",
                     "required": true
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "ConditionsManagement"
-                            }
-                        }
-                    ],
                     "linkId": "2.5",
                     "text": "Are the pre-existing cardiac/renal/liver conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
@@ -165,30 +147,12 @@
                     ]
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryDiseaseHistory"
-                            }
-                        }
-                    ],
                     "linkId": "2.7",
                     "text": "Does the patient have a history of pulmonary disease?",
                     "type": "boolean",
                     "required": true
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "PulmonaryManagement"
-                            }
-                        }
-                    ],
                     "linkId": "2.8",
                     "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
                     "type": "boolean",
@@ -264,30 +228,12 @@
                     ]
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "BleedingDisorder"
-                            }
-                        }
-                    ],
                     "linkId": "2.1",
                     "text": "Does the patient have any bleeding disorders?",
                     "type": "boolean",
                     "required": true
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "BleedingDisorderManagement"
-                            }
-                        }
-                    ],
                     "linkId": "2.2",
                     "text": "Is the patient under medication for the management of bleeding disorders?",
                     "type": "boolean",
@@ -313,15 +259,6 @@
                     ]
                 },
                 {
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                            "valueExpression": {
-                                "language": "text/cql",
-                                "expression": "NeutrophilCount"
-                            }
-                        }
-                    ],
                     "linkId": "2.3",
                     "text": "Are Neutrophil counts < 1500 /mm3?",
                     "type": "boolean",

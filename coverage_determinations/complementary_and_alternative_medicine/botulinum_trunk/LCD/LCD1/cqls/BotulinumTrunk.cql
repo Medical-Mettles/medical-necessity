@@ -1,4 +1,4 @@
-library BotulinumTrunk version '1.0.0'
+library BotulinumToxin version '1.0.0'
 
 using FHIR version '4.0.0'
 
@@ -27,28 +27,9 @@ valueset "CervicalDystonia Codes": '2.16.840.1.113883.3.6037.1001.23.99.32'
 valueset "ChemodenervationOfOneExtremity Codes": '2.16.840.1.113883.3.6037.1001.23.99.33'
 valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
 valueset "ExtraOcularMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.35'
+valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
 valueset "MigraineWithoutAura Codes": '2.16.840.1.113883.3.6037.1001.23.99.48'
 valueset "Unsuccessful": '2.16.840.1.113883.3.6037.1001.23.99.50'
-
-valueset "ChemodenervationOfNeckMuscle Codes": '2.16.840.1.113883.3.6037.1001.23.99.36'
-valueset "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.37'
-valueset "Esophagogastroduodenoscopy" : '2.16.840.1.113883.3.6037.1001.23.99.38'
-valueset "Chemodenervation of Internal Anal Sphincter": '2.16.840.1.113883.3.6037.1001.23.99.39'
-valueset "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder": '2.16.840.1.113883.3.6037.1001.23.99.40'
-valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral": '2.16.840.1.113883.3.6037.1001.23.99.41'
-valueset "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral": '2.16.840.1.113883.3.6037.1001.23.99.42'
-valueset "Chemodenervation of One Extremity, Trunk Muscles(s)" : '2.16.840.1.113883.3.6037.1001.23.99.43'
-valueset "Chemodenervation of Eccrine Glands": '2.16.840.1.113883.3.6037.1001.23.99.44'
-valueset "Chemodenervation of Extraocular Muscle": '2.16.840.1.113883.3.6037.1001.23.99.45'
-valueset "Chemodenervation of Muscle(s)": '2.16.840.1.113883.3.6037.1001.23.99.46'
-valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.47'
-valueset "Onabotulinumtoxina":  '2.16.840.1.113883.3.6037.1001.23.99.78'
-valueset "Successful": '2.16.840.1.113883.3.6037.1001.23.94.50'
-
-valueset "Status of Patient Condition": '2.16.840.1.113762.1.4.1096.114'
-valueset "Treatment Failure": '2.16.840.1.113762.1.4.1111.93'
-valueset "Medical Contraindication": '2.16.840.1.113883.3.117.1.7.1.412'
-valueset "Recommended Treatment Contraindicated or Ineffective": '2.16.840.1.113762.1.4.1034.557'
 
 parameter "ServiceRequest" ServiceRequest
 
@@ -134,80 +115,6 @@ define Headaches:
 		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
-
-define RefractoryToTherapy:
-		exists([Condition]C
-				with [Condition]R
-				such that exists(C.code.coding C where C in "Recommended Treatment Contraindicated or Ineffective")
-				and First(C.clinicalStatus.coding).code.value = 'active'
-				and First(C.verificationStatus.coding).code.value = 'confirmed'
-				and exists(R.code.coding R where R in "ChemodenervationOfOneExtremity Codes")
-				and First(R.clinicalStatus.coding).code.value = 'active'
-				and First(R.verificationStatus.coding).code.value = 'confirmed'
-				and "Normalize Interval"(C.onset) starts after end of "Normalize Interval"(R.onset))
-
-define BotoxBefore:
-	exists([Procedure]P
-		with [Procedure]R
-				such that P.status.value = 'completed'
-				and R.status.value = 'completed'
-	 			and (exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
-							and exists(R.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
-				and ToDate(start of "Normalize Interval"(P.performed)) before ToDate(start of "Normalize Interval"(R.performed)))
-
-define BotoxAdministered:
-		exists([Procedure]P
-				with [Procedure]R
-				such that P.status.value = 'completed'
-				and R.status.value = 'completed'
-				and (	(exists(P.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Parotid and Submandibular salivary glands, Bilateral"))
-						or 
-						(exists(P.code.coding C where C in "Esophagogastroduodenoscopy")
-							and exists(R.code.coding C where C in "Esophagogastroduodenoscopy"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Internal Anal Sphincter")
-							and exists(R.code.coding C where C in "Chemodenervation of Internal Anal Sphincter"))
-						or 
-						(exists(P.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder")
-							and exists(R.code.coding C where C in "Cystourethroscopy, with Injection(s) for Chemodenervation of the Bladder"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Neck Muscles(s), Muscles of the Larynx, Unilateral"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)")
-							and exists(R.code.coding C where C in "Chemodenervation of One Extremity, Trunk Muscles(s)"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Eccrine Glands")
-							and exists(R.code.coding C where C in "Chemodenervation of Eccrine Glands"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Extraocular Muscle")
-							and exists(R.code.coding C where C in "Chemodenervation of Extraocular Muscle"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s)")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s)"))
-						or 
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
-						or 
-						(exists(P.code.coding C where C in "Onabotulinumtoxina")
-							and exists(R.code.coding C where C in "Onabotulinumtoxina"))
-					)
-				and First(P.outcome.coding) in "Unsuccessful"
-				and First(R.outcome.coding) in "Unsuccessful"
-				and "Normalize Interval"(P.performed) starts before "Normalize Interval"(R.performed)
-				and "Normalize Interval"(R.performed) starts after (Today()-1 year))
-
-
-
-define ConsecutiveBotoxFailure:
-		if ("BotoxAdministered" = true)
-		then true
-		else false
-
 
 define Preclusion:
 	FHIRHelpers.ToQuantity("ServiceRequest".quantity as Quantity).value

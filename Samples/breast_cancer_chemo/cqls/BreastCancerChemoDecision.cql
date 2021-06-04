@@ -134,15 +134,31 @@ define IsERPositive:
 		   where I.linkId.value = '3.1')QR
 		      return First(QR.answer).value
 
+define EstrogenReceptorPositive:
+  if (First("IsERPositive") = true)
+    then true
+      else false
+
+
 define IsPRPositive:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '3.2')QR
 		      return First(QR.answer).value
 
+define ProgesteroneReceptorPositive:
+  if (First("IsPRPositive") = true)
+    then true
+      else false
+
 define IsHER2Positive:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '3.3')QR
 		      return First(QR.answer).value
+
+define HER2Positive:
+  if (First("IsHER2Positive") = true)
+    then true
+      else false
 
 define KnownAllergiesBoolean:
       ("QuestionnaireResponseItems".item I
@@ -153,6 +169,11 @@ define LineOfTherapy:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '4.1')QR
 		      return First(QR.answer).value
+
+define "SequenceOfLineOfTherapy":
+  if (First("LineOfTherapy") = 1)
+      then true
+        else false
 
 define PreExistingConditionsBoolean:
       ("QuestionnaireResponseItems".item I

@@ -138,55 +138,54 @@
         },
         {
           "linkId": "2.2",
-          "text": "Do headache disorders occur for  greater than 15 days a month, for a period of at least 3months ?",
+          "text": "Is the patient refractory to standard and usual conventional therapy ?",
           "type": "boolean",
           "required": true,
-          "enableWhen": [
+          "extension": [
             {
-              "question": "2.1",
-"operator": "=",
-              "answerBoolean": true
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RefractoryBotulinum"
+              }
             }
           ]
         },
         {
           "linkId": "2.3",
-          "text": "Is the patient refractory to standard and usual conventional therapy ?",
+          "text": "Is the patient administered botulin toxin before ?",
           "type": "boolean",
           "required": true,
-          "enableWhen": [
+          "extension": [
             {
-              "question": "2.1",
-"operator": "=",
-              "answerBoolean": true
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BotulinumBefore"
+              }
             }
           ]
         },
         {
           "linkId": "2.4",
-          "text": "Is the patient administered botulin toxin before ?",
-          "type": "boolean",
+          "text": "Body site where the injection is being administered?",
+          "type": "string",
           "required": true,
-          "enableWhen": [
+          "extension": [
             {
-              "question": "2.1",
-"operator": "=",
-              "answerBoolean": true
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BotulinumBodysite"
+              }
             }
           ]
         },
         {
           "linkId": "2.5",
-          "text": "Does the patient demonstrate a significant decrease, in the number and frequency of headaches and an improvement in function, upon receiving Botulinum toxin ?",
-          "type": "boolean",
-          "required": true,
-          "enableWhen": [
-            {
-              "question": "2.4",
-"operator": "=",
-              "answerBoolean": true
-            }
-          ]
+          "text": "Description of the effectiveness of this treatment",
+          "type": "text",
+          "required": true
         }
       ]
     },

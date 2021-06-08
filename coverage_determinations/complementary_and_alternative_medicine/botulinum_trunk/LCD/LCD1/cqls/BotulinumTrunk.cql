@@ -135,7 +135,7 @@ define Headaches:
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
-define RefractoryToTherapy:
+define RefractoryBotulinum:
 		exists([Condition]C
 				with [Condition]R
 				such that exists(C.code.coding C where C in "Recommended Treatment Contraindicated or Ineffective")

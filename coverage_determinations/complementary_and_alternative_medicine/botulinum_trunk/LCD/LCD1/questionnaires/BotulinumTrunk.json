@@ -161,7 +161,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "BotulinumBefore"
+                "expression": "BotoxBefore"
               }
             }
           ]
@@ -198,7 +198,16 @@
           "linkId": "3.1",
           "text": "Is there a failure of two definitive, consecutive, treatment sessions involving a muscle or group of muscles when treated with botulinum toxin ? ",
           "type": "boolean",
-          "required": true
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BotoxAdministered"
+              }
+            }
+          ]
         }
       ]
     }

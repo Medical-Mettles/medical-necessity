@@ -39,6 +39,10 @@
             {
                 "code": "782688006",
                 "display": "Entire mucous membrane of sigmoid colon (body structure)"
+            },
+            {
+                "code": "372239004",
+                "display": "Sigmoid colon part (body structure)"
             }
           ]
         }

@@ -577,15 +577,6 @@
       ]
     },
     {
-      "type": "",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.83"
-        }
-      ]
-    },
-    {
       "type": "Procedure",
       "codeFilter": [
         {

@@ -786,6 +786,106 @@
                     {
                         "code": "H02.149",
                         "display": "Spastic ectropion of unspecified eye, unspecified eyelid"
+                    },
+                    {
+                        "code": "H02.151",
+                        "display": "Paralytic ectropion of right upper eyelid"
+                    },
+                    {
+                        "code": "H02.152",
+                        "display": "Paralytic ectropion of right lower eyelid"
+                    },
+                    {
+                        "code": "H02.153",
+                        "display": "Paralytic ectropion of right eye, unspecified eyelid"
+                    },
+                    {
+                        "code": "H02.154",
+                        "display": "Paralytic ectropion of left upper eyelid"
+                    },
+                    {
+                        "code": "H02.155",
+                        "display": "Paralytic ectropion of left lower eyelid"
+                    },
+                    {
+                        "code": "H02.156",
+                        "display": "Paralytic ectropion of left eye, unspecified eyelid"
+                    },
+                    {
+                        "code": "H02.156",
+                        "display": "Paralytic ectropion of left eye, unspecified eyelid"
+                    },
+                    {
+                        "code": "H49.01",
+                        "display": "Third [oculomotor] nerve palsy, right eye"
+                    },
+                    {
+                        "code": "H49.02",
+                        "display": "Third [oculomotor] nerve palsy, left eye"
+                    },
+                    {
+                        "code": "H49.03",
+                        "display": "Third [oculomotor] nerve palsy, bilateral"
+                    },
+                    {
+                        "code": "H49.11",
+                        "display": "Fourth [trochlear] nerve palsy, right eye"
+                    },
+                    {
+                        "code": "H49.12",
+                        "display": "Fourth [trochlear] nerve palsy, left eye"
+                    },
+                    {
+                        "code": "H49.13",
+                        "display": "Fourth [trochlear] nerve palsy, bilateral"
+                    },
+                    {
+                        "code": "H49.21",
+                        "display": "Sixth [abducent] nerve palsy, right eye"
+                    },
+                    {
+                        "code": "H49.22",
+                        "display": "Sixth [abducent] nerve palsy, left eye"
+                    },
+                    {
+                        "code": "H49.23",
+                        "display": "Sixth [abducent] nerve palsy, bilateral"
+                    },
+                    {
+                        "code": "H49.31",
+                        "display": "Total (external) ophthalmoplegia, right eye"
+                    },
+                    {
+                        "code": "H49.32",
+                        "display": "Total (external) ophthalmoplegia, left eye"
+                    },
+                    {
+                        "code": "H49.33",
+                        "display": "Total (external) ophthalmoplegia, bilateral"
+                    },
+                    {
+                        "code": "H49.41",
+                        "display": "Progressive external ophthalmoplegia, right eye"
+                    },
+                    {
+                        "code": "H49.42",
+                        "display": "Progressive external ophthalmoplegia, left eye"
+                    },
+                    {
+                        "code": "H49.43",
+                        "display": "Progressive external ophthalmoplegia, bilateral"
+                    },
+                    {
+                        "code": "H51.21",
+                        "display": "Internuclear ophthalmoplegia, right eye"
+                    },
+                    {
+                        "code": "H51.22",
+                        "display": "Internuclear ophthalmoplegia, left eye"
+                    },
+                    {
+                        "code": "H51.23",
+                        "display": "Internuclear ophthalmoplegia, bilateral"
                     }
                 ]
             }

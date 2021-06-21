@@ -365,7 +365,7 @@
             }
           ],
           "linkId": "2.3",
-          "text": "Is the Microsatellite Instability low?",
+          "text": "Is the Microsatellite Instability (MSI) low?",
           "type": "boolean",
           "required": true
         },
@@ -380,7 +380,7 @@
             }
           ],
           "linkId": "2.4",
-          "text": "Is the CEA level in blood (carcinoembryonic antigen) <2.5ng/ml?",
+          "text": "Is the CEA level in blood (Serum carcinoembryonic antigen) <2.5ng/ml?",
           "type": "boolean",
           "required": true
         }
@@ -417,7 +417,7 @@
             }
           ],
           "linkId": "3.2",
-          "text": "Gene",
+          "text": "Gene-mutation detected on which gene?",
           "type": "text",
           "required": true
         },
@@ -432,7 +432,7 @@
             }
           ],
           "linkId": "3.3",
-          "text": "Variant",
+          "text": "Exon location of the mutation",
           "type": "text",
           "required": true
         },
@@ -447,7 +447,7 @@
             }
           ],
           "linkId": "3.4",
-          "text": "ClinVar ID",
+          "text": "ClinVar ID of the Variant",
           "type": "text",
           "required": true
         },
@@ -462,7 +462,7 @@
             }
           ],
           "linkId": "3.5",
-          "text": "Zygosity",
+          "text": "Zygosity of the mutation",
           "type": "text",
           "required": true
         }
@@ -712,6 +712,18 @@
               "answerBoolean": false
             }
           ]
+        },
+        {
+            "linkId": "7",
+            "text": "Reports",
+            "type": "group",
+            "item": [
+                {
+                    "linkId": "7.1",
+                    "text": "Please attach the Tumor Genomics Report for additional information.",
+                    "type": "display"
+                }
+            ]
         }
       ]
     }

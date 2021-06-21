@@ -1,0 +1,45 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.15",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.15",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.15"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T4c",
+  "title": "Tumor stage T4c",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "373189006",
+            "display": "pT4c: Tumour of any size with direct extension to chest wall (not including pectoralis muscle) and oedema (including peau d'orange) or ulceration of the skin of the breast or satellite skin nodules confined to the same breast"
+          },
+       
+          {
+            "code": "443721006",
+            "display": "pT4c category (finding)"
+          },
+          
+          {
+            "code": "434791000124108",
+            "display": "Neoplasm of breast primary tumor staging category T4c:Both T4a and T4b"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.22",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.22",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.22"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes N3",
+  "title": "Regional Lymph Nodes N3",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "49182004",
+            "display": "pN3 category (finding)"
+          },
+          {
+            "code": "436091000124103",
+            "display": "Neoplasm of breast regional lymph node staging category pN3 as per American Joint Committee on Cancer 7th edition (finding)"
+          },
+          {
+            "code": "373165004",
+            "display": "pN3a: Metastasis in 10 or more axillary lymph nodes (at least one tumour deposit greater than 2.0 mm), or metastasis to infraclavicular lymph nodes (breast)"
+          },
+          {
+            "code": "443866005",
+            "display": "pN3a category (finding)"
+          },
+          {
+            "code": "443962008",
+            "display": "pN3b category (finding)"
+          },
+          {
+            "code": "436081000124101",
+            "display": "Neoplasm of breast regional lymph node staging category pN3b as per American Joint Committee on Cancer 7th edition (finding)"
+          },
+          {
+            "code": "373167007",
+            "display": "pN3b: Tumour of breast with metastasis as per AJCC 6th Edition definition (breast)"
+          },
+          {
+            "code": "443823003",
+            "display": "pN3c category (finding)"
+          },
+          {
+            "code": "373166003",
+            "display": "pN3c: Metastasis in ipsilateral supraclavicular lymph nodes (breast)"
+          }
+        ]
+      }
+    ]
+  }
+}

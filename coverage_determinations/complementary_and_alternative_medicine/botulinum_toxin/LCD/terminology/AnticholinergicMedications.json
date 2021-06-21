@@ -1,16 +1,16 @@
 {
     "resourceType": "ValueSet",
-    "id": "2.16.840.1.113762.1.4.1034.127",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.83",
     "meta": {
         "versionId": "1",
         "lastUpdated": "2021-06-09T23:31:33.042+05:30",
         "source": "#cSwIZpSC8sK9DRy0"
     },
-    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1034.127",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.83",
     "identifier": [
         {
             "system": "urn:ietf:rfc:3986",
-            "value": "2.16.840.1.113762.1.4.1034.127"
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.83"
         }
     ],
     "version": "Latest",
@@ -97,24 +97,12 @@
                         "display": "belladonna alkaloids / caffeine"
                     },
                     {
-                        "code": "1007162",
-                        "display": "atropine / hyoscyamine / phenylephrine / pseudoephedrine / scopolamine"
-                    },
-                    {
-                        "code": "1007163",
-                        "display": "nitrazepam / oxazepam / scopolamine"
-                    },
-                    {
                         "code": "1007200",
                         "display": "hydroxyzine / meclizine"
                     },
                     {
                         "code": "1007202",
                         "display": "cetrimide / diphenhydramine / moroxydine"
-                    },
-                    {
-                        "code": "1007217",
-                        "display": "homatropine / scopolamine"
                     },
                     {
                         "code": "1007242",
@@ -127,10 +115,6 @@
                     {
                         "code": "1007294",
                         "display": "dexchlorpheniramine / methscopolamine / phenylephrine"
-                    },
-                    {
-                        "code": "1007331",
-                        "display": "metronidazole / scopolamine"
                     },
                     {
                         "code": "1007336",
@@ -155,10 +139,6 @@
                     {
                         "code": "1007374",
                         "display": "hyoscyamine / methenamine / methylene blue / phenyl salicylate / sodium phosphate, monobasic"
-                    },
-                    {
-                        "code": "1007446",
-                        "display": "azintamide / scopolamine"
                     },
                     {
                         "code": "1007449",
@@ -191,10 +171,6 @@
                     {
                         "code": "1007583",
                         "display": "chlordiazepoxide / estrogens, esterified (USP)"
-                    },
-                    {
-                        "code": "1007585",
-                        "display": "papaveretum / scopolamine"
                     },
                     {
                         "code": "1007587",
@@ -235,10 +211,6 @@
                     {
                         "code": "1007713",
                         "display": "diphenhydramine / oxeladin / salicylamide"
-                    },
-                    {
-                        "code": "1007767",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / pseudoephedrine / scopolamine"
                     },
                     {
                         "code": "1007806",
@@ -317,16 +289,8 @@
                         "display": "acetaminophen / aluminum acetate / chlorpheniramine / phenylpropanolamine"
                     },
                     {
-                        "code": "1008167",
-                        "display": "clonixin / scopolamine"
-                    },
-                    {
                         "code": "1008182",
                         "display": "diphenhydramine / lidocaine"
-                    },
-                    {
-                        "code": "1008184",
-                        "display": "diazepam / scopolamine"
                     },
                     {
                         "code": "1008192",
@@ -377,24 +341,12 @@
                         "display": "dexbrompheniramine / dextromethorphan / phenylephrine"
                     },
                     {
-                        "code": "1008362",
-                        "display": "dipyrone / scopolamine"
-                    },
-                    {
-                        "code": "1008367",
-                        "display": "atropine / hyoscyamine / scopolamine"
-                    },
-                    {
                         "code": "1008383",
                         "display": "benzethonium / diphenhydramine / zinc acetate"
                     },
                     {
                         "code": "1008393",
                         "display": "dexchlorpheniramine / dextromethorphan / guaifenesin / phenylephrine"
-                    },
-                    {
-                        "code": "1008440",
-                        "display": "ibuprofen / scopolamine"
                     },
                     {
                         "code": "1008443",
@@ -425,14 +377,6 @@
                         "display": "brompheniramine / chlophedianol / pseudoephedrine"
                     },
                     {
-                        "code": "1008579",
-                        "display": "carbinoxamine / pseudoephedrine / scopolamine"
-                    },
-                    {
-                        "code": "1008610",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / phenylephrine / pseudoephedrine / scopolamine"
-                    },
-                    {
                         "code": "1008619",
                         "display": "belladonna alkaloids / caffeine / ergotamine / phenobarbital"
                     },
@@ -455,10 +399,6 @@
                     {
                         "code": "1008648",
                         "display": "caffeine / meclizine"
-                    },
-                    {
-                        "code": "1008691",
-                        "display": "caffeine / dimenhydrinate / scopolamine"
                     },
                     {
                         "code": "1008698",
@@ -533,24 +473,12 @@
                         "display": "acetaminophen / chlorpheniramine / diphenhydramine / pseudoephedrine"
                     },
                     {
-                        "code": "1008901",
-                        "display": "chlorpheniramine / pseudoephedrine / scopolamine"
-                    },
-                    {
-                        "code": "1008931",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / phenylephrine / phenylpropanolamine / scopolamine"
-                    },
-                    {
                         "code": "1008938",
                         "display": "belladonna alkaloids / simethicone"
                     },
                     {
                         "code": "1008947",
                         "display": "caffeine / dimenhydrinate"
-                    },
-                    {
-                        "code": "1008960",
-                        "display": "chlorpheniramine / dextromethorphan / scopolamine"
                     },
                     {
                         "code": "1008965",
@@ -757,10 +685,6 @@
                         "display": "hyoscyamine sulfate 0.19 MG"
                     },
                     {
-                        "code": "1046712",
-                        "display": "scopolamine hydrobromide 0.01 MG"
-                    },
-                    {
                         "code": "1046751",
                         "display": "acetaminophen 325 MG / diphenhydramine hydrochloride 25 MG / phenylephrine hydrochloride 5 MG Oral Tablet"
                     },
@@ -797,14 +721,6 @@
                         "display": "hyoscyamine sulfate 0.0207 MG/ML"
                     },
                     {
-                        "code": "1046786",
-                        "display": "scopolamine hydrobromide 0.0013 MG/ML"
-                    },
-                    {
-                        "code": "1046787",
-                        "display": "atropine sulfate 0.00388 MG/ML / hyoscyamine sulfate 0.0207 MG/ML / phenobarbital 3.24 MG/ML / scopolamine hydrobromide 0.0013 MG/ML Oral Solution"
-                    },
-                    {
                         "code": "1046799",
                         "display": "{12 (acetaminophen 325 MG / chlorpheniramine maleate 2 MG / phenylephrine hydrochloride 5 MG Oral Tablet) / 12 (acetaminophen 325 MG / phenylephrine hydrochloride 5 MG Oral Tablet) } Pack"
                     },
@@ -815,38 +731,6 @@
                     {
                         "code": "1046806",
                         "display": "hyoscyamine sulfate 0.1037 MG"
-                    },
-                    {
-                        "code": "1046807",
-                        "display": "scopolamine hydrobromide 0.0065 MG"
-                    },
-                    {
-                        "code": "1046809",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / phenobarbital 16.2 MG / scopolamine hydrobromide 0.0065 MG [Donnatal]"
-                    },
-                    {
-                        "code": "1046815",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / phenobarbital 16.2 MG / scopolamine hydrobromide 0.0065 MG Oral Tablet"
-                    },
-                    {
-                        "code": "1046861",
-                        "display": "atropine sulfate 0.00388 MG/ML / hyoscyamine sulfate 0.0207 MG/ML / phenobarbital 3.24 MG/ML / scopolamine hydrobromide 0.0013 MG/ML [D-Tal]"
-                    },
-                    {
-                        "code": "1046862",
-                        "display": "atropine sulfate 0.00388 MG/ML / hyoscyamine sulfate 0.0207 MG/ML / phenobarbital 3.24 MG/ML / scopolamine hydrobromide 0.0013 MG/ML Oral Solution [D-Tal]"
-                    },
-                    {
-                        "code": "1046923",
-                        "display": "atropine sulfate 0.00388 MG/ML / hyoscyamine sulfate 0.0207 MG/ML / phenobarbital 3.24 MG/ML / scopolamine hydrobromide 0.0013 MG/ML [Donnatal]"
-                    },
-                    {
-                        "code": "1046924",
-                        "display": "atropine sulfate 0.00388 MG/ML / hyoscyamine sulfate 0.0207 MG/ML / phenobarbital 3.24 MG/ML / scopolamine hydrobromide 0.0013 MG/ML Oral Solution [Donnatal]"
-                    },
-                    {
-                        "code": "1046978",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / phenobarbital 16.2 MG / scopolamine hydrobromide 0.0065 MG Oral Tablet [Donnatal]"
                     },
                     {
                         "code": "1046981",
@@ -879,22 +763,6 @@
                     {
                         "code": "1046995",
                         "display": "hyoscyamine sulfate 0.311 MG"
-                    },
-                    {
-                        "code": "1046996",
-                        "display": "scopolamine hydrobromide 0.0195 MG"
-                    },
-                    {
-                        "code": "1046997",
-                        "display": "atropine sulfate 0.0582 MG / hyoscyamine sulfate 0.311 MG / phenobarbital 48.6 MG / scopolamine hydrobromide 0.0195 MG Extended Release Oral Tablet"
-                    },
-                    {
-                        "code": "1046998",
-                        "display": "atropine sulfate 0.0582 MG / hyoscyamine sulfate 0.311 MG / phenobarbital 48.6 MG / scopolamine hydrobromide 0.0195 MG [Donnatal]"
-                    },
-                    {
-                        "code": "1046999",
-                        "display": "atropine sulfate 0.0582 MG / hyoscyamine sulfate 0.311 MG / phenobarbital 48.6 MG / scopolamine hydrobromide 0.0195 MG Extended Release Oral Tablet [Donnatal]"
                     },
                     {
                         "code": "1047786",
@@ -1001,24 +869,12 @@
                         "display": "hyoscyamine sulfate 0.125 MG [Nulev]"
                     },
                     {
-                        "code": "1048078",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / scopolamine hydrobromide 0.0065 MG Oral Tablet"
-                    },
-                    {
                         "code": "1048082",
                         "display": "atropine sulfate 0.025 MG"
                     },
                     {
-                        "code": "1048124",
-                        "display": "12 HR atropine sulfate 0.04 MG / chlorpheniramine maleate 8 MG / hyoscyamine sulfate 0.19 MG / pseudoephedrine hydrochloride 90 MG / scopolamine hydrobromide 0.01 MG Extended Release Oral Tablet"
-                    },
-                    {
                         "code": "1048146",
                         "display": "hyoscyamine sulfate 0.3111 MG"
-                    },
-                    {
-                        "code": "1048147",
-                        "display": "atropine sulfate 0.0582 MG / hyoscyamine sulfate 0.3111 MG / phenobarbital 48.6 MG / scopolamine hydrobromide 0.0195 MG Extended Release Oral Tablet"
                     },
                     {
                         "code": "1048307",
@@ -1225,20 +1081,8 @@
                         "display": "chlorpheniramine maleate 1 MG / pseudoephedrine hydrochloride 15 MG Chewable Tablet"
                     },
                     {
-                        "code": "106507",
-                        "display": "papaveretum 15.4 MG/ML / scopolamine 0.4 MG/ML Injectable Solution"
-                    },
-                    {
                         "code": "106732",
                         "display": "clemastine / phenylpropanolamine"
-                    },
-                    {
-                        "code": "106807",
-                        "display": "scopolamine 1.25 MG/ML Ophthalmic Solution"
-                    },
-                    {
-                        "code": "106808",
-                        "display": "scopolamine 5 MG/ML Ophthalmic Solution"
                     },
                     {
                         "code": "10811",
@@ -2513,14 +2357,6 @@
                         "display": "chlorpheniramine / hydrocodone / pseudoephedrine Oral Product"
                     },
                     {
-                        "code": "1154660",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / pseudoephedrine / scopolamine Oral Product"
-                    },
-                    {
-                        "code": "1154661",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / pseudoephedrine / scopolamine Pill"
-                    },
-                    {
                         "code": "1154667",
                         "display": "atropine / diphenoxylate Oral Liquid Product"
                     },
@@ -2535,26 +2371,6 @@
                     {
                         "code": "1154670",
                         "display": "atropine / edrophonium Injectable Product"
-                    },
-                    {
-                        "code": "1154678",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Liquid Product"
-                    },
-                    {
-                        "code": "1154679",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Product"
-                    },
-                    {
-                        "code": "1154680",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Pill"
-                    },
-                    {
-                        "code": "1154684",
-                        "display": "atropine / hyoscyamine / scopolamine Oral Product"
-                    },
-                    {
-                        "code": "1154685",
-                        "display": "atropine / hyoscyamine / scopolamine Pill"
                     },
                     {
                         "code": "1154770",
@@ -2579,18 +2395,6 @@
                     {
                         "code": "1154777",
                         "display": "chlorpheniramine / ibuprofen / pseudoephedrine Pill"
-                    },
-                    {
-                        "code": "1154779",
-                        "display": "chlorpheniramine / methscopolamine / phenylephrine Oral Product"
-                    },
-                    {
-                        "code": "1154780",
-                        "display": "chlorpheniramine / methscopolamine / phenylephrine Pill"
-                    },
-                    {
-                        "code": "1154784",
-                        "display": "chlorpheniramine / methscopolamine / pseudoephedrine Oral Product"
                     },
                     {
                         "code": "1154795",
@@ -3125,26 +2929,6 @@
                         "display": "phenylephrine / promethazine Oral Product"
                     },
                     {
-                        "code": "1157624",
-                        "display": "scopolamine Injectable Product"
-                    },
-                    {
-                        "code": "1157625",
-                        "display": "scopolamine Ophthalmic Product"
-                    },
-                    {
-                        "code": "1157627",
-                        "display": "scopolamine Oral Product"
-                    },
-                    {
-                        "code": "1157628",
-                        "display": "scopolamine Pill"
-                    },
-                    {
-                        "code": "1157630",
-                        "display": "scopolamine Topical Product"
-                    },
-                    {
                         "code": "1157768",
                         "display": "dexbrompheniramine Oral Product"
                     },
@@ -3203,10 +2987,6 @@
                     {
                         "code": "1157799",
                         "display": "dexchlorpheniramine Pill"
-                    },
-                    {
-                        "code": "1158131",
-                        "display": "phenylephrine / scopolamine Ophthalmic Product"
                     },
                     {
                         "code": "1158135",
@@ -3447,10 +3227,6 @@
                     {
                         "code": "1163737",
                         "display": "butabarbital / hyoscyamine / phenazopyridine Pill"
-                    },
-                    {
-                        "code": "1164115",
-                        "display": "papaveretum / scopolamine Injectable Product"
                     },
                     {
                         "code": "1164644",
@@ -4447,10 +4223,6 @@
                     {
                         "code": "1295685",
                         "display": "chlorpheniramine Chewable Product"
-                    },
-                    {
-                        "code": "1295698",
-                        "display": "scopolamine Transdermal Product"
                     },
                     {
                         "code": "1295750",
@@ -6217,18 +5989,6 @@
                         "display": "hyoscyamine sulfate 0.12 MG / methenamine 120 MG / methylene blue 10 MG / sodium phosphate, monobasic 40.8 MG Oral Capsule [UTA Capsule Reformulated Feb 2016]"
                     },
                     {
-                        "code": "1739883",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / phenobarbital 16.2 MG / scopolamine hydrobromide 0.0065 MG [Phenohytro]"
-                    },
-                    {
-                        "code": "1739884",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Tablet [Phenohytro]"
-                    },
-                    {
-                        "code": "1739887",
-                        "display": "atropine sulfate 0.0194 MG / hyoscyamine sulfate 0.1037 MG / phenobarbital 16.2 MG / scopolamine hydrobromide 0.0065 MG Oral Tablet [Phenohytro]"
-                    },
-                    {
                         "code": "1741529",
                         "display": "acetaminophen 650 MG / chlorpheniramine maleate 4 MG / phenylephrine hydrochloride 10 MG Oral Powder"
                     },
@@ -6477,14 +6237,6 @@
                         "display": "chlorpheniramine maleate 0.4 MG/ML / phenylephrine hydrochloride 1.5 MG/ML / pyrilamine maleate 2.5 MG/ML [Poly Hist PD]"
                     },
                     {
-                        "code": "1806049",
-                        "display": "scopolamine Transdermal System"
-                    },
-                    {
-                        "code": "1806063",
-                        "display": "scopolamine Transdermal System [Transderm Scop]"
-                    },
-                    {
                         "code": "1807886",
                         "display": "Biphasic 12 HR hyoscyamine sulfate 0.375 MG Extended Release Oral Tablet"
                     },
@@ -6637,10 +6389,6 @@
                         "display": "propantheline 15 MG Oral Tablet"
                     },
                     {
-                        "code": "198207",
-                        "display": "scopolamine 0.4 MG/ML Injectable Solution"
-                    },
-                    {
                         "code": "198602",
                         "display": "dimenhydrinate 25 MG Oral Tablet"
                     },
@@ -6705,10 +6453,6 @@
                         "display": "12 HR doxylamine succinate 20 MG / pyridoxine hydrochloride 20 MG Extended Release Oral Tablet [Bonjesta]"
                     },
                     {
-                        "code": "200059",
-                        "display": "scopolamine 0.4 MG Oral Tablet"
-                    },
-                    {
                         "code": "2002068",
                         "display": "{4 (acetaminophen 325 MG / diphenhydramine hydrochloride 12.5 MG / phenylephrine hydrochloride 5 MG Oral Tablet) / 8 (acetaminophen 325 MG / guaifenesin 200 MG / phenylephrine hydrochloride 5 MG Oral Tablet) } Pack"
                     },
@@ -6747,10 +6491,6 @@
                     {
                         "code": "2047428",
                         "display": "{100 (acetaminophen 250 MG / aspirin 250 MG / caffeine 65 MG Oral Tablet [Excedrin]) / 24 (acetaminophen 250 MG / aspirin 250 MG / diphenhydramine citrate 38 MG Oral Tablet [Excedrin PM Triple Action]) } Pack [Excedrin PM Triple Action Caplets and Excedrin Extra Strength Pain Reliever]"
-                    },
-                    {
-                        "code": "208123",
-                        "display": "scopolamine 2.5 MG/ML Ophthalmic Solution [Isopto Hyoscine]"
                     },
                     {
                         "code": "211482",
@@ -6841,10 +6581,6 @@
                         "display": "chlorpheniramine / hydrocodone / phenylephrine"
                     },
                     {
-                        "code": "214411",
-                        "display": "chlorpheniramine / methscopolamine / phenylpropanolamine"
-                    },
-                    {
                         "code": "214416",
                         "display": "chlorpheniramine / phenylephrine / pyrilamine"
                     },
@@ -6901,10 +6637,6 @@
                         "display": "levorotatory alkaloids of belladonna"
                     },
                     {
-                        "code": "226552",
-                        "display": "72 HR scopolamine 0.0139 MG/HR Transdermal System"
-                    },
-                    {
                         "code": "22696",
                         "display": "dexbrompheniramine"
                     },
@@ -6935,18 +6667,6 @@
                     {
                         "code": "2400",
                         "display": "chlorpheniramine"
-                    },
-                    {
-                        "code": "245350",
-                        "display": "scopolamine 0.6 MG/ML Injectable Solution"
-                    },
-                    {
-                        "code": "250536",
-                        "display": "scopolamine 0.3 MG Oral Tablet"
-                    },
-                    {
-                        "code": "250537",
-                        "display": "scopolamine 0.15 MG Oral Tablet"
                     },
                     {
                         "code": "2578",
@@ -7009,10 +6729,6 @@
                         "display": "propantheline 7.5 MG Oral Tablet"
                     },
                     {
-                        "code": "312910",
-                        "display": "scopolamine 2.5 MG/ML Ophthalmic Solution"
-                    },
-                    {
                         "code": "315462",
                         "display": "belladonna alkaloids 0.3 MG/ML"
                     },
@@ -7037,10 +6753,6 @@
                         "display": "dimenhydrinate 50 MG/ML"
                     },
                     {
-                        "code": "323913",
-                        "display": "scopolamine 2.5 MG/ML"
-                    },
-                    {
                         "code": "328585",
                         "display": "propantheline 7.5 MG"
                     },
@@ -7049,28 +6761,8 @@
                         "display": "propantheline 15 MG"
                     },
                     {
-                        "code": "328661",
-                        "display": "scopolamine 0.4 MG/ML"
-                    },
-                    {
                         "code": "329331",
                         "display": "belladonna alkaloids 16.2 MG"
-                    },
-                    {
-                        "code": "331430",
-                        "display": "scopolamine 0.4 MG"
-                    },
-                    {
-                        "code": "334244",
-                        "display": "scopolamine 0.6 MG/ML"
-                    },
-                    {
-                        "code": "334245",
-                        "display": "scopolamine 0.15 MG"
-                    },
-                    {
-                        "code": "334246",
-                        "display": "scopolamine 0.3 MG"
                     },
                     {
                         "code": "3361",
@@ -7097,28 +6789,12 @@
                         "display": "dimenhydrinate"
                     },
                     {
-                        "code": "345093",
-                        "display": "scopolamine 1.25 MG/ML"
-                    },
-                    {
-                        "code": "345094",
-                        "display": "scopolamine 5 MG/ML"
-                    },
-                    {
                         "code": "3498",
                         "display": "diphenhydramine"
                     },
                     {
-                        "code": "351875",
-                        "display": "72 HR scopolamine 0.0139 MG/HR Transdermal System [Transderm Scop]"
-                    },
-                    {
                         "code": "352365",
                         "display": "carbetapentane / chlorpheniramine"
-                    },
-                    {
-                        "code": "352366",
-                        "display": "carbinoxamine / methscopolamine / pseudoephedrine"
                     },
                     {
                         "code": "352370",
@@ -7129,20 +6805,12 @@
                         "display": "dexchlorpheniramine tannate"
                     },
                     {
-                        "code": "353526",
-                        "display": "scopolamine 0.0139 MG/HR"
-                    },
-                    {
                         "code": "359281",
                         "display": "12 HR brompheniramine maleate 6 MG Extended Release Oral Tablet"
                     },
                     {
                         "code": "360283",
                         "display": "diphenhydramine tannate"
-                    },
-                    {
-                        "code": "363862",
-                        "display": "scopolamine Ophthalmic Solution [Isopto Hyoscine]"
                     },
                     {
                         "code": "363929",
@@ -7283,10 +6951,6 @@
                     {
                         "code": "368431",
                         "display": "acetaminophen / diphenhydramine Oral Tablet [Excedrin PM]"
-                    },
-                    {
-                        "code": "368551",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Tablet [Donnatal]"
                     },
                     {
                         "code": "368576",
@@ -7721,14 +7385,6 @@
                         "display": "propantheline Oral Tablet"
                     },
                     {
-                        "code": "373830",
-                        "display": "scopolamine Injectable Solution"
-                    },
-                    {
-                        "code": "373831",
-                        "display": "scopolamine Oral Tablet"
-                    },
-                    {
                         "code": "374213",
                         "display": "trihexyphenidyl Oral Solution"
                     },
@@ -7771,10 +7427,6 @@
                     {
                         "code": "374675",
                         "display": "chlorpheniramine / methscopolamine / phenylephrine Chewable Tablet"
-                    },
-                    {
-                        "code": "374677",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Tablet"
                     },
                     {
                         "code": "374715",
@@ -7863,10 +7515,6 @@
                     {
                         "code": "374817",
                         "display": "chlorpheniramine / phenylephrine / pyrilamine Oral Solution"
-                    },
-                    {
-                        "code": "374818",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Extended Release Oral Tablet"
                     },
                     {
                         "code": "374827",
@@ -7981,20 +7629,12 @@
                         "display": "belladonna alkaloids Topical Solution"
                     },
                     {
-                        "code": "377414",
-                        "display": "scopolamine Ophthalmic Solution"
-                    },
-                    {
                         "code": "378119",
                         "display": "acetaminophen / caffeine / chlorpheniramine / phenylephrine Oral Tablet"
                     },
                     {
                         "code": "378214",
                         "display": "hyoscyamine Extended Release Oral Tablet"
-                    },
-                    {
-                        "code": "378252",
-                        "display": "atropine / hyoscyamine / scopolamine Oral Tablet"
                     },
                     {
                         "code": "378270",
@@ -8027,10 +7667,6 @@
                     {
                         "code": "379167",
                         "display": "dextromethorphan / doxylamine Oral Solution"
-                    },
-                    {
-                        "code": "379354",
-                        "display": "papaveretum / scopolamine Injectable Solution"
                     },
                     {
                         "code": "379452",
@@ -8237,20 +7873,12 @@
                         "display": "dimenhydrinate 50 MG [Dramamine]"
                     },
                     {
-                        "code": "568850",
-                        "display": "scopolamine 2.5 MG/ML [Isopto Hyoscine]"
-                    },
-                    {
                         "code": "571867",
                         "display": "dimenhydrinate 50 MG [Driminate]"
                     },
                     {
                         "code": "571871",
                         "display": "dimenhydrinate 50 MG [TripTone]"
-                    },
-                    {
-                        "code": "575640",
-                        "display": "scopolamine 0.0139 MG/HR [Transderm Scop]"
                     },
                     {
                         "code": "577191",
@@ -8351,10 +7979,6 @@
                     {
                         "code": "608661",
                         "display": "diphenhydramine Disintegrating Oral Tablet [Benadryl]"
-                    },
-                    {
-                        "code": "608757",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Extended Release Oral Tablet [Donnatal]"
                     },
                     {
                         "code": "608785",
@@ -8613,20 +8237,12 @@
                         "display": "atropine / chlorpheniramine / ephedrine"
                     },
                     {
-                        "code": "689597",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / phenylephrine / scopolamine"
-                    },
-                    {
                         "code": "689598",
                         "display": "atropine / chlorpheniramine / phenylephrine / phenyltoloxamine"
                     },
                     {
                         "code": "689599",
                         "display": "atropine / chlorpheniramine / phenylpropanolamine"
-                    },
-                    {
-                        "code": "689606",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine"
                     },
                     {
                         "code": "689608",
@@ -8675,10 +8291,6 @@
                     {
                         "code": "689642",
                         "display": "chlorpheniramine / phenylpropanolamine / pyrilamine"
-                    },
-                    {
-                        "code": "689755",
-                        "display": "phenylephrine / scopolamine"
                     },
                     {
                         "code": "689762",
@@ -8807,10 +8419,6 @@
                     {
                         "code": "692679",
                         "display": "chlorpheniramine Oral Tablet [Wal-finate]"
-                    },
-                    {
-                        "code": "692718",
-                        "display": "atropine / chlorpheniramine / hyoscyamine / pseudoephedrine / scopolamine Extended Release Oral Tablet"
                     },
                     {
                         "code": "692769",
@@ -8969,18 +8577,6 @@
                         "display": "dexbrompheniramine / dextromethorphan / phenylephrine Oral Solution"
                     },
                     {
-                        "code": "757058",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Solution"
-                    },
-                    {
-                        "code": "757063",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Solution [D-Tal]"
-                    },
-                    {
-                        "code": "757066",
-                        "display": "atropine / hyoscyamine / phenobarbital / scopolamine Oral Solution [Donnatal]"
-                    },
-                    {
                         "code": "757267",
                         "display": "dexbrompheniramine / pseudoephedrine Oral Solution"
                     },
@@ -9137,16 +8733,8 @@
                         "display": "clonixin / cyproheptadine / ergotamine"
                     },
                     {
-                        "code": "815781",
-                        "display": "chlorpheniramine / phenylephrine / scopolamine"
-                    },
-                    {
                         "code": "815866",
                         "display": "diphenhydramine / guaifenesin"
-                    },
-                    {
-                        "code": "816029",
-                        "display": "acetaminophen / scopolamine"
                     },
                     {
                         "code": "816174",
@@ -9723,14 +9311,6 @@
                     {
                         "code": "92995",
                         "display": "Isopto Atropine"
-                    },
-                    {
-                        "code": "9601",
-                        "display": "scopolamine"
-                    },
-                    {
-                        "code": "9603",
-                        "display": "scopolamine hydrobromide"
                     },
                     {
                         "code": "966555",

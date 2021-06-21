@@ -45,7 +45,7 @@ valueset "Biobehavioral Therapy": '2.16.840.1.113762.1.4.1034.570'
 valueset "Partially successful": '2.16.840.1.113883.3.6037.1001.23.93.47'
 valueset "Successful": '2.16.840.1.113883.3.6037.1001.23.93.48'
 valueset "Glycopyrrolate": '2.16.840.1.113883.3.3616.200.110.102.2067'
-valueset "Scopolamine": '2.16.840.1.113883.3.464.1003.196.12.1520'
+valueset "Scopolamine": '2.16.840.1.113883.3.6037.1001.23.93.82'
 
 //Valuesets for Achalasia
 valueset "Esophagoscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.28'
@@ -67,10 +67,19 @@ valueset "Topical Anaesthetic Application": '2.16.840.1.113883.3.6037.1001.23.93
 //Valuesets for Hyperhydrosis
 valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
 valueset "Generalised Hyperhidrosis": '2.16.840.1.113883.3.6037.1001.23.93.71'
-valueset "Anticholinergic Medications": '2.16.840.1.113762.1.4.1034.127'
+valueset "Anticholinergic Medications": '2.16.840.1.113883.3.6037.1001.23.93.83'
 
 //Valuesets for Urinary Incontinence
 valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
+
+//Valuesets for Migraine
+valueset "Migraine Codes": '2.16.840.1.113883.3.6037.1001.23.93.84'
+valueset "Triptan Medications": '2.16.840.1.113762.1.4.1111.83'
+
+//Valuesets for Strabismus
+valueset "Stabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
+valueset "Binocular Vision Codes": '2.16.840.1.113883.3.6037.1001.23.93.86'
+valueset "Strabismus Surgery Codes": '2.16.840.1.113883.3.6037.1001.23.93.87'
 
 //Valuesets for Prior Botox Administration
 valueset "Botulinum Toxin RXNORM Codes": '2.16.840.1.113883.3.6037.1001.23.93.60'
@@ -144,11 +153,17 @@ define UrinaryIncontinenceCondition:
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
-/*define MigraineConditon:
+define MigraineCondition:
 	[Condition]S
 		where exists(S.code.coding C where C in "Migraine Codes")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
-			  and First(S.verificationStatus.coding).code.value = 'confirmed'*/
+			  and First(S.verificationStatus.coding).code.value = 'confirmed'
+
+define StrabismusCondition:
+	[Condition]S
+		where exists(S.code.coding C where C in "Stabismus Codes")
+		  and First(S.clinicalStatus.coding).code.value = 'active'
+			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
 define BotoxDiagnosisConditions:
 	if exists("AchalasiaCondition")
@@ -165,10 +180,11 @@ define BotoxDiagnosisConditions:
 												then 'Spasticity'
 													else if exists("BlepharospasmCondition")
 														then 'Blepharospasm'
-															else ''
-															/*else if exists("MigraineConditon")
+															else if exists("MigraineCondition")
 																then 'Headache/Migraine'
-																	else ''*/
+																	else if exists("StrabismusCondition")
+																		then 'Strabismus'
+																			else ''
 
 //PRIOR BOTULINUM ADMINISTRATION
 define MedicationAdministrationResources:
@@ -333,7 +349,8 @@ define AdjunctivePhysiotherapy:
 			else false
 
 define SpasticityEarlierBotulinumAdministration:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("SpasticityCondition"))
 	then true
 	else false
 
@@ -341,7 +358,7 @@ define SpasticitySpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define SpasticityPostBotoxImprovement:
+define SpasticityPostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
@@ -349,7 +366,46 @@ define SpasticityPostBotoxImprovement:
 					then false
 						else true
 
+define SpasticityPostBotoxImprovement:
+	if ("SpasticityPostBotoxOutcome" = true
+				and exists("SpasticityCondition"))
+					then true
+						else false
+
 //BLEPHAROSPASM
+define BlepharospasmFacialUnilateral:
+if (exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+			and exists("BlepharospasmCondition"))
+	then true
+	else false
+
+define BlepharospasmFacialBilateral:
+if (exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+			and exists("BlepharospasmCondition"))
+	then true
+	else false
+
+define BlepharospasmNeck:
+if (exists("Request".code.coding C where C in "Chemodenervation of Neck Muscle(s)")
+			and exists("BlepharospasmCondition"))
+	then true
+	else false
+
+define BlepharospasmMuscleGroups:
+	if (("BlepharospasmFacialUnilateral" = true)
+				or ("BlepharospasmFacialBilateral"= true))
+					then 'Face'
+						else if ("BlepharospasmNeck" = true)
+							then 'Neck'
+								else ''
+
+define BlepharospasmFaceInjectionSide:
+	if ("BlepharospasmFacialUnilateral" = true)
+		then 'Unilateral'
+			else if ("BlepharospasmFacialBilateral"= true)
+				then 'Bilateral'
+					else ''
+
 define KeratopathyCondition:
   [Condition]B
 		where exists(B.code.coding C where C in "Keratopathy")
@@ -384,7 +440,8 @@ define CheckOcularIrritation:
       else false
 
 define BlepharospasmEarlierBotulinumAdministration:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("BlepharospasmCondition"))
 	then true
 	else false
 
@@ -392,13 +449,19 @@ define BlepharospasmSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define BlepharospasmPostBotoxImprovement:
+define BlepharospasmPostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define BlepharospasmPostBotoxImprovement:
+	if ("BlepharospasmPostBotoxOutcome" = true
+				and exists("BlepharospasmCondition"))
+					then true
+						else false
 
 //SIALORRHEA
 define ParkinsonDisease:
@@ -469,7 +532,8 @@ define PostBiofeedbackImprovement:
       else false
 
 define SialorrheaEarlierBotulinumAdministration:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("SialorrheaCondition"))
 	then true
 	else false
 
@@ -477,13 +541,19 @@ define SialorrheaSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define SialorrheaPostBotoxImprovement:
+define SialorrheaPostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define SialorrheaPostBotoxImprovement:
+	if ("SialorrheaPostBotoxOutcome" = true
+				and exists("SialorrheaCondition"))
+					then true
+						else false
 
 define "GlycopyrrolateDrugResources":
 	[MedicationAdministration]M
@@ -726,7 +796,8 @@ define AchalasiaPostProceduresImprovement:
 				else true
 
 define AchalasiaEarlierBotulinumAdministration:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("AchalasiaCondition"))
 	then true
 	else false
 
@@ -734,13 +805,19 @@ define AchalasiaSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define AchalasiaPostBotoxImprovement:
+define AchalasiaPostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define AchalasiaPostBotoxImprovement:
+	if ("AchalasiaPostBotoxOutcome" = true
+				and exists("AchalasiaCondition"))
+					then true
+						else false
 
 //ANAL FISSURE
 define DurationOfAnalFissure:
@@ -844,7 +921,8 @@ define PostConservativeTreatmentImprovement:
 								else true
 
 define AnalFissurePriorBotulinumToxin:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("AnalFissureCondition"))
 	then true
 	else false
 
@@ -852,13 +930,19 @@ define AnalFissureSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define AnalFissurePostBotoxImprovement:
+define AnalFissurePostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define AnalFissurePostBotoxImprovement:
+	if ("AnalFissurePostBotoxOutcome" = true
+				and exists("AnalFissureCondition"))
+					then true
+						else false
 
 //HYPERHIDROSIS
 define SevereSweating:
@@ -914,7 +998,8 @@ define PostAnticholinergicImprovement:
 						else true
 
 define HyperhydrosisPriorBotulinumToxin:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("HyperhidrosisCondition"))
 	then true
 	else false
 
@@ -922,7 +1007,7 @@ define HyperhydrosisSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define HyperhydrosisPostBotoxImprovement:
+define HyperhydrosisPostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
@@ -930,14 +1015,20 @@ define HyperhydrosisPostBotoxImprovement:
 					then false
 						else true
 
+define HyperhydrosisPostBotoxImprovement:
+	if ("HyperhydrosisPostBotoxOutcome" = true
+				and exists("HyperhidrosisCondition"))
+					then true
+						else false
 
 //URINARY INCONTINENCE
 define CheckUrinaryIncontinenceAntiCholinergicTreatment: /*Definitions for these have been defined above under Hyperhydrosis*/
-  if Last("CheckAnticholinergicAdministration") is not null
+  if (Last("CheckAnticholinergicAdministration") is not null
+				and exists("UrinaryIncontinenceCondition"))
 		then true
 			else false
 
-define PostUrinaryIncontinenceAnticholinergicImprovement:
+define PostUrinaryIncontinenceAnticholinergicOutcome:
 	if exists("AnticholinergicDrugResources" M
 							with "AnticholinergicProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
@@ -945,8 +1036,15 @@ define PostUrinaryIncontinenceAnticholinergicImprovement:
 					then false
 						else true
 
+define PostUrinaryIncontinenceAnticholinergicImprovement:
+	if ("PostUrinaryIncontinenceAnticholinergicOutcome" = true
+				and exists("UrinaryIncontinenceCondition"))
+					then true
+						else false
+
 define UrinaryIncontinencePriorBotulinumToxin:
-  if Last("CheckBotoxAdministration") is not null
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("UrinaryIncontinenceCondition"))
 	then true
 	else false
 
@@ -954,13 +1052,19 @@ define UrinaryIncontinenceSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define UrinaryIncontinencePostBotoxImprovement:
+define UrinaryIncontinencePostBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "ProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define UrinaryIncontinencePostBotoxImprovement:
+	if ("UrinaryIncontinencePostBotoxOutcome" = true
+				and exists("UrinaryIncontinenceCondition"))
+					then true
+						else false
 
 define UrinaryIncontinenceAnticholinergicContraindications:
 	if exists("MyastheniaGravis")
@@ -988,6 +1092,186 @@ define UrinaryIncontinenceAnticholinergicContraindications:
 																							else if exists("DownSyndrome")
 																								then 'Down’s Syndrome'
 																									else ''
+
+//MIGRAINE
+define MigraineFacialUnilateral:
+if (exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+			and exists("MigraineCondition"))
+	then true
+	else false
+
+define MigraineFacialBilateral:
+if (exists("Request".code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+			and exists("MigraineCondition"))
+	then true
+	else false
+
+define MigraineNeck:
+if (exists("Request".code.coding C where C in "Chemodenervation of Neck Muscle(s)")
+			and exists("MigraineCondition"))
+	then true
+	else false
+
+define MigraineMuscleGroups:
+	if (("MigraineFacialUnilateral" = true)
+				or ("MigraineFacialBilateral"= true))
+					then 'Face'
+						else if ("MigraineNeck" = true)
+							then 'Neck'
+								else ''
+
+define MigraineFaceInjectionSide:
+	if ("MigraineFacialUnilateral" = true)
+		then 'Unilateral'
+			else if ("MigraineFacialBilateral"= true)
+				then 'Bilateral'
+					else ''
+
+define Duration:
+		[Condition] C
+		where exists(C.code.coding C where C in "Migraine Codes")
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 14 days
+			//and "Normalize Interval"(C.onset) after (Today()-120 days)
+
+define HeadachesForFifteenDays:
+	if exists("Duration")
+		then true
+			else false
+
+define HeadachesForLastThreeMonths:
+		if (Count("Duration") > 2)
+			then true
+			else false
+
+define TriptanMedicationResources:
+		[MedicationAdministration]M
+	where M.subject.reference.value = 'Patient/'+ Patient.id.value
+	and M.status.value = 'completed'
+	and First((M.medication as CodeableConcept).coding) in "Triptan Medications"
+
+define TriptanProcedureResources:
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value = 'completed'
+		and First(P.code.coding) in "Procedure for Medication Administration"
+
+define CheckTriptanAdministration:
+	"TriptanMedicationResources" M
+		with "TriptanProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+
+define ConventionalTreatment:
+  if (Last("CheckTriptanAdministration") is not null
+				and exists("MigraineCondition"))
+					then true
+						else false
+
+define ConventionalTreatmentImprovement:
+	if exists("TriptanMedicationResources" M
+							with "TriptanProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+					then false
+						else true
+
+define MigrainePriorBotoxTreatment:
+		exists([Procedure]P
+				with [Procedure]R
+				such that P.status.value = 'completed'
+				and R.status.value = 'completed'
+				and ((exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+						or
+						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
+							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+						or
+						(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)")
+							and exists(R.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
+					)
+				and First(P.outcome.coding) in "Unsuccessful"
+				and First(R.outcome.coding) in "Unsuccessful"
+				and "Normalize Interval"(P.performed) starts before "Normalize Interval"(R.performed))
+				//and "Normalize Interval"(R.performed) starts after (Today()-1 year))
+
+define MigraineCheckPriorBotoxTreatment:
+	if ("MigrainePriorBotoxTreatment" = true
+				and exists("MigraineCondition"))
+					then true
+						else false
+
+define MigrainePostBotoxImprovement:
+	exists([Procedure]P
+				where P.status.value = 'completed'
+				and (
+							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+								or
+							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+								or
+							(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
+						)
+				and First(P.outcome.coding) in "Successful")
+
+define MigraineCheckPostBotoxImprovement:
+	if (exists("MigraineCondition")
+				and ("MigrainePostBotoxImprovement" = true))
+					then true
+						else false
+
+define MigraineTreatmentFailures:
+			if ("MigrainePriorBotoxTreatment" = true)
+				then true
+					else false
+
+//STRABISMUS
+define BinocularVision:
+	exists([Condition]S
+		where exists(S.code.coding C where C in "Binocular Vision Codes")
+		  and First(S.clinicalStatus.coding).code.value = 'active'
+			  and First(S.verificationStatus.coding).code.value = 'confirmed')
+
+define StrabismusCorrectionProcedure:
+[Procedure]P
+		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Strabismus Surgery Codes")
+
+define StrabismusSurgery:
+	exists([Procedure]P
+		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Strabismus Surgery Codes"))
+
+define StrabismusSurgeryImprovement:
+  "StrabismusCorrectionProcedure" P
+		where (First(P.outcome.coding) in "Unsuccessful")
+
+define PostStrabismusSurgeryImprovement:
+  if exists("StrabismusSurgeryImprovement")
+    then false
+      else true
+
+define StrabismusPriorBotulinumToxin:
+  if (Last("CheckBotoxAdministration") is not null
+				and exists("StrabismusCondition"))
+	then true
+	else false
+
+define StrabismusSpecifyBotoxAdministration:
+	"SpecifyBotoxAdministrationMedicationCode".coding M
+		return (M.display.value)
+
+define StrabismusPostBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "ProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+					then false
+						else true
+
+define StrabismusPostBotoxImprovement:
+	if ("StrabismusPostBotoxOutcome" = true
+				and exists("StrabismusCondition"))
+					then true
+						else false
 
 //BOTOX ALLERGY
 define BotoxAllergyIntolerance:

@@ -15,7 +15,7 @@
   ],
   "name": "BotulinumToxin",
   "version": "1.0.0",
-  "title": "Botulinum Toxin",
+  "title": "Prior Auhtorisation for Botulinum Toxin",
   "status": "draft",
   "subjectType": [
     "Patient"
@@ -111,6 +111,18 @@
               "valueCoding": {
                 "code": "Blepharospasm",
                 "display": "Blepharospasm"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strabismus",
+                "display": "Strabismus"
               }
             }
           ],
@@ -371,6 +383,84 @@
               }
             }
           ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BlepharospasmMuscleGroups"
+              }
+            }
+          ],
+          "linkId": "Blepharospasm-MuscleGroups",
+          "text": "Botox is indicated for which muscle group?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Face",
+                "display": "Face"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neck",
+                "display": "Neck"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Blepharospasm",
+                "display": "Blepharospasm"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BlepharospasmFaceInjectionSide"
+              }
+            }
+          ],
+          "linkId": "Blepharospasm-SideInjection",
+          "text": "Side of injection",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Unilateral",
+                "display": "Unilateral"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Bilateral",
+                "display": "Bilateral"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Blepharospasm-MuscleGroups",
+              "answerCoding": {
+                "code": "Face",
+                "display": "Face"
+              }
+            }
+          ],
+          "required": true
         },
         {
           "extension": [
@@ -646,6 +736,159 @@
               }
             }
           ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MigraineMuscleGroups"
+              }
+            }
+          ],
+          "linkId": "Migraine-MuscleGroups",
+          "text": "Botox is indicated for which muscle group?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Face",
+                "display": "Face"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neck",
+                "display": "Neck"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MigraineFaceInjectionSide"
+              }
+            }
+          ],
+          "linkId": "Migraine-SideInjection",
+          "text": "Side of injection",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Unilateral",
+                "display": "Unilateral"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Bilateral",
+                "display": "Bilateral"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Migraine-MuscleGroups",
+              "answerCoding": {
+                "code": "Face",
+                "display": "Face"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HeadachesForFifteenDays"
+              }
+            }
+          ],
+          "linkId": "Migraine-DurationFor15Days",
+          "text": "Do headache disorders occur for greater than 15 days a month?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HeadachesForLastThreeMonths"
+              }
+            }
+          ],
+          "linkId": "Migraine-Duration",
+          "text": "Have the headaches existed for a period of at least 3 months?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BinocularVision"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-BinocularVision",
+          "text": "Does the patient have binocular vision?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Strabismus",
+                "display": "Strabismus"
+              }
+            }
+          ]
         }
       ]
     },
@@ -735,7 +978,18 @@
           ],
           "linkId": "Blepharospasm-PriorBotoxAdministration",
           "text": "Has the patient been administered botulinum toxin before?",
-          "type": "boolean"
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Blepharospasm",
+                "display": "Blepharospasm"
+              }
+            }
+          ],
+          "required": true
         },
         {
           "extension": [
@@ -1494,6 +1748,238 @@
             }
           ],
           "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConventionalTreatment"
+              }
+            }
+          ],
+          "linkId": "Migraine-ConventionalTreatment",
+          "text": "Has the patient been given any conventional treatment previously?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConventionalTreatmentImprovement"
+              }
+            }
+          ],
+          "linkId": "Migraine-ConventionalTreatmentImprovement",
+          "text": "Was there a significant decrease in the number and frequency of headaches upon receiving conventional therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Migraine-ConventionalTreatment",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MigraineCheckPriorBotoxTreatment"
+              }
+            }
+          ],
+          "linkId": "Migraine-PriorBotoxTreatment",
+          "text": "Has the patient had previous botox therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Migraine",
+                "display": "Migraine"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MigrainePostBotoxImprovement"
+              }
+            }
+          ],
+          "linkId": "Migraine-PostBotoxImprovement",
+          "text": "Has the patient shown a significant decrease in the number and frequency of headaches and an improvement in function upon receiving Botulinum toxin?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Migraine-PriorBotoxTreatment",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MigraineTreatmentFailures"
+              }
+            }
+          ],
+          "linkId": "Migraine-TreatmentFailures",
+          "text": "Was there a failure of two definitive, consecutive, treatment sessions when treated with botulinum toxin?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Migraine-PriorBotoxTreatment",
+              "answerBoolean": false
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StrabismusSurgery"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-CorrectionSurgery",
+          "text": "Has the patient undergone surgery for correction of strabismus?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Strabismus",
+                "display": "Strabismus"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StrabismusSurgeryImprovement"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-ImprovementPostCorrectionSurgery",
+          "text": "Was there an improvement in the patient's condition after the correction surgery?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Strabisumus-CorrectionSurgery",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StrabismusPriorBotulinumToxin"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-PriorBotoxTreatment",
+          "text": "Has the patient had a prior botox treatment?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BotulinumConditions",
+              "answerCoding": {
+                "code": "Strabismus",
+                "display": "Strabismus"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StrabismusSpecifyBotoxAdministration"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-BotoxStrain",
+          "text": "Which Botox Strain was used?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Strabisumus-PriorBotoxTreatment",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StrabismusPostBotoxImprovement"
+              }
+            }
+          ],
+          "linkId": "Strabisumus-PostBotoxImprovement",
+          "text": "Which Botox Strain was used?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Strabisumus-PriorBotoxTreatment",
+              "answerBoolean": true
+            }
+          ]
         }
       ]
     },

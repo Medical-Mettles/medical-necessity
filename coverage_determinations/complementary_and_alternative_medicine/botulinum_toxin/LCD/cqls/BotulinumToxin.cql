@@ -17,7 +17,7 @@ valueset "Ischemic Stroke": '2.16.840.1.113883.3.117.1.7.1.247'
 valueset "Multiple Sclerosis (ICD10CM)": '2.16.840.1.113762.1.4.1034.99'
 valueset "Brain Injury": '2.16.840.1.113883.3.7587.2.1015'
 valueset "Cerebral Palsy": '2.16.840.1.113883.3.7587.2.1012'
-valueset "RehabilitationServices": '2.16.840.1.113883.3.117.1.7.1.221'
+valueset "Physiotherapy Codes": '2.16.840.1.113883.3.6037.1001.23.93.89'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral": '2.16.840.1.113883.3.6037.1001.23.99.41'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.47'
 valueset "Chemodenervation of Neck Muscle(s)": '2.16.840.1.113883.3.6037.1001.23.93.73'
@@ -67,7 +67,7 @@ valueset "Topical Anaesthetic Application": '2.16.840.1.113883.3.6037.1001.23.93
 //Valuesets for Hyperhydrosis
 valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
 valueset "Generalised Hyperhidrosis": '2.16.840.1.113883.3.6037.1001.23.93.71'
-valueset "Anticholinergic Medications": '2.16.840.1.113883.3.6037.1001.23.93.83'
+valueset "Anticholinergic Medication Codes": '2.16.840.1.113883.3.6037.1001.23.93.83'
 
 //Valuesets for Urinary Incontinence
 valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
@@ -341,7 +341,7 @@ define Etiology:
 define AdjunctivePhysiotherapyProcedure:
 	[Procedure]P
 		where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "RehabilitationServices")
+			and exists(P.code.coding C where C in "Physiotherapy Codes")
 
 define AdjunctivePhysiotherapy:
 	if exists("AdjunctivePhysiotherapyProcedure")
@@ -969,10 +969,10 @@ define AnticholinergicDrugResources:
 		[MedicationAdministration]M
 			where M.subject.reference.value = 'Patient/'+ Patient.id.value
 				and M.status.value = 'completed'
-					and First((M.medication as CodeableConcept).coding) in "Anticholinergic Medications"
+					and First((M.medication as CodeableConcept).coding) in "Anticholinergic Medication Codes"
 
 define AnticholinergicMedicationResources:
-	[Medication]med where (First(med.code.coding) in "Anticholinergic Medications") is not null
+	[Medication]med where (First(med.code.coding) in "Anticholinergic Medication Codes") is not null
 
 define AnticholinergicProcedureResources:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -1219,9 +1219,10 @@ define MigraineCheckPostBotoxImprovement:
 						else false
 
 define MigraineTreatmentFailures:
-			if ("MigrainePriorBotoxTreatment" = true)
-				then true
-					else false
+			if (("MigrainePriorBotoxTreatment" = true)
+						and exists("MigraineCondition"))
+							then true
+								else false
 
 //STRABISMUS
 define BinocularVision:

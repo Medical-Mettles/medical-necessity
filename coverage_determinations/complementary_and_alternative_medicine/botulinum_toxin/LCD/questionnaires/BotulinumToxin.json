@@ -1187,7 +1187,7 @@
             }
           ],
           "linkId": "Sialorrhea-BotoxAdministration",
-          "text": "Has the patient been administered botulinum toxin before ?",
+          "text": "Has the patient been administered botulinum toxin before?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -1807,7 +1807,7 @@
             }
           ],
           "linkId": "Migraine-PriorBotoxTreatment",
-          "text": "Has the patient had previous botox therapy?",
+          "text": "Has the patient had botox therapy previously?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1860,7 +1860,7 @@
             {
               "operator": "=",
               "question": "Migraine-PriorBotoxTreatment",
-              "answerBoolean": false
+              "answerBoolean": true
             }
           ],
           "required": true

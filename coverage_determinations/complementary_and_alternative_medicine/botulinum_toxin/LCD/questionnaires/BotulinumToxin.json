@@ -955,7 +955,7 @@
             }
           ],
           "linkId": "Spasticity-ImprovementPostBotox",
-          "text": "Has there been improvement in after Botox Injection?",
+          "text": "Has there been improvement in the spasticity condition after Botox Treatment?",
           "type": "boolean",
           "enableWhen": [
             {

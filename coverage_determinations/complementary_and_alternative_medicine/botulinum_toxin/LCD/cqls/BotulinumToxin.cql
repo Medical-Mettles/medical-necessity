@@ -471,9 +471,10 @@ define ParkinsonDisease:
 			          and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define NeuromuscularSensoryDysfunction:
-  if exists("CerebralPalsy") 		// The function for this condition has been defined above with Spasticity
+  if ((exists("CerebralPalsy") 		// The function for this condition has been defined above with Spasticity
 			or exists("ParkinsonDisease")
-				or exists("IschemicStroke") // The function for this condition has been defined above with Spasticity
+				or exists("IschemicStroke"))      // The function for this condition has been defined above with Spasticity
+					and exists("SialorrheaCondition"))
     			then true
       			else false
 

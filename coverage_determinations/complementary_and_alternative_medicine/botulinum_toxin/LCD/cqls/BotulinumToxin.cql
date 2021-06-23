@@ -826,7 +826,8 @@ define DurationOfAnalFissure:
 		where exists(S.code.coding C where C in "AnalFissure Codes")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
-						and "Normalize Onset"(S.onset) starts after (Today()-90 days)
+					and duration in days of Interval[start of "Normalize Interval"(S.onset),start of "Normalize Interval"(S.abatement)] > 60 days
+						//and "Normalize Interval"(S.onset) after (Today()-120 days)
 
 define CheckDurationOfAnalFissure:
 	if exists("DurationOfAnalFissure")
@@ -1286,7 +1287,7 @@ define BotoxAllergy:
 	then true
 	else false
 
-define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+/*define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then
  		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
 	  else if choice is FHIR.Period then
@@ -1299,19 +1300,16 @@ define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR
 		else if choice is FHIR.Range then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-	  else null
+	  else null*/
 
-define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-  if onset is FHIR.dateTime then
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.date then
+	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
+        else if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then
 	  FHIRHelpers.ToInterval(onset as FHIR.Period)
-	else if onset is FHIR.string then
-    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
 	else if onset is FHIR.Age then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
-	else if onset is FHIR.Range then
-	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).low),
-		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).high) + 1 year)
 	else null

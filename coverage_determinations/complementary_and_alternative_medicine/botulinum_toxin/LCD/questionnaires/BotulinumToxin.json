@@ -1437,7 +1437,7 @@
             }
           ],
           "linkId": "AnalFissure-PostCoversativeTreatmentImprovement",
-          "text": "Has the patient not responded to conservative treatment??",
+          "text": "Has the patient not responded to conservative treatment?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1486,7 +1486,7 @@
               }
             }
           ],
-          "linkId": "AnalFissure-BotoxAdministration",
+          "linkId": "AnalFissure-PriorBotulinumToxin",
           "text": "Has the patient been administered botulinum toxin before ?",
           "type": "boolean",
           "enableWhen": [
@@ -1551,7 +1551,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "AnticholinergicMedications"
+                "expression": "AnticholinergicMedicationsHyperhydrosis"
               }
             }
           ],
@@ -1977,7 +1977,7 @@
           ],
           "linkId": "Strabisumus-BotoxStrain",
           "text": "Which Botox Strain was used?",
-          "type": "boolean",
+          "type": "text",
           "required": true,
           "enableWhen": [
             {
@@ -1998,7 +1998,7 @@
             }
           ],
           "linkId": "Strabisumus-PostBotoxImprovement",
-          "text": "Which Botox Strain was used?",
+          "text": "Was there an improvement in patient's condition after botox treatment?",
           "type": "boolean",
           "required": true,
           "enableWhen": [

@@ -77,7 +77,7 @@ valueset "Migraine Codes": '2.16.840.1.113883.3.6037.1001.23.93.84'
 valueset "Triptan Medications": '2.16.840.1.113762.1.4.1111.83'
 
 //Valuesets for Strabismus
-valueset "Stabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
+valueset "Strabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
 valueset "Binocular Vision Codes": '2.16.840.1.113883.3.6037.1001.23.93.86'
 valueset "Strabismus Surgery Codes": '2.16.840.1.113883.3.6037.1001.23.93.87'
 
@@ -161,7 +161,7 @@ define MigraineCondition:
 
 define StrabismusCondition:
 	[Condition]S
-		where exists(S.code.coding C where C in "Stabismus Codes")
+		where exists(S.code.coding C where C in "Strabismus Codes")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
@@ -959,8 +959,12 @@ define CheckSevereSweating:
 			else false
 
 define DurationOfSweating:
-	"AnalFissureCondition" C
-		where "Normalize Interval"(C.onset) after (Today()-180 days)
+	[Condition]C
+    where exists(C.code.coding C where C in "Generalised Hyperhidrosis")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
+					and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 180 days
+
 
 define CheckDurationOfSweating:
 	if exists("DurationOfSweating")
@@ -986,18 +990,25 @@ define CheckAnticholinergicAdministration:
 		with "AnticholinergicProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
-define AnticholinergicMedications:
-  if Last("CheckAnticholinergicAdministration") is not null
+define AnticholinergicMedicationsHyperhydrosis:
+  if (Last("CheckAnticholinergicAdministration") is not null
+		and exists("HyperhidrosisCondition"))
 	then true
 	else false
 
-define PostAnticholinergicImprovement:
+define HyperhydrosisCheckPostAnticholinergicImprovement:
 	if exists("AnticholinergicDrugResources" M
 							with "AnticholinergicProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define PostAnticholinergicImprovement:
+	if ("HyperhydrosisCheckPostAnticholinergicImprovement" = true
+				and exists("HyperhidrosisCondition"))
+					then true
+						else false
 
 define HyperhydrosisPriorBotulinumToxin:
   if (Last("CheckBotoxAdministration") is not null
@@ -1239,16 +1250,16 @@ define StrabismusCorrectionProcedure:
 			and exists(P.code.coding C where C in "Strabismus Surgery Codes")
 
 define StrabismusSurgery:
-	exists([Procedure]P
-		where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "Strabismus Surgery Codes"))
+	if exists("StrabismusCorrectionProcedure")
+		then true
+			else false
 
-define StrabismusSurgeryImprovement:
+define StrabismusSurgeryOutcome:
   "StrabismusCorrectionProcedure" P
 		where (First(P.outcome.coding) in "Unsuccessful")
 
 define PostStrabismusSurgeryImprovement:
-  if exists("StrabismusSurgeryImprovement")
+  if exists("StrabismusSurgeryOutcome")
     then false
       else true
 

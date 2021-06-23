@@ -15,7 +15,7 @@
   ],
   "name": "BotulinumToxin",
   "version": "1.0.0",
-  "title": "Prior Auhtorisation for Botulinum Toxin",
+  "title": "Prior Authorisation for Botulinum Toxin",
   "status": "draft",
   "subjectType": [
     "Patient"
@@ -1443,9 +1443,37 @@
             {
               "operator": "=",
               "question": "AnalFissure-ConservativeTreatmentOptions",
-              "answerBoolean": true
+              "answerCoding": {
+                "code": "Fiber Supplements",
+                "display": "Fiber Supplements"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Stool Softeners",
+                "display": "Stool Softeners"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Sitz Bath",
+                "display": "Sitz Bath"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Topical Anaesthetic Application",
+                "display": "Topical Anaesthetic Application"
+              }
             }
           ],
+          "enableBehavior": "any",
           "required": true
         },
         {

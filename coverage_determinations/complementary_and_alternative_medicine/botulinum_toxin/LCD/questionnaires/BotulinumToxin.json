@@ -15,7 +15,7 @@
   ],
   "name": "BotulinumToxin",
   "version": "1.0.0",
-  "title": "Prior Authorisation for Botulinum Toxin",
+  "title": "Prior Authorization for Botulinum Toxin",
   "status": "draft",
   "subjectType": [
     "Patient"
@@ -68,7 +68,7 @@
             }
           ],
           "linkId": "BotulinumConditions",
-          "text": "Botox treatment is requested for which of the following patient's conditions?",
+          "text": "Botulinum Toxin is considered for the following patient's condition:",
           "type": "choice",
           "answerOption": [
             {
@@ -548,7 +548,7 @@
             }
           ],
           "linkId": "Sialorrhea-NeuromuscularDysfunction",
-          "text": "Does the patient have any Neuromuscular or Sensory Dysfunction that is causing the sialorrhea?",
+          "text": "Does the patient have any Neuromuscular or Sensory Dysfunction causing Sialorrhea?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -573,7 +573,7 @@
             }
           ],
           "linkId": "Sialorrhea-LocalFactors",
-          "text": "Does the patient have any dental conditions causing the Sialorrhea?",
+          "text": "Does the patient have any dental condition causing Sialorrhea?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -623,7 +623,7 @@
             }
           ],
           "linkId": "Achalasia-HypertensiveLOS",
-          "text": "Does the patient  have hypertensive lower esophageal sphincter?",
+          "text": "Does the patient have hypertensive lower esophageal sphincter?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -1187,7 +1187,7 @@
             }
           ],
           "linkId": "Sialorrhea-BotoxAdministration",
-          "text": "Has the patient been administered botulinum toxin before?",
+          "text": "Has the patient been administered Botulinum Toxin before?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -1212,7 +1212,7 @@
             }
           ],
           "linkId": "Sialorrhea-PriorBotoxStrain",
-          "text": "Which strain of botox was used?",
+          "text": "Which strain of Botulinum Toxin injection was used?",
           "type": "text",
           "enableWhen": [
             {
@@ -1234,7 +1234,7 @@
             }
           ],
           "linkId": "Sialorrhea-ImprovementPostBotox",
-          "text": "Has there been improvement in Sialorrhea severity after Botox Injection?",
+          "text": "Has there been improvement in Sialorrhea severity after Botulinum Toxin injection?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -2013,7 +2013,7 @@
     },
     {
       "linkId": "3",
-      "text": "Comorbidities",
+      "text": "Co-morbidities",
       "type": "group",
       "item": [
         {
@@ -2220,7 +2220,7 @@
             }
           ],
           "linkId": "BotoxAllergy",
-          "text": "Is the patient allergic to Botox?",
+          "text": "Is the patient allergic to Botulinum Toxin injection?",
           "type": "boolean",
           "required": true
         }

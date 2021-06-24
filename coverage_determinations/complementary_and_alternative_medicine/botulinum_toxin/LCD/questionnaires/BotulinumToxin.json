@@ -1487,7 +1487,7 @@
             }
           ],
           "linkId": "AnalFissure-PriorBotulinumToxin",
-          "text": "Has the patient been administered botulinum toxin before ?",
+          "text": "Has the patient been administered botulinum toxin before?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1517,7 +1517,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "AnalFissure-BotoxAdministration",
+              "question": "AnalFissure-PriorBotulinumToxin",
               "answerBoolean": true
             }
           ],
@@ -1924,7 +1924,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "StrabismusSurgeryImprovement"
+                "expression": "PostStrabismusSurgeryImprovement"
               }
             }
           ],

@@ -2103,8 +2103,8 @@
             },
             {
               "valueCoding": {
-                "code": "Down’s Syndrome",
-                "display": "Down’s Syndrome"
+                "code": "Down Syndrome",
+                "display": "Down Syndrome"
               }
             }
           ]
@@ -2196,8 +2196,8 @@
             },
             {
               "valueCoding": {
-                "code": "Down’s Syndrome",
-                "display": "Down’s Syndrome"
+                "code": "Down Syndrome",
+                "display": "Down Syndrome"
               }
             }
           ]

@@ -98,7 +98,7 @@ valueset "Heart Failure": '2.16.840.1.113762.1.4.1200.123'
 valueset "Dry Mouth": '2.16.840.1.113883.3.6037.1001.23.93.51'
 valueset "Hiatal Hernia": '2.16.840.1.113883.3.6037.1001.23.93.52'
 valueset "Constipation": '2.16.840.1.113883.3.6037.1001.23.93.53'
-valueset "Down’s Syndrome": '2.16.840.1.113883.3.6037.1001.23.93.54'
+valueset "Down Syndrome": '2.16.840.1.113883.3.6037.1001.23.93.54'
 
 //Valuesets for Botox Allergy
 valueset "Allergy to Clostridium Botulinum": '2.16.840.1.113883.3.6037.1001.23.93.55'
@@ -690,7 +690,7 @@ define ConstipationCondition:
 
 define DownSyndrome:
   [Condition]S
-		where exists(S.code.coding C where C in "Down’s Syndrome")
+		where exists(S.code.coding C where C in "Down Syndrome")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
@@ -718,7 +718,7 @@ define SialorrheaAnticholinergicContraindications:
 																					else if exists("ConstipationCondition")
 																						then 'Constipation'
 																							else if exists("DownSyndrome")
-																								then 'Down’s Syndrome'
+																								then 'Down Syndrome'
 																									else ''
 
 //ACHALASIA
@@ -1103,7 +1103,7 @@ define UrinaryIncontinenceAnticholinergicContraindications:
 																					else if exists("ConstipationCondition")
 																						then 'Constipation'
 																							else if exists("DownSyndrome")
-																								then 'Down’s Syndrome'
+																								then 'Down Syndrome'
 																									else ''
 
 //MIGRAINE

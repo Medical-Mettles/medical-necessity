@@ -181,7 +181,7 @@ define BotoxDiagnosisConditions:
 													else if exists("BlepharospasmCondition")
 														then 'Blepharospasm'
 															else if exists("MigraineCondition")
-																then 'Headache/Migraine'
+																then 'Migraine'
 																	else if exists("StrabismusCondition")
 																		then 'Strabismus'
 																			else ''
@@ -1207,12 +1207,6 @@ define MigrainePriorBotoxTreatment:
 				and "Normalize Interval"(P.performed) starts before "Normalize Interval"(R.performed))
 				//and "Normalize Interval"(R.performed) starts after (Today()-1 year))
 
-define MigraineCheckPriorBotoxTreatment:
-	if ("MigrainePriorBotoxTreatment" = true
-				and exists("MigraineCondition"))
-					then true
-						else false
-
 define MigrainePostBotoxImprovement:
 	exists([Procedure]P
 				where P.status.value = 'completed'
@@ -1224,6 +1218,13 @@ define MigrainePostBotoxImprovement:
 							(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
 						)
 				and First(P.outcome.coding) in "Successful")
+
+define MigraineCheckPriorBotoxTreatment:
+	if (("MigrainePriorBotoxTreatment" = true
+					or "MigrainePostBotoxImprovement" = true)
+						and exists("MigraineCondition"))
+					then true
+						else false
 
 define MigraineCheckPostBotoxImprovement:
 	if (exists("MigraineCondition")

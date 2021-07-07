@@ -197,7 +197,7 @@ define QA62:
 		return First(QR.answer).value
 
 
-define OrderDetails:
+define CompleteOrderDetails:
     if (("DateOfOrder" is not null)
         and ("DescriptionOfItem" is not null)
         and ("StartDate" is not null))
@@ -228,7 +228,7 @@ define EncounterFaceToFace:
         then true
         else false
 
-define ModifierDecision:
+define QualifyingLevel:
     if (((First("QA61").value = 'Left') or (First("QA61").value = 'Right') or (First("QA61").value = 'Both'))
         and ((First("QA62").value  = 'Level 0')
                 or (First("QA62").value = 'Level 1')
@@ -239,16 +239,16 @@ define ModifierDecision:
                    else false
 
 define PrimaryDecision:
-    if (("OrderDetails" = true)
+    if (("CompleteOrderDetails" = true)
         and ("ClinicalExamination" = true)
-        and ("ModifierDecision" = true))
+        and ("QualifyingLevel" = true))
         then true 
         else false
 
 define FinalDecision:
     if ("PrimaryDecision" = true)
-    then 'YES'
-    else 'NO'
+    then 'PENDING FOR FURTHER REVIEW'
+    else 'PENDING'
 
 
 

@@ -17,7 +17,7 @@ valueset "Ischemic Stroke": '2.16.840.1.113883.3.117.1.7.1.247'
 valueset "Multiple Sclerosis (ICD10CM)": '2.16.840.1.113762.1.4.1034.99'
 valueset "Brain Injury": '2.16.840.1.113883.3.7587.2.1015'
 valueset "Cerebral Palsy": '2.16.840.1.113883.3.7587.2.1012'
-valueset "RehabilitationServices": '2.16.840.1.113883.3.117.1.7.1.221'
+valueset "Physiotherapy Codes": '2.16.840.1.113883.3.6037.1001.23.93.89'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral": '2.16.840.1.113883.3.6037.1001.23.99.41'
 valueset "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral": '2.16.840.1.113883.3.6037.1001.23.99.47'
 valueset "Chemodenervation of Neck Muscle(s)": '2.16.840.1.113883.3.6037.1001.23.93.73'
@@ -67,7 +67,7 @@ valueset "Topical Anaesthetic Application": '2.16.840.1.113883.3.6037.1001.23.93
 //Valuesets for Hyperhydrosis
 valueset "Hyperhidrosis Codes": '2.16.840.1.113883.3.6037.1001.23.99.34'
 valueset "Generalised Hyperhidrosis": '2.16.840.1.113883.3.6037.1001.23.93.71'
-valueset "Anticholinergic Medications": '2.16.840.1.113883.3.6037.1001.23.93.83'
+valueset "Anticholinergic Medication Codes": '2.16.840.1.113883.3.6037.1001.23.93.83'
 
 //Valuesets for Urinary Incontinence
 valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
@@ -77,7 +77,7 @@ valueset "Migraine Codes": '2.16.840.1.113883.3.6037.1001.23.93.84'
 valueset "Triptan Medications": '2.16.840.1.113762.1.4.1111.83'
 
 //Valuesets for Strabismus
-valueset "Stabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
+valueset "Strabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
 valueset "Binocular Vision Codes": '2.16.840.1.113883.3.6037.1001.23.93.86'
 valueset "Strabismus Surgery Codes": '2.16.840.1.113883.3.6037.1001.23.93.87'
 
@@ -98,7 +98,7 @@ valueset "Heart Failure": '2.16.840.1.113762.1.4.1200.123'
 valueset "Dry Mouth": '2.16.840.1.113883.3.6037.1001.23.93.51'
 valueset "Hiatal Hernia": '2.16.840.1.113883.3.6037.1001.23.93.52'
 valueset "Constipation": '2.16.840.1.113883.3.6037.1001.23.93.53'
-valueset "Down’s Syndrome": '2.16.840.1.113883.3.6037.1001.23.93.54'
+valueset "Down Syndrome": '2.16.840.1.113883.3.6037.1001.23.93.54'
 
 //Valuesets for Botox Allergy
 valueset "Allergy to Clostridium Botulinum": '2.16.840.1.113883.3.6037.1001.23.93.55'
@@ -161,7 +161,7 @@ define MigraineCondition:
 
 define StrabismusCondition:
 	[Condition]S
-		where exists(S.code.coding C where C in "Stabismus Codes")
+		where exists(S.code.coding C where C in "Strabismus Codes")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
@@ -181,7 +181,7 @@ define BotoxDiagnosisConditions:
 													else if exists("BlepharospasmCondition")
 														then 'Blepharospasm'
 															else if exists("MigraineCondition")
-																then 'Headache/Migraine'
+																then 'Migraine'
 																	else if exists("StrabismusCondition")
 																		then 'Strabismus'
 																			else ''
@@ -341,7 +341,7 @@ define Etiology:
 define AdjunctivePhysiotherapyProcedure:
 	[Procedure]P
 		where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "RehabilitationServices")
+			and exists(P.code.coding C where C in "Physiotherapy Codes")
 
 define AdjunctivePhysiotherapy:
 	if exists("AdjunctivePhysiotherapyProcedure")
@@ -471,9 +471,10 @@ define ParkinsonDisease:
 			          and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define NeuromuscularSensoryDysfunction:
-  if exists("CerebralPalsy") 		// The function for this condition has been defined above with Spasticity
+  if ((exists("CerebralPalsy") 		// The function for this condition has been defined above with Spasticity
 			or exists("ParkinsonDisease")
-				or exists("IschemicStroke") // The function for this condition has been defined above with Spasticity
+				or exists("IschemicStroke"))      // The function for this condition has been defined above with Spasticity
+					and exists("SialorrheaCondition"))
     			then true
       			else false
 
@@ -689,7 +690,7 @@ define ConstipationCondition:
 
 define DownSyndrome:
   [Condition]S
-		where exists(S.code.coding C where C in "Down’s Syndrome")
+		where exists(S.code.coding C where C in "Down Syndrome")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
 
@@ -717,7 +718,7 @@ define SialorrheaAnticholinergicContraindications:
 																					else if exists("ConstipationCondition")
 																						then 'Constipation'
 																							else if exists("DownSyndrome")
-																								then 'Down’s Syndrome'
+																								then 'Down Syndrome'
 																									else ''
 
 //ACHALASIA
@@ -825,7 +826,8 @@ define DurationOfAnalFissure:
 		where exists(S.code.coding C where C in "AnalFissure Codes")
 		  and First(S.clinicalStatus.coding).code.value = 'active'
 			  and First(S.verificationStatus.coding).code.value = 'confirmed'
-						and "Normalize Onset"(S.onset) starts after (Today()-90 days)
+					and duration in days of Interval[start of "Normalize Interval"(S.onset),start of "Normalize Interval"(S.abatement)] > 60 days
+						//and "Normalize Interval"(S.onset) after (Today()-120 days)
 
 define CheckDurationOfAnalFissure:
 	if exists("DurationOfAnalFissure")
@@ -957,8 +959,12 @@ define CheckSevereSweating:
 			else false
 
 define DurationOfSweating:
-	"AnalFissureCondition" C
-		where "Normalize Interval"(C.onset) after (Today()-180 days)
+	[Condition]C
+    where exists(C.code.coding C where C in "Generalised Hyperhidrosis")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
+					and duration in days of Interval[start of "Normalize Interval"(C.onset),start of "Normalize Interval"(C.abatement)] > 180 days
+
 
 define CheckDurationOfSweating:
 	if exists("DurationOfSweating")
@@ -969,10 +975,10 @@ define AnticholinergicDrugResources:
 		[MedicationAdministration]M
 			where M.subject.reference.value = 'Patient/'+ Patient.id.value
 				and M.status.value = 'completed'
-					and First((M.medication as CodeableConcept).coding) in "Anticholinergic Medications"
+					and First((M.medication as CodeableConcept).coding) in "Anticholinergic Medication Codes"
 
 define AnticholinergicMedicationResources:
-	[Medication]med where (First(med.code.coding) in "Anticholinergic Medications") is not null
+	[Medication]med where (First(med.code.coding) in "Anticholinergic Medication Codes") is not null
 
 define AnticholinergicProcedureResources:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -984,18 +990,25 @@ define CheckAnticholinergicAdministration:
 		with "AnticholinergicProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
-define AnticholinergicMedications:
-  if Last("CheckAnticholinergicAdministration") is not null
+define AnticholinergicMedicationsHyperhydrosis:
+  if (Last("CheckAnticholinergicAdministration") is not null
+		and exists("HyperhidrosisCondition"))
 	then true
 	else false
 
-define PostAnticholinergicImprovement:
+define HyperhydrosisCheckPostAnticholinergicImprovement:
 	if exists("AnticholinergicDrugResources" M
 							with "AnticholinergicProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
 					then false
 						else true
+
+define PostAnticholinergicImprovement:
+	if ("HyperhydrosisCheckPostAnticholinergicImprovement" = true
+				and exists("HyperhidrosisCondition"))
+					then true
+						else false
 
 define HyperhydrosisPriorBotulinumToxin:
   if (Last("CheckBotoxAdministration") is not null
@@ -1090,7 +1103,7 @@ define UrinaryIncontinenceAnticholinergicContraindications:
 																					else if exists("ConstipationCondition")
 																						then 'Constipation'
 																							else if exists("DownSyndrome")
-																								then 'Down’s Syndrome'
+																								then 'Down Syndrome'
 																									else ''
 
 //MIGRAINE
@@ -1194,12 +1207,6 @@ define MigrainePriorBotoxTreatment:
 				and "Normalize Interval"(P.performed) starts before "Normalize Interval"(R.performed))
 				//and "Normalize Interval"(R.performed) starts after (Today()-1 year))
 
-define MigraineCheckPriorBotoxTreatment:
-	if ("MigrainePriorBotoxTreatment" = true
-				and exists("MigraineCondition"))
-					then true
-						else false
-
 define MigrainePostBotoxImprovement:
 	exists([Procedure]P
 				where P.status.value = 'completed'
@@ -1212,6 +1219,13 @@ define MigrainePostBotoxImprovement:
 						)
 				and First(P.outcome.coding) in "Successful")
 
+define MigraineCheckPriorBotoxTreatment:
+	if (("MigrainePriorBotoxTreatment" = true
+					or "MigrainePostBotoxImprovement" = true)
+						and exists("MigraineCondition"))
+					then true
+						else false
+
 define MigraineCheckPostBotoxImprovement:
 	if (exists("MigraineCondition")
 				and ("MigrainePostBotoxImprovement" = true))
@@ -1219,9 +1233,10 @@ define MigraineCheckPostBotoxImprovement:
 						else false
 
 define MigraineTreatmentFailures:
-			if ("MigrainePriorBotoxTreatment" = true)
-				then true
-					else false
+			if (("MigrainePriorBotoxTreatment" = true)
+						and exists("MigraineCondition"))
+							then true
+								else false
 
 //STRABISMUS
 define BinocularVision:
@@ -1236,16 +1251,16 @@ define StrabismusCorrectionProcedure:
 			and exists(P.code.coding C where C in "Strabismus Surgery Codes")
 
 define StrabismusSurgery:
-	exists([Procedure]P
-		where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "Strabismus Surgery Codes"))
+	if exists("StrabismusCorrectionProcedure")
+		then true
+			else false
 
-define StrabismusSurgeryImprovement:
+define StrabismusSurgeryOutcome:
   "StrabismusCorrectionProcedure" P
 		where (First(P.outcome.coding) in "Unsuccessful")
 
 define PostStrabismusSurgeryImprovement:
-  if exists("StrabismusSurgeryImprovement")
+  if exists("StrabismusSurgeryOutcome")
     then false
       else true
 
@@ -1284,7 +1299,7 @@ define BotoxAllergy:
 	then true
 	else false
 
-define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+/*define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then
  		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
 	  else if choice is FHIR.Period then
@@ -1297,19 +1312,16 @@ define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR
 		else if choice is FHIR.Range then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-	  else null
+	  else null*/
 
-define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-  if onset is FHIR.dateTime then
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.date then
+	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
+        else if onset is FHIR.dateTime then
 	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
 	else if onset is FHIR.Period then
 	  FHIRHelpers.ToInterval(onset as FHIR.Period)
-	else if onset is FHIR.string then
-    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
 	else if onset is FHIR.Age then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
-	else if onset is FHIR.Range then
-	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).low),
-		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).high) + 1 year)
 	else null

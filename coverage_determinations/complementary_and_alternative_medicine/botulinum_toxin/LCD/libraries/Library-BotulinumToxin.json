@@ -68,7 +68,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.117.1.7.1.221"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.89"
         }
       ]
     },
@@ -361,7 +361,25 @@
         ]
     },
     {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.68"
+        }
+        ]
+    },
+    {
       "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1032.44"
+        }
+        ]
+    },
+    {
+      "type": "MedicationAdministration",
       "codeFilter": [
         {
           "path": "code",
@@ -401,18 +419,18 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113762.1.4.1034.127"
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.60"
         }
         ]
     },
     {
-      "type": "Medication",
+      "type": "MedicationAdministration",
       "codeFilter": [
         {
           "path": "code",
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.60"
         }
-        ]
+      ]
     },
     {
       "type": "Procedure",
@@ -568,7 +586,7 @@
         ]
     },
     {
-      "type": "Condition",
+      "type": "Medication",
       "codeFilter": [
         {
           "path": "code",
@@ -577,7 +595,7 @@
       ]
     },
     {
-      "type": "",
+      "type": "MedicationAdministration",
       "codeFilter": [
         {
           "path": "code",
@@ -622,7 +640,25 @@
       ]
     },
     {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1111.83"
+        }
+      ]
+    },
+    {
       "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.82"
+        }
+      ]
+    },
+    {
+      "type": "MedicationAdministration",
       "codeFilter": [
         {
           "path": "code",

@@ -15,7 +15,7 @@
   ],
   "name": "BotulinumToxin",
   "version": "1.0.0",
-  "title": "Prior Auhtorisation for Botulinum Toxin",
+  "title": "Prior Authorization for Botulinum Toxin",
   "status": "draft",
   "subjectType": [
     "Patient"
@@ -68,7 +68,7 @@
             }
           ],
           "linkId": "BotulinumConditions",
-          "text": "Botox treatment is requested for which of the following patient's conditions?",
+          "text": "Botulinum Toxin is considered for the following patient's condition:",
           "type": "choice",
           "answerOption": [
             {
@@ -548,7 +548,7 @@
             }
           ],
           "linkId": "Sialorrhea-NeuromuscularDysfunction",
-          "text": "Does the patient have any Neuromuscular or Sensory Dysfunction that is causing the sialorrhea?",
+          "text": "Does the patient have any Neuromuscular or Sensory Dysfunction causing Sialorrhea?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -573,7 +573,7 @@
             }
           ],
           "linkId": "Sialorrhea-LocalFactors",
-          "text": "Does the patient have any dental conditions causing the Sialorrhea?",
+          "text": "Does the patient have any dental condition causing Sialorrhea?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -623,7 +623,7 @@
             }
           ],
           "linkId": "Achalasia-HypertensiveLOS",
-          "text": "Does the patient  have hypertensive lower esophageal sphincter?",
+          "text": "Does the patient have hypertensive lower esophageal sphincter?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -955,7 +955,7 @@
             }
           ],
           "linkId": "Spasticity-ImprovementPostBotox",
-          "text": "Has there been improvement in after Botox Injection?",
+          "text": "Has there been improvement in the spasticity condition after Botox Treatment?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1187,7 +1187,7 @@
             }
           ],
           "linkId": "Sialorrhea-BotoxAdministration",
-          "text": "Has the patient been administered botulinum toxin before ?",
+          "text": "Has the patient been administered Botulinum Toxin before?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -1212,7 +1212,7 @@
             }
           ],
           "linkId": "Sialorrhea-PriorBotoxStrain",
-          "text": "Which strain of botox was used?",
+          "text": "Which strain of Botulinum Toxin injection was used?",
           "type": "text",
           "enableWhen": [
             {
@@ -1234,7 +1234,7 @@
             }
           ],
           "linkId": "Sialorrhea-ImprovementPostBotox",
-          "text": "Has there been improvement in Sialorrhea severity after Botox Injection?",
+          "text": "Has there been improvement in Sialorrhea severity after Botulinum Toxin injection?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1437,15 +1437,43 @@
             }
           ],
           "linkId": "AnalFissure-PostCoversativeTreatmentImprovement",
-          "text": "Has the patient not responded to conservative treatment??",
+          "text": "Has the patient not responded to conservative treatment?",
           "type": "boolean",
           "enableWhen": [
             {
               "operator": "=",
               "question": "AnalFissure-ConservativeTreatmentOptions",
-              "answerBoolean": true
+              "answerCoding": {
+                "code": "Fiber Supplements",
+                "display": "Fiber Supplements"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Stool Softeners",
+                "display": "Stool Softeners"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Sitz Bath",
+                "display": "Sitz Bath"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "AnalFissure-ConservativeTreatmentOptions",
+              "answerCoding": {
+                "code": "Topical Anaesthetic Application",
+                "display": "Topical Anaesthetic Application"
+              }
             }
           ],
+          "enableBehavior": "any",
           "required": true
         },
         {
@@ -1458,8 +1486,8 @@
               }
             }
           ],
-          "linkId": "AnalFissure-BotoxAdministration",
-          "text": "Has the patient been administered botulinum toxin before ?",
+          "linkId": "AnalFissure-PriorBotulinumToxin",
+          "text": "Has the patient been administered botulinum toxin before?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1489,7 +1517,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "AnalFissure-BotoxAdministration",
+              "question": "AnalFissure-PriorBotulinumToxin",
               "answerBoolean": true
             }
           ],
@@ -1523,7 +1551,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "AnticholinergicMedications"
+                "expression": "AnticholinergicMedicationsHyperhydrosis"
               }
             }
           ],
@@ -1807,7 +1835,7 @@
             }
           ],
           "linkId": "Migraine-PriorBotoxTreatment",
-          "text": "Has the patient had previous botox therapy?",
+          "text": "Has the patient had botox therapy previously?",
           "type": "boolean",
           "enableWhen": [
             {
@@ -1860,7 +1888,7 @@
             {
               "operator": "=",
               "question": "Migraine-PriorBotoxTreatment",
-              "answerBoolean": false
+              "answerBoolean": true
             }
           ],
           "required": true
@@ -1896,7 +1924,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "StrabismusSurgeryImprovement"
+                "expression": "PostStrabismusSurgeryImprovement"
               }
             }
           ],
@@ -1949,7 +1977,7 @@
           ],
           "linkId": "Strabisumus-BotoxStrain",
           "text": "Which Botox Strain was used?",
-          "type": "boolean",
+          "type": "text",
           "required": true,
           "enableWhen": [
             {
@@ -1970,7 +1998,7 @@
             }
           ],
           "linkId": "Strabisumus-PostBotoxImprovement",
-          "text": "Which Botox Strain was used?",
+          "text": "Was there an improvement in patient's condition after botox treatment?",
           "type": "boolean",
           "required": true,
           "enableWhen": [
@@ -1985,7 +2013,7 @@
     },
     {
       "linkId": "3",
-      "text": "Comorbidities",
+      "text": "Co-morbidities",
       "type": "group",
       "item": [
         {
@@ -2075,8 +2103,8 @@
             },
             {
               "valueCoding": {
-                "code": "Down’s Syndrome",
-                "display": "Down’s Syndrome"
+                "code": "Down Syndrome",
+                "display": "Down Syndrome"
               }
             }
           ]
@@ -2168,8 +2196,8 @@
             },
             {
               "valueCoding": {
-                "code": "Down’s Syndrome",
-                "display": "Down’s Syndrome"
+                "code": "Down Syndrome",
+                "display": "Down Syndrome"
               }
             }
           ]
@@ -2192,7 +2220,7 @@
             }
           ],
           "linkId": "BotoxAllergy",
-          "text": "Is the patient allergic to Botox?",
+          "text": "Is the patient allergic to Botulinum Toxin injection?",
           "type": "boolean",
           "required": true
         }

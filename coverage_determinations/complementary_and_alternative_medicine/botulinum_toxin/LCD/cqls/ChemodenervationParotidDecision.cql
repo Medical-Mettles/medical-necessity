@@ -37,28 +37,142 @@ define SialorrheaConditionDecision:
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
 
+define BiofeedbackTherapy:
+      Botox."BiofeedbackTherapy"
+
 define ImprovementPostBiofeedbackTherapy:
+      Botox."PostBiofeedbackImprovement"
+
+define ImprovementAfterBiofeedbackTherapy:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = 'Sialorrhea-ImprovementPostBiofeedback')QR
 		      return First(QR.answer).value
 
-define ImprovementPostBotoxTreatment:
-      ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = 'Sialorrhea-ImprovementPostBotox')QR
+define PreviousBiofeedbackTherapy:
+  if "BiofeedbackTherapy" = false
+        then false
+          else true
+
+define PostBiofeedbackTherapyImprovement:
+    if ("PreviousBiofeedbackTherapy" = true
+          and ("ImprovementPostBiofeedbackTherapy" = false or First("ImprovementAfterBiofeedbackTherapy") = false))
+                  then false
+                    else true
+
+define BiofeedbackTherapyDecision:
+  if ("PreviousBiofeedbackTherapy" = false
+        or "PostBiofeedbackTherapyImprovement" = true)
+          then false
+            else true
+
+define GlycopyrrolateMedicationAdministration:
+    Botox."GlycopyrrolateMedication"
+
+define GlycopyrrolateMedication:
+  ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = 'Sialorrhea-GlycopyrrolateMedication')QR
 		      return First(QR.answer).value
+
+define ImprovementAfterGlycopyrrolate:
+    Botox."PostGlycopyrrolateImprovement"
 
 define ImprovementPostGlycopyrrolate:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = 'Sialorrhea-ImprovementPostGlycopyrrolate')QR
 		      return First(QR.answer).value
 
+define PreviousGlycopyrrolateMedicaition:
+  if ("GlycopyrrolateMedicationAdministration" = true
+        or First("GlycopyrrolateMedication") = true)
+          then true
+            else false
+
+define PostGlycopyrrolateMedicaitionImprovement:
+  if ("PreviousGlycopyrrolateMedicaition" = true
+     and (("ImprovementAfterGlycopyrrolate" = false) or First("ImprovementPostGlycopyrrolate") = false))
+       then false
+          else true
+
+define GlycopyrrolateMedicaitionDecision:
+  if ("PreviousGlycopyrrolateMedicaition" = false
+        or "PostGlycopyrrolateMedicaitionImprovement" = true)
+          then false
+            else true
+
+define ScopolamineMedicationAdministration:
+   Botox."ScopolamineMedication"
+
+define ScopolamineMedication:
+  ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = 'Sialorrhea-ScopolamineMedication')QR
+		      return First(QR.answer).value
+
+define ImprovementAfterScopolamine:
+  Botox."PostScopolamineImprovement"
+
 define ImprovementPostScopolamine:
       ("QuestionnaireResponseItems".item I
 		   where I.linkId.value = 'Sialorrhea-ImprovementPostScopolamine')QR
 		      return First(QR.answer).value
 
+define PreviousScopolamineMedicaition:
+  if ("ScopolamineMedicationAdministration" = true
+        or First("ScopolamineMedication") = true)
+          then true
+            else false
+
+define PostScopolamineMedicaitionImprovement:
+  if ("PreviousScopolamineMedicaition" = true
+     and (("ImprovementAfterScopolamine" = false) or First("ImprovementPostScopolamine") = false))
+       then false
+          else true
+
+define ScopolamineMedicaitionDecision:
+  if ("PreviousScopolamineMedicaition" = false
+        or "PostScopolamineMedicaitionImprovement" = true)
+          then false
+            else true
+
+define BotulinumInjectionProcedure:
+  Botox."SialorrheaEarlierBotulinumAdministration"
+
+define BotoxInjectionProcedure:
+  ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = 'Sialorrhea-BotoxAdministration')QR
+		      return First(QR.answer).value
+
+define ImprovementAfterBotoxTreatment:
+  Botox."SialorrheaPostBotoxImprovement"
+
+define ImprovementPostBotoxTreatment:
+      ("QuestionnaireResponseItems".item I
+		   where I.linkId.value = 'Sialorrhea-ImprovementPostBotox')QR
+		      return First(QR.answer).value
+
+define PreviousBotoxProcedure:
+  if ("BotulinumInjectionProcedure" = true
+        or First("BotoxInjectionProcedure") = true)
+          then true
+            else false
+
+define PostBotoxImprovement:
+  if ("PreviousBotoxProcedure" = true
+     and (("ImprovementAfterBotoxTreatment" = false) and First("ImprovementPostBotoxTreatment") = false))
+       then false
+          else true
+
+define PreviousBotoxTreatmentDecision:
+  if "PostBotoxImprovement" = false
+    then false
+      else true
+
 define AnticholinergicContraindications:
       Botox."SialorrheaAnticholinergicContraindications"
+
+define Contraindications:
+  if ("AnticholinergicContraindications") is not null
+    then true
+      else false
 
 define PrimaryDecision:
       if (("SialorrheaConditionDecision" = true)
@@ -66,17 +180,12 @@ define PrimaryDecision:
         then true
           else false
 
-define Contraindications:
-  if ("AnticholinergicContraindications") is not null
-    then true
-      else false
-
 define DecisionPending:
-    if ((First("ImprovementPostBiofeedbackTherapy") = true)
-        or (First("ImprovementPostBotoxTreatment") = false)
-            or (First("ImprovementPostGlycopyrrolate") = true)
-              or (First("ImprovementPostScopolamine") = true)
-                or ("Contraindications" = false))
+    if ("BiofeedbackTherapyDecision" = false
+          or "GlycopyrrolateMedicaitionDecision"= false
+            or "ScopolamineMedicaitionDecision" = false
+              or "PreviousBotoxTreatmentDecision" = false
+                or "Contraindications" = false)
                   then true
                     else false
 

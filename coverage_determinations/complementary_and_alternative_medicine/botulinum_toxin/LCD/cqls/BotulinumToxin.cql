@@ -270,7 +270,7 @@ if (exists("Request".code.coding C where C in "Chemodenervation of Larynx Muscle
 	then true
 	else false
 
-define SpasticityLarygoscopy:
+define SpasticityLaryngoscopy:
 if (exists("Request".code.coding C where C in "Laryngoscopy Codes"))
 	then true
 	else false
@@ -307,7 +307,7 @@ define SpasticityMuscleGroups:
 						else if ("SpasticityNeck" = true)
 							then 'Neck'
 								else if (("SpasticityLarynx" = true)
-									or ("SpasticityLarygoscopy" = true))
+									or ("SpasticityLaryngoscopy" = true))
 										then 'Muscles of larynx'
 											else if (("SpasticityTrunkOneToFiveMuscles" = true)
 												or ("SpasticityTrunkSixOrMoreMuscles" = true))
@@ -594,17 +594,17 @@ define SialorrheaPostBotoxInjectionOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "BotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and First(P.outcome.coding) in "Unsuccessful")
-											then false
-												else true
+ 										and ((First(P.outcome.coding) in "Successful") or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
 
 define SialorrheaPostLaryngealBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "LaryngealBotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and First(P.outcome.coding) in "Unsuccessful")
-					then false
-						else true
+ 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
 
 define SialorrheaPostBotoxImprovement:
 	if (("SialorrheaPostBotoxInjectionOutcome" = true
@@ -641,9 +641,9 @@ define "PostGlycopyrrolateImprovement":
 	if exists("GlycopyrrolateDrugResources" M
 							with "SialorrheaInjectionProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and Last(P.outcome.coding) in "Unsuccessful")
-					then false
-						else true
+ 										and ((Last(P.outcome.coding) in "Successful") or Last(P.outcome.coding) in "Partially successful"))
+					then true
+						else false
 
 define "ScopolamineDrugResources":
 	[MedicationAdministration]M
@@ -675,9 +675,9 @@ define "PostScopolamineImprovement":
 	if exists("ScopolamineDrugResources" M
 							with "SialorrheaInjectionProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and Last(P.outcome.coding) in "Unsuccessful")
-					then false
-						else true
+ 										and ((Last(P.outcome.coding) in "Successful") or Last(P.outcome.coding) in "Partially successful"))
+					then true
+						else false
 
 define MyastheniaGravis:
 	[Condition]S

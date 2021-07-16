@@ -559,15 +559,21 @@ define BiofeedbackTherapy:
     then true
       else false
 
-define BiofeedbackOutcome:
+define BiofeedbackSuccessfulOutcome:
   "BiofeedbackTherapyProcedure" P
 		where (First(P.outcome.coding) in "Successful"
             or First(P.outcome.coding) in "Partially successful")
 
+define BiofeedbackUnsuccessfulOutcome:
+  "BiofeedbackTherapyProcedure" P
+		where First(P.outcome.coding) in "Unsuccessful"
+
 define PostBiofeedbackImprovement:
-  if exists("BiofeedbackOutcome")
+  if exists("BiofeedbackSuccessfulOutcome")
     then true
-      else false
+      else if exists("BiofeedbackUnsuccessfulOutcome")
+				then false
+					else null
 
 define CheckBotoxInjectionAdministration:
 	"MedicationAdministrationResources" M
@@ -584,13 +590,13 @@ define SialorrheaEarlierBotulinumAdministration:
 				or Last("CheckLaryngealBotoxAdministration") is not null)
 					and exists("SialorrheaCondition"))
 						then true
-							else false
+							else null
 
 define SialorrheaSpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define SialorrheaPostBotoxInjectionOutcome:
+define SialorrheaPostBotoxInjectionSuccessfulOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "BotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
@@ -598,7 +604,15 @@ define SialorrheaPostBotoxInjectionOutcome:
 											then true
 												else false
 
-define SialorrheaPostLaryngealBotoxOutcome:
+define SialorrheaPostBotoxInjectionUnsuccessfulOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "BotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+											then true
+												else false
+
+define SialorrheaPostLaryngealSuccessfulBotoxOutcome:
 	if exists("MedicationAdministrationResources" M
 							with "LaryngealBotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
@@ -606,12 +620,22 @@ define SialorrheaPostLaryngealBotoxOutcome:
 											then true
 												else false
 
+define SialorrheaPostLaryngealUnsuccessfulBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "LaryngealBotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+											then true
+												else false
+
 define SialorrheaPostBotoxImprovement:
-	if (("SialorrheaPostBotoxInjectionOutcome" = true
-				or "SialorrheaPostLaryngealBotoxOutcome" = true)
-					and exists("SialorrheaCondition"))
+	if ((("SialorrheaPostBotoxInjectionSuccessfulOutcome" = true) or "SialorrheaPostLaryngealSuccessfulBotoxOutcome" = true)
+				and exists("SialorrheaCondition"))
 					then true
-						else false
+						else if ((("SialorrheaPostBotoxInjectionUnsuccessfulOutcome" = true) or "SialorrheaPostLaryngealUnsuccessfulBotoxOutcome" = true)
+							and exists("SialorrheaCondition"))
+								then false
+									else null
 
 define "GlycopyrrolateDrugResources":
 	[MedicationAdministration]M
@@ -635,15 +659,30 @@ define "CheckGlycopyrrolateAdministration":
 define "GlycopyrrolateMedication":
   if Last("CheckGlycopyrrolateAdministration") is not null
 	then true
-	else false
+	else null
 
-define "PostGlycopyrrolateImprovement":
+define PostGlycopyrrolateSuccessfulOutcome:
 	if exists("GlycopyrrolateDrugResources" M
 							with "SialorrheaInjectionProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and ((Last(P.outcome.coding) in "Successful") or Last(P.outcome.coding) in "Partially successful"))
 					then true
 						else false
+
+define PostGlycopyrrolateUnsuccessfulOutcome:
+	if exists("GlycopyrrolateDrugResources" M
+							with "SialorrheaInjectionProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and Last(P.outcome.coding) in "Unsuccessful")
+					then true
+						else false
+
+define "PostGlycopyrrolateImprovement":
+	if "PostGlycopyrrolateSuccessfulOutcome" = true
+		then true
+			else if "PostGlycopyrrolateUnsuccessfulOutcome" = true
+				then false
+					else null
 
 define "ScopolamineDrugResources":
 	[MedicationAdministration]M
@@ -665,19 +704,33 @@ define "CheckScopolamineAdministration":
 	with "SialorrheaInjectionProcedureResources" P
 	such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
-
 define "ScopolamineMedication":
   if Last("CheckScopolamineAdministration") is not null
 	then true
-	else false
+	else null
 
-define "PostScopolamineImprovement":
+define PostScopolamineSuccessfulOutcome:
 	if exists("ScopolamineDrugResources" M
 							with "SialorrheaInjectionProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and ((Last(P.outcome.coding) in "Successful") or Last(P.outcome.coding) in "Partially successful"))
 					then true
 						else false
+
+define PostScopolamineUnsuccessfulOutcome:
+	if exists("ScopolamineDrugResources" M
+							with "SialorrheaInjectionProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and Last(P.outcome.coding) in "Unsuccessful")
+					then true
+						else false
+
+define "PostScopolamineImprovement":
+	if "PostScopolamineSuccessfulOutcome" = true
+		then true
+			else if "PostScopolamineUnsuccessfulOutcome" = true
+				then false
+					else null
 
 define MyastheniaGravis:
 	[Condition]S

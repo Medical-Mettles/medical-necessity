@@ -661,6 +661,13 @@ define "GlycopyrrolateMedication":
 	then true
 	else null
 
+define SpecifyGlycopyrrolateMedicationCode:
+		"GlycopyrrolateDrugResources".medication M
+
+define SpecifyGlycopyrrolateMedication:
+	"SpecifyGlycopyrrolateMedicationCode".coding M
+		return (M.display.value)
+
 define PostGlycopyrrolateSuccessfulOutcome:
 	if exists("GlycopyrrolateDrugResources" M
 							with "SialorrheaInjectionProcedureResources" P
@@ -708,6 +715,13 @@ define "ScopolamineMedication":
   if Last("CheckScopolamineAdministration") is not null
 	then true
 	else null
+
+define SpecifyScopolamineMedicationCode:
+		"ScopolamineDrugResources".medication M
+
+define SpecifyScopolamineMedication:
+	"SpecifyScopolamineMedicationCode".coding M
+		return (M.display.value)
 
 define PostScopolamineSuccessfulOutcome:
 	if exists("ScopolamineDrugResources" M

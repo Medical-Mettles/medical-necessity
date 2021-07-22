@@ -1108,28 +1108,27 @@
           ]
         },
         {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "SpecifyGlycopyrrolateMedication"
-                }
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyGlycopyrrolateMedication"
               }
-            ],
-            "linkId": "Sialorrhea-GlycopyrrolateMedicationDetails",
-            "text": "Details of the administered medication:",
-            "type": "open-choice",
-            "answerValueSet": "2.16.840.1.113883.3.3616.200.110.102.2067",
-            "enableWhen": [
-              {
-                "question": "Sialorrhea-GlycopyrrolateMedication",
-                "operator": "=",
-                "answerBoolean": true
-              }
-            ],
-            "required": true
-          },
+            }
+          ],
+          "linkId": "Sialorrhea-GlycopyrrolateMedicationDetails",
+          "text": "Details of the administered medication:",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "Sialorrhea-GlycopyrrolateMedication",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
         {
           "extension": [
             {
@@ -1178,28 +1177,27 @@
           ]
         },
         {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                "valueExpression": {
-                  "language": "text/cql",
-                  "expression": "SpecifyScopolamineMedication"
-                }
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyScopolamineMedication"
               }
-            ],
-            "linkId": "Sialorrhea-ScopolamineMedicationDetails",
-            "text": "Details of the administered medication:",
-            "type": "open-choice",
-            "answerValueSet": "2.16.840.1.113883.3.6037.1001.23.93.82",
-            "enableWhen": [
-              {
-                "question": "Sialorrhea-ScopolamineMedication",
-                "operator": "=",
-                "answerBoolean": true
-              }
-            ],
-            "required": true
-          },
+            }
+          ],
+          "linkId": "Sialorrhea-ScopolamineMedicationDetails",
+          "text": "Details of the administered medication:",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "Sialorrhea-ScopolamineMedication",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
         {
           "extension": [
             {
@@ -1259,8 +1257,7 @@
           ],
           "linkId": "Sialorrhea-PriorBotoxStrain",
           "text": "Which strain of Botulinum Toxin injection was used?",
-          "type": "open-choice",
-          "answerValueSet": "2.16.840.1.113883.3.6037.1001.23.93.60",
+          "type": "text",
           "enableWhen": [
             {
               "operator": "=",

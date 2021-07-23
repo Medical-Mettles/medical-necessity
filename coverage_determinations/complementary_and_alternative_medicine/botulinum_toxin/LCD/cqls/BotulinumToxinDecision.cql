@@ -1,4 +1,4 @@
-library BotulinumLaryngoscopyDecision version '1.0.0'
+library BotulinumToxinDecision version '1.0.0'
 
 using FHIR version '4.0.0'
 
@@ -11,32 +11,23 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
-valueset "Laryngoscopy Codes": '2.16.840.1.113883.3.6037.1001.23.93.80'
-valueset "Larynx Condition Codes": '2.16.840.1.113883.3.6037.1001.23.93.81'
+valueset "Botulinum Toxin HCPCS Codes": '2.16.840.1.113883.3.6037.1001.23.99.78'
 
 parameter "QuestionnaireResponse" QuestionnaireResponse
-parameter "ServiceRequest" ServiceRequest
-
+parameter "MedicationRequest" MedicationRequest
 
 context Patient
 
-define LaryngoscopyServiceRequest:
-  Botox."SpasticityLaryngoscopy"
+define OnabotulinumtoxinaDrugReq:
+	First(("MedicationRequest".medication as CodeableConcept).coding) in "Botulinum Toxin HCPCS Codes"
 
 define SialorrheaCondition:
       Botox."SialorrheaCondition"
 
-define LarynxCondition:
-	[Condition]S
-		where exists(S.code.coding C where C in "Larynx Condition Codes")
-		  and First(S.clinicalStatus.coding).code.value = 'active'
-			  and First(S.verificationStatus.coding).code.value = 'confirmed'
-
-define LaryngoscopyQualifiedConditionsDecision:
-  if (exists("LarynxCondition")
-        or exists("SialorrheaCondition"))
-          then true
-            else false
+define SialorrheaConditionDecision:
+      if exists("SialorrheaCondition")
+        then true
+          else false
 
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
@@ -178,31 +169,23 @@ define Contraindications:
     then true
       else false
 
-define SpasticityBotoxTreatment:
-      ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = 'Spasticity-ImprovementPostBotox')QR
-		      return First(QR.answer).value
-
 define PrimaryDecision:
-      if (("LaryngoscopyQualifiedConditionsDecision" = true)
-            and ("LaryngoscopyServiceRequest" = true))
+      if (("SialorrheaConditionDecision" = true)
+            and ("OnabotulinumtoxinaDrugReq" = true))
         then true
           else false
 
 define DecisionPending:
-   if ("BiofeedbackTherapyDecision" = false
-      or "GlycopyrrolateMedicaitionDecision"= false
-        or "ScopolamineMedicaitionDecision" = false
-          or (("PreviousBotoxTreatmentDecision" = false) and First("SpasticityBotoxTreatment") = false)
-            or "Contraindications" = false)
-              then true
-                else false
+    if ("BiofeedbackTherapyDecision" = false
+          or "GlycopyrrolateMedicaitionDecision"= false
+            or "ScopolamineMedicaitionDecision" = false
+              or "PreviousBotoxTreatmentDecision" = false
+                or "Contraindications" = false)
+                  then true
+                    else false
 
 define FinalDecision:
       if  (("PrimaryDecision" = true)
             and ("DecisionPending" = false))
               then 'YES'
                 else 'HUMAN REVIEW NEEDED'
-
-
-

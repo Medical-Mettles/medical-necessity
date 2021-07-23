@@ -692,6 +692,33 @@
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.87"
         }
       ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.91"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.95"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.97"
+        }
+      ]
     }
   ]
 }

@@ -73,74 +73,126 @@ parameter "MedicationRequest" MedicationRequest
 context Patient
 
 define "CancerCondition":
-   mCODE."PrimaryCancerCondition"
+   	mCODE."PrimaryCancerCondition"
 
 define "BreastCancerCondition":
 	"CancerCondition" C
 		where First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Breast Cancer")
+    	and exists(C.code.coding x where x in "Breast Cancer")
+
+define "TumourStage":
+	mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))
+
+define "pTxStage":
+	"TumourStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tx")
+
+define "pT0Stage":
+	"TumourStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T0")
+
+define "pTisStage":
+	"TumourStage" S
+		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(DCIS)")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(LCIS)")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(Pagets)"))
+
+define "pT1Stage":
+	"TumourStage" S
+		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1a")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1b")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1mi"))
+
+define "pT2Stage":
+	"TumourStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T2")
+
+define "pT3Stage":
+	"TumourStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T3")	
+
+define "pT4Stage":
+	"TumourStage" S
+		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4a")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4b")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4c")
+			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4d"))
+
 
 
 define "pTStage":
-	if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-				where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tx"))
+	if exists("pTxStage")
 				then 'Tx'
-			else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-					where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tx"))
+			else if exists("pT0Stage")
 					then 'T0'
-				else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-						where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis")
-							or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(DCIS)")
-							or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(LCIS)")
-							or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(Pagets)")))
+				else if exists("pTisStage")
 							then 'Tis'
-						else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-							where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1a")
-									or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1b")
-									or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1mi")))
+						else if exists("pT1Stage")
 									then 'T1'
-								else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-										where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T2"))
+								else if exists("pT2Stage")
 										then 'T2'
-									else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-											where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T3"))
+									else if exists("pT3Stage")
 											then 'T3'
-										else if exists((mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))) S
-												where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4")
-													or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4a")
-													or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4b")
-													or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4c")
-													or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4d")))
+										else if exists("pT4Stage")
 													then 'T4'
-													else ''
+														else ''
+
+define "NodeStage":
+	mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))
+
+define "NxStage":
+	"NodeStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes Nx")
+	
+define "N0Stage": 	
+	"NodeStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N0")
+
+define "N1Stage": 
+	"NodeStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N1")
+
+define "N2Stage":
+	"NodeStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N2")
+
+define "N3Stage": 
+	"NodeStage" S
+		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N3")
 
 define "pNStagePathological":
-	if exists((mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))) S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes Nx"))
-				then 'Nx'
-				else if exists((mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))) S
-							where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N0"))
-									then 'N0'
-						else if exists((mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))) S
-								where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N1"))
-										then 'N1'
-								else if exists((mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))) S
-										where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N2"))
-												then 'N2'
-										else if exists((mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))) S
-												where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N3"))
-														then 'N3'
-														else ''
+	if exists("NxStage")
+		then 'Nx'
+			else if exists("N0Stage")
+				then 'N0'
+					else if exists("N1Stage")
+						then 'N1'
+							else if exists("N2Stage")
+								then 'N2'
+									else if exists("N3Stage")
+										then 'N3'
+											else ''
 	
+define "MStage": 
+	mCODE."Current TNM Pathological Distant Metastases Categories"(First("BreastCancerCondition"))
+
+define "M1Stage":
+	"MStage" S
+			where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis Stages M1")
+
+define "M0Stage":
+	"MStage" S
+			where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis stage M0")
+
 
 define "pMStagePathological":
-  if exists((mCODE."Current TNM Pathological Distant Metastases Categories"(First("BreastCancerCondition"))) S
-			where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis Stages M1"))
-			then 'M1'
-			else if exists((mCODE."Current TNM Pathological Distant Metastases Categories"(First("BreastCancerCondition"))) S
-					where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis stage M0"))
-							then 'M0'
-							else ''
+  	if exists("M1Stage")
+		then 'M1'
+			else if exists("M0Stage")
+				then 'M0'
+					else ''
    
 
 define "StagingType":
@@ -151,36 +203,54 @@ define "StagingType":
 				else ''
 			)
 
+define "Stage0":
+	{'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIA":
+	{'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIB":
+	{'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIIA":
+	{'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIIB":
+	{'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIIIA":
+	{'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIIIB":
+	{'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIIIC":
+	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
+define "StageIV":
+	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
+
 define "AnatomicStage":
-	if ({'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-	then 'Stage0'
-	else (if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
+	if ("Stage0")
+		then 'Stage0'
+			else if("StageIA")
 				then 'StageIA'
-				else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
-							then 'StageIB'
-							else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-										then 'StageIIA'
-										else (if ({'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-												then 'StageIIB'
-												else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-															then 'StageIIIA'
-															else (if ({'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-																		then 'StageIIIB'
-																		else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-																					then 'StageIIIC'
-																					else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
-																								then 'StageIV'
-																								else ''
-																							)
-																				)
-																	)
-														)
-												)
-										)
-							)
-				)
-
-
+					else if("StageIB")
+						then 'StageIB'
+							else if("StageIIA")
+								then 'StageIIA'
+									else if ("StageIIB")
+										then 'StageIIB'
+											else if ("StageIIIA")
+												then 'StageIIIA'
+													else if ("StageIIIB")
+														then 'StageIIIB'
+															else if ("StageIIIC")
+																then 'StageIIIC'
+																	else if ("StageIV")
+																		then 'StageIV'
+																			else ''
+																							
 
 define "HER2Observation":
 	(mCODE."TumorMarker" P

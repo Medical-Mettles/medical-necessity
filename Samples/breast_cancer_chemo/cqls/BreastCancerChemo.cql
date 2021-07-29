@@ -203,33 +203,6 @@ define "StagingType":
 				else ''
 			)
 
-define "Stage0":
-	{'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIA":
-	{'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIB":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIA":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIB":
-	{'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIA":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIB":
-	{'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIC":
-	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIV":
-	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
 define "AnatomicStage":
 	if ({'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
 	then 'Stage0'
@@ -258,7 +231,7 @@ define "AnatomicStage":
 										)
 							)
 				)
-																						
+																					
 
 define "HER2Observation":
 	(mCODE."TumorMarker" P

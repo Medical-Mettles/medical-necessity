@@ -458,7 +458,7 @@
               "display": "Malignant neoplasm of overlapping sites of rectum, anus and anal canal"
             },
             {
-              "code": "C220",
+              "code": "C22.0",
               "display": "Liver cell carcinoma"
             },
             {
@@ -466,15 +466,15 @@
               "display": "Intrahepatic bile duct carcinoma"
             },
             {
-              "code": "C222",
+              "code": "C22.2",
               "display": "Hepatoblastoma"
             },
             {
-              "code": "C223",
+              "code": "C22.3",
               "display": "Angiosarcoma of liver"
             },
             {
-              "code": "C224",
+              "code": "C22.4",
               "display": "Other sarcomas of liver"
             },
             {
@@ -1638,19 +1638,19 @@
               "display": "Malignant neoplasm of male genital organ, unspecified"
             },
             {
-              "code": "C641",
+              "code": "C64.1",
               "display": "Malignant neoplasm of right kidney, except renal pelvis"
             },
             {
-              "code": "C642",
+              "code": "C64.2",
               "display": "Malignant neoplasm of left kidney, except renal pelvis"
             },
             {
-              "code": "C649",
+              "code": "C64.9",
               "display": "Malignant neoplasm of unspecified kidney, except renal pelvis"
             },
             {
-              "code": "C651",
+              "code": "C65/1",
               "display": "Malignant neoplasm of right renal pelvis"
             },
             {
@@ -2098,11 +2098,11 @@
               "display": "Secondary malignant neoplasm of unspecified lung"
             },
             {
-              "code": "C7801",
+              "code": "C78.01",
               "display": "Secondary malignant neoplasm of right lung"
             },
             {
-              "code": "C7802",
+              "code": "C78.02",
               "display": "Secondary malignant neoplasm of left lung"
             },
             {
@@ -8662,11 +8662,11 @@
               "display": "Hypertensive crisis, unspecified"
             },
             {
-              "code": "I2601",
+              "code": "I26.01",
               "display": "Septic pulmonary embolism with acute cor pulmonale"
             },
             {
-              "code": "I2602",
+              "code": "I26.02",
               "display": "Saddle embolus of pulmonary artery with acute cor pulmonale"
             },
             {

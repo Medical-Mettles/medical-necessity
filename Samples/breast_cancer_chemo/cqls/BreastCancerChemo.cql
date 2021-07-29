@@ -203,54 +203,35 @@ define "StagingType":
 				else ''
 			)
 
-define "Stage0":
-	{'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIA":
-	{'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIB":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIA":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIB":
-	{'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIA":
-	{'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIB":
-	{'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIIIC":
-	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
-define "StageIV":
-	{'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"}
-
 define "AnatomicStage":
-	if ("Stage0")
-		then 'Stage0'
-			else if("StageIA")
+	if ({'Tis', 'N0', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+	then 'Stage0'
+	else (if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
 				then 'StageIA'
-					else if("StageIB")
-						then 'StageIB'
-							else if("StageIIA")
-								then 'StageIIA'
-									else if ("StageIIB")
-										then 'StageIIB'
-											else if ("StageIIIA")
-												then 'StageIIIA'
-													else if ("StageIIIB")
-														then 'StageIIIB'
-															else if ("StageIIIC")
-																then 'StageIIIC'
-																	else if ("StageIV")
-																		then 'StageIV'
-																			else ''
-																							
+				else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"pTStage", "pNStagePathological", "pMStagePathological"})
+							then 'StageIB'
+							else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+										then 'StageIIA'
+										else (if ({'T2', 'T3', 'N0', 'N1', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+												then 'StageIIB'
+												else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+															then 'StageIIIA'
+															else (if ({'T4', 'N0', 'N1', 'N2', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																		then 'StageIIIB'
+																		else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																					then 'StageIIIC'
+																					else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"pTStage", "pNStagePathological", "pMStagePathological"})
+																								then 'StageIV'
+																								else ''
+																							)
+																				)
+																	)
+														)
+												)
+										)
+							)
+				)
+																					
 
 define "HER2Observation":
 	(mCODE."TumorMarker" P

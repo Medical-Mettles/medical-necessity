@@ -29,7 +29,6 @@
     "description": "Types of primary malignant neoplastic disease, coded in SNOMED CT or ICD-10-CM. \r\n\r\nConformance note: To be compliant with [US Core Profiles](http://hl7.org/fhir/us/core/index.html), ICD-10-CM should only be used if a suitable code is not available from SNOMED.\r\n\r\nFor SNOMED CT coding, use a code from the disorder hierarchy under SNOMED CT 363346000 'Malignant neoplastic disease (disorder)' excluding codes descending from SNOMED CT 128462008 'Secondary malignant neoplastic disease (disorder)'. If body location is not precoordinated (i.e., implied by the code), the site of the primary tumor should be specified in the body site attribute. \r\n\r\nFor ICD-10-CM coding, use one of the codes given in this value set representing primary malignant neoplasms and neoplasms of uncertain or unspecified behavior.\r\n\r\nNote that ICD-O-3 specifies morphology and topography, not disorder. If ICD-O-3 is used, the primary cancer disorder code must be specifically be SNOMED CT 363346000  'Malignant neoplastic disease (disorder)'. The ICD-O-3 morphology and topography codes should be entered in the HistologyMorphologyBehavior and body location fields, respectively.",
     "compose": {
       "include": [
-        
         {
           "system": "http://hl7.org/fhir/sid/icd-10-cm",
           "version": "2021",
@@ -1615,11 +1614,11 @@
               "display": "Malignant neoplasm of nipple and areola, left male breast"
             },
             {
-              "code": "C50029",
+              "code": "C50.029",
               "display": "Malignant neoplasm of nipple and areola, unspecified male breast"
             },
             {
-              "code": "C50111",
+              "code": "C50.111",
               "display": "Malignant neoplasm of central portion of right female breast"
             },
             {
@@ -1627,7 +1626,7 @@
               "display": "Malignant neoplasm of central portion of left female breast"
             },
             {
-              "code": "C50119",
+              "code": "C50.119",
               "display": "Malignant neoplasm of central portion of unspecified female breast"
             },
             {

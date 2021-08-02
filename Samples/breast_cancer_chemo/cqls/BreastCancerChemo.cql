@@ -325,25 +325,28 @@ define "CardiacConditions":
     and exists(C.code.coding x where x in "Cardiac Disease"))
 
 define "LiverConditions":
-	First(mCODE."ComorbidCondition" C
+	 First(mCODE."ComorbidCondition" C
 		where First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where x in "Liver Disease"))
+    		and exists(C.code.coding x where x in "Liver Disease"))
 
 define "RenalConditions":
 	First(mCODE."ComorbidCondition" C
 		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Renal Disease"))
 
-define "PreExistingConditionsResources":
-	exists(mCODE."ComorbidCondition" C
-	with mCODE."ComorbidCondition" S
-	such that C.subject.reference.value = 'Patient/'+ Patient.id.value
-    and First(C.clinicalStatus.coding).code.value = 'active'
-    and exists(C.code.coding x where (x in "Renal Disease")
+define "Renal/Cardiac/LiverDisease":
+	First(mCODE."ComorbidCondition" C
+	where First(C.clinicalStatus.coding).code.value = 'active'
+		and exists(C.code.coding x where (x in "Renal Disease")
 										or (x in "Liver Disease")
 										or (x in "Cardiac Disease"))
-	and exists(S.code.coding x where x in "Breast Cancer")
-	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset))
+		sort by start of "Normalize Onset"(onset))
+
+
+define "PreExistingConditionsResources":
+	"Renal/Cardiac/LiverDisease" D
+	with "BreastCancerCondition" S 
+	such that start of "Normalize Onset"(D.onset) before start of "Normalize Onset"(S.onset)
 
 define "PulmonaryConditionsHistory":
 	mCODE."ComorbidCondition" C
@@ -421,7 +424,7 @@ define "KnownAllergies":
 	else false
 
 define "PreExistingConditions":
-	if ("PreExistingConditionsResources" = true) 
+	if ("PreExistingConditionsResources" is not null) 
 	then true
 	else false
 

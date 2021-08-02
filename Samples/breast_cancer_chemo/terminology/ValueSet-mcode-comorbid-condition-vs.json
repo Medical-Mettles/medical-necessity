@@ -30,7 +30,7 @@
     "compose": {
       "include": [
         {
-          "system": "http://hl7.org/fhir/sid/icd-10",
+          "system": "http://hl7.org/fhir/sid/icd-10-cm",
           "version": "2020-03",
           "concept": [
             {
@@ -10582,11 +10582,11 @@
               "display": "Simple chronic bronchitis"
             },
             {
-              "code": "J411",
+              "code": "J41.1",
               "display": "Mucopurulent chronic bronchitis"
             },
             {
-              "code": "J418",
+              "code": "J41.8",
               "display": "Mixed simple and mucopurulent chronic bronchitis"
             },
             {
@@ -10594,7 +10594,7 @@
               "display": "Unspecified chronic bronchitis"
             },
             {
-              "code": "J430",
+              "code": "J43.0",
               "display": "Unilateral pulmonary emphysema [MacLeod's syndrome]"
             },
             {
@@ -10910,19 +10910,19 @@
               "display": "Vascular disorder of intestine, unspecified"
             },
             {
-              "code": "K700",
+              "code": "K70.0",
               "display": "Alcoholic fatty liver"
             },
             {
-              "code": "K702",
+              "code": "K70.2",
               "display": "Alcoholic fibrosis and sclerosis of liver"
             },
             {
-              "code": "K7030",
+              "code": "K70.30",
               "display": "Alcoholic cirrhosis of liver without ascites"
             },
             {
-              "code": "K7031",
+              "code": "K70.31",
               "display": "Alcoholic cirrhosis of liver with ascites"
             },
             {

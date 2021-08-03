@@ -19,6 +19,10 @@
       {
         "type": "depends-on",
         "resource": "Library/library-breastcancerchemo-BreastCancerChemo"
+      },
+      {
+        "type": "depends-on",
+        "resource": "Library/library-breastcancerchemo-mCODE"
       }
     ],
     "dataRequirement": [

@@ -3,7 +3,7 @@ library BreastsCancerChemoDecision version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include BreastsCancerChemo version '1.0.0' called BCChemo
+include BreastCancerChemo version '1.0.0' called BCChemo
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -48,9 +48,6 @@ context Patient
 
 define BreastCancerCondition:
       BCChemo."BreastCancerCondition"
-
-define BreastCancerStaging:
-      BCChemo."BreastCancerStaging"
 
 define pTStage:
       BCChemo."pTStage"

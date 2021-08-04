@@ -1,0 +1,334 @@
+{
+    "resourceType": "Questionnaire",
+    "id": "questionnaire-cthead-ctforhead",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-cthead-CTForHead"
+        }
+    ],
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-cthead-ctforhead",
+    "identifier": [
+        {
+            "system": "http://identifiers.mettles.com/prior_authorization",
+            "value": "medicare_fee_for_service-ctforhead"
+        }
+    ],
+    "version": "1.0.0",
+    "name": "CTForHead",
+    "title": "CTForHead",
+    "status": "draft",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2021-08-03",
+    "publisher": "Mettle Solutions",
+    "item": [
+        {
+            "linkId": "1",
+            "text": "Diagnosis Information",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BlurredVision"
+                            }
+                        }
+                    ],
+                    "linkId": "BlurredVision",
+                    "text": "Does the patient suffer from blurred vision?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "Nausea"
+                            }
+                        }
+                    ],
+                    "linkId": "Nausea",
+                    "text": "Does the patient suffer from nausea?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "Vomiting"
+                            }
+                        }
+                    ],
+                    "linkId": "Vomiting",
+                    "text": "Does the patient suffer from vomiting?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "SignsOfWeakness"
+                            }
+                        }
+                    ],
+                    "linkId": "SignsOfWeakness",
+                    "text": "Does the patient show any signs of weakness?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "SymptomsOfParalysis"
+                            }
+                        }
+                    ],
+                    "linkId": "SymptomsOfParalysis",
+                    "text": "Does the patient show any symptoms of paralysis?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ExtremeObesity"
+                            }
+                        }
+                    ],
+                    "linkId": "ExtremeObesity",
+                    "text": "Does the patient suffer from extreme obesity?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "InabilityToLieStill"
+                            }
+                        }
+                    ],
+                    "linkId": "InabilityToLieStill",
+                    "text": "Does the patient have an inability to lie still?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HeadachesOrDizziness"
+                            }
+                        }
+                    ],
+                    "linkId": "HeadachesOrDizziness",
+                    "text": "Does the patient suffer from periodic headaches or dizziness?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HeadachesOnset"
+                            }
+                        }
+                    ],
+                    "linkId": "HeadachesOnset",
+                    "text": "Onset period of headache/dizziness:",
+                    "type": "dateTime",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "HeadachesOrDizziness",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "HeadachesSeverity"
+                            }
+                        }
+                    ],
+                    "linkId": "HeadachesSeverity",
+                    "text": "What is the severity of the headache?",
+                    "type": "text",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "HeadachesOrDizziness",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                },
+                
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "Trauma"
+                            }
+                        }
+                    ],
+                    "linkId": "Trauma",
+                    "text": "Is the patient under trauma?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "AcuteHemorrhage"
+                            }
+                        }
+                    ],
+                    "linkId": "AcuteHemorrhage",
+                    "text": "Has the patient been diagnosed with Acute CNS Hemorrhage?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "StrokesEncephalomalacia"
+                            }
+                        }
+                    ],
+                    "linkId": "StrokesEncephalomalacia",
+                    "text": "Does the patient suffer from Strokes or Encephalomalacia?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "Seizures"
+                            }
+                        }
+                    ],
+                    "linkId": "Seizures",
+                    "text": "Has the patient been diagnosed with any new onset seizures?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "IntracranialLesions"
+                            }
+                        }
+                    ],
+                    "linkId": "IntracranialLesions",
+                    "text": "Does the patient suffer from Intracranial (sic) lesions?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "1",
+            "text": "Other Required Information for CT Scan",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "UsageOfMetallicEquipments"
+                            }
+                        }
+                    ],
+                    "linkId": "UsageOfMetallicEquipments",
+                    "text": "Does the patient use pacemakers, ICDs, cochlear implants, aneurysm clips, orbital metallic fragments?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "RequirementOfContrastCT"
+                            }
+                        }
+                    ],
+                    "linkId": "RequirementOfContrastCT",
+                    "text": "Does the patient require a contrast CT?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "DiagnosisForContrastCT"
+                            }
+                        }
+                    ],
+                    "linkId": "DiagnosisForContrastCT",
+                    "text": "Is there a diagnosis to establish the requirement of contrast CT?",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "operator": "=",
+                            "question": "RequirementOfContrastCT",
+                            "answerBoolean": true
+                        }
+                    ],
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

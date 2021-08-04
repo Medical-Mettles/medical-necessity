@@ -1,0 +1,323 @@
+{
+    "resourceType": "Library",
+    "version": "1.0.0",
+    "title": "CTForHead",
+    "name": "CTForHead",
+    "status": "draft",
+    "type": {
+      "coding": [
+        {
+          "code": "logic-library"
+        }
+      ]
+    },
+    "relatedArtifact": [
+      {
+        "type": "depends-on",
+        "resource": "Library/FHIRHelpers"
+      }
+    ],
+    "dataRequirement": [
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.863"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.648"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.837"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1206.37"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.862"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.971"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.827"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1200.85"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.3.117.1.7.1.399"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1206.39"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.3.3157.1331"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.3.3157.1411"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.17.4077.2.1017"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.17.4077.3.1030"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1029.10"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1222.35"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1164.65"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1106.41"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.3.464.1003.105.11.1212"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1222.27"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1138.739"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1029.330"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1116.88"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1047.362"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1151.7"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.17.4077.3.2006"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.808"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1034.311"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1034.290"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1029.258"
+                }
+            ]
+        },
+        {
+            "type": "Device",
+            "codeFilter": [
+              {
+                "path": "code",
+                "code": [
+                  {
+                  "system": "https://hcpcs.codes/",
+                  "code":"C2621",
+                  "display":"Pacemaker, other than single or dual chamber (implantable)"
+                }
+                ]
+              }
+            ]
+        },
+        {
+            "type": "Device",
+            "codeFilter": [
+              {
+                "path": "code",
+                "code": [
+                  {
+                  "system": "https://hcpcs.codes/",
+                  "code":"L8614",
+                  "display":"Cochlear device, includes all internal and external components"
+                }
+                ]
+              }
+            ]
+        }
+    ]
+  }
+  

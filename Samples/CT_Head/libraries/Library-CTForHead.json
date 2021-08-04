@@ -188,6 +188,135 @@
                     "valueSet": "2.16.840.1.113883.3.464.1003.105.11.1212"
                 }
             ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1222.27"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1138.739"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1029.330"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1116.88"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1047.362"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1151.7"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113883.17.4077.3.2006"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1146.808"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1034.311"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1034.290"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSet": "2.16.840.1.113762.1.4.1029.258"
+                }
+            ]
+        },
+        {
+            "type": "Device",
+            "codeFilter": [
+              {
+                "path": "code",
+                "code": [
+                  {
+                  "system": "https://hcpcs.codes/",
+                  "code":"C2621",
+                  "display":"Pacemaker, other than single or dual chamber (implantable)"
+                }
+                ]
+              }
+            ]
+        },
+        {
+            "type": "Device",
+            "codeFilter": [
+              {
+                "path": "code",
+                "code": [
+                  {
+                  "system": "https://hcpcs.codes/",
+                  "code":"L8614",
+                  "display":"Cochlear device, includes all internal and external components"
+                }
+                ]
+              }
+            ]
         }
     ]
   }

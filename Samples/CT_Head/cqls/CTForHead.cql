@@ -102,10 +102,10 @@ define HeadachesOrDizziness:
     else false
 
 define HeadachesOnset:
-    "Normalize Interval"("PresenceOfHeadachesOrDizziness".onset)
+    start of "Normalize Interval"("PresenceOfHeadachesOrDizziness".onset)
 
 define HeadachesSeverity:
-    ("PresenceOfHeadachesOrDizziness".severity.coding).code.value
+    ("PresenceOfHeadachesOrDizziness".severity.coding).display.value
 
 define Trauma:
     exists([Condition]C

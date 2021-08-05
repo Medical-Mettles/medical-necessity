@@ -3,7 +3,6 @@ library BreastCancerChemo version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include mCODE version '1' called mCODE
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
@@ -72,133 +71,85 @@ parameter "MedicationRequest" MedicationRequest
 
 context Patient
 
-define "CancerCondition":
-   	mCODE."PrimaryCancerCondition"
-
 define "BreastCancerCondition":
-	"CancerCondition" C
+	[Condition] C
 		where First(C.clinicalStatus.coding).code.value = 'active'
-    	and exists(C.code.coding x where x in "Breast Cancer")
-
-define "TumourStage":
-	mCODE."Current TNM Pathological Primary Tumor Categories" (First("BreastCancerCondition"))
-
-define "pTxStage":
-	"TumourStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tx")
-
-define "pT0Stage":
-	"TumourStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T0")
-
-define "pTisStage":
-	"TumourStage" S
-		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(DCIS)")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(LCIS)")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage Tis(Pagets)"))
-
-define "pT1Stage":
-	"TumourStage" S
-		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1a")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1b")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T1mi"))
-
-define "pT2Stage":
-	"TumourStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T2")
-
-define "pT3Stage":
-	"TumourStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T3")	
-
-define "pT4Stage":
-	"TumourStage" S
-		where (exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4a")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4b")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4c")
-			or exists(((S.value as CodeableConcept).coding) C where C in "Tumor stage T4d"))
+    and exists(C.code.coding x where x in "Breast Cancer")
 
 
+define "BreastCancerStaging":
+  "BreastCancerCondition"B
+    where (exists(B.stage s where exists(s.summary.coding x where x in "Breast Cancer Primary Tumor Size T1"))
+          or exists(B.stage s where exists(s.summary.coding x where x in "Breast Cancer Primary Tumor Size T1a")))
+    and exists(B.stage s where exists(s.summary.coding x where x in "Breast Cancer Regional Lymph Node Status N0"))
+    and exists(B.stage s where exists(s.summary.coding x where x in "Breast Distant Metastasis Status M0"))
 
 define "pTStage":
-	if exists("pTxStage")
+	if exists("BreastCancerCondition".stage S
+				where exists(S.summary.coding C where C in "Tumor stage Tx"))
 				then 'Tx'
-			else if exists("pT0Stage")
+			else if exists("BreastCancerCondition".stage S
+					where exists(S.summary.coding C where C in "Tumor stage T0"))
 					then 'T0'
-				else if exists("pTisStage")
+				else if exists("BreastCancerCondition".stage S
+						where (exists(S.summary.coding C where C in "Tumor stage Tis")
+							or exists(S.summary.coding C where C in "Tumor stage Tis(DCIS)")
+							or exists(S.summary.coding C where C in "Tumor stage Tis(LCIS)")
+							or exists(S.summary.coding C where C in "Tumor stage Tis(Pagets)")))
 							then 'Tis'
-						else if exists("pT1Stage")
+						else if exists("BreastCancerCondition".stage S
+							where (exists(S.summary.coding C where C in "Tumor stage T1a")
+									or exists(S.summary.coding C where C in "Tumor stage T1b")
+									or exists(S.summary.coding C where C in "Tumor stage T1mi")))
 									then 'T1'
-								else if exists("pT2Stage")
+								else if exists("BreastCancerCondition".stage S
+										where exists(S.summary.coding C where C in "Tumor stage T2"))
 										then 'T2'
-									else if exists("pT3Stage")
+									else if exists("BreastCancerCondition".stage S
+											where exists(S.summary.coding C where C in "Tumor stage T3"))
 											then 'T3'
-										else if exists("pT4Stage")
+										else if exists("BreastCancerCondition".stage S
+												where (exists(S.summary.coding C where C in "Tumor stage T4")
+													or exists(S.summary.coding C where C in "Tumor stage T4a")
+													or exists(S.summary.coding C where C in "Tumor stage T4b")
+													or exists(S.summary.coding C where C in "Tumor stage T4c")
+													or exists(S.summary.coding C where C in "Tumor stage T4d")))
 													then 'T4'
-														else ''
-
-define "NodeStage":
-	mCODE."Current TNM Pathological Regional Nodes Categories" (First("BreastCancerCondition"))
-
-define "NxStage":
-	"NodeStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes Nx")
-	
-define "N0Stage": 	
-	"NodeStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N0")
-
-define "N1Stage": 
-	"NodeStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N1")
-
-define "N2Stage":
-	"NodeStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N2")
-
-define "N3Stage": 
-	"NodeStage" S
-		where exists(((S.value as CodeableConcept).coding) C where C in "Regional Lymph Nodes N3")
+													else ''
 
 define "pNStagePathological":
-	if exists("NxStage")
-		then 'Nx'
-			else if exists("N0Stage")
-				then 'N0'
-					else if exists("N1Stage")
-						then 'N1'
-							else if exists("N2Stage")
-								then 'N2'
-									else if exists("N3Stage")
-										then 'N3'
-											else ''
-	
-define "MStage": 
-	mCODE."Current TNM Pathological Distant Metastases Categories"(First("BreastCancerCondition"))
-
-define "M1Stage":
-	"MStage" S
-			where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis Stages M1")
-
-define "M0Stage":
-	"MStage" S
-			where exists(((S.value as CodeableConcept).coding) C where C in "Metastasis stage M0")
-
+	if exists("BreastCancerCondition".stage S
+		where exists(S.summary.coding C where C in "Regional Lymph Nodes Nx"))
+				then 'Nx'
+				else if exists("BreastCancerCondition".stage S
+							where exists(S.summary.coding C where C in "Regional Lymph Nodes N0"))
+									then 'N0'
+						else if exists("BreastCancerCondition".stage S
+								where exists(S.summary.coding C where C in "Regional Lymph Nodes N1"))
+										then 'N1'
+								else if exists("BreastCancerCondition".stage S
+										where exists(S.summary.coding C where C in "Regional Lymph Nodes N2"))
+												then 'N2'
+										else if exists("BreastCancerCondition".stage S
+												where exists(S.summary.coding C where C in "Regional Lymph Nodes N3"))
+														then 'N3'
+														else ''
 
 define "pMStagePathological":
-  	if exists("M1Stage")
-		then 'M1'
-			else if exists("M0Stage")
-				then 'M0'
-					else ''
-   
+    if exists("BreastCancerCondition".stage S
+			where exists(S.summary.coding C where C in "Metastasis Stages M1"))
+			then 'M1'
+			else if exists("BreastCancerCondition".stage S
+					where exists(S.summary.coding C where C in "Metastasis stage M0"))
+							then 'M0'
+							else ''
 
 define "StagingType":
-	if exists(mCODE."TNMPathologicalStageGroup")
+	if exists("BreastCancerCondition"B
+    where exists(B.stage s where exists(s.type.coding x where x in "Stage type Pathological")))
 	then 'Pathological'
-	else (if exists(mCODE."TNMClinicalStageGroup")
+	else (if exists("BreastCancerCondition"B
+					where exists(B.stage s where exists(s.type.coding x where x in "Stage type Clinical")))
 				then 'Clinical'
 				else ''
 			)
@@ -231,10 +182,11 @@ define "AnatomicStage":
 										)
 							)
 				)
-																					
+
+
 
 define "HER2Observation":
-	(mCODE."TumorMarker" P
+	([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "HER2 Presence in Tissue")
 			and (P.value as CodeableConcept) in "Positive") O
@@ -243,7 +195,7 @@ define "HER2Observation":
 	sort by end of "Normalize Interval"(effective)
 
 define "PRObservation":
-	(mCODE."TumorMarker" P
+	([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Progesterone receptor")
 			and (P.value as CodeableConcept) in "Positive") O
@@ -252,7 +204,7 @@ define "PRObservation":
 	sort by end of "Normalize Interval"(effective)
 
 define "ERObservation":
-	(mCODE."TumorMarker" P
+	([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Estrogen receptor")
 			and (P.value as CodeableConcept) in "Positive") O
@@ -313,43 +265,40 @@ define "AdverseEventsDrugs":
     and exists(A.event.coding x where x in "Chemotherapy drugs allergy")
 
 define "MastectomyProcedure":
-	Last(mCODE."CancerRelatedSurgicalProcedure" P
+	Last([Procedure]P
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "Mastectomy and Lumpectomy")
 		sort by end of "Normalize Interval"(performed)
 		)
 
 define "CardiacConditions":
-	First(mCODE."ComorbidCondition" C
+	First([Condition]C
 		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Cardiac Disease"))
 
 define "LiverConditions":
-	 First(mCODE."ComorbidCondition" C
+	First([Condition]C
 		where First(C.clinicalStatus.coding).code.value = 'active'
-    		and exists(C.code.coding x where x in "Liver Disease"))
+    and exists(C.code.coding x where x in "Liver Disease"))
 
 define "RenalConditions":
-	First(mCODE."ComorbidCondition" C
+	First([Condition]C
 		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Renal Disease"))
 
-define "Renal/Cardiac/LiverDisease":
-	First(mCODE."ComorbidCondition" C
-	where First(C.clinicalStatus.coding).code.value = 'active'
-		and exists(C.code.coding x where (x in "Renal Disease")
+define "PreExistingConditionsResources":
+	exists([Condition]C
+	with [Condition]S
+	such that C.subject.reference.value = 'Patient/'+ Patient.id.value
+    and First(C.clinicalStatus.coding).code.value = 'active'
+    and exists(C.code.coding x where (x in "Renal Disease")
 										or (x in "Liver Disease")
 										or (x in "Cardiac Disease"))
-		sort by start of "Normalize Onset"(onset))
-
-
-define "PreExistingConditionsResources":
-	"Renal/Cardiac/LiverDisease" D
-	with "BreastCancerCondition" S 
-	such that start of "Normalize Onset"(D.onset) before start of "Normalize Onset"(S.onset)
+	and exists(S.code.coding x where x in "Breast Cancer")
+	and start of "Normalize Onset"(C.onset) before start of "Normalize Onset"(S.onset))
 
 define "PulmonaryConditionsHistory":
-	mCODE."ComorbidCondition" C
+	[Condition]C
 		where First(C.clinicalStatus.coding).code.value in {'active', 'recurrence', 'relapse','remission','resolved'}
     and exists(C.code.coding x where x in "Chronic Obstructive Pulmonary Diseases")
 
@@ -424,7 +373,7 @@ define "KnownAllergies":
 	else false
 
 define "PreExistingConditions":
-	if ("PreExistingConditionsResources" is not null) 
+	if ("PreExistingConditionsResources" = true) 
 	then true
 	else false
 

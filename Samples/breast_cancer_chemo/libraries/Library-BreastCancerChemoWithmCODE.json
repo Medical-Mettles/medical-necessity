@@ -1,8 +1,8 @@
 {
     "resourceType": "Library",
     "version": "1.0.0",
-    "title": "BreastsCancerChemoDecision",
-    "name": "BreastsCancerChemoDecision",
+    "title": "BreastCancerChemoWithmCODE",
+    "name": "BreastCancerChemoWithmCODE",
     "status": "draft",
     "type": {
       "coding": [
@@ -18,7 +18,7 @@
       },
       {
         "type": "depends-on",
-        "resource": "Library/library-breastcancerchemo-BreastCancerChemo"
+        "resource": "Library/library-breastcancerchemo-mCODE"
       }
     ],
     "dataRequirement": [
@@ -30,6 +30,21 @@
             "valueSet": "2.16.840.1.113883.3.1434.1000.1095"
           }
           ]
+      },
+      {
+        "type": "Observation",
+        "codeFilter": [
+          {
+            "path": "code",
+            "code": [
+              {
+              "system": "www.loinc.org",
+              "code":"69548-6",
+              "display":"Genetic variant assessment"
+            }
+            ]
+          }
+        ]
       },
       {
         "type": "Observation",
@@ -228,6 +243,16 @@
             "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.21"
           }
           ]
+      },
+      {
+        "type": "Procedure",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.96.22"
+          }
+          ]
       }
     ]
   }
+  

@@ -1,8 +1,8 @@
 {
     "resourceType": "Library",
     "version": "1.0.0",
-    "title": "BreastsCancerChemoDecision",
-    "name": "BreastsCancerChemoDecision",
+    "title": "BreastsCancerChemoDecisionWithmCODE",
+    "name": "BreastsCancerChemoDecisionWithmCODE",
     "status": "draft",
     "type": {
       "coding": [
@@ -19,6 +19,10 @@
       {
         "type": "depends-on",
         "resource": "Library/library-breastcancerchemo-BreastCancerChemo"
+      },
+      {
+        "type": "depends-on",
+        "resource": "Library/library-breastcancerchemo-mCODE"
       }
     ],
     "dataRequirement": [

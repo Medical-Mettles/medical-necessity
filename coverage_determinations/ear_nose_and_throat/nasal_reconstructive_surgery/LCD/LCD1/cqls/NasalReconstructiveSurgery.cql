@@ -224,6 +224,7 @@ define RehabilitationProsthesis:
 define ProsthesisUsageMoreThanSixWeeks:
 	[Procedure]P
 		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Rehabilitation Prosthesis")
 				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days
 
 define ProsthesisForSixWeeks:

@@ -88,7 +88,7 @@ define DecisionPendingForSleepDisorder:
             then true
               else false
 
-define FinalDecisionForSleepDisorder:
+define FinalDecision:
       if  (("PrimaryDecision" = true)
             and ("DecisionPendingForSleepDisorder" = false))
               then 'YES'

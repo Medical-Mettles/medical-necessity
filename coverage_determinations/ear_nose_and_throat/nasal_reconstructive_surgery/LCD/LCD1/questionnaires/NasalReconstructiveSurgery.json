@@ -61,6 +61,263 @@
       ]
     },
     {
+      "linkId": "4",
+      "text": "Diagnosis For Septoplasty",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NasalSeptumDeviationOrDeformity"
+              }
+            }
+          ],
+          "linkId": "NasalSeptumDeviationOrDeformity",
+          "text": "Does the patient have deformity or deviation of the nasal septum?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ClefLipOrPalateRepair"
+              }
+            }
+          ],
+          "linkId": "ClefLipOrPalateRepair",
+          "text": "Does the patient have a cleft lip or cleft palate repair?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "NasalSeptumDeviationOrDeformity",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RecurrentEpistaxis"
+              }
+            }
+          ],
+          "linkId": "RecurrentEpistaxis",
+          "text": "Is there any recurrent epistaxis related to the septal deformity?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "NasalSeptumDeviationOrDeformity",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RecurrentSinusitis"
+              }
+            }
+          ],
+          "linkId": "RecurrentSinusitis",
+          "text": "Is the deviated septum causing a recurrent sinusitis?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "NasalSeptumDeviationOrDeformity",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IntranasalSurgeriesInterference"
+              }
+            }
+          ],
+          "linkId": "IntranasalSurgeriesInterference",
+          "text": "Is the Septal deviation/deformity interfering with any other intranasal surgeries?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "NasalAirwayObstruction",
+              "answerBoolean": false
+            },
+            {
+              "operator": "=",
+              "question": "NasalSeptumDeviationOrDeformity",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis For Rhinoplasty",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NasalAirwayObstruction"
+              }
+            }
+          ],
+          "linkId": "NasalAirwayObstruction",
+          "text": "Does the patient have Nasal Airway Obstruction?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CongenitalDefect"
+              }
+            }
+          ],
+          "linkId": "CongenitalDefect",
+          "text": "Does the patient have any cleft lip/palate or other congenital craniofacial deformity?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FunctionalImpairment"
+              }
+            }
+          ],
+          "linkId": "FunctionalImpairment",
+          "text": "Is it causing a functional impairment?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CongenitalDefect",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VestibularStenosis"
+              }
+            }
+          ],
+          "linkId": "VestibularStenosis",
+          "text": "Does the patient have vestibular stenosis (collapsed internal valves)?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Trauma"
+              }
+            }
+          ],
+          "linkId": "Trauma",
+          "text": "Did the patient go through trauma/accident?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NasalBoneFracture"
+              }
+            }
+          ],
+          "linkId": "NasalBoneFracture",
+          "text": "Does it involve fracture of a nasal bone?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "Trauma",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BenignDiseasesCausingNasalObstruction"
+              }
+            }
+          ],
+          "linkId": "BenignDiseasesCausingNasalObstruction",
+          "text": "Is the nasal obstruction secondary to a benign disease?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ObstructiveSleepDisorder"
+              }
+            }
+          ],
+          "linkId": "ObstructiveSleepDisorder",
+          "text": "Does the patient have obstructive sleep disorder?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
       "linkId": "3",
       "text": "Past Medical History",
       "type": "group",
@@ -540,263 +797,6 @@
           "linkId": "AdditionalSurgeries",
           "text": "Is the patient planning to undergo any other additional surgeries (septoplasty/turbinectomy)?",
           "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "2",
-      "text": "Diagnosis For Rhinoplasty",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NasalAirwayObstruction"
-              }
-            }
-          ],
-          "linkId": "NasalAirwayObstruction",
-          "text": "Does the patient have Nasal Airway Obstruction?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "CongenitalDefect"
-              }
-            }
-          ],
-          "linkId": "CongenitalDefect",
-          "text": "Does the patient have any cleft lip/palate or other congenital craniofacial deformity?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "FunctionalImpairment"
-              }
-            }
-          ],
-          "linkId": "FunctionalImpairment",
-          "text": "Is it causing a functional impairment?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "CongenitalDefect",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "VestibularStenosis"
-              }
-            }
-          ],
-          "linkId": "VestibularStenosis",
-          "text": "Does the patient have vestibular stenosis (collapsed internal valves)?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "Trauma"
-              }
-            }
-          ],
-          "linkId": "Trauma",
-          "text": "Did the patient go through trauma/accident?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NasalBoneFracture"
-              }
-            }
-          ],
-          "linkId": "NasalBoneFracture",
-          "text": "Does it involve fracture of a nasal bone?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "Trauma",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BenignDiseasesCausingNasalObstruction"
-              }
-            }
-          ],
-          "linkId": "BenignDiseasesCausingNasalObstruction",
-          "text": "Is the nasal obstruction secondary to a benign disease?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ObstructiveSleepDisorder"
-              }
-            }
-          ],
-          "linkId": "ObstructiveSleepDisorder",
-          "text": "Does the patient have obstructive sleep disorder?",
-          "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "4",
-      "text": "Diagnosis For Septoplasty",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NasalSeptumDeviationOrDeformity"
-              }
-            }
-          ],
-          "linkId": "NasalSeptumDeviationOrDeformity",
-          "text": "Does the patient have deformity or deviation of the nasal septum?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ClefLipOrPalateRepair"
-              }
-            }
-          ],
-          "linkId": "ClefLipOrPalateRepair",
-          "text": "Does the patient have a cleft lip or cleft palate repair?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "NasalSeptumDeviationOrDeformity",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "RecurrentEpistaxis"
-              }
-            }
-          ],
-          "linkId": "RecurrentEpistaxis",
-          "text": "Is there any recurrent epistaxis related to the septal deformity?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "NasalSeptumDeviationOrDeformity",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "RecurrentSinusitis"
-              }
-            }
-          ],
-          "linkId": "RecurrentSinusitis",
-          "text": "Is the deviated septum causing a recurrent sinusitis?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "NasalSeptumDeviationOrDeformity",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "IntranasalSurgeriesInterference"
-              }
-            }
-          ],
-          "linkId": "IntranasalSurgeriesInterference",
-          "text": "Is the Septal deviation/deformity interfering with any other intranasal surgeries?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "NasalAirwayObstruction",
-              "answerBoolean": false
-            },
-            {
-              "operator": "=",
-              "question": "NasalSeptumDeviationOrDeformity",
-              "answerBoolean": true
-            }
-          ],
-          "enableBehavior": "all",
           "required": true
         }
       ]

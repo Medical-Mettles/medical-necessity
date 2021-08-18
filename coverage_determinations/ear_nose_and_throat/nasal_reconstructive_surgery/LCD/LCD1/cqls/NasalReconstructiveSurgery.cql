@@ -41,6 +41,9 @@ valueset "Allergy to Amoxicillin": '2.16.840.1.113883.3.6037.1001.23.93.116'
 valueset "Nasal Trauma": '2.16.840.1.113883.3.6037.1001.23.93.118'
 valueset "Cleft Lip Or Cleft Palate Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.119'
 valueset "Vestibular Stenosis Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.117'
+valueset "Acetaminophen / Dextromethorphan / Doxylamine / Pseudoephedrine": '2.16.840.1.113883.3.464.1003.196.12.1329'
+valueset "Instillation Of Nasal Spray": '2.16.840.1.113883.3.6037.1001.23.93.122'
+valueset "Antihistamines Adverse Reaction": '2.16.840.1.113883.3.6037.1001.23.93.123'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -172,14 +175,14 @@ define CleftLipOrPalateCondition:
 define ClefLipOrPalateRepair:
 	if (exists("CleftLipOrPalateCondition")
 				and ("NasalSeptumDeviationOrDeformity" = true)
-					and ("ObstructiveSleepDisorder" = false))
+					and ("FunctionalImpairment" = true))
 						then true
 							else false
 
 define RecurrentEpistaxisCondition:
 	[Condition]C
     where exists(C.code.coding C where C in "Epistaxis Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'active'
+      and First(C.clinicalStatus.coding).code.value = 'recurrence'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define RecurrentEpistaxis:
@@ -191,7 +194,7 @@ define RecurrentEpistaxis:
 define RecurrentSinusitisCondition:
 	[Condition]C
     where exists(C.code.coding C where C in "Chronic Sinusitis Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'active'
+      and First(C.clinicalStatus.coding).code.value = 'recurrence'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define RecurrentSinusitis:
@@ -208,7 +211,8 @@ define IntranasalSurgeriesContraindication:
 
 define IntranasalSurgeriesInterference:
  if (exists("IntranasalSurgeriesContraindication")
-			and ("NasalAirwayObstruction" = false))
+			and ("NasalAirwayObstruction" = false)
+				and ("NasalSeptumDeviationOrDeformity" = true))
 				then true
 					else false
 
@@ -274,6 +278,12 @@ define AntiHistamineMedicalTherapy:
 		then true
 			else false
 
+define AntiHistamineTherapyForSixWeeks:
+	exists("AntiHistaminesMedicationAdministration" M
+		with "AntiHistamineProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+
 define SpecifyAntiHistamineMedication:
 	"SpecifyAntiHistamineAdministrationMedicationCode".coding M
 		return (M.display.value)
@@ -304,7 +314,13 @@ define ImprovementPostAntiHistamineMedicalTherapy:
 define AntibioticMedicalTherapy:
 	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Antibiotic Medical Therapy"))
+			and (First(P.code.coding) in "Antibiotic Medical Therapy"))
+
+define AntibioticTherapyForSixWeeks:
+	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+ 		and P.status.value = 'completed'
+			and (First(P.code.coding) in "Antibiotic Medical Therapy")
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
 
 define PostAntibioticMedicalTherapySuccessfulOutcome:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -349,6 +365,12 @@ define ImmunosuppressantsMedicalTherapy:
 		then true
 			else false
 
+define ImmunosuppressantsTherapyForSixWeeks:
+	exists("ImmunosuppressantsMedicationAdministration" M
+		with "ImmunosuppressantsProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+
 define SpecifyImmunosuppressantsMedication:
 	"SpecifyImmunosuppressantsMedicationCode".coding M
 		return (M.display.value)
@@ -376,10 +398,84 @@ define PostImmunosuppressantsMedicalTherapy:
 				then false
 					else null
 
-define PreviousSeptoplastyOrTurbinectomy:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+define DecongestantsMedicalAdministration:
+	[MedicationAdministration]M
+		where M.subject.reference.value = 'Patient/'+ Patient.id.value
+			and M.status.value = 'completed'
+				and First((M.medication as CodeableConcept).coding) in "Acetaminophen / Dextromethorphan / Doxylamine / Pseudoephedrine"
+
+define DecongestantsProcedureResources:
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes"))
+		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Instillation Of Nasal Spray")
+
+define CheckDecongestantsAdministration:
+	"DecongestantsMedicalAdministration" M
+		with "DecongestantsProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+
+define DecongestantsMedicalTherapy:
+	if Last("CheckDecongestantsAdministration") is not null
+		then true
+			else false
+
+define SpecifyDecongestantsMedicationCode:
+		"CheckDecongestantsAdministration".medication M
+
+define SpecifyDecongestantsMedication:
+	"SpecifyDecongestantsMedicationCode".coding M
+		return (M.display.value)
+
+define DecongestantsTherapyForSixWeeks:
+	exists("DecongestantsMedicalAdministration" M
+		with "DecongestantsProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+
+define PostDecongestantsSuccessfulOutcome:
+	exists("DecongestantsMedicalAdministration" M
+							with "DecongestantsProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+
+define PostDecongestantsUnsuccessfulOutcome:
+	exists("DecongestantsMedicalAdministration" M
+							with "DecongestantsProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+
+define PostDecongestantsMedicalTherapy:
+	if ("PostDecongestantsSuccessfulOutcome" = true)
+		then true
+			else if ("PostDecongestantsUnsuccessfulOutcome" = true)
+				then false
+					else null
+
+define PreviousSeptoplastyOrTurbinectomyProcedure:
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+		and P.status.value = 'completed'
+			and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes")
+
+define PreviousSeptoplastyOrTurbinectomy:
+	if exists("PreviousSeptoplastyOrTurbinectomyProcedure")
+		then true
+			else false
+
+define NasalObstructionImprovementPostSeptoplastyOrTurbinectomy:
+	exists(([Condition]C where First(C.clinicalStatus.coding).code.value in {'active', 'resolved'}
+		and First(C.code.coding C where C in "Nasal Obstruction") is not null
+        and First(C.verificationStatus.coding).code.value = 'confirmed') C
+		with "PreviousSeptoplastyOrTurbinectomyProcedure" P
+			such that end of "Normalize Interval"(C.onset) after end of "Normalize Interval"(P.performed))
+
+define SeptalDeviationImprovementPostSeptoplastyOrTurbinectomy:
+	exists(([Condition]C where First(C.clinicalStatus.coding).code.value in {'resolved', 'inactive'}
+		and exists(C.code.coding C where C in "Deviated Nasal Septum")
+        and First(C.verificationStatus.coding).code.value = 'confirmed') Co
+		with "PreviousSeptoplastyOrTurbinectomyProcedure" P
+		such that end of "Normalize Interval"(Co.onset) after end of "Normalize Interval"(P.performed)
+	sort by end of "Normalize Interval"(onset)
+	)
 
 define SeptoplastyOrTurbinectomySuccessfulOutcome:
 	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
@@ -421,7 +517,11 @@ define AmoxicillinAllergy:
 		where First(A.clinicalStatus.coding).code.value = 'active'
     and exists(A.code.coding x where x in "Allergy to Amoxicillin"))
 
-//define AntiHistaminesAllergy:
+define AntiHistaminesAdverseReaction:
+	exists([AdverseEvent]A
+					where A.actuality in {'actual', 'potential'}
+      			and First((A.event as CodeableConcept).coding) in "Antihistamines Adverse Reaction")
+
 
 
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
@@ -441,3 +541,33 @@ define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR
 
 define function "LengthInDays"(Value Interval<DateTime>):
 	difference in days between start of Value and end of Value
+
+define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+ 	 if choice is FHIR.dateTime then
+ 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+	  else if choice is FHIR.Period then
+		  FHIRHelpers.ToInterval(choice as FHIR.Period)
+		else if choice is FHIR.string then
+    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+	  else if choice is FHIR.Age then
+	 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+ 		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+		else if choice is FHIR.Range then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+	  else null
+
+define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+  if onset is FHIR.dateTime then
+	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
+	else if onset is FHIR.Period then
+	  FHIRHelpers.ToInterval(onset as FHIR.Period)
+	else if onset is FHIR.string then
+    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+	else if onset is FHIR.Age then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
+	else if onset is FHIR.Range then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).low),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((onset as FHIR.Range).high) + 1 year)
+	else null

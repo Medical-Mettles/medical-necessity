@@ -683,6 +683,15 @@
           "required": true
         },
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DecongestantsMedicalTherapy"
+              }
+            }
+          ],
           "linkId": "DecongestantsMedicalTherapy",
           "text": "Has a medical therapy using Decongestants been tried?",
           "type": "boolean",
@@ -722,6 +731,15 @@
           "required": true
         },
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DecongestantsTherapyForSixWeeks"
+              }
+            }
+          ],
           "linkId": "DecongestantsTherapyForSixWeeks",
           "text": "Has the patient been on Nasal Decongestants for at least 6 weeks?",
           "type": "boolean",
@@ -735,6 +753,15 @@
           "required": true
         },
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PostDecongestantsMedicalTherapy"
+              }
+            }
+          ],
           "linkId": "PostDecongestantsMedicalTherapy",
           "text": "Has there been any improvement in the patient's condition?",
           "type": "boolean",

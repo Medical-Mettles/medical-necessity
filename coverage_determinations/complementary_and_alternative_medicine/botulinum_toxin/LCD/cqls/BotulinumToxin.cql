@@ -386,7 +386,8 @@ define AdjunctivePhysiotherapy:
 			else false
 
 define SpasticityEarlierBotulinumAdministration:
-  if (Last("CheckBotoxAdministration") is not null
+  if ((Last("CheckBotoxInjectionAdministration") is not null
+				or Last("CheckLaryngealBotoxAdministration") is not null)
 				and exists("SpasticityCondition"))
 	then true
 	else false
@@ -395,19 +396,46 @@ define SpasticitySpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define SpasticityPostBotoxOutcome:
+define SpasticityPostBotoxInjectionSuccessfulOutcome:
 	if exists("MedicationAdministrationResources" M
-							with "ProcedureResources" P
+							with "BotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and ((First(P.outcome.coding) in "Successful") or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
+
+define SpasticityPostBotoxInjectionUnsuccessfulOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "BotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
-					then false
-						else true
+											then true
+												else false
+
+define SpasticityPostLaryngealSuccessfulBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "LaryngealBotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
+
+define SpasticityPostLaryngealUnsuccessfulBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "LaryngealBotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+											then true
+												else false
 
 define SpasticityPostBotoxImprovement:
-	if ("SpasticityPostBotoxOutcome" = true
+	if ((("SpasticityPostBotoxInjectionSuccessfulOutcome" = true) or "SpasticityPostLaryngealSuccessfulBotoxOutcome" = true)
 				and exists("SpasticityCondition"))
 					then true
-						else false
+						else if ((("SpasticityPostBotoxInjectionUnsuccessfulOutcome" = true) or "SpasticityPostLaryngealUnsuccessfulBotoxOutcome" = true)
+							and exists("SpasticityCondition"))
+								then false
+									else null
 
 //BLEPHAROSPASM
 define BlepharospasmFacialUnilateral:

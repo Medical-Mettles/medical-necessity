@@ -47,6 +47,7 @@ valueset "Successful": '2.16.840.1.113883.3.6037.1001.23.93.48'
 valueset "Glycopyrrolate": '2.16.840.1.113883.3.3616.200.110.102.2067'
 valueset "Scopolamine": '2.16.840.1.113883.3.6037.1001.23.93.82'
 valueset "Sialorrhea Injection Procedures": '2.16.840.1.113883.3.6037.1001.23.93.97'
+valueset "Biobehavioral Therapy CPT Codes": '2.16.840.1.113883.3.6037.1001.23.93.124'
 
 //Valuesets for Achalasia
 valueset "Esophagoscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.28'
@@ -580,7 +581,8 @@ define AdverseEffect:
 define BiofeedbackTherapyProcedure:
 	[Procedure]P
 		where P.status.value = 'completed'
-			and exists(P.code.coding C where C in "Biobehavioral Therapy")
+			and (exists(P.code.coding C where C in "Biobehavioral Therapy")
+						or exists(P.code.coding C where C in "Biobehavioral Therapy CPT Codes"))
 
 define BiofeedbackTherapy:
   if exists("BiofeedbackTherapyProcedure")
@@ -621,8 +623,7 @@ define SialorrheaEarlierBotulinumAdministration:
 							else null
 
 define SialorrheaSpecifyBotoxAdministration:
-	"SpecifyBotoxAdministrationMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyBotoxAdministrationMedicationCode".coding)
 
 define SialorrheaPostBotoxInjectionSuccessfulOutcome:
 	if exists("MedicationAdministrationResources" M
@@ -693,8 +694,7 @@ define SpecifyGlycopyrrolateMedicationCode:
 		"GlycopyrrolateDrugResources".medication M
 
 define SpecifyGlycopyrrolateMedication:
-	"SpecifyGlycopyrrolateMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyGlycopyrrolateMedicationCode".coding)
 
 define PostGlycopyrrolateSuccessfulOutcome:
 	if exists("GlycopyrrolateDrugResources" M
@@ -748,8 +748,7 @@ define SpecifyScopolamineMedicationCode:
 		"ScopolamineDrugResources".medication M
 
 define SpecifyScopolamineMedication:
-	"SpecifyScopolamineMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyScopolamineMedicationCode".coding)
 
 define PostScopolamineSuccessfulOutcome:
 	if exists("ScopolamineDrugResources" M

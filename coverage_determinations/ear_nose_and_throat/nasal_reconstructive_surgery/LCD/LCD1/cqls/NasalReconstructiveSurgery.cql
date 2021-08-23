@@ -44,6 +44,7 @@ valueset "Vestibular Stenosis Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.1
 valueset "Acetaminophen / Dextromethorphan / Doxylamine / Pseudoephedrine": '2.16.840.1.113883.3.464.1003.196.12.1329'
 valueset "Instillation Of Nasal Spray": '2.16.840.1.113883.3.6037.1001.23.93.122'
 valueset "Antihistamines Adverse Reaction": '2.16.840.1.113883.3.6037.1001.23.93.123'
+valueset "Antibiotics Oral and Injectables": '2.16.840.1.113762.1.4.1106.75'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -311,35 +312,62 @@ define ImprovementPostAntiHistamineMedicalTherapy:
 				then false
 					else null
 
-define AntibioticMedicalTherapy:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
+define AntibioticsMedicationAdministration:
+	[MedicationAdministration]M
+	where M.subject.reference.value = 'Patient/'+ Patient.id.value
+	and M.status.value = 'completed'
+	and First((M.medication as CodeableConcept).coding) in "Antibiotics Oral and Injectables"
+
+define AntibioticsProcedureResources:
+	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-			and (First(P.code.coding) in "Antibiotic Medical Therapy"))
+		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Antibiotic Medical Therapy")
+
+define CheckAntibioticsAdministration:
+	"AntibioticsMedicationAdministration" M
+		with "AntibioticsProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+
+define SpecifyAntibioticsAdministrationMedicationCode:
+		"AntibioticsMedicationAdministration".medication M
+
+define AntibioticMedicalTherapy:
+  if Last("CheckAntibioticsAdministration") is not null
+		then true
+			else false
 
 define AntibioticTherapyForSixWeeks:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-			and (First(P.code.coding) in "Antibiotic Medical Therapy")
+	exists("AntibioticsMedicationAdministration" M
+		with "AntibioticsProcedureResources" P
+			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
 
-define PostAntibioticMedicalTherapySuccessfulOutcome:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Antibiotic Medical Therapy")
-		and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful")
+define SpecifyAntibioticsMedication:
+	"SpecifyAntibioticsAdministrationMedicationCode".coding M
+		return (M.display.value)
 
-define PostAntibioticMedicalTherapyUnsuccessfulOutcome:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Antibiotic Medical Therapy")
-		and (First(P.outcome.coding) in "Unsuccessful")
+define PostAntibioticsSuccessfulOutcome:
+	if exists("AntibioticsMedicationAdministration" M
+							with "AntibioticsProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+					then true
+						else false
+
+define PostAntibioticsUnsuccessfulOutcome:
+	if exists("AntibioticsMedicationAdministration" M
+							with "AntibioticsProcedureResources" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+					then true
+						else false
 
 define PostAntibioticMedicalTherapy:
-	if exists("PostAntibioticMedicalTherapySuccessfulOutcome")
-				then true
-					else if exists("PostAntibioticMedicalTherapyUnsuccessfulOutcome")
-						then false
-							else null
+	if ("PostAntibioticsSuccessfulOutcome" = true)
+		then true
+			else if ("PostAntibioticsUnsuccessfulOutcome" = true)
+				then false
+					else null
 
 define ImmunosuppressantsMedicationAdministration:
 	[MedicationAdministration]M

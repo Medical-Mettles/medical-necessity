@@ -235,7 +235,7 @@ define RecurrentSinusitisDecision:
               then true
                 else false
 
-//Epistaxis
+//Recurrent Epistaxis
 define RecurrentEpistaxis:
   NasalSurgery."RecurrentEpistaxisCondition"
 
@@ -297,7 +297,13 @@ define PreviousSeptoplastyOrTurbinectomy:
 define PreviousSeptoplastyOrTurbinectomyOutcome:
   NasalSurgery."SeptoplastyOrTurbinectomyOutcome"
 
-define PreviousSurgeryDecision:
+define PreviousSurgeryDecisionForRhinoplasty:
+  if ("PreviousSeptoplastyOrTurbinectomy" = true
+        and "PreviousSeptoplastyOrTurbinectomyOutcome" = false)
+          then true
+            else false
+
+define PreviousSurgeryDecisionForSeptoplasty:
   if ("PreviousSeptoplastyOrTurbinectomy" = false)
     then true
       else if ("PreviousSeptoplastyOrTurbinectomy" = true
@@ -321,7 +327,7 @@ define PrimaryDecisionForRhinoplasty:
             and "CheckNasalSeptumDeviation" = false
               and "SurgeryPurposeDecision" = true
                 and "NasalReconstructiveSurgeryRequest" = true
-                  and "PreviousSurgeryDecision" = true
+                  and "PreviousSurgeryDecisionForRhinoplasty" = true
                     and "CheckAdditionalSurgeries" = false)
                       then true
                         else false
@@ -334,7 +340,7 @@ define PrimaryDecisionForSeptoplasty:
             and "CheckNasalSeptumDeviation" = true
               and "SurgeryPurposeDecision" = true
                 and "NasalReconstructiveSurgeryWithSeptalRequest" = true
-                  and "PreviousSurgeryDecision" = true
+                  and "PreviousSurgeryDecisionForSeptoplasty" = true
                     and "CheckAdditionalSurgeries" = false)
                       then true
                         else false

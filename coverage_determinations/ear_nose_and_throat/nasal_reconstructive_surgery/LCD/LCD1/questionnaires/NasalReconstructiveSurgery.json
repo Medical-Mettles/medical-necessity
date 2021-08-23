@@ -934,6 +934,18 @@
           "required": true
         }
       ]
+    },
+    {
+      "linkId": "7",
+      "text": "Reports",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "PhotographicEvidence",
+          "text": "Please attach the latest photographic documentation (all the following: frontal, lateral and worm’s eye view) of the individual’s condition.",
+          "type": "display"
+        }
+      ]
     }
   ]
 }

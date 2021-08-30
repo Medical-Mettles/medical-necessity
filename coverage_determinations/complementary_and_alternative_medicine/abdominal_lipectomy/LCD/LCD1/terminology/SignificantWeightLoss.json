@@ -1,0 +1,56 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.130",
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.130",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.130"
+        }
+    ],
+    "version": "Latest",
+    "name": "Significant Weight Loss",
+    "title": "Significant Weight Loss",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "R63.4",
+                        "display": "Abnormal weight loss"
+                    }
+                ]
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "262285001",
+                        "display": "Weight decreased (finding)"
+                    },
+                    {
+                        "code": "89362005",
+                        "display": "Weight loss (finding)"
+                    },
+                    {
+                        "code": "309257005",
+                        "display": "Excessive weight loss (finding)"
+                    },
+                    {
+                        "code": "426977000",
+                        "display": "Recent weight loss (finding)"
+                    },
+                    {
+                        "code": "267024001",
+                        "display": "Abnormal weight loss (finding)"
+                    }
+                ]
+            }
+        ]
+    }
+}

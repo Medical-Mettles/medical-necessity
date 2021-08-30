@@ -1,0 +1,283 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "AbdominalLipectomy",
+  "name": "AbdominalLipectomy",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.125"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.126"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.127"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.128"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.129"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.130"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.131"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.132"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.133"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.134"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.111"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.135"
+        }
+      ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.135"
+        }
+        ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.136"
+        }
+        ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.136"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.137"
+        }
+        ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1106.75"
+        }
+        ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1106.75"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.138"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.139"
+        }
+        ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.140"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.141"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.142"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.3157.1329"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "event",
+          "valueSet": "2.16.840.1.113762.1.4.1221.122"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.143"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.144"
+        }
+        ]
+    },
+    {
+      "type": "Observation",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1045.159"
+        }
+      ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.48"
+        }
+      ]
+    }
+  ]
+}

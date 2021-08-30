@@ -1,0 +1,66 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.132",
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.132",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.132"
+        }
+    ],
+    "version": "Latest",
+    "name": "Debridement Procedure",
+    "title": "Debridement Procedure",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "85875009",
+                        "display": "Debridement of wound of skin (procedure)"
+                    },
+                    {
+                        "code": "78391005",
+                        "display": "Debridement of subcutaneous tissue (procedure)"
+                    },
+                    {
+                        "code": "68436001",
+                        "display": "Debridement of abdominal wall (procedure)"
+                    },
+                    {
+                        "code": "46863009",
+                        "display": "Debridement of skin, subcutaneous tissue and muscle (procedure)"
+                    },
+                    {
+                        "code": "36777000",
+                        "display": "Debridement (procedure)"
+                    },
+                    {
+                        "code": "312775003",
+                        "display": "Debridement of ulcer (procedure)"
+                    },
+                    {
+                        "code": "31064000",
+                        "display": "Debridement of skin and subcutaneous tissue (procedure)"
+                    },
+                    {
+                        "code": "238225000",
+                        "display": "Debridement of lesion of abdominal wall (procedure)"
+                    },
+                    {
+                        "code": "19780006",
+                        "display": "Debridement of infection of skin (procedure)"
+                    },
+                    {
+                        "code": "225149002",
+                        "display": "Debridement of wound with topical agent (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

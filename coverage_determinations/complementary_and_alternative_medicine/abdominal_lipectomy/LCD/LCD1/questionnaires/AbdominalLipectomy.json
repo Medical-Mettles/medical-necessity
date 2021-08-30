@@ -1,0 +1,522 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-abdominal_lipectomy"
+    }
+  ],
+  "name": "Prior Authorization for Panniculectomy",
+  "version": "1.0.0",
+  "title": "Prior Authorization for Panniculectomy",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2021-07-27",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-AbdominalLipectomy"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Type of Surgery",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SurgeryPurpose"
+              }
+            }
+          ],
+          "linkId": "SurgeryPurpose",
+          "text": "What is the purpose of this surgery?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Cosmetic",
+                "display": "Cosmetic"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Reconstructive",
+                "display": "Reconstructive"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Details",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PatientAgeAboveEighteen"
+              }
+            }
+          ],
+          "linkId": "PatientAgeAboveEighteen",
+          "text": "Is the patient 18 years or older by the date of the service?",
+          "type": "choice",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "GradeTwoPanniculusHangs"
+              }
+            }
+          ],
+          "linkId": "GradeTwoPanniculusHangs",
+          "text": "Is the patient’s panniculus grade 2 or higher (hangs below the level of symphysis pubis)?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Past Medical History",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SkinConditionsCausingPanniculus"
+              }
+            }
+          ],
+          "linkId": "SkinConditionsCausingPanniculus",
+          "text": "Is the panniculus primary reason for recurrent skin infections/non-healing ulcers/necrosis of skin?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CellulitisOrPanniculitis"
+              }
+            }
+          ],
+          "linkId": "CellulitisOrPanniculitis",
+          "text": "Is the panniculus the primary reason for cellulitis/ panniculitis? ",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IntertriginousDermatitis"
+              }
+            }
+          ],
+          "linkId": "IntertriginousDermatitis",
+          "text": "Is the panniculus the primary reason for intertriginous dermatitis?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FunctionalDeficit"
+              }
+            }
+          ],
+          "linkId": "FunctionalDeficit",
+          "text": "Does the condition cause any functional deficit (impaired ambulation/ climbing stairs/ daily activities) to the patient?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SignificantWeightLoss"
+              }
+            }
+          ],
+          "linkId": "SignificantWeightLoss",
+          "text": "Is the panniculectomy being done following a significant weight loss?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BariatricSurgery"
+              }
+            }
+          ],
+          "linkId": "BariatricSurgery",
+          "text": "Is the weight loss due to a bariatric surgery?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "SignificantWeightLoss",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StableWeightForSixMonths"
+              }
+            }
+          ],
+          "linkId": "StableWeightForSixMonths",
+          "text": "Has the patient maintained a stable weight for at least 6 months?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "BariatricSurgery",
+              "answerBoolean": false
+            },
+            {
+              "question": "SignificantWeightLoss",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AboveEighteenMonthsPostSurgery"
+              }
+            }
+          ],
+          "linkId": "AboveEighteenMonthsPostSurgery",
+          "text": "Has it been more than 18 months since the bariatric surgery?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "BariatricSurgery",
+              "answerBoolean": true
+            },
+            {
+              "question": "SignificantWeightLoss",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StableWeightForSixMonths"
+              }
+            }
+          ],
+          "linkId": "StableWeightForSixMonths",
+          "text": "Has the patient maintained stable weight for at least 6 months?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "AboveEighteenMonthsPostSurgery",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Debridement"
+              }
+            }
+          ],
+          "linkId": "Debridement",
+          "text": "Has a conventional wound healing intervention like debridement been tried?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConservativeMedicalTherapy"
+              }
+            }
+          ],
+          "linkId": "ConservativeMedicalTherapy",
+          "text": "Has a conservative medical therapy (antibiotics/ antifungals/ corticosteroids) been tried?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConservativeTherapyForTwelveWeeks"
+              }
+            }
+          ],
+          "linkId": "ConservativeTherapyForTwelveWeeks",
+          "text": "Has it been tried for at least 12 weeks?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PostConservativeTherapyImprovement"
+              }
+            }
+          ],
+          "linkId": "PostConservativeTherapyImprovement",
+          "text": "Has there been any improvement in the condition?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VentralHernia"
+              }
+            }
+          ],
+          "linkId": "VentralHernia",
+          "text": "Does the patient have ventral hernia?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VentralHerniaScreening"
+              }
+            }
+          ],
+          "linkId": "VentralHerniaScreening",
+          "text": "Is it confirmed by CT scan/MRI imaging?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "VentralHernia",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IncisionalHerniaRepair"
+              }
+            }
+          ],
+          "linkId": "IncisionalHerniaRepair",
+          "text": "Does the patient need an incisional hernia repair?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "VentralHernia",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "4",
+      "text": "Co-morbidities",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Smoking"
+              }
+            }
+          ],
+          "linkId": "Smoking",
+          "text": "Is the patient an active smoker?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DiabetesMellitus"
+              }
+            }
+          ],
+          "linkId": "DiabetesMellitus",
+          "text": "Does the patient have Diabetes mellitus?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DiabetesUnderControl"
+              }
+            }
+          ],
+          "linkId": "DiabetesUnderControl",
+          "text": "Is the diabetes under control?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "DiabetesMellitus",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NutritionalDeficiency"
+              }
+            }
+          ],
+          "linkId": "NutritionalDeficiency",
+          "text": "Does the patient have a nutritional deficiency?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "GERDCondition"
+              }
+            }
+          ],
+          "linkId": "NutritionalDeficiency",
+          "text": "Does the patient have GERD?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Photographic Evidence",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "PreoperativePhotographs",
+          "text": "Preoperative photographs may be required to support justification. Please attach relevant photographs.",
+          "type": "display",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

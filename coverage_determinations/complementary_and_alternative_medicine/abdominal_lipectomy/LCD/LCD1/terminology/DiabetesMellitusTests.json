@@ -1,0 +1,325 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1221.122",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2021-08-30T01:44:15.374+05:30",
+        "source": "#2STs7Ey7kcrHtsbb"
+    },
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1221.122",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1221.122"
+        }
+    ],
+    "version": "Latest",
+    "name": "DiabetesMellitusScreeningandLaboratoryTests",
+    "title": "Diabetes Mellitus Screening and Laboratory Tests",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "version": "2.70",
+                "concept": [
+                    {
+                        "code": "10449-7",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --1 hour post meal"
+                    },
+                    {
+                        "code": "10450-5",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --10 hours fasting"
+                    },
+                    {
+                        "code": "12614-4",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --7 hours post meal"
+                    },
+                    {
+                        "code": "14743-9",
+                        "display": "Glucose [Moles/volume] in Capillary blood by Glucometer"
+                    },
+                    {
+                        "code": "14749-6",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma"
+                    },
+                    {
+                        "code": "14760-3",
+                        "display": "Glucose [Moles/volume] in Capillary blood --2 hours post meal"
+                    },
+                    {
+                        "code": "14761-1",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --2 hours post meal"
+                    },
+                    {
+                        "code": "14768-6",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --baseline"
+                    },
+                    {
+                        "code": "14769-4",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --pre 12 hour fast"
+                    },
+                    {
+                        "code": "14770-2",
+                        "display": "Fasting glucose [Moles/volume] in Capillary blood by Glucometer"
+                    },
+                    {
+                        "code": "14771-0",
+                        "display": "Fasting glucose [Moles/volume] in Serum or Plasma"
+                    },
+                    {
+                        "code": "15074-8",
+                        "display": "Glucose [Moles/volume] in Blood"
+                    },
+                    {
+                        "code": "1521-4",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --2 hours post meal"
+                    },
+                    {
+                        "code": "1547-9",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --baseline"
+                    },
+                    {
+                        "code": "1550-3",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --pre 12 hour fast"
+                    },
+                    {
+                        "code": "1554-5",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --12 hours fasting"
+                    },
+                    {
+                        "code": "1556-0",
+                        "display": "Fasting glucose [Mass/volume] in Capillary blood"
+                    },
+                    {
+                        "code": "1557-8",
+                        "display": "Fasting glucose [Mass/volume] in Venous blood"
+                    },
+                    {
+                        "code": "1558-6",
+                        "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+                    },
+                    {
+                        "code": "16915-1",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --post meal"
+                    },
+                    {
+                        "code": "17856-6",
+                        "display": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC"
+                    },
+                    {
+                        "code": "17865-7",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --8 hours fasting"
+                    },
+                    {
+                        "code": "21004-7",
+                        "display": "Glucose tolerance [Interpretation] in Serum or Plasma"
+                    },
+                    {
+                        "code": "2339-0",
+                        "display": "Glucose [Mass/volume] in Blood"
+                    },
+                    {
+                        "code": "2340-8",
+                        "display": "Glucose [Mass/volume] in Blood by Automated test strip"
+                    },
+                    {
+                        "code": "2341-6",
+                        "display": "Glucose [Mass/volume] in Blood by Test strip manual"
+                    },
+                    {
+                        "code": "2345-7",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma"
+                    }
+                ]
+            },
+            {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "version": "2021",
+                "concept": [
+                    {
+                        "code": "3044F",
+                        "display": "Most recent hemoglobin A1c (HbA1c) level less than 7.0% (DM)"
+                    },
+                    {
+                        "code": "3046F",
+                        "display": "Most recent hemoglobin A1c level greater than 9.0% (DM)"
+                    }
+                ]
+            },
+            {
+                "system": "http://loinc.org",
+                "version": "2.70",
+                "concept": [
+                    {
+                        "code": "32016-8",
+                        "display": "Glucose [Mass/volume] in Capillary blood"
+                    },
+                    {
+                        "code": "35184-1",
+                        "display": "Fasting glucose [Mass or Moles/volume] in Serum or Plasma"
+                    },
+                    {
+                        "code": "35211-2",
+                        "display": "Glucose [Mass or Moles/volume] in Serum or Plasma"
+                    },
+                    {
+                        "code": "39480-9",
+                        "display": "Glucose [Moles/volume] in Venous blood"
+                    },
+                    {
+                        "code": "39481-7",
+                        "display": "Glucose [Moles/volume] in Arterial blood"
+                    },
+                    {
+                        "code": "40193-5",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --pre-meal"
+                    },
+                    {
+                        "code": "40287-5",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --1 hour post meal"
+                    },
+                    {
+                        "code": "40858-3",
+                        "display": "Glucose [Mass/volume] in Capillary blood --baseline"
+                    },
+                    {
+                        "code": "41604-0",
+                        "display": "Fasting glucose [Mass/volume] in Capillary blood by Glucometer"
+                    },
+                    {
+                        "code": "41651-1",
+                        "display": "Glucose [Mass/volume] in Arterial blood"
+                    },
+                    {
+                        "code": "41652-9",
+                        "display": "Glucose [Mass/volume] in Venous blood"
+                    },
+                    {
+                        "code": "41653-7",
+                        "display": "Glucose [Mass/volume] in Capillary blood by Glucometer"
+                    },
+                    {
+                        "code": "44919-9",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --1.5 hours post meal"
+                    },
+                    {
+                        "code": "4548-4",
+                        "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+                    },
+                    {
+                        "code": "4549-2",
+                        "display": "Hemoglobin A1c/Hemoglobin.total in Blood by Electrophoresis"
+                    },
+                    {
+                        "code": "49688-5",
+                        "display": "Glucose tolerance [Interpretation] in Serum or Plasma Narrative--post 75 g glucose PO"
+                    },
+                    {
+                        "code": "49689-3",
+                        "display": "Glucose tolerance [Interpretation] in Serum or Plasma Narrative--post 100 g glucose PO"
+                    },
+                    {
+                        "code": "50667-5",
+                        "display": "Glucose tolerance [Interpretation] in Serum or Plasma Narrative"
+                    },
+                    {
+                        "code": "51596-5",
+                        "display": "Glucose [Moles/volume] in Capillary blood"
+                    },
+                    {
+                        "code": "53049-3",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --pre-meal"
+                    },
+                    {
+                        "code": "53094-9",
+                        "display": "Glucose [Moles/volume] in Serum or Plasma --post meal"
+                    },
+                    {
+                        "code": "6689-4",
+                        "display": "Glucose [Mass/volume] in Blood --2 hours post meal"
+                    },
+                    {
+                        "code": "72516-8",
+                        "display": "Glucose [Moles/volume] in Blood by Automated test strip"
+                    },
+                    {
+                        "code": "74774-1",
+                        "display": "Glucose [Mass/volume] in Serum, Plasma or Blood"
+                    },
+                    {
+                        "code": "76629-5",
+                        "display": "Fasting glucose [Moles/volume] in Blood"
+                    },
+                    {
+                        "code": "77135-2",
+                        "display": "Glucose [Moles/volume] in Serum, Plasma or Blood"
+                    },
+                    {
+                        "code": "77145-1",
+                        "display": "Fasting glucose [Moles/volume] in Serum, Plasma or Blood"
+                    },
+                    {
+                        "code": "77677-3",
+                        "display": "Glucose [Moles/volume] in Serum, Plasma or Blood --2 hours post meal"
+                    },
+                    {
+                        "code": "80959-0",
+                        "display": "Glucose [Mass/volume] in Serum or Plasma --1.5 hours post meal"
+                    }
+                ]
+            },
+            {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "version": "2021",
+                "concept": [
+                    {
+                        "code": "83036",
+                        "display": "Hemoglobin; glycosylated (A1C)"
+                    },
+                    {
+                        "code": "83037",
+                        "display": "Hemoglobin; glycosylated (A1C) by device cleared by FDA for home use"
+                    }
+                ]
+            },
+            {
+                "system": "http://loinc.org",
+                "version": "2.70",
+                "concept": [
+                    {
+                        "code": "87422-2",
+                        "display": "Glucose [Mass/volume] in Blood --post meal"
+                    },
+                    {
+                        "code": "88365-2",
+                        "display": "Glucose [Mass/volume] in Blood --pre-meal"
+                    },
+                    {
+                        "code": "93791-2",
+                        "display": "Glucose [Mass/volume] mean in Serum or Plasma"
+                    },
+                    {
+                        "code": "LP19482-6",
+                        "display": "Glucose tolerance"
+                    },
+                    {
+                        "code": "LP387198-7",
+                        "display": "Glucose tolerance | Serum or Plasma | Chemistry - challenge"
+                    }
+                ]
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2022",
+                "concept": [
+                    {
+                        "code": "Z13.1",
+                        "display": "Encounter for screening for diabetes mellitus"
+                    }
+                ]
+            }
+        ]
+    }
+}

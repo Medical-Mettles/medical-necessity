@@ -1,0 +1,82 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.135",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.135",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.135"
+        }
+    ],
+    "version": "Latest",
+    "name": "Antifungal Medicines",
+    "title": "Antifungal Medicines",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "1007854",
+                        "display": "clotrimazole / dexamethasone"
+                    },
+                    {
+                        "code": "1008399",
+                        "display": "clotrimazole / hexamidine"
+                    },
+                    {
+                        "code": "1008474",
+                        "display": "clotrimazole / hexamidine / prednisolone"
+                    },
+                    {
+                        "code": "1008652",
+                        "display": "clotrimazole / zinc oxide"
+                    },
+                    {
+                        "code": "1606020",
+                        "display": "clotrimazole / gentamicin / mometasone"
+                    },
+                    {
+                        "code": "262272",
+                        "display": "clotrimazole / hydrocortisone"
+                    },
+                    {
+                        "code": "2623",
+                        "display": "clotrimazole"
+                    },
+                    {
+                        "code": "1006920",
+                        "display": "miconazole / zinc oxide"
+                    },
+                    {
+                        "code": "1007620",
+                        "display": "miconazole / tinidazole"
+                    },
+                    {
+                        "code": "1008294",
+                        "display": "miconazole / polymyxin B / prednisolone"
+                    },
+                    {
+                        "code": "1366798",
+                        "display": "miconazole / triclosan"
+                    },
+                    {
+                        "code": "42790",
+                        "display": "miconazole nitrate"
+                    },
+                    {
+                        "code": "645114",
+                        "display": "miconazole / petrolatum / zinc oxide"
+                    },
+                    {
+                        "code": "6932",
+                        "display": "miconazole"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -394,6 +394,19 @@
       ]
     },
     {
+      "linkId": "5",
+      "text": "Photographic Evidence",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "PreoperativePhotographs",
+          "text": "Preoperative photographs may be required to support justification. Please attach relevant photographs.",
+          "type": "display",
+          "required": true
+        }
+      ]
+    },
+    {
       "linkId": "4",
       "text": "Co-morbidities",
       "type": "group",
@@ -477,19 +490,6 @@
           "linkId": "GERDCondition",
           "text": "Does the patient have GERD?",
           "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "5",
-      "text": "Photographic Evidence",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "PreoperativePhotographs",
-          "text": "Preoperative photographs may be required to support justification. Please attach relevant photographs.",
-          "type": "display",
           "required": true
         }
       ]

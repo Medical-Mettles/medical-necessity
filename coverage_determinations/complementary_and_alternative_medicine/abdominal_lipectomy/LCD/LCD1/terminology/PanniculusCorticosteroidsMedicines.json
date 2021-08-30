@@ -1,0 +1,70 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.136",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.136",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.136"
+        }
+    ],
+    "version": "Latest",
+    "name": "Panniculus Corticosteroids",
+    "title": "Panniculus Corticosteroids",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "705022",
+                        "display": "fluticasone furoate"
+                    },
+                    {
+                        "code": "41126",
+                        "display": "fluticasone"
+                    },
+                    {
+                        "code": "50121",
+                        "display": "fluticasone propionate"
+                    },
+                    {
+                        "code": "284635",
+                        "display": "fluticasone / salmeterol"
+                    },
+                    {
+                        "code": "1945038",
+                        "display": "fluticasone / umeclidinium / vilanterol"
+                    },
+                    {
+                        "code": "1424888",
+                        "display": "fluticasone / vilanterol"
+                    },
+                    {
+                        "code": "30145",
+                        "display": "mometasone furoate"
+                    },
+                    {
+                        "code": "2105736",
+                        "display": "mometasone / orbifloxacin / posaconazole"
+                    },
+                    {
+                        "code": "153374",
+                        "display": "mometasone furoate monohydrate"
+                    },
+                    {
+                        "code": "108118",
+                        "display": "mometasone"
+                    },
+                    {
+                        "code": "1007669",
+                        "display": "mometasone / salicylic acid"
+                    }
+                ]
+            }
+        ]
+    }
+}

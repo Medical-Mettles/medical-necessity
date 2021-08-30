@@ -1,0 +1,38 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.144",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.144",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.144"
+        }
+    ],
+    "version": "Latest",
+    "name": "GERD Condition",
+    "title": "GERD Condition",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "K21.01",
+                      "display": "Gastro-esophageal reflux disease with esophagitis, with bleeding"
+                    },
+                    {
+                      "code": "K21.00",
+                      "display": "Gastro-esophageal reflux disease with esophagitis, without bleeding"
+                    },
+                    {
+                      "code": "K21.9",
+                      "display": "Gastro-esophageal reflux disease without esophagitis"
+                    }
+                ]
+            }
+        ]
+    }
+}

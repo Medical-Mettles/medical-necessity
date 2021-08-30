@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.134",
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.134",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.134"
+        }
+    ],
+    "version": "Latest",
+    "name": "Steroids Procedure",
+    "title": "Steroids Procedure",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "297279009",
+                        "display": "Steroid therapy (procedure)"
+                    },
+                    {
+                        "code": "266715005",
+                        "display": "Steroid prophylaxis (procedure)"
+                    },
+                    {
+                        "code": "297280007",
+                        "display": "Oral steroid therapy (procedure)"
+                    },
+                    {
+                        "code": "788751009",
+                        "display": "Corticosteroid and corticosteroid derivative therapy (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.143",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.143",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.143"
+        }
+    ],
+    "version": "Latest",
+    "name": "Nutritional Deficiency",
+    "title": "Nutritional Deficiency",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "E63.9",
+                      "display": "Nutritional deficiency, unspecified"
+                    },
+                    {
+                      "code": "E63.0",
+                      "display": "Essential fatty acid [EFA] deficiency"
+                    },
+                    {
+                      "code": "E63.1",
+                      "display": "Imbalance of constituents of food intake"
+                    },
+                    {
+                      "code": "E63.8",
+                      "display": "Other specified nutritional deficiencies"
+                    }
+                ]
+            }
+        ]
+    }
+}

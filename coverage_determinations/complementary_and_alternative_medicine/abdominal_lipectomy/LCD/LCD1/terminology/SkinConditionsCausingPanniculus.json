@@ -1,0 +1,82 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.126",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.126",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.126"
+        }
+    ],
+    "version": "Latest",
+    "name": "Skin Conditions causing Panniculus",
+    "title": "Skin Conditions causing Panniculus",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "L57.4",
+                        "display": "Cutis laxa senilis"
+                    },
+                    {
+                        "code": "L87.9",
+                        "display": "Transepidermal elimination disorder, unspecified"
+                    },
+                    {
+                        "code": "L90.9",
+                        "display": "Atrophic disorder of skin, unspecified"
+                    },
+                    {
+                        "code": "L91.9",
+                        "display": "Hypertrophic disorder of the skin, unspecified"
+                    },
+                    {
+                        "code": "L98.411",
+                        "display": "Non-pressure chronic ulcer of buttock limited to breakdown of skin"
+                    },
+                    {
+                        "code": "L98.412",
+                        "display": "Non-pressure chronic ulcer of buttock with fat layer exposed"
+                    },
+                    {
+                        "code": "L98.413",
+                        "display": "Non-pressure chronic ulcer of buttock with necrosis of muscle"
+                    },
+                    {
+                        "code": "L98.414",
+                        "display": "Non-pressure chronic ulcer of buttock with necrosis of bone"
+                    },
+                    {
+                        "code": "L98.419",
+                        "display": "Non-pressure chronic ulcer of buttock with unspecified severity"
+                    },
+                    {
+                        "code": "L98.421",
+                        "display": "Non-pressure chronic ulcer of back limited to breakdown of skin"
+                    },
+                    {
+                        "code": "L98.422",
+                        "display": "Non-pressure chronic ulcer of back with fat layer exposed"
+                    },
+                    {
+                        "code": "L98.429",
+                        "display": "Non-pressure chronic ulcer of back with unspecified severity"
+                    },
+                    {
+                        "code": "L98.424",
+                        "display": "Non-pressure chronic ulcer of back with necrosis of bone"
+                    },
+                    {
+                        "code": "L98.7",
+                        "display": "Excessive and redundant skin and subcutaneous tissue"
+                    }
+                ]
+            }
+        ]
+    }
+}

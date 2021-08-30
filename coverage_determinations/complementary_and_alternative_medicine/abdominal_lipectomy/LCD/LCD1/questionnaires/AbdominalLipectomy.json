@@ -88,43 +88,6 @@
       ]
     },
     {
-      "linkId": "2",
-      "text": "Diagnosis Details",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PatientAgeAboveEighteen"
-              }
-            }
-          ],
-          "linkId": "PatientAgeAboveEighteen",
-          "text": "Is the patient 18 years or older by the date of the service?",
-          "type": "choice",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "GradeTwoPanniculusHangs"
-              }
-            }
-          ],
-          "linkId": "GradeTwoPanniculusHangs",
-          "text": "Is the patient’s panniculus grade 2 or higher (hangs below the level of symphysis pubis)?",
-          "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
       "linkId": "3",
       "text": "Past Medical History",
       "type": "group",
@@ -231,32 +194,6 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "StableWeightForSixMonths"
-              }
-            }
-          ],
-          "linkId": "StableWeightForSixMonths",
-          "text": "Has the patient maintained a stable weight for at least 6 months?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "question": "BariatricSurgery",
-              "answerBoolean": false
-            },
-            {
-              "question": "SignificantWeightLoss",
-              "answerBoolean": true
-            }
-          ],
-          "enableBehavior": "all",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
                 "expression": "AboveEighteenMonthsPostSurgery"
               }
             }
@@ -268,10 +205,6 @@
             {
               "question": "BariatricSurgery",
               "answerBoolean": true
-            },
-            {
-              "question": "SignificantWeightLoss",
-              "answerBoolean": true
             }
           ],
           "enableBehavior": "all",
@@ -288,14 +221,8 @@
             }
           ],
           "linkId": "StableWeightForSixMonths",
-          "text": "Has the patient maintained stable weight for at least 6 months?",
+          "text": "Has the patient maintained a stable weight for at least 6 months?",
           "type": "boolean",
-          "enableWhen": [
-            {
-              "question": "AboveEighteenMonthsPostSurgery",
-              "answerBoolean": true
-            }
-          ],
           "required": true
         },
         {
@@ -341,6 +268,12 @@
           "linkId": "ConservativeTherapyForTwelveWeeks",
           "text": "Has it been tried for at least 12 weeks?",
           "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "ConservativeMedicalTherapy",
+              "answerBoolean": true
+            }
+          ],
           "required": true
         },
         {
@@ -356,6 +289,12 @@
           "linkId": "PostConservativeTherapyImprovement",
           "text": "Has there been any improvement in the condition?",
           "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "ConservativeTherapyForTwelveWeeks",
+              "answerBoolean": true
+            }
+          ],
           "required": true
         },
         {
@@ -413,6 +352,43 @@
               "answerBoolean": true
             }
           ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Details",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PatientAgeAboveEighteen"
+              }
+            }
+          ],
+          "linkId": "PatientAgeAboveEighteen",
+          "text": "Is the patient 18 years or older by the date of the service?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "GradeTwoPanniculusHangs"
+              }
+            }
+          ],
+          "linkId": "GradeTwoPanniculusHangs",
+          "text": "Is the patient’s panniculus grade 2 or higher (hangs below the level of symphysis pubis)?",
+          "type": "boolean",
           "required": true
         }
       ]
@@ -498,7 +474,7 @@
               }
             }
           ],
-          "linkId": "NutritionalDeficiency",
+          "linkId": "GERDCondition",
           "text": "Does the patient have GERD?",
           "type": "boolean",
           "required": true

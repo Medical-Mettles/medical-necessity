@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.163",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.163",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.163"
+        }
+    ],
+    "version": "Latest",
+    "name": "Third Trimester Finding",
+    "title": "Third Trimester Finding",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "41587001",
+                      "display": "Third trimester pregnancy (finding)"
+                    }
+                ]
+            }
+        ]
+    }
+}

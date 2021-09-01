@@ -1,0 +1,86 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.159",
+    "url": "http://localhost:8080/interop/fhir/ ValueSet/2.16.840.1.113883.3.6037.1001.23.93.159",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.159"
+        }
+    ],
+    "version": "Latest",
+    "name": "Second Trimester of Pregnancy",
+    "title": "Second Trimester of Pregnancy",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "Z34.02",
+                        "display": "Encounter for supervision of normal first pregnancy, second trimester"
+                    },
+                    {
+                        "code": "Z34.82",
+                        "display": "Encounter for supervision of other normal pregnancy, second trimester"
+                    },
+                    {
+                        "code": "Z34.92",
+                        "display": "Encounter for supervision of normal pregnancy, unspecified, second trimester"
+                    },
+                    {
+                        "code": "Z3A.13",
+                        "display": "13 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.14",
+                        "display": "14 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.15",
+                        "display": "15 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.16",
+                        "display": "16 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.17",
+                        "display": "17 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.18",
+                        "display": "18 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.19",
+                        "display": "19 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.20",
+                        "display": "20 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.21",
+                        "display": "21 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.22",
+                        "display": "22 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.23",
+                        "display": "23 weeks gestation of pregnancy"
+                    },
+                    {
+                        "code": "Z3A.24",
+                        "display": "24 weeks gestation of pregnancy"
+                    }
+                ]
+            }
+        ]
+    }
+}

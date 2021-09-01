@@ -1,0 +1,38 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.165",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.165",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.165"
+    }
+  ],
+  "version": "Latest",
+  "name": "Partial Mastectomy Procedure",
+  "title": "Partial Mastectomy Procedure",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-08",
+        "concept": [
+          {
+            "code": "64368001",
+            "display": "Partial mastectomy (procedure)"
+          },
+          {
+            "code": "35482003",
+            "display": "Partial mastectomy with axillary lymphadenectomy (procedure)"
+          },
+          {
+            "code": "428554004",
+            "display": "Partial excision of breast using guide wire (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.18",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.18",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.96.18"
+      }
+    ],
+    "version": "Latest",
+    "name": "Breasts BodySite",
+    "title": "Breasts BodySite",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "119184005",
+              "display": "Breast part (body structure)"
+            },
+            {
+              "code": "181131000",
+              "display": "Entire breast (body structure)"
+            },
+            {
+              "code": "80248007",
+              "display": "Left breast structure (body structure)"
+            },
+            {
+              "code": "57511008",
+              "display": "Multiple mammary glands (body structure)"
+            },
+            {
+              "code": "73056007",
+              "display": "Right breast structure (body structure)"
+            }
+          ]
+        }
+      ]
+    }
+  }

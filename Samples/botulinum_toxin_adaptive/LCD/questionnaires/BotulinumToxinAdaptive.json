@@ -3,17 +3,17 @@
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-botulinumtoxin-BotulinumToxin"
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-botulinumtoxinadaptive-BotulinumToxinAdaptive"
     }
   ],
-  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-botulinumtoxin-BotulinumToxin",
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-botulinumtoxinadaptive-BotulinumToxinAdaptive",
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
-      "value": "medicare_fee_for_service-botulinum_toxin"
+      "value": "medicare_fee_for_service-botulinum_toxin_adaptive"
     }
   ],
-  "name": "BotulinumToxin",
+  "name": "BotulinumToxinAdaptive",
   "version": "1.0.0",
   "title": "Prior Authorization for Botulinum Toxin",
   "status": "draft",

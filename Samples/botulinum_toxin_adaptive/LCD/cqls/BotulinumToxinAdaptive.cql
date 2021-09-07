@@ -1,4 +1,4 @@
-library BotulinumUrinaryIncontinence version '1.0.0'
+library BotulinumToxinAdaptive version '1.0.0'
 
 using FHIR version '4.0.0'
 

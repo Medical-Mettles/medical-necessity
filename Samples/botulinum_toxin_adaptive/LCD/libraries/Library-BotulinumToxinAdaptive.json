@@ -1,8 +1,8 @@
 {
   "resourceType": "Library",
   "version": "1.0.0",
-  "title": "BotulinumToxin",
-  "name": "BotulinumToxin",
+  "title": "BotulinumToxinAdaptive",
+  "name": "BotulinumToxinAdaptive",
   "status": "draft",
   "type": {
     "coding": [

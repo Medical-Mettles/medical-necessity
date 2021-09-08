@@ -1,6 +1,6 @@
 {
     "resourceType": "Questionnaire",
-    "id": "questionnaire-breastcancerchemoadaptive-breastcancerchemoadaptive",
+    "id": "questionnaire-breastcancerchemoadaptive",
     "meta": {
         "versionId": "3",
         "lastUpdated": "2021-01-29T13:51:00.000+00:00",
@@ -9,10 +9,10 @@
     "extension": [
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-breastcancerchemoadaptive-BreastCancerChemoAdaptive"
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-chemoadaptive-ChemoAdaptive"
         }
     ],
-    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-breastcancerchemoadaptive-breastcancerchemoadaptive",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-chemoadaptive-chemoadaptive",
     "identifier": [
         {
             "system": "http://identifiers.mettles.com/prior_authorization",
@@ -20,7 +20,7 @@
         }
     ],
     "version": "1.0.0",
-    "name": "BreastsCancerChemoAdaptive",
+    "name": "BreastCancerChemoAdaptive",
     "title": "Systemic Adjuvant Chemotherapy",
     "status": "draft",
     "subjectType": [

@@ -1,0 +1,51 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.07",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.07",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.07"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T1mi",
+  "title": "Tumor stage T1mi",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "433381000124109",
+            "display": "Neoplasm of breast primary tumor staging category T1mi: Tumor <=1 mm in greatest dimension"
+          },
+          {
+            "code": "313108002",
+            "display": "Tumor stage T1mic (finding)"
+          },
+          {
+            "code": "369896001",
+            "display": "T1mic: Microinvasion <= 0.1 cm in greatest dimension: BREAST: Complete excision less than total mastectomy, total mastectomy, modified radical mastectomy, radicalmastectomy (finding)"
+          },
+          {
+            "code": "373179007",
+            "display": "pT1mic: Microinvasion 0.1 cm or less in greatest dimension (breast) (finding)"
+          },
+          {
+            "code": "443600004",
+            "display": "pT1mic category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

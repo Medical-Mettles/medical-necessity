@@ -1,0 +1,167 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.96.13",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.13",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.96.13"
+    }
+  ],
+  "version": "Latest",
+  "name": "Docetaxel, Carboplatin and Trastuzumab Chemotherapy drugs",
+  "title": "Docetaxel, Carboplatin and Trastuzumab Chemotherapy drugs",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "1101770",
+            "display": "Docefrez"
+          },
+          {
+            "code": "72962",
+            "display": "docetaxel"
+          },
+          {
+            "code": "1093279",
+            "display": "docetaxel 10 MG/ML"
+          },
+          {
+            "code": "1001404",
+            "display": "docetaxel 20 MG/ML"
+          },
+          {
+            "code": "1001406",
+            "display": "docetaxel 20 MG/ML [Taxotere]"
+          },
+          {
+            "code": "1101768",
+            "display": "docetaxel 24 MG/ML"
+          },
+          {
+            "code": "1101771",
+            "display": "docetaxel 24 MG/ML [Docefrez]"
+          },
+          {
+            "code": "1101773",
+            "display": "docetaxel 24 MG/ML Injectable Solution [Docefrez]"
+          },
+          {
+            "code": "1111070",
+            "display": "docetaxel 25 MG/ML"
+          },
+          {
+            "code": "1111072",
+            "display": "docetaxel 25 MG/ML [Docefrez]"
+          },
+          {
+            "code": "1111073",
+            "display": "docetaxel 25 MG/ML Injectable Solution [Docefrez]"
+          },
+          {
+            "code": "329054",
+            "display": "docetaxel 40 MG/ML"
+          },
+          {
+            "code": "1299922",
+            "display": "docetaxel anhydrous"
+          },
+          {
+            "code": "376888",
+            "display": "docetaxel Injectable Solution"
+          },
+          {
+            "code": "1101772",
+            "display": "docetaxel Injectable Solution [Docefrez]"
+          },
+          {
+            "code": "1870937",
+            "display": "0.5 ML docetaxel 40 MG/ML Injection"
+          },
+          {
+            "code": "1860480",
+            "display": "1 ML docetaxel 20 MG/ML Injection"
+          },
+          {
+            "code": "1918045",
+            "display": "10 ML docetaxel 20 MG/ML Injection"
+          },
+          {
+            "code": "1860619",
+            "display": "2 ML docetaxel 10 MG/ML Injection"
+          },
+          {
+            "code": "1860485",
+            "display": "4 ML docetaxel 20 MG/ML Injection"
+          },
+          {
+            "code": "1093280",
+            "display": "docetaxel 10 MG/ML Injectable Solution"
+          },
+          {
+            "code": "1001405",
+            "display": "docetaxel 20 MG/ML Injectable Solution"
+          },
+          {
+            "code": "202982",
+            "display": "Taxotere"
+          },
+          {
+            "code": "1180259",
+            "display": "Taxotere Injectable Product"
+          },
+          {
+            "code": "101306",
+            "display": "Herceptin"
+          },
+          {
+            "code": "1169113",
+            "display": "Herceptin Injectable Product"
+          },
+          {
+            "code": "224905",
+            "display": "trastuzumab"
+          },
+          {
+            "code": "806572",
+            "display": "trastuzumab 22 MG/ML"
+          },
+          {
+            "code": "806574",
+            "display": "trastuzumab 22 MG/ML [Herceptin]"
+          },
+          {
+            "code": "806575",
+            "display": "trastuzumab 22 MG/ML Injectable Solution [Herceptin]"
+          },
+          {
+            "code": "1162762",
+            "display": "trastuzumab Injectable Product"
+          },
+          {
+            "code": "377216",
+            "display": "trastuzumab Injectable Solution"
+          },
+          {
+            "code": "540885",
+            "display": "trastuzumab Injectable Solution [Herceptin]"
+          },
+          {
+            "code": "597195",
+            "display": "carboplatin 10 MG/ML Injectable Solution"
+          }
+        ]
+      }
+    ]
+  }
+}

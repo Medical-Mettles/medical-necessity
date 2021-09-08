@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.16",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.16",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.16"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T4d",
+  "title": "Tumor stage T4d",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "373190002",
+            "display": "pT4d: Inflammatory carcinoma (breast)"
+          },
+          {
+            "code": "443505003",
+            "display": "pT4d category (finding)"
+          },
+          {
+            "code": "445110009",
+            "display": "T4d: Inflammatory carcinoma of breast with involvement of skin and chest wall by carcinoma (finding)"
+          },
+          {
+            "code": "436151000124108",
+            "display": "Neoplasm of breast primary tumor staging category T4d: Inflammatory carcinoma involving >=1/3 of skin of breast (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

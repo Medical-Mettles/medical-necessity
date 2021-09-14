@@ -62,52 +62,75 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "DCISBreastCancer"
+              }
+            }
+          ],
+          "linkId": "DCISBreastCancer",
+          "text": "Does the patient have DCIS?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "DCISQuadrantsOfBreast"
+              }
+            }
+          ],
+          "linkId": "DCISQuadrantsOfBreast",
+          "text": "Does the disease involve two or more quadrants of the breast?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "InvasiveBreastCancer"
+              }
+            }
+          ],
+          "linkId": "InvasiveBreastCancer",
+          "text": "Does the patient have Invasive Breast Cancer?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "InflammatoryBreastCancer"
               }
             }
           ],
           "linkId": "InflammatoryBreastCancer",
-          "text": "Does the patient have inflammatory breast cancer?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
+          "text": "Is the cancer:",
+          "type": "choice",
+          "answerOption": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NeoadjuvantChemotherapy"
+              "valueCoding": {
+                "code": "Inflammatory",
+                "display": "Inflammatory"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Non-Inflammatory",
+                "display": "Non-Inflammatory"
               }
             }
           ],
-          "linkId": "NeoadjuvantChemotherapy",
-          "text": "Has the patient undergone neoadjuvant chemotherapy (preoperative systemic therapy)?",
-          "type": "boolean",
           "enableWhen": [
             {
-              "question": "InflammatoryBreastCancer",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PostNeoadjuvantChemotherapy"
-              }
-            }
-          ],
-          "linkId": "PostNeoadjuvantChemotherapy",
-          "text": "Has the patient responded to it?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "question": "NeoadjuvantChemotherapy",
+              "question": "InvasiveBreastCancer",
               "answerBoolean": true
             }
           ],
@@ -134,12 +157,110 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "PhyllodeTumorsBiopsyConfirmation"
+              }
+            }
+          ],
+          "linkId": "PhyllodeTumorsBiopsyConfirmation",
+          "text": "Has it been confirmed by a core needle/excision biopsy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "PhyllodeTumors",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PhyllodeTumorsMorphology"
+              }
+            }
+          ],
+          "linkId": "PhyllodeTumorsMorphology",
+          "text": "Is the Tumor:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Benign",
+                "display": "Benign"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Borderline",
+                "display": "Borderline"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Malignant",
+                "display": "Malignant"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "question": "PhyllodeTumors",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "PagetsDisease"
               }
             }
           ],
           "linkId": "PagetsDisease",
-          "text": "Does the patient have breast cancer associated with Paget’s disease?",
+          "text": "Does the patient have Paget’s disease?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BCPagetsDisease"
+              }
+            }
+          ],
+          "linkId": "BCPagetsDisease",
+          "text": "Is it associated with breast cancer?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "PagetsDisease",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PunchBiopsy"
+              }
+            }
+          ],
+          "linkId": "PunchBiopsy",
+          "text": "Was a full thickness skin biopsy of involved NAC done?",
           "type": "boolean",
           "required": true
         },
@@ -200,21 +321,6 @@
               }
             }
           ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "InvasiveBreastCancer"
-              }
-            }
-          ],
-          "linkId": "InvasiveBreastCancer",
-          "text": "Is the cancer spreading to the surrounding breast tissue (invasive)?",
-          "type": "boolean",
           "required": true
         }
       ]
@@ -315,7 +421,7 @@
     },
     {
       "linkId": "3",
-      "text": "Staging",
+      "text": "Cancer Staging",
       "type": "group",
       "item": [
         {
@@ -406,6 +512,64 @@
           "text": "Distant Metastasis (M):",
           "type": "text",
           "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Laterality"
+              }
+            }
+          ],
+          "linkId": "Laterality",
+          "text": "Laterality of the tumor:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Unilateral",
+                "display": "Unilateral"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Bilateral",
+                "display": "Bilateral"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SurgeryType"
+              }
+            }
+          ],
+          "linkId": "SurgeryType",
+          "text": "Is the surgery:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Ipsilateral",
+                "display": "Ipsilateral"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Contralateral",
+                "display": "Contralateral"
+              }
+            }
+          ],
+          "required": true
         }
       ]
     },
@@ -420,13 +584,102 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "PatientGender"
+              }
+            }
+          ],
+          "linkId": "PatientGender",
+          "text": "What is the gender of the patient?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Female",
+                "display": "Female"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Male",
+                "display": "Male"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MenopauseCondition"
+              }
+            }
+          ],
+          "linkId": "MenopauseCondition",
+          "text": "Is the patient?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Pre-menopausal",
+                "display": "Pre-menopausal"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Post-menopausal",
+                "display": "Post-menopausal"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PatientGender",
+              "answerCoding": {
+                "code": "Female",
+                "display": "Female"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "GeneticPredisposition"
               }
             }
           ],
           "linkId": "GeneticPredisposition",
-          "text": "Does the patient have a history of genetic predisposition?",
+          "text": "Does the patient have BRCA1 or BRCA2 mutations?",
           "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BRCAMutationTest"
+              }
+            }
+          ],
+          "linkId": "GeneticMutationConfirmation",
+          "text": "Has it been confirmed by a BRCA gene test? ",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "GeneticPredisposition",
+              "answerBoolean": true
+            }
+          ],
           "required": true
         },
         {
@@ -491,24 +744,20 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "SurgeryType"
+                "expression": "TerminationCounselling"
               }
             }
           ],
-          "linkId": "SurgeryType",
-          "text": "Is the surgery:",
-          "type": "choice",
-          "answerOption": [
+          "linkId": "TerminationCounselling",
+          "text": "Has the patient been counselled regarding termination/treatment procedure?",
+          "type": "boolean",
+          "enableWhen": [
             {
-              "valueCoding": {
-                "code": "Ipsilateral",
-                "display": "Ipsilateral"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Contralateral",
-                "display": "Contralateral"
+              "operator": "=",
+              "question": "PregnancyTrimester",
+              "answerCoding": {
+                "code": "First",
+                "display": "First"
               }
             }
           ],
@@ -520,27 +769,32 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "Laterality"
+                "expression": "MastectomyCounseling"
               }
             }
           ],
-          "linkId": "Laterality",
-          "text": "Is the tumor:",
-          "type": "choice",
-          "answerOption": [
+          "linkId": "MastectomyCounseling",
+          "text": "Has the patient been counselled and explained regarding the treatment procedure?",
+          "type": "boolean",
+          "enableWhen": [
             {
-              "valueCoding": {
-                "code": "Unilateral",
-                "display": "Unilateral"
+              "operator": "=",
+              "question": "PregnancyTrimester",
+              "answerCoding": {
+                "code": "Second",
+                "display": "Second"
               }
             },
             {
-              "valueCoding": {
-                "code": "Bilateral",
-                "display": "Bilateral"
+              "operator": "=",
+              "question": "PregnancyTrimester",
+              "answerCoding": {
+                "code": "Third",
+                "display": "Third"
               }
             }
           ],
+          "enableBehavior": "any",
           "required": true
         }
       ]
@@ -550,6 +804,48 @@
       "text": "Past Medical History",
       "type": "group",
       "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NeoadjuvantChemotherapy"
+              }
+            }
+          ],
+          "linkId": "NeoadjuvantChemotherapy",
+          "text": "Has the patient undergone neoadjuvant chemotherapy (preoperative systemic therapy)?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "InflammatoryBreastCancer",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PostNeoadjuvantChemotherapy"
+              }
+            }
+          ],
+          "linkId": "PostNeoadjuvantChemotherapy",
+          "text": "Has the patient responded to it?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "NeoadjuvantChemotherapy",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
         {
           "extension": [
             {
@@ -578,6 +874,12 @@
           "linkId": "MarginsPostSurgery",
           "text": "Are the margins positive even after the previous surgical excision?",
           "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "PreviousSurgery",
+              "answerBoolean": true
+            }
+          ],
           "required": true
         }
       ]

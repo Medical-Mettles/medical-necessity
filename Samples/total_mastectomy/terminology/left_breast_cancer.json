@@ -117,6 +117,10 @@
           {
             "code": "C50.922",
             "display": "Malignant neoplasm of unspecified site of left male breast"
+          },
+          {
+            "code": "D05.12",
+            "display": "Intraductal carcinoma in situ of left breast"
           }
         ]
       }

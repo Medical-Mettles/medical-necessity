@@ -1,0 +1,54 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.185",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.185",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.185"
+        }
+    ],
+    "version": "Latest",
+    "name": "BRCA Gene Mutation Test",
+    "title": "BRCA Gene Mutation Test",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "59041-4",
+                      "display": "BRCA1+BRCA2 gene mutations tested for in Blood or Tissue by Molecular genetics method Nominal"
+                    },
+                    {
+                      "code": "21636-6",
+                      "display": "BRCA1 gene mutations found [Identifier] in Blood or Tissue by Molecular genetics method Nominal"
+                    },
+                    {
+                      "code": "38530-2",
+                      "display": "BRCA2 gene mutations found [Identifier] in Blood or Tissue by Molecular genetics method Nominal"
+                    },
+                    {
+                      "code": "50995-0",
+                      "display": "BRCA1+BRCA2 gene targeted mutation analysis in Blood or Tissue by Molecular genetics method"
+                    },
+                    {
+                      "code": "79207-7",
+                      "display": "BRCA1 gene mutation analysis limited to known familial mutations in Blood or Tissue by Molecular genetics method"
+                    },
+                    {
+                      "code": "38531-0",
+                      "display": "BRCA2 gene mutations tested for in Blood or Tissue by Molecular genetics method Nominal"
+                    },
+                    {
+                      "code": "21638-2",
+                      "display": "BRCA1 gene c.5382insC [Presence] in Blood or Tissue by Molecular genetics method"
+                    }
+                ]
+            }
+        ]
+    }
+}

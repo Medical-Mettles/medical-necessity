@@ -10,7 +10,7 @@
     ],
     "version": "Latest",
     "name": "Phyllodes Tumor of Breast",
-    "title": "Preoperative Chemotherapy",
+    "title": "Phyllodes Tumor of Breast",
     "status": "active",
     "publisher": "NLM",
     "compose": {
@@ -22,6 +22,14 @@
                     {
                       "code": "427942006",
                       "display": "Phyllodes tumor of breast, borderline (disorder)"
+                    },
+                    {
+                      "code": "720344007",
+                      "display": "Benign phyllodes neoplasm of breast (disorder)"
+                    },
+                    {
+                      "code": "254844000",
+                      "display": "Malignant phyllodes tumor of breast (disorder)"
                     }
                 ]
             }

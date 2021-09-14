@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.175",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.175",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.175"
+      }
+    ],
+    "version": "Latest",
+    "name": "Carcinoma in Lower Inner Breast",
+    "title": "Carcinoma in Lower Inner Breast",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-09",
+          "concept": [
+            {
+              "code": "188153009",
+              "display": "Malignant neoplasm of lower-inner quadrant of female breast (disorder)"
+            },
+            {
+              "code": "286894008",
+              "display": "Carcinoma of breast - lower, inner quadrant (disorder)"
+            },
+            {
+              "code": "373080008",
+              "display": "Malignant neoplasm of breast lower inner quadrant (disorder)"
+            },
+            {
+              "code": "373090000",
+              "display": "Primary malignant neoplasm of breast lower inner quadrant (disorder)"
+            }
+          ]
+        }
+      ]
+    }
+  }

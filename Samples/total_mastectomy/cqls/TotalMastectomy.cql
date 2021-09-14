@@ -76,6 +76,28 @@ valueset "Left breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.19'
 valueset "Right breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.20'
 valueset "Bilateral breast cancer": '2.16.840.1.113883.3.6037.1001.23.96.21'
 valueset "Surgical Margins Involved by Tumor": '2.16.840.1.113883.3.6037.1001.23.93.166'
+valueset "AETNA100360 Mastectomy": '2.16.840.1.113762.1.4.1195.300'
+valueset "Left Breast BodySite": '2.16.840.1.113883.3.6037.1001.23.93.167'
+valueset "Right Breast BodySite": '2.16.840.1.113883.3.6037.1001.23.93.168'
+valueset "Entire Breast BodySite": '2.16.840.1.113883.3.6037.1001.23.93.169'
+valueset "Mastectomy CPT Codes": '2.16.840.1.113883.3.6037.1001.23.93.170'
+valueset "Mastectomy with Axillary Lymph Nodes": '2.16.840.1.113883.3.6037.1001.23.93.171'
+valueset "Mastectomy with Pectoral Muscles": '2.16.840.1.113883.3.6037.1001.23.93.172'
+valueset "DCIS Breast Cancer Condition": '2.16.840.1.113883.3.6037.1001.23.93.173'
+valueset "Carcinoma in Upper Inner Breast": '2.16.840.1.113883.3.6037.1001.23.93.174'
+valueset "Carcinoma in Lower Inner Breast": '2.16.840.1.113883.3.6037.1001.23.93.175'
+valueset "Carcinoma in Upper Outer Breast": '2.16.840.1.113883.3.6037.1001.23.93.176'
+valueset "Carcinoma in Lower Outer Breast": '2.16.840.1.113883.3.6037.1001.23.93.177'
+valueset "Borderline Phyllodes Tumor of Breast": '2.16.840.1.113883.3.6037.1001.23.93.178'
+valueset "Benign Phyllodes Tumor of Breast": '2.16.840.1.113883.3.6037.1001.23.93.179'
+valueset "Malignant Phyllodes Tumor of Breast": '2.16.840.1.113883.3.6037.1001.23.93.180'
+valueset "Core Needle or Excisional Biopsy of Breast": '2.16.840.1.113883.3.6037.1001.23.93.181'
+valueset "Pagets Disease of Breast": '2.16.840.1.113883.3.6037.1001.23.93.182'
+valueset "Punch Biopsy Procedure": '2.16.840.1.113883.3.6037.1001.23.93.183'
+valueset "Postmenopausal Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.184'
+valueset "BRCA Gene Mutation Test": '2.16.840.1.113883.3.6037.1001.23.93.185'
+valueset "Counseling For Mastectomy": '2.16.840.1.113883.3.6037.1001.23.93.186'
+valueset "Counseling For Pregnancy Termination": '2.16.840.1.113883.3.6037.1001.23.93.187'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -86,10 +108,12 @@ define Request:
 	"ServiceRequest"
 
 define InflammatoryBreastCancer:
-	exists([Condition]C
+	if exists([Condition]C
     where exists(C.code.coding C where C in "Inflammatory Breast Cancer")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
+					then 'Inflammatory'
+						else 'Non-Inflammatory'
 
 define NeoadjuvantChemotherapyProcedure:
 	[Procedure]P where P.status.value = 'completed'
@@ -123,18 +147,59 @@ define PhyllodeTumors:
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
 
-define PagetsDisease:
+define CoreNeedleOrExcisionBiopsyProcedure:
+	[Procedure]P where P.status.value = 'completed'
+		and exists(P.code.coding C where C in "Core Needle or Excisional Biopsy of Breast")
+
+define PhyllodeTumorsBiopsyConfirmation:
+	if ("PhyllodeTumors" = true
+				and exists("CoreNeedleOrExcisionBiopsyProcedure"))
+					then true
+						else false
+
+define PhyllodeTumorsMorphology:
+	if exists([Condition]C where exists(C.code.coding C where C in "Benign Phyllodes Tumor of Breast")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+					then 'Benign'
+						else if exists([Condition]C where exists(C.code.coding C where C in "Borderline Phyllodes Tumor of Breast")
+      				and First(C.clinicalStatus.coding).code.value = 'active'
+        				and First(C.verificationStatus.coding).code.value = 'confirmed')
+									then 'Borderline'
+										else if exists([Condition]C where exists(C.code.coding C where C in "Malignant Phyllodes Tumor of Breast")
+      								and First(C.clinicalStatus.coding).code.value = 'active'
+        								and First(C.verificationStatus.coding).code.value = 'confirmed')
+													then 'Malignant'
+														else ''
+
+define PagetsDiseaseOfBreast:
+	[Condition]C
+    where exists(C.code.coding C where C in "Pagets Disease of Breast")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define BCPagetsDisease:
 	exists([Condition]C
     where exists(C.code.coding C where C in "Breast Cancer")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 					and exists(C.stage s where exists(s.summary.coding C where C in "Tumor stage Tis(Pagets)")))
 
-define InvasiveBreastCancer:
-	exists([Condition]C
-    where exists(C.code.coding C where C in "Invasive Breast Cancer")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed')
+define PagetsDisease:
+	if (exists("PagetsDiseaseOfBreast")
+			or ("BCPagetsDisease" = true))
+				then true
+					else false
+
+define PunchBiopsyProcedure:
+	[Procedure]P where P.status.value = 'completed'
+		and exists(P.code.coding C where C in "Punch Biopsy Procedure")
+
+define PunchBiopsy:
+	if (exists("PunchBiopsyProcedure")
+		and "BCPagetsDisease" = true)
+			then true
+				else false
 
 define DuctalHistology:
 	([Observation]P
@@ -339,11 +404,63 @@ define "MStage":
 							then 'M0'
 							else ''
 
+define "AnatomicStage":
+	if ({'Tis', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
+	then 'Stage0'
+	else (if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+				then 'StageIA'
+				else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+							then 'StageIB'
+							else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"TStage", "NStage", "MStage"})
+										then 'StageIIA'
+										else (if ({'T2', 'T3', 'N0', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
+												then 'StageIIB'
+												else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"TStage", "NStage", "MStage"})
+															then 'StageIIIA'
+															else (if ({'T4', 'N0', 'N1', 'N2', 'M0'} included in {"TStage", "NStage", "MStage"})
+																		then 'StageIIIB'
+																		else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"TStage", "NStage", "MStage"})
+																					then 'StageIIIC'
+																					else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"TStage", "NStage", "MStage"})
+																								then 'StageIV'
+																								else ''
+																							)
+																				)
+																	)
+														)
+												)
+										)
+							)
+				)
+
+define AnatomicStageInvasive:
+  if ("AnatomicStage" in {'StageIA', 'StageIB', 'StageIIA', 'StageIIB', 'StageIIIA', 'StageIIIB', 'StageIIIC', 'StageIV'})
+      then true
+        else false
+
+define InvasiveBreastCancerCondition:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "Invasive Breast Cancer")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define InvasiveBreastCancer:
+	if ("InvasiveBreastCancerCondition" = true)
+		or ("AnatomicStageInvasive" = true)
+		then true
+			else false
+
 define GeneticPredisposition:
 	exists([Condition]C
     where exists(C.code.coding C where C in "Genetic Susceptibility to Breast Cancer")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define BRCAMutationTest:
+	exists([Observation]P
+			where P.status.value in {'final', 'amended', 'corrected'}
+			and exists(P.code.coding x where x in "BRCA Gene Mutation Test")
+			and (P.value as CodeableConcept) in "Positive")
 
 define PregnantPatient:
 	exists([Condition]C
@@ -414,14 +531,29 @@ define PregnancyTrimester:
 						then 'Third'
 							else ''
 
+define TerminationCounselling:
+	exists([Procedure]P
+		where P.status.value = 'completed'
+			and (exists(P.code.coding C where C in "Counseling For Mastectomy")
+				or exists (P.code.coding C where C in "Counseling For Pregnancy Termination")))
+
+define MastectomyCounseling:
+	exists([Procedure]P
+		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Counseling For Mastectomy"))
+
 define "Laterality":
 	if exists("BreastCancerCondition" B
 		where (exists(B.code.coding x where x in "Left breast cancer")
-			or exists(B.code.coding x where x in "Left breast cancer")))
-				then 'Unilateral'
-					else if exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Bilateral breast cancer"))
-							then 'Bilateral'
-								else ''
+			or exists(B.bodySite.coding co where co in "Left Breast BodySite")
+				or exists(B.code.coding x where x in "Right breast cancer")
+					or exists(B.bodySite.coding co where co in "Right Breast BodySite")))
+						then 'Unilateral'
+							else if exists("BreastCancerCondition" B
+								where (exists(B.code.coding x where x in "Bilateral breast cancer")
+									or exists(B.bodySite.coding co where co in "Right Breast BodySite")))
+										then 'Bilateral'
+											else ''
 
 define PreviousSurgeryProcedure:
 	[Procedure]P
@@ -454,6 +586,102 @@ define BleedingDisorders:
 	exists([Condition]C
 		where First(C.clinicalStatus.coding).code.value = 'active'
     and exists(C.code.coding x where x in "Bleeding Disorder"))
+
+define LateralityOfCancer:
+	if (exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Left breast cancer"))
+				or exists("BreastCancerCondition" B where exists(B.bodySite.coding co where co in "Left Breast BodySite")))
+					then 'Left'
+						else if (exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Right breast cancer"))
+												or exists("BreastCancerCondition" B where exists(B.bodySite.coding co where co in "Right Breast BodySite")))
+													then 'Right'
+														else if (exists("BreastCancerCondition" B where exists(B.code.coding x where x in "Bilateral breast cancer"))
+																				or exists("BreastCancerCondition" B where exists(B.bodySite.coding co where co in "Right Breast BodySite")))
+																					then 'Bilateral'
+																						else ''
+
+define LeftBreastMastectomySurgeryRequest:
+  if (exists("Request".code.coding C where C in "Mastectomy CPT Codes")
+				or exists("Request".code.coding C where C in "Mastectomy with Axillary Lymph Nodes")
+					or exists("Request".code.coding C where C in "Mastectomy with Pectoral Muscles"))
+			and exists("Request".bodySite.coding co where co in "Left Breast BodySite")
+  	    then true
+	        else false
+
+define RightBreastMastectomySurgeryRequest:
+  if (exists("Request".code.coding C where C in "Mastectomy CPT Codes")
+				or exists("Request".code.coding C where C in "Mastectomy with Axillary Lymph Nodes")
+					or exists("Request".code.coding C where C in "Mastectomy with Pectoral Muscles"))
+			and exists("Request".bodySite.coding co where co in "Right Breast BodySite")
+  	    then true
+	        else false
+
+define BilateralBreastMastectomySurgeryRequest:
+  if (exists("Request".code.coding C where C in "Mastectomy CPT Codes")
+				or exists("Request".code.coding C where C in "Mastectomy with Axillary Lymph Nodes")
+					or exists("Request".code.coding C where C in "Mastectomy with Pectoral Muscles"))
+			and exists("Request".bodySite.coding co where co in "Entire Breast BodySite")
+  	    then true
+	        else false
+
+define SurgeryType:
+	if (("LeftBreastMastectomySurgeryRequest" = true and "LateralityOfCancer" = 'Right')
+		or ("RightBreastMastectomySurgeryRequest" = true and "LateralityOfCancer" = 'Left'))
+			then 'Contralateral'
+				else if (("LeftBreastMastectomySurgeryRequest" = true and "LateralityOfCancer" = 'Left')
+					or ("RightBreastMastectomySurgeryRequest" = true and "LateralityOfCancer" = 'Right')
+						or ("BilateralBreastMastectomySurgeryRequest" = true and "LateralityOfCancer" = 'Bilateral'))
+							then 'Ipsilateral'
+								else ''
+
+define DCISBreastCancerCondition:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "DCIS Breast Cancer Condition")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define DCISStageBreastCancer:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "Breast Cancer")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+					and exists(C.stage s where exists(s.summary.coding C where C in "Tumor stage Tis(DCIS)")))
+
+define DCISBreastCancer:
+	if ("DCISBreastCancerCondition" = true
+				or "DCISStageBreastCancer" = true)
+					then true
+						else false
+
+define DCISQuadrants:
+	[Condition]C
+		where (exists(C.code.coding C where C in "Carcinoma in Upper Inner Breast") or exists (C.code.coding C where C in "Carcinoma in Lower Inner Breast")
+			or exists (C.code.coding C where C in "Carcinoma in Upper Outer Breast")	or exists (C.code.coding C where C in "Carcinoma in Lower Outer Breast"))
+				and First(C.clinicalStatus.coding).code.value = 'active'
+					and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define DCISQuadrantsOfBreast:
+	if Length("DCISQuadrants")>2
+		and Length("DCISQuadrants")<4
+			then true
+				else false
+
+define PatientGender:
+	if Patient.gender.value = 'female'
+		then 'Female'
+			else if Patient.gender.value = 'male'
+				then 'Male'
+					else ''
+
+define MenopauseCondition:
+	if exists([Condition]C
+    where exists(C.code.coding C where C in "Postmenopausal Diagnosis")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+					then 'Post-menopausal'
+						else 'Pre-menopausal'
+
+
+
 
 
 define function "Normalize Onset"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):

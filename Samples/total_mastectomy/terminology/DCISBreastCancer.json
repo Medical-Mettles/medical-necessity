@@ -1,0 +1,38 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.173",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.173",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.173"
+      }
+    ],
+    "version": "Latest",
+    "name": "DCIS Breast Cancer Condition",
+    "title": "DCIS Breast Cancer Condition",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+          "version": "2020-09",
+          "concept": [
+            {
+              "code": "D05.11",
+              "display": "Intraductal carcinoma in situ of right breast"
+            },
+            {
+              "code": "D05.10",
+              "display": "Intraductal carcinoma in situ of unspecified breast"
+            },
+            {
+              "code": "D05.12",
+              "display": "Intraductal carcinoma in situ of left breast"
+            }
+          ]
+        }
+      ]
+    }
+  }

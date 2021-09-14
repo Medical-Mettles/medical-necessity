@@ -117,6 +117,10 @@
           {
             "code": "C50.921",
             "display": "Malignant neoplasm of unspecified site of right male breast"
+          },
+          {
+            "code": "D05.11",
+            "display": "Intraductal carcinoma in situ of right breast"
           }
         ]
       }

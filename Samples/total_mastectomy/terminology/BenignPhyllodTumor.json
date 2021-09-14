@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.179",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.179",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.179"
+        }
+    ],
+    "version": "Latest",
+    "name": "Benign Phyllodes Tumor of Breast",
+    "title": "Benign Phyllodes Tumor of Breast",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "720344007",
+                      "display": "Benign phyllodes neoplasm of breast (disorder)"
+                    }
+                ]
+            }
+        ]
+    }
+}

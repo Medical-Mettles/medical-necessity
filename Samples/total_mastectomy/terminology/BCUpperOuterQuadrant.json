@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.176",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.176",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.176"
+      }
+    ],
+    "version": "Latest",
+    "name": "Carcinoma in Upper Outer Breast",
+    "title": "Carcinoma in Upper Outer Breast",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-09",
+          "concept": [
+            {
+              "code": "188154003",
+              "display": "Malignant neoplasm of upper-outer quadrant of female breast (disorder)"
+            },
+            {
+              "code": "286895009",
+              "display": "Carcinoma of breast - upper, outer quadrant (disorder)"
+            },
+            {
+              "code": "373083005",
+              "display": "Malignant neoplasm of breast upper outer quadrant (disorder"
+            },
+            {
+              "code": "373088001",
+              "display": "Primary malignant neoplasm of breast upper outer quadrant (disorder)"
+            }
+          ]
+        }
+      ]
+    }
+  }

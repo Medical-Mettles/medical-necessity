@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.177",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.177",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.177"
+      }
+    ],
+    "version": "Latest",
+    "name": "Carcinoma in Lower Outer Breast",
+    "title": "Carcinoma in Lower Outer Breast",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-09",
+          "concept": [
+            {
+              "code": "188155002",
+              "display": "Malignant neoplasm of lower-outer quadrant of female breast (disorder)"
+            },
+            {
+              "code": "286896005",
+              "display": "Carcinoma breast - lower, outer quadrant (disorder)"
+            },
+            {
+              "code": "373081007",
+              "display": "Malignant neoplasm of breast lower outer quadrant (disorder)"
+            },
+            {
+              "code": "373091001",
+              "display": "Primary malignant neoplasm of breast lower outer quadrant (disorder)"
+            }
+          ]
+        }
+      ]
+    }
+  }

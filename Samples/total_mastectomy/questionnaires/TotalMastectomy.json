@@ -1,12 +1,19 @@
 {
   "resourceType": "Questionnaire",
+  "extension": [
+    {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-totalmastectomy-TotalMastectomy"
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-totalmastectomy-totalmastectomy",
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
       "value": "medicare_fee_for_service-total_mastectomy"
     }
   ],
-  "name": "Prior Authorization for Total Mastectomy",
+  "name": "TotalMastectomy",
   "version": "1.0.0",
   "title": "Prior Authorization for Total Mastectomy",
   "status": "draft",
@@ -15,12 +22,6 @@
   ],
   "date": "2021-08-28",
   "publisher": "Mettle Solutions",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-samples-TotalMastectomy"
-    }
-  ],
   "contained": [
     {
       "resourceType": "ValueSet",

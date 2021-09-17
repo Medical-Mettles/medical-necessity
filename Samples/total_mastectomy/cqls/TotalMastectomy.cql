@@ -405,33 +405,25 @@ define "MStage":
 							else ''
 
 define "AnatomicStage":
-	if ({'Tis', 'N0', 'M0'} included in {"TStage", "NStage", "MStage"})
-	then 'Stage0'
-	else (if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+	if ({'Tis', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+		then 'Stage0'
+			else if ({'T1','T1mi','T1a','T1b','T1c', 'N0', 'M0'} properly includes {"TStage", "NStage", "MStage"})
 				then 'StageIA'
-				else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"TStage", "NStage", "MStage"})
-							then 'StageIB'
-							else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } included in {"TStage", "NStage", "MStage"})
-										then 'StageIIA'
-										else (if ({'T2', 'T3', 'N0', 'N1', 'M0'} included in {"TStage", "NStage", "MStage"})
-												then 'StageIIB'
-												else (if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} included in {"TStage", "NStage", "MStage"})
-															then 'StageIIIA'
-															else (if ({'T4', 'N0', 'N1', 'N2', 'M0'} included in {"TStage", "NStage", "MStage"})
-																		then 'StageIIIB'
-																		else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"TStage", "NStage", "MStage"})
-																					then 'StageIIIC'
-																					else (if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"TStage", "NStage", "MStage"})
-																								then 'StageIV'
-																								else ''
-																							)
-																				)
-																	)
-														)
-												)
-										)
-							)
-				)
+					else if ({'T0', 'T1','T1mi','T1a','T1b','T1c','N1mi', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+						then 'StageIB'
+							else if ({'T0', 'T1','T1mi','T1a','T1b','T1c', 'T2','N0','N1','N1a','N1b','N1c', 'M0' } properly includes {"TStage", "NStage", "MStage"})
+								then 'StageIIA'
+									else if ({'T2', 'T3', 'N0', 'N1', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+										then 'StageIIB'
+											else if ({'T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'N1', 'N2', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+												then 'StageIIIA'
+													else if ({'T4', 'N0', 'N1', 'N2', 'M0'} properly includes {"TStage", "NStage", "MStage"})
+														then 'StageIIIB'
+															else if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N3', 'M0'} included in {"TStage", "NStage", "MStage"})
+																then 'StageIIIC'
+																	else if ({'Tis','T0', 'T1','T1mi','T1a','T1b','T1c','T2', 'T3', 'T4', 'N0','N1','N1a','N1b','N1c','N1mi', 'N2', 'N3', 'M1'} included in {"TStage", "NStage", "MStage"})
+																		then 'StageIV'
+																			else ''
 
 define AnatomicStageInvasive:
   if ("AnatomicStage" in {'StageIA', 'StageIB', 'StageIIA', 'StageIIB', 'StageIIIA', 'StageIIIB', 'StageIIIC', 'StageIV'})

@@ -1907,7 +1907,7 @@
             }
           ],
           "linkId": "Migraine-PostBotoxImprovement",
-          "text": "Has the patient shown a significant decrease in the number and frequency of headaches and an improvement in function upon receiving Botulinum toxin?",
+          "text": "Has the patient shown a significant decrease in the number and frequency of headaches upon receiving Botulinum toxin?",
           "type": "boolean",
           "enableWhen": [
             {

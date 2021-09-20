@@ -323,6 +323,42 @@
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.97"
         }
       ]
+    },
+    {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.188"
+        }
+      ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.84"
+        }
+      ]
+    },
+    {
+      "type": "Medication",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1111.83"
+        }
+        ]
+    },
+    {
+      "type": "MedicationAdministration",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1111.83"
+        }
+      ]
     }
   ]
 }

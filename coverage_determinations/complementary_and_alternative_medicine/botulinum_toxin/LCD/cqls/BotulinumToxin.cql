@@ -76,6 +76,7 @@ valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
 //Valuesets for Migraine
 valueset "Migraine Codes": '2.16.840.1.113883.3.6037.1001.23.93.84'
 valueset "Triptan Medications": '2.16.840.1.113762.1.4.1111.83'
+valueset "Migraine Prophylaxis": '2.16.840.1.113883.3.6037.1001.23.93.188'
 
 //Valuesets for Strabismus
 valueset "Strabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
@@ -1316,7 +1317,7 @@ define TriptanMedicationResources:
 define TriptanProcedureResources:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-		and First(P.code.coding) in "Procedure for Medication Administration"
+		and First(P.code.coding) in "Migraine Prophylaxis"
 
 define CheckTriptanAdministration:
 	"TriptanMedicationResources" M
@@ -1342,14 +1343,14 @@ define MigrainePriorBotoxTreatment:
 				with [Procedure]R
 				such that P.status.value = 'completed'
 				and R.status.value = 'completed'
-				and ((exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+				and ((exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 						or
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+						(exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 						or
-						(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)")
-							and exists(R.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
+						(exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 					)
 				and First(P.outcome.coding) in "Unsuccessful"
 				and First(R.outcome.coding) in "Unsuccessful"
@@ -1359,13 +1360,7 @@ define MigrainePriorBotoxTreatment:
 define MigrainePostBotoxImprovement:
 	exists([Procedure]P
 				where P.status.value = 'completed'
-				and (
-							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
-								or
-							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
-								or
-							(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
-						)
+				and exists(P.code.coding C where C in "Botox Injection Procedure")
 				and First(P.outcome.coding) in "Successful")
 
 define MigraineCheckPriorBotoxTreatment:

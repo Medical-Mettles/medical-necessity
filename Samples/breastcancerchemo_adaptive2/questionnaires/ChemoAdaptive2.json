@@ -9,10 +9,10 @@
     "extension": [
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-chemoadaptive2-ChemoAdaptive2"
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-chemoadaptive2-ChemoAdaptive"
         },
         {
-          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive2",
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
           "valueBoolean": true
         } 
     ],

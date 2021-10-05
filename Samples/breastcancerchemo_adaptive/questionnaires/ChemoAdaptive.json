@@ -671,6 +671,12 @@
         {
           "linkId": "7.1",
           "text": "Do you want to continue?",
+          "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
+                "valueString": "<a href='https://www.google.com'>Google</a><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
+              }
+            ],
           "_text": {
             "extension": [
               {

@@ -674,14 +674,14 @@
           "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020' target='_blank'> CarePlan </a> into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
+                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020?_format=json' target='_blank'> CarePlan </a> into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
               }
             ],
           "_text": {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020' target='_blank'> CarePlan </a> into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
+                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020?_format=json' target='_blank'> CarePlan </a> into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
               }
             ]
           },

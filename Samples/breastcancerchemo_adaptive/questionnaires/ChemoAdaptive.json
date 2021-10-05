@@ -665,23 +665,23 @@
     },
     {
       "linkId": "7",
-      "text": "Continue",
+      "text": "Payer Recommendation",
       "type": "group",
       "item": [
         {
           "linkId": "7.1",
-          "text": "Do you want to continue?",
+          "text": "Payer's treatment regimen recommendation.",
           "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "<a href='https://www.google.com'>Google</a><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
+                "valueString": "The Payer recommends the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020'>CarePlan</a> based on the Patient's conditions. <br>You can import this CarePlan into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
               }
             ],
           "_text": {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "<a href='https://www.google.com'>Google</a><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
+                "valueString": "The Payer recommends the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020'>CarePlan</a> based on the Patient's conditions. <br>You can import this CarePlan into your EHR</br><br><i>Do you want to continue ? </i> answer <b><u>Yes</u></b> or <b><u>No</u></b>"
               }
             ]
           },

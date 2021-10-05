@@ -44,14 +44,15 @@
           "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020?_format=json' target='_blank'> CarePlan </a> into your EHR</br>"
+                "valueString": "<h3>The Payer analyzed the conditions, observations, diagnostic reports, family member history from the patient's medical record and determined that a Chemotherapy regimen is recommended.</h3> <br>You can export the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76031?_format=json' target='_blank'> CarePlan </a> and injest it into your EHR/practice management system</br>"
               }
             ],
           "_text": {
             "extension": [
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "The Payer recommends a chemotherapy regimen based on the Patient's conditions. <br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76020?_format=json' target='_blank'> CarePlan </a> into your EHR</br>"
+                "valueString": "<h3>The Payer analyzed the conditions, observations, diagnostic reports, family member history from the patient's medical record and determined that a Chemotherapy regimen is recommended.</h3> <br>You can export the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76031?_format=json' target='_blank'> CarePlan </a> and injest it into your EHR/practice management system</br>"
+
               }
             ]
           },

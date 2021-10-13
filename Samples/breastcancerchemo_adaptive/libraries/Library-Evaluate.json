@@ -16,11 +16,5 @@
       "type": "depends-on",
       "resource": "https://fhir-dev.mettles.com/interop/fhir/Library/FHIRHelpers"
     }
-  ],
-  "content": [
-    {
-      "contentType": "text/cql",
-      "data": "bGlicmFyeSBBZGFwdGl2ZVF1ZXN0aW9uIHZlcnNpb24gJzEuMC4wJwoKdXNpbmcgRkhJUiB2ZXJzaW9uICc0LjAuMCcKCmluY2x1ZGUgRkhJUkhlbHBlcnMgdmVyc2lvbiAnNC4wLjAnIGNhbGxlZCBGSElSSGVscGVycwoKcGFyYW1ldGVyICJxdWVzdGlvbm5haXJlSW5wdXQiIFF1ZXN0aW9ubmFpcmUKcGFyYW1ldGVyICJxdWVzdGlvbm5haXJlUmVzcG9uc2VJbnB1dCIgUXVlc3Rpb25uYWlyZVJlc3BvbnNlCgpjb250ZXh0IFBhdGllbnQKCmRlZmluZSAiUXVlc3Rpb25uYWlyZUl0ZW1zIjoKICAgIHF1ZXN0aW9ubmFpcmVJbnB1dCBRIAogICAgcmV0dXJuIFEuaXRlbQoKZGVmaW5lICJSZXNwb25zZUl0ZW1zIjoKICAgIHF1ZXN0aW9ubmFpcmVSZXNwb25zZUlucHV0Lml0ZW1bTGVuZ3RoKHF1ZXN0aW9ubmFpcmVSZXNwb25zZUlucHV0Lml0ZW0pLTFdCgpkZWZpbmUgIk5leHRMaW5rSUQiOgogICAgVG9JbnRlZ2VyKCJSZXNwb25zZUl0ZW1zIi5saW5rSWQpICsgMQo="
-    }
   ]
 }

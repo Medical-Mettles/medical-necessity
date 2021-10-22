@@ -84,6 +84,17 @@ define CheckNasalSeptumDeviation:
         else false
 
 //Conservative Medical Therapy
+define ProsthesisMedicalTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'RehabilitationProsthesis')QR
+		return First(QR.answer).value
+
+define ProsthesisTherapyProcedure:
+  exists(NasalSurgery."RehabilitationProsthesisTherapy")
+
+define RehabilitationProsthesis:
+    Coalesce(First("ProsthesisMedicalTherapyResponse"), "ProsthesisTherapyProcedure")
+
 define ProsthesisForSixWeeksResponse:
   ("QT".item I
 		where I.linkId.value = 'ProsthesisForSixWeeks')QR
@@ -105,6 +116,17 @@ define PostProsthesisMedicalTherapy:
 
 define ImprovementPostProsthesis:
     Coalesce(First("ImprovementPostProsthesisResponse"), "PostProsthesisMedicalTherapy")
+
+define AntiHistamineTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'AntiHistamineMedicalTherapy')QR
+		return First(QR.answer).value
+
+define AntiHistamineTherapyProcedure:
+  NasalSurgery."AntiHistamineMedicalTherapy"
+
+define AntiHistamineMedicalTherapy:
+  Coalesce(First("AntiHistamineTherapyResponse"), "AntiHistamineTherapyProcedure")
 
 define AntiHistamineTherapyForSixWeeksResponse:
   ("QT".item I
@@ -128,6 +150,17 @@ define PostAntiHistamineMedicalTherapy:
 define ImprovementPostAntiHistamineMedicalTherapy:
   Coalesce(First("PostAntiHistamineMedicalTherapyResponse"), "PostAntiHistamineMedicalTherapy")
 
+define ImmunosuppressantsMedicalTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'ImmunosuppressantsMedicalTherapy')QR
+		return First(QR.answer).value
+
+define ImmunosuppressantsMedicalTherapyProcedure:
+    NasalSurgery."ImmunosuppressantsMedicalTherapy"
+
+define ImmunosuppressantsMedicalTherapy:
+  Coalesce(First("ImmunosuppressantsMedicalTherapyResponse"), "ImmunosuppressantsMedicalTherapyProcedure")
+
 define ImmunosuppressantsTherapyForSixWeeksResponse:
   ("QT".item I
 		where I.linkId.value = 'ImmunosuppressantsTherapyForSixWeeks')QR
@@ -150,6 +183,17 @@ define PostImmunosuppressantsTherapy:
 define PostImmunosuppressantsMedicalTherapy:
   Coalesce(First("PostImmunosuppressantsMedicalTherapyResponse"), "PostImmunosuppressantsTherapy")
 
+define DecongestantsMedicalTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'DecongestantsMedicalTherapy')QR
+		return First(QR.answer).value
+
+define DecongestantsMedicalTherapyProcedure:
+  NasalSurgery."DecongestantsMedicalTherapy"
+
+define DecongestantsMedicalTherapy:
+  Coalesce(First("DecongestantsMedicalTherapyResponse"), "DecongestantsMedicalTherapyProcedure")
+
 define DecongestantsTherapyForSixWeeksResponse:
   ("QT".item I
 		where I.linkId.value = 'DecongestantsTherapyForSixWeeks')QR
@@ -171,6 +215,17 @@ define PostDecongestantsTherapy:
 
 define PostDecongestantsMedicalTherapy:
   Coalesce(First("PostDecongestantsMedicalTherapyResponse"), "PostDecongestantsTherapy")
+
+define AntibioticMedicalTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'AntibioticMedicalTherapy')QR
+		return First(QR.answer).value
+
+define AntibioticMedicalTherapyProcedure:
+  NasalSurgery."AntibioticMedicalTherapy"
+
+define AntibioticMedicalTherapy:
+  Coalesce(First("AntibioticMedicalTherapyResponse"), "AntibioticMedicalTherapyProcedure")
 
 define AntibioticTherapyForSixWeeksResponse:
   ("QT".item I

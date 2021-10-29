@@ -28,16 +28,6 @@
                         "display": "Try-in of maxillary obturator (procedure)"
                     }
                 ]
-            },
-            {
-                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
-                "version": "2021-10",
-                "concept": [
-                    {
-                        "code": "21076",
-                        "display": "Impression and custom preparation; surgical obturator prosthesis"
-                    }
-                ]
             }
         ]
     }

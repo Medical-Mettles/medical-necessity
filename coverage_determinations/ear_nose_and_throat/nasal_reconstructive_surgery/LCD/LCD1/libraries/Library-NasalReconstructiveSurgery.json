@@ -235,6 +235,15 @@
         ]
     },
     {
+      "type": "AdverseEvent",
+      "codeFilter": [
+        {
+          "path": "event",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.115"
+        }
+        ]
+    },
+    {
       "type": "Procedure",
       "codeFilter": [
         {
@@ -260,6 +269,15 @@
           "valueSet": "2.16.840.1.113762.1.4.1029.287"
         }
       ]
+    },
+    {
+      "type": "AllergyIntolerance",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.116"
+        }
+        ]
     },
     {
       "type": "Condition",
@@ -312,6 +330,15 @@
         {
           "path": "code",
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.122"
+        }
+        ]
+    },
+    {
+      "type": "AdverseEvent",
+      "codeFilter": [
+        {
+          "path": "event",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.123"
         }
         ]
     },

@@ -36,6 +36,20 @@
                         "display": "Procedure on nasal septum (procedure)"
                     }
                 ]
+            },
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "30420",
+                        "display": "Rhinoplasty, primary; including major septal repair"
+                    },
+                    {
+                        "code": "30520",
+                        "display": "Septoplasty or submucous resection, with or without cartilage scoring, contouring or replacement with graft"
+                    }
+                ]
             }
         ]
     }

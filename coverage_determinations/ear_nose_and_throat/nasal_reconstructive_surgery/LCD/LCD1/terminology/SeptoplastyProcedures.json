@@ -38,7 +38,7 @@
                 ]
             },
             {
-                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "system": "http://www.ama-assn.org/go/cpt",
                 "version": "2021-10",
                 "concept": [
                     {

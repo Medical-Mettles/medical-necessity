@@ -407,3 +407,8 @@ define IntermediateDecision:
               and "ContraindicationForBlepharoplasty" = true)
                 then 'BLEPHAROPLASTY IS CONTRAINDICATED'
                   else 'HUMAN REVIEW NEEDED'
+
+define FinalDecision:
+  if "IntermediateDecision" = 'YES FOR BLEPHAROPLASTY. PHOTOGRAPHIC EVIDENCE TO BE REVIEWED'
+    then 'HUMAN REVIEW NEEDED'
+      else 'NO'

@@ -658,21 +658,8 @@
       "item": [
         {
           "linkId": "EvidenceDifficultyFittingProsthesis",
-          "text": "Photographic documentation demonstrating abnormalities as they relate to the abnormal upper and/or lower eyelid position related to prosthesis wear are required.",
-          "type": "display",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "DifficultyFittingProsthesis",
-              "answerBoolean": true
-            },
-            {
-              "operator": "=",
-              "question": "PstosisDifficultyProsthesis",
-              "answerBoolean": true
-            }
-          ],
-          "enableBehavior": "any"
+          "text": "Photographic documentation demonstrating abnormalities as they relate to the abnormal upper and/or lower eyelid position are required.",
+          "type": "display"
         },
         {
           "linkId": "EvidencePhysicalSigns",

@@ -81,7 +81,7 @@
             {
               "valueCoding": {
                 "code": "Lower Eye Lid",
-                "display": "Upper Eye Lid"
+                "display": "Lower Eye Lid"
               }
             }
           ],
@@ -236,7 +236,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "Dermatochalasis",
+              "question": "CheckDermatochalasis",
               "answerBoolean": true
             }
           ],
@@ -253,7 +253,7 @@
             }
           ],
           "linkId": "ThyroidEyeCondition",
-          "text": "Does the patient have thyroid Eye disease/Eye infection/Eye allergy?",
+          "text": "Does the patient have Thyroid Eye disease/Eye infection/Eye allergy?",
           "type": "boolean",
           "required": true
         },
@@ -290,7 +290,7 @@
             }
           ],
           "linkId": "CheckBlepharochalasis",
-          "text": "Does the patient have blepharochalasis (eye lid edema)",
+          "text": "Does the patient have blepharochalasis (eye lid edema)?",
           "type": "boolean",
           "required": true
         },
@@ -310,7 +310,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "Blepharochalasis",
+              "question": "CheckBlepharochalasis",
               "answerBoolean": true
             }
           ],
@@ -384,7 +384,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "Pstosis",
+              "question": "CheckPtosis",
               "answerBoolean": true
             }
           ],
@@ -412,7 +412,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "Pstosis",
+              "question": "BrowPtosis",
               "answerBoolean": true
             }
           ],
@@ -446,6 +446,13 @@
           "linkId": "BlepharoptosisFunctionalDeficit",
           "text": "Does it cause any functional deficit (visual field impairment/ brow fatigue)?",
           "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CheckBlepharoptosis",
+              "answerBoolean": true
+            }
+          ],
           "required": true
         }
       ]
@@ -537,12 +544,12 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "Dermatochalasis",
+              "question": "CheckDermatochalasis",
               "answerBoolean": true
             },
             {
               "operator": "=",
-              "question": "Blepharochalasis",
+              "question": "CheckBlepharochalasis",
               "answerBoolean": true
             }
           ],
@@ -594,8 +601,8 @@
         },
         {
           "linkId": "AngleEyelidLifting",
-          "text": "What is the angle between the resting field and the field performed by manually lifting the eyelid?",
-          "type": "decimal",
+          "text": "Is the angle between the resting field and the field performed by manually lifting the eyelid more than 12 degrees?",
+          "type": "boolean",
           "required": true
         }
       ]

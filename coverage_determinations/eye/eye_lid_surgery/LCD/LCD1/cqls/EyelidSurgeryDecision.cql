@@ -349,7 +349,7 @@ define AngleEyelidLifting:
 		return First(QR.answer).value
 
 define AngleEyelidLiftingDecision:
-	if (First("AngleEyelidLifting") >= 12)
+	if (First("AngleEyelidLifting") = true)
 			then true
 				else false
 

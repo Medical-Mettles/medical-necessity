@@ -110,7 +110,7 @@ define VisionInterference:
 define ImpairmentInDailyActivities:
 	if exists("ImpairmentInDailyActivitiesCondition")
 		then true
-			else false
+			else null
 
 define DifficultyFittingSpectacles:
 	if exists("DifficultyFittingSpectaclesCondition")
@@ -322,4 +322,4 @@ define ProptosisCondition:
 define CheckProptosis:
 	if exists("ProptosisCondition")
 			then true
-				else false
+				else null

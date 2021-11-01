@@ -20,12 +20,12 @@
         "version": "2021-10",
         "concept": [
           {
-            "code": "15820",
-            "display": "Blepharoplasty, lower eyelid"
+            "code": "15822",
+            "display": "Blepharoplasty, upper eyelid"
           },
           {
-            "code": "15821",
-            "display": "Blepharoplasty, lower eyelid; with extensive herniated fat pad"
+            "code": "15823",
+            "display": "Blepharoplasty, upper eyelid; with excessive skin weighting down lid"
           }
         ]
       }

@@ -28,6 +28,20 @@
             "display": "Blepharoplasty, upper eyelid; with excessive skin weighting down lid"
           }
         ]
+      },
+      {
+        "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+        "version": "2021-10",
+        "concept": [
+          {
+            "code": "15822",
+            "display": "Blepharoplasty, upper eyelid"
+          },
+          {
+            "code": "15823",
+            "display": "Blepharoplasty, upper eyelid; with excessive skin weighting down lid"
+          }
+        ]
       }
     ]
   }

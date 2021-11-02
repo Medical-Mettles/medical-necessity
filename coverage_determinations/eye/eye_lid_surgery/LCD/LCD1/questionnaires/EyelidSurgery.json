@@ -172,7 +172,7 @@
             }
           ],
           "linkId": "Socket",
-          "text": "Does the patient have Anophthalmic/Microphthalmic/Enophthalmic socket?",
+          "text": "Does the patient have Anophthalmic, Microphthalmic or Enophthalmic socket?",
           "type": "boolean",
           "required": true
         },

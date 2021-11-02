@@ -59,42 +59,6 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.25"
-        }
-        ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.192"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.195"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.196"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.197"
         }
       ]
@@ -107,42 +71,6 @@
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.198"
         }
       ]
-    },
-    {
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.79"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.199"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.200"
-        }
-        ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.201"
-        }
-        ]
     },
     {
       "type": "Condition",
@@ -172,15 +100,6 @@
         ]
     },
     {
-      "type": "Observation",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.99.24"
-        }
-        ]
-    },
-    {
       "type": "Condition",
       "codeFilter": [
         {
@@ -195,15 +114,6 @@
         {
           "path": "code",
           "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.206"
-        }
-        ]
-    },
-    {
-      "type": "Condition",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.207"
         }
         ]
     }

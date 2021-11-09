@@ -23,4 +23,4 @@ define "NextQuestionLinkId":
 
 define "next-question":
     if "NextQuestionLinkId" is not null
-        then "NextQuestionLinkId" else '')
+        then "NextQuestionLinkId" else ''

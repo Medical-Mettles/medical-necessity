@@ -1,39 +1,669 @@
 {
-    "resourceType": "Questionnaire",
-    "id": "questionnaire-breastcancerchemoadaptive2",
-    "meta": {
-        "versionId": "3",
-        "lastUpdated": "2021-01-29T13:51:00.000+00:00",
-        "source": "#1a3wHlADT6JwOxCd"
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-breastcancerchemoadaptive2",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2021-01-29T13:51:00.000+00:00",
+    "source": "#1a3wHlADT6JwOxCd"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-chemoadaptive2-ChemoAdaptive"
     },
-    "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+      "valueBoolean": true
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-chemoadaptive2-chemoadaptive2",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-breast_cancer_chemo_adaptive2"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "BreastCancerChemoAdaptive2",
+  "title": "Systemic Adjuvant Chemotherapy",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2019-12-03",
+  "publisher": "Mettle Solutions",
+  "item": [
+    {
+      "linkId": "4",
+      "text": "Line of Therapy",
+      "type": "group",
+      "item": [
         {
-            "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-chemoadaptive2-ChemoAdaptive"
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LineOfTherapy"
+              }
+            }
+          ],
+          "linkId": "4.1",
+          "text": "Line of Therapy",
+          "type": "integer",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Tumor Markers",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ERPositive"
+              }
+            }
+          ],
+          "linkId": "3.1",
+          "text": "Hormone Receptor Status, ER Positive?",
+          "type": "boolean",
+          "required": true
         },
         {
-          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
-          "valueBoolean": true
-        } 
-    ],
-    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-chemoadaptive2-chemoadaptive2",
-    "identifier": [
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PRPositive"
+              }
+            }
+          ],
+          "linkId": "3.2",
+          "text": "Hormone Receptor Status, PR Positive?",
+          "type": "boolean",
+          "required": true
+        },
         {
-            "system": "http://identifiers.mettles.com/prior_authorization",
-            "value": "medicare_fee_for_service-breast_cancer_chemo_adaptive2"
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HER2Positive"
+              }
+            }
+          ],
+          "linkId": "3.3",
+          "text": "HER2 Status: HER2 positive?",
+          "type": "boolean",
+          "required": true
         }
-    ],
-    "version": "1.0.0",
-    "name": "BreastCancerChemoAdaptive2",
-    "title": "Systemic Adjuvant Chemotherapy",
-    "status": "draft",
-    "subjectType": [
-        "Patient"
-    ],
-    "date": "2019-12-03",
-    "publisher": "Mettle Solutions",
-    "item": [
+      ]
+    },
+    {
+      "linkId": "1",
+      "text": "Staging",
+      "type": "group",
+      "item": [
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StagingType"
+              }
+            }
+          ],
+          "linkId": "1.1",
+          "text": "Cancer Staging Type",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pathological",
+                "display": "Pathological"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumourSize"
+              }
+            }
+          ],
+          "linkId": "1.2",
+          "text": "Tumor Size (cm)",
+          "type": "decimal"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Laterality"
+              }
+            }
+          ],
+          "linkId": "1.3",
+          "text": "Laterality of Tumor",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Left",
+                "display": "Left"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Right",
+                "display": "Right"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Bilateral",
+                "display": "Bilateral"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "pTStage"
+              }
+            }
+          ],
+          "linkId": "1.4",
+          "text": "Primary Tumor (pT)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "pNStageClinical"
+              }
+            }
+          ],
+          "linkId": "1.5",
+          "text": "Regional Lymph nodes (N)",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "1.1",
+              "operator": "=",
+              "answerCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "pNStagePathological"
+              }
+            }
+          ],
+          "linkId": "1.6",
+          "text": "Regional Lymph nodes (pN)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "pMStageClinical"
+              }
+            }
+          ],
+          "linkId": "1.7",
+          "text": "Distant Metastasis (M)",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "1.1",
+              "operator": "=",
+              "answerCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "pMStagePathological"
+              }
+            }
+          ],
+          "linkId": "1.8",
+          "text": "Distant Metastasis (pM)",
+          "type": "text"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnatomicStage"
+              }
+            }
+          ],
+          "linkId": "1.9",
+          "text": "TNM Staging",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stage0",
+                "display": "Stage0"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIA",
+                "display": "StageIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIB",
+                "display": "StageIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIA",
+                "display": "StageIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIB",
+                "display": "StageIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIA",
+                "display": "StageIIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIB",
+                "display": "StageIIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIC",
+                "display": "StageIIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIV",
+                "display": "StageIV"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Pre-existing Co-morbidities",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PreExistingConditions"
+              }
+            }
+          ],
+          "linkId": "2.4",
+          "text": "Does the patient have pre-existing cardiac/renal/liver conditions?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConditionsManagement"
+              }
+            }
+          ],
+          "linkId": "2.5",
+          "text": "Are the pre-existing cardiac/renal/liver conditions managed before commencement of chemotherapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "2.4",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "2.6",
+          "text": "Additional information on the cardiac/renal/liver condition",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2.5",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.11",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "2.5",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.12",
+          "text": "Additional information on the cardiac/renal/liver condition",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2.5",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PulmonaryDiseaseHistory"
+              }
+            }
+          ],
+          "linkId": "2.7",
+          "text": "Does the patient have a history of pulmonary disease?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PulmonaryManagement"
+              }
+            }
+          ],
+          "linkId": "2.8",
+          "text": "Are the pulmonary conditions managed before commencement of chemotherapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "2.7",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "2.9",
+          "text": "Additional information on the pulmonary condition",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2.8",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "2.13",
+          "text": "What is the status of the Patient's condition?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "2.8",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stable",
+                "display": "Stable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unstable",
+                "display": "Unstable"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Improving",
+                "display": "Improving"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Worsening",
+                "display": "Worsening"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2.14",
+          "text": "Additional information on the pulmonary condition",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2.8",
+              "operator": "=",
+              "answerBoolean": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BleedingDisorder"
+              }
+            }
+          ],
+          "linkId": "2.1",
+          "text": "Does the patient have any bleeding disorders?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BleedingDisorderManagement"
+              }
+            }
+          ],
+          "linkId": "2.2",
+          "text": "Is the patient under medication for the management of bleeding disorders?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "question": "2.1",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "2.10",
+          "text": "Additional information on the bleeding condition",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2.1",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NeutrophilCount"
+              }
+            }
+          ],
+          "linkId": "2.3",
+          "text": "Are Neutrophil counts < 1500 /mm3?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Allergies to Regimen Drugs",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "KnownAllergies"
+              }
+            }
+          ],
+          "linkId": "5.1",
+          "text": "Does the patient have any known allergies to any of the drugs indicated in the chemotherapy regimen (Docetaxel, Carboplatin, Trastuzumab)?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecificAllergies"
+              }
+            }
+          ],
+          "linkId": "5.2",
+          "text": "Specify the Allergies",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "5.1",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
       "linkId": "7",
       "text": "Payer Recommendation",
       "type": "group",
@@ -42,36 +672,26 @@
           "linkId": "7.1",
           "text": "Payer's treatment regimen recommendation.",
           "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "<h3>The Payer analyzed the conditions, observations, diagnostic reports, family member history from the patient's medical record and determined that a Chemotherapy regimen is recommended.</h3> <br>You can export the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76031?_format=json' target='_blank'> CarePlan </a> and injest it into your EHR/practice management system</br>"
-              }
-            ],
-          "_text": {
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
-                "valueString": "<h3>The Payer analyzed the conditions, observations, diagnostic reports, family member history from the patient's medical record and determined that a Chemotherapy regimen is recommended.</h3> <br>You can export the <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76031?_format=json' target='_blank'> CarePlan </a> and injest it into your EHR/practice management system</br>"
-
-              }
-            ]
-          },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
+              "valueString": "You have selected Treatment Option 1 <br><div class='row'><div class='col-4'><div class='col-12 cerner-header'>NCCN approved treatment option 1</div><table class='table table-striped table-sm table-condensed table-bordered'><thead class='thead-light'><tr><td key='medicine'>Medicine</td><td key='hcpcs'>HCPCS</td><td key='rxnorm'>RxNorm</td><td key='dosage'>Dosage</td></tr></thead><tbody><tr key='med1'><td key='medicine'>Docetaxel</td><td key='hcpcs'>J9171 (1 mg units)</td><td key='rxnorm'>1001405 (20mg/ml)</td><td key='dosage'>75mg/m2</td></tr><tr key='med2'><td key='medicine'>Carboplatin</td><td key='hcpcs'>J9045 (50 mg units)</td><td key='rxnorm'>597195 (10 mg/ml)</td><td key='dosage'>calculated AUC</td></tr><tr key='med3'><td key='medicine'>trastuzumab-pkrb biosimilar</td><td key='hcpcs'>Q5113 (10 mg units)</td><td key='rxnorm'>2107055 (21 mg/ml)</td><td key='dosage'>2mg/kg</td></tr><tr key='med4'><td key='medicine'>zoledronic acid</td><td key='hcpcs'>J3489 (1mg units)</td><td key='rxnorm'>351114 (4mg units)</td><td key='dosage'>5 mg per 100ml injections</td></tr></tbody></table></div></div><br>You can import this <a href='https://fhir-dev.mettles.com/interop/fhir/CarePlan/76102?_format=json' target='_blank'> CarePlan </a> into your EHR</br>"
+            }
+          ],
           "type": "display"
         }
       ]
     },
+    {
+      "linkId": "6",
+      "text": "Reports",
+      "type": "group",
+      "item": [
         {
-            "linkId": "6",
-            "text": "Reports",
-            "type": "group",
-            "item": [
-                {
-                    "linkId": "6.1",
-                    "text": "Please attach the latest Post Surgical Pathology Report for additional information.",
-                    "type": "display"
-                }
-            ]
+          "linkId": "6.1",
+          "text": "Please attach the latest Post Surgical Pathology Report for additional information.",
+          "type": "display"
         }
-
-    ]
+      ]
+    }
+  ]
 }

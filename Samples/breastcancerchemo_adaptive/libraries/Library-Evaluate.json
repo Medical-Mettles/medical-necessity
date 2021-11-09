@@ -1,8 +1,8 @@
 {
   "resourceType": "Library",
   "version": "1.0.0",
-  "title": "Evaluate",
-  "name": "Evaluate",
+  "title": "ChemoAdaptiveEvaluate",
+  "name": "ChemoAdaptiveEvaluate",
   "status": "draft",
   "type": {
     "coding": [

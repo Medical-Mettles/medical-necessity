@@ -1,0 +1,256 @@
+library SpeechLanguagePathology version '1.0.0'
+
+using FHIR version '4.0.0'
+
+include FHIRHelpers version '4.0.0' called FHIRHelpers
+
+codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
+codesystem "LOINC": 'http://loinc.org'
+codesystem "HCPCS": 'https://hcpcs.codes/'
+codesystem "SNOMED-CT": 'http://snomed.info/sct'
+codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
+
+valueset "Congitive Peformance Testing Service": '2.16.840.1.113883.3.6037.1001.23.93.208'
+valueset "Behavioral and qualitative analysis of voice and resonance": '2.16.840.1.113883.3.6037.1001.23.93.210'
+valueset "Therapeutic interventions for cognitive function": '2.16.840.1.113883.3.6037.1001.23.93.211'
+valueset "Evaluation of Speech Fluency": '2.16.840.1.113883.3.6037.1001.23.93.212'
+valueset "Evaluation of Sound Production": '2.16.840.1.113883.3.6037.1001.23.93.213'
+valueset "Evaluation of Language Comprehension and Expression": '2.16.840.1.113883.3.6037.1001.23.93.214'
+valueset "Evaluation of Swallowing Function": '2.16.840.1.113883.3.6037.1001.23.93.215'
+valueset "Evaluation of Aphasia": '2.16.840.1.113883.3.6037.1001.23.93.216'
+valueset "Neurobehavioral Status Exam": '2.16.840.1.113883.3.6037.1001.23.93.217'
+valueset "Evaluation of Developmental Skills": '2.16.840.1.113883.3.6037.1001.23.93.218'
+valueset "Evaluation of Voice Prosthetic Usage": '2.16.840.1.113883.3.6037.1001.23.93.219'
+valueset "Evaluation of Speech Generating Device": '2.16.840.1.113883.3.6037.1001.23.93.220'
+valueset "Hypernasality": '2.16.840.1.113883.3.6037.1001.23.93.221'
+valueset "Hyponasality": '2.16.840.1.113883.3.6037.1001.23.93.222'
+valueset "Cul De Sac Resonance": '2.16.840.1.113883.3.6037.1001.23.93.223'
+valueset "Nasal Complications": '2.16.840.1.113883.3.6037.1001.23.93.225'
+valueset "Nasal Complications Surgery": '2.16.840.1.113883.3.6037.1001.23.93.226'
+valueset "Articulation Errors": '2.16.840.1.113883.3.6037.1001.23.93.227'
+valueset "Congenital Deflect Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.98'
+valueset "Traumatic Injury": '2.16.840.1.113762.1.4.1029.10'
+
+parameter "ServiceRequest" ServiceRequest
+parameter "QuestionnaireResponse" QuestionnaireResponse
+
+context Patient
+
+define Request:
+	"ServiceRequest"
+
+define CognitivePerformanceTesting:
+  "Request".code.coding C where C in "Congitive Peformance Testing Service"
+
+define VoiceAndResonanceAnalysis:
+  "Request".code.coding C where C in "Behavioral and qualitative analysis of voice and resonance"
+
+define TherapyForCognitiveFunction:
+  "Request".code.coding C where C in "Therapeutic interventions for cognitive function"
+
+define EvaluationSpeechFluencyService:
+  "Request".code.coding C where C in "Evaluation of Speech Fluency"
+
+define EvaluationSoundProductionService:
+  "Request".code.coding C where C in "Evaluation of Sound Production"
+
+define EvaluationLanguageComprehensionService:
+  "Request".code.coding C where C in "Evaluation of Language Comprehension and Expression"
+
+define EvaluationSwallowingFunctionService:
+  "Request".code.coding C where C in "Evaluation of Swallowing Function"
+
+define EvaluationAphasiaService:
+  "Request".code.coding C where C in "Evaluation of Aphasia"
+
+define EvaluationNeurobehavioralStatusService:
+  "Request".code.coding C where C in "Neurobehavioral Status Exam"
+
+define EvaluationDevelopmentalSkillsService:
+  "Request".code.coding C where C in "Evaluation of Developmental Skills"
+
+define EvaluationProstheticUsageService:
+  "Request".code.coding C where C in "Evaluation of Voice Prosthetic Usage"
+
+define EvaluationSpeechGeneratingDevicesService:
+  "Request".code.coding C where C in "Evaluation of Speech Generating Device"
+
+define TypeOfRequest:
+	if (exists("CognitivePerformanceTesting")
+				or exists("VoiceAndResonanceAnalysis")
+          or exists("EvaluationSpeechFluencyService")
+            or exists("EvaluationSoundProductionService")
+              or exists("EvaluationSwallowingFunctionService")
+                or exists("EvaluationAphasiaService")
+                  or exists("EvaluationNeurobehavioralStatusService")
+                    or exists("EvaluationDevelopmentalSkillsService")
+                      or exists("EvaluationProstheticUsageService")
+                        or exists("EvaluationSpeechGeneratingDevicesService"))
+                          then 'A speech language evaluation'
+                            else if exists("TherapyForCognitiveFunction")
+                              then 'A speech language restorative or rehabilitative therapy'
+                                else null
+
+define EvaluationSpeechFluency:
+  if exists("EvaluationSpeechFluencyService")
+    then true
+      else false
+
+define EvaluationSoundProduction:
+   if exists("EvaluationSoundProductionService")
+    then true
+      else false
+
+define EvaluationLanguageComprehension:
+  if exists("EvaluationLanguageComprehensionService")
+    then true
+      else false
+
+define BehavioralQualitativeAnalysis:
+	if exists("VoiceAndResonanceAnalysis")
+		then true
+			else false
+
+define EvaluationSwallowingFunction:
+	if exists("EvaluationSwallowingFunctionService")
+		then true
+			else null
+
+define EvaluationCognitiveFunction:
+	if exists("CognitivePerformanceTesting")
+		then true
+			else false
+
+define EvaluationAphasia:
+	if exists("EvaluationAphasiaService")
+		then true
+			else false
+
+define EvaluationNeurobehavioralStatus:
+	if exists("EvaluationNeurobehavioralStatusService")
+			then true
+				else false
+
+define EvaluationDevelopmentalSkills:
+	if exists("EvaluationDevelopmentalSkillsService")
+		then true
+			else false
+
+define EvaluationProstheticUsage:
+	if exists("EvaluationProstheticUsageService")
+		then true
+			else false
+
+define EvaluationSpeechGeneratingDevices:
+		if exists("EvaluationSpeechGeneratingDevicesService")
+				then true
+					else null
+
+define HypernasalityCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Hypernasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+
+define HyponasalityCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Hyponasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+
+define CulDeSacResonanceCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Cul De Sac Resonance")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+
+define MixedResonanceCondition:
+  if (exists("HypernasalityCondition")
+    and exists("HyponasalityCondition")
+      and exists("CulDeSacResonanceCondition"))
+        then true
+          else false
+
+define VoiceResonanceSymptoms:
+  if (exists("HypernasalityCondition")
+    or exists("HyponasalityCondition")
+      or exists("CulDeSacResonanceCondition"))
+        then true
+          else false
+
+define SpecifyVoiceResonanceSymptoms:
+  if exists("HypernasalityCondition")
+    then 'Hypernasality'
+      else if exists("HyponasalityCondition")
+        then 'Hyponasality'
+          else if exists("CulDeSacResonanceCondition")
+            then 'Cul-de-sac resonance'
+              else if ("MixedResonanceCondition" = true)
+                then 'Mixed resonance'
+                  else null
+
+define VoiceResonanceCausedByDisease:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "Nasal Complications")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define VoiceResonanceUnwantedResult:
+	exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Nasal Complications Surgery")
+
+define ArticulationErrors:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "Articulation Errors")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define CongenitalDefectCause:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Congenital Deflect Diagnosis")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define TraumaCause:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Traumatic Injury")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define PrevHypernasalityCondition:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Hypernasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+          and "Normalize Interval"(C.onset) after (Today()-60 days))
+
+define PrevHyponasalityCondition:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Hyponasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+          and "Normalize Interval"(C.onset) after (Today()-60 days))
+
+define PreviousCulDeSacResonanceCondition:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Cul De Sac Resonance")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+          and "Normalize Interval"(C.onset) after (Today()-60 days))
+
+define ConditionPreviousHistory:
+ if ("PrevHypernasalityCondition" = true and exists("HypernasalityCondition"))
+      or ("PrevHyponasalityCondition" = true and exists("HyponasalityCondition"))
+        or ("PreviousCulDeSacResonanceCondition" = true and exists("CulDeSacResonanceCondition"))
+          then true
+            else false
+
+define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+	if onset is FHIR.date then
+	  Interval[ToDateTime(onset as FHIR.date), ToDateTime(onset as FHIR.date)]
+        else if onset is FHIR.dateTime then
+	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
+	else if onset is FHIR.Period then
+	  FHIRHelpers.ToInterval(onset as FHIR.Period)
+	else if onset is FHIR.Age then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
+	else null

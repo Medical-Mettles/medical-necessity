@@ -1,0 +1,34 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.217",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.217",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.217"
+        }
+    ],
+    "version": "Latest",
+    "name": "Neurobehavioral Status Exam",
+    "title": "Neurobehavioral Status Exam",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "96116",
+                        "display": "Neurobehavioral status exam (clinical assessment of thinking, reasoning and judgment, [eg, acquired knowledge, attention, language, memory, planning and problem solving, and visual spatial abilities]), by physician or other qualified health care professional, both face-to-face time with the patient and time interpreting test results and preparing the report; first hour"
+                    },
+                    {
+                        "code": "96121",
+                        "display": "Neurobehavioral status examination by qualified health care professional with interpretation and report, additional 60 minutes"
+                    }
+                ]
+            }
+        ]
+    }
+}

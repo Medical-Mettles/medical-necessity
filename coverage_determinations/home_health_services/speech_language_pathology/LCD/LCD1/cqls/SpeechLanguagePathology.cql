@@ -30,6 +30,17 @@ valueset "Nasal Complications Surgery": '2.16.840.1.113883.3.6037.1001.23.93.226
 valueset "Articulation Errors": '2.16.840.1.113883.3.6037.1001.23.93.227'
 valueset "Congenital Deflect Diagnosis": '2.16.840.1.113883.3.6037.1001.23.93.98'
 valueset "Traumatic Injury": '2.16.840.1.113762.1.4.1029.10'
+valueset "Speech Fluency Symptoms": '2.16.840.1.113883.3.6037.1001.23.93.228'
+valueset "Autism Spectrum and Related Disorders": '2.16.840.1.113883.3.1240.2017.3.2.2003'
+valueset "Tourette's Syndrome": '2.16.840.1.113883.3.464.1003.105.11.1170'
+valueset "ADHD": '2.16.840.1.113883.3.67.1.101.1.316'
+valueset "Anxiety": '2.16.840.1.113762.1.4.1021.76'
+valueset "Stress": '2.16.840.1.113762.1.4.1222.1257'
+valueset "Emotional Distress caused by Chronic Condition": '2.16.840.1.113762.1.4.1222.506'
+valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
+valueset "Speech Language Pathology Services": '2.16.840.1.113883.3.6037.1001.23.93.209'
+valueset "Speech Fluency Therapy": '2.16.840.1.113883.3.6037.1001.23.93.229'
+valueset "Speech Language Pathology Therapy Maintenance Services": '2.16.840.1.113883.3.6037.1001.23.93.220'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -75,6 +86,15 @@ define EvaluationProstheticUsageService:
 define EvaluationSpeechGeneratingDevicesService:
   "Request".code.coding C where C in "Evaluation of Speech Generating Device"
 
+define SpeechFluencyTherapyService:
+  "Request".code.coding C where C in "Evaluation of Speech Generating Device"
+
+define SpeechLanguagePathologyEvalService:
+  "Request".code.coding C where C in "Speech Language Pathology Services"
+
+define SpeechLanguagePathologyTherapyService:
+    "Request".code.coding C where C in "Speech Language Pathology Therapy Maintenance Services"
+
 define TypeOfRequest:
 	if (exists("CognitivePerformanceTesting")
 				or exists("VoiceAndResonanceAnalysis")
@@ -87,9 +107,10 @@ define TypeOfRequest:
                       or exists("EvaluationProstheticUsageService")
                         or exists("EvaluationSpeechGeneratingDevicesService"))
                           then 'A speech language evaluation'
-                            else if exists("TherapyForCognitiveFunction")
-                              then 'A speech language restorative or rehabilitative therapy'
-                                else null
+                            else if (exists("TherapyForCognitiveFunction")
+                              or exists("SpeechFluencyTherapyService"))
+                                  then 'A speech language restorative or rehabilitative therapy'
+                                    else null
 
 define EvaluationSpeechFluency:
   if exists("EvaluationSpeechFluencyService")
@@ -236,12 +257,97 @@ define PreviousCulDeSacResonanceCondition:
         and First(C.verificationStatus.coding).code.value = 'confirmed'
           and "Normalize Interval"(C.onset) after (Today()-60 days))
 
-define ConditionPreviousHistory:
+define StutteringClutteringSymptoms:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Symptoms")
+      and First(C.clinicalStatus.coding).code.value = 'active')
+
+define ConditionPreviousHistoryVoiceResonance:
  if ("PrevHypernasalityCondition" = true and exists("HypernasalityCondition"))
       or ("PrevHyponasalityCondition" = true and exists("HyponasalityCondition"))
         or ("PreviousCulDeSacResonanceCondition" = true and exists("CulDeSacResonanceCondition"))
           then true
             else false
+
+define ConditionPreviousHistorySpeechFluency:
+ exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Symptoms")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+          and "Normalize Interval"(C.onset) after (Today()-60 days))
+
+define ConditionPreviousHistory:
+  if ("ConditionPreviousHistoryVoiceResonance" = true
+        or "ConditionPreviousHistorySpeechFluency" = true)
+    then true
+      else false
+
+define SpeechInfluencyByAutism:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Autism Spectrum and Related Disorders")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechInfluencyByTourette:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Tourette's Syndrome")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechInfluencyByADHD:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "ADHD")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechConditionCausedByDisease:
+  if ("SpeechInfluencyByAutism" = true
+        or "SpeechInfluencyByTourette" = true
+          or "SpeechInfluencyByADHD" = true)
+            then true
+              else false
+
+define SpecifyDiseaseCausingSpeechCondition:
+  if ("SpeechInfluencyByAutism" = true)
+    then 'Autism Spectrum Disorder'
+      else if ("SpeechInfluencyByTourette" = true)
+        then 'Tourette Syndrome'
+          else if ("SpeechInfluencyByADHD" = true)
+            then 'Attention Deficit or Hyperactivity Disorder'
+              else null
+
+define SpeechConditionCausedByStress:
+  exists([Condition]C
+    where (exists(C.code.coding C where C in "Anxiety")
+            or exists(C.code.coding C where C in "Stress")
+            or exists(C.code.coding C where C in "Emotional Distress caused by Chronic Condition"))
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define EncounterResource:
+	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value )
+
+define EncPractitioner:
+    First([Practitioner]P
+        where 'Practitioner/' + P.id.value = "ServiceRequest".requester.reference.value)
+
+define function "EncounterPractitioner"(Encounter Encounter):
+	Encounter.participant PR
+	return First([Practitioner]P where 'Practitioner/' + P.id.value = PR.individual.reference.value)
+
+define FacetoFaceEncounter:
+	"EncounterResource" F2FEncounter
+	where First(First(F2FEncounter.type).coding) in "Face to Face Encounter"
+	and First(F2FEncounter.participant).individual.reference.value = 'Practitioner/' + "EncPractitioner".id.value
+	and (First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'MD'
+		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
+		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
+		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
+
+define FToFEncounter:
+	if ("FacetoFaceEncounter" is not null)
+	then true
+	else false
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
 	if onset is FHIR.date then

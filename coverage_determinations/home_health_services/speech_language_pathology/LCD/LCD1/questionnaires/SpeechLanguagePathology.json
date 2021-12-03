@@ -103,8 +103,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ],
@@ -119,8 +119,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -134,8 +134,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             },
             {
@@ -163,8 +163,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ],
@@ -179,8 +179,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -194,8 +194,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -209,8 +209,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -224,8 +224,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -239,8 +239,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -254,8 +254,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
@@ -269,11 +269,98 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Evaluation",
-                "display": "Evaluation"
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
               }
             }
           ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EarlierEvaluationsDone"
+              }
+            }
+          ],
+          "linkId": "EarlierEvaluationsDone",
+          "text": "Which of the following evaluations were done earlier?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Evaluation of speech fluency",
+                "display": "Evaluation of speech fluency"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation of sound production",
+                "display": "Evaluation of sound production"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Behavioral and qualitative analysis of voice and resonance",
+                "display": "Behavioral and qualitative analysis of voice and resonance"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Clinical evaluation of swallowing function",
+                "display": "Clinical evaluation of swallowing function"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Standardized cognitive performance testing",
+                "display": "Standardized cognitive performance testing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation and assessment of aphasia",
+                "display": "Evaluation and assessment of aphasia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neurobehavioral status exam",
+                "display": "Neurobehavioral status exam"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Developmental testing",
+                "display": "Developmental testing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation for use or fitting of a voice prosthetic",
+                "display": "Evaluation for use or fitting of a voice prosthetic"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation or re-evaluation for the usage of speech generating devices",
+                "display": "Evaluation or re-evaluation for the usage of speech generating devices"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
         }
       ]
     },
@@ -288,83 +375,17 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "StutteringSymptoms"
+                "expression": "StutteringClutteringSymptoms"
               }
             }
           ],
-          "linkId": "StutteringSymptoms",
-          "text": "Does the patient show any signs and symptoms of stuttering?",
+          "linkId": "StutteringClutteringSymptoms",
+          "text": "Does the patient show any signs and symptoms of stuttering or cluttering?",
           "type": "boolean",
           "enableWhen": [
             {
               "operator": "=",
               "question": "EvaluationSpeechFluency",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SpecifyStutteringSymptoms"
-              }
-            }
-          ],
-          "linkId": "SpecifyStutteringSymptoms",
-          "text": "What type of stuttering is seen in the patient?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "StutteringSymptoms",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ClutteringSymptoms"
-              }
-            }
-          ],
-          "linkId": "ClutteringSymptoms",
-          "text": "Does the patient show any signs and symptoms of cluttering?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "EvaluationSpeechFluency",
-              "answerBoolean": true
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SpecifyClutteringSymptoms"
-              }
-            }
-          ],
-          "linkId": "SpecifyClutteringSymptoms",
-          "text": "What type of cluttering is seen in the patient?",
-          "type": "boolean",
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "ClutteringSymptoms",
               "answerBoolean": true
             }
           ],
@@ -779,6 +800,28 @@
             }
           ],
           "linkId": "SpeechConditionCausedByDisease",
+          "text": "Is the speech influency secondary to a previously diagnosed disease?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "StutteringClutteringSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyDiseaseCausingSpeechCondition"
+              }
+            }
+          ],
+          "linkId": "SpecifyDiseaseCausingSpeechCondition",
           "text": "Is the condition caused due to any of the following diseases?",
           "type": "choice",
           "answerOption": [
@@ -804,16 +847,10 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "StutteringSymptoms",
-              "answerBoolean": true
-            },
-            {
-              "operator": "=",
-              "question": "ClutteringSymptoms",
+              "question": "SpeechConditionCausedByDisease",
               "answerBoolean": true
             }
           ],
-          "enableBehavior": "any",
           "required": true
         },
         {
@@ -832,16 +869,10 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "StutteringSymptoms",
-              "answerBoolean": true
-            },
-            {
-              "operator": "=",
-              "question": "ClutteringSymptoms",
+              "question": "StutteringClutteringSymptoms",
               "answerBoolean": true
             }
           ],
-          "enableBehavior": "any",
           "required": true
         },
         {
@@ -1248,14 +1279,23 @@
           "required": true
         },
         {
-          "linkId": "F2FEncounter",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FToFEncounter"
+              }
+            }
+          ],
+          "linkId": "FToFEncounter",
           "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
           "type": "boolean",
           "required": true
         },
         {
-          "linkId": "F2FEncounter",
-          "text": "The diagnosis report and an electronic signature by the Speech Language Pathologist confirming the evaluation is required.",
+          "linkId": "DiagnosisReport",
+          "text": "The diagnosis report and a signature by the Speech Language Pathologist confirming the evaluation is required.",
           "type": "display"
         }
       ]

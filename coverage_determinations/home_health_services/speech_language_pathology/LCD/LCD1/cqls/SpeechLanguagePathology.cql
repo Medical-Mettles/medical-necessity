@@ -40,7 +40,16 @@ valueset "Emotional Distress caused by Chronic Condition": '2.16.840.1.113762.1.
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Speech Language Pathology Services": '2.16.840.1.113883.3.6037.1001.23.93.209'
 valueset "Speech Fluency Therapy": '2.16.840.1.113883.3.6037.1001.23.93.229'
-valueset "Speech Language Pathology Therapy Maintenance Services": '2.16.840.1.113883.3.6037.1001.23.93.220'
+valueset "Speech Language Pathology Therapy Maintenance Services": '2.16.840.1.113883.3.6037.1001.23.93.230'
+valueset "Dysphonia": '2.16.840.1.113883.3.6037.1001.23.93.231'
+valueset "Aphonia": '2.16.840.1.113883.3.6037.1001.23.93.232'
+valueset "Laryngeal spasm": '2.16.840.1.113883.3.6037.1001.23.93.233'
+valueset "Chronic Speech Fluency Disorder": '2.16.840.1.113883.3.6037.1001.23.93.234'
+valueset "Speech Fluency Childhood Onset": '2.16.840.1.113883.3.6037.1001.23.93.235'
+valueset "Speech Fluency Adult Onset": '2.16.840.1.113883.3.6037.1001.23.93.236'
+valueset "Speech Fluency Cerebrovascular Onset": '2.16.840.1.113883.3.6037.1001.23.93.237'
+valueset "Nasal Deformity": '2.16.840.1.113883.3.6037.1001.23.93.103'
+valueset "Voice and Resonance Therapy": '2.16.840.1.113883.3.6037.1001.23.93.238'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -95,6 +104,9 @@ define SpeechLanguagePathologyEvalService:
 define SpeechLanguagePathologyTherapyService:
     "Request".code.coding C where C in "Speech Language Pathology Therapy Maintenance Services"
 
+define VoiceResonanceTherapyService:
+    "Request".code.coding C where C in "Voice and Resonance Therapy"
+
 define TypeOfRequest:
 	if (exists("CognitivePerformanceTesting")
 				or exists("VoiceAndResonanceAnalysis")
@@ -108,7 +120,8 @@ define TypeOfRequest:
                         or exists("EvaluationSpeechGeneratingDevicesService"))
                           then 'A speech language evaluation'
                             else if (exists("TherapyForCognitiveFunction")
-                              or exists("SpeechFluencyTherapyService"))
+                              or exists("SpeechFluencyTherapyService")
+                                or exists("VoiceResonanceTherapyService"))
                                   then 'A speech language restorative or rehabilitative therapy'
                                     else null
 
@@ -348,6 +361,213 @@ define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
 	then true
 	else false
+
+define EvaluationSpeechFluencyProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Speech Fluency")
+
+define CognitivePerformanceTestingProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Congitive Peformance Testing Service")
+
+define VoiceAndResonanceAnalysisProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Behavioral and qualitative analysis of voice and resonance")
+
+define EvaluationSoundProductionProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Sound Production")
+
+define EvaluationLanguageComprehensionProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Language Comprehension and Expression")
+
+define EvaluationSwallowingFunctionProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Swallowing Function")
+
+define EvaluationAphasiaProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Aphasia")
+
+define EvaluationNeurobehavioralStatusProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Neurobehavioral Status Exam")
+
+define EvaluationDevelopmentalSkillsProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Developmental Skills")
+
+define EvaluationProstheticUsageProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Voice Prosthetic Usage")
+
+define EvaluationSpeechGeneratingDevicesProcedure:
+  exists([Procedure]P
+          where P.status.value = 'completed'
+		        and First(P.code.coding) in "Evaluation of Speech Generating Device")
+
+define EarlierEvaluationsDone:
+  if ("EvaluationSpeechFluencyProcedure" = true)
+    then 'Evaluation of speech fluency'
+      else if ("CognitivePerformanceTestingProcedure" = true)
+        then 'Standardized cognitive performance testing'
+          else if ("VoiceAndResonanceAnalysisProcedure" = true)
+            then 'Behavioral and qualitative analysis of voice and resonance'
+              else if ("EvaluationSoundProductionProcedure" = true or ("EvaluationLanguageComprehensionProcedure" = true))
+                then 'Evaluation of sound production'
+                  else if ("EvaluationSwallowingFunctionProcedure" = true)
+                    then 'Clinical evaluation of swallowing function'
+                      else if ("EvaluationAphasiaProcedure" = true)
+                        then 'Evaluation and assessment of aphasia'
+                          else if ("EvaluationNeurobehavioralStatusProcedure" = true)
+                            then 'Neurobehavioral status exam'
+                              else if ("EvaluationDevelopmentalSkillsProcedure" = true)
+                                then 'Developmental testing'
+                                  else if ("EvaluationProstheticUsageProcedure" = true)
+                                    then 'Evaluation for use or fitting of a voice prosthetic'
+                                      else if ("EvaluationSpeechGeneratingDevicesProcedure" = true)
+                                        then 'Evaluation or re-evaluation for the usage of speech generating devices'
+                                          else ''
+
+define SpeechFluencyDisorder:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Symptoms")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define ChronicSpeechFluencyDisorder:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Chronic Speech Fluency Disorder")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechFluencyDisorderPattern:
+  if ("ChronicSpeechFluencyDisorder" = true)
+    then 'Continuous'
+      else if ("SpeechConditionCausedByStress" = true)
+        then 'Variable'
+          else ''
+
+define SpeechFluencyDisorderDuration:
+  if ("SpeechConditionCausedByDisease" = true)
+    then 'Permanent'
+      else if ("SpeechConditionCausedByStress" = true)
+        then 'Temporary'
+          else ''
+
+define SpeechInfluencyChildhoodOnset:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Childhood Onset")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechInfluencyAdultOnset:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Adult Onset")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechInfluencyCerebrovascularOnset:
+  exists([Condition]C
+    where exists(C.code.coding C where C in "Speech Fluency Cerebrovascular Onset")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define SpeechFluencyDisorderCause:
+  if ("SpeechInfluencyChildhoodOnset" = true)
+    then 'Childhood onset'
+      else if ("SpeechInfluencyAdultOnset" = true)
+        then 'Adult onset'
+          else if ("SpeechInfluencyCerebrovascularOnset" = true)
+            then 'Fluency disorder following cerebrovascular disease/ trauma'
+              else ''
+
+define HypernasalityConditionConfirmed:
+  [Condition]C
+    where exists(C.code.coding C where C in "Hypernasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define HyponasalityConditionConfirmed:
+  [Condition]C
+    where exists(C.code.coding C where C in "Hyponasality")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define CulDeSacResonanceConditionConfirmed:
+  [Condition]C
+    where exists(C.code.coding C where C in "Cul De Sac Resonance")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define DysphoniaCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Dysphonia")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define AphoniaCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Aphonia")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define LaryngealSpasmCondition:
+  [Condition]C
+    where exists(C.code.coding C where C in "Laryngeal spasm")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define VoiceResonanceDisorder:
+  if (exists("HypernasalityConditionConfirmed") or exists("HyponasalityConditionConfirmed")
+        or exists("HyponasalityConditionConfirmed") or exists("DysphoniaCondition")
+          or exists("AphoniaCondition") or exists("LaryngealSpasmCondition"))
+            then true
+              else false
+
+define SpecifyVoiceResonanceDisorder:
+ if exists("HypernasalityConditionConfirmed")
+    then 'Hypernasality'
+      else if exists("HyponasalityConditionConfirmed")
+        then 'Hyponasality'
+          else if exists("DysphoniaCondition")
+            then 'Dysphonia'
+              else if exists("AphoniaCondition")
+                then 'Aphonia'
+                  else if exists("LaryngealSpasmCondition")
+                    then 'Laryngospasm'
+                      else ''
+
+define VoiceResonanceCausedByDeformity:
+	exists([Condition]C
+    where exists(C.code.coding C where C in "Nasal Deformity")
+      and First(C.clinicalStatus.coding).code.value = 'active'
+        and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define VoiceResonanceDisorderCause:
+  if ("VoiceResonanceCausedByDeformity" = true)
+    then 'Structural deformity/ disorder'
+      else if ("ArticulationErrors" = true)
+        then 'Misarticulation'
+          else ''
+
+define RequiredTherapy:
+  if (exists("SpeechLanguagePathologyTherapyService") and ("SpeechFluencyDisorder" = true))
+    then 'Speech fluency therapy'
+      else if (exists("SpeechLanguagePathologyTherapyService") and ("VoiceResonanceDisorder" = true))
+        then 'Voice and resonance therapy'
+          else ''
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.date, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
 	if onset is FHIR.date then

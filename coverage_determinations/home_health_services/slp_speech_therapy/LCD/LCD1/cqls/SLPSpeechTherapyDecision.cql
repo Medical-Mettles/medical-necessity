@@ -431,6 +431,27 @@ define DiagnosisImprovePostTherapy:
 		return First(QR.answer).value
 
 //Decisions
+define FinalRequiredTherapy:
+  if ("RequiredTherapy" = 'Speech fluency therapy')
+    then 'Speech Fluency Therapy'
+      else if ("RequiredTherapy" = 'Voice and resonance therapy')
+        then 'Voice and Resonance Therapy'
+          else 'Does not require Speech Therapy'
+
+define PreviousEvaluationsDone:
+  if ("EarlierEvaluationsDone" = 'Evaluation of speech fluency')
+    then 'Evaluation of Speech Fluency'
+      else if ("EarlierEvaluationsDone" = 'Behavioral and qualitative analysis of voice and resonance')
+        then 'Behavioral and Qualitative Analysis of Voice and Resonance'
+          else 'Evaluation for Speech Therapy were not done'
+
+define FinalDiagnosis:
+  if ("SpeechFluencyDisorder" = true)
+    then 'Speech Fluency Disorder'
+      else if ("VoiceResonanceDisorder" = true)
+        then 'Voice and Resonance Disorder'
+          else 'No confirmed diagnosis'
+
 define AuthorizationBySLP:
   if (First("CertifiedSLP") = true
         and ("FToFEncounter" = true))
@@ -455,11 +476,17 @@ define PrimaryDecisionForVoiceResonanceTherapy:
                 then true
                   else false
 
-define FinalDecision:
+define IntermediateDecision:
   if (("PrimaryDecisionForVoiceResonanceTherapy" = true)
       and exists("SpeechTherapyService"))
         then 'YES FOR VOICE AND RESONANCE THERAPY'
           else if (("PrimaryDecisionForVoiceResonanceTherapy" = true)
             and exists("SpeechTherapyService"))
               then 'YES FOR SPEECH FLUENCY THERAPY'
+                else 'HUMAN REVIEW NEEDED'
+
+define FinalDecision:
+  if (("IntermediateDecision" = 'YES FOR VOICE AND RESONANCE THERAPY')
+      or ("IntermediateDecision" = 'YES FOR SPEECH FLUENCY THERAPY'))
+              then 'YES'
                 else 'HUMAN REVIEW NEEDED'

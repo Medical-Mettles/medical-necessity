@@ -44,10 +44,6 @@
             "display": "Unspecified speech disturbances"
           },
           {
-            "code": "R47.82",
-            "display": "Fluency disorder in conditions classified elsewhere"
-          },
-          {
             "code": "F80.1",
             "display": "Expressive language disorder"
           },

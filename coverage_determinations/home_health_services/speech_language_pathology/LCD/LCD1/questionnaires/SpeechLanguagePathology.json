@@ -367,7 +367,7 @@
             }
           ],
           "linkId": "RequiredTherapy",
-          "text": "Which of the following therapies is needed for the patient? ",
+          "text": "Which of the following therapies is needed for the patient?",
           "type": "choice",
           "answerOption": [
             {
@@ -610,8 +610,14 @@
               "operator": "=",
               "question": "VoiceResonanceSymptoms",
               "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "BehavioralQualitativeAnalysis",
+              "answerBoolean": true
             }
           ],
+          "enableBehavior": "all",
           "required": true
         },
         {

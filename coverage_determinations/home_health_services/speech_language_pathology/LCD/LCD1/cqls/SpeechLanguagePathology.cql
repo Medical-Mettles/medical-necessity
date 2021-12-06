@@ -340,22 +340,9 @@ define SpeechConditionCausedByStress:
 define EncounterResource:
 	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value )
 
-define EncPractitioner:
-    First([Practitioner]P
-        where 'Practitioner/' + P.id.value = "ServiceRequest".requester.reference.value)
-
-define function "EncounterPractitioner"(Encounter Encounter):
-	Encounter.participant PR
-	return First([Practitioner]P where 'Practitioner/' + P.id.value = PR.individual.reference.value)
-
 define FacetoFaceEncounter:
 	"EncounterResource" F2FEncounter
 	where First(First(F2FEncounter.type).coding) in "Face to Face Encounter"
-	and First(F2FEncounter.participant).individual.reference.value = 'Practitioner/' + "EncPractitioner".id.value
-	and (First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'MD'
-		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
-		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
-		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
 
 define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)

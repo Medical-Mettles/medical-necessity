@@ -24,6 +24,7 @@ define Request:
 define QT:
 	"QuestionnaireResponse".item
 
+//Service Request Info
 define SpeechLanguagePathologyService:
   "Request".code.coding C where C in "Speech Language Pathology Services"
 
@@ -38,7 +39,117 @@ define TypeOfRequestService:
 define TypeOfRequest:
   Coalesce(First("TypeOfRequestResponse".code), "TypeOfRequestService")
 
-//Voice Resonance
+define EvaluationSoundProductionResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationSoundProduction')QR
+		return First(QR.answer).value
+
+define EvaluationSoundProductionServ:
+  SLP."EvaluationSoundProduction"
+
+define EvaluationSoundProduction:
+    Coalesce(First("EvaluationSoundProductionResponse"), "EvaluationSoundProductionServ")
+
+define EvaluationLanguageComprehensionResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationLanguageComprehension')QR
+		return First(QR.answer).value
+
+define EvaluationLanguageComprehensionServ:
+  SLP."EvaluationLanguageComprehension"
+
+define EvaluationLanguageComprehension:
+    Coalesce(First("EvaluationLanguageComprehensionResponse"), "EvaluationLanguageComprehensionServ")
+
+define EvaluationSwallowingFunctionResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationSwallowingFunction')QR
+		return First(QR.answer).value
+
+define EvaluationSwallowingFunctionServ:
+  SLP."EvaluationSwallowingFunction"
+
+define EvaluationSwallowingFunction:
+    Coalesce(First("EvaluationSwallowingFunctionResponse"), "EvaluationSwallowingFunctionServ")
+
+define EvaluationCognitiveFunctionResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationCognitiveFunction')QR
+		return First(QR.answer).value
+
+define EvaluationCognitiveFunctionServ:
+  SLP."EvaluationCognitiveFunction"
+
+define EvaluationCognitiveFunction:
+    Coalesce(First("EvaluationCognitiveFunctionResponse"), "EvaluationCognitiveFunctionServ")
+
+define EvaluationAphasiaResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationAphasia')QR
+		return First(QR.answer).value
+
+define EvaluationAphasiaServ:
+  SLP."EvaluationAphasia"
+
+define EvaluationAphasia:
+    Coalesce(First("EvaluationAphasiaResponse"), "EvaluationAphasiaServ")
+
+define EvaluationNeurobehavioralStatusResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationNeurobehavioralStatus')QR
+		return First(QR.answer).value
+
+define EvaluationNeurobehavioralStatusServ:
+  SLP."EvaluationNeurobehavioralStatus"
+
+define EvaluationNeurobehavioralStatus:
+    Coalesce(First("EvaluationNeurobehavioralStatusResponse"), "EvaluationNeurobehavioralStatusServ")
+
+define EvaluationDevelopmentalSkillsResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationDevelopmentalSkills')QR
+		return First(QR.answer).value
+
+define EvaluationDevelopmentalSkillsServ:
+  SLP."EvaluationDevelopmentalSkills"
+
+define EvaluationDevelopmentalSkills:
+    Coalesce(First("EvaluationDevelopmentalSkillsResponse"), "EvaluationDevelopmentalSkillsServ")
+
+define EvaluationProstheticUsageResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationProstheticUsage')QR
+		return First(QR.answer).value
+
+define EvaluationProstheticUsageServ:
+  SLP."EvaluationProstheticUsage"
+
+define EvaluationProstheticUsage:
+  Coalesce(First("EvaluationProstheticUsageResponse"), "EvaluationProstheticUsageServ")
+
+define EvaluationSpeechGeneratingDevicesResponse:
+  ("QT".item I
+		where I.linkId.value = 'EvaluationSpeechGeneratingDevices')QR
+		return First(QR.answer).value
+
+define EvaluationSpeechGeneratingDevicesServ:
+  SLP."EvaluationSpeechGeneratingDevices"
+
+define EvaluationSpeechGeneratingDevices:
+  Coalesce(First("EvaluationSpeechGeneratingDevicesResponse"), "EvaluationSpeechGeneratingDevicesServ")
+
+define RequiredTherapyResponse:
+  ("QT".item I
+		where I.linkId.value = 'RequiredTherapy')QR
+		return First(QR.answer).value
+
+define RequiredTherapyServ:
+  SLP."RequiredTherapy"
+
+define RequiredTherapy:
+  Coalesce(First("RequiredTherapyResponse".code), "RequiredTherapyServ")
+
+//Voice Resonance Evaluation
 define BehavioralQualitativeAnalysisResponse:
 	("QT".item I
 		where I.linkId.value = 'BehavioralQualitativeAnalysis')QR
@@ -111,7 +222,7 @@ define RequestDecisionForVoiceResonance:
         then true
             else false
 
-//Speech Influency
+//Speech Influency Evaluation
 define StutteringClutteringSymptomsResponse:
   ("QT".item I
 		where I.linkId.value = 'StutteringClutteringSymptoms')QR
@@ -205,8 +316,20 @@ define ConditionPreviousHistoryCondition:
   SLP."ConditionPreviousHistory"
 
 define ConditionPreviousHistory:
-    Coalesce(First("ConditionPreviousHistoryResponse"), "ConditionPreviousHistoryCondition")
+  Coalesce(First("ConditionPreviousHistoryResponse"), "ConditionPreviousHistoryCondition")
 
+define EarlierEvaluationsDoneResponse:
+  ("QT".item I
+		where I.linkId.value = 'EarlierEvaluationsDone')QR
+		return First(QR.answer).value
+
+define EarlierEvaluationsDoneProcedure:
+  SLP."EarlierEvaluationsDone"
+
+define EarlierEvaluationsDone:
+  Coalesce(First("EarlierEvaluationsDoneResponse".code), "EarlierEvaluationsDoneProcedure")
+
+//Authorization
 define CertifiedSLP:
   ("QT".item I
 		where I.linkId.value = 'CertifiedSLP')QR
@@ -223,6 +346,102 @@ define FToFEncounterType:
 define FToFEncounter:
     Coalesce(First("FToFEncounterResponse"), "FToFEncounterType")
 
+//Speech Fluency Therapy
+define SpeechFluencyDisorderResponse:
+  ("QT".item I
+		where I.linkId.value = 'SpeechFluencyDisorder')QR
+		return First(QR.answer).value
+
+define SpeechFluencyDisorderCondition:
+  SLP."SpeechFluencyDisorder"
+
+define SpeechFluencyDisorder:
+  Coalesce(First("SpeechFluencyDisorderResponse"), "SpeechFluencyDisorderCondition")
+
+define SpeechFluencyDisorderPatternResponse:
+  ("QT".item I
+		where I.linkId.value = 'SpeechFluencyDisorderPattern')QR
+		return First(QR.answer).value
+
+define SpeechFluencyDisorderPatternCondition:
+  SLP."SpeechFluencyDisorderPattern"
+
+define SpeechFluencyDisorderPattern:
+  Coalesce(First("SpeechFluencyDisorderPatternResponse".code), "SpeechFluencyDisorderPatternCondition")
+
+define SpeechFluencyDisorderDurationResponse:
+  ("QT".item I
+		where I.linkId.value = 'SpeechFluencyDisorderDuration')QR
+		return First(QR.answer).value
+
+define SpeechFluencyDisorderDurationCondition:
+  SLP."SpeechFluencyDisorderDuration"
+
+define SpeechFluencyDisorderDuration:
+  Coalesce(First("SpeechFluencyDisorderDurationResponse".code), "SpeechFluencyDisorderDurationCondition")
+
+define SpeechFluencyDisorderCauseResponse:
+  ("QT".item I
+		where I.linkId.value = 'SpeechFluencyDisorderCause')QR
+		return First(QR.answer).value
+
+define SpeechFluencyDisorderCauseCondition:
+  SLP."SpeechFluencyDisorderCause"
+
+define SpeechFluencyDisorderCause:
+  Coalesce(First("SpeechFluencyDisorderCauseResponse".code), "SpeechFluencyDisorderCauseCondition")
+
+define EarlierEvaluationsDoneSpeechDecision:
+  if ("EarlierEvaluationsDone" = 'Evaluation of speech fluency')
+        then true
+          else false
+
+//Voice and Resonance Therapy
+define VoiceResonanceDisorderResponse:
+  ("QT".item I
+		where I.linkId.value = 'VoiceResonanceDisorder')QR
+		return First(QR.answer).value
+
+define VoiceResonanceDisorderCondition:
+  SLP."VoiceResonanceDisorder"
+
+define VoiceResonanceDisorder:
+  Coalesce(First("VoiceResonanceDisorderResponse"), "VoiceResonanceDisorderCondition")
+
+define SpecifyVoiceResonanceDisorderResponse:
+  ("QT".item I
+		where I.linkId.value = 'SpecifyVoiceResonanceDisorder')QR
+		return First(QR.answer).value
+
+define SpecifyVoiceResonanceDisorderCondition:
+  SLP."SpecifyVoiceResonanceDisorder"
+
+define SpecifyVoiceResonanceDisorder:
+    Coalesce(First("VoiceResonanceDisorderResponse".code), "SpecifyVoiceResonanceDisorderCondition")
+
+define VoiceResonanceDisorderCauseResponse:
+  ("QT".item I
+		where I.linkId.value = 'VoiceResonanceDisorderCause')QR
+		return First(QR.answer).value
+
+define VoiceResonanceDisorderCauseCondition:
+  SLP."VoiceResonanceDisorderCause"
+
+define VoiceResonanceDisorderCause:
+    Coalesce(First("VoiceResonanceDisorderCauseResponse".code), "VoiceResonanceDisorderCauseCondition")
+
+define EarlierEvaluationsDecisionVoiceResonance:
+  if ("EarlierEvaluationsDone" = 'Behavioral and qualitative analysis of voice and resonance')
+        then true
+          else false
+
+//Therapy Info
+define DiagnosisImprovePostTherapy:
+ ("QT".item I
+		where I.linkId.value = 'DiagnosisImprovePostTherapy')QR
+		return First(QR.answer).value
+
+//Decisions
 define AuthorizationBySLP:
   if (First("CertifiedSLP") = true
         and ("FToFEncounter" = true))
@@ -243,8 +462,31 @@ define PrimaryDecisionForSpeechInfluency:
             then true
               else false
 
+define PrimaryDecisionForSpeechFluencyTherapy:
+  if ("EarlierEvaluationsDoneSpeechDecision" = true
+        and "SpeechFluencyDisorder" = true
+          and First("DiagnosisImprovePostTherapy") = true
+            and "RequiredTherapy" = 'Speech fluency therapy'
+              and "AuthorizationBySLP" = true)
+                then true
+                  else false
+
+define PrimaryDecisionForVoiceResonanceTherapy:
+  if ("EarlierEvaluationsDecisionVoiceResonance" = true
+        and "VoiceResonanceDisorder" = true
+          and First("DiagnosisImprovePostTherapy") = true
+            and "RequiredTherapy" = 'Voice and resonance therapy'
+              and "AuthorizationBySLP" = true)
+                then true
+                  else false
+
 define FinalDecision:
-  if ("PrimaryDecisionForVoiceResonance" = true
-        or "PrimaryDecisionForSpeechInfluency" = true)
-    then 'HUMAN REVIEW NEEDED'
-      else 'NO'
+  if ("PrimaryDecisionForVoiceResonance" = true)
+    then 'Yes for Evaluation of Voice and Resonance'
+      else if ("PrimaryDecisionForSpeechInfluency" = true)
+        then 'Yes for Evaluation of Speech Fluency'
+          else if ("PrimaryDecisionForSpeechFluencyTherapy" = true)
+            then 'Yes for Speech Fluency Therapy'
+              else if ("PrimaryDecisionForVoiceResonanceTherapy" = true)
+                then 'Yes for Voice and Resonance Therapy'
+                  else 'HUMAN REVIEW NEEDED'

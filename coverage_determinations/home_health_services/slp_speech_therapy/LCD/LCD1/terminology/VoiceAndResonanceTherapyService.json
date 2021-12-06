@@ -1,0 +1,34 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.238",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.238",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.238"
+    }
+  ],
+  "version": "Latest",
+  "name": "Voice and Resonance Therapy",
+  "title": "Voice and Resonance Therapy",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "92652",
+            "display": "Auditory evoked potentials; for threshold estimation at multiple frequencies, with interpretation and report"
+          },
+          {
+            "code": "92653",
+            "display": "Auditory evoked potentials; neurodiagnostic, with interpretation and report"
+          }
+        ]
+      }
+    ]
+  }
+}

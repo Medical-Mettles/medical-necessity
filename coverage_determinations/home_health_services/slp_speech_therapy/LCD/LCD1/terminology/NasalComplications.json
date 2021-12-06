@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.225",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.225",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.225"
+        }
+    ],
+    "version": "Latest",
+    "name": "Nasal Complications",
+    "title": "Nasal Complications",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "J34.89",
+                        "display": "Other specified disorders of nose and nasal sinuses"
+                    },
+                    {
+                        "code": "J34.9",
+                        "display": "Unspecified disorder of nose and nasal sinuses"
+                    },
+                    {
+                        "code": "Q38.8",
+                        "display": "Other congenital malformations of pharynx"
+                    },
+                    {
+                        "code": "K13.79",
+                        "display": "Other lesions of oral mucosa"
+                    }
+                ]
+            }
+        ]
+    }
+}

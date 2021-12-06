@@ -1,0 +1,34 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.211",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.211",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.211"
+        }
+    ],
+    "version": "Latest",
+    "name": "Therapeutic interventions for cognitive function",
+    "title": "Therapeutic interventions for cognitive function",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "92524",
+                        "display": "Therapeutic interventions that focus on cognitive function (eg, attention, memory, reasoning, executive function, problem solving, and/or pragmatic functioning) and compensatory strategies to manage the performance of an activity (eg, managing time or schedules, initiating, organizing, and sequencing tasks), direct (one-on-one) patient contact; initial 15 minutes"
+                    },
+                    {
+                        "code": "97130",
+                        "display": "Therapeutic interventions that focus on cognitive function (e.g., attention, memory, reasoning, executive function, problem solving and/or pragmatic functioning) and compensatory strategies to manage the performance of an activity (e.g., managing time or schedules, initiating, organizing and sequencing tasks), direct (one-on-one) patient contact; each additional 15 minutes"
+                    }
+                ]
+            }
+        ]
+    }
+}

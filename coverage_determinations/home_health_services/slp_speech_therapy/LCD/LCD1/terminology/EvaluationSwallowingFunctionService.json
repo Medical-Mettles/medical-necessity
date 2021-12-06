@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.215",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.215",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.215"
+        }
+    ],
+    "version": "Latest",
+    "name": "Evaluation of Swallowing Function",
+    "title": "Evaluation of Swallowing Function",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "92610",
+                        "display": "Evaluation of oral and pharyngeal swallowing function"
+                    }
+                ]
+            }
+        ]
+    }
+}

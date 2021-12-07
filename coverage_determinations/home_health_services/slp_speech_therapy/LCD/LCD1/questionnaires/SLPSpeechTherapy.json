@@ -3,10 +3,10 @@
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
-      "value": "medicare_fee_for_service-speech_language_pathology"
+      "value": "medicare_fee_for_service-slp_speech_therapy"
     }
   ],
-  "name": "SLPVoiceAndResonanceTherapy",
+  "name": "SLPSpeechTherapy",
   "version": "1.0.0",
   "title": "Prior Authorization for Speech Language Pathology",
   "status": "draft",
@@ -18,7 +18,7 @@
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-SLPVoiceAndResonanceTherapy"
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-SLPSpeechTherapy"
     }
   ],
   "contained": [
@@ -1702,7 +1702,7 @@
       ]
     },
     {
-      "linkId": "3",
+      "linkId": "4",
       "text": "Therapy Details",
       "type": "group",
       "item": [

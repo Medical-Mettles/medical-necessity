@@ -235,7 +235,7 @@ define ProsthesisUsageMoreThanSixWeeks:
 define ProsthesisForSixWeeks:
 	if exists("ProsthesisUsageMoreThanSixWeeks")
 		then true
-			else false
+			else null
 
 define ImprovementPostProsthesis:
 	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value

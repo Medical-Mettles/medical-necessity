@@ -96,7 +96,7 @@ define EvaluationSpeechGeneratingDevicesService:
   "Request".code.coding C where C in "Evaluation of Speech Generating Device"
 
 define SpeechFluencyTherapyService:
-  "Request".code.coding C where C in "Evaluation of Speech Generating Device"
+  "Request".code.coding C where C in "Speech Fluency Therapy"
 
 define SpeechLanguagePathologyEvalService:
   "Request".code.coding C where C in "Speech Language Pathology Services"
@@ -550,9 +550,9 @@ define VoiceResonanceDisorderCause:
           else ''
 
 define RequiredTherapy:
-  if (exists("SpeechLanguagePathologyTherapyService") and ("SpeechFluencyDisorder" = true))
+  if (exists("SpeechFluencyTherapyService") and ("SpeechFluencyDisorder" = true))
     then 'Speech fluency therapy'
-      else if (exists("SpeechLanguagePathologyTherapyService") and ("VoiceResonanceDisorder" = true))
+      else if (exists("SpeechFluencyTherapyService") and ("VoiceResonanceDisorder" = true))
         then 'Voice and resonance therapy'
           else ''
 

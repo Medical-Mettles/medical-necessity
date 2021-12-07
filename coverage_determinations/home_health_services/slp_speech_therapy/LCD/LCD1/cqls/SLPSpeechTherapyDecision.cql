@@ -488,5 +488,5 @@ define IntermediateDecision:
 define FinalDecision:
   if (("IntermediateDecision" = 'YES FOR VOICE AND RESONANCE THERAPY')
       or ("IntermediateDecision" = 'YES FOR SPEECH FLUENCY THERAPY'))
-              then 'YES'
+              then 'YES, SLP THERAPY can be approved'
                 else 'HUMAN REVIEW NEEDED'

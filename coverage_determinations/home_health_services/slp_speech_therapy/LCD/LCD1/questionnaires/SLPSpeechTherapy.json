@@ -157,6 +157,7 @@
               }
             },
             {
+              "operator": "=",
               "question": "EvaluationSoundProduction",
               "answerBoolean": true
             }
@@ -1833,7 +1834,7 @@
         },
         {
           "linkId": "DiagnosisReport",
-          "text": "The diagnosis report and a signature by the Speech Language Pathologist confirming the evaluation is required.",
+          "text": "A certification statement signed by the Speech Language Pathologist confirming the evaluation is required.",
           "type": "display"
         }
       ]

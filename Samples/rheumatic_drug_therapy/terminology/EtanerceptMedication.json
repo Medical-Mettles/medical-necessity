@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.245",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.245",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.245"
+    }
+  ],
+  "version": "Latest",
+  "name": "Etanercept Medication",
+  "title": "Etanercept Medication",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "https://hcpcs.codes/",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "J1438",
+            "display": "Injection, etanercept, 25 mg"
+          }
+        ]
+      }
+    ]
+  }
+}

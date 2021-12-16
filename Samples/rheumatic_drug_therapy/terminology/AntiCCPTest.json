@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.241",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.241",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.241"
+    }
+  ],
+  "version": "Latest",
+  "name": "Anti CCP Test",
+  "title": "Anti CCP Test",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "53028-7",
+            "display": "Cyclic citrullinated peptide Ab [Presence] in Serum"
+          }
+        ]
+      }
+    ]
+  }
+}

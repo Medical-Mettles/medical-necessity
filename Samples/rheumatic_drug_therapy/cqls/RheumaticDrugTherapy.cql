@@ -167,8 +167,7 @@ define ConventionalDMARDTherapyUnsuccessfulOutcome:
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "DMARD Therapy")
 				and (First(P.outcome.coding) in "Unsuccessful")
-				//and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
-
+					and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
 
 define PastConventionalDMARDTherapyOutcome:
 	if exists("ConventionalDMARDTherapySuccessfulOutcome")
@@ -297,6 +296,9 @@ define COPD:
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
 
+define dumm:
+	[Procedure]P
+		where "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
 
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then

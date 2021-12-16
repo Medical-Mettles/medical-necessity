@@ -288,7 +288,7 @@
             {
               "operator": "=",
               "question": "AnkylosingSpondylitis",
-              "answerBoolean": false
+              "answerBoolean": true
             }
           ],
           "required": true
@@ -348,7 +348,7 @@
             }
           ],
           "linkId": "PreviousBiologicDrugs",
-          "text": "Has the patient previously or is currently using any biologic drugs?",
+          "text": "Has the patient previously used or is currently using a biologic?",
           "type": "boolean",
           "required": true
         },
@@ -435,7 +435,7 @@
       "item": [
         {
           "linkId": "RheumatologistAuthroization",
-          "text": "Is the request medication prescribed by a Rheumatologist?",
+          "text": "Is the requested medication prescribed by a Rheumatologist?",
           "type": "boolean",
           "required": true
         }

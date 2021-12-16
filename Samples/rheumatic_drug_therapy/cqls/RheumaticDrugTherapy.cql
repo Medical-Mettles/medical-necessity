@@ -167,7 +167,7 @@ define ConventionalDMARDTherapyUnsuccessfulOutcome:
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "DMARD Therapy")
 				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
-					and (First(P.outcome.coding) in "Unsuccessful")
+					//and (First(P.outcome.coding) in "Unsuccessful")
 
 define PastConventionalDMARDTherapyOutcome:
 	if exists("ConventionalDMARDTherapySuccessfulOutcome")

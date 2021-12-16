@@ -167,7 +167,7 @@ define ConventionalDMARDTherapyUnsuccessfulOutcome:
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "DMARD Therapy")
 				and (First(P.outcome.coding) in "Unsuccessful")
-					and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
+
 
 define PastConventionalDMARDTherapyOutcome:
 	if exists("ConventionalDMARDTherapySuccessfulOutcome")
@@ -296,11 +296,22 @@ define COPD:
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
 
-define dumm:
-	[Procedure]P
-		where "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 90 days
-
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+ 	 if choice is FHIR.dateTime then
+ 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+	  else if choice is FHIR.Period then
+		  FHIRHelpers.ToInterval(choice as FHIR.Period)
+		else if choice is FHIR.string then
+    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+	  else if choice is FHIR.Age then
+	 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+ 		FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+		else if choice is FHIR.Range then
+	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+	  else null
+
+define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then
  		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
 	  else if choice is FHIR.Period then

@@ -1,0 +1,451 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-subsequenthospitalcare-subsequenthospitalcare",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-subsequenthospitalcare-SubsequentHospitalCare"
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-subsequenthospitalcare-subsequenthospitalcare",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-subsequent_hospital_care"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "Prior Authorization For Subsequent Hospital Care",
+  "title": "Prior Authorization For Subsequent Hospital Care",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2022-01-05",
+  "publisher": "Mettle Solutions",
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Patient Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PatientMedicaidNumber"
+              }
+            }
+          ],
+          "linkId": "PatientMedicaidNumber",
+          "text": "What is the patient's medicaid number?",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Symptoms"
+              }
+            }
+          ],
+          "linkId": "Symptoms",
+          "text": "Does the patient have any of the following symptoms?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Pain/Discomfort in the chest",
+                "display": "Pain/Discomfort in the chest"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pain in Neck, Back, Arm or Jaw",
+                "display": "Pain in Neck, Back, Arm or Jaw"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Shortness of Breath",
+                "display": "Shortness of Breath"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Dizziness",
+                "display": "Dizziness"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Nausea",
+                "display": "Nausea"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Sudden Sweating",
+                "display": "Sudden Sweating"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Extreme Tiredness",
+                "display": "Extreme Tiredness"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ClinicalIndications"
+              }
+            }
+          ],
+          "linkId": "ClinicalIndications",
+          "text": "Which of the following clinical indications does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "ECG Changes consistent with Ischemia",
+                "display": "ECG Changes consistent with Ischemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Elevated Cardiac Troponin Level",
+                "display": "Elevated Cardiac Troponin Level"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AntiCCPTest"
+              }
+            }
+          ],
+          "linkId": "AntiCCPTest",
+          "text": "Has the patient been tested for anti-cyclic citrullinated peptide (anti-CCP)?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AntiCCPTestResult"
+              }
+            }
+          ],
+          "linkId": "AntiCCPTestResult",
+          "text": "Is the patient tested positive for the anti-CCP?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AntiCCPTest",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Medication Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PastConventionalDMARDTherapy"
+              }
+            }
+          ],
+          "linkId": "PastConventionalDMARDTherapy",
+          "text": "Has the patient used conventional DMARD therapy previously for the diagnosed condition?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PsoriaticArthritis",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "RheumatoidArthritis",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "any",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PastConventionalDMARDTherapyDuration"
+              }
+            }
+          ],
+          "linkId": "PastConventionalDMARDTherapyDuration",
+          "text": "Did the patient use the medication therapy for a 3-month period?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PastConventionalDMARDTherapy",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PastConventionalDMARDTherapyOutcome"
+              }
+            }
+          ],
+          "linkId": "PastConventionalDMARDTherapyOutcome",
+          "text": "Did the patient's condition resolve post DMARD therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PastConventionalDMARDTherapyDuration",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ContraindicationDMARDTherapy"
+              }
+            }
+          ],
+          "linkId": "ContraindicationDMARDTherapy",
+          "text": "Is the patient contraindicated to DMARD therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PastConventionalDMARDTherapy",
+              "answerBoolean": false
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PastConventionalNSAIDTherapy"
+              }
+            }
+          ],
+          "linkId": "PastConventionalNSAIDTherapy",
+          "text": "Has the patient used conventional NSAID therapy previously for the diagnosed condition?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AnkylosingSpondylitis",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PastConventionalNSAIDTherapyOutcome"
+              }
+            }
+          ],
+          "linkId": "PastConventionalNSAIDTherapyOutcome",
+          "text": "Did the patient's condition resolve post NSAID therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PastConventionalNSAIDTherapy",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NSAIDContraindication"
+              }
+            }
+          ],
+          "linkId": "NSAIDContraindication",
+          "text": "Is the patient contraindicated to NSAID therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PastConventionalNSAIDTherapy",
+              "answerBoolean": false
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PreviousBiologicDrugs"
+              }
+            }
+          ],
+          "linkId": "PreviousBiologicDrugs",
+          "text": "Has the patient previously used or is currently using a biologic?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BiologicOutcome"
+              }
+            }
+          ],
+          "linkId": "BiologicOutcome",
+          "text": "Has the biologic been effective on the patient's condition?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PreviousBiologicDrugs",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CombinationOtherDrugs"
+              }
+            }
+          ],
+          "linkId": "CombinationOtherDrugs",
+          "text": "Will the requested medication be used in combination with DMARD or NSAID drugs?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "4",
+      "text": "Contraindications",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BacterialFungalInfections"
+              }
+            }
+          ],
+          "linkId": "BacterialFungalInfections",
+          "text": "Does the patient have any active bacterial or fungal infections?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "COPD"
+              }
+            }
+          ],
+          "linkId": "COPD",
+          "text": "Does the patient have any active pulmonary conditions?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Authorization",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "RheumatologistAuthroization",
+          "text": "Is the requested medication prescribed by a Rheumatologist?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

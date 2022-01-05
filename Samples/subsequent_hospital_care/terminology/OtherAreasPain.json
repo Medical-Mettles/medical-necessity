@@ -1,0 +1,62 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.247",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.247",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.247"
+    }
+  ],
+  "version": "Latest",
+  "name": "Pain in Arm, Neck, Back or Jaw",
+  "title": "Pain in Arm, Neck, Back or Jaw",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2022-01",
+        "concept": [
+          {
+            "code": "M79.601",
+            "display": "Pain in right arm"
+          },
+          {
+            "code": "M79.602",
+            "display": "Pain in left arm"
+          },
+          {
+            "code": "M79.603",
+            "display": "Pain in arm, unspecified"
+          },
+          {
+            "code": "M79.621",
+            "display": "Pain in right upper arm"
+          },
+          {
+            "code": "M79.622",
+            "display": "Pain in left upper arm"
+          },
+          {
+            "code": "M79.629",
+            "display": "Pain in unspecified upper arm"
+          },
+          {
+            "code": "M79.631",
+            "display": "Pain in right forearm"
+          },
+          {
+            "code": "M79.639",
+            "display": "Pain in unspecified forearm"
+          },
+          {
+            "code": "M79.632",
+            "display": "Pain in left forearm"
+          }
+        ]
+      }
+    ]
+  }
+}

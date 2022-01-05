@@ -1,0 +1,50 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.249",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.249",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.249"
+    }
+  ],
+  "version": "Latest",
+  "name": "Bypass Grafting with a Vein Only",
+  "title": "Bypass Grafting with a Vein Only",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.ama-assn.org/go/cpt",
+        "version": "2022-01",
+        "concept": [
+          {
+            "code": "33510",
+            "display": "Coronary artery bypass, vein only; single coronary venous graft"
+          },
+          {
+            "code": "33511",
+            "display": "Coronary artery bypass, vein only; 2 coronary venous grafts"
+          },
+          {
+            "code": "33512",
+            "display": "Coronary artery bypass, vein only; 3 coronary venous grafts"
+          },
+          {
+            "code": "33513",
+            "display": "Coronary artery bypass, vein only; 4 coronary venous grafts"
+          },
+          {
+            "code": "33514",
+            "display": "Coronary artery bypass, vein only; 5 coronary venous grafts"
+          },
+          {
+            "code": "33516",
+            "display": "Coronary artery bypass, vein only; 6 or more coronary venous grafts"
+          }
+        ]
+      }
+    ]
+  }
+}

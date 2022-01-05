@@ -30,12 +30,11 @@ define "EncounterPatient":
 	"EncounterResource"
 
 define Patient:
-	Last([Patient]P with "EncounterResource" E
+	([Patient]P with "EncounterResource" E
     		such that ('Patient/' + P.id.value) = E.subject.reference.value)
 
 define PatientMedicaidNumber:
-	First("Patient".identifier identifier
-    		  where identifier.system.value = 'http://qualitrac.com/MD/medicaid-number').value.value
+	"Patient".identifier.value
 
 define DiscomformInChest:
 	[Condition]C

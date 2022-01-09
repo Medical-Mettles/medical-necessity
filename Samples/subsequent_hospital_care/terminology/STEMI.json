@@ -52,6 +52,44 @@
             "display": "ST elevation (STEMI) myocardial infarction of unspecified site"
           }
         ]
+      },
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10",
+        "version": "2022-01",
+        "concept": [
+          {
+            "code": "I21.01",
+            "display": "ST elevation (STEMI) myocardial infarction involving left main coronary artery"
+          },
+          {
+            "code": "I21.02",
+            "display": "ST elevation (STEMI) myocardial infarction involving left anterior descending coronary artery"
+          },
+          {
+            "code": "I21.09",
+            "display": "ST elevation (STEMI) myocardial infarction involving other coronary artery of anterior wall"
+          },
+          {
+            "code": "I21.11",
+            "display": "ST elevation (STEMI) myocardial infarction involving right coronary artery"
+          },
+          {
+            "code": "I21.19",
+            "display": " ST elevation (STEMI) myocardial infarction involving other coronary artery of inferior wall"
+          },
+          {
+            "code": "I21.21",
+            "display": "ST elevation (STEMI) myocardial infarction involving left circumflex coronary artery"
+          },
+          {
+            "code": "I21.29",
+            "display": "ST elevation (STEMI) myocardial infarction involving other sites"
+          },
+          {
+            "code": "I21.3",
+            "display": "ST elevation (STEMI) myocardial infarction of unspecified site"
+          }
+        ]
       }
     ]
   }

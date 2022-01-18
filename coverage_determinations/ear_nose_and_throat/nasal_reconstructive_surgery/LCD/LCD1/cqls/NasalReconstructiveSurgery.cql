@@ -230,7 +230,7 @@ define ProsthesisUsageMoreThanSixWeeks:
 	[Procedure]P
 		where P.status.value = 'completed'
 			and exists(P.code.coding C where C in "Rehabilitation Prosthesis")
-				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42
 
 define ProsthesisForSixWeeks:
 	if exists("ProsthesisUsageMoreThanSixWeeks")
@@ -283,7 +283,7 @@ define AntiHistamineTherapyForSixWeeks:
 	exists("AntiHistaminesMedicationAdministration" M
 		with "AntiHistamineProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
-				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42)
 
 define SpecifyAntiHistamineMedication:
 	"SpecifyAntiHistamineAdministrationMedicationCode".coding M
@@ -340,7 +340,7 @@ define AntibioticTherapyForSixWeeks:
 	exists("AntibioticsMedicationAdministration" M
 		with "AntibioticsProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
-				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42)
 
 define SpecifyAntibioticsMedication:
 	"SpecifyAntibioticsAdministrationMedicationCode".coding M
@@ -397,7 +397,7 @@ define ImmunosuppressantsTherapyForSixWeeks:
 	exists("ImmunosuppressantsMedicationAdministration" M
 		with "ImmunosuppressantsProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
-				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42)
 
 define SpecifyImmunosuppressantsMedication:
 	"SpecifyImmunosuppressantsMedicationCode".coding M
@@ -458,7 +458,7 @@ define DecongestantsTherapyForSixWeeks:
 	exists("DecongestantsMedicalAdministration" M
 		with "DecongestantsProcedureResources" P
 			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
-				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42 days)
+				and "LengthInDays"("Normalize Interval Procedure"(P.performed)) > 42)
 
 define PostDecongestantsSuccessfulOutcome:
 	exists("DecongestantsMedicalAdministration" M
@@ -549,7 +549,6 @@ define AntiHistaminesAdverseReaction:
 	exists([AdverseEvent]A
 					where A.actuality in {'actual', 'potential'}
       			and First((A.event as CodeableConcept).coding) in "Antihistamines Adverse Reaction")
-
 
 
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):

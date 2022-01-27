@@ -1,0 +1,146 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.258",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.258",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.258"
+    }
+  ],
+  "version": "Latest",
+  "name": "Dislocated Humerus",
+  "title": "Dislocated Humerus",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "https://www.icd10data.com",
+        "version": "2022-01",
+        "concept": [
+          {
+            "code": "S43.011A",
+            "display": "Anterior subluxation of right humerus, initial encounter"
+          },
+          {
+            "code": "S43.011D",
+            "display": "Anterior subluxation of right humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.011S",
+            "display": "Anterior subluxation of right humerus, sequela"
+          },
+          {
+            "code": "S43.012A",
+            "display": "Anterior subluxation of left humerus, initial encounter"
+          },
+          {
+            "code": "S43.012D",
+            "display": "Anterior subluxation of left humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.012S",
+            "display": "Anterior subluxation of left humerus, sequela"
+          },
+          {
+            "code": "S43.014A",
+            "display": "Anterior dislocation of right humerus, initial encounter"
+          },
+          {
+            "code": "S43.014D",
+            "display": "Anterior dislocation of right humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.014S",
+            "display": "Anterior dislocation of right humerus, sequela"
+          },
+          {
+            "code": "S43.015A",
+            "display": "Anterior dislocation of left humerus, initial encounter"
+          },
+          {
+            "code": "S43.015D",
+            "display": "Anterior dislocation of left humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.015S",
+            "display": "Anterior dislocation of left humerus, sequela"
+          },
+          {
+            "code": "S43.024A",
+            "display": "Posterior dislocation of right humerus, initial encounter"
+          },
+          {
+            "code": "S43.024D",
+            "display": "Posterior dislocation of right humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.024S",
+            "display": "Posterior dislocation of right humerus, sequela"
+          },
+          {
+            "code": "S43.025A",
+            "display": "Posterior dislocation of left humerus, initial encounter"
+          },
+          {
+            "code": "S43.025D",
+            "display": "Posterior dislocation of left humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.025S",
+            "display": "Posterior dislocation of left humerus, sequela"
+          },
+          {
+            "code": "S43.031A",
+            "display": "Inferior subluxation of right humerus, initial encounter"
+          },
+          {
+            "code": "S43.031D",
+            "display": "Inferior subluxation of right humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.031S",
+            "display": "Inferior subluxation of right humerus, sequela"
+          },
+          {
+            "code": "S43.032A",
+            "display": "Inferior subluxation of left humerus, initial encounter"
+          },
+          {
+            "code": "S43.032D",
+            "display": "Inferior subluxation of left humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.032S",
+            "display": "Inferior subluxation of left humerus, sequela"
+          },
+          {
+            "code": "S43.034A",
+            "display": "Inferior dislocation of right humerus, initial encounter"
+          },
+          {
+            "code": "S43.034D",
+            "display": "Inferior dislocation of right humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.034S",
+            "display": "Inferior dislocation of right humerus, sequela"
+          },
+          {
+            "code": "S43.035A",
+            "display": "Inferior dislocation of left humerus, initial encounter"
+          },
+          {
+            "code": "S43.035D",
+            "display": "Inferior dislocation of left humerus, subsequent encounter"
+          },
+          {
+            "code": "S43.035S",
+            "display": "Inferior dislocation of left humerus, sequela"
+          }
+        ]
+      }
+    ]
+  }
+}

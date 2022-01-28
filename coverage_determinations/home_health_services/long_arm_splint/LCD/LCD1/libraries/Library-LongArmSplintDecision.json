@@ -1,0 +1,28 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "LongArmSplintDecision",
+  "name": "LongArmSplintDecision",
+  "id": "library-lcd1-LongArmSplintDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-lcd1-LongArmSplint"
+    }
+  ],
+  "dataRequirement": [
+
+  ]
+}

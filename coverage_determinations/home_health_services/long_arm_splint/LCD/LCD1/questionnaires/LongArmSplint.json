@@ -6,7 +6,7 @@
       "value": "medicare_fee_for_service-long_arm_splint"
     }
   ],
-  "name": "PTThoraxStrapping",
+  "name": "LongArmSplint",
   "version": "1.0.0",
   "title": "Prior Authorization for Home Health Therapy",
   "status": "draft",

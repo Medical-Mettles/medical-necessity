@@ -47,6 +47,158 @@
       ]
     },
     {
+      "linkId": "3",
+      "text": "TNM Staging",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StagingType"
+              }
+            }
+          ],
+          "linkId": "StagingType",
+          "text": "Cancer Staging Type",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pathological",
+                "display": "Pathological"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TStage"
+              }
+            }
+          ],
+          "linkId": "TStage",
+          "text": "Primary Tumor (T)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NStage"
+              }
+            }
+          ],
+          "linkId": "NStage",
+          "text": "Regional Lymph Nodes (N)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MStage"
+              }
+            }
+          ],
+          "linkId": "MStage",
+          "text": "Distant Metastasis (M)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnatomicStage"
+              }
+            }
+          ],
+          "linkId": "AnatomicStage",
+          "text": "TNM Staging",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stage0",
+                "display": "Stage0"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIA",
+                "display": "StageIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIB",
+                "display": "StageIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIA",
+                "display": "StageIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIB",
+                "display": "StageIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIA",
+                "display": "StageIIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIB",
+                "display": "StageIIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIC",
+                "display": "StageIIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIV",
+                "display": "StageIV"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
       "linkId": "2",
       "text": "Cancer Information",
       "type": "group",
@@ -310,158 +462,6 @@
                 "answerBoolean": true
               }
             ],
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "3",
-      "text": "TNM Staging",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "StagingType"
-              }
-            }
-          ],
-          "linkId": "StagingType",
-          "text": "Cancer Staging Type",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Clinical",
-                "display": "Clinical"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pathological",
-                "display": "Pathological"
-              }
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TStage"
-              }
-            }
-          ],
-          "linkId": "TStage",
-          "text": "Primary Tumor (T)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NStage"
-              }
-            }
-          ],
-          "linkId": "NStage",
-          "text": "Regional Lymph Nodes (N)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "MStage"
-              }
-            }
-          ],
-          "linkId": "MStage",
-          "text": "Distant Metastasis (M)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "AnatomicStage"
-              }
-            }
-          ],
-          "linkId": "AnatomicStage",
-          "text": "TNM Staging",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Stage0",
-                "display": "Stage0"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIA",
-                "display": "StageIA"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIB",
-                "display": "StageIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIA",
-                "display": "StageIIA"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIB",
-                "display": "StageIIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIA",
-                "display": "StageIIIA"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIB",
-                "display": "StageIIIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIC",
-                "display": "StageIIIC"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIV",
-                "display": "StageIV"
-              }
-            }
-          ],
           "required": true
         }
       ]

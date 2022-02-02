@@ -80,37 +80,37 @@ define Patient:
 define PatientMedicaidNumber:
 	"Patient".identifier.value
 
-define BreastCancerConditionRight:
-	[Condition]C
+define BreastCancerConditionLeft:
+	First([Condition]C
 		where exists(C.code.coding C where C in "Left breast cancer")
 		and First(C.clinicalStatus.coding).code.value = 'active'
-			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
-define BreastCancerConditionLeft:
-	[Condition]C
+define BreastCancerConditionRight:
+	First([Condition]C
 		where exists(C.code.coding C where C in "Right breast cancer")
 		and First(C.clinicalStatus.coding).code.value = 'active'
-			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define BreastCancerConditionBilateral:
-	[Condition]C
+	First([Condition]C
 		where exists(C.code.coding C where C in "Bilateral breast cancer")
 		and First(C.clinicalStatus.coding).code.value = 'active'
-			and First(C.verificationStatus.coding).code.value = 'confirmed'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define CancerCondition:
-  if (exists("BreastCancerConditionRight")
-				or exists("BreastCancerConditionRight")
-					or exists("BreastCancerConditionBilateral"))
+  if (("BreastCancerConditionRight" is not null)
+				or ("BreastCancerConditionRight" is not null)
+					or ("BreastCancerConditionBilateral" is not null))
     then 'Breast Cancer'
-      else null
+      else ''
 
 define Laterality:
-	if exists("BreastCancerConditionLeft")
+	if ("BreastCancerConditionLeft" is not null)
 		then 'Left'
-			else if exists("BreastCancerConditionRight")
+			else if ("BreastCancerConditionRight" is not null)
 				then 'Right'
-					else if exists("BreastCancerConditionBilateral")
+					else if ("BreastCancerConditionBilateral" is not null)
 							then 'Bilateral'
 								else ''
 
@@ -349,7 +349,7 @@ define "TumorSizeObservation":
 			and First(P.code.coding C where C in "Tumor size") is not null
 			and exists(P.bodySite.coding co where co in "Breasts BodySite"))
 
-define "TumourSize":
+define "TumorSize":
   if FHIRHelpers.ToQuantity("TumorSizeObservation".value).unit = 'mm'
 	then FHIRHelpers.ToQuantity("TumorSizeObservation".value).value/10
   else (if FHIRHelpers.ToQuantity("TumorSizeObservation".value).unit = 'cm'
@@ -364,11 +364,11 @@ define NegativeMarginsSecondary:
 
 define SecondaryMarginDistanceObservation:
 	Last([Observation]P where P.status.value in {'final', 'amended', 'corrected'}
-		and First(P.code.coding C where C in "Distance of tumor from closest margin") is not null)
+		and Last(P.code.coding C where C in "Distance of tumor from closest margin") is not null)
 
 define SecondaryMarginDistance:
-  if FHIRHelpers.ToQuantity("MarginDistanceObservation".value).unit = 'mm'
-		then FHIRHelpers.ToQuantity("MarginDistanceObservation".value).value
+  if FHIRHelpers.ToQuantity("SecondaryMarginDistanceObservation".value).unit = 'mm'
+		then FHIRHelpers.ToQuantity("SecondaryMarginDistanceObservation".value).value
         else 0
 
 define RadiationTreatmentStartDate:

@@ -47,6 +47,222 @@
       ]
     },
     {
+      "linkId": "3",
+      "text": "Secondary Diagnosis",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SecondaryCancerCondition"
+              }
+            }
+          ],
+          "linkId": "SecondaryCancerCondition",
+          "text": "What Cancer does the patient have?",
+          "type": "open-choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Breast Cancer",
+                "display": "Breast Cancer"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Prostate Cancer",
+                "display": "Prostate Cancer"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorSize"
+              }
+            }
+          ],
+          "linkId": "TumorSize",
+          "text": "What is the size of the tumor (in cm)?",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorDetected"
+              }
+            }
+          ],
+          "linkId": "TumorDetected",
+          "text": "Was the tumor detected by screening?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorScreening"
+              }
+            }
+          ],
+          "linkId": "TumorScreening",
+          "text": "What screening was done to detect the tumor?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Breast MRI",
+                "display": "Breast MRI"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Screening Mammography",
+                "display": "Screening Mammography"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorLocationSecondary"
+              }
+            }
+          ],
+          "linkId": "TumorLocationSecondary",
+          "text": "What is the location of the tumor?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Nipple and Areola",
+                "display": "Nipple and Areola"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Central Portion",
+                "display": "Central Portion"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Inner Quadrant",
+                "display": "Upper-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Outer Quadrant",
+                "display": "Upper-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Outer Quadrant",
+                "display": "Lower-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Axillary Tail",
+                "display": "Axillary Tail"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Overlapping Sites",
+                "display": "Overlapping Sites"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unspecified Site",
+                "display": "Unspecified Site"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyHistologicGrade"
+              }
+            }
+          ],
+          "linkId": "SpecifyHistologicGrade",
+          "text": "What is the histologic grade of the tumor?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NegativeMarginsSecondary"
+              }
+            }
+          ],
+          "linkId": "NegativeMarginsSecondary",
+          "text": "Are the margins of the tumor negative?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SecondaryMarginDistance"
+              }
+            }
+          ],
+          "linkId": "SecondaryMarginDistance",
+          "text": "What is the distance of tumor from closest margin (in mm)?",
+          "type": "decimal",
+          "required": true
+        }
+      ]
+    },
+    {
       "linkId": "2",
       "text": "Primary Diagnosis",
       "type": "group",
@@ -371,7 +587,7 @@
             }
           ],
           "linkId": "MarginDistance",
-          "text": "What is the distance of the tumor from the closest margin?",
+          "text": "What is the distance of the tumor from the closest margin (in mm)?",
           "type": "decimal",
           "required": true
         },
@@ -438,222 +654,6 @@
       ]
     },
     {
-      "linkId": "3",
-      "text": "Secondary Diagnosis",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SecondaryCancerCondition"
-              }
-            }
-          ],
-          "linkId": "SecondaryCancerCondition",
-          "text": "What Cancer does the patient have?",
-          "type": "open-choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Breast Cancer",
-                "display": "Breast Cancer"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Prostate Cancer",
-                "display": "Prostate Cancer"
-              }
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TumorSize"
-              }
-            }
-          ],
-          "linkId": "TumorSize",
-          "text": "What is the size of the tumor?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TumorDetected"
-              }
-            }
-          ],
-          "linkId": "TumorDetected",
-          "text": "Was the tumor detected by screening?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TumorScreening"
-              }
-            }
-          ],
-          "linkId": "TumorScreening",
-          "text": "What screening was done to detect the tumor?",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Breast MRI",
-                "display": "Breast MRI"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Screening Mammography",
-                "display": "Screening Mammography"
-              }
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TumorLocationSecondary"
-              }
-            }
-          ],
-          "linkId": "TumorLocationSecondary",
-          "text": "What is the location of the tumor?",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Nipple and Areola",
-                "display": "Nipple and Areola"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Central Portion",
-                "display": "Central Portion"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Upper-Inner Quadrant",
-                "display": "Upper-Inner Quadrant"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Lower-Inner Quadrant",
-                "display": "Lower-Inner Quadrant"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Lower-Inner Quadrant",
-                "display": "Lower-Inner Quadrant"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Upper-Outer Quadrant",
-                "display": "Upper-Outer Quadrant"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Lower-Outer Quadrant",
-                "display": "Lower-Outer Quadrant"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Axillary Tail",
-                "display": "Axillary Tail"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Overlapping Sites",
-                "display": "Overlapping Sites"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Unspecified Site",
-                "display": "Unspecified Site"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SpecifyHistologicGrade"
-              }
-            }
-          ],
-          "linkId": "SpecifyHistologicGrade",
-          "text": "What is the histologic grade of the tumor?",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NegativeMarginsSecondary"
-              }
-            }
-          ],
-          "linkId": "NegativeMarginsSecondary",
-          "text": "Are the margins of the tumor negative?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SecondaryMarginDistance"
-              }
-            }
-          ],
-          "linkId": "SecondaryMarginDistance",
-          "text": "What is the distance of tumor from closest margin?",
-          "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
       "linkId": "4",
       "text": "Treatment Information",
       "type": "group",
@@ -670,7 +670,7 @@
           ],
           "linkId": "RadiationTreatmentStartDate",
           "text": "When will the patient start with Radiation Treatment?",
-          "type": "dateTime",
+          "type": "date",
           "required": true
         },
         {

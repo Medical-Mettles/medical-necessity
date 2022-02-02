@@ -417,8 +417,9 @@ define IORTType:
 					else ''
 
 define IGRTService:
-	exists("Request".code.coding C where C in "Image guided radiaiton therapy")
-
+	if exists("Request".code.coding C where C in "Image guided radiaiton therapy")
+		then true
+			else null
 
 define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
  	 if choice is FHIR.dateTime then

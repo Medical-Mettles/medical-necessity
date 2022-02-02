@@ -168,19 +168,19 @@
             }
           ],
           "linkId": "RadiationTreatmentStartDate",
-          "text": "When will the patient start with Radiation Treatment?",
+          "text": "Radiation Treatment Start Date?",
           "type": "date",
           "required": true
         },
         {
           "linkId": "NumberOfTreatmentFractions",
-          "text": "Planned number of treatment fractions:",
+          "text": "Planned Number of Treatment Fractions:",
           "type": "decimal",
           "required": true
         },
         {
           "linkId": "PatientTreatmentPosition",
-          "text": "What is the patient's treatment position going to be?",
+          "text": "Patient Treatment Position:",
           "type": "choice",
           "answerOption": [
             {
@@ -246,7 +246,7 @@
             }
           ],
           "linkId": "SecondaryCancerCondition",
-          "text": "What Cancer does the patient have?",
+          "text": "Type of Cancer:",
           "type": "choice",
           "answerOption": [
             {
@@ -275,7 +275,7 @@
             }
           ],
           "linkId": "TumorLocationSecondary",
-          "text": "What is the location of the tumor?",
+          "text": "Tumor Location",
           "type": "choice",
           "answerOption": [
             {
@@ -444,7 +444,7 @@
             }
           ],
           "linkId": "SpecifyHistologicGrade",
-          "text": "What is the histologic grade of the tumor?",
+          "text": "Histologic Grade of the tumor:",
           "type": "text",
           "enableWhen": [
               {
@@ -499,28 +499,6 @@
       ]
     },
     {
-      "linkId": "1",
-      "text": "Patient Information",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PatientMedicaidNumber"
-              }
-            }
-          ],
-          "linkId": "PatientMedicaidNumber",
-          "text": "What is the patient's medicaid number?",
-          "type": "text",
-          "required": true
-        }
-      ]
-    },
-    {
       "linkId": "3",
       "text": "TNM Staging",
       "type": "group",
@@ -536,7 +514,7 @@
             }
           ],
           "linkId": "StagingType",
-          "text": "Cancer Staging Type",
+          "text": "Cancer Staging Type:",
           "type": "choice",
           "answerOption": [
             {
@@ -565,7 +543,7 @@
             }
           ],
           "linkId": "TStage",
-          "text": "Primary Tumor (T)",
+          "text": "Primary Tumor (T):",
           "type": "text",
           "required": true
         },
@@ -580,7 +558,7 @@
             }
           ],
           "linkId": "NStage",
-          "text": "Regional Lymph Nodes (N)",
+          "text": "Regional Lymph Nodes (N):",
           "type": "text",
           "required": true
         },
@@ -595,7 +573,7 @@
             }
           ],
           "linkId": "MStage",
-          "text": "Distant Metastasis (M)",
+          "text": "Distant Metastasis (M):",
           "type": "text",
           "required": true
         },
@@ -610,7 +588,7 @@
             }
           ],
           "linkId": "AnatomicStage",
-          "text": "TNM Staging",
+          "text": "TNM Staging:",
           "type": "choice",
           "answerOption": [
             {

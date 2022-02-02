@@ -54,6 +54,10 @@ valueset "Breasts BodySite": '2.16.840.1.113883.3.6037.1001.23.96.18'
 valueset "IORT Electron": '2.16.840.1.113883.3.6037.1001.23.93.267'
 valueset "IORT Xrays": '2.16.840.1.113883.3.6037.1001.23.93.268'
 valueset "Positive": '2.16.840.1.113883.17.4077.3.2025'
+valueset "HER2 Presence in Tissue": '2.16.840.1.113883.3.1444.5.207'
+valueset "Progesterone receptor": '2.16.840.1.113883.3.6037.1001.23.96.16'
+valueset "Estrogen receptor": '2.16.840.1.113883.3.6037.1001.23.96.15'
+
 
 parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
@@ -95,7 +99,9 @@ define BreastCancerConditionBilateral:
 			and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define CancerCondition:
-  if exists(("BreastCancerConditionRight") or ("BreastCancerConditionRight") or ("BreastCancerConditionBilateral"))
+  if (exists("BreastCancerConditionRight")
+				or exists("BreastCancerConditionRight")
+					or exists("BreastCancerConditionBilateral"))
     then 'Breast Cancer'
       else null
 
@@ -299,8 +305,19 @@ define SecondaryCancerDiagnosis:
     and exists(C.code.coding x where x in "Breast Cancer"))
 
 define SecondaryCancerCondition:
-	if ("SecondaryCancerDiagnosis" = true)
+	if ("SecondaryCancerDiagnosis" is not null)
 		then 'Breast Cancer'
+			else ''
+
+define BCUpperQuadrantSecondary:
+	Last([Condition]C
+		where exists(C.code.coding C where C in "Breast cancer, upper quadrant")
+		and First(C.clinicalStatus.coding).code.value = 'active'
+			and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define TumorLocationSecondary:
+	if ("BCUpperQuadrantSecondary" is not null)
+		then 'Upper-Outer Quadrant'
 			else ''
 
 define ScreeningMammography:
@@ -371,12 +388,11 @@ define IORTType:
 					else ''
 
 
-define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
-  if onset is FHIR.dateTime then
-	  Interval[FHIRHelpers.ToDateTime(onset as FHIR.dateTime), FHIRHelpers.ToDateTime(onset as FHIR.dateTime)]
-	else if onset is FHIR.Period then
-	  FHIRHelpers.ToInterval(onset as FHIR.Period)
-	else if onset is FHIR.Age then
-	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
-		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
-	else null
+define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
+ 	 if choice is FHIR.dateTime then
+ 		  Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+	  else if choice is FHIR.Period then
+		  FHIRHelpers.ToInterval(choice as FHIR.Period)
+		else if choice is FHIR.string then
+    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
+	  else null

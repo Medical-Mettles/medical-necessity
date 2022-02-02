@@ -24,9 +24,9 @@
   "date": "2022-01-05",
   "publisher": "Mettle Solutions",
   "item": [
-    {
-      "linkId": "1",
-      "text": "Patient Information",
+     {
+      "linkId": "4",
+      "text": "Treatment Information",
       "type": "group",
       "item": [
         {
@@ -35,46 +35,78 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "PatientMedicaidNumber"
+                "expression": "TreatmentPlan"
               }
             }
           ],
-          "linkId": "PatientMedicaidNumber",
-          "text": "What is the patient's medicaid number?",
-          "type": "text",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "3",
-      "text": "TNM Staging",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "StagingType"
-              }
-            }
-          ],
-          "linkId": "StagingType",
-          "text": "Cancer Staging Type",
+          "linkId": "TreatmentPlan",
+          "text": "Treatment Plan:",
           "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
-                "code": "Clinical",
-                "display": "Clinical"
+                "code": "Whole breast radiation without nodal radiation",
+                "display": "Whole breast radiation without nodal radiation"
               }
             },
             {
               "valueCoding": {
-                "code": "Pathological",
-                "display": "Pathological"
+                "code": "Partial breast irradiation (PBI) without regional nodal radiation",
+                "display": "Partial breast irradiation (PBI) without regional nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Whole breast radiation with nodal radiation",
+                "display": "Whole breast radiation with nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Treatment of bilateral breast",
+                "display": "Treatment of bilateral breast"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Post-mastectomy radiation therapy (PMRT)",
+                "display": "Post-mastectomy radiation therapy (PMRT)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Accelerated partial breast irradiatin (APBI)",
+                "display": "Accelerated partial breast irradiatin (APBI)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Intraoperative radiation therapy (IORT)",
+                "display": "Intraoperative radiation therapy (IORT)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease",
+                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)",
+                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Re-irradiation of the breast or chest wall with or without regional nodal radiation",
+                "display": "Re-irradiation of the breast or chest wall with or without regional nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation",
+                "display": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation"
               }
             }
           ],
@@ -86,114 +118,114 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "TStage"
+                "expression": "IORTType"
               }
             }
           ],
-          "linkId": "TStage",
-          "text": "Primary Tumor (T)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NStage"
-              }
-            }
-          ],
-          "linkId": "NStage",
-          "text": "Regional Lymph Nodes (N)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "MStage"
-              }
-            }
-          ],
-          "linkId": "MStage",
-          "text": "Distant Metastasis (M)",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "AnatomicStage"
-              }
-            }
-          ],
-          "linkId": "AnatomicStage",
-          "text": "TNM Staging",
+          "linkId": "IORTType",
+          "text": "Intra-Operative Radiation Therapy (IORT) Type:",
           "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
-                "code": "Stage0",
-                "display": "Stage0"
+                "code": "Electron Beams",
+                "display": "Electron Beams"
               }
             },
             {
               "valueCoding": {
-                "code": "StageIA",
-                "display": "StageIA"
+                "code": "X-rays",
+                "display": "X-rays"
               }
             },
             {
               "valueCoding": {
-                "code": "StageIB",
-                "display": "StageIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIA",
-                "display": "StageIIA"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIB",
-                "display": "StageIIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIA",
-                "display": "StageIIIA"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIB",
-                "display": "StageIIIB"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIIIC",
-                "display": "StageIIIC"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "StageIV",
-                "display": "StageIV"
+                "code": "High-dose-rate Brachytherapy",
+                "display": "High-dose-rate Brachytherapy"
               }
             }
           ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TreatmentPlan",
+              "answerCoding": {
+                "code": "Intraoperative radiation therapy (IORT)",
+                "display": "Intraoperative radiation therapy (IORT)"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RadiationTreatmentStartDate"
+              }
+            }
+          ],
+          "linkId": "RadiationTreatmentStartDate",
+          "text": "When will the patient start with Radiation Treatment?",
+          "type": "date",
+          "required": true
+        },
+        {
+          "linkId": "NumberOfTreatmentFractions",
+          "text": "Planned number of treatment fractions:",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "PatientTreatmentPosition",
+          "text": "What is the patient's treatment position going to be?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Supine",
+                "display": "Supine"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Prone",
+                "display": "Prone"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IGRTService"
+              }
+            }
+          ],
+          "linkId": "IGRTService",
+          "text": "Does the patient require Image guided radiation therapy (IGRT) during the treatment?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RespiratoryMotionTracking"
+              }
+            }
+          ],
+          "linkId": "RespiratoryMotionTracking",
+          "text": "Does the patient require respiratory motion tracking during the treatment?",
+          "type": "boolean",
           "required": true
         }
       ]
@@ -467,8 +499,8 @@
       ]
     },
     {
-      "linkId": "4",
-      "text": "Treatment Information",
+      "linkId": "1",
+      "text": "Patient Information",
       "type": "group",
       "item": [
         {
@@ -477,78 +509,46 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "TreatmentPlan"
+                "expression": "PatientMedicaidNumber"
               }
             }
           ],
-          "linkId": "TreatmentPlan",
-          "text": "Treatment Plan:",
+          "linkId": "PatientMedicaidNumber",
+          "text": "What is the patient's medicaid number?",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "TNM Staging",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StagingType"
+              }
+            }
+          ],
+          "linkId": "StagingType",
+          "text": "Cancer Staging Type",
           "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
-                "code": "Whole breast radiation without nodal radiation",
-                "display": "Whole breast radiation without nodal radiation"
+                "code": "Clinical",
+                "display": "Clinical"
               }
             },
             {
               "valueCoding": {
-                "code": "Partial breast irradiation (PBI) without regional nodal radiation",
-                "display": "Partial breast irradiation (PBI) without regional nodal radiation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Whole breast radiation with nodal radiation",
-                "display": "Whole breast radiation with nodal radiation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Treatment of bilateral breast",
-                "display": "Treatment of bilateral breast"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Post-mastectomy radiation therapy (PMRT)",
-                "display": "Post-mastectomy radiation therapy (PMRT)"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Accelerated partial breast irradiatin (APBI)",
-                "display": "Accelerated partial breast irradiatin (APBI)"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Intraoperative radiation therapy (IORT)",
-                "display": "Intraoperative radiation therapy (IORT)"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease",
-                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)",
-                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Re-irradiation of the breast or chest wall with or without regional nodal radiation",
-                "display": "Re-irradiation of the breast or chest wall with or without regional nodal radiation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation",
-                "display": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation"
+                "code": "Pathological",
+                "display": "Pathological"
               }
             }
           ],
@@ -560,114 +560,114 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "IORTType"
+                "expression": "TStage"
               }
             }
           ],
-          "linkId": "IORTType",
-          "text": "Intra-Operative Radiation Therapy (IORT) Type:",
+          "linkId": "TStage",
+          "text": "Primary Tumor (T)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NStage"
+              }
+            }
+          ],
+          "linkId": "NStage",
+          "text": "Regional Lymph Nodes (N)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MStage"
+              }
+            }
+          ],
+          "linkId": "MStage",
+          "text": "Distant Metastasis (M)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnatomicStage"
+              }
+            }
+          ],
+          "linkId": "AnatomicStage",
+          "text": "TNM Staging",
           "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
-                "code": "Electron Beams",
-                "display": "Electron Beams"
+                "code": "Stage0",
+                "display": "Stage0"
               }
             },
             {
               "valueCoding": {
-                "code": "X-rays",
-                "display": "X-rays"
+                "code": "StageIA",
+                "display": "StageIA"
               }
             },
             {
               "valueCoding": {
-                "code": "High-dose-rate Brachytherapy",
-                "display": "High-dose-rate Brachytherapy"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "TreatmentPlan",
-              "answerCoding": {
-                "code": "Intraoperative radiation therapy (IORT)",
-                "display": "Intraoperative radiation therapy (IORT)"
-              }
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "RadiationTreatmentStartDate"
-              }
-            }
-          ],
-          "linkId": "RadiationTreatmentStartDate",
-          "text": "When will the patient start with Radiation Treatment?",
-          "type": "date",
-          "required": true
-        },
-        {
-          "linkId": "NumberOfTreatmentFractions",
-          "text": "Planned number of treatment fractions:",
-          "type": "decimal",
-          "required": true
-        },
-        {
-          "linkId": "PatientTreatmentPosition",
-          "text": "What is the patient's treatment position going to be?",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Supine",
-                "display": "Supine"
+                "code": "StageIB",
+                "display": "StageIB"
               }
             },
             {
               "valueCoding": {
-                "code": "Prone",
-                "display": "Prone"
+                "code": "StageIIA",
+                "display": "StageIIA"
               }
-            }
-          ],
-          "required": true
-        },
-        {
-          "extension": [
+            },
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "IGRTService"
+              "valueCoding": {
+                "code": "StageIIB",
+                "display": "StageIIB"
               }
-            }
-          ],
-          "linkId": "IGRTService",
-          "text": "Does the patient required Image guided radiation therapy (IGRT) during the treatment?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
+            },
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "RespiratoryMotionTracking"
+              "valueCoding": {
+                "code": "StageIIIA",
+                "display": "StageIIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIB",
+                "display": "StageIIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIC",
+                "display": "StageIIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIV",
+                "display": "StageIV"
               }
             }
           ],
-          "linkId": "RespiratoryMotionTracking",
-          "text": "Does the patient required respiratory motion tracking during the treatment?",
-          "type": "boolean",
           "required": true
         }
       ]

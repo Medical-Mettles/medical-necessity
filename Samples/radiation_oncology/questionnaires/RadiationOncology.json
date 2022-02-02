@@ -174,7 +174,7 @@
         },
         {
           "linkId": "NumberOfTreatmentFractions",
-          "text": "Planned Number of Treatment Fractions:",
+          "text": "Number of Treatment Fractions Planned:",
           "type": "decimal",
           "required": true
         },
@@ -247,7 +247,7 @@
           ],
           "linkId": "SecondaryCancerCondition",
           "text": "Type of Cancer:",
-          "type": "choice",
+          "type": "open-choice",
           "answerOption": [
             {
               "valueCoding": {
@@ -259,6 +259,12 @@
               "valueCoding": {
                 "code": "Prostate Cancer",
                 "display": "Prostate Cancer"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Other",
+                "display": "Other"
               }
             }
           ],
@@ -275,7 +281,7 @@
             }
           ],
           "linkId": "TumorLocationSecondary",
-          "text": "Tumor Location",
+          "text": "Tumor Location:",
           "type": "choice",
           "answerOption": [
             {

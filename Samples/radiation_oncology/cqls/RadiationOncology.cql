@@ -57,6 +57,7 @@ valueset "Positive": '2.16.840.1.113883.17.4077.3.2025'
 valueset "HER2 Presence in Tissue": '2.16.840.1.113883.3.1444.5.207'
 valueset "Progesterone receptor": '2.16.840.1.113883.3.6037.1001.23.96.16'
 valueset "Estrogen receptor": '2.16.840.1.113883.3.6037.1001.23.96.15'
+valueset "Image guided radiaiton therapy": '2.16.840.1.113883.3.6037.1001.23.93.269'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -245,7 +246,7 @@ define BRCAMutation:
                 where E.url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsGene'
                 and exists(((E.value as CodeableConcept).coding) C  where C in "BRCA Gene")))
 
-define NegativeMargins:
+define NegativeMarginsObv:
 	exists([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Surgical Margins Involved by Tumor")
@@ -259,6 +260,12 @@ define MarginDistance:
   if FHIRHelpers.ToQuantity("MarginDistanceObservation".value).unit = 'mm'
 		then FHIRHelpers.ToQuantity("MarginDistanceObservation".value).value
         else 0
+
+define NegativeMargins:
+	if ("NegativeMarginsObv" = true)
+		and ("MarginDistance" >= 2)
+			then true
+				else false
 
 define "HER2Positive":
 	exists([Observation]P
@@ -349,14 +356,19 @@ define "TumorSizeObservation":
 			and First(P.code.coding C where C in "Tumor size") is not null
 			and exists(P.bodySite.coding co where co in "Breasts BodySite"))
 
-define "TumorSize":
+define "TumorSizeResult":
   if FHIRHelpers.ToQuantity("TumorSizeObservation".value).unit = 'mm'
 	then FHIRHelpers.ToQuantity("TumorSizeObservation".value).value/10
   else (if FHIRHelpers.ToQuantity("TumorSizeObservation".value).unit = 'cm'
         then FHIRHelpers.ToQuantity("TumorSizeObservation".value).value
         else 0)
 
-define NegativeMarginsSecondary:
+define TumorSize:
+	if ("TumorSizeResult" <= 2.5)
+		then true
+			else false
+
+define NegativeMarginsSecondaryObservation:
 	exists([Observation]P
 			where P.status.value in {'final', 'amended', 'corrected'}
 			and exists(P.code.coding x where x in "Surgical Margins Involved by Tumor")
@@ -371,8 +383,11 @@ define SecondaryMarginDistance:
 		then FHIRHelpers.ToQuantity("SecondaryMarginDistanceObservation".value).value
         else 0
 
-define RadiationTreatmentStartDate:
-	ToDate(start of "Normalize Interval"("ServiceRequest".occurrence))
+define NegativeMarginsSecondary:
+	if ("NegativeMarginsSecondaryObservation" = true
+				and "SecondaryMarginDistance" >= 3)
+					then true
+						else false
 
 define IORTElectron:
   "Request".code.coding C where C in "IORT Electron"
@@ -380,12 +395,29 @@ define IORTElectron:
 define IORTXrays:
   "Request".code.coding C where C in "IORT Xrays"
 
+define IORTService:
+	if exists("IORTElectron")
+		or exists("IORTXrays")
+			then true
+				else false
+
+define TreatmentPlan:
+	if ("IORTService" = true)
+		then 'Intraoperative radiation therapy (IORT)'
+			else ''
+
+define RadiationTreatmentStartDate:
+	ToDate(start of "Normalize Interval"("ServiceRequest".occurrence))
+
 define IORTType:
   if exists("IORTElectron")
 		then 'Electron Beams'
 			else if exists("IORTXrays")
 				then 'X-rays'
 					else ''
+
+define IGRTService:
+	exists("Request".code.coding C where C in "Image guided radiaiton therapy")
 
 
 define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):

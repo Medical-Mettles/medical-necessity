@@ -536,6 +536,82 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "TumorLocationSecondary"
+              }
+            }
+          ],
+          "linkId": "TumorLocationSecondary",
+          "text": "What is the location of the tumor?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Nipple and Areola",
+                "display": "Nipple and Areola"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Central Portion",
+                "display": "Central Portion"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Inner Quadrant",
+                "display": "Upper-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Outer Quadrant",
+                "display": "Upper-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Outer Quadrant",
+                "display": "Lower-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Axillary Tail",
+                "display": "Axillary Tail"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Overlapping Sites",
+                "display": "Overlapping Sites"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unspecified Site",
+                "display": "Unspecified Site"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "SpecifyHistologicGrade"
               }
             }

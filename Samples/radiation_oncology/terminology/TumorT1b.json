@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.09",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.09",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.09"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T1b",
+  "title": "Tumor stage T1b",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "261649005",
+            "display": "Tumor stage T1b (finding)"
+          },
+          {
+            "code": "369898000",
+            "display": "T1b: Breast tumour >0.5 cm but <= 1 cm in greatest dimension"
+          },
+          {
+            "code": "373204007",
+            "display": "pT1b: Tumor more than 0.5 cm but not more than 1 cm in greatest dimension (breast) (finding)"
+          },
+          {
+            "code": "443506002",
+            "display": "pT1b category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

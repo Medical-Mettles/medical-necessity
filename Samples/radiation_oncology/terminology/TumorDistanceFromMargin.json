@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.263",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.263",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.263"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Distance of tumor from closest margin",
+  "title": "Distance of tumor from closest margin",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2022-02",
+        "concept": [
+          {
+            "code": "81175-2",
+            "display": "Distance of tumor from closest margin [Length] in Specimen by Macroscopy"
+          }
+        ]
+      }
+    ]
+  }
+}

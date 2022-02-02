@@ -1,0 +1,39 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.260",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.260",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.260"
+    }
+  ],
+  "version": "Latest",
+  "name": "Breast cancer, unspecified site",
+  "title": "Breast cancer, unspecified site",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2022-02",
+        "concept": [
+          {
+            "code": "C50.911",
+            "display": "Malignant neoplasm of unspecified site, right female breast"
+          },
+          {
+            "code": "C50.921",
+            "display": "Malignant neoplasm of unspecified site, right male breast"
+          }
+        ]
+      }
+    ]
+  }
+}

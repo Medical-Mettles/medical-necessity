@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.02",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.02",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.02"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T0",
+  "title": "Tumor stage T0",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "39880006",
+            "display": "pT0 category (finding)"
+          },
+          {
+            "code": "58790005",
+            "display": "T0 category (finding)"
+          },
+          {
+            "code": "373174002",
+            "display": "pT0: No evidence of primary tumour (breast)"
+          },
+          {
+            "code": "433371000124106",
+            "display": "Neoplasm of breast primary tumor staging category T0:No evidence of primary tumor"
+          }
+        ]
+      }
+    ]
+  }
+}

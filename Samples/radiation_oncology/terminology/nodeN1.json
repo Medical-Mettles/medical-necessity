@@ -1,0 +1,103 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.20",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.20",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.20"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes N1",
+  "title": "Regional Lymph Nodes N1",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "53623008",
+            "display": "N1 category (finding)"
+          },
+          {
+            "code": "433451000124108",
+            "display": "Neoplasm of breast regional lymph node staging category N1: Metastasis to movable ipsilateral level I, II axillary lymph node(s) (finding)"
+          },
+          {
+            "code": "369983003",
+            "display": "N1: Metastasis to movable ipsilateral axillary lymph node(s) (finding)"
+          },
+          {
+            "code": "369992000",
+            "display": "N1: Metastasis in 1-3 lymph nodes (finding)"
+          },
+          {
+            "code": "369997006",
+            "display": "N1: Metastasis in 1-6 perigastric lymph nodes (finding)"
+          },
+          {
+            "code": "370000006",
+            "display": "N1: Metastasis in a single lymph node, < 2 cm in greatest dimension (finding)"
+          },
+          {
+            "code": "370001005",
+            "display": "N1: Metastasis in a single lymph node, <= 2 cm in greatest dimension (finding)"
+          },
+          {
+            "code": "372436009",
+            "display": "N1: Metastasis in perirectal lymph node or nodes"
+          },
+          {
+            "code": "45552005",
+            "display": "pN1 category (finding)"
+          },
+          {
+            "code": "373156006",
+            "display": "pN1: Metastasis in 1 to 3 axillary lymph nodes, and/or in internal mammary nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast) (finding)"
+          },
+          {
+            "code": "373157002",
+            "display": "pN1mi: Micrometastasis (greater than 0.2 mm, none greater than 2.0 mm) (breast)"
+          },
+          {
+            "code": "443824009",
+            "display": "pN1mi category (finding)"
+          },
+          {
+            "code": "443716008",
+            "display": "pN1a category (finding)"
+          },
+          {
+            "code": "373159004",
+            "display": "pN1a: Metastasis in 1 to 3 axillary lymph nodes (at least one tumor deposit greater than 2.0 mm) (breast) (finding)"
+          },
+          {
+            "code": "373160009",
+            "display": "pN1b: Metastasis in internal mammary lymph nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast)"
+          },
+          {
+            "code": "443599002",
+            "display": "pN1b category (finding)"
+          },
+          {
+            "code": "373161008",
+            "display": "pN1c: Metastasis in 1 to 3 axillary lymph nodes and in internal mammary lymph nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast)"
+          },
+          {
+            "code": "443743003",
+            "display": "pN1c category (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

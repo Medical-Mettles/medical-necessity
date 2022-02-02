@@ -1,0 +1,195 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.26",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.26",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.96.26"
+      }
+    ],
+    "version": "Latest",
+    "name": "Pathological Regional Lymph Nodes",
+    "title": "Pathological Regional Lymph Nodes",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "54452005",
+              "display": "pNX category (finding)"
+            },
+		   {
+              "code": "373173008",
+              "display": "pNX: Regional lymph nodes cannot be assessed (e.g., previously removed, or not removed for pathologic study) (breast)"
+            },
+		   {
+			"code": "21917009",
+			"display": "pN0 category (finding)"
+		    },
+		    {
+			"code": "373151001",
+			"display": "pN0: No regional lymph node metastasis histologically (i.e., none greater than 0.2 mm), no additional examination for isolated tumor cells (breast) (finding)"
+            },
+            {
+              "code": "436231000124107",
+              "display": "Neoplasm of breast regional lymph node staging category pN0 as per American Joint Committee on Cancer 7th edition (finding)"
+           },
+		  {  
+			"code": "406088001",
+			 "display": "pN0(i-): No regional lymph node metastasis histologically, negative morphologic findings for isolated tumor cells (breast) (finding)"
+              	    },
+		    { 
+			"code": "443335006",
+			"display": "pN0(i-) category (finding)"
+		    },
+		    {
+			"code": "436121000124104",
+			"display": "Neoplasm of breast regional lymph node staging category pN0(i-): No regional lymph node metastasis histologically, negative immunohistochemically (finding)"
+		    },
+		    {
+			"code": "406089009",
+			"display": "pN0(i+): No regional lymph node metastasis histologically, positive morphologic findings for isolated tumor cells, no cluster greater than 0.2 mm (breast) (finding)"
+ 		    }, 
+ 		  {
+			"code": "443486002",
+			"display": "pN0(i+) category (finding)"
+	 	  },
+		  {
+			"code": "436111000124107",
+			"display": "Neoplasm of breast regional lymph node staging category pN0(i+): Regional lymph node isolated tumor cell clusters detected by hematoxylin and eosin stain or immunohistochemical methods (finding)"
+		    },
+		    {
+			"code": "406090000",
+			"display": "pN0(mol-): No regional lymph node metastasis histologically, negative nonmorphologic (molecular) findings for isolated tumor cells (breast) (finding)"
+		    },
+		    {
+			"code": "443963003",
+			"display": "pN0(mol-) category (finding)"
+		    },
+		    {
+			"code": "406091001",
+			"display": "pN0(mol+): No regional lymph node metastasis histologically, positive nonmorphologic (molecular) findings for isolated tumor cells (breast) (finding)"
+		    },
+		    {
+			"code": "443875007",
+			"display": "pN0(mol+) category (finding)"
+		    },
+		    {
+			"code": "436101000124109",
+			"display": "Neoplasm of breast regional lymph node staging category pN0(mol+): Positive molecular findings, but no regional lymph node metastasis detected by histology or immunohistochemistry (finding)"
+		    },
+	    	    {  
+			"code": "45552005",
+			 "display": "pN1 category (finding)"
+              	    },
+		    { 
+			"code": "373156006",
+			"display": "pN1: Metastasis in 1 to 3 axillary lymph nodes, and/or in internal mammary nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast) (finding)"
+		    },
+		    {
+			"code": "373157002",
+			"display": "pN1mi: Micrometastasis (greater than 0.2 mm, none greater than 2.0 mm) (breast)"
+		    },
+		    {
+			"code": "443824009",
+			"display": "pN1mi category (finding)"
+		    },
+		    {
+			"code": "443716008",
+			"display": "pN1a category (finding)"
+		    },
+		    {
+			"code": "373159004",
+			"display": "pN1a: Metastasis in 1 to 3 axillary lymph nodes (at least one tumor deposit greater than 2.0 mm) (breast) (finding)"
+		    },
+		    {
+			"code": "373160009",
+			"display": "pN1b: Metastasis in internal mammary lymph nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast)"
+		    },
+		    {
+			"code": "443599002",
+			"display": "pN1b category (finding)"
+		    },
+		  {
+			"code": "373161008",
+			"display": "pN1c: Metastasis in 1 to 3 axillary lymph nodes and in internal mammary lymph nodes with microscopic disease detected by sentinel lymph node dissection but not clinically apparent (breast)"
+		    },
+	             {
+			"code": "443743003",
+			"display": "pN1c category (finding)"
+		    },
+		    {
+			"code": "15076001",
+			"display": "pN2 category (finding)"
+		    },
+		    {
+			"code": "373162001",
+			"display": "pN2: Metastasis in 4 to 9 axillary lymph nodes, or in clinically apparent internal mammary lymph nodes in the absence of axillary lymph node metastasis (breast)"
+ 		    }, 
+ 		  {
+			"code": "373163006",
+			"display": "pN2a: Metastasis in 4 to 9 axillary lymph nodes (at least one tumour deposit greater than 2.0 mm) (breast)"
+	 	  },
+		  {
+			"code": "443867001",
+			"display": "pN2a category (finding)"
+		    },
+		    {
+			"code": "373164000",
+			"display": "pN2b: Metastasis in clinically apparent internal mammary lymph nodes in the absence of axillary lymph node metastasis (breast)"
+		    },
+		    {
+			"code": "443452006",
+			"display": "pN2b category (finding)"
+		    },
+		    {
+			"code": "49182004",
+			"display": "pN3 category (finding)"
+		    },
+		    {
+			"code": "436091000124103",
+			"display": "Neoplasm of breast regional lymph node staging category pN3 as per American Joint Committee on Cancer 7th edition (finding)"
+		    },
+		    {
+			"code": "373165004",
+			"display": "pN3a: Metastasis in 10 or more axillary lymph nodes (at least one tumour deposit greater than 2.0 mm), or metastasis to infraclavicular lymph nodes (breast)"
+		    },
+		    {
+			"code": "443866005",
+			"display": "pN3a category (finding)"
+		    },
+		    {
+			"code": "443962008",
+			"display": "pN3b category (finding)"
+		    },
+		    {
+			"code": "436081000124101",
+			"display": "Neoplasm of breast regional lymph node staging category pN3b as per American Joint Committee on Cancer 7th edition (finding)"
+		    },
+		    {
+			"code": "373167007",
+			"display": "pN3b: Tumour of breast with metastasis as per AJCC 6th Edition definition (breast)"
+		    },
+		    {
+			"code": "443823003",
+			"display": "pN3c category (finding)"
+		    },
+		    {
+			"code": "373166003",
+			"display": "pN3c: Metastasis in ipsilateral supraclavicular lymph nodes (breast)"
+		    }          
+          ]
+        }
+      ]
+    }
+  }

@@ -168,7 +168,7 @@
             }
           ],
           "linkId": "RadiationTreatmentStartDate",
-          "text": "Radiation Treatment Start Date?",
+          "text": "Radiation Treatment Start Date:",
           "type": "date",
           "required": true
         },

@@ -1,0 +1,226 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.286",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.286",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.286"
+    }
+  ],
+  "version": "Latest",
+  "name": "Thumb Fracture Conditions",
+  "title": "Thumb Fracture Conditions",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2022-02",
+        "concept": [
+          {
+            "code": "S62.501D",
+            "display": "Fracture of unspecified phalanx of right thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.501G",
+            "display": "Fracture of unspecified phalanx of right thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.501K",
+            "display": "Fracture of unspecified phalanx of right thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.501P",
+            "display": "Fracture of unspecified phalanx of right thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.501S",
+            "display": "Fracture of unspecified phalanx of right thumb, sequela"
+          },
+          {
+            "code": "S62.502D",
+            "display": "Fracture of unspecified phalanx of left thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.502G",
+            "display": "Fracture of unspecified phalanx of left thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.502K",
+            "display": "Fracture of unspecified phalanx of left thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.502P",
+            "display": "Fracture of unspecified phalanx of left thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.502S",
+            "display": "Fracture of unspecified phalanx of left thumb, sequela"
+          },
+          {
+            "code": "S62.511D",
+            "display": "Displaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.511G",
+            "display": "Displaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.511K",
+            "display": "Displaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.511P",
+            "display": "Displaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.511S",
+            "display": "Displaced fracture of proximal phalanx of right thumb, sequela"
+          },
+          {
+            "code": "S62.512D",
+            "display": "Displaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.512G",
+            "display": "Displaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.512K",
+            "display": "Displaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.512P",
+            "display": "Displaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.512S",
+            "display": "Displaced fracture of proximal phalanx of left thumb, sequela"
+          },
+          {
+            "code": "S62.514D",
+            "display": "Nondisplaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.514G",
+            "display": "Nondisplaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.514K",
+            "display": "Nondisplaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.514P",
+            "display": "Nondisplaced fracture of proximal phalanx of right thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.514S",
+            "display": "Nondisplaced fracture of proximal phalanx of right thumb, sequela"
+          },
+          {
+            "code": "S62.515D",
+            "display": "Nondisplaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.515G",
+            "display": "Nondisplaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.515K",
+            "display": "Nondisplaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.515P",
+            "display": "Nondisplaced fracture of proximal phalanx of left thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.515S",
+            "display": "Nondisplaced fracture of proximal phalanx of left thumb, sequela"
+          },
+          {
+            "code": "S62.521D",
+            "display": "Displaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.521G",
+            "display": "Displaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.521K",
+            "display": "Displaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.521P",
+            "display": "Displaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.521S",
+            "display": "Displaced fracture of distal phalanx of right thumb, sequela"
+          },
+          {
+            "code": "S62.522D",
+            "display": "Displaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.522G",
+            "display": "Displaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.522K",
+            "display": "Displaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.522P",
+            "display": "Displaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.522S",
+            "display": "Displaced fracture of distal phalanx of left thumb, sequela"
+          },
+          {
+            "code": "S62.524D",
+            "display": "Nondisplaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.524G",
+            "display": "Nondisplaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.524K",
+            "display": "Nondisplaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.524P",
+            "display": "Nondisplaced fracture of distal phalanx of right thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.524S",
+            "display": "Nondisplaced fracture of distal phalanx of right thumb, sequela"
+          },
+          {
+            "code": "S62.525D",
+            "display": "Nondisplaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with routine healing"
+          },
+          {
+            "code": "S62.525G",
+            "display": "Nondisplaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with delayed healing"
+          },
+          {
+            "code": "S62.525K",
+            "display": "Nondisplaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with nonunion"
+          },
+          {
+            "code": "S62.525P",
+            "display": "Nondisplaced fracture of distal phalanx of left thumb, subsequent encounter for fracture with malunion"
+          },
+          {
+            "code": "S62.525S",
+            "display": "Nondisplaced fracture of distal phalanx of left thumb, sequela"
+          }
+        ]
+      }
+    ]
+  }
+}

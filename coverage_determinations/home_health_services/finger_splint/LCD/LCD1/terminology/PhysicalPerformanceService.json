@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.282",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.282",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.282"
+        }
+    ],
+    "version": "Latest",
+    "name": "Physical Performance Test or Measurement Service",
+    "title": "Manual Therapy Service",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2022-02",
+                "concept": [
+                    {
+                        "code": "97750",
+                        "display": "Physical performance test or measurement (eg, musculoskeletal, functional capacity), with written report, each 15 minutes"
+                    }
+                ]
+            }
+        ]
+    }
+}

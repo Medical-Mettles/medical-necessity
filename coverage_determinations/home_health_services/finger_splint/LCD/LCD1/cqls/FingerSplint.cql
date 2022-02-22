@@ -140,3 +140,9 @@ define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
 	then true
 	else false
+
+define FToFEncounterPT:
+  "FToFEncounter"
+
+define FToFEncounterOT:
+  "FToFEncounter"

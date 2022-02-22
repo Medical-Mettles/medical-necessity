@@ -1709,6 +1709,32 @@
           "linkId": "CertifiedPT",
           "text": "Is the evaluation being done by a certified Physical Therapist?",
           "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PTOrOT",
+              "answerCoding": {
+                "code": "Physical Therapy",
+                "display": "Physical Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "CertifiedOT",
+          "text": "Is the evaluation being done by a certified Occupational Therapist?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PTOrOT",
+              "answerCoding": {
+                "code": "Occupational Therapy",
+                "display": "Occupational Therapy"
+              }
+            }
+          ],
           "required": true
         },
         {
@@ -1717,14 +1743,49 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "FToFEncounter"
+                "expression": "FToFEncounterPT"
               }
             }
           ],
-          "linkId": "FToFEncounter",
-          "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
+          "linkId": "FToFEncounterPT",
+          "text": "Has the patient been evaluated directly (face to face) by a physical therapist?",
           "type": "boolean",
-          "required": true
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PTOrOT",
+              "answerCoding": {
+                "code": "Physical Therapy",
+                "display": "Physical Therapy"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FToFEncounterOT"
+              }
+            }
+          ],
+          "linkId": "FToFEncounterOT",
+          "text": "Has the patient been evaluated directly (face to face) by a physical therapist?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "PTOrOT",
+              "answerCoding": {
+                "code": "Occupational Therapy",
+                "display": "Occupational Therapy"
+              }
+            }
+          ]
         },
         {
           "linkId": "DiagnosisReport",

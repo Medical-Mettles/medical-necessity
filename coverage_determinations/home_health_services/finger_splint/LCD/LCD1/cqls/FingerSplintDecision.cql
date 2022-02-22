@@ -143,21 +143,37 @@ define CertifiedPT:
 		where I.linkId.value = 'CertifiedPT')QR
 		return First(QR.answer).value
 
-define FToFEncounterResponse:
+define CertifiedOT:
   ("QT".item I
-		where I.linkId.value = 'FToFEncounter')QR
+		where I.linkId.value = 'CertifiedOT')QR
 		return First(QR.answer).value
 
-define FToFEncounterEnc:
-  PPT."FToFEncounter"
+define FToFEncounterPTResponse:
+  ("QT".item I
+		where I.linkId.value = 'FToFEncounterPT')QR
+		return First(QR.answer).value
 
-define FToFEncounter:
-    Coalesce(First("FToFEncounterResponse"), "FToFEncounterEnc")
+define FToFEncounterPTEnc:
+  FS."FToFEncounterPT"
+
+define FToFEncounterPT:
+    Coalesce(First("FToFEncounterPTResponse"), "FToFEncounterPTEnc")
+
+define FToFEncounterOTResponse:
+  ("QT".item I
+		where I.linkId.value = 'FToFEncounterOT')QR
+		return First(QR.answer).value
+
+define FToFEncounterOTEnc:
+  FS."FToFEncounterOT"
+
+define FToFEncounterOT:
+    Coalesce(First("FToFEncounterOTResponse"), "FToFEncounterOTEnc")
 
 define TherapyDecision:
   if (First("TypeOfFingerSplint") is not null
-        and First("CertifiedPT") = true
-          and "FToFEncounter" = true)
+        and (First("CertifiedPT") = true or First("CertifiedOT") = true)
+          and ("FToFEncounterPT" = true or "FToFEncounterOT" = true))
             then true
               else false
 
@@ -170,6 +186,11 @@ define TypeOfRestorativeTherapy:
 	if ("RestorativeServicePT" = 'Application of a Splint'
 				or "RestorativeServiceOT" = 'Application of a Splint')
     			then 'Application of a Splint'
+      			else null
+
+define TypeOfSplintTherapy:
+	if "TypeOfSplinting" = 'Application of Finger Splint'
+				then 'Application of Finger Splint'
       			else null
 
 define FinalDiagnosis:

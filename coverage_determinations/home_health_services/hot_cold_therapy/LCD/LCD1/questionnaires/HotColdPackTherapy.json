@@ -1,0 +1,923 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-hot_cold_pack_therapy"
+    }
+  ],
+  "name": "HotColdPackTherapy",
+  "version": "1.0.0",
+  "title": "Prior Authorization for Home Health Therapy",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2021-10-11",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-HotColdPackTherapy"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Service Request Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TypeOfRequest"
+              }
+            }
+          ],
+          "linkId": "TypeOfRequest",
+          "text": "Does the patient require:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Evaluation or Re-evaluation",
+                "display": "Evaluation or Re-evaluation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Restorative or Rehabilitative Therapy",
+                "display": "Restorative or Rehabilitative Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Therapeutic Procedure",
+                "display": "Therapeutic Procedure"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Maintenance Program",
+                "display": "Maintenance Program"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Maintenance Therapy",
+                "display": "Maintenance Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "RestorativeServicePT",
+          "text": "Which of the following restorative or rehabilitative services does the patient require?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Application of a Splint",
+                "display": "Application of a Splint"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strapping",
+                "display": "Strapping"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Application of Unna Boot",
+                "display": "Application of Unna Boot"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Restorative or Rehabilitative Therapy",
+                "display": "Restorative or Rehabilitative Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MaintenanceProgramsPT"
+              }
+            }
+          ],
+          "linkId": "MaintenanceProgramsPT",
+          "text": "Which of the following maintenance programs does the patient require?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Hot or Cold Packs Therapy",
+                "display": "Hot or Cold Packs Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Mechanical Traction Therapy",
+                "display": "Mechanical Traction Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Vasopneumatic Device Therapy",
+                "display": "Vasopneumatic Device Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Paraffin Bath",
+                "display": "Paraffin Bath"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Whirlpool",
+                "display": "Whirlpool"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Diathermy Treatment",
+                "display": "Diathermy Treatment"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Infrared Therapy",
+                "display": "Infrared Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Electrical Stimulation Therapy",
+                "display": "Electrical Stimulation Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Electromagnetic Therapy",
+                "display": "Electromagnetic Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Contrast Bath Therapy",
+                "display": "Contrast Bath Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Ultrasound Therapy (US)",
+                "display": "Ultrasound Therapy (US)"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Maintenance Therapy",
+                "display": "Maintenance Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "TherapeuticProcedurePT",
+          "text": "Which of the following Therapeutic Procedures does the patient require?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Therapeutic Exercises",
+                "display": "Therapeutic Exercises"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neuromuscular Reeducation",
+                "display": "Neuromuscular Reeducation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Gait Training Therapy",
+                "display": "Gait Training Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Massage Therapy",
+                "display": "Massage Therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Manual Therapy",
+                "display": "Manual Therapy"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Therapeutic Procedure",
+                "display": "Therapeutic Procedure"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "PTEvaluations",
+          "text": "Which of the following evaluations does the patient require?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Prosthetic Checkout",
+                "display": "Prosthetic Checkout"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Physical Performance Test or Measurement",
+                "display": "Physical Performance Test or Measurement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Assistive Technology Assessment",
+                "display": "Assistive Technology Assessment"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Muscle Testing",
+                "display": "Muscle Testing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Range of Motion Measurements",
+                "display": "Range of Motion Measurements"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Physical Therapy Evaluation",
+                "display": "Physical Therapy Evaluation"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "TypeOfSplinting",
+          "text": "Which part of the body does the patient require splinting for?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Application of Long Arm Splint",
+                "display": "Application of Long Arm Splint"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Application of Short Arm Splint",
+                "display": "Application of Short Arm Splint"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Application of Finger Splint",
+                "display": "Application of Finger Splint"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Application of Long Leg Splint",
+                "display": "Application of Long Leg Splint"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Application of Short Leg Splint",
+                "display": "Application of Short Leg Splint"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "RestorativeServicePT",
+              "answerCoding": {
+                "code": "Application of a Splint",
+                "display": "Application of a Splint"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "RestorativeServiceOT",
+              "answerCoding": {
+                "code": "Application of a Splint",
+                "display": "Application of a Splint"
+              }
+            }
+          ],
+          "enableBehavior": "any",
+          "required": true
+        },
+        {
+          "linkId": "TypeOfStrapping",
+          "text": "Which part of the body does the patient require strapping for?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Strapping of Thorax",
+                "display": "Strapping of Thorax"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strapping of Lower Back",
+                "display": "Strapping of Lower Back"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strapping of Shoulder",
+                "display": "Strapping of Shoulder"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strapping of Elbow or Wrist",
+                "display": "Strapping of Elbow or Wrist"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Strapping of Hand or Finger",
+                "display": "Strapping of Hand or Finger "
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "RestorativeServicePT",
+              "answerCoding": {
+                "code": "Strapping",
+                "display": "Strapping"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "HotOrColdTherapy",
+          "text": "Which of the following therapies is the patient being given?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Hot pack therapy",
+                "display": "Hot pack therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Cold pack therapy",
+                "display": "Cold pack therapy"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "MaintenanceProgramsPT",
+              "answerCoding": {
+                "code": "Hot or Cold Packs Therapy",
+                "display": "Hot or Cold Packs Therapy"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Information",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "LongArmSplintConditions",
+          "text": "For which of the following conditions is the long arm splint being given?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Fracture",
+                "display": "Fracture"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Dislocation",
+                "display": "Dislocation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Soft Tissue Deformity",
+                "display": "Soft Tissue Deformity"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Post-operative Reconstructive Purposes",
+                "display": "Post-operative Reconstructive Purposes"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfSplinting",
+              "answerCoding": {
+                "code": "Application of Long Arm Splint",
+                "display": "Application of Long Arm Splint"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "LongArmFracturePart",
+          "text": "Which part of the long arm has been fractured?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Distal Humerus",
+                "display": "Distal Humerus"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Olecranon",
+                "display": "Olecranon"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radial Head/Radius",
+                "display": "Radial Head/Radius"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Capitellum",
+                "display": "Capitellum"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Elbow",
+                "display": "Elbow"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Ulna",
+                "display": "Ulna"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "LongArmSplintConditions",
+              "answerCoding": {
+                "code": "Fracture",
+                "display": "Fracture"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "LongArmDislocationPart",
+          "text": "Which part of the long arm has been dislocated?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Distal Humerus",
+                "display": "Distal Humerus"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Olecranon",
+                "display": "Olecranon"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radial Head/Radius",
+                "display": "Radial Head/Radius"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Capitellum",
+                "display": "Capitellum"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Elbow",
+                "display": "Elbow"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Ulna",
+                "display": "Ulna"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "LongArmSplintConditions",
+              "answerCoding": {
+                "code": "Dislocation",
+                "display": "Dislocation"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "LongArmTissueDeformityType",
+          "text": "Which of the following soft tissue deformities does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Contracture",
+                "display": "Contracture"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Sprain/Strain",
+                "display": "Sprain/Strain"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Tendonitis",
+                "display": "Tendonitis"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "LongArmSplintConditions",
+              "answerCoding": {
+                "code": "Soft Tissue Deformities",
+                "display": "Soft Tissue Deformities"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "LongArmTissueDeformityPart",
+          "text": "Where is the soft tissue deformity seen?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Elbow",
+                "display": "Elbow"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Shoulder",
+                "display": "Shoulder"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Both",
+                "display": "Both"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "LongArmSplintConditions",
+              "answerCoding": {
+                "code": "Soft Tissue Deformities",
+                "display": "Soft Tissue Deformities"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "LongArmTemporaryImmobilization",
+          "text": "Does the affected part of the limb need temporary immobilization?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfSplinting",
+              "answerCoding": {
+                "code": "Application of Long Arm Splint",
+                "display": "Application of Long Arm Splint"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "LongArmSplintReasons",
+          "text": "For which of the following reasons is the long arm splint suggested?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Acute management of injuries awaiting orthopedic intervention",
+                "display": "Acute management of injuries awaiting orthopedic intervention"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Reduction of swelling (post trauma/post operative)",
+                "display": "Reduction of swelling (post trauma/post operative)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pain Control",
+                "display": "Pain Control"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Support Weak Joints/Muscles",
+                "display": "Support Weak Joints/Muscles"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "To prevent further soft tissue injuries",
+                "display": "To prevent further soft tissue injuries"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfSplinting",
+              "answerCoding": {
+                "code": "Application of Long Arm Splint",
+                "display": "Application of Long Arm Splint"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HotColdTherapyReasons"
+              }
+            }
+          ],
+          "linkId": "HotColdTherapyReasons",
+          "text": "Which of the following reasons is it being given for?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "To provide analgesia",
+                "display": "To provide analgesia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "To relieve muscle spasms",
+                "display": "To relieve muscle spasms"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "To reduce inflammation or swelling",
+                "display": "To reduce inflammation or swelling"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "MaintenanceProgramsPT",
+              "answerCoding": {
+                "code": "Hot or Cold Packs Therapy",
+                "display": "Hot or Cold Packs Therapy"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "4",
+      "text": "Therapy Details",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "HotColdDevices",
+          "text": "How many heating/ cold devices does the patient need?",
+          "type": "decimal",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "MaintenanceProgramsPT",
+              "answerCoding": {
+                "code": "Hot or Cold Packs Therapy",
+                "display": "Hot or Cold Packs Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "HotColdConjuction",
+          "text": "Is this being given in conjunction with any other therapeutic procedures?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "MaintenanceProgramsPT",
+              "answerCoding": {
+                "code": "Hot or Cold Packs Therapy",
+                "display": "Hot or Cold Packs Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "DiagnosisImprovePostTherapy",
+          "text": "Is the diagnosed condition expected to improve with this service?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Restorative or Rehabilitative Therapy",
+                "display": "Restorative or Rehabilitative Therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "EachTherapyDuration",
+          "text": "What is the duration of each therapy session?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "15 minutes",
+                "display": "15 minutes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "More than 15 minutes",
+                "display": "More than 15 minutes"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Therapeutic Procedure",
+                "display": "Therapeutic Procedure"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Authorization",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "CertifiedPT",
+          "text": "Is the evaluation being done by a certified Physical Therapist?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FToFEncounter"
+              }
+            }
+          ],
+          "linkId": "FToFEncounter",
+          "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "DiagnosisReport",
+          "text": "A certification statement signed by the Physical Therapist confirming the service is required.",
+          "type": "display"
+        }
+      ]
+    }
+  ]
+}

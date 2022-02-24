@@ -1,0 +1,38 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.274",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.274",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.274"
+        }
+    ],
+    "version": "Latest",
+    "name": "Muscle Spasms",
+    "title": "Muscle Spasms",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2022-02",
+                "concept": [
+                    {
+                        "code": "M62.830",
+                        "display": "Muscle spasm of back"
+                    },
+                    {
+                        "code": "M62.831",
+                        "display": "Muscle spasm of calf"
+                    },
+                    {
+                        "code": "M62.838",
+                        "display": "Other muscle spasm"
+                    }
+                ]
+            }
+        ]
+    }
+}

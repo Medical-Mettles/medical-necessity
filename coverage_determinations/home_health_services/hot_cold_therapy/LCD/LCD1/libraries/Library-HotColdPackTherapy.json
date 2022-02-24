@@ -1,0 +1,57 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "HotColdPackTherapy",
+  "name": "HotColdPackTherapy",
+  "id": "library-lcd1-HotColdPackTherapy",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    }
+  ],
+  "dataRequirement": [
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.274"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.275"
+        }
+        ]
+    },
+    {
+      "type": "Condition",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSet": "2.16.840.1.113762.1.4.1047.428"
+        }
+        ]
+    }
+  ]
+}
+
+
+
+
+
+
+

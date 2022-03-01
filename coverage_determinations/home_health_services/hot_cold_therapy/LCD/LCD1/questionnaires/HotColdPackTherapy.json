@@ -93,12 +93,6 @@
                 "code": "Maintenance Program",
                 "display": "Maintenance Program"
               }
-            },
-            {
-              "valueCoding": {
-                "code": "Maintenance Therapy",
-                "display": "Maintenance Therapy"
-              }
             }
           ],
           "required": true

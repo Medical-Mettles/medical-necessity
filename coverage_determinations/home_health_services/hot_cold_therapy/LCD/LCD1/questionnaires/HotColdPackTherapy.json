@@ -225,8 +225,8 @@
               "operator": "=",
               "question": "TypeOfRequest",
               "answerCoding": {
-                "code": "Maintenance Therapy",
-                "display": "Maintenance Therapy"
+                "code": "Maintenance Program",
+                "display": "Maintenance Program"
               }
             }
           ],
@@ -908,7 +908,7 @@
             }
           ],
           "linkId": "FToFEncounter",
-          "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
+          "text": "Has the patient been evaluated directly (face to face) by the Physical Therapist?",
           "type": "boolean",
           "required": true
         },

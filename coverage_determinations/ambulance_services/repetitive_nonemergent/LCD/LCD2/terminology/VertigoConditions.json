@@ -1,0 +1,90 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.407",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.407",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.407"
+    }
+  ],
+  "version": "Latest",
+  "name": "Vertigo Conditions",
+  "title": "Vertigo Conditions",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2022-03",
+        "concept": [
+          {
+            "code": "H81.1",
+            "display": "Benign paroxysmal vertigo"
+          },
+          {
+            "code": "H81.10",
+            "display": "Benign paroxysmal vertigo, unspecified ear"
+          },
+          {
+            "code": "H81.11",
+            "display": "Benign paroxysmal vertigo, right ear"
+          },
+          {
+            "code": "H81.12",
+            "display": "Benign paroxysmal vertigo, left ear"
+          },
+          {
+            "code": "H81.13",
+            "display": "Benign paroxysmal vertigo, bilateral"
+          },
+          {
+            "code": "H81.3",
+            "display": "Other peripheral vertigo"
+          },
+          {
+            "code": "H81.31",
+            "display": "Aural vertigo"
+          },
+          {
+            "code": "H81.311",
+            "display": "Aural vertigo, right ear"
+          },
+          {
+            "code": "H81.312",
+            "display": "Aural vertigo, left ear"
+          },
+          {
+            "code": "H81.313",
+            "display": "Aural vertigo, bilateral"
+          },
+          {
+            "code": "H81.319",
+            "display": "Aural vertigo, unspecified ear"
+          },
+          {
+            "code": "H81.39",
+            "display": "Other peripheral vertigo"
+          },
+          {
+            "code": "H81.391",
+            "display": "Other peripheral vertigo, right ear"
+          },
+          {
+            "code": "H81.392",
+            "display": "Other peripheral vertigo, left ear"
+          },
+          {
+            "code": "H81.393",
+            "display": "Other peripheral vertigo, bilateral"
+          },
+          {
+            "code": "H81.399",
+            "display": "Other peripheral vertigo, unspecified ear"
+          }
+        ]
+      }
+    ]
+  }
+}

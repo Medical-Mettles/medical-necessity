@@ -62,12 +62,76 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "PurposeOfAmbulance"
+              }
+            }
+          ],
+          "linkId": "PurposeOfAmbulance",
+          "text": "What is the purpose of scheduling the ambulance service?",
+          "type": "choice",
+          "required": true,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueString": "Dialysis"
+            },
+            {
+              "valueString": "Wound care"
+            },
+            {
+              "valueString": "Radiation therapy"
+            },
+            {
+              "valueString": "Chemotherapy"
+            },
+            {
+              "valueString": "O&P services"
+            },
+            {
+              "valueString": "Imaging"
+            },
+            {
+              "valueString": "Other"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "OtherPurpose"
+              }
+            }
+          ]
+          "linkId": "OtherPurpose",
+          "text": "Other purpose of this service",
+          "type": "text",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "PurposeOfAmbulance",
+              "operator": "=",
+              "answerCoding": {
+                "code": "Other",
+                "display": "Other"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "AmbulanceConditions"
               }
             }
           ],
           "linkId": "AmbulanceConditions",
-          "text": "What is the reason for the patient to require ambulance services?",
+          "text": "What is the reason for the patient to require ambulance service?",
           "type": "choice",
           "answerOption": [
             {
@@ -681,7 +745,7 @@
               }
             }
           ],
-          "linkId": "NumberOfRequiredAmbulances",
+          "linkId": "NumofTransports",
           "text": "Number of transports requested in a 60-day period (Round Trip = 2 Transports):",
           "type": "integer",
           "required": true
@@ -863,29 +927,14 @@
       "type": "group",
       "item": [
         {
-          "linkId": "CertifiedPT",
-          "text": "Is the evaluation being done by a certified Therapist?",
+          "linkId": "CertifiedMedicallyNecessary",
+          "text": "Has the physician certified the service as medically necessary?",
           "type": "boolean",
           "required": true
         },
         {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "FToFEncounter"
-              }
-            }
-          ],
-          "linkId": "FToFEncounter",
-          "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "linkId": "DiagnosisReport",
-          "text": "A certification statement signed by the Physical Therapist confirming the service is required.",
+          "linkId": "PhysicianOrder",
+          "text": "The Physician Order signed by a physician assistant (PA), nurse practitioner (NP), or clinical nurse specialist (CNS) is required.",
           "type": "display"
         }
       ]

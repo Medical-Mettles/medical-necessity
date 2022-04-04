@@ -1,0 +1,28 @@
+{
+  "resourceType": "Library",
+  "version": "1.0.0",
+  "title": "RepetitiveNonEmergentAmbulanceDecision",
+  "name": "RepetitiveNonEmergentAmbulanceDecision",
+  "id": "/library-lcd2-RepetitiveNonEmergentAmbulanceDecision",
+  "status": "draft",
+  "type": {
+    "coding": [
+      {
+        "code": "logic-library"
+      }
+    ]
+  },
+  "relatedArtifact": [
+    {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+      "type": "depends-on",
+      "resource": "Library/library-lcd2-RepetitiveNonEmergentAmbulance"
+    }
+  ],
+  "dataRequirement": [
+
+  ]
+}

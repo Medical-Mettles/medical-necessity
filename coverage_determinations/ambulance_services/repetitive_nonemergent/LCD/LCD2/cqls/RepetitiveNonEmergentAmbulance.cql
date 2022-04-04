@@ -10,6 +10,11 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "CPT": 'https://www.aapc.com/resources/medical-coding/cpt.aspx'
 
+valueset "Dialysis Services": '2.16.840.1.113883.3.464.1003.109.11.1028'
+valueset "Wound Care SM CT": '2.16.840.1.113883.3.666.5.2196'
+valueset "Imaging_Lumbar": '2.16.840.1.113762.1.4.1106.4'
+valueset "Radiation Therapy II": '2.16.840.1.113883.3.526.2.1409'
+valueset "Chemotherapy": '2.16.840.1.113762.1.4.1047.453'
 valueset "Immobilization": '2.16.840.1.113883.17.4077.3.2006'
 valueset "Unable to ambulate": '2.16.840.1.113883.3.6037.1001.23.98.84'
 valueset "Unable to sit": '2.16.840.1.113883.3.6037.1001.23.98.88'
@@ -46,6 +51,36 @@ valueset "Impaired mobility": '2.16.840.1.113883.3.6037.1001.23.98.94'
 parameter "ServiceRequest" ServiceRequest
 
 context Patient
+
+define "DialysisReason":
+    ServiceRequest.reasonCode R where exists(R.coding c where c in "Dialysis Services")
+
+define "WoundCareReason":
+    ServiceRequest.reasonCode R where exists(R.coding c where c in "Wound Care SM CT")
+
+define "RadiationTherapyReason":
+    ServiceRequest.reasonCode R where exists(R.coding c where c in "Radiation Therapy II")
+
+define "ChemotherapyReason":
+    ServiceRequest.reasonCode R where exists(R.coding c where c in "Chemotherapy")
+
+define "ImagingReason":
+    ServiceRequest.reasonCode R where exists(R.coding c where c in "Imaging_Lumbar")
+
+define "PurposeOfAmbulance":
+    {
+    (if Last("DialysisReason") is not null then 'Dialysis' else null),
+    (if Last("WoundCareReason") is not null then 'Wound care' else null),
+    (if Last("RadiationTherapyReason") is not null then 'Radiation therapy' else null),
+    (if Last("ChemotherapyReason") is not null then 'Chemotherapy' else null),
+    (if Last("ImagingReason") is not null then 'Imaging' else null),
+    (if (Last("DialysisReason") is null and Last("WoundCareReason") is null and Last("RadiationTherapyReason") is null and Last("ChemotherapyReason") is null and Last("ImagingReason") is null) then 'Other' else null)
+    }
+    except {null}
+
+define "OtherPurpose":
+    ServiceRequest.reasonCode R
+      return (First(R.coding).display.value)+'\n'
 
 define BedConfined:
   [Condition]C
@@ -87,7 +122,6 @@ define MobilityIssuesCondition:
                 or exists("FallingRisk"))
                           then true
                             else false
-
 
 define Fractures:
 	[Condition]P
@@ -352,7 +386,7 @@ define LowerExtremityParalysisCondition:
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define BedConfinedConditions:
-  if ((Last("ErectPositionEvidence") is not null) and exists("SittingIssue"))
+  if ((Last("ContracturesEvidence") is not null) and exists("SittingIssue"))
     then 'Contractures creating non-ambulatory status and the beneficiary cannot sit'
       else if exists("SevereWeakness")
         then 'Severe Weakness'
@@ -447,13 +481,6 @@ define "NumofTransports":
 define "StartDate":
     start of "Normalize Interval"(ServiceRequest.occurrence)
 
-
-define "OtherPurpose":
-    //if (Last("DialysisReason") is null and Last("WoundCareReason") is null and Last("RadiationTherapyReason") is null and Last("ChemotherapyReason") is null and Last("ImagingReason") is null)
-    ServiceRequest.reasonCode R
-    return (First(R.coding).display.value)+'\n'
-    //else null
-
 define "EncounterResource":
     Last([Encounter])
 
@@ -478,3 +505,4 @@ define function "Normalize Interval"(choice Choice<FHIR.dateTime, FHIR.Period>):
     else if choice is FHIR.Period then
         FHIRHelpers.ToInterval(choice as FHIR.Period)
     else null
+

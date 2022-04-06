@@ -1,0 +1,129 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.96.20",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.20",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.96.20"
+    }
+  ],
+  "version": "Latest",
+  "name": "Right breast cancer",
+  "title": "Right breast cancer",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "1080181000119102",
+            "display": "Infiltrating duct carcinoma of right female breast (disorder)"
+          },
+          {
+            "code": "1080191000119104",
+            "display": "Infiltrating ductal carcinoma of central portion of right female breast (disorder)"
+          },
+          {
+            "code": "1080231000119108",
+            "display": "Infiltrating ductal carcinoma of upper inner quadrant of right female breast (disorder)"
+          },
+          {
+            "code": "1080241000119104",
+            "display": "Infiltrating ductal carcinoma of upper outer quadrant of right female breast (disorder)"
+          }
+        ]
+      },
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "C50.011",
+            "display": "Malignant neoplasm of nipple and areola, right female breast"
+          },
+          {
+            "code": "C50.021",
+            "display": "Malignant neoplasm of nipple and areola, right male breast"
+          },
+          {
+            "code": "C50.111",
+            "display": "Malignant neoplasm of central portion of right female breast"
+          },
+          {
+            "code": "C50.121",
+            "display": "Malignant neoplasm of central portion of right male breast"
+          },
+          {
+            "code": "C50.211",
+            "display": "Malignant neoplasm of upper-inner quadrant of right female breast"
+          },
+          {
+            "code": "C50.221",
+            "display": "Malignant neoplasm of upper-inner quadrant of right male breast"
+          },
+          {
+            "code": "C50.311",
+            "display": "Malignant neoplasm of lower-inner quadrant of right female breast"
+          },
+          {
+            "code": "C50.321",
+            "display": "Malignant neoplasm of lower-inner quadrant of right male breast"
+          },
+          {
+            "code": "C50.411",
+            "display": "Malignant neoplasm of upper-outer quadrant of right female breast"
+          },
+          {
+            "code": "C50.421",
+            "display": "Malignant neoplasm of upper-outer quadrant of right male breast"
+          },
+          {
+            "code": "C50.511",
+            "display": "Malignant neoplasm of lower-outer quadrant of right female breast"
+          },
+          {
+            "code": "C50.521",
+            "display": "Malignant neoplasm of lower-outer quadrant of right male breast"
+          },
+          {
+            "code": "C50.611",
+            "display": "Malignant neoplasm of axillary tail of right female breast"
+          },
+          {
+            "code": "C50.621",
+            "display": "Malignant neoplasm of axillary tail of right male breast"
+          },
+          {
+            "code": "C50.811",
+            "display": "Malignant neoplasm of overlapping sites of right female breast"
+          },
+          {
+            "code": "C50.821",
+            "display": "Malignant neoplasm of overlapping sites of right male breast"
+          },
+          {
+            "code": "C50.911",
+            "display": "Malignant neoplasm of unspecified site of right female breast"
+          },
+          {
+            "code": "C50.921",
+            "display": "Malignant neoplasm of unspecified site of right male breast"
+          },
+          {
+            "code": "D05.11",
+            "display": "Intraductal carcinoma in situ of right breast"
+          }
+        ]
+      }
+    ]
+  }
+}

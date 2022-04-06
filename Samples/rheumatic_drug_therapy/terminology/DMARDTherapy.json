@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.242",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.242",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.242"
+    }
+  ],
+  "version": "Latest",
+  "name": "DMARD Therapy",
+  "title": "DMARD Therapy",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "401192009",
+            "display": "Disease modifying antirheumatic drug monitoring (regime/therapy)"
+          }
+        ]
+      }
+    ]
+  }
+}

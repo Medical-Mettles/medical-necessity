@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.155",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.155",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.155"
+        }
+    ],
+    "version": "Latest",
+    "name": "Papillary Carcinoma",
+    "title": "Papillary Carcinoma",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "30156004",
+                      "display": "Invasive micropapillary carcinoma of breast (morphologic abnormality)"
+                    },
+                    {
+                      "code": "734075007",
+                      "display": "Intraductal papillary neoplasm with invasive carcinoma (morphologic abnormality)"
+                    },
+                    {
+                      "code": "421980000",
+                      "display": "Papillary carcinoma, solid (morphologic abnormality)"
+                    },
+                    {
+                      "code": "30566004",
+                      "display": "Noninfiltrating intraductal papillary adenocarcinoma (morphologic abnormality)"
+                    }
+                ]
+            }
+        ]
+    }
+}

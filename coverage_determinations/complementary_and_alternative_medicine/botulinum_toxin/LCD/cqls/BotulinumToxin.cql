@@ -76,6 +76,7 @@ valueset "Cystourethroscopy Codes": '2.16.840.1.113883.3.6037.1001.23.99.30'
 //Valuesets for Migraine
 valueset "Migraine Codes": '2.16.840.1.113883.3.6037.1001.23.93.84'
 valueset "Triptan Medications": '2.16.840.1.113762.1.4.1111.83'
+valueset "Migraine Prophylaxis": '2.16.840.1.113883.3.6037.1001.23.93.188'
 
 //Valuesets for Strabismus
 valueset "Strabismus Codes": '2.16.840.1.113883.3.6037.1001.23.93.85'
@@ -386,7 +387,8 @@ define AdjunctivePhysiotherapy:
 			else false
 
 define SpasticityEarlierBotulinumAdministration:
-  if (Last("CheckBotoxAdministration") is not null
+  if ((Last("CheckBotoxInjectionAdministration") is not null
+				or Last("CheckLaryngealBotoxAdministration") is not null)
 				and exists("SpasticityCondition"))
 	then true
 	else false
@@ -395,19 +397,46 @@ define SpasticitySpecifyBotoxAdministration:
 	"SpecifyBotoxAdministrationMedicationCode".coding M
 		return (M.display.value)
 
-define SpasticityPostBotoxOutcome:
+define SpasticityPostBotoxInjectionSuccessfulOutcome:
 	if exists("MedicationAdministrationResources" M
-							with "ProcedureResources" P
+							with "BotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and ((First(P.outcome.coding) in "Successful") or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
+
+define SpasticityPostBotoxInjectionUnsuccessfulOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "BotoxInjectionProcedure" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
-					then false
-						else true
+											then true
+												else false
+
+define SpasticityPostLaryngealSuccessfulBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "LaryngealBotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+											then true
+												else false
+
+define SpasticityPostLaryngealUnsuccessfulBotoxOutcome:
+	if exists("MedicationAdministrationResources" M
+							with "LaryngealBotoxInjectionProcedure" P
+								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+ 										and First(P.outcome.coding) in "Unsuccessful")
+											then true
+												else false
 
 define SpasticityPostBotoxImprovement:
-	if ("SpasticityPostBotoxOutcome" = true
+	if ((("SpasticityPostBotoxInjectionSuccessfulOutcome" = true) or "SpasticityPostLaryngealSuccessfulBotoxOutcome" = true)
 				and exists("SpasticityCondition"))
 					then true
-						else false
+						else if ((("SpasticityPostBotoxInjectionUnsuccessfulOutcome" = true) or "SpasticityPostLaryngealUnsuccessfulBotoxOutcome" = true)
+							and exists("SpasticityCondition"))
+								then false
+									else null
 
 //BLEPHAROSPASM
 define BlepharospasmFacialUnilateral:
@@ -593,8 +622,7 @@ define SialorrheaEarlierBotulinumAdministration:
 							else null
 
 define SialorrheaSpecifyBotoxAdministration:
-	"SpecifyBotoxAdministrationMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyBotoxAdministrationMedicationCode".coding)
 
 define SialorrheaPostBotoxInjectionSuccessfulOutcome:
 	if exists("MedicationAdministrationResources" M
@@ -665,8 +693,7 @@ define SpecifyGlycopyrrolateMedicationCode:
 		"GlycopyrrolateDrugResources".medication M
 
 define SpecifyGlycopyrrolateMedication:
-	"SpecifyGlycopyrrolateMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyGlycopyrrolateMedicationCode".coding)
 
 define PostGlycopyrrolateSuccessfulOutcome:
 	if exists("GlycopyrrolateDrugResources" M
@@ -720,8 +747,7 @@ define SpecifyScopolamineMedicationCode:
 		"ScopolamineDrugResources".medication M
 
 define SpecifyScopolamineMedication:
-	"SpecifyScopolamineMedicationCode".coding M
-		return (M.display.value)
+	First("SpecifyScopolamineMedicationCode".coding)
 
 define PostScopolamineSuccessfulOutcome:
 	if exists("ScopolamineDrugResources" M
@@ -1291,7 +1317,7 @@ define TriptanMedicationResources:
 define TriptanProcedureResources:
 	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
  		and P.status.value = 'completed'
-		and First(P.code.coding) in "Procedure for Medication Administration"
+		and First(P.code.coding) in "Migraine Prophylaxis"
 
 define CheckTriptanAdministration:
 	"TriptanMedicationResources" M
@@ -1317,14 +1343,14 @@ define MigrainePriorBotoxTreatment:
 				with [Procedure]R
 				such that P.status.value = 'completed'
 				and R.status.value = 'completed'
-				and ((exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
+				and ((exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 						or
-						(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral")
-							and exists(R.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
+						(exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 						or
-						(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)")
-							and exists(R.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
+						(exists(P.code.coding C where C in "Botox Injection Procedure")
+							and exists(R.code.coding C where C in "Botox Injection Procedure"))
 					)
 				and First(P.outcome.coding) in "Unsuccessful"
 				and First(R.outcome.coding) in "Unsuccessful"
@@ -1334,13 +1360,7 @@ define MigrainePriorBotoxTreatment:
 define MigrainePostBotoxImprovement:
 	exists([Procedure]P
 				where P.status.value = 'completed'
-				and (
-							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial Nerve,Unilateral"))
-								or
-							(exists(P.code.coding C where C in "Chemodenervation of Muscle(s); Muscle(s) innervated by Facial, Trigeminal, Cervical, Spinal and Accessory Nerves, Bilateral"))
-								or
-							(exists(P.code.coding C where C in "Chemodenervation of Neck Muscle(s)"))
-						)
+				and exists(P.code.coding C where C in "Botox Injection Procedure")
 				and First(P.outcome.coding) in "Successful")
 
 define MigraineCheckPriorBotoxTreatment:

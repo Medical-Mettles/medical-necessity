@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.408",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.408",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.408"
+    }
+  ],
+  "version": "Latest",
+  "name": "Application of Spica Cast",
+  "title": "Application of Spica Cast",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2022-03",
+        "concept": [
+          {
+            "code": "127599007",
+            "display": "Application of hip spica cast (procedure)"
+          }
+        ]
+      }
+    ]
+  }
+}

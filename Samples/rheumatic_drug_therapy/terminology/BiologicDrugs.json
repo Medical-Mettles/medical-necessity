@@ -1,0 +1,50 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.244",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.244",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.244"
+    }
+  ],
+  "version": "Latest",
+  "name": "Biologic Drugs",
+  "title": "Biologic Drugs",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "1653224",
+            "display": "etanercept Auto-Injector [Enbrel]"
+          },
+          {
+            "code": "261105",
+            "display": "etanercept 25 MG/ML Injectable Solution [Enbrel]"
+          },
+          {
+            "code": "363197",
+            "display": "etanercept Injectable Solution [Enbrel]"
+          },
+          {
+            "code": "574352",
+            "display": "etanercept 25 MG/ML [Enbrel]"
+          },
+          {
+            "code": "582672",
+            "display": "etanercept 50 MG/ML [Enbrel]"
+          },
+          {
+            "code": "802651",
+            "display": "etanercept Prefilled Syringe [Enbrel]"
+          }
+        ]
+      }
+    ]
+  }
+}

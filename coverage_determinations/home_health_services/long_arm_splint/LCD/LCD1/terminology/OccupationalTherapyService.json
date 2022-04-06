@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.257",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.257",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.257"
+        }
+    ],
+    "version": "Latest",
+    "name": "Occupational Therapy",
+    "title": "Occupational Therapy",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://hcpcs.codes/",
+                "version": "2022-01",
+                "concept": [
+                    {
+                        "code": "G0152",
+                        "display": "Services performed by a qualified occupational therapist in the home health or hospice setting, each 15 minutes"
+                    },
+                    {
+                        "code": "G0158",
+                        "display": "Services performed by a qualified occupational therapist assistant in the home health or hospice setting, each 15 minutes"
+                    },
+                    {
+                        "code": "G0160",
+                        "display": "Services performed by a qualified occupational therapist, in the home health setting, in the establishment or delivery of a safe and effective occupational therapy maintenance program, each 15 minutes"
+                    },
+                    {
+                        "code": "G2169",
+                        "display": "Services performed by an occupational therapist assistant in the home health setting in the delivery of a safe and effective occupational therapy maintenance program, each 15 minutes"
+                    }
+                ]
+            }
+        ]
+    }
+}

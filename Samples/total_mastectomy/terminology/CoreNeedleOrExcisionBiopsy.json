@@ -1,0 +1,78 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.181",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.181",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.181"
+        }
+    ],
+    "version": "Latest",
+    "name": "Core Needle or Excisional Biopsy of Breast",
+    "title": "Core Needle or Excisional Biopsy of Breast",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "237372000",
+                      "display": "Excisional biopsy of breast (procedure)"
+                    },
+                    {
+                      "code": "8889005",
+                      "display": "Excisional biopsy (procedure)"
+                    },
+                    {
+                      "code": "42125001",
+                      "display": "Excisional biopsy of breast mass (procedure)"
+                    },
+                    {
+                      "code": "10940003",
+                      "display": "Excisional biopsy of breast with preoperative localization (procedure)"
+                    },
+                    {
+                      "code": "116219004",
+                      "display": "Excisional biopsy of breast mass with axillary contents (procedure)"
+                    },
+                    {
+                      "code": "116220005",
+                      "display": "Excisional biopsy of breast mass without axillary contents (procedure)"
+                    },
+                    {
+                      "code": "432550005",
+                      "display": "Core needle biopsy of breast using ultrasound guidance (procedure)"
+                    },
+                    {
+                      "code": "433008009",
+                      "display": "Core needle biopsy of breast using magnetic resonance imaging guidance (procedure)"
+                    },
+                    {
+                      "code": "445171002",
+                      "display": "Core needle biopsy of breast using mammography guidance (procedure)"
+                    },
+                    {
+                      "code": "445437001",
+                      "display": "Core needle biopsy of breast using palpation guidance (procedure)"
+                    },
+                    {
+                      "code": "44578009",
+                      "display": "Core needle biopsy of breast (procedure)"
+                    },
+                    {
+                      "code": "866232001",
+                      "display": "Core needle biopsy of multiple lesions of breast using mammography guidance (procedure)"
+                    },
+                    {
+                      "code": "9911007",
+                      "display": "Core needle biopsy (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

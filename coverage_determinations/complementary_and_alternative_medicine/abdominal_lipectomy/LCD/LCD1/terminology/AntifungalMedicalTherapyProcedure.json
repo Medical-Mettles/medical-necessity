@@ -1,0 +1,34 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.137",
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.137",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.137"
+        }
+    ],
+    "version": "Latest",
+    "name": "Antifungal Medical Therapy Procedure",
+    "title": "Antifungal Medical Therapy Procedure",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                        "code": "718526003",
+                        "display": "Antifungal Medical Therapy Procedure"
+                    },
+                    {
+                        "code": "773126007",
+                        "display": "Application of topical antifungal agent to skin (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

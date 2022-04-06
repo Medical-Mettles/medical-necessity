@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.219",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.219",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.219"
+        }
+    ],
+    "version": "Latest",
+    "name": "Evaluation of Voice Prosthetic Usage",
+    "title": "Evaluation of Voice Prosthetic Usage",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "92597",
+                        "display": "Evaluation for use and/or fitting of voice prosthetic device to supplement oral speech"
+                    }
+                ]
+            }
+        ]
+    }
+}

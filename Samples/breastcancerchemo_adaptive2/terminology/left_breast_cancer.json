@@ -1,0 +1,125 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.96.19",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.19",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.96.19"
+    }
+  ],
+  "version": "Latest",
+  "name": "Left breast cancer",
+  "title": "Left breast cancer",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "1080101000119105",
+            "display": "Infiltrating duct carcinoma of left female breast (disorder)"
+          },
+          {
+            "code": "1080111000119108",
+            "display": "Infiltrating ductal carcinoma of central portion of left female breast (disorder)"
+          },
+          {
+            "code": "1080151000119109",
+            "display": "Infiltrating ductal carcinoma of upper inner quadrant of left female breast (disorder)"
+          },
+          {
+            "code": "1080161000119106",
+            "display": "Infiltrating ductal carcinoma of upper outer quadrant of left female breast (disorder)"
+          }
+        ]
+      },
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "C50.012",
+            "display": "Malignant neoplasm of nipple and areola, left female breast"
+          },
+          {
+            "code": "C50.022",
+            "display": "Malignant neoplasm of nipple and areola, left male breast"
+          },
+          {
+            "code": "C50.112",
+            "display": "Malignant neoplasm of central portion of left female breast"
+          },
+          {
+            "code": "C50.122",
+            "display": "Malignant neoplasm of central portion of left male breast"
+          },
+          {
+            "code": "C50.212",
+            "display": "Malignant neoplasm of upper-inner quadrant of left female breast"
+          },
+          {
+            "code": "C50.222",
+            "display": "Malignant neoplasm of upper-inner quadrant of left male breast"
+          },
+          {
+            "code": "C50.312",
+            "display": "Malignant neoplasm of lower-inner quadrant of left female breast"
+          },
+          {
+            "code": "C50.322",
+            "display": "Malignant neoplasm of lower-inner quadrant of left male breast"
+          },
+          {
+            "code": "C50.412",
+            "display": "Malignant neoplasm of upper-outer quadrant of left female breast"
+          },
+          {
+            "code": "C50.422",
+            "display": "Malignant neoplasm of upper-outer quadrant of left male breast"
+          },
+          {
+            "code": "C50.512",
+            "display": "Malignant neoplasm of lower-outer quadrant of left female breast"
+          },
+          {
+            "code": "C50.522",
+            "display": "Malignant neoplasm of lower-outer quadrant of left male breast"
+          },
+          {
+            "code": "C50.612",
+            "display": "Malignant neoplasm of axillary tail of left female breast"
+          },
+          {
+            "code": "C50.622",
+            "display": "Malignant neoplasm of axillary tail of left male breast"
+          },
+          {
+            "code": "C50.812",
+            "display": "Malignant neoplasm of overlapping sites of left female breast"
+          },
+          {
+            "code": "C50.822",
+            "display": "Malignant neoplasm of overlapping sites of left male breast"
+          },
+          {
+            "code": "C50.912",
+            "display": "Malignant neoplasm of unspecified site of left female breast"
+          },
+          {
+            "code": "C50.922",
+            "display": "Malignant neoplasm of unspecified site of left male breast"
+          }
+        ]
+      }
+    ]
+  }
+}

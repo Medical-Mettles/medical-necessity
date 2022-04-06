@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.230",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.230",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.230"
+        }
+    ],
+    "version": "Latest",
+    "name": "Speech Language Pathology Therapy Maintenance Services",
+    "title": "Speech Language Pathology Therapy Maintenance Services",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://hcpcs.codes/",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "G0161",
+                        "display": "Services performed by a qualified speech-language pathologist, in the home health setting, in the establishment or delivery of a safe and effective speech-language pathology maintenance program, each 15 minutes"
+                    }
+                ]
+            }
+        ]
+    }
+}

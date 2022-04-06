@@ -1,0 +1,36 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.262",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.262",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.262"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "BRCA Gene",
+  "title": "BRCA Gene",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.genenames.org",
+        "version": "2022-02",
+        "concept": [
+          {
+            "code": "1100",
+            "display": "BRCA1"
+          },
+          {
+            "code": "1101",
+            "display": "BRCA2"
+          }
+        ]
+      }
+    ]
+  }
+}

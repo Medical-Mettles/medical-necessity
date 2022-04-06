@@ -1,0 +1,1842 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-speech_language_pathology"
+    }
+  ],
+  "name": "SpeechLanguagePathology",
+  "version": "1.0.0",
+  "title": "Prior Authorization for Speech Language Pathology",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2021-10-11",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-SpeechLanguagePathology"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Service Request Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TypeOfRequest"
+              }
+            }
+          ],
+          "linkId": "TypeOfRequest",
+          "text": "Does the patient require:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language - restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationSpeechFluency"
+              }
+            }
+          ],
+          "linkId": "EvaluationSpeechFluency",
+          "text": "Does the patient require evaluation of speech fluency?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationSoundProduction"
+              }
+            }
+          ],
+          "linkId": "EvaluationSoundProduction",
+          "text": "Does the patient require evaluation of sound production?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationLanguageComprehension"
+              }
+            }
+          ],
+          "linkId": "EvaluationLanguageComprehension",
+          "text": "Does it include evaluation of language comprehension and expression?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            },
+            {
+              "question": "EvaluationSoundProduction",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BehavioralQualitativeAnalysis"
+              }
+            }
+          ],
+          "linkId": "BehavioralQualitativeAnalysis",
+          "text": "Does the patient require procedure for the behavioral and qualitative analysis of voice and resonance?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationSwallowingFunction"
+              }
+            }
+          ],
+          "linkId": "EvaluationSwallowingFunction",
+          "text": "Does the patient require clinical evaluation of swallowing function?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationCognitiveFunction"
+              }
+            }
+          ],
+          "linkId": "EvaluationCognitiveFunction",
+          "text": "Does the patient require standardized cognitive performance testing (evaluate abilities of cognitive function)?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationAphasia"
+              }
+            }
+          ],
+          "linkId": "EvaluationAphasia",
+          "text": "Does the patient require evaluation and assessment of aphasia?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationNeurobehavioralStatus"
+              }
+            }
+          ],
+          "linkId": "EvaluationNeurobehavioralStatus",
+          "text": "Does the patient require a neurobehavioral status exam?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationDevelopmentalSkills"
+              }
+            }
+          ],
+          "linkId": "EvaluationDevelopmentalSkills",
+          "text": "Does the patient require developmental testing?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationProstheticUsage"
+              }
+            }
+          ],
+          "linkId": "EvaluationProstheticUsage",
+          "text": "Does the patient need an evaluation for use or fitting of voice prosthetic?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EvaluationSpeechGeneratingDevices"
+              }
+            }
+          ],
+          "linkId": "EvaluationSpeechGeneratingDevices",
+          "text": "Does the patient need an evaluation or re-evaluation for the usage of speech generating devices?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language evaluation",
+                "display": "A speech language evaluation"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RequiredTherapy"
+              }
+            }
+          ],
+          "linkId": "RequiredTherapy",
+          "text": "Which of the following therapies is needed for the patient?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Speech fluency therapy",
+                "display": "Speech fluency therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Speech sound production therapy",
+                "display": "Speech sound production therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Voice and resonance therapy",
+                "display": "Voice and resonance therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Speech and aural rehabilitation following a cochlear implant",
+                "display": "Speech and aural rehabilitation following a cochlear implant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Oral function therapy",
+                "display": "Oral function therapy"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Patient adaptation and training for Speech Generating Devices",
+                "display": "Patient adaptation and training for Speech Generating Devices"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Modification or training in usage of voice prosthetic",
+                "display": "Modification or training in usage of voice prosthetic"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Therapeutic exercises",
+                "display": "Therapeutic exercises"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Therapeutic activities",
+                "display": "Therapeutic activities"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Cognitive skills development",
+                "display": "Cognitive skills development"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Sensory integrative techniques",
+                "display": "Sensory integrative techniques"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Self-care home management training",
+                "display": "Self-care home management training"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StutteringClutteringSymptoms"
+              }
+            }
+          ],
+          "linkId": "StutteringClutteringSymptoms",
+          "text": "Does the patient show any signs and symptoms of stuttering or cluttering?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationSpeechFluency",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "SoundProdDisorders",
+          "text": "Does the patient show any signs and symptoms of sound production disorders?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationSoundProduction",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "EvaluationLanguageComprehension",
+              "answerBoolean": false
+            }
+          ],
+          "enableBehavior": "all"
+        },
+        {
+          "linkId": "SpecifySoundProductionSymptoms",
+          "text": "Which symptom of sound production disorder is seen in the patient?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SoundProdDisorders",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "LanguageComprehensionDisorders",
+          "text": "Does the patient show any signs and symptoms of disorders related to language comprehension and expression?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationSoundProduction",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "EvaluationLanguageComprehension",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all"
+        },
+        {
+          "linkId": "SpecifyLanguageComprehensionSymptoms",
+          "text": "What symptoms of language comprehension and expression disorders are seen in the patient?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "LanguageComprehensionDisorders",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VoiceResonanceSymptoms"
+              }
+            }
+          ],
+          "linkId": "VoiceResonanceSymptoms",
+          "text": "Does the patient show signs and symptoms of voice and resonance disorders?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "BehavioralQualitativeAnalysis",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyVoiceResonanceSymptoms"
+              }
+            }
+          ],
+          "linkId": "SpecifyVoiceResonanceSymptoms",
+          "text": "Which of the following symptoms are seen? ",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Hypernasality",
+                "display": "Hypernasality"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Hyponasality",
+                "display": "Hyponasality"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Cul-de-sac resonance",
+                "display": "Cul-de-sac resonance"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Mixed resonance",
+                "display": "Mixed resonance"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceSymptoms",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "BehavioralQualitativeAnalysis",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "linkId": "SwallowingDysfunctionSymptoms",
+          "text": "Does the patient show any signs and symptoms of the swallowing dysfunction?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationSwallowingFunction",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SpecifySwallowingDysfunctionSymptoms",
+          "text": "What symptoms of swallowing dysfunction are seen in the patient?",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SwallowingDysfunctionSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveImpairmentSigns",
+          "text": "Does the patient show any signs of cognitive impairment?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationCognitiveFunction",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SpecifyCognitiveImpairmentSigns",
+          "text": "What symptoms of cognitive impairment are seen in the patient?",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveImpairmentSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "AphasiaSymptoms",
+          "text": "Does the patient show any symptoms of aphasia?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationAphasia",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SpecifyAphasiaSymptoms",
+          "text": "Which of the following symptoms of aphasia are seen in the patient?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Impairments in language expression",
+                "display": "Impairments in language expression"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Impairments in language comprehension",
+                "display": "Impairments in language comprehension"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Impairments in reading comprehension",
+                "display": "Impairments in reading comprehension"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Impairments in written expression",
+                "display": "Impairments in written expression"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AphasiaSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveDeficitSigns",
+          "text": "Does the patient show any signs of cognitive deficit?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationNeurobehavioralStatus",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SpecifyCognitiveDeficitSigns",
+          "text": "Which of the following signs are seen?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Processes information slowly",
+                "display": "Processes information slowly"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Loses track of the topic",
+                "display": "Loses track of the topic"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Misses the point",
+                "display": "Misses the point"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Repeats information",
+                "display": "Repeats information"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Becomes disoriented to time and place",
+                "display": "Becomes disoriented to time and place"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Has difficulty remembering recent events",
+                "display": "Has difficulty remembering recent events"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Has difficulty with eating and/or swallowing",
+                "display": "Has difficulty with eating and/or swallowing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Experiences reduced or less substantive verbal output",
+                "display": "Experiences reduced or less substantive verbal output"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Has difficulty expressing thoughts, wants, and needs",
+                "display": "Has difficulty expressing thoughts, wants, and needs"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveDeficitSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "DifficultUsingSpeechGeneratingDevices",
+          "text": "Does the patient have any difficulty developing language or communicate using speech devices?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationSpeechGeneratingDevices",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SpecifyDifficultUsingSpeechGeneratingDevices",
+          "text": "Is the patient:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Suffering from weak/ inaudible voice",
+                "display": "Suffering from weak/ inaudible voice"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Completely non-verbal",
+                "display": "Completely non-verbal"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "DifficultUsingSpeechGeneratingDevices",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechFluencyDisorder"
+              }
+            }
+          ],
+          "linkId": "SpeechFluencyDisorder",
+          "text": "Has the patient been diagnosed with speech fluency disorder post the evaluation?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EarlierEvaluationsDone",
+              "answerCoding": {
+                "code": "Evaluation of speech fluency",
+                "display": "Evaluation of speech fluency"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechFluencyDisorderPattern"
+              }
+            }
+          ],
+          "linkId": "SpeechFluencyDisorderPattern",
+          "text": "What is the pattern in which patient is exhibiting fluency disorder?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Continuous",
+                "display": "Continuous"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Variable",
+                "display": "Variable"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SpeechFluencyDisorder",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechFluencyDisorderDuration"
+              }
+            }
+          ],
+          "linkId": "SpeechFluencyDisorderDuration",
+          "text": "Is the speech fluency disorder:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Temporary",
+                "display": "Temporary"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Permanent",
+                "display": "Permanent"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SpeechFluencyDisorder",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechFluencyDisorderCause"
+              }
+            }
+          ],
+          "linkId": "SpeechFluencyDisorderCause",
+          "text": "What are the causes of the speech fluency disorder?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Childhood onset",
+                "display": "Childhood onset"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Adult onset",
+                "display": "Adult onset"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Fluency disorder following cerebrovascular disease/ trauma",
+                "display": "Fluency disorder following cerebrovascular disease/ trauma"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SpeechFluencyDisorder",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VoiceResonanceDisorder"
+              }
+            }
+          ],
+          "linkId": "VoiceResonanceDisorder",
+          "text": "Has the patient been diagnosed with voice and resonance disorder post the evaluation?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EarlierEvaluationsDone",
+              "answerCoding": {
+                "code": "Behavioral and qualitative analysis of voice and resonance",
+                "display": "Behavioral and qualitative analysis of voice and resonance"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyVoiceResonanceDisorder"
+              }
+            }
+          ],
+          "linkId": "SpecifyVoiceResonanceDisorder",
+          "text": "Which of the following disorders does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Dysphonia",
+                "display": "Dysphonia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Aphonia",
+                "display": "Aphonia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Laryngospasm",
+                "display": "Laryngospasm"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Hypernasality",
+                "display": "Hypernasality"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Hyponasality",
+                "display": "Hyponasality"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceDisorder",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VoiceResonanceDisorderCause"
+              }
+            }
+          ],
+          "linkId": "VoiceResonanceDisorderCause",
+          "text": "Is the voice and resonance disorder caused due to:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Structural deformity/ disorder",
+                "display": "Structural deformity/ disorder"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Misarticulation",
+                "display": "Misarticulation"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceDisorder",
+              "answerBoolean": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Past Medical History",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CongenitalDefectCause"
+              }
+            }
+          ],
+          "linkId": "CongenitalDefectCause",
+          "text": "Is the condition caused by any congenital defect?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TraumaCause"
+              }
+            }
+          ],
+          "linkId": "TraumaCause",
+          "text": "Is the condition caused due to any trauma?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ConditionPreviousHistory"
+              }
+            }
+          ],
+          "linkId": "ConditionPreviousHistory",
+          "text": "Did the patient have any previous history of this condition?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechConditionCausedByDisease"
+              }
+            }
+          ],
+          "linkId": "SpeechConditionCausedByDisease",
+          "text": "Is the speech influency secondary to a previously diagnosed disease?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "StutteringClutteringSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyDiseaseCausingSpeechCondition"
+              }
+            }
+          ],
+          "linkId": "SpecifyDiseaseCausingSpeechCondition",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Autism Spectrum Disorder",
+                "display": "Autism Spectrum Disorder"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Tourette Syndrome",
+                "display": "Tourette Syndrome"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Attention Deficit or Hyperactivity Disorder",
+                "display": "Attention Deficit or Hyperactivity Disorder"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SpeechConditionCausedByDisease",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpeechConditionCausedByStress"
+              }
+            }
+          ],
+          "linkId": "SpeechConditionCausedByStress",
+          "text": "Is the condition caused due to Anxiety/ Stress/ Emotional Distress?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "StutteringClutteringSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "SoundConditionCausedByDisease",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Persistent Otis Media Effusion",
+                "display": "Persistent Otis Media Effusion"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Hearing Loss",
+                "display": "Hearing Loss"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SoundProdDisorders",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "LanguageComprehensionDisorders",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "any"
+        },
+        {
+          "linkId": "SoundConditionCausedByStress",
+          "text": "Is the condition caused due to Anxiety/ Stress/ Emotional Distress?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SoundProdDisorders",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "LanguageComprehensionDisorders",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "any"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VoiceResonanceCausedByDisease"
+              }
+            }
+          ],
+          "linkId": "VoiceResonanceCausedByDisease",
+          "text": "Is the condition caused due to Nasal Complications/ Oronasal Fistula/ Velopharyngeal Dysfunction/ Lack of auditory feedback?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "VoiceResonanceUnwantedResult"
+              }
+            }
+          ],
+          "linkId": "VoiceResonanceUnwantedResult",
+          "text": "Is it an unwanted result of any previous surgeries (Nasal Surgeries/ Velopharyngeal Dysfunction Surgery)?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ArticulationErrors"
+              }
+            }
+          ],
+          "linkId": "ArticulationErrors",
+          "text": "Is it caused due to mislearning (articulation errors)?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "VoiceResonanceSymptoms",
+              "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "SwallowingExamMentalStability",
+          "text": "Is the patient mentally stable to tolerate and cooperate in an instrumental exam for swallowing function?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SwallowingDysfunctionSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SwallowingConditionCausedByDisease",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Myasthenia Gravis",
+                "display": "Myasthenia Gravis"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neurological Complications",
+                "display": "Neurological Complications"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Cancer",
+                "display": "Cancer"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Parkinson Disease",
+                "display": "Parkinson Disease"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Post-polio Syndrome",
+                "display": "Post-polio Syndrome"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SwallowingDysfunctionSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "SwallowingConditionCausedBySurgery",
+          "text": "Is it caused due to any head or neck surgeries (Laryngectomy/ Pharyngectomy/ Esophagectomy)?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "SwallowingDysfunctionSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveConditionCausedByDisease",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Neurological Complications",
+                "display": "Neurological Complications"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Parkinson Disease",
+                "display": "Parkinson Disease"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveImpairmentSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveConditionCausedByStress",
+          "text": "Is it caused due to stress, anxiety or emotional distress?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveImpairmentSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "AphasiaCausedByDisease",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Neurological Complications",
+                "display": "Neurological Complications"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Stroke",
+                "display": "Stroke"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Brain Tumors",
+                "display": "Brain Tumors"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AphasiaSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "AphasiaCausedBySurgery",
+          "text": "Is it caused due to any brain surgery?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AphasiaSymptoms",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveDeficitByDisease",
+          "text": "Is the condition caused due to any of the following diseases?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Neurological Complications",
+                "display": "Neurological Complications"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Stroke",
+                "display": "Stroke"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Brain Tumors",
+                "display": "Brain Tumors"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveDeficitSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "CognitiveDeficitBySurgery",
+          "text": "Is it caused due to any Brain Surgery?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "CognitiveDeficitSigns",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "VoiceProstheticRequiredBySurgery",
+          "text": "Did the patient previously undergo a Partial or Complete Laryngectomy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationProstheticUsage",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "linkId": "VoiceProstheticDueLarynxDamage",
+          "text": "Is the larynx of the patient permanently inoperable or totally non-functional?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationProstheticUsage",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "VoiceProstheticRequiredBySurgery",
+              "answerBoolean": false
+            }
+          ],
+          "enableBehavior": "all"
+        },
+        {
+          "linkId": "ReasonForLaryngectomy",
+          "text": "For which of the following reasons did the patient undergo Laryngectomy?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Trauma to the Larynx or Fracture",
+                "display": "Trauma to the Larynx or Fracture"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Laryngeal Cancer",
+                "display": "Stroke"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Chondronecrosis of Larynx",
+                "display": "Chondronecrosis of Larynx"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "EvaluationProstheticUsage",
+              "answerBoolean": true
+            },
+            {
+              "operator": "=",
+              "question": "VoiceProstheticRequiredBySurgery",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all"
+        },
+        {
+          "linkId": "SpeechDevicePreviousUsage",
+          "text": "Has the patient used any speech generating devices previously?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "DifficultUsingSpeechGeneratingDevices",
+              "answerBoolean": true
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "EarlierEvaluationsDone"
+              }
+            }
+          ],
+          "linkId": "EarlierEvaluationsDone",
+          "text": "Which of the following evaluations were done earlier?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Evaluation of speech fluency",
+                "display": "Evaluation of speech fluency"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation of sound production",
+                "display": "Evaluation of sound production"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Behavioral and qualitative analysis of voice and resonance",
+                "display": "Behavioral and qualitative analysis of voice and resonance"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Clinical evaluation of swallowing function",
+                "display": "Clinical evaluation of swallowing function"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Standardized cognitive performance testing",
+                "display": "Standardized cognitive performance testing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation and assessment of aphasia",
+                "display": "Evaluation and assessment of aphasia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neurobehavioral status exam",
+                "display": "Neurobehavioral status exam"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Developmental testing",
+                "display": "Developmental testing"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation for use or fitting of a voice prosthetic",
+                "display": "Evaluation for use or fitting of a voice prosthetic"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Evaluation or re-evaluation for the usage of speech generating devices",
+                "display": "Evaluation or re-evaluation for the usage of speech generating devices"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Therapy Details",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "DiagnosisImprovePostTherapy",
+          "text": "Is the diagnosed condition expected to improve with this therapy?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "TreatmenatIncludeFamilyMembers",
+          "text": "Does the treatment procedure include providing training and support to family members/ caregivers?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "TherapyFrequency",
+          "text": "How frequently is the patient required to take the therapy?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "30 Days",
+                "display": "30 Days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "60 Days",
+                "display": "60 Days"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "More than 60 days",
+                "display": "More than 60 days"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "EachTherapyDuration",
+          "text": "What is the duration of each therapy session?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "15 minutes",
+                "display": "15 minutes"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "More than 15 minutes",
+                "display": "More than 15 minutes"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "A speech language restorative or rehabilitative therapy",
+                "display": "A speech language restorative or rehabilitative therapy"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Authorization",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "CertifiedSLP",
+          "text": "Is the evaluation being done by a certified speech language pathologist?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "FToFEncounter"
+              }
+            }
+          ],
+          "linkId": "FToFEncounter",
+          "text": "Has the patient been evaluated directly (face to face) by the speech language pathologist?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "DiagnosisReport",
+          "text": "The diagnosis report and a signature by the Speech Language Pathologist confirming the evaluation is required.",
+          "type": "display"
+        }
+      ]
+    }
+  ]
+}

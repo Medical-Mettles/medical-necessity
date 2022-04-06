@@ -1,0 +1,38 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.183",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.183",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.183"
+        }
+    ],
+    "version": "Latest",
+    "name": "Punch Biopsy Procedure",
+    "title": "Punch Biopsy Procedure",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-08",
+                "concept": [
+                    {
+                      "code": "68660007",
+                      "display": "Malignant phyllodes tumor of breast (disorder)"
+                    },
+                    {
+                      "code": "83308002",
+                      "display": "Punch biopsy of subcutaneous tissue (procedure)"
+                    },
+                    {
+                      "code": "87697008",
+                      "display": "Punch biopsy of skin (procedure)"
+                    }
+                ]
+            }
+        ]
+    }
+}

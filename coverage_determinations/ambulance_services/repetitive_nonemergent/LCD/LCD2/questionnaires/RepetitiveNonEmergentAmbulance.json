@@ -1,0 +1,943 @@
+{
+  "resourceType": "Questionnaire",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-repetitive_non_emergent_ambulance"
+    }
+  ],
+  "name": "HipStrapping",
+  "version": "1.0.0",
+  "title": "Prior Authorization for Repetitive Non-Emergent Ambulance",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2022-03-18",
+  "publisher": "Mettle Solutions",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-RepetitiveNonEmergentAmbulance"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "gender",
+      "name": "Gender",
+      "status": "draft",
+      "description": "Gender",
+      "compose": {
+        "include": [
+          {
+            "concept": [
+              {
+                "code": "male",
+                "display": "Male"
+              },
+              {
+                "code": "female",
+                "display": "Female"
+              },
+              {
+                "code": "other",
+                "display": "Other"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Patient Diagnosis",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PurposeOfAmbulance"
+              }
+            }
+          ],
+          "linkId": "PurposeOfAmbulance",
+          "text": "What is the purpose of scheduling the ambulance service?",
+          "type": "choice",
+          "required": true,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueString": "Dialysis"
+            },
+            {
+              "valueString": "Wound care"
+            },
+            {
+              "valueString": "Radiation therapy"
+            },
+            {
+              "valueString": "Chemotherapy"
+            },
+            {
+              "valueString": "O&P services"
+            },
+            {
+              "valueString": "Imaging"
+            },
+            {
+              "valueString": "Other"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "OtherPurpose"
+              }
+            }
+          ],
+          "linkId": "OtherPurpose",
+          "text": "Other purpose of this service",
+          "type": "text",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "PurposeOfAmbulance",
+              "operator": "=",
+              "answerCoding": {
+                "code": "Other",
+                "display": "Other"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AmbulanceConditions"
+              }
+            }
+          ],
+          "linkId": "AmbulanceConditions",
+          "text": "What is the reason for the patient to require ambulance service?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Musculoskeletal issues",
+                "display": "Musculoskeletal issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Neurological issues",
+                "display": "Neurological issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Cardiovascular issues",
+                "display": "Cardiovascular issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Wounds",
+                "display": "Wounds"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Dental issues",
+                "display": "Dental issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Mental issues",
+                "display": "Mental issues"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Attendant required during transport",
+                "display": "Attendant required during transport"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MobilityIssues"
+              }
+            }
+          ],
+          "linkId": "MobilityIssues",
+          "text": "Which of the following mobility issues does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Bed confined",
+                "display": "Bed confined"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and deconditioning",
+                "display": "Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and deconditioning"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Risk of falling off wheelchair or stretcher while in motion",
+                "display": "Risk of falling off wheelchair or stretcher while in motion"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BedConfinedConditions"
+              }
+            }
+          ],
+          "linkId": "BedConfinedConditions",
+          "text": "Does the patient have any of the following conditions?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Contractures creating non-ambulatory status and the beneficiary cannot sit",
+                "display": "Contractures creating non-ambulatory status and the beneficiary cannot sit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Severe Weakness",
+                "display": "Severe Weakness"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Severe Vertigo",
+                "display": "Severe Vertigo"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Immobility of Lower Extremities",
+                "display": "Immobility of Lower Extremities"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "MobilityIssues",
+              "answerCoding": {
+                "code": "Bed confined",
+                "display": "Bed confined"
+              }
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpicaCastApplication"
+              }
+            }
+          ],
+          "linkId": "SpicaCastApplication",
+          "text": "Is the patient in a Spica Cast?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "MobilityIssues",
+              "answerCoding": {
+                "code": "Bed confined",
+                "display": "Bed confined"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "BedConfinedConditions",
+              "answerCoding": {
+                "code": "Immobility of Lower Extremities",
+                "display": "Immobility of Lower Extremities"
+              }
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HipReplacementSurgery"
+              }
+            }
+          ],
+          "linkId": "HipReplacementSurgery",
+          "text": "Has the patient gone through a Hip Replacement Surgery?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "MobilityIssues",
+              "answerCoding": {
+                "code": "Bed confined",
+                "display": "Bed confined"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "BedConfinedConditions",
+              "answerCoding": {
+                "code": "Immobility of Lower Extremities",
+                "display": "Immobility of Lower Extremities"
+              }
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LowerExtremityParalysis"
+              }
+            }
+          ],
+          "linkId": "LowerExtremityParalysis",
+          "text": "Does the patient have lower extremity paralysis?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mobility issues",
+                "display": "Mobility issues"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "MobilityIssues",
+              "answerCoding": {
+                "code": "Bed confined",
+                "display": "Bed confined"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "BedConfinedConditions",
+              "answerCoding": {
+                "code": "Immobility of Lower Extremities",
+                "display": "Immobility of Lower Extremities"
+              }
+            }
+          ],
+          "enableBehavior": "all",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MusculoskeletalIssues"
+              }
+            }
+          ],
+          "linkId": "MusculoskeletalIssues",
+          "text": "Which of the following Musculoskeletal issues does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Non-healed fractures requiring ambulance",
+                "display": "Non-healed fractures requiring ambulance"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Incapacitating Osteoarthritis",
+                "display": "Incapacitating Osteoarthritis"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Severe muscular weakness and deconditioned state precludes any significant physical activity",
+                "display": "Severe muscular weakness and deconditioned state precludes any significant physical activity"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Orthopedic device required in transit",
+                "display": "Orthopedic device required in transit"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Amputation(s)",
+                "display": "Amputation(s)"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Musculoskeletal issues",
+                "display": "Musculoskeletal issues"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NeurologicalIssues"
+              }
+            }
+          ],
+          "linkId": "NeurologicalIssues",
+          "text": "Which of the following neurological issues does the patient have?",
+          "type": "open-choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Spinal Cord Injury – Paralysis",
+                "display": "Spinal Cord Injury – Paralysis"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Progressive demyelinating disease",
+                "display": "Progressive demyelinating disease"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Moderate to severe pain on movement",
+                "display": "Moderate to severe pain on movement"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Neurological issues",
+                "display": "Neurological issues"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "CardiovascularIssues"
+              }
+            }
+          ],
+          "linkId": "CardiovascularIssues",
+          "text": "Which of the following Cardiovascular issues does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "CVA with sequelae (late effect of CVA) that impair mobility and result in bed confinement",
+                "display": "CVA with sequelae (late effect of CVA) that impair mobility and result in bed confinement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "DVT requires elevation of lower extremity",
+                "display": "DVT requires elevation of lower extremity"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Cardiovascular issues",
+                "display": "Cardiovascular issues"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "GradeIIUlcers"
+              }
+            }
+          ],
+          "linkId": "GradeIIUlcers",
+          "text": "Is the patient unable to sit in a chair or wheelchair due to Grade II or greater decubitus ulcers on buttocks?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Wounds",
+                "display": "Wounds"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ChronicWounds"
+              }
+            }
+          ],
+          "linkId": "ChronicWounds",
+          "text": "Does the patient have Chronic wounds requiring immobilization?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Wounds",
+                "display": "Wounds"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MentalIssues"
+              }
+            }
+          ],
+          "linkId": "MentalIssues",
+          "text": "Which of the following issues does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Danger to self or others",
+                "display": "Danger to self or others"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Confused, combative, lethargic, comatose",
+                "display": "Confused, combative, lethargic, comatose"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Mental issues",
+                "display": "Mental issues"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RequireAttendant"
+              }
+            }
+          ],
+          "linkId": "RequireAttendant",
+          "text": "Why does the patient require an attendant during transport?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Morbid obesity requires additional personnel/equipment to handle",
+                "display": "Morbid obesity requires additional personnel/equipment to handle"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Third party attendant required to regulate or adjust oxygen en route",
+                "display": "Third party attendant required to regulate or adjust oxygen en route"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Special handling en route – isolation",
+                "display": "Special handling en route – isolation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "IV medications/fluids required during transport",
+                "display": "IV medications/fluids required during transport"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Restraints (physical or chemical) anticipated or used during transport",
+                "display": "Restraints (physical or chemical) anticipated or used during transport"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "AmbulanceConditions",
+              "answerCoding": {
+                "code": "Attendant required during transport",
+                "display": "Attendant required during transport"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Required Information for Ambulance Scheduling",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "AnyOtherTransport",
+          "text": "Is there any other available means of transport (e.g., private car, wheelchair van, etc.)  that could be used?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "PatientSafeForOtherTransport",
+          "text": "Would it be safe for the patient to travel in it?",
+          "type": "boolean",
+          "enableWhen": [
+            {
+                  "question": "AnyOtherTransport",
+                  "operator": "=",
+                  "answerBoolean": true
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "ServiceAtPointOfOrigin",
+          "text": "Can the required service be provided at the point of origin?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NumofTransports"
+              }
+            }
+          ],
+          "linkId": "NumofTransports",
+          "text": "Number of transports requested in a 60-day period (Round Trip = 2 Transports):",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AmbulanceSupplierName"
+              }
+            }
+          ],
+          "linkId": "AmbulanceSupplierName",
+          "text": "Ambulance Supplier Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AmbulanceSupplierNPI"
+              }
+            }
+          ],
+          "linkId": "AmbulanceSupplierNPI",
+          "text": "Ambulance Supplier NPI",
+          "type": "string",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressLine"
+              }
+            }
+          ],
+          "linkId": "SupplierAddressLine",
+          "text": "Supplier Address Line",
+          "type": "string",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressCity"
+              }
+            }
+          ],
+          "linkId": "SupplierAddressCity",
+          "text": "Supplier Address City",
+          "type": "string",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SupplierAddressState"
+              }
+            }
+          ],
+          "linkId": "SupplierAddressState",
+          "text": "Supplier Address State",
+          "type": "string",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                  "language": "text/cql",
+                  "expression": "SupplierAddressPostalCode"
+              }
+            }
+          ],
+          "linkId": "SupplierAddressPostalCode",
+          "text": "Address Postal Code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "StateOfAmbulanceGaraged",
+          "text": "State where the ambulance is garaged:",
+          "type": "open-choice",
+          "required": true,
+          "answerValueSet": "#states"
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TransportTo"
+              }
+            }
+          ],
+          "linkId": "DestinationOfTransport",
+          "text": "Destination of Transport:",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StartDate"
+              }
+            }
+          ],
+          "linkId": "StartDate",
+          "text": "Start of 60 Day Period:",
+          "type": "date",
+          "required": true
+        },
+        {
+          "linkId": "TypeOfRequest",
+          "text": "Type of request:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Initial",
+                "display": "Initial"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Resubmission review",
+                "display": "Resubmission review"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Expedite this request",
+                "display": "Expedite this request"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "linkId": "ExpediteReason",
+          "text": "Reason for the request to be expedited:",
+          "type": "text",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TypeOfRequest",
+              "answerCoding": {
+                "code": "Expedite this request",
+                "display": "Expedite this request"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "5",
+      "text": "Authorization",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "CertifiedMedicallyNecessary",
+          "text": "Has the physician certified the service as medically necessary?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "PhysicianOrder",
+          "text": "The Physician Order signed by a physician assistant (PA), nurse practitioner (NP), or clinical nurse specialist (CNS) is required.",
+          "type": "display"
+        }
+      ]
+    }
+  ]
+}

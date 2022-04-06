@@ -1,0 +1,48 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.11",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.11",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.11"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage T3",
+  "title": "Tumor stage T3",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          
+          {
+            "code": "14410001",
+            "display": "T3 category (finding)"
+          },
+          {
+            "code": "90402004",
+            "display": "pT3 category (finding)"
+          },
+          {
+            "code": "369901004",
+            "display": "T3: Breast tumour >5 cm in greatest dimension"
+          },
+          {
+            "code": "373184001",
+            "display": "pT3: Tumor more than 5 cm in greatest dimension(breast) (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

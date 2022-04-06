@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.229",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.229",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.229"
+    }
+  ],
+  "version": "Latest",
+  "name": "Speech Fluency Therapy",
+  "title": "Speech Fluency Therapy",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "92507",
+            "display": "Treatment of speech, language, voice, communication, and/or auditory processing disorder; individual"
+          }
+        ]
+      }
+    ]
+  }
+}

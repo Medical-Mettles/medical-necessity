@@ -1,0 +1,145 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-subsequenthospitalcare-subsequenthospitalcare",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-subsequenthospitalcare-SubsequentHospitalCare"
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-subsequenthospitalcare-subsequenthospitalcare",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-subsequent_hospital_care"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "SubsequentHospitalCare",
+  "title": "Admission to Inpatient Care due to MI",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2022-01-05",
+  "publisher": "Mettle Solutions",
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Patient Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PatientMedicaidNumber"
+              }
+            }
+          ],
+          "linkId": "PatientMedicaidNumber",
+          "text": "What is the patient's medicaid number?",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Diagnosis Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Symptoms"
+              }
+            }
+          ],
+          "linkId": "Symptoms",
+          "text": "Does the patient have any of the following symptoms?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Pain/Discomfort in the chest",
+                "display": "Pain/Discomfort in the chest"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pain in Neck, Back, Arm or Jaw",
+                "display": "Pain in Neck, Back, Arm or Jaw"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Shortness of Breath",
+                "display": "Shortness of Breath"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Dizziness",
+                "display": "Dizziness"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Nausea",
+                "display": "Nausea"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Sudden Sweating",
+                "display": "Sudden Sweating"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Extreme Tiredness",
+                "display": "Extreme Tiredness"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ClinicalIndications"
+              }
+            }
+          ],
+          "linkId": "ClinicalIndications",
+          "text": "Which of the following clinical indications does the patient have?",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "ECG Changes consistent with Ischemia",
+                "display": "ECG Changes consistent with Ischemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Elevated Cardiac Troponin Level",
+                "display": "Elevated Cardiac Troponin Level"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

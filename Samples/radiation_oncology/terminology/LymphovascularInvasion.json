@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.264",
+
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.264",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.264"
+    }
+  ],
+
+  "version": "Latest",
+  "name": "Lymphovascular invasion in Cancer",
+  "title": "Lymphovascular invasion Cancer",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "version": "2022-02",
+        "concept": [
+          {
+            "code": "59544-7",
+            "display": "Lymph-vascular invasion Cancer specimen"
+          }
+        ]
+      }
+    ]
+  }
+}

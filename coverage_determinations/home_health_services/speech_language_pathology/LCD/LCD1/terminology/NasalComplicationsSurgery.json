@@ -1,0 +1,190 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.226",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.226",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.226"
+    }
+  ],
+  "version": "Latest",
+  "name": "Nasal Complications Surgery",
+  "title": "Nasal Complications Surgery",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+        "version": "2021-11",
+        "concept": [
+          {
+            "code": "42825",
+            "display": "Tonsillectomy, primary or secondary; younger than age 12"
+          },
+          {
+            "code": "42826",
+            "display": "Tonsillectomy, primary or secondary; age 12 or over"
+          },
+          {
+            "code": "42225",
+            "display": "Palatoplasty for cleft palate, attachment pharyngeal flap"
+          },
+          {
+            "code": "42200",
+            "display": "Palatoplasy for cleft palate, soft and/or hard palate only"
+          },
+          {
+            "code": "40700",
+            "display": "Plastic repair of cleft lip/nasal deformity; primary, partial or complete, unilateral"
+          },
+          {
+            "code": "30460",
+            "display": "Rhinoplasty for nasal deformity secondary to congenital cleft lip and/or palate, including columellar lengthening; tip only"
+          },
+          {
+            "code": "30400",
+            "display": "Rhinoplasty, primary; lateral and alar cartilages and/or elevation of nasal tip"
+          },
+          {
+            "code": "30410",
+            "display": "Rhinoplasty, primary; complete, external parts including bony pyramid, lateral and alar cartilages, and/or elevation of nasal tip"
+          },
+          {
+            "code": "30430",
+            "display": "Rhinoplasty, secondary; minor revision (small amount of nasal tip work)"
+          },
+          {
+            "code": "30435",
+            "display": "Rhinoplasty, secondary; intermediate revision (bony work with osteotomies)"
+          },
+          {
+            "code": "30450",
+            "display": "Rhinoplasty, secondary; major revision (nasal tip work and osteotomies)"
+          }
+        ]
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2021-08",
+        "concept": [
+          {
+            "code": "172883004",
+            "display": "Intranasal ethmoidectomy (procedure)"
+          },
+          {
+            "code": "172925009",
+            "display": "Intranasal anterior and posterior ethmoidectomy (procedure)"
+          },
+          {
+            "code": "232509004",
+            "display": "Intranasal frontoethmoidectomy (procedure)"
+          },
+          {
+            "code": "232510009",
+            "display": "Intranasal frontoethmosphenoidectomy (procedure)"
+          },
+          {
+            "code": "85827004",
+            "display": "Total ethmoidectomy by intranasal approach (procedure)"
+          },
+          {
+            "code": "51302004",
+            "display": "Turbinectomy (procedure)"
+          },
+          {
+            "code": "125803009",
+            "display": "Complete excision of turbinate (procedure)"
+          },
+          {
+            "code": "399224009",
+            "display": "Partial excision of inferior turbinate (procedure)"
+          },
+          {
+            "code": "4341004",
+            "display": "Complete submucous resection of turbinate (procedure)"
+          },
+          {
+            "code": "74663003",
+            "display": "Partial submucous resection of turbinate (procedure)"
+          },
+          {
+            "code": "172825008",
+            "display": "Nasal polypectomy (procedure)"
+          },
+          {
+            "code": "10726005",
+            "display": "Extensive excision of nasal polyps (procedure)"
+          },
+          {
+            "code": "312595006",
+            "display": "Nasal polypectomy using auto-debrider (procedure)"
+          },
+          {
+            "code": "307723009",
+            "display": "Nasal septal polypectomy (procedure)"
+          },
+          {
+            "code": "251966007",
+            "display": "Simple excision of nasal polyps (procedure)"
+          },
+          {
+            "code": "370612006",
+            "display": "Excision of neoplasm (procedure)"
+          },
+          {
+            "code": "118445002",
+            "display": "Excision of benign neoplasm (procedure)"
+          },
+          {
+            "code": "438366000",
+            "display": "Excision of bone of cranium and excision of midline neoplasm at base of skull (procedure)"
+          },
+          {
+            "code": "230960003",
+            "display": "Excision of cranial nerve tumor (procedure)"
+          },
+          {
+            "code": "239348002",
+            "display": "Excision of cranial tumor (procedure)"
+          },
+          {
+            "code": "392022002",
+            "display": "Excision of mass (procedure)"
+          },
+          {
+            "code": "13529000",
+            "display": "Nasal septoplasty (procedure)"
+          },
+          {
+            "code": "5781000",
+            "display": "Operation on nasal septum (procedure)"
+          },
+          {
+            "code": "232474008",
+            "display": "Operation on internal nose (procedure)"
+          },
+          {
+            "code": "118782005",
+            "display": "Procedure on nasal septum (procedure)"
+          }
+        ]
+      },
+      {
+        "system": "http://www.ama-assn.org/go/cpt",
+        "version": "2021-10",
+        "concept": [
+          {
+            "code": "30420",
+            "display": "Rhinoplasty, primary; including major septal repair"
+          },
+          {
+            "code": "30520",
+            "display": "Septoplasty or submucous resection, with or without cartilage scoring, contouring or replacement with graft"
+          }
+        ]
+      }
+    ]
+  }
+}

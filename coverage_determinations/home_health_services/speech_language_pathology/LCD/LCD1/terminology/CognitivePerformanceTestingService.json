@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.208",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.208",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.208"
+        }
+    ],
+    "version": "Latest",
+    "name": "Congitive Peformance Testing Service",
+    "title": "Congitive Peformance Testing Service",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "96125",
+                        "display": "Standard cognitive performance testing (eg., Ross Information Processing Assessment) per hour of a qualified health care professional’s time, both face-to-face with the patient and time interpreting test results and preparing the report"
+                    }
+                ]
+            }
+        ]
+    }
+}

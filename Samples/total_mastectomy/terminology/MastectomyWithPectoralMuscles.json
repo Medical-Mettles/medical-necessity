@@ -1,0 +1,38 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.172",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.172",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.172"
+      }
+    ],
+    "version": "Latest",
+    "name": "Mastectomy with Pectoral Muscles",
+    "title": "Mastectomy with Pectoral Muscles",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+          "version": "2020-08",
+          "concept": [
+            {
+              "code": "19307",
+              "display": "Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle"
+            },
+            {
+              "code": "19305",
+              "display": "Mastectomy, radical, including pectoral muscles, axillary lymph nodes"
+            },
+            {
+              "code": "19306",
+              "display": "Mastectomy, radical, including pectoral muscles, axillary and internal mammary lymph nodes (Urban type operation)"
+            }
+          ]
+        }
+      ]
+    }
+  }

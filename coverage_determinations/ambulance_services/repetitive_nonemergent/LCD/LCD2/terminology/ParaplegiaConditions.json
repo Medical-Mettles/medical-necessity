@@ -1,0 +1,46 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.409",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.409",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.409"
+    }
+  ],
+  "version": "Latest",
+  "name": "Paraplegia Conditions",
+  "title": "Paraplegia Conditions",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "version": "2022-03",
+        "concept": [
+          {
+            "code": "G04.1",
+            "display": "Tropical spastic paraplegia"
+          },
+          {
+            "code": "G11.4",
+            "display": "Hereditary spastic paraplegia"
+          },
+          {
+            "code": "G82.20",
+            "display": "Paraplegia, unspecified"
+          },
+          {
+            "code": "G82.21",
+            "display": "Paraplegia, complete"
+          },
+          {
+            "code": "G82.22",
+            "display": "Paraplegia, incomplete"
+          }
+        ]
+      }
+    ]
+  }
+}

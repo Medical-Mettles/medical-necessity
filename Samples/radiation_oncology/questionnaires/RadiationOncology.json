@@ -1,0 +1,660 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-radiationoncology-radiationoncology",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-radiationoncology-RadiatiOnoncology"
+    }
+  ],
+  "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-radiationoncology-radiationoncology",
+  "identifier": [
+    {
+      "system": "http://identifiers.mettles.com/prior_authorization",
+      "value": "medicare_fee_for_service-radiation_oncology"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "RadiationOncology",
+  "title": "Prior Authorization for Radiation Oncology",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2022-01-05",
+  "publisher": "Mettle Solutions",
+  "item": [
+     {
+      "linkId": "4",
+      "text": "Treatment Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TreatmentPlan"
+              }
+            }
+          ],
+          "linkId": "TreatmentPlan",
+          "text": "Treatment Plan:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Whole breast radiation without nodal radiation",
+                "display": "Whole breast radiation without nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Partial breast irradiation (PBI) without regional nodal radiation",
+                "display": "Partial breast irradiation (PBI) without regional nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Whole breast radiation with nodal radiation",
+                "display": "Whole breast radiation with nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Treatment of bilateral breast",
+                "display": "Treatment of bilateral breast"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Post-mastectomy radiation therapy (PMRT)",
+                "display": "Post-mastectomy radiation therapy (PMRT)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Accelerated partial breast irradiatin (APBI)",
+                "display": "Accelerated partial breast irradiatin (APBI)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Intraoperative radiation therapy (IORT)",
+                "display": "Intraoperative radiation therapy (IORT)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease",
+                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with local recurrence only and no distant metastatic disease"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)",
+                "display": "Radiation to the breast or chest wall with or without regional nodal radiation in a patient with a history of distant metastatic disease (e.g. to the brain, lung, liver, and/or bone)"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Re-irradiation of the breast or chest wall with or without regional nodal radiation",
+                "display": "Re-irradiation of the breast or chest wall with or without regional nodal radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation",
+                "display": "Palliative radiation therapy to the breast or chest wall with or without regional nodal radiation"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IORTType"
+              }
+            }
+          ],
+          "linkId": "IORTType",
+          "text": "Intra-Operative Radiation Therapy (IORT) Type:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Electron Beams",
+                "display": "Electron Beams"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "X-rays",
+                "display": "X-rays"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "High-dose-rate Brachytherapy",
+                "display": "High-dose-rate Brachytherapy"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "TreatmentPlan",
+              "answerCoding": {
+                "code": "Intraoperative radiation therapy (IORT)",
+                "display": "Intraoperative radiation therapy (IORT)"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RadiationTreatmentStartDate"
+              }
+            }
+          ],
+          "linkId": "RadiationTreatmentStartDate",
+          "text": "Radiation Treatment Start Date:",
+          "type": "date",
+          "required": true
+        },
+        {
+          "linkId": "NumberOfTreatmentFractions",
+          "text": "Number of Treatment Fractions Planned:",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "PatientTreatmentPosition",
+          "text": "Patient Treatment Position:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Supine",
+                "display": "Supine"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Prone",
+                "display": "Prone"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "IGRTService"
+              }
+            }
+          ],
+          "linkId": "IGRTService",
+          "text": "Does the patient require Image guided radiation therapy (IGRT) during the treatment?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "RespiratoryMotionTracking"
+              }
+            }
+          ],
+          "linkId": "RespiratoryMotionTracking",
+          "text": "Does the patient require respiratory motion tracking during the treatment?",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Cancer Information",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SecondaryCancerCondition"
+              }
+            }
+          ],
+          "linkId": "SecondaryCancerCondition",
+          "text": "Type of Cancer:",
+          "type": "open-choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Breast Cancer",
+                "display": "Breast Cancer"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Prostate Cancer",
+                "display": "Prostate Cancer"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Other",
+                "display": "Other"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorLocationSecondary"
+              }
+            }
+          ],
+          "linkId": "TumorLocationSecondary",
+          "text": "Tumor Location:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Nipple and Areola",
+                "display": "Nipple and Areola"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Central Portion",
+                "display": "Central Portion"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Inner Quadrant",
+                "display": "Upper-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Inner Quadrant",
+                "display": "Lower-Inner Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Upper-Outer Quadrant",
+                "display": "Upper-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Lower-Outer Quadrant",
+                "display": "Lower-Outer Quadrant"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Axillary Tail",
+                "display": "Axillary Tail"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Overlapping Sites",
+                "display": "Overlapping Sites"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Unspecified Site",
+                "display": "Unspecified Site"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BRCAMutation"
+              }
+            }
+          ],
+          "linkId": "BRCAMutation",
+          "text": "Does the patient have any pathogenic/likely pathogenic BRCA Gene mutation?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ERPositive"
+              }
+            }
+          ],
+          "linkId": "ERPositive",
+          "text": "Is the tumor ER Positive?",
+          "type": "boolean",
+          "enableWhen": [
+              {
+                "question": "BRCAMutation",
+                "answerBoolean": false
+              }
+            ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NegativeMargins"
+              }
+            }
+          ],
+          "linkId": "NegativeMargins",
+          "text": "Does the tumor have negative margins of atleast 2mm?",
+          "type": "boolean",
+          "required": true,
+          "enableWhen": [
+              {
+                "question": "BRCAMutation",
+                "answerBoolean": false
+              }
+            ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "LymphovascularInvasion"
+              }
+            }
+          ],
+          "linkId": "LymphovascularInvasion",
+          "text": "Is there an indication of Lymphovascular invasion?",
+          "type": "boolean",
+          "enableWhen": [
+              {
+                "question": "BRCAMutation",
+                "answerBoolean": false
+              }
+            ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorDetected"
+              }
+            }
+          ],
+          "linkId": "TumorDetected",
+          "text": "Was the tumor detected by screening?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SpecifyHistologicGrade"
+              }
+            }
+          ],
+          "linkId": "SpecifyHistologicGrade",
+          "text": "Histologic Grade of the tumor:",
+          "type": "text",
+          "enableWhen": [
+              {
+                "question": "TumorDetected",
+                "answerBoolean": true
+              }
+            ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TumorSize"
+              }
+            }
+          ],
+          "linkId": "TumorSize",
+          "text": "Is the size of the tumor ≤ 2.5cm?",
+          "type": "boolean",
+          "enableWhen": [
+              {
+                "question": "TumorDetected",
+                "answerBoolean": true
+              }
+            ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NegativeMarginsSecondary"
+              }
+            }
+          ],
+          "linkId": "NegativeMarginsSecondary",
+          "text": "Does the tumor have negative margins of atleast 3mm?",
+          "type": "boolean",
+           "enableWhen": [
+              {
+                "question": "TumorDetected",
+                "answerBoolean": true
+              }
+            ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "TNM Staging",
+      "type": "group",
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "StagingType"
+              }
+            }
+          ],
+          "linkId": "StagingType",
+          "text": "Cancer Staging Type:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Clinical",
+                "display": "Clinical"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Pathological",
+                "display": "Pathological"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "TStage"
+              }
+            }
+          ],
+          "linkId": "TStage",
+          "text": "Primary Tumor (T):",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NStage"
+              }
+            }
+          ],
+          "linkId": "NStage",
+          "text": "Regional Lymph Nodes (N):",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "MStage"
+              }
+            }
+          ],
+          "linkId": "MStage",
+          "text": "Distant Metastasis (M):",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AnatomicStage"
+              }
+            }
+          ],
+          "linkId": "AnatomicStage",
+          "text": "TNM Staging:",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Stage0",
+                "display": "Stage0"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIA",
+                "display": "StageIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIB",
+                "display": "StageIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIA",
+                "display": "StageIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIB",
+                "display": "StageIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIA",
+                "display": "StageIIIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIB",
+                "display": "StageIIIB"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIIIC",
+                "display": "StageIIIC"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "StageIV",
+                "display": "StageIV"
+              }
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.174",
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.174",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.174"
+      }
+    ],
+    "version": "Latest",
+    "name": "Carcinoma in Upper Inner Breast",
+    "title": "Carcinoma in Upper Inner Breast",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-09",
+          "concept": [
+            {
+              "code": "286893002",
+              "display": "Carcinoma of breast - upper, inner quadrant (disorder)"
+            },
+            {
+              "code": "188152004",
+              "display": "Malignant neoplasm of upper-inner quadrant of female breast (disorder)"
+            },
+            {
+              "code": "373082000",
+              "display": "Malignant neoplasm of breast upper inner quadrant (disorder)"
+            },
+            {
+              "code": "373089009",
+              "display": "Primary malignant neoplasm of breast upper inner quadrant (disorder)"
+            }
+          ]
+        }
+      ]
+    }
+  }

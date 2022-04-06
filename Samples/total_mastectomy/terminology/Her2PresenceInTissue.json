@@ -1,0 +1,43 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.1444.5.207",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2021-09-01T09:55:51.281+05:30",
+        "source": "#zpRGr4S47XgYHknJ"
+    },
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.1444.5.207",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.1444.5.207"
+        }
+    ],
+    "version": "Latest",
+    "name": "HER2PresenceinTissue",
+    "title": "HER2 Presence in Tissue",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "version": "2.70",
+                "concept": [
+                    {
+                        "code": "18474-7",
+                        "display": "HER2 Ag [Presence] in Tissue by Immune stain"
+                    },
+                    {
+                        "code": "31150-6",
+                        "display": "ERBB2 gene duplication [Presence] in Tissue by FISH"
+                    },
+                    {
+                        "code": "48676-1",
+                        "display": "HER2 [Interpretation] in Tissue"
+                    }
+                ]
+            }
+        ]
+    }
+}

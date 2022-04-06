@@ -1,0 +1,35 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1116.292",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2021-09-01T09:55:55.705+05:30",
+        "source": "#Bt953msRvz1EwH5u"
+    },
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113762.1.4.1116.292",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1116.292"
+        }
+    ],
+    "version": "Latest",
+    "name": "NegativeResult",
+    "title": "Negative Result",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "concept": [
+                    {
+                        "code": "260385009",
+                        "display": "Negative (qualifier value)"
+                    }
+                ]
+            }
+        ]
+    }
+}

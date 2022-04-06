@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.231",
+    "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.231",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.93.231"
+        }
+    ],
+    "version": "Latest",
+    "name": "Dysphonia",
+    "title": "Dysphonia",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://www.icd10data.com/icd10pcs",
+                "version": "2021-11",
+                "concept": [
+                    {
+                        "code": "R49.0",
+                        "display": "Dysphonia"
+                    }
+                ]
+            }
+        ]
+    }
+}

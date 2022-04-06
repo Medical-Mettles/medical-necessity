@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.93.236",
+  "url": "http://localhost:8080/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.236",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.93.236"
+    }
+  ],
+  "version": "Latest",
+  "name": "Speech Fluency Adult Onset",
+  "title": "Speech Fluency Adult Onset",
+  "status": "active",
+  "publisher": "NLM",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.icd10data.com/icd10pcs",
+        "version": "2021-12",
+        "concept": [
+          {
+            "code": "F98.5",
+            "display": "Adult onset fluency disorder"
+          }
+        ]
+      }
+    ]
+  }
+}

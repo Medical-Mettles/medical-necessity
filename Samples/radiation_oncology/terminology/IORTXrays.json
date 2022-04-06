@@ -1,0 +1,31 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.93.268",
+
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.268",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.93.268"
+      }
+    ],
+    "version": "Latest",
+    "name": "IORT Xrays",
+    "title": "IORT Xrays",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "https://www.aapc.com/resources/medical-coding/cpt.aspx",
+          "version": "2022-02",
+          "concept": [
+            {
+              "code": "77424",
+              "display": "Intraoperative radiation treatment delivery, x-ray, single treatment session"
+            }
+          ]
+        }
+      ]
+    }
+  }

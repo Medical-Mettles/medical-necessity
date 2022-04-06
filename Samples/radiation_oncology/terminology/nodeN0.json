@@ -1,0 +1,95 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.17",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.17",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.17"
+    }
+  ],
+  "version": "Latest",
+  "name": "Regional Lymph Nodes N0",
+  "title": "Regional Lymph Nodes N0",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          {
+            "code": "62455006",
+            "display": "N0 category (finding)"
+          },
+          {
+            "code": "433441000124106",
+            "display": "Neoplasm of breast regional lymph node staging category N0: No regional lymph node metastasis"
+          },
+          {
+            "code": "21917009",
+            "display": "pN0 category (finding)"
+          },
+          {
+            "code": "373151001",
+            "display": "pN0: No regional lymph node metastasis histologically (i.e., none greater than 0.2 mm), no additional examination for isolated tumor cells (breast) (finding)"
+          },
+          {
+            "code": "436231000124107",
+            "display": "Neoplasm of breast regional lymph node staging category pN0 as per American Joint Committee on Cancer 7th edition (finding)"
+          },
+          {
+            "code": "406088001",
+            "display": "pN0(i-): No regional lymph node metastasis histologically, negative morphologic findings for isolated tumor cells (breast) (finding)"
+          },
+          {
+            "code": "443335006",
+            "display": "pN0(i-) category (finding)"
+          },
+          {
+            "code": "436121000124104",
+            "display": "Neoplasm of breast regional lymph node staging category pN0(i-): No regional lymph node metastasis histologically, negative immunohistochemically (finding)"
+          },
+          {
+            "code": "406089009",
+            "display": "pN0(i+): No regional lymph node metastasis histologically, positive morphologic findings for isolated tumor cells, no cluster greater than 0.2 mm (breast) (finding)"
+          },
+          {
+            "code": "443486002",
+            "display": "pN0(i+) category (finding)"
+          },
+          {
+            "code": "436111000124107",
+            "display": "Neoplasm of breast regional lymph node staging category pN0(i+): Regional lymph node isolated tumor cell clusters detected by hematoxylin and eosin stain or immunohistochemical methods (finding)"
+          },
+          {
+            "code": "406090000",
+            "display": "pN0(mol-): No regional lymph node metastasis histologically, negative nonmorphologic (molecular) findings for isolated tumor cells (breast) (finding)"
+          },
+          {
+            "code": "443963003",
+            "display": "pN0(mol-) category (finding)"
+          },
+          {
+            "code": "406091001",
+            "display": "pN0(mol+): No regional lymph node metastasis histologically, positive nonmorphologic (molecular) findings for isolated tumor cells (breast) (finding)"
+          },
+          {
+            "code": "443875007",
+            "display": "pN0(mol+) category (finding)"
+          },
+          {
+            "code": "436101000124109",
+            "display": "Neoplasm of breast regional lymph node staging category pN0(mol+): Positive molecular findings, but no regional lymph node metastasis detected by histology or immunohistochemistry (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

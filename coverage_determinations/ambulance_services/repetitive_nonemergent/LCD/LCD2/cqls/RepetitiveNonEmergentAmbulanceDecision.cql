@@ -141,13 +141,20 @@ define BedConfinedDecision:
                 then true
                   else false
 
-define MobilityIssuesDecision:
+define NonBedConfinedImmobilityDecision:
   if ("AmbulanceConditions" = 'Mobility issues'
         and "MobilityIssues" is not null
           and "BedConfinedDecision" = false
             and "LowerExtremityDecision" = false)
               then true
                 else false
+
+define MobilityIssuesDecision:
+   if ("LowerExtremityDecision" = true
+        or "BedConfinedDecision" = true
+          or "NonBedConfinedImmobilityDecision" = true)
+            then true
+              else false
 
 define MusculoskeletalIssuesResponse:
   ("QT".item I

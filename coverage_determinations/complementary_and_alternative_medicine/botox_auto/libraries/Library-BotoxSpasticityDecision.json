@@ -1,0 +1,68 @@
+{
+    "resourceType": "Library",
+    "version": "1.0.0",
+    "title": "BotoxSpasticityDecision",
+    "name": "BotoxSpasticityDecision",
+    "status": "draft",
+    "type": {
+      "coding": [
+        {
+          "code": "logic-library"
+        }
+      ]
+    },
+    "relatedArtifact": [
+      {
+        "type": "depends-on",
+        "resource": "Library/FHIRHelpers"
+      }
+    ],
+    "dataRequirement": [
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.72"
+          }
+        ]
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.117.1.7.1.247"
+          }
+        ]
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113762.1.4.1034.99"
+          }
+        ]
+      },
+      {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113883.3.7587.2.1015"
+            }
+          ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113883.3.7587.2.1012"
+            }
+          ]
+        }
+    ]
+  }
+  

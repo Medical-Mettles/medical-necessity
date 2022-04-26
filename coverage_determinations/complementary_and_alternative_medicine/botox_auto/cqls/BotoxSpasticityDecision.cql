@@ -180,8 +180,7 @@ define PrimaryDecision:
           else false
 
 define FinalDecision:
-      if  ("PrimaryDecision" = true
-          and "DecisionPending" = false)
+      if  ("PrimaryDecision" = true)
               then 'YES'
                 else 'HUMAN REVIEW NEEDED'
 

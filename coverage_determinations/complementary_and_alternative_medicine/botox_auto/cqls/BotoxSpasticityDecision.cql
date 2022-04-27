@@ -173,6 +173,11 @@ if (exists("Request".code.coding C where C in "Chemodenervation Of One Extremity
   	    then true
 	        else false
 
+define ReasonForReview:
+	if("ChemodenervationOneExtremityQualifiedConditions" = false)
+		then 'HP001 -The documentation does not support medical necessity of a specific condition as indicated for the administration of botulinum toxin. Refer to 42 Code of Federal Regulations (CFR) 411.15(k)(1), Social Security Act (SSA) Title XVIII, Section 1862(a)(1)(A), Internet Only Manual (IOM) Publication (Pub.) 100-02, Chapter 16, Section 120 and IOM Pub. 100-08, Chapter 3, Section 3.6.2.2. Refer to the MAC LCD and/or LCA if applicable'
+			else null
+			
 define PrimaryDecision:
       if (("ChemodenervationOneExtremityServiceRequest" = true)
             and ("ChemodenervationOneExtremityQualifiedConditions" = true))

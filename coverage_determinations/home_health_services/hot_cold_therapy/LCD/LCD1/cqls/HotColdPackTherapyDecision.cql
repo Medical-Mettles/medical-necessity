@@ -66,7 +66,7 @@ define HotColdTherapyReasonsResponse:
 		return First(QR.answer).value
 
 define HotColdTherapyReasonsCond:
-  LBS."HotColdTherapyReasons"
+  HCT."HotColdTherapyReasons"
 
 define HotColdTherapyReasons:
     Coalesce(First("HotColdTherapyReasonsResponse").code, "HotColdTherapyReasonsCond")
@@ -77,10 +77,16 @@ define HotColdTherapyDiagnosisDecision:
            else false
 
 //Therapy Info
-define HotColdDevices:
+define HotColdDevicesResponse:
   ("QT".item I
 		where I.linkId.value = 'HotColdDevices')QR
 		return First(QR.answer).value
+
+define HotColdDevicesServ:
+  HCT."HotColdDevices"
+
+define HotColdDevices:
+    Coalesce(First("HotColdDevicesResponse"), "HotColdDevicesServ")
 
 define HotColdConjuction:
   ("QT".item I
@@ -88,7 +94,7 @@ define HotColdConjuction:
 		return First(QR.answer).value
 
 define TherapyDecision:
-  if (First("HotColdDevices") = 1
+  if (("HotColdDevices") >= 1
         and First("HotColdConjuction") = true)
           then true
             else false
@@ -100,7 +106,7 @@ define FToFEncounterResponse:
 		return First(QR.answer).value
 
 define FToFEncounterEncounter:
-  LBS."FToFEncounter"
+  HCT."FToFEncounter"
 
 define FToFEncounter:
     Coalesce(First("FToFEncounterResponse"), "FToFEncounterEncounter")

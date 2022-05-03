@@ -801,9 +801,18 @@
       "type": "group",
       "item": [
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "HotColdDevices"
+              }
+            }
+          ],
           "linkId": "HotColdDevices",
           "text": "How many heating/ cold devices does the patient need?",
-          "type": "decimal",
+          "type": "integer",
           "enableWhen": [
             {
               "operator": "=",

@@ -59,6 +59,9 @@ define "ImagingReports":
 		where D.subject.reference.value = 'Patient/'+ Patient.id.value
 		and First(D.type.coding) in "Imaging reports prior to the visits or treatments")
 
+define "prior-auth":
+	true
+	
 define "Documentation":
 	if ("ProcedureNote" is not null
 		and "ProgressNotes" is not null

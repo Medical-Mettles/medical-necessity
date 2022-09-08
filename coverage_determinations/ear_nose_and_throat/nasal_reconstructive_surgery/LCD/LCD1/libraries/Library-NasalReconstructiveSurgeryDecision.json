@@ -18,7 +18,7 @@
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-nasalreconstructivesurgery-NasalReconstructiveSurgery"
+      "resource": "Library/library-lcd1-NasalReconstructiveSurgery"
     }
   ],
   "dataRequirement": [

@@ -4,7 +4,7 @@
     "type": "transaction",
     "entry": [
       {
-        "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80",
+        "fullUrl": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80",
         "resource": {
             "resourceType": "ValueSet",
             "id": "2.16.840.1.113883.3.6037.1001.23.99.80",
@@ -13,7 +13,7 @@
               "lastUpdated": "2020-09-21T06:15:58.000+00:00",
               "source": "#U6vqWVOE8qzxxs5q"
             },
-            "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80",
+            "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.80",
             "identifier": [
               {
                 "system": "urn:ietf:rfc:3986",
@@ -50,7 +50,7 @@
         }
       },
       {
-        "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81",
+        "fullUrl": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81",
         "resource": {
             "resourceType": "ValueSet",
             "id": "2.16.840.1.113883.3.6037.1001.23.99.81",
@@ -59,7 +59,7 @@
               "lastUpdated": "2020-09-21T06:50:28.000+00:00",
               "source": "#UCGaPmKxTtQyi2bP"
             },
-            "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81",
+            "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.81",
             "identifier": [
               {
                 "system": "urn:ietf:rfc:3986",
@@ -100,7 +100,7 @@
         }
       },
       {
-        "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82",
+        "fullUrl": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82",
         "resource": {
             "resourceType": "ValueSet",
             "id": "2.16.840.1.113883.3.6037.1001.23.99.82",
@@ -109,7 +109,7 @@
               "lastUpdated": "2020-09-21T07:02:58.000+00:00",
               "source": "#Rt3jEFB0aobPI0zV"
             },
-            "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82",
+            "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.82",
             "identifier": [
               {
                 "system": "urn:ietf:rfc:3986",
@@ -142,7 +142,7 @@
         }
       },
       {
-        "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.83",
+        "fullUrl": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.83",
         "resource": {
             "resourceType": "ValueSet",
             "id": "2.16.840.1.113883.3.6037.1001.23.99.83",
@@ -151,7 +151,7 @@
               "lastUpdated": "2020-09-21T07:10:55.000+00:00",
               "source": "#oyOuZ90cYPv4m0JK"
             },
-            "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.83",
+            "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.83",
             "identifier": [
               {
                 "system": "urn:ietf:rfc:3986",
@@ -212,7 +212,7 @@
         }
       },
       {
-        "fullUrl": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84",
+        "fullUrl": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84",
         "resource": {
             "resourceType": "ValueSet",
             "id": "2.16.840.1.113883.3.6037.1001.23.99.84",
@@ -221,7 +221,7 @@
               "lastUpdated": "2020-09-21T07:54:29.000+00:00",
               "source": "#evKr8cl5VaYjgcqY"
             },
-            "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84",
+            "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.84",
             "identifier": [
               {
                 "system": "urn:ietf:rfc:3986",

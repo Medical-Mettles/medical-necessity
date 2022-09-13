@@ -25,6 +25,15 @@ define Request:
 define QT:
 	"QuestionnaireResponse".item
 
+define "prior-auth":
+  true
+
+define "documentation":
+  false
+
+define "dtr-clin":
+  true
+  
 define NasalReconstructiveSurgeryRequest:
   if exists("Request".code.coding C where C in "Nasal Reconstructive Surgery Codes")
   	    then true

@@ -27,6 +27,15 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
 
+define "prior-auth":
+  true
+
+define "documentation":
+  true
+
+define "dtr-clin":
+  true
+
 define ServiceEncounter:
 	BLCommon."ServiceEncounter"
 	

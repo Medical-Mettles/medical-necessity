@@ -7,6 +7,7 @@
       }
     ],
     "name": "VeinAblation",
+    "url": "https://fhir-dev.mettles.com/fhir-services/Questionnaire/questionnaire-lcd1-veinablation",
     "version": "1.0.0",
     "title": "VeinAblation",
     "status": "draft",
@@ -18,7 +19,7 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-VeinAblation"
+        "valueCanonical": "https://fhir-dev.mettles.com/fhir-services/Library/library-lcd1-VeinAblation"
       }
     ],
     "contained": [

@@ -6,6 +6,7 @@
         "value": "medicarefeeforservice-Panniculectomy"
       }
     ],
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-lcd1-panniculectomy",
     "name": "Panniculectomy",
     "version": "1.0.0",
     "title": "Panniculectomy",
@@ -18,7 +19,7 @@
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-Panniculectomy"
+        "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-lcd1-panniculectomy"
       }
     ],
     "contained": [
@@ -103,7 +104,7 @@
                 }
               }
             ]
-          },
+          }
         ]
       },
       {

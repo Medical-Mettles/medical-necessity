@@ -107,6 +107,42 @@ define AdjunctivePhysiotherapyCond:
 define AdjunctivePhysiotherapy:
   Coalesce(First("AdjunctivePhysiotherapyResponse"), "AdjunctivePhysiotherapyCond")
 
+define BlepharospasmMuscleGroups:
+  Botox."BlepharospasmMuscleGroups"
+
+define BlepharospasmFaceInjectionSide:
+  Botox."BlepharospasmFaceInjectionSide"
+
+define CheckAbnormalInvoluntaryMovements:
+  Botox."CheckAbnormalInvoluntaryMovements"
+
+define CheckKeratopathy:
+  Botox."CheckKeratopathy"
+
+define CheckOcularIrritation:
+  Botox."CheckOcularIrritation"
+
+define NeuromuscularSensoryDysfunction:
+  Botox."NeuromuscularSensoryDysfunction"
+
+define LocalFactors:
+  Botox."LocalFactors"
+
+define AdverseEffect:
+  Botox."AdverseEffect"
+
+define HypertensiveLOS:
+  Botox."HypertensiveLOS"
+
+define RiskFactorsEsophagealPerforation:
+  Botox."RiskFactorsEsophagealPerforation"
+
+define CheckDurationOfAnalFissure:
+  Botox."CheckDurationOfAnalFissure"
+
+define CheckSevereSweating:
+  Botox."CheckSevereSweating"
+  
 define SpasticityCondition:
 	Botox."SpasticityCondition"
 

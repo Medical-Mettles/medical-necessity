@@ -142,7 +142,166 @@ define CheckDurationOfAnalFissure:
 
 define CheckSevereSweating:
   Botox."CheckSevereSweating"
-  
+
+define CheckDurationOfSweating:
+  Botox."CheckDurationOfSweating"
+
+define MigraineMuscleGroups:
+  Botox."MigraineMuscleGroups"
+
+define MigraineFaceInjectionSide:
+  Botox."MigraineFaceInjectionSide"
+
+define HeadachesForFifteenDays:
+  Botox."HeadachesForFifteenDays"
+
+define HeadachesForLastThreeMonths:
+  Botox."HeadachesForLastThreeMonths"
+
+define BinocularVision:
+  Botox."BinocularVision"
+
+define BlepharospasmEarlierBotulinumAdministration:
+  Botox."BlepharospasmEarlierBotulinumAdministration"
+
+define BlepharospasmSpecifyBotoxAdministration:
+  Botox."BlepharospasmSpecifyBotoxAdministration"
+
+define BlepharospasmPostBotoxImprovement:
+  Botox."BlepharospasmPostBotoxImprovement"
+
+define BiofeedbackTherapy:
+  Botox."BiofeedbackTherapy"
+
+define PostBiofeedbackImprovement:
+  Botox."PostBiofeedbackImprovement"
+
+define GlycopyrrolateMedication:
+  Botox."GlycopyrrolateMedication"
+
+define SpecifyGlycopyrrolateMedication:
+  Botox."SpecifyGlycopyrrolateMedication"
+
+define PostGlycopyrrolateImprovement:
+  Botox."PostGlycopyrrolateImprovement"
+
+define ScopolamineMedication:
+  Botox."ScopolamineMedication"
+
+define SpecifyScopolamineMedication:
+  Botox."SpecifyScopolamineMedication"
+
+define PostScopolamineImprovement:
+  Botox."PostScopolamineImprovement"
+
+define SialorrheaEarlierBotulinumAdministration:
+  Botox."SialorrheaEarlierBotulinumAdministration"
+
+define SialorrheaSpecifyBotoxAdministration:
+  Botox."SialorrheaSpecifyBotoxAdministration"
+
+define SialorrheaPostBotoxImprovement:
+  Botox."SialorrheaPostBotoxImprovement"
+
+define AchalasiaProcedures:
+  Botox."AchalasiaProcedures"
+
+define AchalasiaPostProceduresImprovement:
+  Botox."AchalasiaPostProceduresImprovement"
+
+define AchalasiaEarlierBotulinumAdministration:
+  Botox."AchalasiaEarlierBotulinumAdministration"
+
+define AchalasiaSpecifyBotoxAdministration:
+  Botox."AchalasiaSpecifyBotoxAdministration"
+
+define AchalasiaPostBotoxImprovement:
+  Botox."AchalasiaPostBotoxImprovement"
+
+define ConservativeTreatmentOptions:
+  Botox."ConservativeTreatmentOptions"
+
+define PostConservativeTreatmentImprovement:
+  Botox."PostConservativeTreatmentImprovement"
+
+define AnalFissurePriorBotulinumToxin:
+  Botox."AnalFissurePriorBotulinumToxin"
+
+define AnalFissureSpecifyBotoxAdministration:
+  Botox."AnalFissureSpecifyBotoxAdministration"
+
+define AnalFissurePostBotoxImprovement:
+  Botox."AnalFissurePostBotoxImprovement"
+
+define AnticholinergicMedicationsHyperhydrosis:
+  Botox."AnticholinergicMedicationsHyperhydrosis"
+
+define PostAnticholinergicImprovement:
+  Botox."PostAnticholinergicImprovement"
+
+define HyperhydrosisPriorBotulinumToxin:
+  Botox."HyperhydrosisPriorBotulinumToxin"
+
+define HyperhydrosisSpecifyBotoxAdministration:
+  Botox."HyperhydrosisSpecifyBotoxAdministration"
+
+define HyperhydrosisPostBotoxImprovement:
+  Botox."HyperhydrosisPostBotoxImprovement"
+
+define CheckUrinaryIncontinenceAntiCholinergicTreatment:
+  Botox."CheckUrinaryIncontinenceAntiCholinergicTreatment"
+
+define PostUrinaryIncontinenceAnticholinergicImprovement:
+  Botox."PostUrinaryIncontinenceAnticholinergicImprovement"
+
+define UrinaryIncontinencePriorBotulinumToxin:
+  Botox."UrinaryIncontinencePriorBotulinumToxin"
+
+define UrinaryIncontinenceSpecifyBotoxAdministration:
+  Botox."UrinaryIncontinenceSpecifyBotoxAdministration"
+
+define UrinaryIncontinencePostBotoxImprovement:
+  Botox."UrinaryIncontinencePostBotoxImprovement"
+
+define ConventionalTreatment:
+  Botox."ConventionalTreatment"
+
+define ConventionalTreatmentImprovement:
+  Botox."ConventionalTreatmentImprovement"
+
+define MigraineCheckPriorBotoxTreatment:
+  Botox."MigraineCheckPriorBotoxTreatment"
+
+define MigrainePostBotoxImprovement:
+  Botox."MigrainePostBotoxImprovement"
+
+define MigraineTreatmentFailures:
+  Botox."MigraineTreatmentFailures"
+
+define StrabismusSurgery:
+  Botox."StrabismusSurgery"
+
+define PostStrabismusSurgeryImprovement:
+  Botox."PostStrabismusSurgeryImprovement"
+
+define StrabismusPriorBotulinumToxin:
+  Botox."StrabismusPriorBotulinumToxin"
+
+define StrabismusSpecifyBotoxAdministration:
+  Botox."StrabismusSpecifyBotoxAdministration"
+
+define StrabismusPostBotoxImprovement:
+  Botox."StrabismusPostBotoxImprovement"
+
+define SialorrheaAnticholinergicContraindications:
+  Botox."SialorrheaAnticholinergicContraindications"
+
+define UrinaryIncontinenceAnticholinergicContraindications:
+  Botox."UrinaryIncontinenceAnticholinergicContraindications"
+
+define BotoxAllergy:
+  Botox."BotoxAllergy"
+
 define SpasticityCondition:
 	Botox."SpasticityCondition"
 

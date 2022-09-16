@@ -19,6 +19,22 @@ parameter "ServiceRequest" ServiceRequest
 
 context Patient
 
+define "prior-auth":
+  true
+  
+define "prior-auth-description":
+  'CMS guidelines specify BLEPHAROPLASTY under list of hospital outpatient department services
+requiring prior authorization beginning for service dates on or after July 1, 2020'
+
+define "documentation":
+  true
+
+define "dtr-clin":
+  true
+
+define "topic":
+  'Blepharoplasty'
+  
 define Request:
 	"ServiceRequest"
 

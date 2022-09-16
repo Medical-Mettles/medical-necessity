@@ -14,11 +14,11 @@
   "relatedArtifact": [
     {
       "type": "depends-on",
-      "resource": "Library/FHIRHelpers"
+      "resource": "https://fhir-dev.mettles.com/baseServer/fhir/Library/FHIRHelpers"
     },
     {
       "type": "depends-on",
-      "resource": "Library/library-eyelidsurgery-EyelidSurgery"
+      "resource": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-eyelidsurgery-EyelidSurgery"
     }
   ],
   "dataRequirement": [
@@ -27,7 +27,7 @@
       "codeFilter": [
         {
           "path": "code",
-          "valueSet": "2.16.840.1.113883.3.6037.1001.23.93.193"
+          "valueSet": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.193"
         }
       ]
     }

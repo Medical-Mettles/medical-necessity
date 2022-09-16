@@ -34,6 +34,9 @@ define "documentation":
 define "dtr-clin":
   true
   
+define "topic":
+	"Rhinoplasty"
+	
 define NasalReconstructiveSurgeryRequest:
   if exists("Request".code.coding C where C in "Nasal Reconstructive Surgery Codes")
   	    then true

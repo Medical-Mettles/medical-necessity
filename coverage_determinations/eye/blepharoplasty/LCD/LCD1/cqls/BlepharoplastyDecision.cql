@@ -29,12 +29,18 @@ context Patient
 
 define "prior-auth":
   true
+  
+define "prior-auth-description":
+  'Blepharoplasty Decsription'
 
 define "documentation":
   true
 
 define "dtr-clin":
   true
+
+define "topic":
+  'Blepharoplasty'
 
 define ServiceEncounter:
 	BLCommon."ServiceEncounter"

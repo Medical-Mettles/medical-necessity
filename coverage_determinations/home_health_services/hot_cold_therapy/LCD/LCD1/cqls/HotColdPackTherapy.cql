@@ -67,6 +67,8 @@ define InflammationConditon:
     where exists(C.code.coding C where C in "Inflammation Conditions")
       and First(C.clinicalStatus.coding).code.value = 'active'
 
+define HotColdDevices:
+    (ServiceRequest.quantity as Quantity).value.value
 
 define HotColdTherapyReasons:
   if exists("MuscleSpasmConditon")

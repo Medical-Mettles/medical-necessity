@@ -27,6 +27,9 @@ define QT:
 
 define "prior-auth":
   true
+  
+define "prior-auth-description":
+  'Rhinoplasty Description'
 
 define "documentation":
   false
@@ -34,6 +37,9 @@ define "documentation":
 define "dtr-clin":
   true
   
+define "topic":
+	'Rhinoplasty'
+	
 define NasalReconstructiveSurgeryRequest:
   if exists("Request".code.coding C where C in "Nasal Reconstructive Surgery Codes")
   	    then true

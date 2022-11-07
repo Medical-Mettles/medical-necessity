@@ -283,6 +283,12 @@ define "ado-trastuzumabConsideration":
             then 'As per NCCN Guidelines Ado-transtuzumab emtansine is not approved for adjuvant therapy for the first line of therapy. Please check pathology report.'
             else null
 
+define "prior-auth":
+	true
+	
+define "Documentation":
+	false
+	
 define FinalDecision:
       if 
          (("TrastuzumabFinalDecision" = true) and ("TrastuzumabMedication" = true) and ("BiosimilarDrugSuggestion"= true) )

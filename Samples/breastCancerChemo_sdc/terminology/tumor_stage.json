@@ -1,0 +1,276 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.96.25",
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+      "source": "#XfzZDo4Vcf8jh2LU"
+    },
+    "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.25",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.96.25"
+      }
+    ],
+    "version": "Latest",
+    "name": "Clinical Tumor stage",
+    "title": "Clinical Tumor stage",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "67101007",
+              "display": "TX category (finding)"
+            },
+            {
+              "code": "43189003",
+              "display": "pTX category (finding)"
+            },
+		   {
+              "code": "373173008",
+              "display": "pTX: Primary tumour cannot be assessed (breast)"
+            },
+		   {
+			"code": "436181000124100",
+			"display": "Neoplasm of breast primary tumor staging category TX: Primary tumor cannot be assessed (finding)"
+		    },
+		    {
+			"code": "39880006",
+			"display": "pT0 category (finding)"
+                     },
+            {
+              "code": "58790005",
+              "display": "T0 category (finding)"
+           },
+   	   	  {  
+			"code": "373174002",
+			 "display": "pT0: No evidence of primary tumour (breast)"
+              	    },
+		    { 
+			"code": "433371000124106",
+			"display": "Neoplasm of breast primary tumor staging category T0: No evidence of primary tumor"
+		    },
+		    {
+			"code": "44401000",
+			"display": "Tis category (finding)"
+		    },
+		    {
+			"code": "84921008",
+			"display": "pTis category (finding)"
+ 		    }, 
+ 		  {
+			"code": "436161000124105",
+			"display": "Neoplasm of breast primary tumor staging category Tis (LCIS): Lobar carcinoma in situ"
+	 	  },
+		  {
+			"code": "436171000124103",
+			"display": "Neoplasm of breast primary tumor staging category Tis (Paget's) (finding)"
+		    },
+		    {
+			"code": "436211000124101",
+			"display": "Neoplasm of breast primary tumor staging category Tis (DCIS): Ductal carcinoma in situ (finding)"
+		    },
+		    {
+			"code": "369907000",
+			"display": "Tis: Carcinoma in situ, breast: Intraductal carcinoma, lobular carcinoma in situ, or Paget's disease of the nipple with no tumour"
+		    },
+		    {
+			"code": "373175001",
+			"display": "pTis: Carcinoma in situ (breast)"
+		    },
+		    {
+			"code": "373176000",
+			"display": "pTis: Ductal carcinoma in situ (breast)"
+		    },
+		    {
+			"code": "373177009",
+			"display": "pTis: Lobular carcinoma in situ (breast)"
+		    },
+		    {
+			"code": "373178004",
+			"display": "pTis: Paget disease without invasive carcinoma (breast) (finding)"
+		    },
+		    {
+			"code": "433381000124109",
+			"display": "Neoplasm of breast primary tumor staging category T1mi: Tumor <=1 mm in greatest dimension"
+		    },
+		    {
+			"code": "313108002",
+			"display": "Tumor stage T1mic (finding)"
+		    },
+		    {
+			"code": "369896001",
+			"display": "T1mic: Microinvasion <= 0.1 cm in greatest dimension: BREAST: Complete excision less than total mastectomy, total mastectomy, modified radical mastectomy, radical mastectomy (finding)"
+		    },
+		    {
+			"code": "373179007",
+			"display": "pT1mic: Microinvasion 0.1 cm or less in greatest dimension (breast) (finding)"
+		    },
+		    {
+			"code": "443600004",
+			"display": "pT1mic category (finding)"
+		    },
+		    {
+			"code": "261646003",
+			"display": "Tumor stage T1a (finding)"
+		    },
+		    {
+			"code": "369897005",
+			"display": "T1a: Breast tumour >0.1 cm but <= 0.5 cm in greatest dimension"
+		    },
+		    {
+			"code": "373180005",
+			"display": "pT1a: Tumor more than 0.1 cm but not more than 0.5 cm in greatest dimension (breast) (finding)"
+	  	    },
+		    {
+			"code": "443357004",
+			"display": "pT1a category (finding)"
+		    },
+		    {
+			"code": "261649005",
+			"display": "Tumor stage T1b (finding)"
+		    },
+		    {
+			"code": "369898000",
+			"display": "T1b: Breast tumour >0.5 cm but <= 1 cm in greatest dimension"
+		    },
+		    {
+			"code": "373204007",
+			"display": "pT1b: Tumor more than 0.5 cm but not more than 1 cm in greatest dimension (breast) (finding)"
+		    },
+		    {
+			"code": "443506002",
+			"display": "pT1b category (finding)"
+		    },
+            {
+		    "code": "261650005",
+			"display": "Tumor stage T1c (finding)"
+		    },
+		    {
+			"code": "369899008",
+			"display": "T1c: >1 cm but <= 2 cm in greatest dimension: BREAST: Complete excision less than total mastectomy, total mastectomy, modified radical mastectomy, radical mastectomy (finding)"
+		    },
+		    {
+			"code": "373183007",
+			"display": "pT1c: Tumor more than 1 cm but not more than 2 cm in greatest dimension (breast) (finding)"
+		    },
+		    {
+			"code": "443642002",
+			"display": "pT1c category (finding)"
+		    },
+		    {
+			"code": "433391000124107",
+			"display": "Neoplasm of breast primary tumor staging category T1c: Tumor >10 mm but <=20 mm in greatest dimension (finding)"
+		    },
+		    {
+			"code": "67673008",
+			"display": "T2 category (finding)"
+		    },
+		    {
+			"code": "80898003",
+			"display": "pT2 category (finding)"
+		    },
+		    {
+			"code": "369900003",
+			"display": "T2: Breast tumour > 2 cm but <= 5 cm in greatest dimension"
+		    },
+		    {
+			"code": "373182002",
+			"display": "pT2: Tumor more than 2 cm but not more than 5 cm in greatest dimension (breast) (finding)"
+		    },
+		    {
+		    	"code": "14410001",
+			"display": "T3 category (finding)"
+		    },
+		    {
+			"code": "90402004",
+			"display": "pT3 category (finding)"
+		    },
+		    {
+			"code": "369901004",
+			"display": "T3: Breast tumour >5 cm in greatest dimension"
+		    },
+		    {
+			"code": "373184001",
+			"display": "pT3: Tumor more than 5 cm in greatest dimension (breast) (finding)"
+		    },
+		    {
+			"code": "373185000",
+			"display": "pT4: Tumour of any size with direct extension to chest wall or skin (breast)"
+		    },
+		    {
+			"code": "373186004",
+			"display": "pT4a: Tumour of any size with extension to chest wall, not including pectoralis muscle (breast)"
+		    },
+		    {
+			"code": "373187008",
+			"display": "pT4b: Tumour of any size with oedema (including peau d'orange) or ulceration of the skin of the breast or satellite skin nodules confined to the same breast"
+		    },
+		    {
+			"code": "373189006",
+			"display": "pT4c: Tumour of any size with direct extension to chest wall (not including pectoralis muscle) and oedema (including peau d'orange) or ulceration of the skin of the breast or satellite skin nodules confined to the same breast"
+		    },
+		    {
+			"code": "373190002",
+			"display": "pT4d: Inflammatory carcinoma (breast)"
+		    },
+		    {
+			"code": "443505003",
+			"display": "pT4d category (finding)"
+		    },
+		    {
+			"code": "443604008",
+			"display": "pT4a category (finding)"
+		    },
+		    {
+			"code": "443721006",
+			"display": "pT4c category (finding)"
+		    },
+		    {
+		    	"code": "443736009",
+			"display": "pT4b category (finding)"
+		    },
+		    {
+			"code": "445110009",
+			"display": "T4d: Inflammatory carcinoma of breast with involvement of skin and chest wall by carcinoma (finding)"
+		    },
+		    {
+			"code": "433401000124109",
+			"display": "Neoplasm of breast primary tumor staging category T4: Direct extension to chest wall and/or skin beyond dermis (finding)"
+		    },
+		    {
+			"code": "433491000124102",
+			"display": "Neoplasm of colon primary tumor staging category T4a: Tumor penetrates to surface of visceral peritoneum (finding)"
+		    },
+		    {
+			"code": "433501000124105",
+			"display": "Neoplasm of colon primary tumor staging category T4b: Tumor directly invades or is adherent to other organ or structure (finding)"
+		    },
+		    {
+			"code": "434791000124108",
+			"display": "Neoplasm of breast primary tumor staging category T4c: Both T4a and T4b"
+		    },
+		    {
+			"code": "436131000124101",
+			"display": "Neoplasm of breast primary tumor staging category T4a: Extension to the chest wall, not including only adherence and/or invasion to pectoralis muscle (finding)"
+		    },
+		    {
+			"code": "436141000124106",
+			"display": "Neoplasm of breast primary tumor staging category T4b: Ulceration and/or ipsilateral satellite nodules and/or edema (including peau d'orange) of the skin, excluding inflammatory carcinoma (finding)"
+		    },
+		    {
+			"code": "436151000124108",
+			"display": "Neoplasm of breast primary tumor staging category T4d: Inflammatory carcinoma involving >=1/3 of skin of breast (finding)"
+		    }
+
+          ]
+        }
+      ]
+    }
+  }

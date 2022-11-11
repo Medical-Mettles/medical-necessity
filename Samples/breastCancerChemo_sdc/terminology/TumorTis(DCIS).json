@@ -1,0 +1,36 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.04",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.04",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.04"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage Tis(DCIS)",
+  "title": "Tumor stage Tis(DCIS)",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          
+          {
+            "code": "436211000124101",
+            "display": "Neoplasm of breast primary tumor staging category Tis(DCIS): Ductal carcinoma in situ (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}

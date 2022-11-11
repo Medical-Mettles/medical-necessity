@@ -1,0 +1,78 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.94.25",
+    "meta": {
+      "versionId": "1",
+      "lastUpdated": "2021-01-29T08:42:31.000+00:00",
+      "source": "#ax8Hm9mYZsUmIlnG"
+    },
+    "url": "http://localhost:8082/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.25",
+    "identifier": [
+      {
+        "system": "urn:ietf:rfc:3986",
+        "value": "2.16.840.1.113883.3.6037.1001.23.94.25"
+      }
+    ],
+    "version": "Latest",
+    "name": "Trastuzumab",
+    "title": "Trastuzumab",
+    "status": "active",
+    "publisher": "Mettles",
+    "compose": {
+      "include": [
+        {
+          "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+          "version": "2020-03",
+          "concept": [
+           
+            {
+              "code": "101306",
+              "display": "Herceptin"
+            },
+            {
+              "code": "1169113",
+              "display": "Herceptin Injectable Product"
+            },
+            {
+              "code": "224905",
+              "display": "trastuzumab"
+            },
+            {
+              "code": "806572",
+              "display": "trastuzumab 22 MG/ML"
+            },
+            {
+              "code": "806574",
+              "display": "trastuzumab 22 MG/ML [Herceptin]"
+            },
+            {
+              "code": "806575",
+              "display": "trastuzumab 22 MG/ML Injectable Solution [Herceptin]"
+            },
+            {
+              "code": "1162762",
+              "display": "trastuzumab Injectable Product"
+            },
+            {
+              "code": "377216",
+              "display": "trastuzumab Injectable Solution"
+            },
+            {
+              "code": "540885",
+              "display": "trastuzumab Injectable Solution [Herceptin]"
+            }
+          ]
+        },
+        {
+          "system": "https://hcpcs.codes/",
+          "version": "2020-03",
+          "concept": [
+            {
+              "code": "J9355",
+              "display": "Injection, trastuzumab, excludes biosimilar, 10 mg"
+            }
+          ]
+        }
+      ]
+    }
+  }

@@ -1,0 +1,53 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.6037.1001.23.94.03",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2020-08-28T07:47:19.553+00:00",
+    "source": "#XfzZDo4Vcf8jh2LU"
+  },
+  "url": "https://fhir-dev.mettles.com/interop/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.94.03",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "2.16.840.1.113883.3.6037.1001.23.94.03"
+    }
+  ],
+  "version": "Latest",
+  "name": "Tumor stage Tis",
+  "title": "Tumor stage Tis",
+  "status": "active",
+  "publisher": "Mettles",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "version": "2020-03",
+        "concept": [
+          
+          {
+            "code": "44401000",
+            "display": "Tis category (finding)"
+          },
+          {
+            "code": "84921008",
+            "display": "pTis category (finding)"
+          },
+          {
+            "code": "373175001",
+            "display": "pTis: Carcinoma in situ (breast)"
+          },
+          {
+            "code": "373176000",
+            "display": "pTis: Ductal carcinoma in situ (breast)"
+          },
+          {
+            "code": "373177009",
+            "display": "pTis: Lobular carcinoma in situ (breast)"
+          }
+          
+        ]
+      }
+    ]
+  }
+}

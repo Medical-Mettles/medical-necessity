@@ -19,6 +19,22 @@ parameter "ServiceRequest" ServiceRequest
 
 context Patient
 
+define "prior-auth":
+  true
+  
+define "prior-auth-description":
+  'Chemodenervation Of One Extremity; 1-4 Muscle(S)'
+
+define "documentation":
+  true
+
+define "dtr-clin":
+  true
+
+define "topic":
+  'Complementary and Alternative Medicine'
+  
+  
 define Request:
 	"ServiceRequest"
 

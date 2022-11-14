@@ -46,6 +46,12 @@ parameter "suggest_biosimilar" Boolean
 
 context Patient
 
+define "prior-auth":
+	true
+
+define "Documentation":
+	false
+
 define BreastCancerCondition:
       BCChemo."BreastCancerCondition"
 

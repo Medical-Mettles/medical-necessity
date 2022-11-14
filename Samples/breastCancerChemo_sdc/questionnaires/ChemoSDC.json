@@ -61,6 +61,19 @@
             "type": "group",
             "item": [
                 {
+                    "linkId": "3.1",
+                    "text": "Please answer Yes or No to each of the following questions:",
+                    "_text": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
+                          "valueString": "<i>Please</i> answer <b><u>Yes</u></b> or <b><u>No</u></b> to each of the following questions:"
+                        }
+                      ]
+                    },
+                    "type": "display"
+                },
+                {
                     "extension": [
                         {
                             "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
@@ -70,7 +83,7 @@
                             }
                         }
                     ],
-                    "linkId": "3.1",
+                    "linkId": "3.2",
                     "text": "Hormone Receptor Status, ER Positive?",
                     "type": "boolean",
                     "required": true
@@ -85,7 +98,7 @@
                             }
                         }
                     ],
-                    "linkId": "3.2",
+                    "linkId": "3.3",
                     "text": "Hormone Receptor Status, PR Positive?",
                     "type": "boolean",
                     "required": true
@@ -100,7 +113,7 @@
                             }
                         }
                     ],
-                    "linkId": "3.3",
+                    "linkId": "3.4",
                     "text": "HER2 Status: HER2 positive?",
                     "type": "boolean",
                     "required": true
@@ -108,6 +121,12 @@
             ]
         },
         {
+            "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
+                  "valueCode": "default-closed"
+                }
+              ],
             "linkId": "1",
             "text": "Staging",
             "type": "group",
@@ -119,6 +138,23 @@
                             "valueExpression": {
                                 "language": "text/cql",
                                 "expression": "StagingType"
+                            }
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation",
+                            "valueCode": "horizontal"
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                            "valueCodeableConcept": {
+                                "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                    "code": "radio-button",
+                                    "display": "Radio Button"
+                                }
+                                ],
+                                "text": "A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others."
                             }
                         }
                     ],
@@ -161,6 +197,23 @@
                             "valueExpression": {
                                 "language": "text/cql",
                                 "expression": "Laterality"
+                            }
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation",
+                            "valueCode": "horizontal"
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                            "valueCodeableConcept": {
+                                "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                    "code": "radio-button",
+                                    "display": "Radio Button"
+                                }
+                                ],
+                                "text": "A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others."
                             }
                         }
                     ],
@@ -633,6 +686,12 @@
             ]
         },
         {
+            "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
+                  "valueCode": "default-closed"
+                }
+              ],
             "linkId": "5",
             "text": "Allergies to Regimen Drugs",
             "type": "group",

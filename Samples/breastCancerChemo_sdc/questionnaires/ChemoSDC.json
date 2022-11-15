@@ -792,6 +792,20 @@
             "linkId": "BCTreatmentOption1",
             "text": "Care Plan Information",
             "type": "group",
+            "enableWhen": [
+                {
+                    "question": "BCTreatmentOption1",
+                    "operator": "=",
+                    "answerCoding": [
+                        {
+                            "valueCoding": {
+                                "code": "BCTreatmentOption1",
+                                "display": "NCCN approved treatment option 1"
+                            }
+                        }
+                    ]
+                }
+            ],
             "item": [
                 {
                     "linkId": "TreatmentOption1",

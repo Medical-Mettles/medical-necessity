@@ -10,10 +10,6 @@
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
             "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-breastcancerchemosdc-chemosdc"
-        },
-        {
-            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
-            "valueBoolean": true
         }
     ],
     "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-breastcancerchemosdc-chemosdc",
@@ -51,16 +47,24 @@
                     "linkId": "4.1",
                     "text": "Line of Therapy",
                     "type": "integer",
+                    "maxLength": 2,
                     "required": true
                 }
             ]
         },
         {
+            
             "linkId": "3",
             "text": "Tumor Markers",
             "type": "group",
             "item": [
                 {
+                    "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive",
+                          "valueBoolean": true
+                        }
+                    ],
                     "linkId": "3.1",
                     "text": "Please answer Yes or No to each of the following questions:",
                     "_text": {
@@ -404,6 +408,12 @@
             ]
         },
         {
+            "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
+                  "valueCode": "default-closed"
+                }
+              ],
             "linkId": "2",
             "text": "Pre-existing Co-morbidities",
             "type": "group",

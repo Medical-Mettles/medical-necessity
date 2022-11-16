@@ -27,8 +27,15 @@ define "ResponseAnswer":
 define "NextQuestionLinkId":
     questionnaireInput.item["QuestionnaireItem"+1].linkId
 
+define "PresentQuestionLinkId":
+    questionnaireInput.item["QuestionnaireItem"].linkId
+
 define "next-question":
-    if exists("ResponseSubItem")
-    then "ResponseAnswer" 
-    else (if "NextQuestionLinkId" is not null 
-        then "NextQuestionLinkId" else '')
+    if (("NextQuestionLinkId" is not null) 
+        and   (("NextQuestionLinkId" is not 'BCTreatmentOption1')
+                or ("NextQuestionLinkId" is not 'BCTreatmentOption2')
+                or ("NextQuestionLinkId" is not 'BCTreatmentOption3'))
+    then "NextQuestionLinkId"
+        else if ("PresentQuestionLinkId" = 'PayerRecomendation') then "ResponseAnswer"
+            else if ("ResponseAnswer" is not null) then "6"
+                else ''

@@ -34,7 +34,7 @@ define "next-question":
     if (("NextQuestionLinkId" is not null) 
         and   (("NextQuestionLinkId" != 'BCTreatmentOption1')
                 or ("NextQuestionLinkId" != 'BCTreatmentOption2')
-                or ("NextQuestionLinkId" != 'BCTreatmentOption3'))
+                or ("NextQuestionLinkId" != 'BCTreatmentOption3')))
     then "NextQuestionLinkId"
         else if ("PresentQuestionLinkId" = 'PayerRecomendation') then "ResponseAnswer"
             else if ("ResponseAnswer" is not null) then "6"

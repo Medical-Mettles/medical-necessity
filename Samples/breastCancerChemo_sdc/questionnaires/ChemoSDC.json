@@ -10,6 +10,10 @@
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
             "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-breastcancerchemosdc-chemosdc"
+        },
+        {
+            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+            "valueBoolean": true
         }
     ],
     "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-breastcancerchemosdc-chemosdc",
@@ -61,7 +65,11 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive",
                     "valueBoolean": true
-                }
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/rendering-xhtml",
+                    "valueString": "<i>Please</i> answer <b><u>Yes</u></b> or <b><u>No</u></b> to each of the following questions:"
+                  }
               ],
             "linkId": "3",
             "text": "Tumor Markers",

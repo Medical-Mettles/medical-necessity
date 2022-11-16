@@ -756,7 +756,7 @@
         },
         {
             "linkId": "7",
-            "text": "Payer Recommendation",
+            "text": "Payer Recommendations",
             "type": "group",
             "item": [
                 {
@@ -779,7 +779,7 @@
                     "type": "display"
                 },
                 {
-                    "linkId": "PayerRecomendations",
+                    "linkId": "PayerRecomendation",
                     "text": "Select any one of the treatment options:",
                     "type": "choice",
                     "answerOption": [

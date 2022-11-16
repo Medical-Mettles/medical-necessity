@@ -134,7 +134,7 @@ define QuestionnaireResponseItems:
 
 define IsERPositive:
 	   ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = '3.1')QR
+		   where I.linkId.value = '3.2')QR
 		      return First(QR.answer).value
 
 define EstrogenReceptorPositive:
@@ -145,7 +145,7 @@ define EstrogenReceptorPositive:
 
 define IsPRPositive:
       ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = '3.2')QR
+		   where I.linkId.value = '3.3')QR
 		      return First(QR.answer).value
 
 define ProgesteroneReceptorPositive:
@@ -155,7 +155,7 @@ define ProgesteroneReceptorPositive:
 
 define IsHER2Positive:
       ("QuestionnaireResponseItems".item I
-		   where I.linkId.value = '3.3')QR
+		   where I.linkId.value = '3.4')QR
 		      return First(QR.answer).value
 
 define HER2Positive:
@@ -253,9 +253,9 @@ define adoTrastuzumabFinalDecision:
 define DocetaxelFinalDecision:
       if (("ChemoNotNeeded" = false)
             and ("DocetaxelMedication" = true)
-                  and (First("IsERPositive") = true)
-                     and (First("IsPRPositive")= true)
-                        and (First("IsHER2Positive")= true)
+                  and ("EstrogenReceptorPositive" = true)
+                     and ("ProgesteroneReceptorPositive"= true)
+                        and ("HER2Positive"= true)
                            and (First("LineOfTherapy")= 1)
                               and ("CancerStage" = true))
       then true

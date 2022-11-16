@@ -31,11 +31,17 @@ define "PresentQuestionLinkId":
     questionnaireInput.item["QuestionnaireItem"].linkId
 
 define "next-question":
-    if (("NextQuestionLinkId" is not null) 
-        and   (("NextQuestionLinkId" != 'BCTreatmentOption1')
-                or ("NextQuestionLinkId" != 'BCTreatmentOption2')
-                or ("NextQuestionLinkId" != 'BCTreatmentOption3')))
-    then "NextQuestionLinkId"
-        else if ("PresentQuestionLinkId" = 'PayerRecomendation') then "ResponseAnswer"
-            else if ("ResponseAnswer" is not null) then '6'
-                else ''
+    if exists("ResponseSubItem") then "ResponseAnswer" 
+        else 
+            if (("PresentQuestionLinkId" = 'BCTreatmentOption1')
+                    or ("PresentQuestionLinkId" = 'BCTreatmentOption2')
+                    or ("PresentQuestionLinkId" = 'BCTreatmentOption3'))
+                then '6'
+                    else if (("NextQuestionLinkId" is not null )
+                            and    (("PresentQuestionLinkId" != 'BCTreatmentOption1')
+                                    or ("PresentQuestionLinkId" != 'BCTreatmentOption2')
+                                    or ("PresentQuestionLinkId" != 'BCTreatmentOption3')))
+                        then  "NextQuestionLinkId"
+                            else ''
+                        
+

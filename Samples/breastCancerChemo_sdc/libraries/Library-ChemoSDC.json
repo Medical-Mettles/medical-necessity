@@ -32,21 +32,6 @@
       "codeFilter": [
         {
           "path": "code",
-          "code": [
-            {
-            "system": "www.loinc.org",
-            "code":"69548-6",
-            "display":"Genetic variant assessment"
-          }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "Observation",
-      "codeFilter": [
-        {
-          "path": "code",
           "valueSet": "2.16.840.1.113762.1.4.1116.320"
         }
         ]

@@ -24,9 +24,6 @@ parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
 
-define Service:
-	"ServiceRequest"
-
 define HomeHealthCare:
 	HomeHealth."HomeHealthCare"
 	
@@ -146,9 +143,7 @@ define QA34:
 define PrimaryDecision:
 	if (("AgencyDetails" = true)
 		and ("PlanOfCare" = true)
-		and ("FToFEncounter" = true)
-		and (First("QA32") = true)
-		and (First("QA34") = true))
+		and ("FToFEncounter" = true))
 		then true
 		else false
 

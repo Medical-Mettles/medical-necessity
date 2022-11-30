@@ -6,6 +6,7 @@
           "value": "medicare-HomeHealthService"
         }
       ],
+    "version": "1.0.0",
       "name": "HomeHealthService",
       "title": "HomeHealthService",
       "status": "draft",
@@ -17,9 +18,10 @@
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-          "valueCanonical": "Library/library-homehealth-HomeHealthService"
+          "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-homehealth-HomeHealthService"
         }
       ],
+      "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-homehealth-HomeHealthService",
       "contained": [
         {
           "resourceType": "ValueSet",
@@ -133,12 +135,54 @@
           ]
        },
        {
-          "linkId":"2",
-          "text":"Order Information",
+         "linkId": "2",
+         "text": "F2F Encounter",
+         "type": "group",
+         "item": [
+            {
+               "linkId":"2.1",
+               "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
+               "type":"boolean",
+               "required":true,
+               "extension":[
+                 {
+                    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                    "valueExpression" : {
+                      "language" : "text/cql",
+                      "expression" : "FToFEncounter"
+                    }
+                  }
+               ]
+            },
+            {
+               "linkId":"2.2",
+               "text":"Date of face-to-face encounter",
+               "type":"date",
+               "enableWhen":[
+                  {
+                     "question":"2.1",
+                     "answerBoolean":true
+                  }
+               ],
+               "extension":[
+                 {
+                    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                    "valueExpression" : {
+                      "language" : "text/cql",
+                      "expression" : "FToFEncounterDate"
+                    }
+                  }
+               ]
+            }
+         ]
+       },
+       {
+          "linkId":"3",
+          "text":"Reference Information and Dates",
           "type":"group",
           "item":[
              {
-                "linkId":"2.1",
+                "linkId":"3.1",
                 "text":"Benefit period requested",
                 "type":"choice",
                 "required":true,
@@ -165,23 +209,14 @@
                 ]
              },
              {
-                "linkId":"2.2",
-                "text":"Submission Date",
-                "type":"date",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"SubmissionDate"
-                        }
-                   }
-                ]
-             },
+               "linkId":"3.2",
+               "text":"Initial Start of care Date",
+               "type":"date",
+               "required":true
+            },
              {
-                "linkId":"2.4",
-                "text":"Start Date of the 60-day episode of care",
+                "linkId":"3.3",
+                "text":"Start Date of the episode of care",
                 "type":"date",
                 "required":true,
                 "extension":[
@@ -195,8 +230,8 @@
                 ]
              },
              {
-                "linkId":"2.5",
-                "text":"End Date of the 60-day episode of care",
+                "linkId":"3.4",
+                "text":"End Date of the episode of care",
                 "type":"date",
                 "required":true,
                 "extension":[
@@ -209,47 +244,21 @@
                    }
                 ]
              },
+             
              {
-                "linkId":"2.6",
-                "text":"Type of request",
-                "type":"open-choice",
-                "required":true,
-                "answerOption":[
-                   {
-                      "valueCoding":{
-                         "code":"Initial"
-                      }
-                   },
-                   {
-                      "valueCoding":{
-                         "code":"Resubmission review"
-                      }
-                   }
-                ],
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"TypeOfRequest"
-                        }
-                   }
-                ]
-             },
-             {
-                "linkId":"2.7",
+                "linkId":"3.5",
                 "text":"Is the number of episodes being requested more than one?",
                 "type":"boolean",
                 "required":true
              },
              {
-                "linkId":"2.8",
+                "linkId":"3.6",
                 "text":"Number of episodes being requested",
                 "type":"integer",
                 "required":true,
                 "enableWhen":[
                    {
-                      "question":"2.7",
+                      "question":"3.5",
                       "answerBoolean":true
                    }
                 ],
@@ -264,22 +273,1706 @@
                 ]
              },
              {
-                "linkId":"2.9",
-                "text":"State where service is rendered",
-                "type":"open-choice",
-                "required":true,
-                "answerValueSet": "#states",
-                "extension":[
+               "linkId":"3.7",
+               "text":"Patient HI Claim No",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"3.8",
+               "text":"Medical Record No",
+               "type":"text",
+               "required":true
+            }
+            
+          ]
+       },
+       {
+         "linkId":"4",
+         "text":"Advanced Directives",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"4.1",
+               "text":"Any Advanced Directives ?",
+               "type":"boolean",
+               "required":true
+            },
+            {
+               "linkId":"4.2",
+               "text":"Describe",
+               "type":"text",
+               "enableWhen":[
                   {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" :"start"
+                     "question":"4.1",
+                     "answerBoolean":true
+                  }
+               ],
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"5",
+         "text":"Pertinent Diagnoses",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"5.1",
+               "text":"ICD-10 CODE:",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"5.2",
+               "text":"Description",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"5.3",
+               "text":"Date when first diagnosed:",
+               "type":"date",
+               "required":true
+            },
+            {
+               "linkId":"5.4",
+               "text":"Status",
+               "type":"choice",
+               "required":true,
+               "answerOption": [
+                  {
+                    "valueCoding": {
+                        "code": "acute",
+                        "display": "Acute"
+                  }
+                },
+                  {
+                    "valueCoding": {
+                        "code": "chronic",
+                        "display": "Chronic"
+                    }
+                  },
+                  {
+                    "valueCoding": {
+                        "code": "acute-chronic",
+                        "display": "Acute-chronic"
+                    }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "resolving",
+                         "display": "Resolving"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "resolved",
+                         "display": "Resolved"
                      }
                   }
-                ]
-             }
-          ]
+               ]
+            }
+         ]
+       },
+       {
+         "linkId":"6",
+         "text":"Relevant Procedures",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"6.1",
+               "text":"HCPCS/CPT code:",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"6.2",
+               "text":"Description",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"6.3",
+               "text":"Date performed:",
+               "type":"date",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"7",
+         "text":"Pertinent Medications",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"7.1",
+               "text":"RxNorm code:",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"7.2",
+               "text":"Description",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"7.3",
+               "text":"Dose",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"7.4",
+               "text":"Frequency",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"7.5",
+               "text":"Route",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"7.6",
+               "text":"Status",
+               "type":"text",
+               "required":true,
+               "answerOption": [
+                  {
+                    "valueCoding": {
+                        "code": "New",
+                        "display": "New"
+                  }
+                },
+                  {
+                    "valueCoding": {
+                        "code": "Active",
+                        "display": "Active"
+                    }
+                  },
+                  {
+                    "valueCoding": {
+                        "code": "changed",
+                        "display": "Changed"
+                    }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Discontinued",
+                         "display": "Discontinued"
+                     }
+                  }
+               ]
+            }
+         ]
+       },
+       {
+         "linkId":"8",
+         "text":"Known Medication Allergies",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"8.1",
+               "text":"RxNorm code:",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"6.2",
+               "text":"Description",
+               "type":"text",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"9",
+         "text":"Functional Assessment",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"9.1",
+               "text":"Functional Limitations",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                    "valueCoding": {
+                        "code": "Amputation,",
+                        "display": "Amputation,"
+                  }
+                },
+                  {
+                    "valueCoding": {
+                        "code": "Bowel/bladder (Incontinence),",
+                        "display": "Bowel/bladder (Incontinence),"
+                    }
+                  },
+                  {
+                    "valueCoding": {
+                        "code": "Contracture",
+                        "display": "Contracture"
+                    }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Hearing",
+                         "display": "Hearing"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Paralysis",
+                         "display": "Paralysis"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Endurance",
+                         "display": "Endurance"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Speech",
+                         "display": "Speech"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Legally blind",
+                         "display": "Legally blind"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Dyspnea with minimal exertion",
+                         "display": "Dyspnea with minimal exertion"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Angina with minimal exertion or at rest",
+                         "display": "Angina with minimal exertion or at rest"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "CVA/hemiparalysis/paralysis/dysphonia",
+                         "display": "CVA/hemiparalysis/paralysis/dysphonia"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Confined to wheelchair",
+                         "display": "Confined to wheelchair"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Fall risk",
+                         "display": "Fall risk"
+                     }
+                  }
+               ]
+
+            },
+            {
+               "linkId":"9.2",
+               "text":"If Other Functional Limitations, Specify",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"9.3",
+               "text":"Activities Permitted",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Complete bedrest",
+                         "display": "Complete bedrest"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Bedrest BRP",
+                         "display": "Bedrest BRP"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Up as tolerated",
+                         "display": "Up as tolerated"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Transfer bed/chair",
+                         "display": "Transfer bed/chair"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Partial weight bearing",
+                         "display": "Partial weight bearing"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Independent at home",
+                         "display": "Independent at home"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Crutches",
+                         "display": "Crutches"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Cane",
+                         "display": "Cane"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Wheelchair",
+                         "display": "Wheelchair"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Walker",
+                         "display": "Walker"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "No restrictions",
+                         "display": "No restrictions"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"9.4",
+               "text":"Other activities permitted, Specify",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"9.5",
+               "text":"Mental Status",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Oriented",
+                         "display": "Oriented"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Comatose",
+                         "display": "Comatose"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Forgetful",
+                         "display": "Forgetful"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Depressed",
+                         "display": "Depressed"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Disoriented",
+                         "display": "Disoriented"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Lethargic",
+                         "display": "Lethargic"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Agitated",
+                         "display": "Agitated"
+                     }
+                  }
+                  
+               ]
+            },
+            {
+               "linkId":"9.6",
+               "text":"Other mental, psychosocial, and cognitive status observations",
+               "type":"text",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"10",
+         "text":"DME, Safety, and Nutritional Requirements",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"10.1",
+               "text":"DME and Supplies",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"10.2",
+               "text":"Safety measures",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"10.3",
+               "text":"Nutritional requirements",
+               "type":"text",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"11",
+         "text":"Prognosis",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"11.1",
+               "text":"Prognosis",
+               "type":"choice",
+               "required":true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Poor",
+                         "display": "Poor"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Guarded",
+                         "display": "Guarded"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Fair",
+                         "display": "Fair"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Good",
+                         "display": "Good"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Excellent",
+                         "display": "Excellent"
+                     }
+                  }   
+               ]
+            },
+            {
+               "linkId":"11.2",
+               "text":"Additional Clarification",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"11.3",
+               "text":"Description of risk for emergency department visits and hospital readmission",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"11.4",
+               "text":"Patient and caregiver education and training to facilitate timely discharge",
+               "type":"text",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"12",
+         "text":"Patient-specific interventions and education",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"12.1",
+               "text":"Interventions/Education",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"12.2",
+               "text":"Measurable Outcomes / Goals",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"12.3",
+               "text":"Status",
+               "type":"choice",
+               "required":true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Proposed",
+                         "display": "Proposed"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Accepted",
+                         "display": "Accepted"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Planned",
+                         "display": "Planned"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "In Progress",
+                         "display": "In Progress"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "On Target",
+                         "display": "On Target"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Ahead of Target",
+                         "display": "Ahead of Target"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Behind Target",
+                         "display": "Behind Target"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Sustaining",
+                         "display": "Sustaining"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Achieved",
+                         "display": "Achieved"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "On Hold",
+                         "display": "On Hold"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Cancelled",
+                         "display": "Cancelled"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Rejected",
+                         "display": "Rejected"
+                     }
+                  }
+               ]
+            }
+         ]
+       },
+       {
+         "linkId":"13",
+         "text":"Intermittent skilled nursing services ordered",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"13.1",
+               "text":"Intermittent skilled nursing services",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Administration of medications",
+                         "display": "Administration of medications"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Tube feeding ",
+                         "display": "Tube feeding "
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Wound care",
+                         "display": "Wound care"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Catheters",
+                         "display": "Catheters"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Ostomy care",
+                         "display": "Ostomy care"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "NG and tracheostomy aspiration/care",
+                         "display": "NG and tracheostomy aspiration/care"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Psychiatric evaluation and therapy ",
+                         "display": "Psychiatric evaluation and therapy "
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Teaching/training ",
+                         "display": "Teaching/training "
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Observe/assess",
+                         "display": "Observe/assess"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Complex care plan management",
+                         "display": "Complex care plan management"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Rehabilitation nursing",
+                         "display": "Rehabilitation nursing"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"13.2",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Administration of medications",
+                         "display": "Administration of medications"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.3",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Administration of medications",
+                         "display": "Administration of medications"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.4",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Tube feeding",
+                         "display": "Tube feeding"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.5",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Tube feeding",
+                         "display": "Tube feeding"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.6",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Wound care",
+                         "display": "Wound care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.7",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Wound care",
+                         "display": "Wound care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.8",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Catheters",
+                         "display": "Catheters"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.9",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Catheters",
+                         "display": "Catheters"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.10",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Ostomy care",
+                         "display": "Ostomy care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.11",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Ostomy care",
+                         "display": "Ostomy care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.12",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "NG and tracheostomy aspiration/care",
+                         "display": "NG and tracheostomy aspiration/care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.13",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "NG and tracheostomy aspiration/care",
+                         "display": "NG and tracheostomy aspiration/care"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.14",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Psychiatric evaluation and therapy",
+                         "display": "Psychiatric evaluation and therapy"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.15",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Psychiatric evaluation and therapy",
+                         "display": "Psychiatric evaluation and therapy"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.16",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Teaching/training",
+                         "display": "Teaching/training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.17",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Teaching/training",
+                         "display": "Teaching/training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.18",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Observe/assess",
+                         "display": "Observe/assess"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.19",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Observe/assess",
+                         "display": "Observe/assess"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.20",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Complex care plan management",
+                         "display": "Complex care plan management"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.21",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Complex care plan management",
+                         "display": "Complex care plan management"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.21",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Rehabilitation nursing",
+                         "display": "Rehabilitation nursing"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.22",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Rehabilitation nursing",
+                         "display": "Rehabilitation nursing"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.23",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.24",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.25",
+               "text":"Management and evaluation of the care plan or complex care plan management",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"14",
+         "text":"Therapy Services",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"14.1",
+               "text":"Physical Therapy",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Restore patient function",
+                         "display": "Restore patient function"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Perform maintenance therapy",
+                         "display": "Perform maintenance therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Gait and balance training",
+                         "display": "Gait and balance training"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"14.2",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.3",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.3",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Gait and balance training",
+                         "display": "Gait and balance training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.4",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Gait and balance training",
+                         "display": "Gait and balance training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.5",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.6",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.7",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"14.8",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "14.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"15",
+         "text":"Occupational therapy",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"15.1",
+               "text":"Occupational Therapy",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Restore patient function",
+                         "display": "Restore patient function"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Perform maintenance therapy",
+                         "display": "Perform maintenance therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"15.2",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"15.3",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "Therapeutic exercises",
+                         "display": "Therapeutic exercises"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            
+            {
+               "linkId":"15.4",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"15.5",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "ADL training",
+                         "display": "ADL training"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"15.6",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"15.7",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "15.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"16",
+         "text":"Speech Therapy",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"16.1",
+               "text":"Speech-language pathology",
+               "type":"choice",
+               "required":true,
+               "repeats": true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Restore language function",
+                         "display": "Restore language function"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Restore cognitive function",
+                         "display": "Restore cognitive function"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Swallowing",
+                         "display": "Swallowing"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Perform maintenance therapy",
+                         "display": "Perform maintenance therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"16.2",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Swallowing",
+                         "display": "Swallowing"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"16.3",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Swallowing",
+                         "display": "Swallowing"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            
+            {
+               "linkId":"16.4",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Perform maintenance therapy",
+                         "display": "Perform maintenance therapy"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"16.5",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Perform maintenance therapy",
+                         "display": "Perform maintenance therapy"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"16.6",
+               "text":"Frequency",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"16.7",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "16.1",
+                     "answerCoding": {
+                         "code": "Other",
+                         "display": "Other"
+                     }
+                 }
+               ],
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"17",
+         "text":"Other Services",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"17.1",
+               "text":"Home health aide services Frequency",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"17.2",
+               "text":"Home health aide services Duration",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"17.3",
+               "text":"Medical social services Frequency",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"17.4",
+               "text":"Medical social services Duration",
+               "type":"text",
+               "required":true
+            } 
+         ]
+       },
+       {
+         "linkId":"18",
+         "text":"Verbal Orders",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"18.1",
+               "text":"Date of Order",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"18.2",
+               "text":"Order Description",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"18.3",
+               "text":"Taken By",
+               "type":"text",
+               "required":true
+            }
+         ]
+       },
+       {
+         "linkId":"19",
+         "text":"Frequency Duration and Purpose of Visits",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"19.1",
+               "text":"Frequency",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.2",
+               "text":"Duration",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.3",
+               "text":"Purpose",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.4",
+               "text":"Additional Items from the HHA and/or physician",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.5",
+               "text":"Service/Intervention",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.6",
+               "text":"Rehabilitation potential",
+               "type":"text",
+               "required":true
+            },
+            {
+               "linkId":"19.7",
+               "text":"Discharge Plans",
+               "type":"text",
+               "required":true
+            }
+         ]
        },
        {
           "linkId":"3",
@@ -330,42 +2023,8 @@
                      }
                    }
                 ]
-             },
-             {
-                "linkId":"3.4",
-                "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "FToFEncounter"
-                     }
-                   }
-                ]
-             },
-             {
-                "linkId":"3.5",
-                "text":"Date of face-to-face encounter",
-                "type":"date",
-                "enableWhen":[
-                   {
-                      "question":"3.4",
-                      "answerBoolean":true
-                   }
-                ],
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "FToFEncounterDate"
-                     }
-                   }
-                ]
              }
+             
           ]
        }
     ]

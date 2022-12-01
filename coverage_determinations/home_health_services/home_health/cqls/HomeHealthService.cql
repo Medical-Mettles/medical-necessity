@@ -219,7 +219,6 @@ define "AllergyCode":
 define "AllergyDescription":
 	"RelevantAllergy".code.text
 
-
 define DeviceSpecified:
 	First([Device]D
 		where First(D.type.coding) in "Frailty Device"

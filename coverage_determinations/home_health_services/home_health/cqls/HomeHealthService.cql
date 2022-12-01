@@ -17,6 +17,9 @@ valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.19
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Frailty Device": '2.16.840.1.113883.3.464.1003.118.11.1114'
 valueset "Rehabilitation Services": '2.16.840.1.113883.3.117.1.7.1.221'
+valueset "Procedures Performed": '2.16.840.1.113762.1.4.1195.30'
+valueset "Medication Clinical Drug": '2.16.840.1.113762.1.4.1195.62'
+valueset "ACE inhibitor allergy/intolerance codes": '2.16.840.1.113762.1.4.1078.45'
 
 parameter "ServiceRequest" ServiceRequest
 
@@ -140,6 +143,82 @@ define Mobility:
         where exists(C.code.coding C where C in "Immobilization")
             and First(C.clinicalStatus.coding).code.value = 'active'
             and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+
+//PERTINENT CONDITIONS
+
+define PertinentCondition:
+	First([Condition]C
+        where exists(C.code.coding C 
+						where (C in "Serious or Life Threatening Illness"
+							  or C in "Immobilization"))
+            and First(C.clinicalStatus.coding).code.value = 'active'
+            and First(C.verificationStatus.coding).code.value = 'confirmed')
+
+define PertinentConditionCode:
+	First("PertinentCondition".code.coding).code
+
+define PertinentConditionDescription:
+	"PertinentCondition".code.text
+
+define DateOfDiagnosis:
+	ToDate("Normalize Interval"("PertinentCondition".onset))
+
+//PROCEDURES
+
+define RelevantProcedure:
+	First([Procedure]P where P.status.value = 'completed'
+		and exists(P.code.coding C where C in "Procedures Performed"))
+
+define ProcedureCode:
+	First("RelevantProcedure".code.coding).code
+
+define ProcedureDescription:
+	"RelevantProcedure".code.text
+
+define DateOfProcedurePerformed:
+	ToDate(start of "Normalize Interval"("PertinentCondition".occurrence))
+
+//MEDICATIONS:
+
+define RelevantMedication:
+  First([MedicationAdministration]M
+	where M.status.value = 'completed'
+	and (First(M.medication.concept.coding) in "Medication Clinical Drug"
+		or First([Medication]med
+							where M.medication.reference.value = 'Medication/'+med.id.value
+							and (First(med.code.coding) in "Medication Clinical Drug") is not null
+				) is not null
+			) is not null)
+
+define MedicationCode:
+	First("RelevantMedication".medication.concept.coding).code
+
+define MedicationDescription:
+	"RelevantMedication".medication.concept.text
+
+define MedicationDose:
+	"RelevantMedication".dosage.dose
+
+define MedicationRoute:
+	"RelevantMedication".dosage.route.text
+
+define MedicationFrequency:
+	("RelevantMedication".dosage.rate as SimpleQuantity)
+
+//ALLERGIES
+
+define "RelevantAllergy":
+	First([AllergyIntolerance]A
+		where First(A.clinicalStatus.coding).code.value = 'active'
+    and exists(A.code.coding x where x in "ACE inhibitor allergy/intolerance codes")) 
+
+define "AllergyCode":
+	First("RelevantAllergy".code.coding).code
+
+define "AllergyDescription":
+	"RelevantAllergy".code.text
+
 
 define DeviceSpecified:
 	First([Device]D

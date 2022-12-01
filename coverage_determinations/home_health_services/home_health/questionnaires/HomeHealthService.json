@@ -18,10 +18,10 @@
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-          "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-homehealth-HomeHealthService"
+          "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-homehealth-HomeHealthService"
         }
       ],
-      "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-homehealth-HomeHealthService",
+      "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-homehealth-HomeHealthService",
       "contained": [
         {
           "resourceType": "ValueSet",

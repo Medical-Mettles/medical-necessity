@@ -23,132 +23,21 @@ parameter "ServiceRequest" ServiceRequest
 parameter "QuestionnaireResponse" QuestionnaireResponse
 
 context Patient
-
-define HomeHealthCare:
-	HomeHealth."HomeHealthCare"
 	
-define Agency: 
-	HomeHealth."Agency"
-    
-define AgencyName: 
-    HomeHealth."AgencyName"
+define "prior-auth":
+  true
 
-define AgencyNPI: 
-	HomeHealth."AgencyNPI"
-    
-define AgencyPTAN:
-	HomeHealth."AgencyPTAN"
+define "documentation":
+  false
 
-define CMSCertificationNumber: 
-	HomeHealth."CMSCertificationNumber"
-
-define AgencyAddressObject:  
-    HomeHealth."AgencyAddressObject"
-
-define AgencyLineAddress: 
-	HomeHealth."AgencyLineAddress"
-	
-define AgencyCityAddress: 
-	HomeHealth."AgencyCityAddress"
-	
-define AgencyStateAddress: 
-	HomeHealth."AgencyStateAddress"
-	
-define AgencyPostalAddress: 
-	HomeHealth."AgencyPostalAddress"
-
-define AgencyAddress: 
-	HomeHealth."AgencyAddress"
-
-define SubmissionDate: 
-	HomeHealth."SubmissionDate"
-
-define Episode: 
-	HomeHealth."Episode"
-
-define EncounterResource:
-	HomeHealth."EncounterResource"
-
-define EncPractitioner:
-    HomeHealth."EncPractitioner"
-
-define FacetoFaceEncounter:
-	HomeHealth."FacetoFaceEncounter"
+define "dtr-clin":
+  true
 
 define FToFEncounter:
 	HomeHealth."FToFEncounter"
 
-define FToFEncounterDate:
-	HomeHealth."FToFEncounterDate"
-
-define EpisodeEncounter: 
-	HomeHealth."EpisodeEncounter"
-
-define UnderCare:
-	HomeHealth."UnderCare"
-
-define StartDateEpisode: 
-	HomeHealth."StartDateEpisode"
-	
-define EndDate: 
-	HomeHealth."EndDate" 
-
-define state: 
-	HomeHealth."state"
-
-define InabilityToLeaveHome: 
-	HomeHealth."InabilityToLeaveHome"
-
-define Mobility:
-	HomeHealth."Mobility"
-	
-define DeviceSpecified:
-	HomeHealth."DeviceSpecified"
-
-define DeviceUsage:
-	HomeHealth."DeviceUsage"
-
-define AgencyDetails:
-	if (("AgencyName" is not null)
-		and ("AgencyNPI" is not null)
-		and ("AgencyPTAN" is not null)
-		and ("CMSCertificationNumber" is not null)
-		and ("AgencyAddress" is not null))
-		then true
-		else false
-
-define PlanOfCare:
-	if (("Episode" is not null)
-		and ("UnderCare" is not null)
-		and ("StartDateEpisode" is not null)
-		and ("state" is not null)
-		and (("InabilityToLeaveHome" is not null)
-				or ("DeviceUsage" = true)))
-		then true
-		else false
-
-define QT:
-	"QuestionnaireResponse".item
-
-define QA32:
-	("QT".item I
-		where I.linkId.value = '3.2')QR
-		return First(QR.answer).value
-
-define QA34:
-	("QT".item I
-		where I.linkId.value = '3.4')QR
-		return First(QR.answer).value
-
-define PrimaryDecision:
-	if (("AgencyDetails" = true)
-		and ("PlanOfCare" = true)
-		and ("FToFEncounter" = true))
-		then true
-		else false
-
 define FinalDecision:
-	if ("PrimaryDecision" = true)
+	if ("FToFEncounter" = true)
 	then 'YES'
 	else 'NO'
 	

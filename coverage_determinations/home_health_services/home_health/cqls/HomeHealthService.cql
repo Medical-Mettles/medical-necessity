@@ -105,7 +105,7 @@ define FToFEncounter:
 	else false
 
 
-define FToFEncounterDate:
+/*define FToFEncounterDate:
 	ToDate(start of "Normalize Interval"("FacetoFaceEncounter".period))
 
 define EpisodeEncounter: 
@@ -237,7 +237,7 @@ define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.
 	else if onset is FHIR.Age then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
-	else null
+	else null*/
 	
 
 

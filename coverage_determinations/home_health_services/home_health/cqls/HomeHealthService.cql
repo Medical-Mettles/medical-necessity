@@ -96,8 +96,8 @@ define FacetoFaceEncounter:
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
-	and (F2FEncounter.period starts 90 days before "StartDateEpisode"
-		or F2FEncounter.period starts 30 days after "StartDateEpisode")
+	/*and (F2FEncounter.period starts 90 days before "StartDateEpisode"
+		or F2FEncounter.period starts 30 days after "StartDateEpisode")*/
 
 define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
@@ -177,7 +177,7 @@ define ProcedureDescription:
 	"RelevantProcedure".code.text
 
 define DateOfProcedurePerformed:
-	ToDate(start of "Normalize Interval"("PertinentCondition".occurrence))
+	ToDate(start of "Normalize Interval"("RelevantProcedure".occurrence))
 
 //MEDICATIONS:
 

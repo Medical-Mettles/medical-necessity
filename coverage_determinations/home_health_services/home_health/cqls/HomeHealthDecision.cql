@@ -34,7 +34,7 @@ define "dtr-clin":
   true
 
 define FToFEncounter:
-	HomeHealth."FToFEncounter"
+	true
 
 define FinalDecision:
 	if ("FToFEncounter" = true)

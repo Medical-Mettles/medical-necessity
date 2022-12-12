@@ -192,19 +192,46 @@
                "linkId":"5.1",
                "text":"ICD-10 CODE:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"PertinentConditionCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"PertinentConditionDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.3",
                "text":"Date when first diagnosed:",
                "type":"date",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"DateOfDiagnosis"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.4",
@@ -255,19 +282,46 @@
                "linkId":"6.1",
                "text":"HCPCS/CPT code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"ProcedureCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"6.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"ProcedureDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"6.3",
                "text":"Date performed:",
                "type":"date",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"DateOfProcedurePerformed"
+                      }
+                 }
+              ]
             }
          ]
        },
@@ -280,31 +334,76 @@
                "linkId":"7.1",
                "text":"RxNorm code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.3",
                "text":"Dose",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationDose"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.4",
                "text":"Frequency",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationFrequency"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.5",
                "text":"Route",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationRoute"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.6",
@@ -349,13 +448,31 @@
                "linkId":"8.1",
                "text":"RxNorm code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"AllergyCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"8.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"AllergyDescription"
+                      }
+                 }
+              ]
             }
          ]
        },

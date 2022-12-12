@@ -34,7 +34,7 @@ define "dtr-clin":
   true
 
 define FToFEncounter:
-	true
+	false
 
 define FinalDecision:
 	if ("FToFEncounter" = true)

@@ -17,9 +17,6 @@ valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.19
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Frailty Device": '2.16.840.1.113883.3.464.1003.118.11.1114'
 valueset "Rehabilitation Services": '2.16.840.1.113883.3.117.1.7.1.221'
-valueset "Procedures Performed": '2.16.840.1.113762.1.4.1195.30'
-valueset "Medication Clinical Drug": '2.16.840.1.113762.1.4.1195.62'
-valueset "ACE inhibitor allergy/intolerance codes": '2.16.840.1.113762.1.4.1078.45'
 valueset "Home Health Procedure": '2.16.840.1.113762.1.4.1219.104'
 
 parameter "ServiceRequest" ServiceRequest
@@ -105,8 +102,7 @@ define DateOfDiagnosis:
 //PROCEDURES
 
 define RelevantProcedure:
-	First([Procedure]P where P.status.value = 'completed'
-		and exists(P.code.coding C where C in "Procedures Performed"))
+	Last([Procedure]P where P.status.value = 'completed')
 
 define ProcedureCode:
 	First("RelevantProcedure".code.coding).code
@@ -120,14 +116,8 @@ define DateOfProcedurePerformed:
 //MEDICATIONS:
 
 define RelevantMedication:
-  First([MedicationAdministration]M
-	where M.status.value = 'completed'
-	and (First(M.medication.concept.coding) in "Medication Clinical Drug"
-		or First([Medication]med
-							where M.medication.reference.value = 'Medication/'+med.id.value
-							and (First(med.code.coding) in "Medication Clinical Drug") is not null
-				) is not null
-			) is not null)
+  Last([MedicationAdministration]M
+	where M.status.value = 'completed')
 
 define MedicationCode:
 	First("RelevantMedication".medication.concept.coding).code
@@ -135,37 +125,26 @@ define MedicationCode:
 define MedicationDescription:
 	"RelevantMedication".medication.concept.text
 
-define MedicationDose:
+/*define MedicationDose:
 	"RelevantMedication".dosage.dose
 
 define MedicationRoute:
 	"RelevantMedication".dosage.route.text
 
 define MedicationFrequency:
-	("RelevantMedication".dosage.rate as SimpleQuantity)
+	("RelevantMedication".dosage.rate as SimpleQuantity)*/
 
 //ALLERGIES
 
 define "RelevantAllergy":
 	First([AllergyIntolerance]A
-		where First(A.clinicalStatus.coding).code.value = 'active'
-    and exists(A.code.coding x where x in "ACE inhibitor allergy/intolerance codes")) 
+		where First(A.clinicalStatus.coding).code.value = 'active') 
 
 define "AllergyCode":
 	First("RelevantAllergy".code.coding).code
 
 define "AllergyDescription":
 	"RelevantAllergy".code.text
-
-define DeviceSpecified:
-	First([Device]D
-		where First(D.type.coding) in "Frailty Device"
-			and D.status.value = 'active')
-
-define DeviceUsage:
-	exists([DeviceUseStatement]D
-		where D.device.reference.value = 'Device' + "DeviceSpecified".id.value
-		and D.status.value = 'active')
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

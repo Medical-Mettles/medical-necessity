@@ -79,6 +79,7 @@
                "enableWhen":[
                   {
                      "question":"2.1",
+                     "operator": "=",
                      "answerBoolean":true
                   }
                ],
@@ -176,6 +177,7 @@
                "enableWhen":[
                   {
                      "question":"4.1",
+                     "operator":"=",
                      "answerBoolean":true
                   }
                ],
@@ -904,6 +906,54 @@
          ]
        },
        {
+         "linkId":"20",
+         "text":"Clinical Information",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"20.1",
+               "text":"Type of skilled services needed",
+               "type":"choice",
+               "required":true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Nursing Services",
+                         "display": "Nursing Services"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Physical Therapy",
+                         "display": "Physical Therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Occupational Therapy",
+                         "display": "Occupational Therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Speech Therapy",
+                         "display": "Speech Therapy"
+                     }
+                  }
+               ],
+               "extension":[
+                 {
+                    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                    "valueExpression" : {
+                      "language" : "text/cql",
+                      "expression" : "NeedSkilledServices"
+                    }
+                  }
+               ]
+            } 
+         ]
+      },
+       {
          "linkId":"13",
          "text":"Intermittent skilled nursing services ordered",
          "type":"group",
@@ -1389,6 +1439,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Nursing Services",
+                   "display": "Nursing Services"
+               }
+           }
          ]
        },
        {
@@ -1569,6 +1629,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Physical Therapy",
+                   "display": "Physical Therapy"
+               }
+           }
          ]
        },
        {
@@ -1712,6 +1782,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Occupational Therapy",
+                   "display": "Occupational Therapy"
+               }
+           }
          ]
        },
        {
@@ -1855,6 +1935,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Speech Therapy",
+                   "display": "Speech Therapy"
+               }
+           }
          ]
        },
        {
@@ -1961,60 +2051,8 @@
                "required":true
             }
          ]
-       },
-       {
-          "linkId":"3",
-          "text":"Clinical Information",
-          "type":"group",
-          "item":[
-             {
-                "linkId":"3.1",
-                "text":"Is the beneficiary confined to the home at the time of services?",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" :"InabilityToLeaveHome"
-                     }
-                  }
-                ]
-             },
-             {
-                "linkId":"3.2",
-                "text":"Is the beneficiary receiving services under a plan of care established and periodically reviewed by a physician?",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "UnderCare"
-                     }
-                   }
-                ]
-             },
-             {
-                "linkId":"3.3",
-                "text":"Is the beneficiary in need of skilled services",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "NeedSkilledServices"
-                     }
-                   }
-                ]
-             }
-             
-          ]
        }
+       
     ]
  }
  

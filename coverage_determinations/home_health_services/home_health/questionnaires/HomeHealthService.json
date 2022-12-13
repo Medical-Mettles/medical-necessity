@@ -53,88 +53,6 @@
       ],
     "item":[
        {
-          "linkId":"1",
-          "text":"Home Health Agency Information",
-          "type":"group",
-          "item":[
-             {
-                "linkId":"1.1",
-                "text":"Agency Name",
-                "type":"string",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"AgencyName"
-                        }
-                   }
-                ]
-             },
-             {
-                "linkId":"1.2",
-                "text":"Agency’s NPI",
-                "type":"string",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"AgencyNPI"
-                        }
-                   }
-                ]
-             },
-             {
-                "linkId":"1.3",
-                "text":"CMS Certification Number",
-                "type":"string",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"CMSCertificationNumber"
-                        }
-                   }
-                ]
-             },
-             {
-                "linkId":"1.4",
-                "text":"Agency PTAN",
-                "type":"string",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"AgencyPTAN"
-                        }
-                   }
-                ]
-             },
-             {
-                "linkId":"1.5",
-                "text":"Agency’s Address",
-                "type":"string",
-                "required":true,
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"AgencyAddress"
-                        }
-                   }
-                ]
-             }
-          ]
-       },
-       {
          "linkId": "2",
          "text": "F2F Encounter",
          "type": "group",
@@ -161,6 +79,7 @@
                "enableWhen":[
                   {
                      "question":"2.1",
+                     "operator": "=",
                      "answerBoolean":true
                   }
                ],
@@ -209,13 +128,7 @@
                 ]
              },
              {
-               "linkId":"3.2",
-               "text":"Initial Start of care Date",
-               "type":"date",
-               "required":true
-            },
-             {
-                "linkId":"3.3",
+                "linkId":"3.2",
                 "text":"Start Date of the episode of care",
                 "type":"date",
                 "required":true,
@@ -230,7 +143,7 @@
                 ]
              },
              {
-                "linkId":"3.4",
+                "linkId":"3.3",
                 "text":"End Date of the episode of care",
                 "type":"date",
                 "required":true,
@@ -243,48 +156,7 @@
                         }
                    }
                 ]
-             },
-             
-             {
-                "linkId":"3.5",
-                "text":"Is the number of episodes being requested more than one?",
-                "type":"boolean",
-                "required":true
-             },
-             {
-                "linkId":"3.6",
-                "text":"Number of episodes being requested",
-                "type":"integer",
-                "required":true,
-                "enableWhen":[
-                   {
-                      "question":"3.5",
-                      "answerBoolean":true
-                   }
-                ],
-                "extension":[
-                    {
-                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                        "valueExpression" : {
-                          "language" : "text/cql",
-                          "expression" :"NumofEpisodes"
-                        }
-                   }
-                ]
-             },
-             {
-               "linkId":"3.7",
-               "text":"Patient HI Claim No",
-               "type":"text",
-               "required":true
-            },
-            {
-               "linkId":"3.8",
-               "text":"Medical Record No",
-               "type":"text",
-               "required":true
-            }
-            
+             }
           ]
        },
        {
@@ -305,6 +177,7 @@
                "enableWhen":[
                   {
                      "question":"4.1",
+                     "operator":"=",
                      "answerBoolean":true
                   }
                ],
@@ -321,19 +194,46 @@
                "linkId":"5.1",
                "text":"ICD-10 CODE:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"PertinentConditionCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"PertinentConditionDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.3",
                "text":"Date when first diagnosed:",
                "type":"date",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"DateOfDiagnosis"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"5.4",
@@ -384,19 +284,46 @@
                "linkId":"6.1",
                "text":"HCPCS/CPT code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"ProcedureCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"6.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"ProcedureDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"6.3",
                "text":"Date performed:",
                "type":"date",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"DateOfProcedurePerformed"
+                      }
+                 }
+              ]
             }
          ]
        },
@@ -409,31 +336,76 @@
                "linkId":"7.1",
                "text":"RxNorm code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationCode"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationDescription"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.3",
                "text":"Dose",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationDose"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.4",
                "text":"Frequency",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationFrequency"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.5",
                "text":"Route",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationRoute"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"7.6",
@@ -478,13 +450,31 @@
                "linkId":"8.1",
                "text":"RxNorm code:",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"AllergyCode"
+                      }
+                 }
+              ]
             },
             {
-               "linkId":"6.2",
+               "linkId":"8.2",
                "text":"Description",
                "type":"text",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"AllergyDescription"
+                      }
+                 }
+              ]
             }
          ]
        },
@@ -502,14 +492,14 @@
                "answerOption": [
                   {
                     "valueCoding": {
-                        "code": "Amputation,",
-                        "display": "Amputation,"
-                  }
-                },
+                        "code": "Amputation",
+                        "display": "Amputation"
+                    }
+                  },
                   {
                     "valueCoding": {
-                        "code": "Bowel/bladder (Incontinence),",
-                        "display": "Bowel/bladder (Incontinence),"
+                        "code": "Bowel/bladder (Incontinence)",
+                        "display": "Bowel/bladder (Incontinence)"
                     }
                   },
                   {
@@ -915,6 +905,54 @@
             }
          ]
        },
+       {
+         "linkId":"20",
+         "text":"Clinical Information",
+         "type":"group",
+         "item":[
+            {
+               "linkId":"20.1",
+               "text":"Type of skilled services needed",
+               "type":"choice",
+               "required":true,
+               "answerOption": [
+                  {
+                     "valueCoding": {
+                         "code": "Nursing Services",
+                         "display": "Nursing Services"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Physical Therapy",
+                         "display": "Physical Therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Occupational Therapy",
+                         "display": "Occupational Therapy"
+                     }
+                  },
+                  {
+                     "valueCoding": {
+                         "code": "Speech Therapy",
+                         "display": "Speech Therapy"
+                     }
+                  }
+               ],
+               "extension":[
+                 {
+                    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                    "valueExpression" : {
+                      "language" : "text/cql",
+                      "expression" : "NeedSkilledServices"
+                    }
+                  }
+               ]
+            } 
+         ]
+      },
        {
          "linkId":"13",
          "text":"Intermittent skilled nursing services ordered",
@@ -1401,6 +1439,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Nursing Services",
+                   "display": "Nursing Services"
+               }
+           }
          ]
        },
        {
@@ -1581,6 +1629,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Physical Therapy",
+                   "display": "Physical Therapy"
+               }
+           }
          ]
        },
        {
@@ -1724,6 +1782,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Occupational Therapy",
+                   "display": "Occupational Therapy"
+               }
+           }
          ]
        },
        {
@@ -1867,6 +1935,16 @@
                ],
                "required":true
             }
+         ],
+         "enableWhen":[
+            {
+               "operator": "=",
+               "question": "20.1",
+               "answerCoding": {
+                   "code": "Speech Therapy",
+                   "display": "Speech Therapy"
+               }
+           }
          ]
        },
        {
@@ -1973,60 +2051,8 @@
                "required":true
             }
          ]
-       },
-       {
-          "linkId":"3",
-          "text":"Clinical Information",
-          "type":"group",
-          "item":[
-             {
-                "linkId":"3.1",
-                "text":"Is the beneficiary confined to the home at the time of services?",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" :"InabilityToLeaveHome"
-                     }
-                  }
-                ]
-             },
-             {
-                "linkId":"3.2",
-                "text":"Is the beneficiary receiving services under a plan of care established and periodically reviewed by a physician?",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "UnderCare"
-                     }
-                   }
-                ]
-             },
-             {
-                "linkId":"3.3",
-                "text":"Is the beneficiary in need of skilled services",
-                "type":"boolean",
-                "required":true,
-                "extension":[
-                  {
-                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-                     "valueExpression" : {
-                       "language" : "text/cql",
-                       "expression" : "NeedSkilledServices"
-                     }
-                   }
-                ]
-             }
-             
-          ]
        }
+       
     ]
  }
  

@@ -37,13 +37,16 @@
               ]
           },
           {
-            "type": "Device",
-            "codeFilter": [
-              {
-                "path": "type",
-                "valueSet": "2.16.840.1.113883.3.464.1003.118.11.1114"
-              }
-              ]
+            "type": "Procedure"
+          },
+          {
+            "type": "MedicationAdministration"
+          },
+          {
+            "type": "AllergyIntolerance"
+          },
+          {
+            "type": "CarePlan"
           }
     ]
   }

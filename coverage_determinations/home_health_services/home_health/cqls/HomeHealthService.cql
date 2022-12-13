@@ -17,65 +17,14 @@ valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.19
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Frailty Device": '2.16.840.1.113883.3.464.1003.118.11.1114'
 valueset "Rehabilitation Services": '2.16.840.1.113883.3.117.1.7.1.221'
-valueset "Procedures Performed": '2.16.840.1.113762.1.4.1195.30'
-valueset "Medication Clinical Drug": '2.16.840.1.113762.1.4.1195.62'
-valueset "ACE inhibitor allergy/intolerance codes": '2.16.840.1.113762.1.4.1078.45'
+valueset "Home Health Procedure": '2.16.840.1.113762.1.4.1219.104'
 
 parameter "ServiceRequest" ServiceRequest
 
 context Patient
 
-define Service:
-	First("ServiceRequest".performer).reference.value
-
-define HomeHealthCare:
-	"ServiceRequest".performer P where P.type.value = 'Organization'
-	
-// Agency info
-define Agency: 
-	First([Organization]agency 
-		where 'Organization/' + agency.id.value = First("ServiceRequest".performer).reference.value)
-    
-define AgencyName: "Agency".name.value
-
-define AgencyNPI: 
-	(First("Agency".identifier identifier
-    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
-    
-define AgencyPTAN:
-	(First("Agency".identifier identifier
-    		where First(identifier.type.coding).code.value = 'TAX')).type.text.value
-
-define CMSCertificationNumber: 
-	(First(
-  		"Agency".identifier Certification
-    			where First(Certification.type.coding).code.value = 'CMS certification number (CCN) Agency [OASIS]')).value.value
-
-define AgencyAddressObject: First("Agency".address) 
-
-define AgencyLineAddress: 
-	First(First("Agency".address).line)
-	
-define AgencyCityAddress: 
-	First("Agency".address).city.value
-	
-define AgencyStateAddress: 
-	First("Agency".address).state.value
-	
-define AgencyPostalAddress: 
-	First("Agency".address).postalCode.value
-
-define AgencyAddress: 
-	First(First("Agency".address).line)+ ', ' + First("Agency".address).city.value +', ' + First("Agency".address).state.value+ ', ' + First("Agency".address).postalCode.value
-
 define SubmissionDate: 
 		Today()
-
-define Episode: 
-	First([EpisodeOfCare] e 
-			where e.patient.reference.value = 'Patient/'+ Patient.id.value 
-				and First(First(e.type).coding).code.value = 'hacc'
-				and e.managingOrganization.reference.value = 'Organization' + "Agency".id.value)
 
 define EncounterResource:
 	First([Encounter]E where 'Encounter/' + E.id.value = "ServiceRequest".encounter.reference.value )
@@ -96,53 +45,39 @@ define FacetoFaceEncounter:
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
-	/*and (F2FEncounter.period starts 90 days before "StartDateEpisode"
-		or F2FEncounter.period starts 30 days after "StartDateEpisode")*/
+			and (F2FEncounter.period starts 90 days before "StartDateEpisode"
+				or F2FEncounter.period starts 30 days after "StartDateEpisode")
 
 define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
 	then true
 	else false
 
-
-/*define FToFEncounterDate:
-	ToDate(start of "Normalize Interval"("FacetoFaceEncounter".period))
-
-define EpisodeEncounter: 
-	First([Encounter]e where e.subject.reference.value = 'Patient/'+ Patient.id.value 
-		and First(e.classHistory).class.code.value = 'HH' 
-		and First(e.classHistory).class.system.value = 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
-		and e.period during "Episode".period)
-
-define UnderCare:
-	if ("EpisodeEncounter" is not null)
-	then true
-	else false
-
+define CarePlan:
+	First([CarePlan] P
+			where exists(P.category.coding C where C in "Home Health Procedure")
+			and P.status.value = 'active'
+			and P.intent.value = 'order')
 
 define StartDateEpisode: 
-	ToDate(start of "Normalize Interval"("Episode".period))
-	
+	ToDate(start of "Normalize Interval"("CarePlan".period))
+
+define FToFEncounterDate:
+	ToDate(start of "Normalize Interval"("FacetoFaceEncounter".period))
 
 define EndDate: 
-	ToDate(start of "Normalize Interval"("Episode".period))
+	ToDate(start of "Normalize Interval"("CarePlan".period))
 
+define TypeOfBenefitPeriod:
+	First([CarePlan] P
+			where exists(P.category.coding C where C in "Home Health Procedure")
+			and P.status.value = 'active'
+			and P.intent.value = 'on-hold','revoked', 'completed'))
 
-define state: 
-	Patient.address[0].state.value
-
-
-define InabilityToLeaveHome: 
-	First([Condition]C
-        where exists(C.code.coding C where C in "Serious or Life Threatening Illness")
-            and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
-
-define Mobility:
-	First([Condition]C
-        where exists(C.code.coding C where C in "Immobilization")
-            and First(C.clinicalStatus.coding).code.value = 'active'
-            and First(C.verificationStatus.coding).code.value = 'confirmed')
+define BenefitPeriodType:
+	if("TypeOfBenefitPeriod" is not null)
+		then true
+		else false
 
 
 //PERTINENT CONDITIONS
@@ -167,8 +102,7 @@ define DateOfDiagnosis:
 //PROCEDURES
 
 define RelevantProcedure:
-	First([Procedure]P where P.status.value = 'completed'
-		and exists(P.code.coding C where C in "Procedures Performed"))
+	Last([Procedure]P where P.status.value = 'completed')
 
 define ProcedureCode:
 	First("RelevantProcedure".code.coding).code
@@ -182,14 +116,8 @@ define DateOfProcedurePerformed:
 //MEDICATIONS:
 
 define RelevantMedication:
-  First([MedicationAdministration]M
-	where M.status.value = 'completed'
-	and (First(M.medication.concept.coding) in "Medication Clinical Drug"
-		or First([Medication]med
-							where M.medication.reference.value = 'Medication/'+med.id.value
-							and (First(med.code.coding) in "Medication Clinical Drug") is not null
-				) is not null
-			) is not null)
+  Last([MedicationAdministration]M
+	where M.status.value = 'completed')
 
 define MedicationCode:
 	First("RelevantMedication".medication.concept.coding).code
@@ -197,37 +125,26 @@ define MedicationCode:
 define MedicationDescription:
 	"RelevantMedication".medication.concept.text
 
-define MedicationDose:
+/*define MedicationDose:
 	"RelevantMedication".dosage.dose
 
 define MedicationRoute:
 	"RelevantMedication".dosage.route.text
 
 define MedicationFrequency:
-	("RelevantMedication".dosage.rate as SimpleQuantity)
+	("RelevantMedication".dosage.rate as SimpleQuantity)*/
 
 //ALLERGIES
 
 define "RelevantAllergy":
 	First([AllergyIntolerance]A
-		where First(A.clinicalStatus.coding).code.value = 'active'
-    and exists(A.code.coding x where x in "ACE inhibitor allergy/intolerance codes")) 
+		where First(A.clinicalStatus.coding).code.value = 'active') 
 
 define "AllergyCode":
 	First("RelevantAllergy".code.coding).code
 
 define "AllergyDescription":
 	"RelevantAllergy".code.text
-
-define DeviceSpecified:
-	First([Device]D
-		where First(D.type.coding) in "Frailty Device"
-			and D.status.value = 'active')
-
-define DeviceUsage:
-	exists([DeviceUseStatement]D
-		where D.device.reference.value = 'Device' + "DeviceSpecified".id.value
-		and D.status.value = 'active')
 
 define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
   if onset is FHIR.dateTime then

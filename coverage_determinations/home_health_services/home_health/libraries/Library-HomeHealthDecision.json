@@ -22,33 +22,36 @@
       }
     ],
     "dataRequirement": [
-        {
-            "type": "Condition",
-            "codeFilter": [
-              {
-                "path": "code",
-                "valueSet": "2.16.840.1.113883.17.4077.3.2006"
-              }
-              ]
-          },
+      {
+        "type": "Condition",
+        "codeFilter": [
           {
-            "type": "Condition",
-            "codeFilter": [
-              {
-                "path": "code",
-                "valueSet": "2.16.840.1.113883.3.464.1003.199.12.1055"
-              }
-              ]
-          },
-          {
-            "type": "Device",
-            "codeFilter": [
-              {
-                "path": "type",
-                "valueSet": "2.16.840.1.113883.3.464.1003.118.11.1114"
-              }
-              ]
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.17.4077.3.2006"
           }
+          ]
+      },
+      {
+        "type": "Condition",
+        "codeFilter": [
+          {
+            "path": "code",
+            "valueSet": "2.16.840.1.113883.3.464.1003.199.12.1055"
+          }
+          ]
+      },
+      {
+        "type": "Procedure"
+      },
+      {
+        "type": "MedicationAdministration"
+      },
+      {
+        "type": "AllergyIntolerance"
+      },
+      {
+        "type": "CarePlan"
+      }
     ]
   }
   

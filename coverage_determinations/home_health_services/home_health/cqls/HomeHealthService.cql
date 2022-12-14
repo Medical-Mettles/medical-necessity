@@ -53,26 +53,27 @@ define FToFEncounter:
 	then true
 	else false
 
-define CarePlan:
+define QualifiedCarePlan:
 	First([CarePlan] P
 			where exists(P.category.coding C where C in "Home Health Procedure")
 			and P.status.value = 'active'
 			and P.intent.value = 'order')
 
 define StartDateEpisode: 
-	ToDate(start of "Normalize Interval"("CarePlan".period))
+	ToDate(start of "Normalize Interval"("QualifiedCarePlan".period))
 
 define FToFEncounterDate:
 	ToDate(start of "Normalize Interval"("FacetoFaceEncounter".period))
 
 define EndDate: 
-	ToDate(start of "Normalize Interval"("CarePlan".period))
+	ToDate(start of "Normalize Interval"("QualifiedCarePlan".period))
 
 define TypeOfBenefitPeriod:
 	First([CarePlan] P
 			where exists(P.category.coding C where C in "Home Health Procedure")
-			and P.status.value = 'active'
-			and P.intent.value = 'on-hold','revoked', 'completed'))
+			and (P.intent.value = 'on-hold'
+				or P.intent.value ='revoked'
+				or P.intent.value ='completed'))
 
 define BenefitPeriodType:
 	if("TypeOfBenefitPeriod" is not null)
@@ -97,7 +98,7 @@ define PertinentConditionDescription:
 	"PertinentCondition".code.text
 
 define DateOfDiagnosis:
-	ToDate("Normalize Interval"("PertinentCondition".onset))
+	"Normalize Interval"("PertinentCondition".onset)
 
 //PROCEDURES
 
@@ -111,7 +112,7 @@ define ProcedureDescription:
 	"RelevantProcedure".code.text
 
 define DateOfProcedurePerformed:
-	ToDate(start of "Normalize Interval"("RelevantProcedure".occurrence))
+	start of "Normalize Interval"("RelevantProcedure".performed)
 
 //MEDICATIONS:
 
@@ -120,10 +121,10 @@ define RelevantMedication:
 	where M.status.value = 'completed')
 
 define MedicationCode:
-	First("RelevantMedication".medication.concept.coding).code
+	First(("RelevantMedication".medication as CodeableConcept).coding).code
 
 define MedicationDescription:
-	"RelevantMedication".medication.concept.text
+	("RelevantMedication".medication as CodeableConcept).text
 
 /*define MedicationDose:
 	"RelevantMedication".dosage.dose
@@ -154,7 +155,7 @@ define function "Normalize Interval"(onset Choice<FHIR.dateTime, FHIR.Age, FHIR.
 	else if onset is FHIR.Age then
 	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age),
 		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(onset as FHIR.Age) + 1 year)
-	else null*/
+	else null
 	
 
 

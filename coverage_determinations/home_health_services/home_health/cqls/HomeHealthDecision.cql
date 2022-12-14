@@ -42,7 +42,7 @@ define FToFEncounter:
 	HomeHealth."FToFEncounter"
 
 define CarePlan:
-	HomeHealth."CarePlan"
+	HomeHealth."QualifiedCarePlan"
 
 define QualifyingCarePlan:
 	if ("CarePlan" is not null)

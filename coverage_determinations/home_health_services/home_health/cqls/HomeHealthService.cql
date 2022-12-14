@@ -118,7 +118,7 @@ define DateOfProcedurePerformed:
 
 define RelevantMedication:
   Last([MedicationAdministration]M
-	where M.status.value = 'completed')
+	where M.status.value = 'in-progress')
 
 define MedicationCode:
 	First(("RelevantMedication".medication as CodeableConcept).coding).code

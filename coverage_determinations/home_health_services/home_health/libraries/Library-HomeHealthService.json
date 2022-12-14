@@ -37,16 +37,49 @@
             ]
         },
         {
-          "type": "Procedure"
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "status",
+              "code": "completed"
+            }
+            ]
         },
         {
-          "type": "MedicationAdministration"
+          "type": "MedicationAdministration",
+          "codeFilter": [
+            {
+              "path": "status",
+              "code": "in-progress"
+            }
+            ]
         },
         {
-          "type": "AllergyIntolerance"
+          "type": "AllergyIntolerance",
+          "codeFilter": [
+            {
+              "path": "clinicalStatus",
+              "code": "active"
+            }
+            ]
         },
         {
-          "type": "CarePlan"
+          "type": "CarePlan",
+          "codeFilter": [
+            {
+              "path": "status",
+              "code": "active"
+            }
+            ]
+        },
+        {
+          "type": "CarePlan",
+          "codeFilter": [
+            {
+              "path": "intent",
+              "code": "order"
+            }
+            ]
         }
     ]
   }

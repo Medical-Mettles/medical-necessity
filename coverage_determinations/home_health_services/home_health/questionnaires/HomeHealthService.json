@@ -74,7 +74,7 @@
             },
             {
                "linkId":"2.2",
-               "text":"Date of face-to-face encounter",
+               "text":"Date of Face-to-Face encounter",
                "type":"date",
                "enableWhen":[
                   {

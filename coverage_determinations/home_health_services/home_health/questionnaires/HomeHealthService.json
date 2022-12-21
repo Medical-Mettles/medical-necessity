@@ -410,7 +410,7 @@
             {
                "linkId":"7.6",
                "text":"Status",
-               "type":"text",
+               "type":"choice",
                "required":true,
                "answerOption": [
                   {
@@ -568,7 +568,16 @@
                          "display": "Fall risk"
                      }
                   }
-               ]
+               ],
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"FunctionalLimitation"
+                      }
+                 }
+              ]
 
             },
             {

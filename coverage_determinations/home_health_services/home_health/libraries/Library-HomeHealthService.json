@@ -41,7 +41,7 @@
           "codeFilter": [
             {
               "path": "status",
-              "code": "completed"
+              "searchParam": "completed"
             }
             ]
         },
@@ -50,7 +50,7 @@
           "codeFilter": [
             {
               "path": "status",
-              "code": "in-progress"
+              "searchParam": "in-progress"
             }
             ]
         },
@@ -59,7 +59,7 @@
           "codeFilter": [
             {
               "path": "clinicalStatus",
-              "code": "active"
+              "searchParam": "active"
             }
             ]
         },
@@ -68,7 +68,7 @@
           "codeFilter": [
             {
               "path": "status",
-              "code": "active"
+              "searchParam": "active"
             }
             ]
         },
@@ -77,7 +77,7 @@
           "codeFilter": [
             {
               "path": "intent",
-              "code": "order"
+              "searchParam": "order"
             }
             ]
         }

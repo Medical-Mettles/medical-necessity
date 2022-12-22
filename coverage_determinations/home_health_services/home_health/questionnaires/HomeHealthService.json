@@ -19,6 +19,10 @@
         {
           "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
           "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-homehealth-HomeHealthService"
+        },
+        {
+         "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+         "valueBoolean": true
         }
       ],
       "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-homehealth-HomeHealthService",
@@ -245,8 +249,8 @@
                     "valueCoding": {
                         "code": "acute",
                         "display": "Acute"
-                  }
-                },
+                     }
+                  },
                   {
                     "valueCoding": {
                         "code": "chronic",
@@ -410,7 +414,7 @@
             {
                "linkId":"7.6",
                "text":"Status",
-               "type":"text",
+               "type":"choice",
                "required":true,
                "answerOption": [
                   {
@@ -568,7 +572,16 @@
                          "display": "Fall risk"
                      }
                   }
-               ]
+               ],
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"FunctionalLimitation"
+                      }
+                 }
+              ]
 
             },
             {

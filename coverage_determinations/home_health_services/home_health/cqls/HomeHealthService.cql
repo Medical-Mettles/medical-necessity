@@ -18,6 +18,23 @@ valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Frailty Device": '2.16.840.1.113883.3.464.1003.118.11.1114'
 valueset "Rehabilitation Services": '2.16.840.1.113883.3.117.1.7.1.221'
 valueset "Home Health Procedure": '2.16.840.1.113762.1.4.1219.104'
+valueset "Functional and Mobility Impairment SCT": '2.16.840.1.113762.1.4.1222.1401'
+valueset "Cognitive Impairment": '2.16.840.1.113883.3.464.1003.1186'
+valueset "Amputation Disorder ICD10CM": '2.16.840.1.113762.1.4.1219.162'
+valueset "Bladder Dysfunction": '2.16.840.1.113762.1.4.1034.488'
+valueset "Bowel Elimination Pattern": '2.16.840.1.113883.3.7643.3.1038'
+valueset "Muscle, Tendon or Joint Contracture Disorder": '2.16.840.1.113762.1.4.1219.154'
+valueset "Hearing Impairment": '2.16.840.1.113762.1.4.1222.592'
+valueset "Limb Paralysis [Monoplegia and Diplegia] [Unspecified Cause] (Disorders) (ICD10CM)": '2.16.840.1.113762.1.4.1146.1328'
+valueset "Walking or ambulation/locomotion (ADL/IADL)": '2.16.840.1.113762.1.4.1222.958'
+valueset "Language and Speech Problems": '2.16.840.1.113762.1.4.1222.1485'
+valueset "Blindness": '2.16.840.1.113883.3.464.1003.115.12.1089'
+valueset "Dyspnea": '2.16.840.1.113762.1.4.1182.47'
+valueset "Stable and Unstable Angina": '2.16.840.1.113762.1.4.1047.47'
+valueset "Cerebrovascular Disease Diagnosis":'2.16.840.1.113762.1.4.1222.1549'
+valueset "Physical Disability": '2.16.840.1.113762.1.4.1047.615'
+valueset "Fall Risk": '2.16.840.1.113762.1.4.1222.712'
+
 
 parameter "ServiceRequest" ServiceRequest
 
@@ -45,8 +62,8 @@ define FacetoFaceEncounter:
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'NP'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'CNS'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code.value = 'PA')
-			and (F2FEncounter.period starts 90 days before "StartDateEpisode"
-				or F2FEncounter.period starts 30 days after "StartDateEpisode")
+			and (F2FEncounter.period starts after  "StartDateEpisode" - 90 days
+				or F2FEncounter.period starts before "StartDateEpisode" - 30 days)
 
 define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
@@ -77,8 +94,8 @@ define TypeOfBenefitPeriod:
 
 define BenefitPeriodType:
 	if("TypeOfBenefitPeriod" is not null)
-		then true
-		else false
+		then 'Subsequent'
+		else 'Initial'
 
 
 //PERTINENT CONDITIONS
@@ -98,7 +115,108 @@ define PertinentConditionDescription:
 	"PertinentCondition".code.text
 
 define DateOfDiagnosis:
-	"Normalize Interval"("PertinentCondition".onset)
+	start of "Normalize Interval"("PertinentCondition".onset)
+
+define PertinentConditions:
+	[Condition]C
+        where exists(C.code.coding C 
+						where (C in "Serious or Life Threatening Illness"
+							  or C in "Immobilization"))
+            and First(C.clinicalStatus.coding).code.value = 'active'
+            and First(C.verificationStatus.coding).code.value = 'confirmed'
+
+define NoOfConditions:
+	Length("PertinentConditions")
+
+define ConditionCodes:
+	{First(First("PertinentConditions").code.coding).code , First("PertinentConditions"["NoOfConditions" -1].code.coding).code, First("PertinentConditions"["NoOfConditions" -2].code.coding).code}
+
+define FunctionalLimitation:
+		if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Amputation Disorder ICD10CM"))
+			then 'Amputation'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Bladder Dysfunction"
+							or P in "Bowel Elimination Pattern"))
+			then 'Bowel/bladder (Incontinence)'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Muscle, Tendon or Joint Contracture Disorder"))
+			then 'Contracture'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Hearing Impairment"))
+			then 'Hearing'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Limb Paralysis [Monoplegia and Diplegia] [Unspecified Cause] (Disorders) (ICD10CM)"))
+			then 'Paralysis'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Walking or ambulation/locomotion (ADL/IADL)"))
+			then 'Endurance'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Language and Speech Problems"))
+			then 'Speech'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Blindness"))
+			then 'Legally blind'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Dyspnea"))
+			then 'Dyspnea with minimal exertion'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Stable and Unstable Angina"))
+			then 'Angina with minimal exertion or at rest'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Cerebrovascular Disease Diagnosis"))
+			then 'CVA/hemiparalysis/paralysis/dysphonia'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Physical Disability"))
+			then 'Confined to wheelchair'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Fall Risk"))
+			then 'Fall risk'
+		else ''
+
+
+
+
+
+
+
+
+
+
+	// [Condition]C
+	// 	where exists(C.code.coding C 
+	// 					where (C in "Functional and Mobility Impairment SCT"
+	// 							or C in "Cognitive Impairment"
+	// 							or C in "Amputation Disorder ICD10CM"
+	// 							or C in "Bladder Dysfunction"
+	// 							or C in "Bowel Elimination Pattern"
+	// 							or C in "Muscle, Tendon or Joint Contracture Disorder"
+	// 							or C in "Hearing Impairment"
+	// 							or C in "Limb Paralysis [Monoplegia and Diplegia] [Unspecified Cause] (Disorders) (ICD10CM)"
+	// 							or C in "Walking or ambulation/locomotion (ADL/IADL)"
+	// 							or C in "Language and Speech Problems"
+	// 							or C in "Blindness"
+	// 							or C in "Dyspnea"
+	// 							or C in "Stable and Unstable Angina"
+	// 							or C in "Cerebrovascular Disease Diagnosis"
+	// 							or C in "Physical Disability"
+	// 							or C in "Fall Risk"))
+    //         and First(C.clinicalStatus.coding).code.value = 'active'
+    //         and First(C.verificationStatus.coding).code.value = 'confirmed'
+
 
 //PROCEDURES
 
@@ -126,14 +244,17 @@ define MedicationCode:
 define MedicationDescription:
 	("RelevantMedication".medication as CodeableConcept).text
 
-/*define MedicationDose:
-	"RelevantMedication".dosage.dose
+define MedicationDose:
+	"RelevantMedication".dosage.dose.value
 
 define MedicationRoute:
 	"RelevantMedication".dosage.route.text
 
-define MedicationFrequency:
-	("RelevantMedication".dosage.rate as SimpleQuantity)*/
+/*define MedicationFrequency:
+	("RelevantMedication".dosage.rate as Quantity)*/
+
+define MedicationStatus:
+	"RelevantMedication".status.value
 
 //ALLERGIES
 

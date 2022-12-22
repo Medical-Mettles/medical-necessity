@@ -94,8 +94,8 @@ define TypeOfBenefitPeriod:
 
 define BenefitPeriodType:
 	if("TypeOfBenefitPeriod" is not null)
-		then true
-		else false
+		then 'Subsequent'
+		else 'Initial'
 
 
 //PERTINENT CONDITIONS

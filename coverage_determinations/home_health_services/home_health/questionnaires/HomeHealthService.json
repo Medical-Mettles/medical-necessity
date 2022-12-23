@@ -57,12 +57,12 @@
       ],
     "item":[
        {
-         "linkId": "2",
+         "linkId": "1",
          "text": "F2F Encounter",
          "type": "group",
          "item": [
             {
-               "linkId":"2.1",
+               "linkId":"1.1",
                "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
                "type":"boolean",
                "required":true,
@@ -77,12 +77,12 @@
                ]
             },
             {
-               "linkId":"2.2",
+               "linkId":"1.2",
                "text":"Date of Face-to-Face encounter",
                "type":"date",
                "enableWhen":[
                   {
-                     "question":"2.1",
+                     "question":"1.1",
                      "operator": "=",
                      "answerBoolean":true
                   }
@@ -100,12 +100,12 @@
          ]
        },
        {
-          "linkId":"3",
+          "linkId":"2",
           "text":"Reference Information and Dates",
           "type":"group",
           "item":[
              {
-                "linkId":"3.1",
+                "linkId":"2.1",
                 "text":"Benefit period requested",
                 "type":"choice",
                 "required":true,
@@ -132,7 +132,7 @@
                 ]
              },
              {
-                "linkId":"3.2",
+                "linkId":"2.2",
                 "text":"Start Date of the episode of care",
                 "type":"date",
                 "required":true,
@@ -147,7 +147,7 @@
                 ]
              },
              {
-                "linkId":"3.3",
+                "linkId":"2.3",
                 "text":"End Date of the episode of care",
                 "type":"date",
                 "required":true,
@@ -164,18 +164,18 @@
           ]
        },
        {
-         "linkId":"4",
+         "linkId":"3",
          "text":"Advanced Directives",
          "type":"group",
          "item":[
             {
-               "linkId":"4.1",
+               "linkId":"3.1",
                "text":"Any Advanced Directives ?",
                "type":"boolean",
                "required":true
             },
             {
-               "linkId":"4.2",
+               "linkId":"3.2",
                "text":"Describe",
                "type":"text",
                "enableWhen":[
@@ -190,12 +190,12 @@
          ]
        },
        {
-         "linkId":"5",
+         "linkId":"4",
          "text":"Pertinent Diagnoses",
          "type":"group",
          "item":[
             {
-               "linkId":"5.1",
+               "linkId":"4.1",
                "text":"ICD-10 CODE:",
                "type":"text",
                "required":true,
@@ -210,7 +210,7 @@
               ]
             },
             {
-               "linkId":"5.2",
+               "linkId":"4.2",
                "text":"Description",
                "type":"text",
                "required":true,
@@ -225,7 +225,7 @@
               ]
             },
             {
-               "linkId":"5.3",
+               "linkId":"4.3",
                "text":"Date when first diagnosed:",
                "type":"date",
                "required":true,
@@ -240,7 +240,7 @@
               ]
             },
             {
-               "linkId":"5.4",
+               "linkId":"4.4",
                "text":"Status",
                "type":"choice",
                "required":true,
@@ -280,12 +280,12 @@
          ]
        },
        {
-         "linkId":"6",
+         "linkId":"5",
          "text":"Relevant Procedures",
          "type":"group",
          "item":[
             {
-               "linkId":"6.1",
+               "linkId":"5.1",
                "text":"HCPCS/CPT code:",
                "type":"text",
                "required":true,
@@ -300,7 +300,7 @@
               ]
             },
             {
-               "linkId":"6.2",
+               "linkId":"5.2",
                "text":"Description",
                "type":"text",
                "required":true,
@@ -315,7 +315,7 @@
               ]
             },
             {
-               "linkId":"6.3",
+               "linkId":"5.3",
                "text":"Date performed:",
                "type":"date",
                "required":true,
@@ -332,12 +332,12 @@
          ]
        },
        {
-         "linkId":"7",
+         "linkId":"6",
          "text":"Pertinent Medications",
          "type":"group",
          "item":[
             {
-               "linkId":"7.1",
+               "linkId":"6.1",
                "text":"RxNorm code:",
                "type":"text",
                "required":true,
@@ -352,7 +352,7 @@
               ]
             },
             {
-               "linkId":"7.2",
+               "linkId":"6.2",
                "text":"Description",
                "type":"text",
                "required":true,
@@ -367,7 +367,7 @@
               ]
             },
             {
-               "linkId":"7.3",
+               "linkId":"6.3",
                "text":"Dose",
                "type":"text",
                "required":true,
@@ -382,7 +382,7 @@
               ]
             },
             {
-               "linkId":"7.4",
+               "linkId":"6.4",
                "text":"Frequency",
                "type":"text",
                "required":true,
@@ -397,7 +397,7 @@
               ]
             },
             {
-               "linkId":"7.5",
+               "linkId":"6.5",
                "text":"Route",
                "type":"text",
                "required":true,
@@ -412,7 +412,7 @@
               ]
             },
             {
-               "linkId":"7.6",
+               "linkId":"6.6",
                "text":"Status",
                "type":"choice",
                "required":true,
@@ -446,12 +446,12 @@
          ]
        },
        {
-         "linkId":"8",
+         "linkId":"7",
          "text":"Known Medication Allergies",
          "type":"group",
          "item":[
             {
-               "linkId":"8.1",
+               "linkId":"7.1",
                "text":"RxNorm code:",
                "type":"text",
                "required":true,
@@ -466,7 +466,7 @@
               ]
             },
             {
-               "linkId":"8.2",
+               "linkId":"7.2",
                "text":"Description",
                "type":"text",
                "required":true,
@@ -483,12 +483,12 @@
          ]
        },
        {
-         "linkId":"9",
+         "linkId":"8",
          "text":"Functional Assessment",
          "type":"group",
          "item":[
             {
-               "linkId":"9.1",
+               "linkId":"8.1",
                "text":"Functional Limitations",
                "type":"choice",
                "required":true,
@@ -585,13 +585,13 @@
 
             },
             {
-               "linkId":"9.2",
+               "linkId":"8.2",
                "text":"If Other Functional Limitations, Specify",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"9.3",
+               "linkId":"8.3",
                "text":"Activities Permitted",
                "type":"choice",
                "required":true,
@@ -666,13 +666,13 @@
                ]
             },
             {
-               "linkId":"9.4",
+               "linkId":"8.4",
                "text":"Other activities permitted, Specify",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"9.5",
+               "linkId":"8.5",
                "text":"Mental Status",
                "type":"choice",
                "required":true,
@@ -724,7 +724,7 @@
                ]
             },
             {
-               "linkId":"9.6",
+               "linkId":"8.6",
                "text":"Other mental, psychosocial, and cognitive status observations",
                "type":"text",
                "required":true
@@ -732,24 +732,24 @@
          ]
        },
        {
-         "linkId":"10",
+         "linkId":"9",
          "text":"DME, Safety, and Nutritional Requirements",
          "type":"group",
          "item":[
             {
-               "linkId":"10.1",
+               "linkId":"9.1",
                "text":"DME and Supplies",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"10.2",
+               "linkId":"9.2",
                "text":"Safety measures",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"10.3",
+               "linkId":"9.3",
                "text":"Nutritional requirements",
                "type":"text",
                "required":true
@@ -757,12 +757,12 @@
          ]
        },
        {
-         "linkId":"11",
+         "linkId":"10",
          "text":"Prognosis",
          "type":"group",
          "item":[
             {
-               "linkId":"11.1",
+               "linkId":"10.1",
                "text":"Prognosis",
                "type":"choice",
                "required":true,
@@ -800,19 +800,19 @@
                ]
             },
             {
-               "linkId":"11.2",
+               "linkId":"10.2",
                "text":"Additional Clarification",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"11.3",
+               "linkId":"10.3",
                "text":"Description of risk for emergency department visits and hospital readmission",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"11.4",
+               "linkId":"10.4",
                "text":"Patient and caregiver education and training to facilitate timely discharge",
                "type":"text",
                "required":true
@@ -820,24 +820,24 @@
          ]
        },
        {
-         "linkId":"12",
+         "linkId":"11",
          "text":"Patient-specific interventions and education",
          "type":"group",
          "item":[
             {
-               "linkId":"12.1",
+               "linkId":"11.1",
                "text":"Interventions/Education",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"12.2",
+               "linkId":"11.2",
                "text":"Measurable Outcomes / Goals",
                "type":"text",
                "required":true
             },
             {
-               "linkId":"12.3",
+               "linkId":"11.3",
                "text":"Status",
                "type":"choice",
                "required":true,
@@ -919,12 +919,12 @@
          ]
        },
        {
-         "linkId":"20",
+         "linkId":"12",
          "text":"Clinical Information",
          "type":"group",
          "item":[
             {
-               "linkId":"20.1",
+               "linkId":"12.1",
                "text":"Type of skilled services needed",
                "type":"choice",
                "required":true,
@@ -1373,24 +1373,8 @@
                "required":true
             },
             {
-               "linkId":"13.21",
-               "text":"Frequency",
-               "type":"text",
-               "enableWhen":[
-                  {
-                     "operator": "=",
-                     "question": "13.1",
-                     "answerCoding": {
-                         "code": "Rehabilitation nursing",
-                         "display": "Rehabilitation nursing"
-                     }
-                 }
-               ],
-               "required":true
-            },
-            {
                "linkId":"13.22",
-               "text":"Duration",
+               "text":"Frequency",
                "type":"text",
                "enableWhen":[
                   {
@@ -1406,6 +1390,22 @@
             },
             {
                "linkId":"13.23",
+               "text":"Duration",
+               "type":"text",
+               "enableWhen":[
+                  {
+                     "operator": "=",
+                     "question": "13.1",
+                     "answerCoding": {
+                         "code": "Rehabilitation nursing",
+                         "display": "Rehabilitation nursing"
+                     }
+                 }
+               ],
+               "required":true
+            },
+            {
+               "linkId":"13.24",
                "text":"Frequency",
                "type":"text",
                "enableWhen":[
@@ -1421,7 +1421,7 @@
                "required":true
             },
             {
-               "linkId":"13.24",
+               "linkId":"13.25",
                "text":"Duration",
                "type":"text",
                "enableWhen":[
@@ -1437,7 +1437,7 @@
                "required":true
             },
             {
-               "linkId":"13.25",
+               "linkId":"13.26",
                "text":"Management and evaluation of the care plan or complex care plan management",
                "type":"text",
                "enableWhen":[
@@ -1456,7 +1456,7 @@
          "enableWhen":[
             {
                "operator": "=",
-               "question": "20.1",
+               "question": "12.1",
                "answerCoding": {
                    "code": "Nursing Services",
                    "display": "Nursing Services"
@@ -1646,7 +1646,7 @@
          "enableWhen":[
             {
                "operator": "=",
-               "question": "20.1",
+               "question": "12.1",
                "answerCoding": {
                    "code": "Physical Therapy",
                    "display": "Physical Therapy"
@@ -1799,7 +1799,7 @@
          "enableWhen":[
             {
                "operator": "=",
-               "question": "20.1",
+               "question": "12.1",
                "answerCoding": {
                    "code": "Occupational Therapy",
                    "display": "Occupational Therapy"
@@ -1952,7 +1952,7 @@
          "enableWhen":[
             {
                "operator": "=",
-               "question": "20.1",
+               "question": "12.1",
                "answerCoding": {
                    "code": "Speech Therapy",
                    "display": "Speech Therapy"

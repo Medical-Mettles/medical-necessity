@@ -1,8 +1,8 @@
 {
     "resourceType": "Library",
     "version": "1.0.0",
-    "title": "HomeHealthAdaptiveEvaluate",
-    "name": "HomeHealthAdaptiveEvaluate",
+    "title": "HomeHealthAdaptive",
+    "name": "HomeHealthAdaptive",
     "status": "draft",
     "type": {
       "coding": [

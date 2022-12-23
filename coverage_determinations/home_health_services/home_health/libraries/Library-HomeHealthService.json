@@ -58,7 +58,7 @@
           "type": "AllergyIntolerance",
           "codeFilter": [
             {
-              "path": "clinicalStatus",
+              "path": "clinical-status",
               "searchParam": "active"
             }
             ]

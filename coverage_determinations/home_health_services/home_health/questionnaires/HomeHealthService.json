@@ -959,7 +959,7 @@
                     "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
                     "valueExpression" : {
                       "language" : "text/cql",
-                      "expression" : "NeedSkilledServices"
+                      "expression" : "SkilledService"
                     }
                   }
                ]
@@ -1466,7 +1466,7 @@
        },
        {
          "linkId":"14",
-         "text":"Therapy Services",
+         "text":"Physical Therapy Services",
          "type":"group",
          "item":[
             {

@@ -34,6 +34,14 @@ valueset "Stable and Unstable Angina": '2.16.840.1.113762.1.4.1047.47'
 valueset "Cerebrovascular Disease Diagnosis":'2.16.840.1.113762.1.4.1222.1549'
 valueset "Physical Disability": '2.16.840.1.113762.1.4.1047.615'
 valueset "Fall Risk": '2.16.840.1.113762.1.4.1222.712'
+valueset "Severity": '2.16.840.1.113883.3.88.12.3221.6.8'
+
+
+valueset "Physical Therapy Procedure": '2.16.840.1.113762.1.4.1219.99'
+valueset "Occupational Therapy Procedure": '2.16.840.1.113762.1.4.1219.101'
+valueset "Speech Language Therapy Procedure": '2.16.840.1.113762.1.4.1219.103'
+valueset "Intermittent Skilled Nursing Home Health Procedure": '2.16.840.1.113762.1.4.1219.105'
+valueset "Registered Nurse": '2.16.840.1.113762.1.4.1182.370'
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -68,7 +76,7 @@ define FacetoFaceEncounter:
 define FToFEncounter:
 	if ("FacetoFaceEncounter" is not null)
 	then true
-	else false
+	else false                                                                              
 
 define QualifiedCarePlan:
 	First([CarePlan] P
@@ -188,34 +196,42 @@ define FunctionalLimitation:
 		else ''
 
 
-
-
-
-
-
-
-
-
-	// [Condition]C
-	// 	where exists(C.code.coding C 
-	// 					where (C in "Functional and Mobility Impairment SCT"
-	// 							or C in "Cognitive Impairment"
-	// 							or C in "Amputation Disorder ICD10CM"
-	// 							or C in "Bladder Dysfunction"
-	// 							or C in "Bowel Elimination Pattern"
-	// 							or C in "Muscle, Tendon or Joint Contracture Disorder"
-	// 							or C in "Hearing Impairment"
-	// 							or C in "Limb Paralysis [Monoplegia and Diplegia] [Unspecified Cause] (Disorders) (ICD10CM)"
-	// 							or C in "Walking or ambulation/locomotion (ADL/IADL)"
-	// 							or C in "Language and Speech Problems"
-	// 							or C in "Blindness"
-	// 							or C in "Dyspnea"
-	// 							or C in "Stable and Unstable Angina"
-	// 							or C in "Cerebrovascular Disease Diagnosis"
-	// 							or C in "Physical Disability"
-	// 							or C in "Fall Risk"))
-    //         and First(C.clinicalStatus.coding).code.value = 'active'
-    //         and First(C.verificationStatus.coding).code.value = 'confirmed'
+define SkilledService:
+	if exists (([ServiceRequest] S
+		where exists(S.code.coding S
+		 				where S in "Intermittent Skilled Nursing Home Health Procedure"
+								or S in "Registered Nurse"))
+		union
+			([Procedure]P
+				where exists(P.code.coding P
+		 				where P in "Intermittent Skilled Nursing Home Health Procedure"
+								or P in "Registered Nurse")))
+		then 'Nursing Services'
+	else if exists (([ServiceRequest] S
+		where exists(S.code.coding S
+		 				where S in "Physical Therapy Procedure"))
+		union
+			([Procedure]P
+				where exists(P.code.coding P
+		 				where P in "Physical Therapy Procedure")))
+		then 'Physical Therapy'
+	else if exists (([ServiceRequest] S
+		where exists(S.code.coding S
+		 				where S in  "Occupational Therapy Procedure"))
+		union
+			([Procedure]P
+				where exists(P.code.coding P
+		 				where P in "Occupational Therapy Procedure")))
+		then 'Occupational Therapy'
+	else if exists (([ServiceRequest] S
+		where exists(S.code.coding S
+		 				where S in "Speech Language Therapy Procedure"))
+		union
+			([Procedure]P
+				where exists(P.code.coding P
+		 				where P in "Occupational Therapy Procedure")))
+		then 'Speech Therapy'
+	else ''
 
 
 //PROCEDURES

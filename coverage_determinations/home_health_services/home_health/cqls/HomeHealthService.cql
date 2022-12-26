@@ -35,13 +35,32 @@ valueset "Cerebrovascular Disease Diagnosis":'2.16.840.1.113762.1.4.1222.1549'
 valueset "Physical Disability": '2.16.840.1.113762.1.4.1047.615'
 valueset "Fall Risk": '2.16.840.1.113762.1.4.1222.712'
 valueset "Severity": '2.16.840.1.113883.3.88.12.3221.6.8'
-
-
 valueset "Physical Therapy Procedure": '2.16.840.1.113762.1.4.1219.99'
 valueset "Occupational Therapy Procedure": '2.16.840.1.113762.1.4.1219.101'
 valueset "Speech Language Therapy Procedure": '2.16.840.1.113762.1.4.1219.103'
 valueset "Intermittent Skilled Nursing Home Health Procedure": '2.16.840.1.113762.1.4.1219.105'
 valueset "Registered Nurse": '2.16.840.1.113762.1.4.1182.370'
+
+code "Bedrest (regime/therapy)": '225316001' from "SNOMED-CT" display 'Bedrest (regime/therapy)'
+code "Bedrest with bathroom privileges (regime/therapy)": '424410003' from "SNOMED-CT" display 'Bedrest with bathroom privileges (regime/therapy)'
+code "To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair [PROMIS]": '61582-3'from  "LOINC" display 'To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair [PROMIS]'
+code "Chair-bed to chair transfer during 2 day assessment period [CARE]": '52650-9' from "LOINC" display 'Chair-bed to chair transfer during 2 day assessment period [CARE]'
+code "Weight-bearing (finding)": '249981005' from "SNOMED-CT" display 'Weight-bearing (finding)'
+code "Independent for personal grooming (finding)": '704437004' from "SNOMED-CT" display 'Independent for personal grooming (finding)'
+code "I used a walker, cane or crutches to get around in past 7 days [PROMIS]": '62129-2' from "LOINC" display 'I used a walker, cane or crutches to get around in past 7 days [PROMIS]'
+code "Cane/crutch normally used in last 7 days [MDSv3]": '54756-2' from "LOINC" display 'Cane/crutch normally used in last 7 days [MDSv3]'
+code "Wheelchair (manual or electric) normally used in last 7 days [MDSv3]": '54758-8' from "LOINC" display 'Wheelchair (manual or electric) normally used in last 7 days [MDSv3]'
+code "Walker normally used in last 7 days [MDSv3]": '54757-0'from "LOINC" display 'Walker normally used in last 7 days [MDSv3]'
+
+code "Orientated (finding)": '247663003' from "SNOMED-CT" display 'Orientated (finding)'
+code "Coma (disorder)": '371632003' from "SNOMED-CT" display 'Coma (disorder)'
+code "Forgetful (finding)": '55533009' from "SNOMED-CT" display 'Forgetful (finding)'
+code "Depressed mood (finding)": '366979004' from "SNOMED-CT" display 'Depressed mood (finding)'
+code "Disorientation as to self (finding)": '66797003' from "SNOMED-CT" display 'Disorientation as to self (finding)'
+code "Lethargy (finding)": '214264003' from "SNOMED-CT" display 'Lethargy (finding)'
+code "Agitated wandering (finding)": '300989001' from "SNOMED-CT" display 'Agitated wandering (finding)'
+
+
 
 
 parameter "ServiceRequest" ServiceRequest
@@ -194,6 +213,30 @@ define FunctionalLimitation:
 						where P in "Fall Risk"))
 			then 'Fall risk'
 		else ''
+
+define function ToCode(coding FHIR.Coding):
+    if coding is null then
+        null
+    else
+        System.Code {
+          code: coding.code.value,
+          system: coding.system.value,
+          version: coding.version.value,
+          display: coding.display.value
+        }
+
+define PermittedActivities:
+	if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Bedrest (regime/therapy)")
+	then 'Complete bedrest'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Bedrest with bathroom privileges (regime/therapy)")
+	then 'Bedrest BRP'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair [PROMIS]")
+	then 'Up as tolerated'
+	else ''
+
 
 
 define SkilledService:

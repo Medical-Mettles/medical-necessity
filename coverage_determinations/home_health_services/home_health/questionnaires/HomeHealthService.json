@@ -663,7 +663,16 @@
                          "display": "No restrictions"
                      }
                   }
-               ]
+               ],
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"PermittedActivities"
+                      }
+                 }
+              ]
             },
             {
                "linkId":"8.4",

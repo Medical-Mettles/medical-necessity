@@ -132,7 +132,6 @@ define PertinentCondition:
         where exists(C.code.coding C 
 						where (C in "Serious or Life Threatening Illness"
 							  or C in "Immobilization"))
-            and First(C.clinicalStatus.coding).code.value = 'active'
             and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define PertinentConditionCode:
@@ -143,6 +142,25 @@ define PertinentConditionDescription:
 
 define DateOfDiagnosis:
 	start of "Normalize Interval"("PertinentCondition".onset)
+
+define ConditionSeverity:
+	"PertinentCondition".severity.text
+
+define ConditionClinicalStatus:
+	First("PertinentCondition".clinicalStatus.coding).code.value
+
+define ConditionStatus:
+	if ("ConditionSeverity" = 'Severe')
+		then 'acute-chronic'
+	else if ("ConditionSeverity" = 'Moderate')
+		then 'chronic'
+	else if ("ConditionSeverity" = 'Mild')
+		then 'acute'
+	else if ("ConditionClinicalStatus" = 'remission')
+		then 'resolving'
+	else if ("ConditionClinicalStatus" = 'resolved')
+		then 'resolved'
+	else ''
 
 define PertinentConditions:
 	[Condition]C
@@ -235,6 +253,51 @@ define PermittedActivities:
 	else if exists([Observation]O
 		where "ToCode"(First(O.code.coding)) = "To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair [PROMIS]")
 	then 'Up as tolerated'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Chair-bed to chair transfer during 2 day assessment period [CARE]")
+	then 'Transfer bed/chair'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Weight-bearing (finding)")
+	then 'Partial weight bearing'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Independent for personal grooming (finding)")
+	then 'Independent at home'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "I used a walker, cane or crutches to get around in past 7 days [PROMIS]")
+	then 'Crutches'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Cane/crutch normally used in last 7 days [MDSv3]")
+	then 'Cane'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Wheelchair (manual or electric) normally used in last 7 days [MDSv3]")
+	then 'Wheelchair'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Walker normally used in last 7 days [MDSv3]")
+	then 'Walker'
+	else 'No restrictions'
+
+define MentalStatus:
+	if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Orientated (finding)")
+	then 'Oriented'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Coma (disorder)")
+	then 'Comatose'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Forgetful (finding)")
+	then 'Forgetful'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Depressed mood (finding)")
+	then 'Depressed'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Disorientation as to self (finding)")
+	then 'Disoriented'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Lethargy (finding)")
+	then 'Lethargic'
+	else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Agitated wandering (finding)")
+	then 'Agitated'
 	else ''
 
 
@@ -309,11 +372,17 @@ define MedicationDose:
 define MedicationRoute:
 	"RelevantMedication".dosage.route.text
 
-/*define MedicationFrequency:
-	("RelevantMedication".dosage.rate as Quantity)*/
+define MedicationFrequency:
+	"RelevantMedication".dosage.text
 
 define MedicationStatus:
-	"RelevantMedication".status.value
+	if ("RelevantMedication".status.value = 'in-progress')
+		then 'Active'
+	else if ("RelevantMedication".status.value = 'not-done')
+		then 'New'
+	else if ("RelevantMedication".status.value = 'stopped')
+		then 'Discontinued'
+	else ''
 
 //ALLERGIES
 

@@ -275,7 +275,16 @@
                          "display": "Resolved"
                      }
                   }
-               ]
+               ],
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"ConditionStatus"
+                      }
+                 }
+              ]
             }
          ]
        },
@@ -441,7 +450,16 @@
                          "display": "Discontinued"
                      }
                   }
-               ]
+               ],
+               "extension":[
+                  {
+                      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                      "valueExpression" : {
+                        "language" : "text/cql",
+                        "expression" :"MedicationStatus"
+                      }
+                 }
+              ]
             }
          ]
        },

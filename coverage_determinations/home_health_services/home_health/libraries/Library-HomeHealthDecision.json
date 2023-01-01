@@ -45,7 +45,7 @@
         "codeFilter": [
           {
             "path": "status",
-            "code": "completed"
+            "searchParam": "completed"
           }
           ]
       },
@@ -54,7 +54,7 @@
         "codeFilter": [
           {
             "path": "status",
-            "code": "in-progress"
+            "searchParam": "in-progress"
           }
           ]
       },
@@ -62,8 +62,8 @@
         "type": "AllergyIntolerance",
         "codeFilter": [
           {
-            "path": "clinicalStatus",
-            "code": "active"
+            "path": "clinical-status",
+            "searchParam": "active"
           }
           ]
       },
@@ -72,7 +72,7 @@
         "codeFilter": [
           {
             "path": "status",
-            "code": "active"
+            "searchParam": "active"
           }
           ]
       },
@@ -81,7 +81,16 @@
         "codeFilter": [
           {
             "path": "intent",
-            "code": "order"
+            "searchParam": "order"
+          }
+          ]
+      },
+      {
+        "type": "Observation",
+        "codeFilter": [
+          {
+            "path": "status",
+            "searchParam": "final"
           }
           ]
       }

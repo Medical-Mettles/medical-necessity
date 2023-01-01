@@ -57,6 +57,21 @@ define QualifyingCondition:
 		then true
 		else false
 
+define QuestionnaireResponseItems:
+	   "QuestionnaireResponse".item
+
+define PatientPrognosis:
+	("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '10.1')QR
+		      return (First(QR.answer).value as Coding).code.value
+
+define Prognosis:
+	if ((First("PatientPrognosis") = 'Fair')
+		or (First("PatientPrognosis") = 'Good')
+		or (First("PatientPrognosis") = 'Excellent'))
+		then true
+		else false
+
 define PrimaryDecision:
 	if (("FToFEncounter" = true)
 		and ("QualifyingCarePlan" = true)
@@ -67,7 +82,7 @@ define PrimaryDecision:
 define FinalDecision:
 	if ("PrimaryDecision" = true)
 	then 'YES'
-	else 'NO'
+	else 'PENDING'
 	
 
     

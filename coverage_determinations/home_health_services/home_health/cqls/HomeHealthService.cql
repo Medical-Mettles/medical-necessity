@@ -40,6 +40,7 @@ valueset "Occupational Therapy Procedure": '2.16.840.1.113762.1.4.1219.101'
 valueset "Speech Language Therapy Procedure": '2.16.840.1.113762.1.4.1219.103'
 valueset "Intermittent Skilled Nursing Home Health Procedure": '2.16.840.1.113762.1.4.1219.105'
 valueset "Registered Nurse": '2.16.840.1.113762.1.4.1182.370'
+valueset "Care Plan Document Type": '2.16.840.1.113762.1.4.1099.10'
 
 code "Bedrest (regime/therapy)": '225316001' from "SNOMED-CT" display 'Bedrest (regime/therapy)'
 code "Bedrest with bathroom privileges (regime/therapy)": '424410003' from "SNOMED-CT" display 'Bedrest with bathroom privileges (regime/therapy)'
@@ -99,7 +100,9 @@ define FToFEncounter:
 
 define QualifiedCarePlan:
 	First([CarePlan] P
-			where exists(P.category.coding C where C in "Home Health Procedure")
+			where exists(P.category.coding C 
+							where C in "Home Health Procedure"
+								or C in "Care Plan Document Type")
 			and P.status.value = 'active'
 			and P.intent.value = 'order')
 
@@ -110,7 +113,7 @@ define FToFEncounterDate:
 	ToDate(start of "Normalize Interval"("FacetoFaceEncounter".period))
 
 define EndDate: 
-	ToDate(start of "Normalize Interval"("QualifiedCarePlan".period))
+	ToDate(end of "Normalize Interval"("QualifiedCarePlan".period))
 
 define TypeOfBenefitPeriod:
 	First([CarePlan] P

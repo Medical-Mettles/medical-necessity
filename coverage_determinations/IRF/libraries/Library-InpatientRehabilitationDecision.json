@@ -1,0 +1,85 @@
+{
+    "resourceType": "Library",
+    "version": "1.0.0",
+    "title": "InpatientRehabilitationDecision",
+    "name": "InpatientRehabilitationDecision",
+    "status": "draft",
+    "type": {
+      "coding": [
+        {
+          "code": "logic-library"
+        }
+      ]
+    },
+    "relatedArtifact": [
+      {
+        "type": "depends-on",
+        "resource": "Library/FHIRHelpers"
+      },
+      {
+        "type": "depends-on",
+        "resource": "Library/library-irf-InpatientRehabilitationDecision"
+      }
+    ],
+    "dataRequirement": [
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+                "path": "verificationStatus",
+                "searchParam": "confirmed"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113883.3.464.1003.199.12.1055"
+            }
+            ]
+        },
+        {
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "status",
+              "searchParam": "completed"
+            }
+            ]
+        },
+        {
+          "type": "MedicationAdministration",
+          "codeFilter": [
+            {
+              "path": "status",
+              "searchParam": "in-progress"
+            }
+            ]
+        },
+        {
+            "type": "NutritionOrder"
+        },
+        {
+          "type": "CarePlan",
+          "codeFilter": [
+            {
+              "path": "status",
+              "searchParam": "active"
+            }
+            ]
+        },
+        
+        {
+          "type": "Observation",
+          "codeFilter": [
+            {
+              "path": "status",
+              "searchParam": "final"
+            }
+            ]
+        }
+    ]
+  }
+  

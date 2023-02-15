@@ -1,0 +1,3140 @@
+{
+    "resourceType":"Questionnaire",
+      "identifier": [
+        {
+          "system": "http://identifiers.mettles.com/prior_authorization",
+          "value": "medicare-InpatientRehabilitation"
+        }
+      ],
+    "version": "1.0.0",
+      "name": "InpatientRehabilitation",
+      "title": "InpatientRehabilitation",
+      "status": "draft",
+      "subjectType": [
+        "Patient"
+      ],
+      "date": "2019-12-03",
+      "publisher": "Mettle Solutions",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+          "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-irf-InpatientRehabilitation"
+        },
+        {
+         "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+         "valueBoolean": true
+        }
+      ],
+      "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-irf-InpatientRehabilitation",
+      "contained": [
+        {
+          "resourceType": "ValueSet",
+          "id": "gender",
+          "name": "Gender",
+          "status": "draft",
+          "description": "Gender",
+          "compose": {
+            "include": [
+              {
+                "concept": [
+                  {
+                    "code": "male",
+                    "display": "Male"
+                  },
+                  {
+                    "code": "female",
+                    "display": "Female"
+                  },
+                  {
+                    "code": "other",
+                    "display": "Other"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+    "item":[
+        {
+            "linkId":"2",
+            "text":"Etiologic Diagnoses",
+            "type":"group",
+            "item":[
+                {
+                "linkId":"2.1",
+                "text":"Impairment Group",
+                "type":"choice",
+                "required":true,
+                "answerOption": [
+                    {
+                        "valueCoding": {
+                            "code": "Admission",
+                            "display": "Admission"
+                        }
+                    },
+                    {
+                        "valueCoding": {
+                            "code": "Discharge",
+                            "display": "Discharge"
+                        }
+                    }
+                ],
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                            "language" : "text/cql",
+                            "expression" :"ImpairmentGroup"
+                        }
+                    }
+                ]
+                },
+                {
+                  "linkId":"2.2",
+                  "text":"ICD-10 CODE A:",
+                  "type":"text",
+                  "required":true,
+                  "extension":[
+                     {
+                         "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                         "valueExpression" : {
+                           "language" : "text/cql",
+                           "expression" :"RehabilitationDiagnosis1"
+                         }
+                    }
+                 ]
+                },
+                {
+                  "linkId":"2.3",
+                  "text":"ICD-10 CODE B:",
+                  "type":"text",
+                  "required":true,
+                  "extension":[
+                     {
+                         "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                         "valueExpression" : {
+                           "language" : "text/cql",
+                           "expression" :"RehabilitationDiagnosis2"
+                         }
+                    }
+                 ]
+                },
+                {
+                  "linkId":"2.4",
+                  "text":"ICD-10 CODE C:",
+                  "type":"text",
+                  "required":true,
+                  "extension":[
+                     {
+                         "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                         "valueExpression" : {
+                           "language" : "text/cql",
+                           "expression" :"RehabilitationDiagnosis3"
+                         }
+                    }
+                 ]
+                },
+                {
+                    "linkId":"2.5",
+                    "text":"Date of Onset of Impairment",
+                    "type":"date",
+                    "required":true,
+                    "extension":[
+                       {
+                           "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                           "valueExpression" : {
+                             "language" : "text/cql",
+                             "expression" :"DateOfOnset"
+                           }
+                      }
+                   ]
+                },
+                {
+                    "linkId":"2.6",
+                    "text":"List of applicable Comorbid conditions in ICD-10",
+                    "type":"text",
+                    "required":true,
+                    "extension":[
+                       {
+                           "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                           "valueExpression" : {
+                             "language" : "text/cql",
+                             "expression" :""
+                           }
+                      }
+                   ]
+                },
+                {
+                    "linkId":"2.7",
+                    "text":"Are there any arthritis conditions recorded ?",
+                    "type":"boolean",
+                    "required":true,
+                    "extension":[
+                       {
+                           "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                           "valueExpression" : {
+                             "language" : "text/cql",
+                             "expression" :"ArthritisCondition"
+                           }
+                      }
+                   ]
+                },
+                {
+                    "linkId":"2.8",
+                    "text":"Height in inches on admission",
+                    "type":"text",
+                    "required":true,
+                    "extension":[
+                       {
+                           "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                           "valueExpression" : {
+                             "language" : "text/cql",
+                             "expression" :"Height"
+                           }
+                      }
+                   ]
+                },
+                {
+                    "linkId":"2.9",
+                    "text":"Weight in pounds on admission",
+                    "type":"text",
+                    "required":true,
+                    "extension":[
+                       {
+                           "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                           "valueExpression" : {
+                             "language" : "text/cql",
+                             "expression" :"Weight"
+                           }
+                      }
+                   ]
+                }
+            ]
+        },
+        {
+            "linkId":"3",
+            "text":"Discharge Information",
+            "type":"group",
+            "item":[
+                {
+                "linkId":"3.1",
+                "text":"Discharge Date",
+                "type":"date",
+                "required":true,
+                "extension":[
+                    {
+                        "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                        "valueExpression" : {
+                            "language" : "text/cql",
+                            "expression" :""
+                        }
+                    }
+                ]
+                },
+                {
+                    "linkId":"3.2",
+                    "text":"Patient discharged against medical advice ?",
+                    "type":"boolean",
+                    "required":true,
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :""
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"4",
+            "text":"Administrative Information",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"4.1",
+                    "text":"Ethnicity",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "No, not of Hispanic, Latino/a, or Spanish origin",
+                                "display": "No, not of Hispanic, Latino/a, or Spanish origin"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Yes, Mexican, Mexican American, Chicano/a",
+                                "display": "Yes, Mexican, Mexican American, Chicano/a"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Yes, Puerto Rican",
+                                "display": "Yes, Puerto Rican"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Yes, Cuban",
+                                "display": "Yes, Cuban"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Yes, another Hispanic, Latino, or Spanish origin",
+                                "display": "Yes, another Hispanic, Latino, or Spanish origin"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient unable to respond",
+                                "display": "Patient unable to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient declines to respond",
+                                "display": "Patient declines to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "",
+                                "display": ""
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"Ethnicity"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"4.2",
+                    "text":"Race",
+                    "type":"choice",
+                    "required":true,
+                    "repeats": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "White",
+                                "display": "White"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Black or African American",
+                                "display": "Black or African American"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "American Indian or Alaska Native",
+                                "display": "American Indian or Alaska Native"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Asian Indian",
+                                "display": "Asian Indian"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Chinese",
+                                "display": "Chinese"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Filipino",
+                                "display": "Filipino"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Japanese",
+                                "display": "Japanese"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Korean",
+                                "display": "Korean"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Vietnamese",
+                                "display": "Vietnamese"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Other Asian",
+                                "display": "Other Asian"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Native Hawaiian",
+                                "display": "Native Hawaiian"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Guamanian or Chamorro",
+                                "display": "Guamanian or Chamorro"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Samoan",
+                                "display": "Samoan"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Other Pacific Islander",
+                                "display": "Other Pacific Islander"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient unable to respond",
+                                "display": "Patient unable to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient declines to respond",
+                                "display": "Patient declines to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "None of the above",
+                                "display": "None of the above"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "",
+                                "display": ""
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"Race"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"4.3",
+                    "text":"Preferred Language",
+                    "type":"text",
+                    "required":true,
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"Preferred Language"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"4.4",
+                    "text":"Do you need or want an interpreter to communicate with a doctor or health care staff ?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "No"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Yes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "Unable to determine"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"InterpreterRequirement"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"4.5",
+                    "text":"Has lack of transportation kept the patient from medical appointments, meetings, work, or from getting things needed for daily living ?",
+                    "type":"choice",
+                    "required":true,
+                    "repeats": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Yes, it has kept the patient from medical appointments or from getting my medications",
+                                "display": "Yes, it has kept the patient from medical appointments or from getting my medications"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Yes, it has kept the patient from non-medical meetings, appointments, work, or from getting things that I need",
+                                "display": "Yes, it has kept the patient from non-medical meetings, appointments, work, or from getting things that I need"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "No",
+                                "display": "No"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient unable to respond",
+                                "display": "Patient unable to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Patient declines to respond",
+                                "display": "Patient declines to respond"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :""
+                            }
+                        }
+                    ]
+                }    
+            ]
+        },
+        {
+            "linkId":"5",
+            "text":"Hearing, Speech and Vision",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"HearingAbility",
+                    "text":"Ability to hear (with hearing aid or hearing appliances if normally used)",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Adequate - no difficulty in normal conversation,social interaction, listening to TV"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Minimal difficulty - difficulty in some environments(e.g., when person speaks softly or setting is noisy)"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Moderate difficulty - speaker has to increase volume and speak distinctly"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Highly impaired - absence of useful hearing"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"HearingAbility"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"VisualAbility",
+                    "text":"Ability to see in adequate light (with glasses or other visual appliances)",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Adequate - sees fine detail,such as regular print in newspapers/books"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Impaired - sees large print, but not regular print in newspapers/books"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Moderately impaired - limited vision; not able to see newspaper headlines but can identify objects"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Highly impaired - object identification in question, but eyes appear to follow objects"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Severely impaired - no vision or sees only light, colors or shapes; eyes do not appear to follow objects"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"VisualAbility"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"ReadingAbility",
+                    "text":"How often do you need to have someone help you when you read instructions, pamphlets, or other written material from your doctor or pharmacy?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Never"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Rarely"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Sometimes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Often"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Always"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "7",
+                                "display": "Patient declines to respond"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Patient unable to respond"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"ReadingAbility"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"AbilityToExpress",
+                    "text":"Expression of ideas and wants (consider both verbal and non-verbal expression and excluding language barriers)",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Expresses complex messages without difficulty and with speech that is clear and easy to understand"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Exhibits some difficulty with expressing needs and ideas (e.g., some words or finishing thoughts) or speech is not clear"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Frequently exhibits difficulty with expressing needs and ideas"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Rarely/Never expresses self or speech is very difficult to understand"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"AbilityToExpress"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"CommunicationAbility",
+                    "text":"Understanding verbal and non-verbal content (with hearing aid or device, if used, and excluding language barriers)",
+                    "type":"choice",
+                    "required":true,
+                    "repeats": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Understands: Clear comprehension without cues or repetitions"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Usually understands: Understands most conversations, but misses some part/intent of message. Requires cues at times to understand"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Sometimes understands: Understands only basic conversations or simple, direct phrases. Frequently requires cues to understand"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Rarely/never understands"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"CommunicationAbility"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"6",
+            "text":"Cognitive Patterns",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"MentalStatus",
+                    "text":"Should Brief Interview for Mental Status be conducted?",
+                    "type":"boolean",
+                    "required":true,
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"MentalStatus"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"Repetition of Words",
+                    "text":"Repetition of Three Words, Number of words repeated after first attempt",
+                    "type":"choice",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Three"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Two"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "One"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "None"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"Report Year",
+                    "text":"Able to report correct year",
+                    "type":"choice",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Correct"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Missed by 1 year"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Missed by 2 - 5 years"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Missed by > 5 years or no answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"Report Month",
+                    "text":"Able to report correct month",
+                    "type":"choice",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Accurate within 5 days"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Missed by 6 days to 1 month"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Missed by > 1 month or no answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"Report Day",
+                    "text":"Able to report correct day of the week",
+                    "type":"choice",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Correct"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Incorrect or no answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"RecallAbility",
+                    "text":"Able to recall",
+                    "type":"choice",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Yes, no cue required"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Yes, after cueing"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "No - could not recall"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"BIMSScore",
+                    "text":"BIMS Summary Score",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"6.6",
+                    "text":"Should the Staff Assessment for Mental Status be Conducted?",
+                    "type":"boolean",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"6.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"MentalStatus"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"CheckRecall",
+                    "text":"Check all that the patient was normally able to recall",
+                    "type":"choice",
+                    "required":true,
+                    "repeats": true,
+                    "enableWhen":[
+                        {
+                           "question":"6.6",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                     "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Current season",
+                                "display": "Current season"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Location of own room",
+                                "display": "Location of own room"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Staff names and faces",
+                                "display": "Staff names and faces"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "That they are in a hospital/hospital unit",
+                                "display": "That they are in a hospital/hospital unit"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "None of the above were recalled",
+                                "display": "None of the above were recalled"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"MentalStatuses",
+                    "text":"Does patient exhibit any of these mental statuses?",
+                    "type":"choice",
+                    "required":true,
+                    "repeats": true,
+                    "enableWhen":[
+                        {
+                           "question":"6.6",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                     "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Inattention",
+                                "display": "Inattention"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Disorganized thinking",
+                                "display": "Disorganized thinking"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Altered level of consciousness",
+                                "display": "Altered level of consciousness"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"MentalStatuses"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"7",
+            "text":"Mood",
+            "type":"group",
+            "item":[               
+                {
+                    "linkId":"7.1",
+                    "text":"Presence of symptoms. Check all that apply",
+                    "type":"choice",
+                    "repeats": "true",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Little interest or pleasure in doing things",
+                                "display": "Little interest or pleasure in doing things"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Feeling down, depressed, or hopeless",
+                                "display": "Feeling down, depressed, or hopeless"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Trouble falling or staying asleep, or sleeping too much",
+                                "display": "Trouble falling or staying asleep, or sleeping too much"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Feeling tired or having little energy",
+                                "display": "Feeling tired or having little energy"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Poor appetite or overeating",
+                                "display": "Poor appetite or overeating"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Feeling bad about yourself – or that you are a failure or have let yourself or your family down",
+                                "display": "Feeling bad about yourself – or that you are a failure or have let yourself or your family down"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Trouble concentrating on things, such as reading the newspaper or watching television",
+                                "display": "Trouble concentrating on things, such as reading the newspaper or watching television"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Moving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual",
+                                "display": "Moving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Thoughts that you would be better off dead, or of hurting yourself in some way",
+                                "display": "Thoughts that you would be better off dead, or of hurting yourself in some way"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"MoodSymptoms"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"7.2",
+                    "text":"Total Severity Score",
+                    "type":"text",
+                    "required":true
+                    
+                },
+                {
+                    "linkId":"7.3",
+                    "text":"Does patient feel socially isolated ?",
+                    "type":"text",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Never",
+                                "display": "Never"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Rarely",
+                                "display": "Rarely"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Sometimes",
+                                "display": "Sometimes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Often",
+                                "display": "Often"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Always",
+                                "display": "Always"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"SocialIsolation"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"8",
+            "text":"Functional Abilities and Goals",
+            "type":"group",
+            "item":[               
+                {
+                    "linkId":"SelfCare",
+                    "text":"Self-Care",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Independent "
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Needed Some Help"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Dependent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "NotApplicable"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"SelfCare"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"8.2",
+                    "text":"Indoor Mobility (Ambulation)",
+                    "type":"text",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Independent "
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Needed Some Help"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Dependent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "NotApplicable"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"IndoorMobility"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"8.3",
+                    "text":"Ability for Stairs",
+                    "type":"text",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Independent "
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Needed Some Help"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Dependent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "NotApplicable"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"AbilityForStairs"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"8.4",
+                    "text":"Functional Cognition",
+                    "type":"text",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Independent "
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Needed Some Help"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Dependent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "NotApplicable"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"CognitiveFunction"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"8.5",
+                    "text":"Prior Device Use",
+                    "type":"text",
+                    "required":true,
+                    "repeats": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Manual wheelchair",
+                                "display": "Manual wheelchair"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Motorized wheelchair and/or scooter",
+                                "display": "Motorized wheelchair and/or scooter"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Mechanical lift",
+                                "display": "Mechanical lift"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Walker",
+                                "display": "Walker"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Orthotics/Prosthetics",
+                                "display": "Orthotics/Prosthetics"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "None of the above",
+                                "display": "None of the above"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"PriorDeviceUse"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId": "8.6",
+                    "text": "Eating Ability",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.7",
+                    "text": "Oral Hygiene",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.8",
+                    "text": "Toileting Hygiene",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.9",
+                    "text": "Shower/bathe self",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.10",
+                    "text": "Upper body dressing",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.11",
+                    "text": "Lower body dressing",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "8.12",
+                    "text": "Putting on/taking off footwear",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                }
+            ]
+        },
+        {
+            "linkId":"9",
+            "text":"Mobility Assessment",
+            "type":"group",
+            "item":[   
+                {
+                    "linkId": "9.1",
+                    "text": "Ability to Roll left and right",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.2",
+                    "text": "Sit to lying ability",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.3",
+                    "text": "Lying to sitting on side of bed",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.4",
+                    "text": "Sit to stand",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.5",
+                    "text": "Chair/bed-to-chair transfer",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.6",
+                    "text": "Toilet transfer",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.7",
+                    "text": "Car transfer",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.8",
+                    "text": "Walk 10 feet",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.9",
+                    "text": "Walk 50 feet with two turns",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.10",
+                    "text": "Walk 150 feet",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.11",
+                    "text": "Walking 10 feet on uneven surfaces",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.12",
+                    "text": "1 step (curb)",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.13",
+                    "text": "4 steps",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.14",
+                    "text": "12 steps",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.15",
+                    "text": "Picking up object",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.16",
+                    "text": "Once seated in wheelchair/scooter, the ability to wheel at least 50 feet and make two turns",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                },
+                {
+                    "linkId": "9.17",
+                    "text": "Once seated in wheelchair/scooter, the ability to wheel at least 150 feet in a corridor or similar space",
+                    "type": "integer",
+                    "initial": [
+                    {
+                        "valueInteger": 2
+                    }
+                    ],
+                    
+                    "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                        "valueCodeableConcept": {
+                        "coding": [
+                            {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider",
+                            "display": "Slider"
+                            }
+                        ],
+                        "text": "A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis."
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                        "valueInteger": 1
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                        "valueInteger": 6
+                    }
+                    ]  
+                }
+            ]
+        },
+        {
+            "linkId":"10",
+            "text":"Bladder and Bowel",
+            "type":"group",
+            "item":[ 
+                {
+                    "linkId":"10.1",
+                    "text":"Bladder continence",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Always continent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Stress incontinence only"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Incontinentless than daily"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Incontinent daily"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Always incontinent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "5",
+                                "display": "No urine output"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "Not applicable"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"BladderIncontinence"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId":"10.2",
+                    "text":"Bowel continence",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "Always continent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Occasionally incontinent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Frequently incontinent"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "Not rated, patient had an ostomy or did not have a bowel movement for the entire 3 days"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Always incontinent"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"BowelContinence"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"11",
+            "text":"Active Diagnoses",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"11.1",
+                    "text":"Check all active diagnoses",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Peripheral Vascular Disease (PVD) or Peripheral Arterial Disease (PAD)",
+                                "display": "Peripheral Vascular Disease (PVD) or Peripheral Arterial Disease (PAD)"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Diabetes Mellitus (DM) (e.g., diabetic retinopathy, nephropathy, and neuropathy)",
+                                "display": "Diabetes Mellitus (DM) (e.g., diabetic retinopathy, nephropathy, and neuropathy)"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "None of the above",
+                                "display": "None of the above"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"ActiveDiagnoses"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"11.2",
+                    "text":"How often does the patient has to limit day-to-day activities because of pain?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Rarely or not at all"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "2",
+                                "display": "Occasionally"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "3",
+                                "display": "Frequently"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "4",
+                                "display": "Almost constantly"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unable to answer"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"LimitationToActivities"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"11.3",
+                    "text":"Has the patient had two or more falls in the past year or any fall with injury in the past year?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "No"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Yes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"FallsInPastYear"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"11.4",
+                    "text":"Did the patient have major surgery during the 100 days prior to admission ?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "No"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Yes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "8",
+                                "display": "Unknown"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"MajorSurgeries"
+                            }
+                        }
+                    ] 
+                }
+            ]
+        },
+        {
+            "linkId":"12",
+            "text":"Swallowing/Nutritional Status",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"12.1",
+                    "text":"Nutritional Approach",
+                    "type":"choice",
+                    "required":true,
+                    "answerValueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113762.1.4.1095.2",
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :" NutritionStatus"
+                            }
+                        }
+                    ] 
+                }
+            ]
+        },
+        {
+            "linkId":"13",
+            "text":"Skin Conditions",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"13.1",
+                    "text":"Does this patient have one or more unhealed pressure ulcers/injuries?",
+                    "type":"boolean",
+                    "required":true,
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"PressureUlcer"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.2",
+                    "text":"Number of unhealed Stage 1 pressure injuries",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"NoOfStageIUlcers"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.3",
+                    "text":"Number of unhealed Stage 2 pressure injuries",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"NoOfStageIIUlcers"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"12.4",
+                    "text":"Number of unhealed Stage 3 pressure injuries",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"12.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"NoOfStageIIIUlcers"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.5",
+                    "text":"Number of unhealed Stage 4 pressure injuries",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"NoOfStageIVUlcers"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.6",
+                    "text":"Number of unstageable pressure ulcers/injuries due to non-removable dressing/device",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"UnstageableUlcersByDevice"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.7",
+                    "text":"Number of unstageable pressure ulcers due to coverage of wound bed by slough and/or eschar",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"UnstageableUlcersOfSlough"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"13.8",
+                    "text":"Number of unstageable pressure injuries presenting as deep tissue injury",
+                    "type":"text",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"13.1",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                     ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"UnstageableUlcersOfDeepTissue"
+                            }
+                        }
+                    ] 
+                }
+            ]
+        },
+        {
+            "linkId":"14",
+            "text":"Medications",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"14.1",
+                    "text":"Use and Indication of High-Risk Drugs",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Antipsychotic",
+                                "display": "Antipsychotic"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Anticoagulant",
+                                "display": "Anticoagulant"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Antibiotic",
+                                "display": "Antibiotic"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Opioid",
+                                "display": "Opioid"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Antiplatelet",
+                                "display": "Antiplatelet"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Hypoglycemic (including insulin)",
+                                "display": "Hypoglycemic (including insulin)"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "None of the above",
+                                "display": "None of the above"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"HighRiskDrugs"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"14.2",
+                    "text":"Did a complete drug regimen review identify potential clinically significant medication issues?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "0",
+                                "display": "No"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "1",
+                                "display": "Yes"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "9",
+                                "display": "Not Applicable"
+                            }
+                        }
+                    ]
+                    
+                },
+                {
+                    "linkId":"14.3",
+                    "text":"Was there a recommended action in response to the identified potential of clinically significant medication issues",
+                    "type":"boolean",
+                    "required":true,
+                    "enableWhen":[
+                        {
+                           "question":"14.2",
+                           "operator":"=",
+                           "answerBoolean":true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId":"15",
+            "text":"Special Treatments, Procedures, and Programs",
+            "type":"group",
+            "item":[
+                {
+                    "linkId":"15.1",
+                    "text":"Any Cancer Treatments ?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "A1",
+                                "display": "Chemotherapy"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "A2",
+                                "display": "IV"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "A3",
+                                "display": "Oral"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "A10",
+                                "display": "Other"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "B1",
+                                "display": "Radiation"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"CancerTreatment"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"15.2",
+                    "text":"Respiratory Therapies ?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "C1",
+                                "display": "Oxygen Therapy"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "D1",
+                                "display": "Suctioning"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "E1",
+                                "display": "Tracheostomy care"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "F1",
+                                "display": "Invasive Mechanical Ventilator"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "G1",
+                                "display": "Non-Invasive Mechanical Ventilator"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"RespirationTherapies"
+                            }
+                        }
+                    ] 
+                },
+                {
+                    "linkId":"15.3",
+                    "text":"Other Therapies ?",
+                    "type":"choice",
+                    "required":true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "H1",
+                                "display": "IV Medications"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "I1",
+                                "display": "Transfusions"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "J1",
+                                "display": "Dialysis"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "O1",
+                                "display": "IV Access"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Z1",
+                                "display": "None of the above"
+                            }
+                        }
+                    ],
+                    "extension":[
+                        {
+                            "url" : "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression" : {
+                                "language" : "text/cql",
+                                "expression" :"OtherTherapies"
+                            }
+                        }
+                    ] 
+                }
+            ]
+        }
+        
+    ]
+ }
+ 

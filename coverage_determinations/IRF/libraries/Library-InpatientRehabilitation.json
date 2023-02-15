@@ -1,8 +1,8 @@
 {
     "resourceType": "Library",
     "version": "1.0.0",
-    "title": "HomeHealthService",
-    "name": "HomeHealthService",
+    "title": "InpatientRehabilitation",
+    "name": "InpatientRehabilitation",
     "status": "draft",
     "type": {
       "coding": [
@@ -22,8 +22,8 @@
           "type": "Condition",
           "codeFilter": [
             {
-              "path": "code",
-              "valueSet": "2.16.840.1.113883.17.4077.3.2006"
+                "path": "verificationStatus",
+                "searchParam": "confirmed"
             }
             ]
         },
@@ -55,13 +55,7 @@
             ]
         },
         {
-          "type": "AllergyIntolerance",
-          "codeFilter": [
-            {
-              "path": "clinical-status",
-              "searchParam": "active"
-            }
-            ]
+            "type": "NutritionOrder"
         },
         {
           "type": "CarePlan",
@@ -72,15 +66,7 @@
             }
             ]
         },
-        {
-          "type": "CarePlan",
-          "codeFilter": [
-            {
-              "path": "intent",
-              "searchParam": "order"
-            }
-            ]
-        },
+        
         {
           "type": "Observation",
           "codeFilter": [

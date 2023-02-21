@@ -60,6 +60,40 @@ define QualifyingCondition:
 define QuestionnaireResponseItems:
 	   "QuestionnaireResponse".item
 
+define PatientFunctionalAssessment:
+	("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '8.1')QR
+		      return (First(QR.answer).value as Coding).code.value
+
+define FunctionalAssessmentLimitation:
+	if ((First("PatientFunctionalAssessment") is not null))
+		then true
+		else false
+
+define PermittedActivitiesforPatient:
+	("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '8.3')QR
+		      return (First(QR.answer).value as Coding).code.value
+
+define PermittedActivitiesLimitation:
+	if ((First("PermittedActivitiesforPatient") = 'No restrictions')
+		or (First("PermittedActivitiesforPatient") = 'Independent at home'))
+		then true
+		else false
+
+define PatientMentalStatus:
+	("QuestionnaireResponseItems".item I
+		   where I.linkId.value = '8.5')QR
+		      return (First(QR.answer).value as Coding).code.value
+
+define MentalStatusLimitation:
+	if ((First("PatientMentalStatus") = 'Comatose')
+		or (First("PatientMentalStatus") = 'Depressed')
+		or (First("PatientMentalStatus") = 'Disoriented')
+		or (First("PatientMentalStatus") = 'Agitated'))
+		then true
+		else false
+
 define PatientPrognosis:
 	("QuestionnaireResponseItems".item I
 		   where I.linkId.value = '10.1')QR
@@ -75,7 +109,11 @@ define Prognosis:
 define PrimaryDecision:
 	if (("FToFEncounter" = true)
 		and ("QualifyingCarePlan" = true)
-		and ("QualifyingCondition" = true))
+		and ("QualifyingCondition" = true)
+		and (("FunctionalAssessmentLimitation" = true)
+				or ("PermittedActivitiesLimitation" =true)
+				or ("MentalStatusLimitation" = true))
+		and ("Prognosis" = true))
 		then true
 		else false
 

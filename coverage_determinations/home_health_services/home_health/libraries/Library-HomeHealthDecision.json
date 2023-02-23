@@ -50,11 +50,29 @@
           ]
       },
       {
-        "type": "MedicationAdministration",
+        "type": "MedicationStatement",
         "codeFilter": [
           {
             "path": "status",
-            "searchParam": "in-progress"
+            "searchParam": "active"
+          }
+          ]
+      },
+      {
+        "type": "MedicationStatement",
+        "codeFilter": [
+          {
+            "path": "status",
+            "searchParam": "not-taken"
+          }
+          ]
+      },
+      {
+        "type": "MedicationStatement",
+        "codeFilter": [
+          {
+            "path": "status",
+            "searchParam": "stopped"
           }
           ]
       },

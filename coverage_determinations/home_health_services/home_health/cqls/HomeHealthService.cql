@@ -360,8 +360,8 @@ define DateOfProcedurePerformed:
 //MEDICATIONS:
 
 define RelevantMedication:
-  Last([MedicationAdministration]M
-	where M.status.value = 'in-progress')
+  Last([MedicationStatement]M
+	where M.status.value = 'active')
 
 define MedicationCode:
 	First(("RelevantMedication".medication as CodeableConcept).coding).code
@@ -370,7 +370,7 @@ define MedicationDescription:
 	("RelevantMedication".medication as CodeableConcept).text
 
 define MedicationDose:
-	"RelevantMedication".dosage.dose.value
+	"RelevantMedication".dosage.doseAndRate.dose.value
 
 define MedicationRoute:
 	"RelevantMedication".dosage.route.text
@@ -379,9 +379,9 @@ define MedicationFrequency:
 	"RelevantMedication".dosage.text
 
 define MedicationStatus:
-	if ("RelevantMedication".status.value = 'in-progress')
+	if ("RelevantMedication".status.value = 'active')
 		then 'Active'
-	else if ("RelevantMedication".status.value = 'not-done')
+	else if ("RelevantMedication".status.value = 'not-taken')
 		then 'New'
 	else if ("RelevantMedication".status.value = 'stopped')
 		then 'Discontinued'

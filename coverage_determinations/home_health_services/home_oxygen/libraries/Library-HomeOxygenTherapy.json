@@ -1,0 +1,67 @@
+{
+    "resourceType": "Library",
+    "version": "1.0.0",
+    "name": "HomeOxygenTherapy",
+    "title": "HomeOxygenTherapy",
+    "status": "draft",
+    "type": {
+        "coding": [
+            {
+                "code": "logic-library"
+            }
+        ]
+    },
+    "relatedArtifact": [
+      {
+      "type": "depends-on",
+      "resource": "Library/FHIRHelpers"
+    },
+    {
+    "type": "depends-on",
+    "resource": "Library/library-medicarefeeforservice-homeoxygencommon"
+    }
+    ],
+    "dataRequirement": [
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "searchParam": "E1390,E1391,E0424,E0439,E1405,E1406,E0431,E0434,E1392,E0433,K0738,E0441,E0442,E0443,E0444"
+                }
+            ]
+        },
+        {
+            "type": "Observation",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "searchParam": "59408-5,2703-7,89276-0,20570-8,31100-1,32354-3,41654-5,41655-2,4544-3,4545-0,71829-6,71830-4,71832-0,71833-8"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "clinical-status",
+                    "searchParam": "active"
+                },
+                {
+                    "path": "category",
+                    "searchParam": "problem-list-item"
+                },
+                {
+                    "path": "code",
+                    "searchParam": "J44,J44.0,J44.1,J44.9,J47,J47.0,J47.1,J47.9,J84,J84.0,J84.01,J84.02,J84.03,J84.09,J84.1,J84.10,J84.11,J84.111,J84.112,J84.113,J84.114,J84.115,J84.116,J84.117,J84.17,J84.2,J84.8,J84.81,J84.82,J84.83,J84.84,J84.841,J84.842,J84.843,J84.848,J84.89,J84.9,E84,E84.0,E84.1,E84.11,E84.19,E84.8,E84.9,I27.0,I27.2,R09.02,102491009,129857008,129859006,160685001,371632003,8510008"
+                }
+            ]
+        },
+        {
+            "type": "Coverage"
+        },
+        {
+            "type": "Location"
+        }
+    ]
+}

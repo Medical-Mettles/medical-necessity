@@ -916,12 +916,6 @@
             },
             {
               "valueCoding": {
-                  "code": "O2 test",
-                  "display": "O2 test"
-              }
-            },
-            {
-              "valueCoding": {
                   "code": "“6” minute walk",
                   "display": "“6” minute walk"
               }
@@ -1035,12 +1029,12 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression":  "NeckReview"
+                "expression":  "PulmonaryReview"
               }
             }
           ],
           "linkId": "5.3",
-          "text": "Review of Neck",
+          "text": "Review of Pulmonary System",
           "type": "choice",
           "required": true,
           "answerOption": [
@@ -1502,8 +1496,8 @@
           "answerOption": [
             {
               "valueCoding": {
-                  "code": "hallucinations,",
-                  "display": "hallucinations,"
+                  "code": "hallucinations",
+                  "display": "hallucinations"
                }
             },
             {

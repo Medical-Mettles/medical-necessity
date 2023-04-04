@@ -10,6 +10,7 @@ codesystem "LOINC": 'http://loinc.org'
 codesystem "NUCCPT" : '2.16.840.1.113883.6.101'
 codesystem "ActRelationshipType" : '2.16.840.1.113883.5.1002'
 codesystem "HCPCS": '2.16.840.1.113883.6.285'
+codesystem "CPT": ''
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
 valueset "Cystic Fibrosis": '2.16.840.1.113883.3.464.1003.102.12.1002'
@@ -23,6 +24,85 @@ valueset "Hematocrit": '2.16.840.1.113762.1.4.1222.143'
 valueset "Face to Face Encounter": '2.16.840.1.113762.1.4.1047.428'
 valueset "Inpatient Stay": '2.16.840.1.113762.1.4.1182.285'
 
+valueset "Acute or Chronic Heart Failure Disorder ICD10CM": '2.16.840.1.113762.1.4.1219.22'
+valueset "Acute Pulmonary Edema": '2.16.840.1.113883.17.4077.2.2018'
+valueset "Breath Sounds": '2.16.840.1.113883.3.7643.3.1023'
+valueset "Pleuritis (SNOMED)": '2.16.840.1.113762.1.4.1146.2101'
+
+
+valueset "Secondary Erythrocytosis Disorder": '2.16.840.1.113762.1.4.1219.21'
+valueset "Cluster Headache" : '2.16.840.1.113762.1.4.1034.464'
+
+valueset "Poor Sleep Hygeine or Sleep Challenges": '2.16.840.1.113762.1.4.1222.1072'
+valueset "Fatigue": '2.16.840.1.113762.1.4.1222.1398'
+valueset "Fever (ICD10CM)": '2.16.840.1.113762.1.4.1146.671'
+valueset "Chills (ICD10CM)": '2.16.840.1.113762.1.4.1146.812'
+valueset "Night Sweats (SNOMED)": '2.16.840.1.113762.1.4.1146.906'
+
+valueset "Spine or Neck Disorder": '2.16.840.1.113762.1.4.1219.117'
+
+valueset "Cough (ICD10CM)": '2.16.840.1.113762.1.4.1146.90'
+valueset "Difficulty Breathing (ICD10CM)": '2.16.840.1.113762.1.4.1146.890'
+valueset "Chest Pain (ICD10CM)" : '2.16.840.1.113762.1.4.1146.662'
+valueset "Wheezing": '2.16.840.1.113762.1.4.1182.55'
+valueset "Hemoptysis (ICD10CM)": '2.16.840.1.113762.1.4.1146.936'
+valueset "Sputum (Specimen Type) (SNOMED)": '2.16.840.1.113762.1.4.1146.1796'
+
+valueset "Chest Pain": '2.16.840.1.113762.1.4.1222.1426'
+valueset "Heart Palpitations": '2.16.840.1.113883.3.7643.3.1088'
+valueset "Syncope": '2.16.840.1.113762.1.4.1106.101'
+
+valueset "Edema": '2.16.840.1.113762.1.4.1222.1415'
+valueset "Claudication": '2.16.840.1.113762.1.4.1222.759'
+valueset "Phlebitis and Thrombophlebitis of the Veins of lower extremity": '2.16.840.1.113762.1.4.1200.195'
+valueset "Acute Peptic Ulcer": '2.16.840.1.113883.3.3157.4031'
+
+valueset "Dysphagia (SNOMED)": '2.16.840.1.113762.1.4.1146.976'
+valueset "Abdominal Pain (ICD10CM)": '2.16.840.1.113762.1.4.1146.680'
+valueset "Constipation": '2.16.840.1.113762.1.4.1222.1440'
+valueset "Diarrhea": '2.16.840.1.113883.3.7643.3.1083'
+valueset "Urinary Incontinence": '2.16.840.1.113762.1.4.1222.718'
+valueset "Nausea (ICD10CM)": '2.16.840.1.113762.1.4.1146.863'
+valueset "Vomiting": '2.16.840.1.113883.17.4077.3.1015'
+valueset "Jaundice": '2.16.840.1.113883.3.3157.1022'
+valueset "Hematemesis [Unspecified Cause] (ICD10CM)": '2.16.840.1.113762.1.4.1146.932'
+
+valueset "Pain": '2.16.840.1.113762.1.4.1222.1424'
+
+code "Unintentional weight gain (finding)": '441361000124104' from "SNOMEDCT" display 'Unintentional weight gain (finding)'
+code "Unintentional weight loss (finding)": '448765001' from "SNOMEDCT" display 'Unintentional weight loss (finding)'
+
+code "Acute lymphadenitis of neck (disorder)": '10629031000119100' from "SNOMEDCT" display 'Acute lymphadenitis of neck (disorder)'
+
+code "Orthopnea": 'R06.01' from "ICD10CM" display 'Orthopnea'
+code "Cardiac murmur, unspecified": 'R01.1' from "ICD10CM" display 'Cardiac murmur, unspecified'
+
+code "Varicose vein finding (finding)": '271652003' from "SNOMEDCT" display 'Varicose vein finding (finding)'
+
+code "Cardiac blood pool imaging, gated equilibrium": '78472' from "CPT" display 'Cardiac blood pool imaging, gated equilibrium'
+code "P pulmonale by electrocardiogram" : '164914003' from "SNOMEDCT" display 'P pulmonale by electrocardiogram'
+
+code "Hematocrit/Hemoglobin [Ratio] of Blood by Automated count": '16931-8' from "LOINC" display 'Hematocrit/Hemoglobin [Ratio] of Blood by Automated count'
+
+code "I tossed and turned at night in past 7 days [PROMIS]": '62008-8' from "LOINC" display 'I tossed and turned at night in past 7 days [PROMIS]'
+
+code "Restlessness and agitation":'R45.1' from "ICD10CM" display 'Restlessness and agitation'
+code "Morning headache (finding)" : '162310002' from  "SNOMEDCT" display 'Morning headache (finding)'
+code "Breathless - mild exertion (finding)": '161940008' from "SNOMEDCT" display 'Breathless - mild exertion (finding)'
+
+code "Overnight pulse oximetry (procedure)": '252568001' from "SNOMEDCT" display 'Overnight pulse oximetry (procedure)'
+code "Polysomnography (procedure)": '60554003' from "SNOMEDCT" display 'Polysomnography (procedure)'
+
+code "Chronic respiratory failure with hypoxia": 'J96. 11' from "ICD10CM" display 'Chronic respiratory failure with hypoxia'
+code "Desaturation of blood (disorder)": '238159008' from "SNOMEDCT" display 'Desaturation of blood (disorder)'
+ 
+code "Long-term oxygen therapy (procedure)": '243137006' from "SNOMEDCT" display 'Long-term oxygen therapy (procedure)'
+code "6-minute walk test (procedure)": '252478000' from "SNOMEDCT" display '6-minute walk test (procedure)' 
+
+code "Melena": 'K92.1' from "ICD10CM" display 'Melena'
+code "Hemorrhage of anus and rectum": 'K62.5' from "ICD10CM" display 'Hemorrhage of anus and rectum'
+
+code "Heartburn": 'R12' from "ICD10CM" display 'Heartburn'
 
 code "Inhaled oxygen flow rate": '3151-8' from "LOINC" display 'Inhaled oxygen flow rate'
 code "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood": '19255-9' from "LOINC" display 'Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood'
@@ -39,11 +119,11 @@ code "Carbon dioxide [Partial pressure] in Arterial blood": '2019-8' from "LOINC
 code "pH of Arterial blood": '2744-1' from "LOINC" display 'pH of Arterial blood'
 code "Hematocrit [Volume Fraction] of Arterial blood": '32354-3' from "LOINC" display 'Hematocrit [Volume Fraction] of Arterial blood'
 	
-code "Overnight pulse oximetry (procedure)": '252568001' from "SNOMEDCT" display 'Overnight pulse oximetry (procedure)'
+
 
 code "Blood gas analysis (procedure)": '278297009' from "SNOMEDCT" display 'Blood gas analysis (procedure)'
 code "Blood gas measurement (procedure)": '167018008' from "SNOMEDCT" display 'Blood gas measurement (procedure)'
-code "6-minute walk test (procedure)": '252478000' from "SNOMEDCT" display '6-minute walk test (procedure)'
+
 
 code "Walks indoors - usual functional ability during assessment period [CMS Assessment]": '94996-6' from "SNOMEDCT" display 'Walks indoors - usual functional ability during assessment period [CMS Assessment]'
 code "Angina pectoris, unspecified": 'I20.9' from "ICD10CM" display 'Angina pectoris, unspecified'
@@ -52,21 +132,20 @@ code "Pulmonary hypertension, unspecified" : 'I27.20' from "ICD10CM" display 'Pu
 code "Congestive heart failure (disorder)": '42343007' from "SNOMEDCT" display 'Congestive heart failure (disorder)'
 code "Cor pulmonale (chronic)" : 'I27.81' from "ICD10CM" display 'Cor pulmonale (chronic)'
 code "Familial erythrocytosis" : 'D75.0' from "ICD10CM" display 'Familial erythrocytosis'
-code "Restlessness and agitation":'R45.1' from "ICD10CM" display 'Restlessness and agitation'
-code "Morning headache (finding)" : '162310002' from  "SNOMEDCT" display 'Morning headache (finding)'
+
 code "Dependent edema (finding)": '248499004' from "SNOMEDCT" display 'Dependent edema (finding)'
 code "Pulmonary artery pressure monitoring (regime/therapy)": '24599003' from "SNOMEDCT" display 'Pulmonary artery pressure monitoring (regime/therapy)'
 code "NM Heart Gated and Blood pool and Ejection fraction and Wall motion W single state of exercise": '81567-0' from "LOINC" display 'NM Heart Gated and Blood pool and Ejection fraction and Wall motion W single state of exercise'
 code "Echocardiography (procedure)": '40701008' from "SNOMEDCT" display 'Echocardiography (procedure)'
 code "P pulmonale (finding)": '164914003' from "SNOMEDCT" display 'P pulmonale (finding)'
 code "Treatment stopped - alternative therapy undertaken (situation) code": '182868002' from "SNOMEDCT" display 'Treatment stopped - alternative therapy undertaken (situation)'
-code "Polysomnography (procedure)": '60554003' from "SNOMEDCT" display 'Polysomnography (procedure)'
+
 code "Cardiopulmonary exercise test (procedure)": '447346005' from "SNOMEDCT" display 'Cardiopulmonary exercise test (procedure)'
 code "Secondary polycythemia": 'D75.1' from "ICD10CM" display 'Secondary polycythemia'
 code "Age-related physical debility": 'R54' from "ICD10CM" display 'Age-related physical debility'
-code "Breathless - mild exertion (finding)": '161940008' from "SNOMEDCT" display 'Breathless - mild exertion (finding)'
+
 code "Peripheral vascular disease (disorder)": '400047006' from "SNOMEDCT" display 'Peripheral vascular disease (disorder)'
-code "Desaturation of blood (disorder)": '238159008' from "SNOMEDCT" display 'Desaturation of blood (disorder)'
+
 code "E0433": 'E0433' from "HCPCS"
 code "E0434": 'E0434' from "HCPCS"
 code "E0444": 'E0444' from "HCPCS"

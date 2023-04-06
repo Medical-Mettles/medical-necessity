@@ -198,7 +198,8 @@ define EncounterCondition:
 define EncounterDiagnosisCode:
 	if exists("EncounterCondition" E
 				where exists(E.code.coding C where C.system.value = 'http://hl7.org/fhir/sid/icd-10-cm'))
-	then First("EncounterCondition".code.coding).code.value
+	then First("EncounterCondition".code.coding E
+				where E.system.value = 'http://hl7.org/fhir/sid/icd-10-cm').code.value
 	else ''
 
 define EncounterDiagnosisSystem:

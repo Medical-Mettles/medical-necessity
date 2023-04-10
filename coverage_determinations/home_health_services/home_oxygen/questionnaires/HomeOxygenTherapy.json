@@ -1331,7 +1331,7 @@
             {
               "valueCoding": {
                   "code": "fasciculation",
-                  "display": "fasciculation,"
+                  "display": "fasciculation"
               }
             },
             {
@@ -1665,6 +1665,15 @@
       "type": "group",
       "item": [
         {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression":  "TreatmentsTried"
+              }
+            }
+          ],
           "linkId": "7.1",
           "text": "Treatments tried",
           "type": "choice",

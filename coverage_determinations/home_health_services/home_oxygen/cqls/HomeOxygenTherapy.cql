@@ -5,12 +5,11 @@ using FHIR version '4.0.0'
 include FHIRHelpers version '4.0.0' called FHIRHelpers
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
-codesystem "SNOMEDCT": '2.16.840.1.113883.6.96'
+codesystem "SNOMEDCT": 'http://snomed.info/sct'
 codesystem "LOINC": 'http://loinc.org'
-codesystem "NUCCPT" : '2.16.840.1.113883.6.101'
-codesystem "ActRelationshipType" : '2.16.840.1.113883.5.1002'
-codesystem "HCPCS": '2.16.840.1.113883.6.285'
-codesystem "CPT": ''
+codesystem "NUCCPT" : 'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NUCCPT/sourcerepresentation.html'
+codesystem "HCPCS": 'https://hcpcs.codes/'
+codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
 valueset "Cystic Fibrosis": '2.16.840.1.113883.3.464.1003.102.12.1002'
@@ -69,6 +68,42 @@ valueset "Hematemesis [Unspecified Cause] (ICD10CM)": '2.16.840.1.113762.1.4.114
 
 valueset "Pain": '2.16.840.1.113762.1.4.1222.1424'
 
+valueset "Stiff neck (SNOMED)": '2.16.840.1.113762.1.4.1146.1561'
+valueset "Arthritis Disorders": '2.16.840.1.113762.1.4.1222.81'
+valueset "Gout": '2.16.840.1.113762.1.4.1222.586'
+valueset "Abdominal Cramps (SNOMED)": '2.16.840.1.113762.1.4.1146.649'
+valueset "Myalgia (ICD10CM)": '2.16.840.1.113762.1.4.1146.687'
+valueset "Multiple System Atrophy (SNOMED)": '2.16.840.1.113762.1.4.1146.1054'
+valueset "HEDIS Fractures Value Set ICD10CM": '2.16.840.1.113762.1.4.1195.285'
+valueset "Osteopathies chondropathies and acquired musculoskeletal deformities": '2.16.840.1.113883.3.3157.1807'
+valueset "Muscle weakness (ICD10CM)": '2.16.840.1.113762.1.4.1146.1690'
+
+valueset "Seizure": '2.16.840.1.113883.17.4077.3.2015'
+valueset "Short Term Memory Deficits": '2.16.840.1.113883.17.4077.3.1031'
+valueset "Difficulty Concentrating" : '2.16.840.1.113883.3.3616.200.110.102.6312'
+valueset "NU_Weakness (ICD10CM)": '2.16.840.1.113762.1.4.1146.837'
+valueset "Spinal Cord Injury or Paralysis Disorder": '2.16.840.1.113762.1.4.1219.169'
+valueset "Essential tremor": '2.16.840.1.113762.1.4.1078.335'
+valueset "Abnormality of Gait and Mobility": '2.16.840.1.113762.1.4.1206.34'
+valueset "Fall Risk": '2.16.840.1.113762.1.4.1222.712'
+valueset "Vertigo": '2.16.840.1.113883.3.3616.200.110.102.6314'
+valueset "Headache": '2.16.840.1.113883.17.4077.3.1027'
+valueset "Stroke": '2.16.840.1.113762.1.4.1222.618'
+
+valueset "Anxiety": '2.16.840.1.113762.1.4.1021.94'
+
+valueset "Anemia Conditions": '2.16.840.1.113762.1.4.1222.53'
+valueset "Bleeding Disorder": '2.16.840.1.113762.1.4.1029.286'
+
+valueset "Diabetes": '2.16.840.1.113762.1.4.1078.88'
+
+valueset "Long Acting Inhaled Bronchodilators": '2.16.840.1.113762.1.4.1182.60'
+valueset "Inhaled Steroid Combinations": '2.16.840.1.113883.3.464.1003.196.11.1086'
+valueset "COVID19 SNOMED Value Set for Non Invasive Respiratory Support": '2.16.840.1.113883.3.3616.200.110.102.6198'
+valueset "COVID19 SNOMED Value Set for Invasive Mechanical Ventilation": '2.16.840.1.113883.3.3616.200.110.102.6158'
+valueset "Cromolyn Inhalant Preparations": '2.16.840.1.113762.1.4.1196.465'
+
+
 code "Unintentional weight gain (finding)": '441361000124104' from "SNOMEDCT" display 'Unintentional weight gain (finding)'
 code "Unintentional weight loss (finding)": '448765001' from "SNOMEDCT" display 'Unintentional weight loss (finding)'
 
@@ -119,6 +154,37 @@ code "Carbon dioxide [Partial pressure] in Arterial blood": '2019-8' from "LOINC
 code "pH of Arterial blood": '2744-1' from "LOINC" display 'pH of Arterial blood'
 code "Hematocrit [Volume Fraction] of Arterial blood": '32354-3' from "LOINC" display 'Hematocrit [Volume Fraction] of Arterial blood'
 	
+code "Swelling (finding)": '65124004' from "SNOMEDCT" display 'Swelling (finding)'
+code "Functional limitation in range of motion [CMS Assessment]": '54525-1' from "LOINC" display 'Functional limitation in range of motion [CMS Assessment]'
+code "Fasciculation": 'R25.3' from "ICD10CM" display 'Fasciculation'
+code "Muscle wasting and atrophy, not elsewhere classified, unspecified site": 'M62.50' from "ICD10CM" display 'Muscle wasting and atrophy, not elsewhere classified, unspecified site'
+
+code "Numbness (finding)": '44077006' from "SNOMEDCT" display 'Numbness (finding)'
+code "Numbness and tingling sensation of skin (finding)": 'SNOMEDCT' from "SNOMEDCT" display 'Numbness and tingling sensation of skin (finding)'
+code "Pins and needles (finding)": '62507009' from "SNOMEDCT" display 'Pins and needles (finding)'
+code "Other disturbances of skin sensation": 'R20.8' from "ICD10CM" display 'Other disturbances of skin sensation'
+code "Dysesthesia (finding)" : '279079003' from "SNOMEDCT" display 'Dysesthesia (finding)'
+code "Weakness": 'R53.1' from "ICD10CM" display 'Weakness'
+code "Involuntary movement symptom (finding)": '162227008' from "SNOMEDCT" display 'Involuntary movement symptom (finding)'
+code "Speech disturbances, not elsewhere classified": 'R47' from "ICD10CM" display 'Speech disturbances, not elsewhere classified'
+
+code "Hallucinations, unspecified": 'R44.3' from "ICD10CM" display 'Hallucinations, unspecified'
+code "Delusional disorders": 'F22' from "ICD10CM" display 'Delusional disorders'
+code "Other specified nonpsychotic mental disorders": 'F48.8' from "ICD10CM" display 'Other specified nonpsychotic mental disorders'
+code "Mood disorder (disorder)": '46206005' from "SNOMEDCT" display 'Mood disorder (disorder)'
+
+code "Bruising symptom (finding)": '161885008' from "SNOMEDCT" display 'Bruising symptom (finding)'
+code "Bleeding (finding)": '131148009' from "SNOMEDCT" display 'Bleeding (finding)'
+
+code "Goiter (disorder)":'3716002' from "SNOMEDCT" display 'Goiter (disorder)'
+code "Lipids abnormal (finding)": '166818002' from "SNOMEDCT" display 'Lipids abnormal (finding)'
+
+code "Oral steroid therapy (procedure)": '297280007' from "SNOMEDCT" display 'Oral steroid therapy (procedure)'
+code "Intravenous hydrocortisone therapy (procedure)": '297283009' from "SNOMEDCT" display 'Intravenous hydrocortisone therapy (procedure)'
+code "Steroid therapy (procedure)": '297279009' from "SNOMEDCT" display 'Steroid therapy (procedure)'
+code "Inhaled steroid therapy (procedure)": '710818004' from "SNOMEDCT" display 'Inhaled steroid therapy (procedure)'
+code "Interferon-gamma [Chemical/Ingredient]": 'N0000011343' from "SNOMEDCT" display 'Interferon-gamma [Chemical/Ingredient]'
+
 
 
 code "Blood gas analysis (procedure)": '278297009' from "SNOMEDCT" display 'Blood gas analysis (procedure)'
@@ -173,6 +239,246 @@ parameter "DeviceRequest" DeviceRequest
 
 context Patient
 
+define HematologyReview:
+	if exists([Condition] P
+			where exists(P.code.coding P
+				where P in "Anemia Conditions"))
+		then 'anemia'
+	else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Bruising symptom (finding)")
+			then 'bruising'
+	else if exists([Condition] P
+			where exists(P.code.coding P
+				where P in "Bleeding Disorder"))
+		then 'bleeding disorders (conditional)'
+	else ''
+
+define EndocrineReview:
+	if exists([Condition] P
+			where exists(P.code.coding P
+				where P in "Diabetes"))
+		then 'diabetes'
+	else if exists([Condition] P
+				where "ToCode"(First(P.code.coding)) = "Goiter (disorder)")
+		then 'goiter'
+	else if exists([Condition] P
+				where "ToCode"(First(P.code.coding)) = "Lipids abnormal (finding)")
+		then 'lipid disorders'
+	else ''
+
+define TreatmentsTried:
+	if exists([Procedure] P
+			where exists(P.code.coding P
+				where P in "Long Acting Inhaled Bronchodilators"))
+		then 'Bronchodilators'
+	else if exists([Procedure] P
+			where exists(P.code.coding P
+				where P in "Inhaled Steroid Combinations"))
+		then 'Steroids'
+	else if exists([Procedure] P
+			where exists(P.code.coding P
+				where P in "COVID19 SNOMED Value Set for Non Invasive Respiratory Support"))
+		then 'diabetes'
+	else if exists([Procedure] P
+			where exists(P.code.coding P
+				where P in "COVID19 SNOMED Value Set for Invasive Mechanical Ventilation"))
+		then 'Ventilation'
+	else if exists([Procedure] P
+			where exists(P.code.coding P
+				where P in "Cromolyn Inhalant Preparations"))
+		then 'Anti-Inflammatory'
+	else 'None'
+
+define PsychiatricReview:
+	if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Hallucinations, unspecified")
+			then 'hallucinations'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Delusional disorders")
+			then 'delusions'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Anxiety"))
+			then 'anxiety'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Other specified nonpsychotic mental disorders")
+			then 'nervous breakdown'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Mood disorder (disorder)")
+			then 'mood changes'
+		else ''
+
+
+
+define NeurologicalReview:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Seizure"))
+			then 'seizures'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Short Term Memory Deficits"))
+			then 'poor memory'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Difficulty Concentrating"))
+			then 'poor concentration'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Numbness (finding)"
+						or "ToCode"(First(P.code.coding)) = "Numbness and tingling sensation of skin (finding)")
+			then 'numbness / tingling'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Pins and needles (finding)")
+			then 'pins and needles sensation'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Other disturbances of skin sensation")
+			then 'hyperpathia'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Dysesthesia (finding)")
+			then 'dysesthesia'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Weakness")
+			then 'weakness'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Spinal Cord Injury or Paralysis Disorder"))
+			then 'paralysis'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Essential tremor"))
+			then 'tremors'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Involuntary movement symptom (finding)")
+			then 'involuntary movements'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Abnormality of Gait and Mobility"))
+			then 'unstable gait'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Fall Risk"))
+			then 'fall'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Vertigo"))
+			then 'vertigo'
+		
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Headache"))
+			then 'headache'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Stroke"))
+			then 'stroke'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Speech disturbances, not elsewhere classified")
+			then 'speech disorders'
+		else ''
+		
+define MusculoskeletalReview:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Pain"))
+			then 'pain'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Swelling (finding)")
+			then 'swelling'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Stiff neck (SNOMED)"))
+			then 'stiffness'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Functional limitation in range of motion [CMS Assessment]")
+			then 'limitation of range of motion'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Arthritis Disorders"))
+			then 'arthritis'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Gout"))
+			then 'gout'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Abdominal Cramps (SNOMED)"))
+			then 'cramps'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Myalgia (ICD10CM)"))
+			then 'myalgia'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Fasciculation")
+			then 'fasciculation'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Multiple System Atrophy (SNOMED)"))
+			then 'atrophy'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "HEDIS Fractures Value Set ICD10CM"))    
+			then 'fracture'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Osteopathies chondropathies and acquired musculoskeletal deformities"))
+			then 'deformity'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Muscle weakness (ICD10CM)"))
+			then 'weakness'
+		else ''
+
+define GastrointestinalReview:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Dysphagia (SNOMED)"))
+			then 'swallowing problems'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Abdominal Pain (ICD10CM)"))
+			then 'abdominal pain'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Constipation"))
+			then 'constipation'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Diarrhea"))
+			then 'diarrhea'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Urinary Incontinence"))
+			then 'incontinence'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Nausea (ICD10CM)"))
+			then 'nausea'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Vomiting"))
+			then 'vomiting'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Acute Peptic Ulcer"))
+			then 'ulcers'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Melena")
+			then 'melena'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Hemorrhage of anus and rectum")
+			then 'rectal bleeding'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Heartburn")
+			then 'heartburn'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Jaundice"))    
+			then 'jaundice'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Hematemesis [Unspecified Cause] (ICD10CM)"))
+			then 'hematemesis'
+		else ''
 
 
 define "DeviceRequestResource":
@@ -363,10 +669,183 @@ define PatientDiagnoses:
 			then 'Recurring CHF d/t Cor Pulmonale'
 		else ''
 
+define SecondaryToCORPulmonale:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Acute or Chronic Heart Failure Disorder ICD10CM"))
+			then 'Recurring heart failure'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Acute Pulmonary Edema"))
+			then 'Edema'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Breath Sounds")) 
+			then 'Pulmonary Rales'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Pleuritis (SNOMED)")) 
+			then 'Fluid on CXR'
+		else if exists([Observation] P
+					where "ToCode"(First(P.code.coding)) = "Cardiac blood pool imaging, gated equilibrium")
+			then 'Gated blood pool scan'
+		else if exists([Observation] P
+					where "ToCode"(First(P.code.coding)) = "P pulmonale by electrocardiogram")
+			then '“p” Pulmonale on ECG'
+		else ''	
 
-
-
+define Erythrocythemia: 
+	exists([Condition] P
+		where exists(P.code.coding P
+						where P in "Secondary Erythrocytosis Disorder"))
 	
+define HematocritResult:
+	First([Observation] P
+		where "ToCode"(First(P.code.coding)) = "Hematocrit/Hemoglobin [Ratio] of Blood by Automated count").value
+			
+define NocturnalRestlessness:
+	exists([Observation] P
+					where "ToCode"(First(P.code.coding)) = "I tossed and turned at night in past 7 days [PROMIS]"
+					or "ToCode"(First(P.code.coding)) = "Restlessness and agitation"
+					or "ToCode"(First(P.code.coding)) = "Morning headache (finding)"
+					) 
+
+define NocturnalRestlessnessStudy:
+	if exists([Observation] P
+					where "ToCode"(First(P.code.coding)) = "Overnight pulse oximetry (procedure)")
+			then 'Nocturnal oximetry'
+		else if exists([Observation] P
+					where "ToCode"(First(P.code.coding)) = "Polysomnography (procedure)")
+			then 'Sleep Study'
+		else ''
+
+define ExertionalHypoxia:
+	exists([Condition] P
+			where "ToCode"(First(P.code.coding)) = "Chronic respiratory failure with hypoxia"
+				or "ToCode"(First(P.code.coding)) = "Desaturation of blood (disorder)")
+
+define ClinicalTrials:
+	if exists([Procedure] P
+		where "ToCode"(First(P.code.coding)) = "Long-term oxygen therapy (procedure)")
+		then 'Long-term O2 therapy'
+	else if exists([Procedure] P
+		where "ToCode"(First(P.code.coding)) = "6-minute walk test (procedure)")
+		then '“6” minute walk'
+	else if exists([Procedure] P
+		where exists(P.code.coding P
+						where P in "Cluster Headache"))
+		then 'Cluster headache'
+	else ''
+
+define GeneralSymptoms:
+	if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Unintentional weight gain (finding)")
+			then 'weight gain'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Unintentional weight loss (finding)")
+			then 'weight loss'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Poor Sleep Hygeine or Sleep Challenges")) 
+			then 'sleeping problems'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Fatigue")) 
+			then 'fatigue'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Fever (ICD10CM)")) 
+			then 'fever'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Chills (ICD10CM)")) 
+			then 'chills'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Night Sweats (SNOMED)")) 
+			then 'night sweats / diaphoresi'
+		else ''	
+
+define NeckReview: 
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Spine or Neck Disorder")) 
+			then 'pain on movement'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Acute lymphadenitis of neck (disorder)")
+			then 'lumps'
+		else ''
+
+define PulmonaryReview:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Cough (ICD10CM)"))
+			then 'cough'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Difficulty Breathing (ICD10CM)"))
+			then 'shortness of breath'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Chest Pain (ICD10CM)"))
+			then 'pain'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Wheezing"))
+			then 'wheezing'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Hemoptysis (ICD10CM)"))
+			then 'hemoptysis'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Sputum (Specimen Type) (SNOMED)"))
+			then 'sputum production'
+		else ''
+
+define CardiacReview: 
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Chest Pain"))
+			then 'chest pain'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Heart Palpitations"))
+			then 'palpitations'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Orthopnea")
+			then 'orthopnea'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Cardiac murmur, unspecified")
+			then 'murmur'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Syncope"))
+			then 'syncope'
+		else ''
+
+define VascularReview:
+	if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Edema"))
+			then 'edema'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Claudication"))
+			then 'claudication'
+		else if exists([Condition] P
+					where "ToCode"(First(P.code.coding)) = "Varicose vein finding (finding)")
+			then 'varicose veins'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Phlebitis and Thrombophlebitis of the Veins of lower extremity"))
+			then 'thrombophlebitis'
+		else if exists([Condition] P
+					where exists(P.code.coding P
+						where P in "Acute Peptic Ulcer"))
+			then 'ulcers'
+		else ''
+
 
 define HematocritThatIsGreaterThanThreshold: 
 	FHIRHelpers.ToQuantity(singleton from([Observation] P where First(P.code.coding).code.value in "Hematocrit_lab_test_Codes").value).value 

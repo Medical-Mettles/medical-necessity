@@ -38,6 +38,16 @@
         },
         {
             "type": "Condition",
+            "codeFilter": [
+                {
+                  "path": "verificationStatus",
+                  "searchParam": "confirmed"
+                },
+                {
+                    "path": "clinicalStatus",
+                    "searchParam": "active"
+                  }
+                ]
         }
     ]
 }

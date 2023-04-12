@@ -19,13 +19,25 @@
     ],
     "dataRequirement": [
         {
-            "type": "Procedure"
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                  "path": "status",
+                  "searchParam": "completed"
+                }
+                ]
         },
         {
-            "type": "Observation"
+            "type": "Observation",
+            "codeFilter": [
+                {
+                  "path": "status",
+                  "searchParam": "final"
+                }
+                ]
         },
         {
-            "type": "Condition"
+            "type": "Condition",
         }
     ]
 }

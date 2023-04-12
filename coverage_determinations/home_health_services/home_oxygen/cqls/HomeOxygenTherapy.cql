@@ -5,12 +5,11 @@ using FHIR version '4.0.0'
 include FHIRHelpers version '4.0.0' called FHIRHelpers
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
-codesystem "SNOMEDCT": '2.16.840.1.113883.6.96'
+codesystem "SNOMEDCT": 'http://snomed.info/sct'
 codesystem "LOINC": 'http://loinc.org'
-codesystem "NUCCPT" : '2.16.840.1.113883.6.101'
-codesystem "ActRelationshipType" : '2.16.840.1.113883.5.1002'
-codesystem "HCPCS": '2.16.840.1.113883.6.285'
-codesystem "CPT": ''
+codesystem "NUCCPT" : 'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NUCCPT/sourcerepresentation.html'
+codesystem "HCPCS": 'https://hcpcs.codes/'
+codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
 valueset "Cystic Fibrosis": '2.16.840.1.113883.3.464.1003.102.12.1002'

@@ -57,6 +57,15 @@ parameter "DeviceRequest" DeviceRequest
 
 context Patient
 
+define "prior-auth":
+  true
+
+define "documentation":
+  false
+
+define "dtr-clin":
+  true
+  
 define function ToCode(coding FHIR.Coding):
     if coding is null then
         null

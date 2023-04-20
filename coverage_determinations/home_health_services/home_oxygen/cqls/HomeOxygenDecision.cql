@@ -57,6 +57,17 @@ parameter "DeviceRequest" DeviceRequest
 
 context Patient
 
+define function ToCode(coding FHIR.Coding):
+    if coding is null then
+        null
+    else
+        System.Code {
+          code: coding.code.value,
+          system: coding.system.value,
+          version: coding.version.value,
+          display: coding.display.value
+        }
+
 define "DeviceRequestResource":
 	"DeviceRequest"
 
@@ -77,89 +88,101 @@ define Covered:
 	("EncounterCondition" C
 		where First(C.code.coding) in "Interstitial lung disease"
 			or First(C.code.coding) in "Chronic Obstructive Lung Disease (COPD) ICD10CM"
+			or First(C.code.coding) in "Hypoxemia"
 			or First(C.code.coding) in "Cystic Fibrosis"
 			or First(C.code.coding) in "Bronchiectasis"
+			or "ToCode"(First(C.code.coding)) = "Familial erythrocytosis"
+			or "ToCode"(First(C.code.coding)) = "Cor pulmonale (chronic)"
+			or "ToCode"(First(C.code.coding)) = "Congestive heart failure (disorder)"
 			or First(C.code.coding) in "Malignant Neoplasm of Respiratory and Intrathoracic Organs"
-			or First(C.code.coding) =  "Pulmonary hypertension, unspecified"
+			or "ToCode"(First(C.code.coding)) = "Pulmonary hypertension, unspecified"
 			or First(C.code.coding) in "Home Oxygen Therapy Qualifying Conditions")Covered
-			 where Covered.clinicalStatus.coding[0].code.value = 'active'
+			 where First(Covered.clinicalStatus.coding).code.value = 'active'
+			 	and First(Covered.verificationStatus.coding).code.value = 'confirmed'
 		
 define "Group1 Conditiona":
-	[Observation] Ox
-	with [Observation] Pa
-	such that  First(Ox.code.coding) = "Oxygen saturation in Arterial blood by Pulse oximetry"
-	 	and Ox.value as Quantity <= 88 
-		and Ox.status.value = 'final'
-		and Ox.performer is not null 
-		and First(Pa.code.coding) = "Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity <= 55 
-		and Pa.status.value = 'final'
-		and Pa.performer is not null 
-				
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry"
+				and Ox.value <= 88 
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value <= 55 
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
+			
 define "Group1Condition1Final":
-	if (("Group1 Conditiona" is not null ) and ("Covered" is not null))
+	if (("Group1 Conditiona" = true) and ("Covered" is not null))
 		then true 
 		else false
 
 define "Group1Condition2aSleepObservation":
-	([Observation]Ox 
-	with [Observation]Pa
-	such that First(Ox.code.coding) = "Oxygen saturation in Arterial blood by Pulse oximetry"
-		and Ox.value as Quantity <= 88 
-		and Ox.status.value = 'final'
-		and Ox.performer is not null
-		and First(Pa.code.coding) = "Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity <= 55 
-		and Pa.status.value = 'final'
-		and Pa.performer is not null)
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry"
+				and Ox.value <= 88 
+				and First(Ox.method.coding) = "Polysomnography (procedure)"
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value <= 55 
+				and First(Pa.method.coding) = "Polysomnography (procedure)"
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
 		
 define "Group1Condition2aSleep":
-	"Group1Condition2aSleepObservation" GC
-	 with [Observation] P
-		such that First(P.code.coding) = "Polysomnography (procedure)"
-			and P.performer is not null
-			and P.status.value = 'final'
+	"Group1Condition2aSleepObservation" 
 			
 define "Group1Condition2bRoom":
-	[Observation] Ox
-		with[Observation]Pa
-	 	such that First(Ox.code.coding) = "Oxygen saturation in Arterial blood by Pulse oximetry"
-	 	and Ox.value as Quantity >= 88 '%'
-		and Ox.status.value = 'final'
-		and Ox.performer is not null
-		and First(Pa.code.coding) = "Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity >= 55 
-		and Pa.status.value = 'final'
-		and Pa.performer is not null
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry"
+				and Ox.value >= 88 
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value >= 55 
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
 		
 define "Group1Condition2Final":
-	if (("Group1Condition2bRoom"is not null)  and ("Group1Condition2aSleep" is not null)and  ("Covered" is not null))
+	if (("Group1Condition2bRoom" = true)  and ("Group1Condition2aSleep"  = true)and  ("Covered" is not null))
 	then true 
 	else false
 	
-define "Group1Condition3a":
-	  [Observation] Pa
-	 	with [Observation]P
-	 	such that First(Pa.code.coding) ="Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity >= 55 
-		and Pa.status.value = 'final'
-		and Pa.performer is not null
-		and First(P.code.coding) = "Cardiopulmonary exercise test (procedure)"
-		and P.performer is not null
-		and P.status.value = 'completed'
-		
-
 define "Group1Condition3":
-	"Group1Condition3a" GC
-	with [Observation] Ox
-	such that First(Ox.code.coding) ="Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
-		and Ox.value as Quantity >= 88 '%'
-		and Ox.status.value = 'final'
-		and Ox.performer is not null
-		and First(Ox.performer).type ='http://hl7.org/fhir/StructureDefinition/Practitioner'
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
+				and Ox.value >= 88 
+				and First(Ox.method.coding) = "Cardiopulmonary exercise test (procedure)"
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value >= 55 
+				and First(Pa.method.coding) = "Cardiopulmonary exercise test (procedure)"
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
 		
 define "Group1Condition3Final":
-	if (("Group1Condition3" is not null)and ("Covered" is not null))
+	if (("Group1Condition3" = true)and ("Covered" is not null))
 	then true 
 	else false
 	
@@ -169,53 +192,62 @@ define "Group1":
 	else false
 	
 define "Group2Condition1":
-	[Observation] Ox
-	 	with [Observation]Pa
-	 	such that First(Ox.code.coding) ="Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
-		and Ox.value as Quantity = 89 '%'
-		and Ox.status.value = 'final'
-		and Ox.performer is not null
-		and First(Pa.code.coding) = "Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity >= 56  and Pa.value as Quantity <= 59 
-		and Pa.status.value = 'final'
-		and Pa.performer is not null
-		
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry"
+				and Ox.value = 89  
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value  >= 56  and Pa.value <= 59 
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
 
 define "Group2Condition2a":
 	([Condition]Edema
 	with [Condition]HeartFailure
-	such that First(HeartFailure.code.coding) = "Congestive heart failure (disorder)"
-		and First(Edema.code.coding) = "Dependent edema (finding)"
+	such that "ToCode"(First(HeartFailure.code.coding)) = "Congestive heart failure (disorder)"
+		and "ToCode"(First(Edema.code.coding)) = "Dependent edema (finding)"
 		and Edema.onset as Period overlaps HeartFailure.onset as Period)EdemaWithHeart
 		where First(EdemaWithHeart.clinicalStatus.coding).code.value = 'active'
 
 
 define "Group2Condition2":
 	"Group2Condition2a"
-	union ([Condition]PulmonaryHypertension where First(PulmonaryHypertension.code.coding) = "Pulmonary hypertension, unspecified")
-	union ([Condition]Corpulmonale where First(Corpulmonale.code.coding) = "Cor pulmonale (chronic)")
+	union ([Condition]PulmonaryHypertension where "ToCode"(First(PulmonaryHypertension.code.coding)) = "Pulmonary hypertension, unspecified")
+	union ([Condition]Corpulmonale where "ToCode"(First(Corpulmonale.code.coding)) = "Cor pulmonale (chronic)")
 	union ([Condition]SecondaryPolycythemia
 		with [Observation: "Hematocrit"]Hematocrit
-		such that Hematocrit.value as Quantity > 56 '%'
+		such that Hematocrit.value > 56 
 		and Hematocrit.status.value = 'final'
 		and First(SecondaryPolycythemia.code.coding) = "Secondary polycythemia"
 		and First(SecondaryPolycythemia.clinicalStatus.coding).code.value = 'active')
 
 define "Group2":
-	if ((("Group2Condition1" is not null)and ("Covered" is not null)) or (("Group2Condition2" is not null) and ("Covered" is not null)))
+	if ((("Group2Condition1" = true)and ("Covered" is not null)) or (("Group2Condition2" is not null) and ("Covered" is not null)))
 	then true 
 	else false
 	
 define "Group3a":
-	[Observation] Ox
-	 	with [Observation] Pa
-	 	such that Ox.code.coding[0] ="Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
-		and Ox.value as Quantity > 90 
-		and Ox.status.value = 'final'
-		and Ox.performer is not null
-		and First(Pa.code.coding) = "Oxygen [Partial pressure] in Arterial blood"
-		and Pa.value as Quantity > 60 
-		and Pa.performer is not null
+	if exists(
+		[Observation] Ox
+			where "ToCode"(First(Ox.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry"
+				and Ox.value >90
+				and Ox.performer is not null 
+				and Ox.status.value = 'final')
+	then true
+	else if exists([Observation] Pa
+		where "ToCode"(First(Pa.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+				and Pa.value >60
+				and Pa.status.value = 'final'
+				and Pa.performer is not null)
+	then true
+	else false
+	
 		
 define "Group3b":
 	[Observation]OB
@@ -228,7 +260,7 @@ define "Group3b":
 
 
 define "Group3":
-	if ((("Group3a" is not null)and ("Covered" is not null)) or (("Group3b" is not null) and ("Covered" is not null)))
+	if ((("Group3a" = true)and ("Covered" is not null)) or (("Group3b" is not null) and ("Covered" is not null)))
 	then true 
 	else false
 

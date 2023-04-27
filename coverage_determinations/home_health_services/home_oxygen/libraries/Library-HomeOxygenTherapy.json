@@ -15,9 +15,25 @@
       {
       "type": "depends-on",
       "resource": "Library/FHIRHelpers"
-    }
+      },
+      {
+        "type": "depends-on",
+        "resource": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-homeoxygen-Evaluate"
+      }
     ],
     "dataRequirement": [
+        {
+          "type": "Encounter",
+          "dateFilter": [
+            {
+              "path": "period",
+              "valuePeriod": {
+                "start": "2022-12-01T03:53:02",
+                "end": "2023-04-03T07:53:24"
+              }
+            }
+          ]
+        },
         {
           "type": "Condition",
           "codeFilter": [

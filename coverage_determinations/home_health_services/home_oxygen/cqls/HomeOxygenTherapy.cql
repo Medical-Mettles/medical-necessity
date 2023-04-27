@@ -3,6 +3,7 @@ library HomeOxygenTherapy version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
+include HomeOxygenAdaptive version '1.0.0' called HOAdaptive
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -10,6 +11,8 @@ codesystem "LOINC": 'http://loinc.org'
 codesystem "NUCCPT" : 'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NUCCPT/sourcerepresentation.html'
 codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
+codesystem "ActEncounterCodev2": 'http://terminology.hl7.org/CodeSystem/v2-0004'
+codesystem "ActEncounterCode": 'http://terminology.hl7.org/ValueSet/v3-ActEncounterCode'
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
 valueset "Cystic Fibrosis": '2.16.840.1.113883.3.464.1003.102.12.1002'
@@ -103,7 +106,8 @@ valueset "COVID19 SNOMED Value Set for Non Invasive Respiratory Support": '2.16.
 valueset "COVID19 SNOMED Value Set for Invasive Mechanical Ventilation": '2.16.840.1.113883.3.3616.200.110.102.6158'
 valueset "Cromolyn Inhalant Preparations": '2.16.840.1.113762.1.4.1196.465'
 
-
+code "inpatient encounter": 'IMP' from "ActEncounterCode" display 'inpatient encounter'
+code "Outpatient": 'O' from "ActEncounterCodev2" display 'Outpatient'
 code "Unintentional weight gain (finding)": '441361000124104' from "SNOMEDCT" display 'Unintentional weight gain (finding)'
 code "Unintentional weight loss (finding)": '448765001' from "SNOMEDCT" display 'Unintentional weight loss (finding)'
 
@@ -234,7 +238,7 @@ code "160685001": '160685001' from "SNOMEDCT"
 code "371632003": '371632003' from "SNOMEDCT"
 code "8510008": '8510008' from "SNOMEDCT"
 
-parameter "ServiceRequest" ServiceRequest
+parameter "Encounter" Encounter
 parameter "DeviceRequest" DeviceRequest
 
 context Patient
@@ -243,10 +247,10 @@ define "DeviceRequestResource":
 	"DeviceRequest"
 
 define "CertificationDate":
-	"DeviceRequest".authoredOn
+	ToDate(start of "FaceToFaceEncounter".period)
 
 define EncounterResource: 
-	singleton from([Encounter]E where 'Encounter/' + E.id.value = Coalesce("DeviceRequest".encounter, "ServiceRequest".encounter).reference.value )
+	Coalesce(singleton from([Encounter]E where 'Encounter/' + E.id.value = ("DeviceRequest".encounter).reference.value ), HOAdaptive."EncounterResponse")
 
 define function "EncounterDiagnosis"(Encounter Encounter):
   	Encounter.diagnosis D
@@ -262,7 +266,6 @@ define function "EncounterPractitioner"(Encounter Encounter):
 define "FaceToFaceEncounter":
 	"EncounterResource" F2FEncounter
 	where First(F2FEncounter.type) in "Face to Face Encounter"
-	and First(F2FEncounter.participant).individual.type = 'http://hl7.org/fhir/StructureDefinition/Practitioner'
 	and (First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'MD'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'NP'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'CNS'
@@ -280,22 +283,19 @@ define function ToCode(coding FHIR.Coding):
         }
 
 define "BloodGasStudy":
-	(([Procedure]P
+	First([Procedure]P
 		where P.status.value = 'completed'
 		and ("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
 				or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
-		and "Normalize Interval"(P.performed) starts 2 days before end of "Normalize Interval"("FaceToFaceEncounter".period)
-		and "FaceToFaceEncounter".serviceType in "Inpatient Stay")
-	union
-	([Procedure]P
-		where P.status.value = 'completed'
-		and ("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
-				or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
-		and start of "Normalize Interval"(P.performed) in Interval["CertificationDate" , "CertificationDate"+30 days]
-		and "FaceToFaceEncounter".serviceType in "Inpatient Stay"))
+		and (("Normalize Interval"(P.performed) starts 2 days before end of "FaceToFaceEncounter".period)
+				and "ToCode"("FaceToFaceEncounter".class) = "inpatient encounter")
+				or
+			(("Normalize Interval"(P.performed) starts during Interval[ToDateTime("CertificationDate") , ToDateTime("CertificationDate"+30 days)])
+				and "ToCode"("FaceToFaceEncounter".class) = "Outpatient"))
+	
 
 define BloodGasStudyDate:
-	start of "Normalize Interval"(Last("BloodGasStudy").performed)
+	start of "Normalize Interval"("BloodGasStudy".performed)
 
 define BloodGasStudyPH:
 	[Observation]O

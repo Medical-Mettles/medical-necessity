@@ -843,6 +843,10 @@ define PatientHasHematocritThatIsGreaterThanThreshold:
 
 define DeviceRequestDescription: 'HCPCS ' + First("DeviceRequest".code.coding).code.value + ' - ' + First("DeviceRequest".code.coding).display.value
 
+define DeviceRequestCode: First("DeviceRequest".code.coding).code.value
+
+define DeviceOrderId: "DeviceRequest".groupIdentifier
+
 define DeviceRequestedIsPortable: First("DeviceRequest".code.coding).code.value in { 'E0433', 'E0434', 'E0444', 'EO431', 'K0738', 'E0443', 'E1392' }
 
 define DeviceRequestedIsStationary: First("DeviceRequest".code.coding).code.value in { 'E0439', 'E0442', 'E0424', 'E0441', 'E1390', 'E1391' }

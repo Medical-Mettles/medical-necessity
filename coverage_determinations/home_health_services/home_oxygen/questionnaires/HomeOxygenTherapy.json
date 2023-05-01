@@ -138,12 +138,27 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression":  "DeviceRequestOrderId"
+                "expression":  "DeviceOrderId"
               }
             }
           ],
           "linkId": "1.4",
           "text": "Order Id",
+          "type": "text",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression":  "OrderingPhysicianNPI"
+              }
+            }
+          ],
+          "linkId": "1.4",
+          "text": "Ordering Physician NPI",
           "type": "text",
           "required": true
         }

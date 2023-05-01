@@ -271,6 +271,13 @@ define "FaceToFaceEncounter":
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'CNS'
 		or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'PA')
 
+define OrderingPhysician:
+	"EncounterPractitioner"("FaceToFaceEncounter")
+
+define OrderingPhysicianNPI:
+	(First("OrderingPhysician".identifier identifier
+    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+
 define function ToCode(coding FHIR.Coding):
     if coding is null then
         null

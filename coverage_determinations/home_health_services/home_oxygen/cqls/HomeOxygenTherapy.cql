@@ -348,12 +348,7 @@ define ArterialOxygenSaturation:
 	(First([Observation] P
 		where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"))O
 			return FHIRHelpers.ToQuantity(O.value)
-			
-define ArterialPartialPressureExercise: 
-	(First([Observation] P 
-		where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"))O
-		return FHIRHelpers.ToQuantity(O.value)
-		
+					
 define ArterialPartialPressureOfOxygen: 
 	(First([Observation] P 
 		where "ToCode"(First(P.code.coding)) =  "Oxygen [Partial pressure] in Arterial blood"))O

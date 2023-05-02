@@ -394,7 +394,7 @@ define ArterialOxygenSaturationResting:
 define PulseOximetryO2:
 	(First([Observation] P 
 		where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
-			and First(P.method.coding) = "Overnight pulse oximetry (procedure)"))O
+			and "ToCode"(First(P.method.coding)) = "Overnight pulse oximetry (procedure)"))O
 		return FHIRHelpers.ToQuantity(O.value)
 
 define TestingDate:

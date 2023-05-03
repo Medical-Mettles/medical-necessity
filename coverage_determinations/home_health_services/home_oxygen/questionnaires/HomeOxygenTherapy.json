@@ -846,9 +846,93 @@
     },
     {
       "linkId": "5",
-      "text": "Review of Systems",
+      "text": "Review of Physiological Systems",
       "type": "group",
       "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression":  "ReviewOfSystems"
+              }
+            }
+          ],
+          "linkId": "5.1",
+          "text": "Review of Systems",
+          "type": "choice",
+          "repeats":true,
+          "required": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                  "code": "Review in General",
+                  "display": "Review in General"
+               }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Neck",
+                  "display": "Review of Neck"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Pulmonary System",
+                  "display": "Review of Pulmonary System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Cardiac System",
+                  "display": "Review of Cardiac System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Vascular System",
+                  "display": "Review of Vascular System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Gastrointestinal System",
+                  "display": "Review of Gastrointestinal System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Musculoskeletal System",
+                  "display": "Review of Musculoskeletal System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Neurological System",
+                  "display": "Review of Neurological System"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Psychiatric Review",
+                  "display": "Psychiatric Review"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Hematology",
+                  "display": "Review of Hematology"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "Review of Endocrine System",
+                  "display": "Review of Endocrine System"
+              }
+            }
+          ]
+        },
         {
           "extension": [
             {
@@ -859,8 +943,8 @@
               }
             }
           ],
-          "linkId": "5.1",
-          "text": "Review in General ",
+          "linkId": "5.2",
+          "text": "Review in General",
           "type": "choice",
           "repeats":true,
           "required": true,
@@ -906,6 +990,12 @@
                   "code": "night sweats / diaphoresi",
                   "display": "night sweats / diaphoresi"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -919,7 +1009,7 @@
               }
             }
           ],
-          "linkId": "5.2",
+          "linkId": "5.3",
           "text": "Review of Neck",
           "type": "choice",
           "repeats":true,
@@ -936,6 +1026,12 @@
                   "code": "pain on movement",
                   "display": "pain on movement"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -949,7 +1045,7 @@
               }
             }
           ],
-          "linkId": "5.3",
+          "linkId": "5.4",
           "text": "Review of Pulmonary System",
           "type": "choice",
           "repeats":true,
@@ -990,6 +1086,12 @@
                   "code": "sputum production",
                   "display": "sputum production"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1003,7 +1105,7 @@
               }
             }
           ],
-          "linkId": "5.4",
+          "linkId": "5.5",
           "text": "Review of Cardiac System",
           "type": "choice",
           "repeats":true,
@@ -1038,6 +1140,12 @@
                   "code": "syncope",
                   "display": "syncope"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1051,7 +1159,7 @@
               }
             }
           ],
-          "linkId": "5.5",
+          "linkId": "5.6",
           "text": "Review of Vascular System",
           "type": "choice",
           "repeats":true,
@@ -1086,6 +1194,12 @@
                   "code": "ulcers",
                   "display": "ulcers"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1099,7 +1213,7 @@
               }
             }
           ],
-          "linkId": "5.6",
+          "linkId": "5.7",
           "text": "Review of Gastrointestinal System",
           "type": "choice",
           "repeats":true,
@@ -1182,6 +1296,12 @@
                   "code": "hematemesis",
                   "display": "hematemesis"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1195,7 +1315,7 @@
               }
             }
           ],
-          "linkId": "5.7",
+          "linkId": "5.8",
           "text": "Review of Musculoskeletal System",
           "type": "choice",
           "repeats":true,
@@ -1278,6 +1398,12 @@
                   "code": "weakness",
                   "display": "weakness"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1291,7 +1417,7 @@
               }
             }
           ],
-          "linkId": "5.8",
+          "linkId": "5.9",
           "text": "Review of Neurological System",
           "type": "choice",
           "repeats":true,
@@ -1398,6 +1524,12 @@
                   "code": "speech disorders",
                   "display": "speech disorders"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1411,8 +1543,8 @@
               }
             }
           ],
-          "linkId": "5.9",
-          "text": "Review of Psychiatric System",
+          "linkId": "5.10",
+          "text": "Psychiatric Review",
           "type": "choice",
           "repeats":true,
           "required": true,
@@ -1446,6 +1578,12 @@
                   "code": "mood changes",
                   "display": "mood changes"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1459,7 +1597,7 @@
               }
             }
           ],
-          "linkId": "5.10",
+          "linkId": "5.11",
           "text": "Review of Hematology",
           "type": "choice",
           "repeats":true,
@@ -1482,6 +1620,12 @@
                   "code": "bleeding disorders (conditional)",
                   "display": "bleeding disorders (conditional)"
               }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
+              }
             }
           ]
         },
@@ -1495,7 +1639,7 @@
               }
             }
           ],
-          "linkId": "5.11",
+          "linkId": "5.12",
           "text": "Review of Endocrine System",
           "type": "choice",
           "repeats":true,
@@ -1523,6 +1667,12 @@
               "valueCoding": {
                   "code": "goiter",
                   "display": "goiter"
+              }
+            },
+            {
+              "valueCoding": {
+                  "code": "None",
+                  "display": "None"
               }
             }
           ]

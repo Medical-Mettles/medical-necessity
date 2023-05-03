@@ -63,47 +63,6 @@
       "item": [
         {
           "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource",
-                "valueCode": "Encounter"
-              },
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceProfile",
-                "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Encounter/encounter-181"
-              },
-              {
-                "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-lookupQuestionnaire",
-                "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-homeoxygen-HomeOxygenTherapy"
-              },
-              {
-                "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-answerExpression",
-                "valueExpression": {
-                  "description": "all active encounters",
-                  "language": "application/x-fhir-query",
-                  "expression": "Encounter?date=ge2023-03-01&date=le2023-04-27"
-                }
-              },
-              {
-                "extension": [
-                  {
-                    "url": "path",
-                    "valueString": "class.where(code='IMP','0').display + ', ' + period.start.value"
-                  },
-                  {
-                    "url": "forDisplay",
-                    "valueBoolean": true
-                  }
-                ],
-                "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn"
-              }
-            ],
-          "linkId": "1.1",
-          "text": "Select encounter used for oxygen therapy?",
-          "type": "reference",
-          "required": true
-        },
-        {
-          "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
@@ -112,7 +71,7 @@
               }
             }
           ],
-          "linkId": "1.2",
+          "linkId": "1.1",
           "text": "Device Description",
           "type": "text",
           "required": true
@@ -127,7 +86,7 @@
               }
             }
           ],
-          "linkId": "1.3",
+          "linkId": "1.2",
           "text": "HCPCS code of equipment ordered",
           "type": "string",
           "required": true
@@ -142,7 +101,7 @@
               }
             }
           ],
-          "linkId": "1.4",
+          "linkId": "1.3",
           "text": "Order Id",
           "type": "string",
           "required": true
@@ -157,7 +116,7 @@
               }
             }
           ],
-          "linkId": "1.5",
+          "linkId": "1.4",
           "text": "Ordering Physician NPI",
           "type": "string",
           "required": true
@@ -242,7 +201,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression":  "BloodGasStudypH"
+                "expression":  "BloodGasStudyPH"
               }
             }
           ],
@@ -254,7 +213,7 @@
            }
          ],
           "linkId": "2.5",
-          "text": "PH",
+          "text": "PH (ABG)",
           "type": "integer",
           "required": false
         },
@@ -276,7 +235,7 @@
            }
          ],
           "linkId": "2.6",
-          "text": "PaCO2",
+          "text": "PaCO2 (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -298,7 +257,7 @@
            }
          ],
           "linkId": "2.7",
-          "text": "O2 Sat",
+          "text": "O2 Sat (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -320,7 +279,7 @@
            }
          ],
           "linkId": "2.8",
-          "text": "HCO3",
+          "text": "HCO3 (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -342,7 +301,7 @@
            }
          ],
           "linkId": "2.9",
-          "text": "Hematocrit",
+          "text": "Hematocrit (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -364,23 +323,8 @@
            }
          ],
           "linkId": "2.10",
-          "text": "PaO2",
+          "text": "PaO2 (ABG)",
           "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression":  "StableState"
-              }
-            }
-          ],
-          "linkId": "2.11",
-          "text": "Is patient in a chronic stable state?",
-          "type": "boolean",
           "required": false
         },
         {
@@ -393,10 +337,16 @@
               }
             }
           ],
-          "linkId": "2.12",
+          
+          "linkId": "2.11",
           "text": "Is there an expectation that home oxygen therapy will improve O2 Saturation?",
           "type": "boolean",
-          "required": false
+          "initial":[
+            {
+              "valueBoolean": true
+            }
+           ],
+          "required": true
         },
         {
           "extension": [
@@ -408,9 +358,15 @@
               }
             }
           ],
-          "linkId": "2.13",
+          
+          "linkId": "2.12",
           "text": "Does patient live or travel to an area at high elevation?",
           "type": "boolean",
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
           "required": false
         },
         {
@@ -423,7 +379,12 @@
               }
             }
           ],
-          "linkId": "2.14",
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
+          "linkId": "2.13",
           "text": "Does patient have a reduced O2 carrying capacity? ",
           "type": "boolean",
           "required": false
@@ -504,6 +465,16 @@
                 "expression":  "PulseOximetryO2"
               }
             }
+          ],
+          "enableWhen":[
+            {
+               "operator": "<",
+               "question": "3.4",
+               "answerQuantity": {
+                   "value": "56",
+                   "unit": "mmHg"
+               }
+           }
           ],
           "linkId": "3.6",
           "text": "Overnight oximetry results (while asleep and on room air)",
@@ -836,8 +807,8 @@
             },
             {
               "valueCoding": {
-                  "code": "Other",
-                  "display": "Other"
+                  "code": "None",
+                  "display": "None"
               }
             }
           ]
@@ -943,6 +914,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review in General",
+                   "display": "Review in General"
+               }
+            }
+          ],
           "linkId": "5.2",
           "text": "Review in General",
           "type": "choice",
@@ -1009,6 +990,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Neck",
+                   "display": "Review of Neck"
+               }
+            }
+          ],
           "linkId": "5.3",
           "text": "Review of Neck",
           "type": "choice",
@@ -1043,6 +1034,16 @@
                 "language": "text/cql",
                 "expression":  "PulmonaryReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Pulmonary System",
+                   "display": "Review of Pulmonary System"
+               }
             }
           ],
           "linkId": "5.4",
@@ -1105,6 +1106,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Cardiac System",
+                   "display": "Review of Cardiac System"
+               }
+            }
+          ],
           "linkId": "5.5",
           "text": "Review of Cardiac System",
           "type": "choice",
@@ -1159,6 +1170,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Vascular System",
+                   "display": "Review of Vascular System"
+               }
+            }
+          ],
           "linkId": "5.6",
           "text": "Review of Vascular System",
           "type": "choice",
@@ -1211,6 +1232,16 @@
                 "language": "text/cql",
                 "expression":  "GastrointestinalReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Gastrointestinal System",
+                   "display": "Review of Gastrointestinal System"
+               }
             }
           ],
           "linkId": "5.7",
@@ -1315,6 +1346,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Musculoskeletal System",
+                   "display": "Review of Musculoskeletal System"
+               }
+            }
+          ],
           "linkId": "5.8",
           "text": "Review of Musculoskeletal System",
           "type": "choice",
@@ -1415,6 +1456,16 @@
                 "language": "text/cql",
                 "expression":  "NeurologicalReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Neurological System",
+                   "display": "Review of Neurological System"
+               }
             }
           ],
           "linkId": "5.9",
@@ -1543,6 +1594,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Psychiatric Review",
+                   "display": "Psychiatric Review"
+               }
+            }
+          ],
           "linkId": "5.10",
           "text": "Psychiatric Review",
           "type": "choice",
@@ -1597,6 +1658,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Hematology",
+                   "display": "Review of Hematology"
+               }
+            }
+          ],
           "linkId": "5.11",
           "text": "Review of Hematology",
           "type": "choice",
@@ -1637,6 +1708,16 @@
                 "language": "text/cql",
                 "expression":  "EndocrineReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Endocrine System",
+                   "display": "Review of Endocrine System"
+               }
             }
           ],
           "linkId": "5.12",
@@ -1944,13 +2025,45 @@
           "required": true,
           "enableWhen":[
             {
-               "operator": "!=",
+               "operator": "=",
                "question": "7.1",
                "answerCoding": {
-                   "code": "None",
-                   "display": "None"
+                  "code": "Bronchodilators",
+                  "display": "Bronchodilators"       
                }
-           }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Steroids",
+                "display": "Steroids"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Ventilation",
+                "display": "Ventilation"
+              } 
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Anti-Inflammatory",
+                "display": "Anti-Inflammatory"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Other",
+                "display": "Other"
+              }
+            }
          ],
           "answerOption": [
             {
@@ -1999,19 +2112,11 @@
                    "display": "None"
                }
            }
-         ]
-        },
-        {
-          "linkId": "7.9",
-          "text": "Were the other treatment options considered ?",
-          "type": "boolean",
-          "required": true,
-          "enableWhen":[
-            {
-               "operator": "=",
-               "question": "7.7",
-               "answerBoolean": true
-           }
+         ],
+         "initial":[
+          {
+            "valueBoolean": true
+          }
          ]
         },
         {
@@ -2019,6 +2124,11 @@
           "text": "Contraindications for other treatment options?",
           "type": "boolean",
           "required": true,
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
           "enableWhen":[
             {
                "operator": "=",
@@ -2089,6 +2199,11 @@
           "text": "Frequency of Use",
           "type": "choice",
           "required": true,
+          "initial": [
+            {
+              "valueString": "During Sleep"
+            } 
+          ],
           "answerOption": [
             {
               "valueCoding": {
@@ -2122,6 +2237,11 @@
           "text": "Frequency of Oxygen Monitoring",
           "type": "choice",
           "required": true,
+          "initial": [
+            {
+              "valueString": "During Sleep"
+            } 
+          ],
           "answerOption": [
             {
               "valueCoding": {
@@ -2282,11 +2402,8 @@
           ],
           "initial": [
             {
-              "valueCoding": {
-                  "code": "Initial or original order for certification",
-                  "display": "Initial or original order for certification"
-              }
-            }
+              "valueString": "Initial or original order for certification"
+            } 
           ]
         },
         {
@@ -2399,40 +2516,6 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "linkId": "11",
-      "text": "Additional Documentation Required",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "11.1",
-          "code": [
-            {
-              "system": "http://loinc.org",
-              "code": "18736-9"
-            }
-          ],
-          "text": "Physician Initial Evaluation Note[LOINC 18736-9]",
-          "type": "attachment"
-        },
-        {
-          "linkId": "11.2",
-          "code": [
-            {
-              "system": "http://loinc.org",
-              "code": "18736-9"
-            }
-          ],
-          "text": "Orders placed Document[LOINC 77597-3]",
-          "type": "attachment"
-        },
-        {
-          "linkId": "11.3",
-          "text": "Note:The questionnaire requires information to be filled in all the mandatory fields. Failure to provide requested information might lead to rejection of your PA request",
-          "type": "display"
         }
       ]
     }

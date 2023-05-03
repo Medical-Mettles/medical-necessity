@@ -330,7 +330,7 @@ define BloodGasStudyDate:
 define BloodGasStudyPH:
 	(First([Observation]O
 		where "ToCode"(First(O.code.coding)) = "pH of Arterial blood"))O
-	return FHIRHelpers.ToQuantity(O.value)
+	return FHIRHelpers.ToInteger(O.value)
 
 define BloodGasStudyPaCO2:
 	(First([Observation]O
@@ -511,7 +511,7 @@ define ClinicalTrials:
 		where exists(P.code.coding P
 						where P in "Cluster Headache"))
 		then 'Cluster headache'
-	else ''
+	else 'None'
 
 define "GeneralSymptoms":
 	if exists([Condition] P
@@ -876,7 +876,7 @@ define ReviewOfSystems:
 	(if ("MusculoskeletalReview" != 'None') then 'Review of Musculoskeletal System' else ''),
 	(if ("GastrointestinalReview" != 'None') then 'Review of Gastrointestinal System' else '')
 	}
-	
+
 define HematocritThatIsGreaterThanThreshold: 
 	FHIRHelpers.ToQuantity(singleton from([Observation] P where First(P.code.coding).code.value in "Hematocrit_lab_test_Codes").value).value 
 	
@@ -888,7 +888,7 @@ define DeviceRequestDescription: 'HCPCS ' + First("DeviceRequest".code.coding).c
 
 define DeviceRequestCode: First("DeviceRequest".code.coding).code.value
 
-define DeviceOrderId: "DeviceRequest".groupIdentifier
+define DeviceOrderId: "DeviceRequest".id.value
 
 define DeviceRequestedIsPortable: First("DeviceRequest".code.coding).code.value in { 'E0433', 'E0434', 'E0444', 'EO431', 'K0738', 'E0443', 'E1392' }
 

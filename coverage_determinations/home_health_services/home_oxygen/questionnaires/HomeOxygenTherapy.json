@@ -201,7 +201,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression":  "BloodGasStudypH"
+                "expression":  "BloodGasStudyPH"
               }
             }
           ],
@@ -213,7 +213,7 @@
            }
          ],
           "linkId": "2.5",
-          "text": "PH",
+          "text": "PH (ABG)",
           "type": "integer",
           "required": false
         },
@@ -235,7 +235,7 @@
            }
          ],
           "linkId": "2.6",
-          "text": "PaCO2",
+          "text": "PaCO2 (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -257,7 +257,7 @@
            }
          ],
           "linkId": "2.7",
-          "text": "O2 Sat",
+          "text": "O2 Sat (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -279,7 +279,7 @@
            }
          ],
           "linkId": "2.8",
-          "text": "HCO3",
+          "text": "HCO3 (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -301,7 +301,7 @@
            }
          ],
           "linkId": "2.9",
-          "text": "Hematocrit",
+          "text": "Hematocrit (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -323,23 +323,8 @@
            }
          ],
           "linkId": "2.10",
-          "text": "PaO2",
+          "text": "PaO2 (ABG)",
           "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression":  "StableState"
-              }
-            }
-          ],
-          "linkId": "2.11",
-          "text": "Is patient in a chronic stable state?",
-          "type": "boolean",
           "required": false
         },
         {
@@ -352,10 +337,16 @@
               }
             }
           ],
-          "linkId": "2.12",
+          
+          "linkId": "2.11",
           "text": "Is there an expectation that home oxygen therapy will improve O2 Saturation?",
           "type": "boolean",
-          "required": false
+          "initial":[
+            {
+              "valueBoolean": true
+            }
+           ],
+          "required": true
         },
         {
           "extension": [
@@ -367,9 +358,15 @@
               }
             }
           ],
-          "linkId": "2.13",
+          
+          "linkId": "2.12",
           "text": "Does patient live or travel to an area at high elevation?",
           "type": "boolean",
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
           "required": false
         },
         {
@@ -382,7 +379,12 @@
               }
             }
           ],
-          "linkId": "2.14",
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
+          "linkId": "2.13",
           "text": "Does patient have a reduced O2 carrying capacity? ",
           "type": "boolean",
           "required": false
@@ -463,6 +465,16 @@
                 "expression":  "PulseOximetryO2"
               }
             }
+          ],
+          "enableWhen":[
+            {
+               "operator": "<",
+               "question": "3.4",
+               "answerQuantity": {
+                   "value": "56",
+                   "unit": "mmHg"
+               }
+           }
           ],
           "linkId": "3.6",
           "text": "Overnight oximetry results (while asleep and on room air)",
@@ -795,8 +807,8 @@
             },
             {
               "valueCoding": {
-                  "code": "Other",
-                  "display": "Other"
+                  "code": "None",
+                  "display": "None"
               }
             }
           ]
@@ -2013,13 +2025,45 @@
           "required": true,
           "enableWhen":[
             {
-               "operator": "!=",
+               "operator": "=",
                "question": "7.1",
                "answerCoding": {
-                   "code": "None",
-                   "display": "None"
+                  "code": "Bronchodilators",
+                  "display": "Bronchodilators"       
                }
-           }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Steroids",
+                "display": "Steroids"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Ventilation",
+                "display": "Ventilation"
+              } 
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Anti-Inflammatory",
+                "display": "Anti-Inflammatory"
+              }
+            },
+            {
+              "operator": "=",
+              "question": "7.1",
+              "answerCoding": {
+                "code": "Other",
+                "display": "Other"
+              }
+            }
          ],
           "answerOption": [
             {
@@ -2068,19 +2112,11 @@
                    "display": "None"
                }
            }
-         ]
-        },
-        {
-          "linkId": "7.9",
-          "text": "Were the other treatment options considered ?",
-          "type": "boolean",
-          "required": true,
-          "enableWhen":[
-            {
-               "operator": "=",
-               "question": "7.7",
-               "answerBoolean": true
-           }
+         ],
+         "initial":[
+          {
+            "valueBoolean": true
+          }
          ]
         },
         {
@@ -2088,6 +2124,11 @@
           "text": "Contraindications for other treatment options?",
           "type": "boolean",
           "required": true,
+          "initial":[
+            {
+              "valueBoolean": false
+            }
+           ],
           "enableWhen":[
             {
                "operator": "=",
@@ -2158,6 +2199,11 @@
           "text": "Frequency of Use",
           "type": "choice",
           "required": true,
+          "initial": [
+            {
+              "valueString": "During Sleep"
+            } 
+          ],
           "answerOption": [
             {
               "valueCoding": {
@@ -2191,6 +2237,11 @@
           "text": "Frequency of Oxygen Monitoring",
           "type": "choice",
           "required": true,
+          "initial": [
+            {
+              "valueString": "During Sleep"
+            } 
+          ],
           "answerOption": [
             {
               "valueCoding": {
@@ -2351,11 +2402,8 @@
           ],
           "initial": [
             {
-              "valueCoding": {
-                  "code": "Initial or original order for certification",
-                  "display": "Initial or original order for certification"
-              }
-            }
+              "valueString": "Initial or original order for certification"
+            } 
           ]
         },
         {
@@ -2468,40 +2516,6 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "linkId": "11",
-      "text": "Additional Documentation Required",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "11.1",
-          "code": [
-            {
-              "system": "http://loinc.org",
-              "code": "18736-9"
-            }
-          ],
-          "text": "Physician Initial Evaluation Note[LOINC 18736-9]",
-          "type": "attachment"
-        },
-        {
-          "linkId": "11.2",
-          "code": [
-            {
-              "system": "http://loinc.org",
-              "code": "18736-9"
-            }
-          ],
-          "text": "Orders placed Document[LOINC 77597-3]",
-          "type": "attachment"
-        },
-        {
-          "linkId": "11.3",
-          "text": "Note:The questionnaire requires information to be filled in all the mandatory fields. Failure to provide requested information might lead to rejection of your PA request",
-          "type": "display"
         }
       ]
     }

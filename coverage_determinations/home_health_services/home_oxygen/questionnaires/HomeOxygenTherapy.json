@@ -902,6 +902,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review in General",
+                   "display": "Review in General"
+               }
+            }
+          ],
           "linkId": "5.2",
           "text": "Review in General",
           "type": "choice",
@@ -968,6 +978,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Neck",
+                   "display": "Review of Neck"
+               }
+            }
+          ],
           "linkId": "5.3",
           "text": "Review of Neck",
           "type": "choice",
@@ -1002,6 +1022,16 @@
                 "language": "text/cql",
                 "expression":  "PulmonaryReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Pulmonary System",
+                   "display": "Review of Pulmonary System"
+               }
             }
           ],
           "linkId": "5.4",
@@ -1064,6 +1094,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Cardiac System",
+                   "display": "Review of Cardiac System"
+               }
+            }
+          ],
           "linkId": "5.5",
           "text": "Review of Cardiac System",
           "type": "choice",
@@ -1118,6 +1158,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Vascular System",
+                   "display": "Review of Vascular System"
+               }
+            }
+          ],
           "linkId": "5.6",
           "text": "Review of Vascular System",
           "type": "choice",
@@ -1170,6 +1220,16 @@
                 "language": "text/cql",
                 "expression":  "GastrointestinalReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Gastrointestinal System",
+                   "display": "Review of Gastrointestinal System"
+               }
             }
           ],
           "linkId": "5.7",
@@ -1274,6 +1334,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Musculoskeletal System",
+                   "display": "Review of Musculoskeletal System"
+               }
+            }
+          ],
           "linkId": "5.8",
           "text": "Review of Musculoskeletal System",
           "type": "choice",
@@ -1374,6 +1444,16 @@
                 "language": "text/cql",
                 "expression":  "NeurologicalReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Neurological System",
+                   "display": "Review of Neurological System"
+               }
             }
           ],
           "linkId": "5.9",
@@ -1502,6 +1582,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Psychiatric Review",
+                   "display": "Psychiatric Review"
+               }
+            }
+          ],
           "linkId": "5.10",
           "text": "Psychiatric Review",
           "type": "choice",
@@ -1556,6 +1646,16 @@
               }
             }
           ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Hematology",
+                   "display": "Review of Hematology"
+               }
+            }
+          ],
           "linkId": "5.11",
           "text": "Review of Hematology",
           "type": "choice",
@@ -1596,6 +1696,16 @@
                 "language": "text/cql",
                 "expression":  "EndocrineReview"
               }
+            }
+          ],
+          "enableWhen":[
+            {
+               "operator": "=",
+               "question": "5.1",
+               "answerCoding": {
+                   "code": "Review of Endocrine System",
+                   "display": "Review of Endocrine System"
+               }
             }
           ],
           "linkId": "5.12",

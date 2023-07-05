@@ -1,0 +1,379 @@
+{
+    "resourceType": "Questionnaire",
+    "id": "questionnaire-bariumswallowtest-bariumswallow",
+    "meta": {
+        "versionId": "15",
+        "lastUpdated": "2021-10-05T12:29:38.000+00:00",
+        "source": "#whKdYW9J1Bq7wQIP"
+    },
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-bariumswallowtest-bariumswallow"
+        },
+        {
+            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+            "valueBoolean": true
+        }
+    ],
+    "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-bariumswallowtest-bariumswallow",
+    "identifier": [
+        {
+            "system": "http://identifiers.mettles.com/prior_authorization",
+            "value": "medicare_fee_for_service-barium_swallow_test"
+        }
+    ],
+    "version": "1.0.0",
+    "name": "BariumSwallowTest",
+    "title": "BariumSwallowTest",
+    "status": "draft",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2023-07-01",
+    "publisher": "Mettle Solutions",
+    "item": [
+        {
+            "linkId": "1",
+            "text": "Patient Diagnosis",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PrimaryDiagnosis"
+                            }
+                        }
+                    ],
+                    "linkId": "1.1",
+                    "text": "Primary Diagnosis",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "SecondaryDiagnosis"
+                            }
+                        }
+                    ],
+                    "linkId": "1.2",
+                    "text": "Secondary Diagnosis",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "OnsetDate"
+                            }
+                        }
+                    ],
+                    "linkId": "1.2",
+                    "text": "Date of Onset",
+                    "type": "date",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "2",
+            "text": "Patient History",
+            "type": "group",
+            "item": [
+                
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "BedsideCompleted"
+                            }
+                        }
+                    ],
+                    "linkId": "2.1",
+                    "text": "Bedside Completed ?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ProblemsWithDiet"
+                            }
+                        }
+                    ],
+                    "linkId": "2.2",
+                    "text": "Problem noted with following diets",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Thin Liquid",
+                                "display": "Thin Liquid"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Pureed",
+                                "display": "Pureed"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Solids",
+                                "display": "Solids"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Others",
+                                "display": "Others"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.3",
+                    "text": "Specify, if Others",
+                    "type": "text",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "2.2",
+                            "operator": "=",
+                            "answerCoding": {
+                                "code": "Others",
+                                "display": "Others"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "PresentDiet"
+                            }
+                        }
+                    ],
+                    "linkId": "2.4",
+                    "text": "Present Diet",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Regular",
+                                "display": "Thin Liquid"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Pureed",
+                                "display": "Pureed"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Soft",
+                                "display": "Soft"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Details of Medical History",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ApplicableDiagnosis"
+                            }
+                        }
+                    ],
+                    "linkId": "3.1",
+                    "text": "Check if any diagnosis is applicable ",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Feeding Tube",
+                                "display": "Feeding Tube"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "ALS",
+                                "display": "ALS"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Esophageal Stretching",
+                                "display": "Esophageal Stretching"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Intubation",
+                                "display": "Intubation"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "RadiationTreatment"
+                            }
+                        }
+                    ],
+                    "linkId": "3.2",
+                    "text": "Previous history of Radiation Treatment?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "linkId": "3.3",
+                    "text": "Specify, the region",
+                    "type": "text",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "3.2",
+                            "operator": "=",
+                            "answerBoolean": true
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "TroubleWithPills"
+                            }
+                        }
+                    ],
+                    "linkId": "3.4",
+                    "text": "Trouble swallowing pills?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Patient Symptoms",
+            "type": "group",
+            "item": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ApplicableSymptoms"
+                            }
+                        }
+                    ],
+                    "linkId": "4.1",
+                    "text": "Check all applicable symptoms",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueCoding": {
+                                "code": "Painful Swallowing",
+                                "display": "Painful Swallowing"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Pain inside mouth",
+                                "display": "Pain inside mouth"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Gastroesophageal Reflux (GERD)",
+                                "display": "Gastroesophageal Reflux (GERD)"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Choking Sensation",
+                                "display": "Choking Sensation"
+                            }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "Increased Salivation",
+                                "display": "Increased Salivation"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "WeightLoss"
+                            }
+                        }
+                    ],
+                    "linkId": "4.2",
+                    "text": "Is the patient losing weight?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                            "valueExpression": {
+                                "language": "text/cql",
+                                "expression": "ChewingTrouble"
+                            }
+                        }
+                    ],
+                    "linkId": "4.3",
+                    "text": "Does the patient have trouble chewing food ?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1807 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.6037.1001.23.95.52",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2022-12-22T07:42:03.000+00:00",
+        "source": "#ZgQKXctqkILWIKOH"
+    },
+    "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.95.52",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.6037.1001.23.95.52"
+        }
+    ],
+    "version": "Latest",
+    "name": "Secondary Diagnosis Codes for MBS",
+    "title": "Secondary Diagnosis Codes for MBS",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2023",
+                "concept": [
+                    {
+                      "code": "A31.0",
+                      "system": "Pulmonary mycobacterial infection"
+                    },
+                    {
+                      "code": "B91",
+                      "system": "Sequelae of poliomyelitis"
+                    },
+                    {
+                      "code": "C00.0",
+                      "system": "Malignant neoplasm of external upper lip"
+                    },
+                    {
+                      "code": "C00.1",
+                      "system": "Malignant neoplasm of external lower lip"
+                    },
+                    {
+                      "code": "C00.2",
+                      "system": "Malignant neoplasm of external lip, unspecified"
+                    },
+                    {
+                      "code": "C00.3",
+                      "system": "Malignant neoplasm of upper lip, inner aspect"
+                    },
+                    {
+                      "code": "C00.4",
+                      "system": "Malignant neoplasm of lower lip, inner aspect"
+                    },
+                    {
+                      "code": "C00.5",
+                      "system": "Malignant neoplasm of lip, unspecified, inner aspect"
+                    },
+                    {
+                      "code": "C00.6",
+                      "system": "Malignant neoplasm of commissure of lip, unspecified"
+                    },
+                    {
+                      "code": "C00.8",
+                      "system": "Malignant neoplasm of overlapping sites of lip"
+                    },
+                    {
+                      "code": "C00.9",
+                      "system": "Malignant neoplasm of lip, unspecified"
+                    },
+                    {
+                      "code": "C01",
+                      "system": "Malignant neoplasm of base of tongue"
+                    },
+                    {
+                      "code": "C02.0",
+                      "system": "Malignant neoplasm of dorsal surface of tongue"
+                    },
+                    {
+                      "code": "C02.1",
+                      "system": "Malignant neoplasm of border of tongue"
+                    },
+                    {
+                      "code": "C02.2",
+                      "system": "Malignant neoplasm of ventral surface of tongue"
+                    },
+                    {
+                      "code": "C02.3",
+                      "system": "Malignant neoplasm of anterior two-thirds of tongue, part unspecified"
+                    },
+                    {
+                      "code": "C02.4",
+                      "system": "Malignant neoplasm of lingual tonsil"
+                    },
+                    {
+                      "code": "C02.8",
+                      "system": "Malignant neoplasm of overlapping sites of tongue"
+                    },
+                    {
+                      "code": "C02.9",
+                      "system": "Malignant neoplasm of tongue, unspecified"
+                    },
+                    {
+                      "code": "C03.0",
+                      "system": "Malignant neoplasm of upper gum"
+                    },
+                    {
+                      "code": "C03.1",
+                      "system": "Malignant neoplasm of lower gum"
+                    },
+                    {
+                      "code": "C03.9",
+                      "system": "Malignant neoplasm of gum, unspecified"
+                    },
+                    {
+                      "code": "C04.0",
+                      "system": "Malignant neoplasm of anterior floor of mouth"
+                    },
+                    {
+                      "code": "C04.1",
+                      "system": "Malignant neoplasm of lateral floor of mouth"
+                    },
+                    {
+                      "code": "C04.8",
+                      "system": "Malignant neoplasm of overlapping sites of floor of mouth"
+                    },
+                    {
+                      "code": "C04.9",
+                      "system": "Malignant neoplasm of floor of mouth, unspecified"
+                    },
+                    {
+                      "code": "C05.0",
+                      "system": "Malignant neoplasm of hard palate"
+                    },
+                    {
+                      "code": "C05.1",
+                      "system": "Malignant neoplasm of soft palate"
+                    },
+                    {
+                      "code": "C05.2",
+                      "system": "Malignant neoplasm of uvula"
+                    },
+                    {
+                      "code": "C05.8",
+                      "system": "Malignant neoplasm of overlapping sites of palate"
+                    },
+                    {
+                      "code": "C05.9",
+                      "system": "Malignant neoplasm of palate, unspecified"
+                    },
+                    {
+                      "code": "C06.0",
+                      "system": "Malignant neoplasm of cheek mucosa"
+                    },
+                    {
+                      "code": "C06.1",
+                      "system": "Malignant neoplasm of vestibule of mouth"
+                    },
+                    {
+                      "code": "C06.2",
+                      "system": "Malignant neoplasm of retromolar area"
+                    },
+                    {
+                      "code": "C06.80",
+                      "system": "Malignant neoplasm of overlapping sites of unspecified parts of mouth"
+                    },
+                    {
+                      "code": "C06.89",
+                      "system": "Malignant neoplasm of overlapping sites of other parts of mouth"
+                    },
+                    {
+                      "code": "C06.9",
+                      "system": "Malignant neoplasm of mouth, unspecified"
+                    },
+                    {
+                      "code": "C07",
+                      "system": "Malignant neoplasm of parotid gland"
+                    },
+                    {
+                      "code": "C08.0",
+                      "system": "Malignant neoplasm of submandibular gland"
+                    },
+                    {
+                      "code": "C08.1",
+                      "system": "Malignant neoplasm of sublingual gland"
+                    },
+                    {
+                      "code": "C08.9",
+                      "system": "Malignant neoplasm of major salivary gland, unspecified"
+                    },
+                    {
+                      "code": "C09.0",
+                      "system": "Malignant neoplasm of tonsillar fossa"
+                    },
+                    {
+                      "code": "C09.1",
+                      "system": "Malignant neoplasm of tonsillar pillar (anterior) (posterior)"
+                    },
+                    {
+                      "code": "C09.8",
+                      "system": "Malignant neoplasm of overlapping sites of tonsil"
+                    },
+                    {
+                      "code": "C09.9",
+                      "system": "Malignant neoplasm of tonsil, unspecified"
+                    },
+                    {
+                      "code": "C10.0",
+                      "system": "Malignant neoplasm of vallecula"
+                    },
+                    {
+                      "code": "C10.1",
+                      "system": "Malignant neoplasm of anterior surface of epiglottis"
+                    },
+                    {
+                      "code": "C10.2",
+                      "system": "Malignant neoplasm of lateral wall of oropharynx"
+                    },
+                    {
+                      "code": "C10.3",
+                      "system": "Malignant neoplasm of posterior wall of oropharynx"
+                    },
+                    {
+                      "code": "C10.4",
+                      "system": "Malignant neoplasm of branchial cleft"
+                    },
+                    {
+                      "code": "C10.8",
+                      "system": "Malignant neoplasm of overlapping sites of oropharynx"
+                    },
+                    {
+                      "code": "C10.9",
+                      "system": "Malignant neoplasm of oropharynx, unspecified"
+                    },
+                    {
+                      "code": "C11.0",
+                      "system": "Malignant neoplasm of superior wall of nasopharynx"
+                    },
+                    {
+                      "code": "C11.1",
+                      "system": "Malignant neoplasm of posterior wall of nasopharynx"
+                    },
+                    {
+                      "code": "C11.2",
+                      "system": "Malignant neoplasm of lateral wall of nasopharynx"
+                    },
+                    {
+                      "code": "C11.3",
+                      "system": "Malignant neoplasm of anterior wall of nasopharynx"
+                    },
+                    {
+                      "code": "C11.8",
+                      "system": "Malignant neoplasm of overlapping sites of nasopharynx"
+                    },
+                    {
+                      "code": "C11.9",
+                      "system": "Malignant neoplasm of nasopharynx, unspecified"
+                    },
+                    {
+                      "code": "C12",
+                      "system": "Malignant neoplasm of pyriform sinus"
+                    },
+                    {
+                      "code": "C13.0",
+                      "system": "Malignant neoplasm of postcricoid region"
+                    },
+                    {
+                      "code": "C13.1",
+                      "system": "Malignant neoplasm of aryepiglottic fold, hypopharyngeal aspect"
+                    },
+                    {
+                      "code": "C13.2",
+                      "system": "Malignant neoplasm of posterior wall of hypopharynx"
+                    },
+                    {
+                      "code": "C13.8",
+                      "system": "Malignant neoplasm of overlapping sites of hypopharynx"
+                    },
+                    {
+                      "code": "C13.9",
+                      "system": "Malignant neoplasm of hypopharynx, unspecified"
+                    },
+                    {
+                      "code": "C14.0",
+                      "system": "Malignant neoplasm of pharynx, unspecified"
+                    },
+                    {
+                      "code": "C14.2",
+                      "system": "Malignant neoplasm of Waldeyer's ring"
+                    },
+                    {
+                      "code": "C14.8",
+                      "system": "Malignant neoplasm of overlapping sites of lip, oral cavity and pharynx"
+                    },
+                    {
+                      "code": "C15.3",
+                      "system": "Malignant neoplasm of upper third of esophagus"
+                    },
+                    {
+                      "code": "C15.4",
+                      "system": "Malignant neoplasm of middle third of esophagus"
+                    },
+                    {
+                      "code": "C15.5",
+                      "system": "Malignant neoplasm of lower third of esophagus"
+                    },
+                    {
+                      "code": "C15.8",
+                      "system": "Malignant neoplasm of overlapping sites of esophagus"
+                    },
+                    {
+                      "code": "C15.9",
+                      "system": "Malignant neoplasm of esophagus, unspecified"
+                    },
+                    {
+                      "code": "C30.0",
+                      "system": "Malignant neoplasm of nasal cavity"
+                    },
+                    {
+                      "code": "C30.1",
+                      "system": "Malignant neoplasm of middle ear"
+                    },
+                    {
+                      "code": "C31.0",
+                      "system": "Malignant neoplasm of maxillary sinus"
+                    },
+                    {
+                      "code": "C31.1",
+                      "system": "Malignant neoplasm of ethmoidal sinus"
+                    },
+                    {
+                      "code": "C31.2",
+                      "system": "Malignant neoplasm of frontal sinus"
+                    },
+                    {
+                      "code": "C31.3",
+                      "system": "Malignant neoplasm of sphenoid sinus"
+                    },
+                    {
+                      "code": "C31.8",
+                      "system": "Malignant neoplasm of overlapping sites of accessory sinuses"
+                    },
+                    {
+                      "code": "C32.0",
+                      "system": "Malignant neoplasm of glottis"
+                    },
+                    {
+                      "code": "C32.1",
+                      "system": "Malignant neoplasm of supraglottis"
+                    },
+                    {
+                      "code": "C32.2",
+                      "system": "Malignant neoplasm of subglottis"
+                    },
+                    {
+                      "code": "C32.3",
+                      "system": "Malignant neoplasm of laryngeal cartilage"
+                    },
+                    {
+                      "code": "C32.8",
+                      "system": "Malignant neoplasm of overlapping sites of larynx"
+                    },
+                    {
+                      "code": "C32.9",
+                      "system": "Malignant neoplasm of larynx, unspecified"
+                    },
+                    {
+                      "code": "C76.0",
+                      "system": "Malignant neoplasm of head, face and neck"
+                    },
+                    {
+                      "code": "C77.0",
+                      "system": "Secondary and unspecified malignant neoplasm of lymph nodes of head, face and neck"
+                    },
+                    {
+                      "code": "C78.7",
+                      "system": "Secondary malignant neoplasm of liver and intrahepatic bile duct"
+                    },
+                    {
+                      "code": "C78.80",
+                      "system": "Secondary malignant neoplasm of unspecified digestive organ"
+                    },
+                    {
+                      "code": "C78.89",
+                      "system": "Secondary malignant neoplasm of other digestive organs"
+                    },
+                    {
+                      "code": "D10.1",
+                      "system": "Benign neoplasm of tongue"
+                    },
+                    {
+                      "code": "D10.2",
+                      "system": "Benign neoplasm of floor of mouth"
+                    },
+                    {
+                      "code": "D10.30",
+                      "system": "Benign neoplasm of unspecified part of mouth"
+                    },
+                    {
+                      "code": "D10.39",
+                      "system": "Benign neoplasm of other parts of mouth"
+                    },
+                    {
+                      "code": "D10.4",
+                      "system": "Benign neoplasm of tonsil"
+                    },
+                    {
+                      "code": "D10.5",
+                      "system": "Benign neoplasm of other parts of oropharynx"
+                    },
+                    {
+                      "code": "D10.6",
+                      "system": "Benign neoplasm of nasopharynx"
+                    },
+                    {
+                      "code": "D10.7",
+                      "system": "Benign neoplasm of hypopharynx"
+                    },
+                    {
+                      "code": "D10.9",
+                      "system": "Benign neoplasm of pharynx, unspecified"
+                    },
+                    {
+                      "code": "D11.0",
+                      "system": "Benign neoplasm of parotid gland"
+                    },
+                    {
+                      "code": "D11.7",
+                      "system": "Benign neoplasm of other major salivary glands"
+                    },
+                    {
+                      "code": "D11.9",
+                      "system": "Benign neoplasm of major salivary gland, unspecified"
+                    },
+                    {
+                      "code": "D13.0",
+                      "system": "Benign neoplasm of esophagus"
+                    },
+                    {
+                      "code": "D38.0",
+                      "system": "Neoplasm of uncertain behavior of larynx"
+                    },
+                    {
+                      "code": "D49.1",
+                      "system": "Neoplasm of unspecified behavior of respiratory system"
+                    },
+                    {
+                      "code": "F44.4",
+                      "system": "Conversion disorder with motor symptom or deficit"
+                    },
+                    {
+                      "code": "F44.7",
+                      "system": "Conversion disorder with mixed symptom presentation"
+                    },
+                    {
+                      "code": "G10",
+                      "system": "Huntington's disease"
+                    },
+                    {
+                      "code": "G12.21",
+                      "system": "Amyotrophic lateral sclerosis"
+                    },
+                    {
+                      "code": "G12.22",
+                      "system": "Progressive bulbar palsy"
+                    },
+                    {
+                      "code": "G12.23",
+                      "system": "Primary lateral sclerosis"
+                    },
+                    {
+                      "code": "G12.24",
+                      "system": "Familial motor neuron disease"
+                    },
+                    {
+                      "code": "G12.25",
+                      "system": "Progressive spinal muscle atrophy"
+                    },
+                    {
+                      "code": "G12.29",
+                      "system": "Other motor neuron disease"
+                    },
+                    {
+                      "code": "G12.8",
+                      "system": "Other spinal muscular atrophies and related syndromes"
+                    },
+                    {
+                      "code": "G14",
+                      "system": "Postpolio syndrome"
+                    },
+                    {
+                      "code": "G20",
+                      "system": "Parkinson's disease"
+                    },
+                    {
+                      "code": "G21.0",
+                      "system": "Malignant neuroleptic syndrome"
+                    },
+                    {
+                      "code": "G21.11",
+                      "system": "Neuroleptic induced parkinsonism"
+                    },
+                    {
+                      "code": "G21.19",
+                      "system": "Other drug induced secondary parkinsonism"
+                    },
+                    {
+                      "code": "G21.2",
+                      "system": "Secondary parkinsonism due to other external agents"
+                    },
+                    {
+                      "code": "G21.3",
+                      "system": "Postencephalitic parkinsonism"
+                    },
+                    {
+                      "code": "G21.4",
+                      "system": "Vascular parkinsonism"
+                    },
+                    {
+                      "code": "G21.8",
+                      "system": "Other secondary parkinsonism"
+                    },
+                    {
+                      "code": "G21.9",
+                      "system": "Secondary parkinsonism, unspecified"
+                    },
+                    {
+                      "code": "G23.0",
+                      "system": "Hallervorden-Spatz disease"
+                    },
+                    {
+                      "code": "G23.1",
+                      "system": "Progressive supranuclear ophthalmoplegia [Steele-Richardson-Olszewski]"
+                    },
+                    {
+                      "code": "G23.2",
+                      "system": "Striatonigral degeneration"
+                    },
+                    {
+                      "code": "G23.8",
+                      "system": "Other specified degenerative diseases of basal ganglia"
+                    },
+                    {
+                      "code": "G23.9",
+                      "system": "Degenerative disease of basal ganglia, unspecified"
+                    },
+                    {
+                      "code": "G24.09",
+                      "system": "Other drug induced dystonia"
+                    },
+                    {
+                      "code": "G24.1",
+                      "system": "Genetic torsion dystonia"
+                    },
+                    {
+                      "code": "G24.2",
+                      "system": "Idiopathic nonfamilial dystonia"
+                    },
+                    {
+                      "code": "G24.3",
+                      "system": "Spasmodic torticollis"
+                    },
+                    {
+                      "code": "G24.4",
+                      "system": "Idiopathic orofacial dystonia"
+                    },
+                    {
+                      "code": "G24.5",
+                      "system": "Blepharospasm"
+                    },
+                    {
+                      "code": "G24.8",
+                      "system": "Other dystonia"
+                    },
+                    {
+                      "code": "G24.9",
+                      "system": "Dystonia, unspecified"
+                    },
+                    {
+                      "code": "G25.3",
+                      "system": "Myoclonus"
+                    },
+                    {
+                      "code": "G25.4",
+                      "system": "Drug-induced chorea"
+                    },
+                    {
+                      "code": "G25.5",
+                      "system": "Other chorea"
+                    },
+                    {
+                      "code": "G25.70",
+                      "system": "Drug induced movement disorder, unspecified"
+                    },
+                    {
+                      "code": "G25.71",
+                      "system": "Drug induced akathisia"
+                    },
+                    {
+                      "code": "G25.79",
+                      "system": "Other drug induced movement disorders"
+                    },
+                    {
+                      "code": "G25.82",
+                      "system": "Stiff-man syndrome"
+                    },
+                    {
+                      "code": "G25.83",
+                      "system": "Benign shuddering attacks"
+                    },
+                    {
+                      "code": "G25.89",
+                      "system": "Other specified extrapyramidal and movement disorders"
+                    },
+                    {
+                      "code": "G25.9",
+                      "system": "Extrapyramidal and movement disorder, unspecified"
+                    },
+                    {
+                      "code": "G26",
+                      "system": "Extrapyramidal and movement disorders in diseases classified elsewhere"
+                    },
+                    {
+                      "code": "G35",
+                      "system": "Multiple sclerosis"
+                    },
+                    {
+                      "code": "G36.0",
+                      "system": "Neuromyelitis optica [Devic]"
+                    },
+                    {
+                      "code": "G36.1",
+                      "system": "Acute and subacute hemorrhagic leukoencephalitis [Hurst]"
+                    },
+                    {
+                      "code": "G36.8",
+                      "system": "Other specified acute disseminated demyelination"
+                    },
+                    {
+                      "code": "G36.9",
+                      "system": "Acute disseminated demyelination, unspecified"
+                    },
+                    {
+                      "code": "G37.0",
+                      "system": "Diffuse sclerosis of central nervous system"
+                    },
+                    {
+                      "code": "G37.1",
+                      "system": "Central demyelination of corpus callosum"
+                    },
+                    {
+                      "code": "G37.2",
+                      "system": "Central pontine myelinolysis"
+                    },
+                    {
+                      "code": "G37.3",
+                      "system": "Acute transverse myelitis in demyelinating disease of central nervous system"
+                    },
+                    {
+                      "code": "G37.4",
+                      "system": "Subacute necrotizing myelitis of central nervous system"
+                    },
+                    {
+                      "code": "G37.5",
+                      "system": "Concentric sclerosis [Balo] of central nervous system"
+                    },
+                    {
+                      "code": "G37.8",
+                      "system": "Other specified demyelinating diseases of central nervous system"
+                    },
+                    {
+                      "code": "G37.9",
+                      "system": "Demyelinating disease of central nervous system, unspecified"
+                    },
+                    {
+                      "code": "G70.00",
+                      "system": "Myasthenia gravis without (acute) exacerbation"
+                    },
+                    {
+                      "code": "G70.01",
+                      "system": "Myasthenia gravis with (acute) exacerbation"
+                    },
+                    {
+                      "code": "G71.01",
+                      "system": "Duchenne or Becker muscular dystrophy"
+                    },
+                    {
+                      "code": "G71.09",
+                      "system": "Other specified muscular dystrophies"
+                    },
+                    {
+                      "code": "G80.3",
+                      "system": "Athetoid cerebral palsy"
+                    },
+                    {
+                      "code": "G80.4",
+                      "system": "Ataxic cerebral palsy"
+                    },
+                    {
+                      "code": "G80.8",
+                      "system": "Other cerebral palsy"
+                    },
+                    {
+                      "code": "G81.00",
+                      "system": "Flaccid hemiplegia affecting unspecified side"
+                    },
+                    {
+                      "code": "G81.01",
+                      "system": "Flaccid hemiplegia affecting right dominant side"
+                    },
+                    {
+                      "code": "G81.02",
+                      "system": "Flaccid hemiplegia affecting left dominant side"
+                    },
+                    {
+                      "code": "G81.03",
+                      "system": "Flaccid hemiplegia affecting right nondominant side"
+                    },
+                    {
+                      "code": "G81.04",
+                      "system": "Flaccid hemiplegia affecting left nondominant side"
+                    },
+                    {
+                      "code": "G81.10",
+                      "system": "Spastic hemiplegia affecting unspecified side"
+                    },
+                    {
+                      "code": "G81.11",
+                      "system": "Spastic hemiplegia affecting right dominant side"
+                    },
+                    {
+                      "code": "G81.12",
+                      "system": "Spastic hemiplegia affecting left dominant side"
+                    },
+                    {
+                      "code": "G81.13",
+                      "system": "Spastic hemiplegia affecting right nondominant side"
+                    },
+                    {
+                      "code": "G81.14",
+                      "system": "Spastic hemiplegia affecting left nondominant side"
+                    },
+                    {
+                      "code": "G81.90",
+                      "system": "Hemiplegia, unspecified affecting unspecified side"
+                    },
+                    {
+                      "code": "G81.91",
+                      "system": "Hemiplegia, unspecified affecting right dominant side"
+                    },
+                    {
+                      "code": "G81.92",
+                      "system": "Hemiplegia, unspecified affecting left dominant side"
+                    },
+                    {
+                      "code": "G81.93",
+                      "system": "Hemiplegia, unspecified affecting right nondominant side"
+                    },
+                    {
+                      "code": "G81.94",
+                      "system": "Hemiplegia, unspecified affecting left nondominant side"
+                    },
+                    {
+                      "code": "G82.50",
+                      "system": "Quadriplegia, unspecified"
+                    },
+                    {
+                      "code": "G82.51",
+                      "system": "Quadriplegia, C1-C4 complete"
+                    },
+                    {
+                      "code": "G82.52",
+                      "system": "Quadriplegia, C1-C4 incomplete"
+                    },
+                    {
+                      "code": "G82.53",
+                      "system": "Quadriplegia, C5-C7 complete"
+                    },
+                    {
+                      "code": "G82.54",
+                      "system": "Quadriplegia, C5-C7 incomplete"
+                    },
+                    {
+                      "code": "G90.3",
+                      "system": "Multi-system degeneration of the autonomic nervous system"
+                    },
+                    {
+                      "code": "I63.30",
+                      "system": "Cerebral infarction due to thrombosis of unspecified cerebral artery"
+                    },
+                    {
+                      "code": "I63.311",
+                      "system": "Cerebral infarction due to thrombosis of right middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.312",
+                      "system": "Cerebral infarction due to thrombosis of left middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.313",
+                      "system": "Cerebral infarction due to thrombosis of bilateral middle cerebral arteries"
+                    },
+                    {
+                      "code": "I63.319",
+                      "system": "Cerebral infarction due to thrombosis of unspecified middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.321",
+                      "system": "Cerebral infarction due to thrombosis of right anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.322",
+                      "system": "Cerebral infarction due to thrombosis of left anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.323",
+                      "system": "Cerebral infarction due to thrombosis of bilateral anterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.329",
+                      "system": "Cerebral infarction due to thrombosis of unspecified anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.331",
+                      "system": "Cerebral infarction due to thrombosis of right posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.332",
+                      "system": "Cerebral infarction due to thrombosis of left posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.333",
+                      "system": "Cerebral infarction due to thrombosis of bilateral posterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.339",
+                      "system": "Cerebral infarction due to thrombosis of unspecified posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.341",
+                      "system": "Cerebral infarction due to thrombosis of right cerebellar artery"
+                    },
+                    {
+                      "code": "I63.342",
+                      "system": "Cerebral infarction due to thrombosis of left cerebellar artery"
+                    },
+                    {
+                      "code": "I63.343",
+                      "system": "Cerebral infarction due to thrombosis of bilateral cerebellar arteries"
+                    },
+                    {
+                      "code": "I63.349",
+                      "system": "Cerebral infarction due to thrombosis of unspecified cerebellar artery"
+                    },
+                    {
+                      "code": "I63.39",
+                      "system": "Cerebral infarction due to thrombosis of other cerebral artery"
+                    },
+                    {
+                      "code": "I63.40",
+                      "system": "Cerebral infarction due to embolism of unspecified cerebral artery"
+                    },
+                    {
+                      "code": "I63.411",
+                      "system": "Cerebral infarction due to embolism of right middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.412",
+                      "system": "Cerebral infarction due to embolism of left middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.413",
+                      "system": "Cerebral infarction due to embolism of bilateral middle cerebral arteries"
+                    },
+                    {
+                      "code": "I63.419",
+                      "system": "Cerebral infarction due to embolism of unspecified middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.421",
+                      "system": "Cerebral infarction due to embolism of right anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.422",
+                      "system": "Cerebral infarction due to embolism of left anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.423",
+                      "system": "Cerebral infarction due to embolism of bilateral anterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.429",
+                      "system": "Cerebral infarction due to embolism of unspecified anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.431",
+                      "system": "Cerebral infarction due to embolism of right posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.432",
+                      "system": "Cerebral infarction due to embolism of left posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.433",
+                      "system": "Cerebral infarction due to embolism of bilateral posterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.439",
+                      "system": "Cerebral infarction due to embolism of unspecified posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.441",
+                      "system": "Cerebral infarction due to embolism of right cerebellar artery"
+                    },
+                    {
+                      "code": "I63.442",
+                      "system": "Cerebral infarction due to embolism of left cerebellar artery"
+                    },
+                    {
+                      "code": "I63.443",
+                      "system": "Cerebral infarction due to embolism of bilateral cerebellar arteries"
+                    },
+                    {
+                      "code": "I63.449",
+                      "system": "Cerebral infarction due to embolism of unspecified cerebellar artery"
+                    },
+                    {
+                      "code": "I63.49",
+                      "system": "Cerebral infarction due to embolism of other cerebral artery"
+                    },
+                    {
+                      "code": "I63.50",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of unspecified cerebral artery"
+                    },
+                    {
+                      "code": "I63.511",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of right middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.512",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of left middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.513",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of bilateral middle cerebral arteries"
+                    },
+                    {
+                      "code": "I63.519",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of unspecified middle cerebral artery"
+                    },
+                    {
+                      "code": "I63.521",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of right anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.522",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of left anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.523",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of bilateral anterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.529",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of unspecified anterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.531",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of right posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.532",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of left posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.533",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of bilateral posterior cerebral arteries"
+                    },
+                    {
+                      "code": "I63.539",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of unspecified posterior cerebral artery"
+                    },
+                    {
+                      "code": "I63.541",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of right cerebellar artery"
+                    },
+                    {
+                      "code": "I63.542",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of left cerebellar artery"
+                    },
+                    {
+                      "code": "I63.543",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of bilateral cerebellar arteries"
+                    },
+                    {
+                      "code": "I63.549",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of unspecified cerebellar artery"
+                    },
+                    {
+                      "code": "I63.59",
+                      "system": "Cerebral infarction due to unspecified occlusion or stenosis of other cerebral artery"
+                    },
+                    {
+                      "code": "I63.6",
+                      "system": "Cerebral infarction due to cerebral venous thrombosis, nonpyogenic"
+                    },
+                    {
+                      "code": "I63.81",
+                      "system": "Other cerebral infarction due to occlusion or stenosis of small artery"
+                    },
+                    {
+                      "code": "I63.89",
+                      "system": "Other cerebral infarction"
+                    },
+                    {
+                      "code": "I63.9",
+                      "system": "Cerebral infarction, unspecified"
+                    },
+                    {
+                      "code": "I66.01",
+                      "system": "Occlusion and stenosis of right middle cerebral artery"
+                    },
+                    {
+                      "code": "I66.02",
+                      "system": "Occlusion and stenosis of left middle cerebral artery"
+                    },
+                    {
+                      "code": "I66.03",
+                      "system": "Occlusion and stenosis of bilateral middle cerebral arteries"
+                    },
+                    {
+                      "code": "I66.09",
+                      "system": "Occlusion and stenosis of unspecified middle cerebral artery"
+                    },
+                    {
+                      "code": "I66.11",
+                      "system": "Occlusion and stenosis of right anterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.12",
+                      "system": "Occlusion and stenosis of left anterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.13",
+                      "system": "Occlusion and stenosis of bilateral anterior cerebral arteries"
+                    },
+                    {
+                      "code": "I66.19",
+                      "system": "Occlusion and stenosis of unspecified anterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.21",
+                      "system": "Occlusion and stenosis of right posterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.22",
+                      "system": "Occlusion and stenosis of left posterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.23",
+                      "system": "Occlusion and stenosis of bilateral posterior cerebral arteries"
+                    },
+                    {
+                      "code": "I66.29",
+                      "system": "Occlusion and stenosis of unspecified posterior cerebral artery"
+                    },
+                    {
+                      "code": "I66.3",
+                      "system": "Occlusion and stenosis of cerebellar arteries"
+                    },
+                    {
+                      "code": "I66.8",
+                      "system": "Occlusion and stenosis of other cerebral arteries"
+                    },
+                    {
+                      "code": "I66.9",
+                      "system": "Occlusion and stenosis of unspecified cerebral artery"
+                    },
+                    {
+                      "code": "I67.89",
+                      "system": "Other cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.020",
+                      "system": "Aphasia following nontraumatic subarachnoid hemorrhage"
+                    },
+                    {
+                      "code": "I69.021",
+                      "system": "Dysphasia following nontraumatic subarachnoid hemorrhage"
+                    },
+                    {
+                      "code": "I69.022",
+                      "system": "Dysarthria following nontraumatic subarachnoid hemorrhage"
+                    },
+                    {
+                      "code": "I69.051",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic subarachnoid hemorrhage affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.052",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic subarachnoid hemorrhage affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.053",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic subarachnoid hemorrhage affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.054",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic subarachnoid hemorrhage affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.059",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic subarachnoid hemorrhage affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.091",
+                      "system": "Dysphagia following nontraumatic subarachnoid hemorrhage"
+                    },
+                    {
+                      "code": "I69.120",
+                      "system": "Aphasia following nontraumatic intracerebral hemorrhage"
+                    },
+                    {
+                      "code": "I69.121",
+                      "system": "Dysphasia following nontraumatic intracerebral hemorrhage"
+                    },
+                    {
+                      "code": "I69.122",
+                      "system": "Dysarthria following nontraumatic intracerebral hemorrhage"
+                    },
+                    {
+                      "code": "I69.151",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic intracerebral hemorrhage affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.152",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic intracerebral hemorrhage affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.153",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic intracerebral hemorrhage affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.154",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic intracerebral hemorrhage affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.159",
+                      "system": "Hemiplegia and hemiparesis following nontraumatic intracerebral hemorrhage affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.191",
+                      "system": "Dysphagia following nontraumatic intracerebral hemorrhage"
+                    },
+                    {
+                      "code": "I69.220",
+                      "system": "Aphasia following other nontraumatic intracranial hemorrhage"
+                    },
+                    {
+                      "code": "I69.221",
+                      "system": "Dysphasia following other nontraumatic intracranial hemorrhage"
+                    },
+                    {
+                      "code": "I69.222",
+                      "system": "Dysarthria following other nontraumatic intracranial hemorrhage"
+                    },
+                    {
+                      "code": "I69.251",
+                      "system": "Hemiplegia and hemiparesis following other nontraumatic intracranial hemorrhage affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.252",
+                      "system": "Hemiplegia and hemiparesis following other nontraumatic intracranial hemorrhage affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.253",
+                      "system": "Hemiplegia and hemiparesis following other nontraumatic intracranial hemorrhage affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.254",
+                      "system": "Hemiplegia and hemiparesis following other nontraumatic intracranial hemorrhage affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.259",
+                      "system": "Hemiplegia and hemiparesis following other nontraumatic intracranial hemorrhage affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.291",
+                      "system": "Dysphagia following other nontraumatic intracranial hemorrhage"
+                    },
+                    {
+                      "code": "I69.320",
+                      "system": "Aphasia following cerebral infarction"
+                    },
+                    {
+                      "code": "I69.321",
+                      "system": "Dysphasia following cerebral infarction"
+                    },
+                    {
+                      "code": "I69.322",
+                      "system": "Dysarthria following cerebral infarction"
+                    },
+                    {
+                      "code": "I69.351",
+                      "system": "Hemiplegia and hemiparesis following cerebral infarction affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.352",
+                      "system": "Hemiplegia and hemiparesis following cerebral infarction affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.353",
+                      "system": "Hemiplegia and hemiparesis following cerebral infarction affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.354",
+                      "system": "Hemiplegia and hemiparesis following cerebral infarction affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.359",
+                      "system": "Hemiplegia and hemiparesis following cerebral infarction affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.391",
+                      "system": "Dysphagia following cerebral infarction"
+                    },
+                    {
+                      "code": "I69.820",
+                      "system": "Aphasia following other cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.821",
+                      "system": "Dysphasia following other cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.822",
+                      "system": "Dysarthria following other cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.851",
+                      "system": "Hemiplegia and hemiparesis following other cerebrovascular disease affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.852",
+                      "system": "Hemiplegia and hemiparesis following other cerebrovascular disease affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.853",
+                      "system": "Hemiplegia and hemiparesis following other cerebrovascular disease affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.854",
+                      "system": "Hemiplegia and hemiparesis following other cerebrovascular disease affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.859",
+                      "system": "Hemiplegia and hemiparesis following other cerebrovascular disease affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.891",
+                      "system": "Dysphagia following other cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.920",
+                      "system": "Aphasia following unspecified cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.921",
+                      "system": "Dysphasia following unspecified cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.922",
+                      "system": "Dysarthria following unspecified cerebrovascular disease"
+                    },
+                    {
+                      "code": "I69.951",
+                      "system": "Hemiplegia and hemiparesis following unspecified cerebrovascular disease affecting right dominant side"
+                    },
+                    {
+                      "code": "I69.952",
+                      "system": "Hemiplegia and hemiparesis following unspecified cerebrovascular disease affecting left dominant side"
+                    },
+                    {
+                      "code": "I69.953",
+                      "system": "Hemiplegia and hemiparesis following unspecified cerebrovascular disease affecting right non-dominant side"
+                    },
+                    {
+                      "code": "I69.954",
+                      "system": "Hemiplegia and hemiparesis following unspecified cerebrovascular disease affecting left non-dominant side"
+                    },
+                    {
+                      "code": "I69.959",
+                      "system": "Hemiplegia and hemiparesis following unspecified cerebrovascular disease affecting unspecified side"
+                    },
+                    {
+                      "code": "I69.991",
+                      "system": "Dysphagia following unspecified cerebrovascular disease"
+                    },
+                    {
+                      "code": "J05.0",
+                      "system": "Acute obstructive laryngitis [croup]"
+                    },
+                    {
+                      "code": "J38.00",
+                      "system": "Paralysis of vocal cords and larynx, unspecified"
+                    },
+                    {
+                      "code": "J38.01",
+                      "system": "Paralysis of vocal cords and larynx, unilateral"
+                    },
+                    {
+                      "code": "J38.02",
+                      "system": "Paralysis of vocal cords and larynx, bilateral"
+                    },
+                    {
+                      "code": "J38.4",
+                      "system": "Edema of larynx"
+                    },
+                    {
+                      "code": "J47.0",
+                      "system": "Bronchiectasis with acute lower respiratory infection"
+                    },
+                    {
+                      "code": "J47.1",
+                      "system": "Bronchiectasis with (acute) exacerbation"
+                    },
+                    {
+                      "code": "J47.9",
+                      "system": "Bronchiectasis, uncomplicated"
+                    },
+                    {
+                      "code": "J69.0",
+                      "system": "Pneumonitis due to inhalation of food and vomit"
+                    },
+                    {
+                      "code": "K20.0",
+                      "system": "Eosinophilic esophagitis"
+                    },
+                    {
+                      "code": "K21.9",
+                      "system": "Gastro-esophageal reflux disease without esophagitis"
+                    },
+                    {
+                      "code": "K22.0",
+                      "system": "Achalasia of cardia"
+                    },
+                    {
+                      "code": "K22.2",
+                      "system": "Esophageal obstruction"
+                    },
+                    {
+                      "code": "K22.3",
+                      "system": "Perforation of esophagus"
+                    },
+                    {
+                      "code": "K22.4",
+                      "system": "Dyskinesia of esophagus"
+                    },
+                    {
+                      "code": "K22.5",
+                      "system": "Diverticulum of esophagus, acquired"
+                    },
+                    {
+                      "code": "K94.30",
+                      "system": "Esophagostomy complications, unspecified"
+                    },
+                    {
+                      "code": "K94.31",
+                      "system": "Esophagostomy hemorrhage"
+                    },
+                    {
+                      "code": "K94.32",
+                      "system": "Esophagostomy infection"
+                    },
+                    {
+                      "code": "K94.33",
+                      "system": "Esophagostomy malfunction"
+                    },
+                    {
+                      "code": "K94.39",
+                      "system": "Other complications of esophagostomy"
+                    },
+                    {
+                      "code": "M33.00",
+                      "system": "Juvenile dermatomyositis, organ involvement unspecified"
+                    },
+                    {
+                      "code": "M33.01",
+                      "system": "Juvenile dermatomyositis with respiratory involvement"
+                    },
+                    {
+                      "code": "M33.02",
+                      "system": "Juvenile dermatomyositis with myopathy"
+                    },
+                    {
+                      "code": "M33.09",
+                      "system": "Juvenile dermatomyositis with other organ involvement"
+                    },
+                    {
+                      "code": "M33.10",
+                      "system": "Other dermatomyositis, organ involvement unspecified"
+                    },
+                    {
+                      "code": "M33.11",
+                      "system": "Other dermatomyositis with respiratory involvement"
+                    },
+                    {
+                      "code": "M33.12",
+                      "system": "Other dermatomyositis with myopathy"
+                    },
+                    {
+                      "code": "M33.19",
+                      "system": "Other dermatomyositis with other organ involvement"
+                    },
+                    {
+                      "code": "M33.20",
+                      "system": "Polymyositis, organ involvement unspecified"
+                    },
+                    {
+                      "code": "M33.21",
+                      "system": "Polymyositis with respiratory involvement"
+                    },
+                    {
+                      "code": "M33.22",
+                      "system": "Polymyositis with myopathy"
+                    },
+                    {
+                      "code": "M33.29",
+                      "system": "Polymyositis with other organ involvement"
+                    },
+                    {
+                      "code": "M33.90",
+                      "system": "Dermatopolymyositis, unspecified, organ involvement unspecified"
+                    },
+                    {
+                      "code": "M33.91",
+                      "system": "Dermatopolymyositis, unspecified with respiratory involvement"
+                    },
+                    {
+                      "code": "M33.92",
+                      "system": "Dermatopolymyositis, unspecified with myopathy"
+                    },
+                    {
+                      "code": "M33.99",
+                      "system": "Dermatopolymyositis, unspecified with other organ involvement"
+                    },
+                    {
+                      "code": "M34.0",
+                      "system": "Progressive systemic sclerosis"
+                    },
+                    {
+                      "code": "M34.1",
+                      "system": "CR(E)ST syndrome"
+                    },
+                    {
+                      "code": "M34.2",
+                      "system": "Systemic sclerosis induced by drug and chemical"
+                    },
+                    {
+                      "code": "M34.81",
+                      "system": "Systemic sclerosis with lung involvement"
+                    },
+                    {
+                      "code": "M34.82",
+                      "system": "Systemic sclerosis with myopathy"
+                    },
+                    {
+                      "code": "M34.83",
+                      "system": "Systemic sclerosis with polyneuropathy"
+                    },
+                    {
+                      "code": "M34.89",
+                      "system": "Other systemic sclerosis"
+                    },
+                    {
+                      "code": "M34.9",
+                      "system": "Systemic sclerosis, unspecified"
+                    },
+                    {
+                      "code": "M36.0",
+                      "system": "Dermato(poly)myositis in neoplastic disease"
+                    },
+                    {
+                      "code": "R13.10",
+                      "system": "Dysphagia, unspecified"
+                    },
+                    {
+                      "code": "R47.02",
+                      "system": "Dysphasia"
+                    },
+                    {
+                      "code": "R47.1",
+                      "system": "Dysarthria and anarthria"
+                    },
+                    {
+                      "code": "R47.81",
+                      "system": "Slurred speech"
+                    },
+                    {
+                      "code": "R47.89",
+                      "system": "Other speech disturbances"
+                    },
+                    {
+                      "code": "R47.9",
+                      "system": "Unspecified speech disturbances"
+                    },
+                    {
+                      "code": "R49.8",
+                      "system": "Other voice and resonance disorders"
+                    },
+                    {
+                      "code": "R63.30",
+                      "system": "Feeding difficulties, unspecified"
+                    },
+                    {
+                      "code": "R63.31",
+                      "system": "Pediatric feeding disorder, acute"
+                    },
+                    {
+                      "code": "R63.32",
+                      "system": "Pediatric feeding disorder, chronic"
+                    },
+                    {
+                      "code": "R63.39",
+                      "system": "Other feeding difficulties"
+                    },
+                    {
+                      "code": "R68.89",
+                      "system": "Other general symptoms and signs"
+                    },
+                    {
+                      "code": "S09.10XS",
+                      "system": "Unspecified injury of muscle and tendon of head, sequela"
+                    },
+                    {
+                      "code": "S09.19XS",
+                      "system": "Other specified injury of muscle and tendon of head, sequela"
+                    },
+                    {
+                      "code": "S09.8XXS",
+                      "system": "Other specified injuries of head, sequela"
+                    },
+                    {
+                      "code": "S09.90XS",
+                      "system": "Unspecified injury of head, sequela"
+                    },
+                    {
+                      "code": "S16.8XXS",
+                      "system": "Other specified injury of muscle, fascia and tendon at neck level, sequela"
+                    },
+                    {
+                      "code": "S16.9XXS",
+                      "system": "Unspecified injury of muscle, fascia and tendon at neck level, sequela"
+                    },
+                    {
+                      "code": "S19.80XS",
+                      "system": "Other specified injuries of unspecified part of neck, sequela"
+                    },
+                    {
+                      "code": "S19.81XS",
+                      "system": "Other specified injuries of larynx, sequela"
+                    },
+                    {
+                      "code": "S19.82XS",
+                      "system": "Other specified injuries of cervical trachea, sequela"
+                    },
+                    {
+                      "code": "S19.83XS",
+                      "system": "Other specified injuries of vocal cord, sequela"
+                    },
+                    {
+                      "code": "S19.84XS",
+                      "system": "Other specified injuries of thyroid gland, sequela"
+                    },
+                    {
+                      "code": "S19.85XS",
+                      "system": "Other specified injuries of pharynx and cervical esophagus, sequela"
+                    },
+                    {
+                      "code": "S19.89XS",
+                      "system": "Other specified injuries of other specified part of neck, sequela"
+                    },
+                    {
+                      "code": "S19.9XXS",
+                      "system": "Unspecified injury of neck, sequela"
+                    },
+                    {
+                      "code": "S29.001S",
+                      "system": "Unspecified injury of muscle and tendon of front wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.002S",
+                      "system": "Unspecified injury of muscle and tendon of back wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.009S",
+                      "system": "Unspecified injury of muscle and tendon of unspecified wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.091S",
+                      "system": "Other injury of muscle and tendon of front wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.092S",
+                      "system": "Other injury of muscle and tendon of back wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.099S",
+                      "system": "Other injury of muscle and tendon of unspecified wall of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.8XXS",
+                      "system": "Other specified injuries of thorax, sequela"
+                    },
+                    {
+                      "code": "S29.9XXS",
+                      "system": "Unspecified injury of thorax, sequela"
+                    },
+                    {
+                      "code": "T17.300A",
+                      "system": "Unspecified foreign body in larynx causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.308A",
+                      "system": "Unspecified foreign body in larynx causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.310A",
+                      "system": "Gastric contents in larynx causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.318A",
+                      "system": "Gastric contents in larynx causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.320A",
+                      "system": "Food in larynx causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.328A",
+                      "system": "Food in larynx causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.390A",
+                      "system": "Other foreign object in larynx causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.398A",
+                      "system": "Other foreign object in larynx causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.400A",
+                      "system": "Unspecified foreign body in trachea causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.408A",
+                      "system": "Unspecified foreign body in trachea causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.410A",
+                      "system": "Gastric contents in trachea causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.418A",
+                      "system": "Gastric contents in trachea causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.420A",
+                      "system": "Food in trachea causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.428A",
+                      "system": "Food in trachea causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.490A",
+                      "system": "Other foreign object in trachea causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.498A",
+                      "system": "Other foreign object in trachea causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.500A",
+                      "system": "Unspecified foreign body in bronchus causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.508A",
+                      "system": "Unspecified foreign body in bronchus causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.510A",
+                      "system": "Gastric contents in bronchus causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.518A",
+                      "system": "Gastric contents in bronchus causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.520A",
+                      "system": "Food in bronchus causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.528A",
+                      "system": "Food in bronchus causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.590A",
+                      "system": "Other foreign object in bronchus causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.598A",
+                      "system": "Other foreign object in bronchus causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.800A",
+                      "system": "Unspecified foreign body in other parts of respiratory tract causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.808A",
+                      "system": "Unspecified foreign body in other parts of respiratory tract causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.810A",
+                      "system": "Gastric contents in other parts of respiratory tract causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.818A",
+                      "system": "Gastric contents in other parts of respiratory tract causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.820A",
+                      "system": "Food in other parts of respiratory tract causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.828A",
+                      "system": "Food in other parts of respiratory tract causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.890A",
+                      "system": "Other foreign object in other parts of respiratory tract causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.898A",
+                      "system": "Other foreign object in other parts of respiratory tract causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.900A",
+                      "system": "Unspecified foreign body in respiratory tract, part unspecified causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.908A",
+                      "system": "Unspecified foreign body in respiratory tract, part unspecified causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.910A",
+                      "system": "Gastric contents in respiratory tract, part unspecified causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.918A",
+                      "system": "Gastric contents in respiratory tract, part unspecified causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.920A",
+                      "system": "Food in respiratory tract, part unspecified causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.928A",
+                      "system": "Food in respiratory tract, part unspecified causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "T17.990A",
+                      "system": "Other foreign object in respiratory tract, part unspecified in causing asphyxiation, initial encounter"
+                    },
+                    {
+                      "code": "T17.998A",
+                      "system": "Other foreign object in respiratory tract, part unspecified causing other injury, initial encounter"
+                    },
+                    {
+                      "code": "Z08",
+                      "system": "Encounter for follow-up examination after completed treatment for malignant neoplasm"
+                    },
+                    {
+                      "code": "Z09",
+                      "system": "Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm"
+                    },
+                    {
+                      "code": "Z85.21",
+                      "system": "Personal history of malignant neoplasm of larynx"
+                    },
+                    {
+                      "code": "Z85.22",
+                      "system": "Personal history of malignant neoplasm of nasal cavities, middle ear, and accessory sinuses"
+                    },
+                    {
+                      "code": "Z85.818",
+                      "system": "Personal history of malignant neoplasm of other sites of lip, oral cavity, and pharynx"
+                    },
+                    {
+                      "code": "Z85.819",
+                      "system": "Personal history of malignant neoplasm of unspecified site of lip, oral cavity, and pharynx"
+                    }
+                  ]
+            }
+        ]
+    }
+}

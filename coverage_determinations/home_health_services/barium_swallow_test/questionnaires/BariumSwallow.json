@@ -10,10 +10,6 @@
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
             "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-bariumswallowtest-bariumswallow"
-        },
-        {
-            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
-            "valueBoolean": true
         }
     ],
     "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-bariumswallowtest-bariumswallow",

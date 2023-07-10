@@ -1,0 +1,293 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1116.356",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-07-10T08:53:43.000+00:00",
+        "source": "#ctXg8D48YsfCb2Yu"
+    },
+    "url": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113762.1.4.1116.356",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1116.356"
+        }
+    ],
+    "version": "Latest",
+    "name": "ExternalBeamRadiotherapy",
+    "title": "External Beam Radiotherapy",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "108290001",
+                        "display": "Radiation oncology AND/OR radiotherapy (procedure)"
+                    },
+                    {
+                        "code": "115959002",
+                        "display": "Stereotactic radiosurgery (procedure)"
+                    },
+                    {
+                        "code": "169332007",
+                        "display": "External beam radiation therapy with internal radiotherapy (procedure)"
+                    }
+                ]
+            },
+            {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "version": "2023",
+                "concept": [
+                    {
+                        "code": "4165F",
+                        "display": "3-dimensional conformal radiotherapy (3D-CRT) or intensity modulated radiation therapy (IMRT) received (PRCA)"
+                    }
+                ]
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "434131000124108",
+                        "display": "Three dimensional conformal radiotherapy (procedure)"
+                    },
+                    {
+                        "code": "441783000",
+                        "display": "Conformal radiotherapy (procedure)"
+                    },
+                    {
+                        "code": "441799006",
+                        "display": "Intensity modulated radiation therapy (procedure)"
+                    },
+                    {
+                        "code": "65952009",
+                        "display": "Gamma ray therapy (procedure)"
+                    }
+                ]
+            },
+            {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "version": "2023",
+                "concept": [
+                    {
+                        "code": "77373",
+                        "display": "Stereotactic body radiation therapy, treatment delivery, per fraction to 1 or more lesions, including image guidance, entire course not to exceed 5 fractions"
+                    },
+                    {
+                        "code": "77385",
+                        "display": "Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; simple"
+                    },
+                    {
+                        "code": "77386",
+                        "display": "Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; complex"
+                    },
+                    {
+                        "code": "77402",
+                        "display": "Radiation treatment delivery, >/=1 MeV; simple"
+                    },
+                    {
+                        "code": "77407",
+                        "display": "Radiation treatment delivery, >/=1 MeV; intermediate"
+                    },
+                    {
+                        "code": "77412",
+                        "display": "Radiation treatment delivery, >/=1 MeV; complex"
+                    },
+                    {
+                        "code": "77435",
+                        "display": "Stereotactic body radiation therapy, treatment management, per treatment course, to 1 or more lesions, including image guidance, entire course not to exceed 5 fractions"
+                    },
+                    {
+                        "code": "77520",
+                        "display": "Proton treatment delivery; simple, without compensation"
+                    },
+                    {
+                        "code": "77522",
+                        "display": "Proton treatment delivery; simple, with compensation"
+                    },
+                    {
+                        "code": "77523",
+                        "display": "Proton treatment delivery; intermediate"
+                    },
+                    {
+                        "code": "77525",
+                        "display": "Proton treatment delivery; complex"
+                    }
+                ]
+            },
+            {
+                "system": "2.16.840.1.113883.3.26.1.1",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "C104914",
+                        "display": "Photon Beam Radiation Therapy"
+                    },
+                    {
+                        "code": "C104933",
+                        "display": "Volume Modulated Arc Therapy"
+                    },
+                    {
+                        "code": "C113812",
+                        "display": "Involved-Field Radiation Therapy"
+                    },
+                    {
+                        "code": "C116430",
+                        "display": "4-Dimensional Conformal Radiation Therapy"
+                    },
+                    {
+                        "code": "C118286",
+                        "display": "Stereotactic Body Radiation Therapy"
+                    },
+                    {
+                        "code": "C15195",
+                        "display": "Brachytherapy"
+                    },
+                    {
+                        "code": "C15313",
+                        "display": "Radiation Therapy"
+                    },
+                    {
+                        "code": "C15358",
+                        "display": "Stereotactic Radiosurgery"
+                    },
+                    {
+                        "code": "C15382",
+                        "display": "Gamma Knife"
+                    },
+                    {
+                        "code": "C15623",
+                        "display": "Intraoperative Radiation Therapy"
+                    },
+                    {
+                        "code": "C15651",
+                        "display": "High-Dose Rate Brachytherapy"
+                    },
+                    {
+                        "code": "C15696",
+                        "display": "Radiosurgery"
+                    },
+                    {
+                        "code": "C15751",
+                        "display": "External Beam Radiation Therapy"
+                    },
+                    {
+                        "code": "C15913",
+                        "display": "Prophylactic Cranial Irradiation"
+                    },
+                    {
+                        "code": "C16035",
+                        "display": "3-Dimensional Conformal Radiation Therapy"
+                    },
+                    {
+                        "code": "C16135",
+                        "display": "Intensity-Modulated Radiation Therapy"
+                    },
+                    {
+                        "code": "C16187",
+                        "display": "Whole-Brain Radiotherapy"
+                    },
+                    {
+                        "code": "C1639",
+                        "display": "Iodine I-131"
+                    },
+                    {
+                        "code": "C2391",
+                        "display": "Radium"
+                    },
+                    {
+                        "code": "C28049",
+                        "display": "Intracavitary Radiation Therapy"
+                    },
+                    {
+                        "code": "C62727",
+                        "display": "Image Guided Radiation Therapy"
+                    },
+                    {
+                        "code": "C62731",
+                        "display": "Tomotherapy"
+                    },
+                    {
+                        "code": "C66897",
+                        "display": "Proton Beam Radiation Therapy"
+                    },
+                    {
+                        "code": "C799",
+                        "display": "Radioisotope"
+                    },
+                    {
+                        "code": "C846",
+                        "display": "Strontium"
+                    },
+                    {
+                        "code": "C85254",
+                        "display": "Low-Dose Rate Brachytherapy"
+                    },
+                    {
+                        "code": "C95484",
+                        "display": "CyberKnife"
+                    }
+                ]
+            },
+            {
+                "system": "https://hcpcs.codes",
+                "version": "2023",
+                "concept": [
+                    {
+                        "code": "G6003",
+                        "display": "Radiation treatment delivery, single treatment area,single port or parallel opposed ports, simple blocks or no blocks: up to 5 mev"
+                    },
+                    {
+                        "code": "G6004",
+                        "display": "Radiation treatment delivery, single treatment area,single port or parallel opposed ports, simple blocks or no blocks: 6-10 mev"
+                    },
+                    {
+                        "code": "G6005",
+                        "display": "Radiation treatment delivery, single treatment area,single port or parallel opposed ports, simple blocks or no blocks: 11-19 mev"
+                    },
+                    {
+                        "code": "G6006",
+                        "display": "Radiation treatment delivery, single treatment area,single port or parallel opposed ports, simple blocks or no blocks: 20 mev or greater"
+                    },
+                    {
+                        "code": "G6007",
+                        "display": "Radiation treatment delivery, 2 separate treatment areas, 3 or more ports on a single treatment area, use of multiple blocks: up to 5 mev"
+                    },
+                    {
+                        "code": "G6008",
+                        "display": "Radiation treatment delivery, 2 separate treatment areas, 3 or more ports on a single treatment area, use of multiple blocks: 6-10 mev"
+                    },
+                    {
+                        "code": "G6009",
+                        "display": "Radiation treatment delivery, 2 separate treatment areas, 3 or more ports on a single treatment area, use of multiple blocks: 11-19 mev"
+                    },
+                    {
+                        "code": "G6010",
+                        "display": "Radiation treatment delivery, 2 separate treatment areas, 3 or more ports on a single treatment area, use of multiple blocks: 20 mev or greater"
+                    },
+                    {
+                        "code": "G6011",
+                        "display": "Radiation treatment delivery,3 or more separate treatment areas, custom blocking, tangential ports, wedges, rotational beam, compensators, electron beam; up to 5 mev"
+                    },
+                    {
+                        "code": "G6012",
+                        "display": "Radiation treatment delivery,3 or more separate treatment areas, custom blocking, tangential ports, wedges, rotational beam, compensators, electron beam; 6-10 mev"
+                    },
+                    {
+                        "code": "G6013",
+                        "display": "Radiation treatment delivery,3 or more separate treatment areas, custom blocking, tangential ports, wedges, rotational beam, compensators, electron beam; 11-19 mev"
+                    },
+                    {
+                        "code": "G6014",
+                        "display": "Radiation treatment delivery,3 or more separate treatment areas, custom blocking, tangential ports, wedges, rotational beam, compensators, electron beam; 20 mev or greater"
+                    }
+                ]
+            }
+        ]
+    }
+}

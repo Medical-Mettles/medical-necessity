@@ -1,0 +1,119 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1095.61",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-07-10T08:53:41.000+00:00",
+        "source": "#Puh5CA1RZEczIU8A"
+    },
+    "url": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113762.1.4.1095.61",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1095.61"
+        }
+    ],
+    "version": "Latest",
+    "name": "FeedingDeviceSNOMEDCT",
+    "title": "Feeding Device SNOMED CT",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "1144324003",
+                        "display": "Assistive feeder (physical object)"
+                    },
+                    {
+                        "code": "1149195002",
+                        "display": "Assistive powered drinking aid (physical object)"
+                    },
+                    {
+                        "code": "428891004",
+                        "display": "Balloon gastrostomy tube (physical object)"
+                    },
+                    {
+                        "code": "464180003",
+                        "display": "Assistive cutlery (physical object)"
+                    },
+                    {
+                        "code": "464409009",
+                        "display": "Assistive chopsticks (physical object)"
+                    },
+                    {
+                        "code": "464653006",
+                        "display": "Assistive drinking cup (physical object)"
+                    },
+                    {
+                        "code": "464663003",
+                        "display": "Assistive drinking straw (physical object)"
+                    },
+                    {
+                        "code": "464677000",
+                        "display": "Assistive drinking mug (physical object)"
+                    },
+                    {
+                        "code": "464709005",
+                        "display": "Assistive food/drink serving container (physical object)"
+                    },
+                    {
+                        "code": "464756008",
+                        "display": "Assistive food dispenser (physical object)"
+                    },
+                    {
+                        "code": "464867004",
+                        "display": "Assistive egg cup (physical object)"
+                    },
+                    {
+                        "code": "464919005",
+                        "display": "Assistive liquid flow stopper (physical object)"
+                    },
+                    {
+                        "code": "464934004",
+                        "display": "Assistive serving board (physical object)"
+                    },
+                    {
+                        "code": "464985007",
+                        "display": "Assistive drinking glass (physical object)"
+                    },
+                    {
+                        "code": "465039002",
+                        "display": "Assistive liquid funnel (physical object)"
+                    },
+                    {
+                        "code": "466825006",
+                        "display": "Warm water dining plate (physical object)"
+                    },
+                    {
+                        "code": "468191003",
+                        "display": "Adult drinking/feeding cup (physical object)"
+                    },
+                    {
+                        "code": "468431007",
+                        "display": "Diet dish (physical object)"
+                    },
+                    {
+                        "code": "470571004",
+                        "display": "Gastrostomy tube (physical object)"
+                    },
+                    {
+                        "code": "470630003",
+                        "display": "Infant drinking/feeding cup (physical object)"
+                    },
+                    {
+                        "code": "700701001",
+                        "display": "Food guard (physical object)"
+                    },
+                    {
+                        "code": "705383004",
+                        "display": "Eating/Drinking assistive device (physical object)"
+                    }
+                ]
+            }
+        ]
+    }
+}

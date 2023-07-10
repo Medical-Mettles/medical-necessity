@@ -35,6 +35,87 @@
               "valueSet": "2.16.840.1.113883.3.6037.1001.23.95.52"
             }
             ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1116.519"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1146.702"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1146.703"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1034.390"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1200.186"
+            }
+            ]
+        },
+        {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1222.1437"
+            }
+            ]
+        },
+        {
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1095.61"
+            }
+            ]
+        },
+        {
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1146.1426"
+            }
+            ]
+        },
+        {
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "code",
+              "valueSet": "2.16.840.1.113762.1.4.1116.356"
+            }
+            ]
         }
     ]
   }

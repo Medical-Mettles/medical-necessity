@@ -1,0 +1,59 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1146.702",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-07-10T08:53:42.000+00:00",
+        "source": "#NCGlLwnaPBzq58hm"
+    },
+    "url": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113762.1.4.1146.702",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1146.702"
+        }
+    ],
+    "version": "Latest",
+    "name": "WeightLoss(SNOMED)",
+    "title": "Weight Loss (SNOMED)",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "161832001",
+                        "display": "Weight decreasing (finding)"
+                    },
+                    {
+                        "code": "267024001",
+                        "display": "Abnormal weight loss (finding)"
+                    },
+                    {
+                        "code": "309257005",
+                        "display": "Excessive weight loss (finding)"
+                    },
+                    {
+                        "code": "422868009",
+                        "display": "Unexplained weight loss (finding)"
+                    },
+                    {
+                        "code": "426977000",
+                        "display": "Recent weight loss (finding)"
+                    },
+                    {
+                        "code": "448765001",
+                        "display": "Unintentional weight loss (finding)"
+                    },
+                    {
+                        "code": "89362005",
+                        "display": "Weight loss (finding)"
+                    }
+                ]
+            }
+        ]
+    }
+}

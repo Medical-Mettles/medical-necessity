@@ -1,0 +1,71 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113762.1.4.1222.1437",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-07-10T08:53:40.000+00:00",
+        "source": "#DvhCAp5NVX9145OY"
+    },
+    "url": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113762.1.4.1222.1437",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113762.1.4.1222.1437"
+        }
+    ],
+    "version": "Latest",
+    "name": "GastroesophagealReflux",
+    "title": "Gastroesophageal Reflux",
+    "status": "active",
+    "publisher": "NLM",
+    "compose": {
+        "include": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2023-03",
+                "concept": [
+                    {
+                        "code": "162030005",
+                        "display": "Waterbrash (finding)"
+                    },
+                    {
+                        "code": "16331000",
+                        "display": "Heartburn (finding)"
+                    },
+                    {
+                        "code": "225587003",
+                        "display": "Gastric reflux (finding)"
+                    },
+                    {
+                        "code": "249496004",
+                        "display": "Esophageal reflux finding (finding)"
+                    },
+                    {
+                        "code": "300290000",
+                        "display": "Excessive gastric reflux (finding)"
+                    },
+                    {
+                        "code": "300291001",
+                        "display": "Moderate gastric reflux (finding)"
+                    },
+                    {
+                        "code": "300292008",
+                        "display": "Minimal gastric reflux (finding)"
+                    },
+                    {
+                        "code": "698065002",
+                        "display": "Acid reflux (finding)"
+                    },
+                    {
+                        "code": "709493000",
+                        "display": "Digestive system reflux (finding)"
+                    },
+                    {
+                        "code": "9733003",
+                        "display": "Duodenogastric reflux (finding)"
+                    }
+                ]
+            }
+        ]
+    }
+}

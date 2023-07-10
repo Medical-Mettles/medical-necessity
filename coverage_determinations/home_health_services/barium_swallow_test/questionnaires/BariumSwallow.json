@@ -176,7 +176,7 @@
                     "answerOption": [
                         {
                             "valueCoding": {
-                                "code": "Regular",
+                                "code": "Thin Liquid",
                                 "display": "Thin Liquid"
                             }
                         },
@@ -188,8 +188,8 @@
                         },
                         {
                             "valueCoding": {
-                                "code": "Soft",
-                                "display": "Soft"
+                                "code": "Solids",
+                                "display": "Solids"
                             }
                         }
                     ]

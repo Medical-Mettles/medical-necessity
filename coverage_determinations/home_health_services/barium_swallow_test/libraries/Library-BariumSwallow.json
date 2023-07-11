@@ -110,6 +110,11 @@
                   "system": "http://snomed.info/sct",
                   "code": "162020001",
                   "display": "Difficulty chewing (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "8801000175101",
+                  "display": "Difficulty swallowing pills (finding)"
                 }
               ]
             }

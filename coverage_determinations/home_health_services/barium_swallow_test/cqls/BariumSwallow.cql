@@ -164,8 +164,7 @@ define RadiationTreatment:
 
 define TroubleWithPills:
     if exists([Condition] P
-					where exists(P.code.coding P
-						where P in "Feeding Device SNOMED CT"))
+					where "ToCode"(First(P.code.coding)) = "Difficulty swallowing pills (finding)")
 			then true
             else false
 

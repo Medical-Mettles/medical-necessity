@@ -102,22 +102,17 @@ define BedsideCompleted:
     then true
     else false
 
-define DietProblems:
-    if exists([Observation]O
+define ProblemsWithDiet:
+    if exists([Condition]O
 		where "ToCode"(First(O.code.coding)) = "Difficulty swallowing solids (finding)")
 	then 'Solids'
-    else if exists([Observation]O
+    else if exists([Condition]O
 		where "ToCode"(First(O.code.coding)) = "Difficulty swallowing fluid (finding)")
 	then 'Thin Liquid'
-    else if exists([Observation]O
+    else if exists([Condition]O
 		where "ToCode"(First(O.code.coding)) = "Pureed diet (regime/therapy)")
 	then 'Pureed'
     else ''
-
-define ProblemsWithDiet:
-    if ("DietProblems" is not null)
-    then true
-    else false
 
 define PresentDiet:
     if exists([Observation]O

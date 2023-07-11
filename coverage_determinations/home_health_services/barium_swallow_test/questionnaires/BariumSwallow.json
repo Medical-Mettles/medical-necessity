@@ -306,6 +306,7 @@
                     "text": "Check all applicable symptoms",
                     "type": "choice",
                     "required": true,
+                    "repeats": true,
                     "answerOption": [
                         {
                             "valueCoding": {

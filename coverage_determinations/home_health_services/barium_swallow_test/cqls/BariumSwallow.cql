@@ -103,11 +103,16 @@ define BedsideCompleted:
     else false
 
 define DietProblems:
-    First([Condition]C
-        where ("ToCode"(First(C.code.coding)) = "Difficulty swallowing solids (finding)"
-            or "ToCode"(First(C.code.coding)) = "Difficulty swallowing fluid (finding)")
-        and First(C.clinicalStatus.coding).code.value = 'active'
-			  and First(C.verificationStatus.coding).code.value = 'confirmed')
+    if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Difficulty swallowing solids (finding)")
+	then 'Solids'
+    else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Difficulty swallowing fluid (finding)")
+	then 'Thin Liquid'
+    else if exists([Observation]O
+		where "ToCode"(First(O.code.coding)) = "Pureed diet (regime/therapy)")
+	then 'Pureed'
+    else ''
 
 define ProblemsWithDiet:
     if ("DietProblems" is not null)
@@ -159,8 +164,7 @@ define RadiationTreatment:
 
 define TroubleWithPills:
     if exists([Condition] P
-					where exists(P.code.coding P
-						where P in "Feeding Device SNOMED CT"))
+					where "ToCode"(First(P.code.coding)) = "Difficulty swallowing pills (finding)")
 			then true
             else false
 

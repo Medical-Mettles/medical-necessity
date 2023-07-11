@@ -74,7 +74,7 @@
                             }
                         }
                     ],
-                    "linkId": "1.2",
+                    "linkId": "1.3",
                     "text": "Date of Onset",
                     "type": "date",
                     "required": true

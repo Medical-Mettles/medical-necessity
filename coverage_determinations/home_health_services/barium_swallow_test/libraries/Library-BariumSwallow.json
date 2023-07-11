@@ -91,6 +91,26 @@
             ]
         },
         {
+          "type": "Condition",
+          "codeFilter": [
+            {
+              "path": "code",
+              "code":[
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "162024005",
+                    "display": "Difficulty swallowing solids (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "162025006",
+                  "display": "Difficulty swallowing fluid (finding)"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "type": "Procedure",
           "codeFilter": [
             {
@@ -116,6 +136,86 @@
               "valueSet": "2.16.840.1.113762.1.4.1116.356"
             }
             ]
+        },
+        {
+          "type": "Procedure",
+          "codeFilter": [
+            {
+              "path": "code",
+              "code":[
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "405264000",
+                    "display": "Bedside testing (procedure)"
+                },
+                {
+                  "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-icd10pcs",
+                  "code": "F00ZHYZ",
+                  "display": "Bedside Swallowing and Oral Function Assessment using Other Equipment"
+                },
+                {
+                  "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-icd10pcs",
+                  "code": "F00ZHZZ",
+                  "display": "Bedside Swallowing and Oral Function Assessment"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "386521001",
+                  "display": "Bedside laboratory testing (procedure)"
+              }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Observation",
+          "codeFilter": [
+            {
+              "path": "code",
+              "code":[
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "53827007",
+                  "display": "Excessive salivation (disorder)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "373909009",
+                  "display": "Choking sensation (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "102616008",
+                  "display": "Painful mouth (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "102616008",
+                  "display": "Liquid diet (regime/therapy)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "435741000124103",
+                  "display": "Clear liquid diet (regime/therapy)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "435751000124101",
+                  "display": "Full liquid diet (regime/therapy)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "439121000124106",
+                  "display": "Pureed diet (regime/therapy)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "228060008",
+                  "display": "Solid food (substance)"
+                }
+              ]
+            }
+          ]
         }
     ]
   }

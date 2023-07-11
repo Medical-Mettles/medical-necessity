@@ -105,6 +105,11 @@
                   "system": "http://snomed.info/sct",
                   "code": "162025006",
                   "display": "Difficulty swallowing fluid (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "162020001",
+                  "display": "Difficulty chewing (finding)"
                 }
               ]
             }

@@ -9,7 +9,7 @@
     "extension": [
         {
             "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-bariumswallowtest-bariumswallow"
+            "valueCanonical": "https://fhir-dev.mettles.com/interop/fhir/Library/library-bariumswallowtest-BariumSwallow"
         }
     ],
     "url": "https://fhir-dev.mettles.com/interop/fhir/Questionnaire/questionnaire-bariumswallowtest-bariumswallow",
@@ -306,6 +306,7 @@
                     "text": "Check all applicable symptoms",
                     "type": "choice",
                     "required": true,
+                    "repeats": true,
                     "answerOption": [
                         {
                             "valueCoding": {

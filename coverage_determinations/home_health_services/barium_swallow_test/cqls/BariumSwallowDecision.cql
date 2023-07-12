@@ -31,5 +31,5 @@ define "dtr-clin":
   true
 
 define FinalDecision:
-true
+'YES'
 

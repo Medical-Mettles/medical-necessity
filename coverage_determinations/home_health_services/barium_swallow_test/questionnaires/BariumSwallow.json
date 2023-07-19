@@ -239,6 +239,12 @@
                                 "code": "Intubation",
                                 "display": "Intubation"
                             }
+                        },
+                        {
+                            "valueCoding": {
+                                "code": "FVC",
+                                "display": "FVC"
+                            }
                         }
                     ]
                 },

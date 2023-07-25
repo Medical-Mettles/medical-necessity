@@ -3,7 +3,6 @@ library HomeOxygenTherapy version '1.0.0'
 using FHIR version '4.0.0'
 
 include FHIRHelpers version '4.0.0' called FHIRHelpers
-include HomeOxygenAdaptive version '1.0.0' called HOAdaptive
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -13,6 +12,7 @@ codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 codesystem "ActEncounterCodev2": 'http://terminology.hl7.org/CodeSystem/v2-0004'
 codesystem "ActEncounterCode": 'http://terminology.hl7.org/ValueSet/v3-ActEncounterCode'
+codesystem "HealthCareProviderTaxonomy": 'http://terminology.hl7.org/CodeSystem/v3-HealthcareProviderTaxonomyHIPAA'
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
 valueset "Cystic Fibrosis": '2.16.840.1.113883.3.464.1003.102.12.1002'
@@ -90,6 +90,9 @@ valueset "COVID19 SNOMED Value Set for Non Invasive Respiratory Support": '2.16.
 valueset "COVID19 SNOMED Value Set for Invasive Mechanical Ventilation": '2.16.840.1.113883.3.3616.200.110.102.6158'
 valueset "Cromolyn Inhalant Preparations": '2.16.840.1.113762.1.4.1196.465'
 valueset "Oxygen Saturation by Pulse Oximetry": '2.16.840.1.113762.1.4.1045.151'
+valueset "Home Oxygen Therapy Accessory": '2.16.840.1.113762.1.4.1219.130'
+
+valueset "Obstructive Sleep Apnea (ICD10CM)":'2.16.840.1.113762.1.4.1034.477'
 
 code "inpatient encounter": 'IMP' from "ActEncounterCode" display 'inpatient encounter'
 code "Outpatient": 'O' from "ActEncounterCodev2" display 'Outpatient'
@@ -190,7 +193,23 @@ code "E0424": 'E0424' from "HCPCS"
 code "E0441": 'E0441' from "HCPCS"
 code "E1390": 'E1390' from "HCPCS"
 code "E1391": 'E1391' from "HCPCS"
+code "Home ventilator, any type, used with invasive interface, (e.g., tracheostomy tube)": 'E0465' from "HCPCS" display 'Home ventilator, any type, used with invasive interface, (e.g., tracheostomy tube)'
+code "Home ventilator, any type, used with non-invasive interface, (e.g., mask, chest shell)": 'E0466' from "HCPCS" display 'Home ventilator, any type, used with non-invasive interface, (e.g., mask, chest shell)'
+code "Home ventilator, multi-function respiratory device, also performs any or all of the additional functions of oxygen concentration, drug nebulization, aspiration, and cough stimulation, includes all accessories, components and supplies for all functions" : 'E0467' from "HCPCS" display 'Home ventilator, multi-function respiratory device, also performs any or all of the additional functions of oxygen concentration, drug nebulization, aspiration, and cough stimulation, includes all accessories, components and supplies for all functions'
+code "Respiratory assist device, bi-level pressure capability, without backup rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)" : 'E0470' from "HCPCS" display 'Respiratory assist device, bi-level pressure capability, without backup rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)'
+code "Respiratory assist device, bi-level pressure capability, with back-up rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)" : 'E0471' from "HCPCS" display 'Respiratory assist device, bi-level pressure capability, with back-up rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)'
+code "Respiratory assist device, bi-level pressure capability, with backup rate feature, used with invasive interface, e.g., tracheostomy tube (intermittent assist device with continuous positive airway pressure device)": 'E0472' from "HCPCS" display 'Respiratory assist device, bi-level pressure capability, with backup rate feature, used with invasive interface, e.g., tracheostomy tube (intermittent assist device with continuous positive airway pressure device)'
+code "Cannula, nasal": 'A4615' from "HCPCS" display 'Cannula, nasal'
+code "Positive airway pressure nap study (procedure)": '703476007' from "SNOMEDCT" display 'Positive airway pressure nap study (procedure)'
 
+code "Use of supplemental oxygen": '88658-0' from "LOINC" display 'Use of supplemental oxygen'
+
+code "Nocturnal continuous positive airway pressure (regime/therapy)": '34281000175105' from "SNOMEDCT" display 'Nocturnal continuous positive airway pressure (regime/therapy)'
+
+code "Titration method (procedure)": '117007006' from "SNOMEDCT" display 'Titration method (procedure)'
+code "Pigmentation of skin or mucosa (finding)": '373923006' from "SNOMEDCT" display 'Pigmentation of skin or mucosa (finding)'
+
+code "Ambulatory Health Care Facilities; Clinic/Center, Sleep Disorder Diagnostic": '261QS1200X' from "HealthCareProviderTaxonomy" display 'Ambulatory Health Care Facilities; Clinic/Center, Sleep Disorder Diagnostic'
 //Immobilization_Codes
 
 code "102491009": '102491009' from "SNOMEDCT"
@@ -209,13 +228,12 @@ define "DeviceRequestResource":
   "DeviceRequest"
 
 define "CertificationDate":
-  ToDate(start of "FaceToFaceEncounter".period)
+  ToDate(start of "EncounterResource".period)
 
 define EncounterResource:
-  Coalesce(singleton from([Encounter] E
+  singleton from([Encounter] E
         where 'Encounter/' + E.id.value =("DeviceRequest".encounter).reference.value
-    ), HOAdaptive."EncounterResponse"
-  )
+    )
 
 define function "EncounterDiagnosis"(Encounter Encounter):
   Encounter.diagnosis D
@@ -226,29 +244,10 @@ define function "EncounterDiagnosis"(Encounter Encounter):
 define EncounterCondition:
   "EncounterDiagnosis"("EncounterResource")
 
-define function "EncounterPractitioner"(Encounter Encounter):
-  Encounter.participant PR
-    return singleton from ( [Practitioner] P
-        where 'Practitioner/' + P.id.value = PR.individual.reference.value
-    )
-
-define "FaceToFaceEncounter":
-  "EncounterResource" F2FEncounter
-    where First(F2FEncounter.type) in "Face to Face Encounter"
-      and ( First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'MD'
-          or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'NP'
-          or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'CNS'
-          or First("EncounterPractitioner"(F2FEncounter).qualification.code.coding).code = 'PA'
-      )
-
-define "ExistsFaceToFaceEncounter":
-  if ( "FaceToFaceEncounter" is not null ) then true 
-    else false
-
 define OrderingPhysician:
-  "FaceToFaceEncounter".participant PR
+  "DeviceRequest".requester PR
     return singleton from ( [Practitioner] P
-        where 'Practitioner/' + P.id.value = PR.individual.reference.value
+        where 'Practitioner/' + P.id.value = PR.reference.value
     )
 
 define OrderingPhysicianNPI:
@@ -258,13 +257,24 @@ define OrderingPhysicianNPI:
   ).value.value
 
 define InpatientStay:
-  ( "FaceToFaceEncounter" F
+  ( "EncounterResource" F
       where F.class.code = 'IMP'
   )
 
 define InpatientHospitalStay:
   if ( "InpatientStay" is not null ) then true 
     else false
+
+define function ToCode(coding FHIR.Coding):
+    if coding is null then
+        null
+    else
+        System.Code {
+          code: coding.code.value,
+          system: coding.system.value,
+          version: coding.version.value,
+          display: coding.display.value
+        }
 
 define TravelToHigherElevation:
   exists ( [Observation] O
@@ -275,7 +285,7 @@ define TravelToHigherElevation:
             or "ToCode"(First(O.code.coding)) = "Periodic breathing of sleep at high altitude (finding)"
             or "ToCode"(First(O.code.coding)) = "Air pressure effects: &/or altitude problems (disorder)"
         )
-        and start of "Normalize Interval"(O.effective) less than 2 months before start of "FaceToFaceEncounter".period
+        and start of "Normalize Interval"(O.effective) less than 2 months before start of "EncounterResource".period
   )
 
 define HbConcentration:
@@ -292,9 +302,10 @@ define "O2CarryingCapacity":
   if ( "OxygenCarryingCapacity" < 20.1 ) then true 
     else false
 
-define function ToCode(coding FHIR.Coding):
-  if coding is null then null 
-    else System.Code { code: coding.code.value, system: coding.system.value, version: coding.version.value, display: coding.display.value }
+define SkinPigmentation:
+  exists ([Observation] O
+      where O.status.value = 'final'
+        and ("ToCode"(First(O.code.coding)) = "Pigmentation of skin or mucosa (finding)"))
 
 define "BloodGasStudy":
   First([Procedure] P
@@ -302,13 +313,12 @@ define "BloodGasStudy":
         and("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
             or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)"
         )
-        and(("Normalize Interval"(P.performed) starts 2 days before 
-            end of "FaceToFaceEncounter".period
+        and(("Normalize Interval"(P.performed) starts 2 days after
+            end of "EncounterResource".period
           )
-            and "ToCode"("FaceToFaceEncounter".class) = "inpatient encounter"
+            and "ToCode"("EncounterResource".class) = "inpatient encounter"
         )
-        or(("Normalize Interval"(P.performed) starts during Interval[ToDateTime("CertificationDate"), ToDateTime("CertificationDate" + 30 days)])
-            and "ToCode"("FaceToFaceEncounter".class) = "Outpatient"
+        or("ToCode"("EncounterResource".class) = "Outpatient"
         )
   )
 
@@ -319,27 +329,9 @@ define ExistsBloodGasStudy:
 define BloodGasStudyDate:
   start of "Normalize Interval"("BloodGasStudy".performed)
 
-define BloodGasStudyPH:
-  ( First([Observation] O
-      where "ToCode"(First(O.code.coding)) = "pH of Arterial blood"
-  ) ) O
-    return FHIRHelpers.ToInteger ( O.value )
-
-define BloodGasStudyPaCO2:
-  ( First([Observation] O
-      where "ToCode"(First(O.code.coding)) = "Carbon dioxide [Partial pressure] in Arterial blood"
-  ) ) O
-    return FHIRHelpers.ToQuantity ( O.value )
-
 define BloodGasStudyO2Sat:
   ( First([Observation] O
       where "ToCode"(First(O.code.coding)) = "Oxygen saturation in Arterial blood"
-  ) ) O
-    return FHIRHelpers.ToQuantity ( O.value )
-
-define BloodGasStudyHCO3:
-  ( First([Observation] O
-      where "ToCode"(First(O.code.coding)) = "Bicarbonate [Moles/volume] in Arterial blood"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -360,10 +352,6 @@ define "Hematocrit_lab_test_Codes":
 
 // Other codes
 
-
-define "Immobilization_Codes":
-  { '102491009', '129857008', '129859006', '160685001', '371632003', '8510008' }
-
 define function "GetId"(uri String):
   Last(Split(uri, '/'))
 
@@ -381,8 +369,10 @@ define ExistsPulseOximetry:
 define ArterialOxygenSaturation:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
+          or "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
+
 
 define ArterialOxygenSaturationExercise:
   ( First([Observation] P
@@ -390,16 +380,33 @@ define ArterialOxygenSaturationExercise:
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
-define ArterialOxygenSaturationResting:
+define ArterialOxygenSaturationExerciseWithOxygen:
   ( First([Observation] P
-      where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
+      where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
+        and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+        and First(P.component).value = true
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
-define PulseOximetryO2:
+define OvernightOximetry:
+  First([Procedure]P
+    where "ToCode"(First(P.code.coding)) = "Overnight pulse oximetry (procedure)"
+        or "ToCode"(First(P.code.coding)) = "Titration method (procedure)"
+    and P.status.value = 'completed')
+
+define NocturnalOximetryO2SAT:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
-        and "ToCode"(First(P.method.coding)) = "Overnight pulse oximetry (procedure)"
+      and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
+define NocturnalOximetryO2SATWithOxygen:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
+      and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+      and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+        and First(P.component).value = true
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -429,14 +436,50 @@ define InhaledAverageFlowRate:
 		then ("NocturnalOxygenFlowRate"+ "InhaledFlowRate")*0.5 
 	else if ("NocturnalOxygenFlowRate" is null)
 		then "InhaledFlowRate" 
-	else ''
+	else null
 
 define FrequencyOfUse:
 	{
-		(if ("ArterialOxygenSaturation" < 55) then 'At rest/Awake' else ''),
-		(if ("ArterialOxygenSaturationExercise" <56) then 'During exertion' else ''),
-		(if ("ArterialOxygenSaturationResting" < 55) then 'During Sleep' else '')
+		(if ("ArterialOxygenSaturation".value < 55) then 'At rest/Awake' else ''),
+		(if ("ArterialOxygenSaturationExercise".value <56) then 'During exertion' else ''),
+		(if ("NocturnalOximetryO2SAT".value < 55) then 'During Sleep' else '')
 	}
+
+define SteroidTreatment:
+	[Procedure]P
+		where ("ToCode"(First(P.code.coding)) = "Intravenous hydrocortisone therapy (procedure)"
+			or "ToCode"(First(P.code.coding)) = "Inhaled steroid therapy (procedure)"
+			or "ToCode"(First(P.code.coding)) = "Oral steroid therapy (procedure)")
+
+define SteroidTreatmentOutcome:
+	First(First("SteroidTreatment").outcome.coding).code.value
+
+define SteroidEffectiveness:
+	if ("SteroidTreatmentOutcome" = '385669000')
+		then 'Some improvement'
+	else if ("SteroidTreatmentOutcome" = '385671000')
+		then 'No improvement'
+	else if ("SteroidTreatmentOutcome" = '385670004')
+		then 'Limited improvement'
+	else  ''
+
+define TypeOfSteroidTreatment:
+	if exists([Procedure]P
+				where "ToCode"(First(P.code.coding)) = "Intravenous hydrocortisone therapy (procedure)")
+		then 'IV'
+	else if exists([Procedure]P
+				where "ToCode"(First(P.code.coding)) = "Oral steroid therapy (procedure)")
+		then 'PO'
+	else if exists([Procedure]P
+				where "ToCode"(First(P.code.coding)) = "Inhaled steroid therapy (procedure)")
+		then 'Inhaled'
+	else ''
+
+define ClusterHeadaches:
+  exists ( [Condition] P
+      where exists ( P.code.coding P
+          where P in "Cluster Headache")
+    )
 
 define PatientDiagnoses:
   if exists ( [Condition] P
@@ -534,13 +577,23 @@ define NocturnalRestlessnessStudy:
   ) then 'Nocturnal oximetry' 
     else if exists ( [Observation] P
       where "ToCode"(First(P.code.coding)) = "Polysomnography (procedure)"
-  ) then 'Sleep Study' 
+  ) then 'Titration Polysomnography'
     else ''
 
-define ExertionalHypoxia:
+define PresenceOfOSA:
   exists ( [Condition] P
+      where exists ( P.code.coding C
+                      where C in "Obstructive Sleep Apnea (ICD10CM)"))
+
+define PresenceOfPAP:
+    exists ( [Procedure] P
       where "ToCode"(First(P.code.coding)) = "Chronic respiratory failure with hypoxia"
         or "ToCode"(First(P.code.coding)) = "Desaturation of blood (disorder)"
+  )        
+  
+define ExertionalHypoxia:
+  exists ( [Condition] P
+      where "ToCode"(First(P.code.coding)) = "Nocturnal continuous positive airway pressure (regime/therapy)"
   )
 
 define "GeneralSymptoms":
@@ -971,6 +1024,47 @@ define ReviewOfSystems:
       else ''
   ) }
 
+define OxygenAccessoryList:
+	("DeviceRequest" D 
+		where exists(D.code.coding C
+						where C in "Home Oxygen Therapy Accessory"))
+
+define TargetSaturation:
+	("DeviceRequest".parameter D
+		where exists(D.code.coding C
+			where "ToCode"(C) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"))E
+	return FHIRHelpers.ToQuantity(E.value)
+
+define CannulaType:
+	if(("DeviceRequest".code.coding F
+		where "ToCode"(F) = "Cannula, nasal") is not null)
+	then true 
+	else false
+
+define VentilatorType:
+	if(("DeviceRequest".code.coding F
+		where "ToCode"(F) = "Home ventilator, any type, used with non-invasive interface, (e.g., mask, chest shell)" 
+				or "ToCode"(F) = "Home ventilator, any type, used with invasive interface, (e.g., tracheostomy tube)"
+				or "ToCode"(F) = "Home ventilator, multi-function respiratory device, also performs any or all of the additional functions of oxygen concentration, drug nebulization, aspiration, and cough stimulation, includes all accessories, components and supplies for all functions") is not null)
+	then true 
+	else false
+
+define RespiratoryAssistType:
+	if(("DeviceRequest".code.coding F
+		where "ToCode"(F) = "Respiratory assist device, bi-level pressure capability, without backup rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)"
+				or "ToCode"(F) = "Respiratory assist device, bi-level pressure capability, with back-up rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)") is not null)
+	then true 
+	else false
+
+define OxygenDelivery:
+	if  ("CannulaType" = true)
+		then 'Nasal cannula'
+	else if ( "VentilatorType" = true)
+		then 'Ventilator'
+	else if ("RespiratoryAssistType" = true)
+		then 'Mask'
+	else ''
+
 define HematocritThatIsGreaterThanThreshold:
   FHIRHelpers.ToQuantity ( singleton from ( [Observation] P
       where First(P.code.coding).code.value in "Hematocrit_lab_test_Codes"
@@ -981,10 +1075,10 @@ define PatientHasHematocritThatIsGreaterThanThreshold:
     else false
 
 define FrequencyOfMonitoring:
-	{
-		(if ("ArterialOxygenSaturation" < 55) then 'At rest/Awake' else ''),
-		(if ("ArterialOxygenSaturationExercise" <56) then 'During exertion' else ''),
-		(if ("ArterialOxygenSaturationResting" < 55) then 'During Sleep' else '')
+	distinct{
+		(if ("ArterialOxygenSaturation".value < 55) then 'At rest/Awake' else ''),
+		(if ("ArterialOxygenSaturationExercise".value <55) then 'During exertion' else ''),
+		(if ("NocturnalOximetryO2SAT".value < 55) then 'During Sleep' else '')
 	}
 
 define DeviceRequestDescription:

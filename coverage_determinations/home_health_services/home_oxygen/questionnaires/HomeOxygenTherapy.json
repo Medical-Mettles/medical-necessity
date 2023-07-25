@@ -72,7 +72,7 @@
             }
           ],
           "linkId": "1.1",
-          "text": "Device Description",
+          "text": "Ordered Device Description",
           "type": "text",
           "required": true
         },
@@ -125,24 +125,9 @@
     },
     {
       "linkId": "2",
-      "text": "Encounter Details",
+      "text": "Primary Details",
       "type": "group",
       "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ExistsFaceToFaceEncounter"
-              }
-            }
-          ],
-          "linkId": "2.1",
-          "text": "Is this a face-to-face encounter/telehealth examination for oxygen therapy?",
-          "type": "boolean",
-          "required": false
-        },
         {
           "extension": [
             {
@@ -201,50 +186,6 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "BloodGasStudyPH"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.5",
-          "text": "PH (ABG)",
-          "type": "integer",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyPaCO2"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.6",
-          "text": "PaCO2 (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
                 "expression": "BloodGasStudyO2Sat"
               }
             }
@@ -256,52 +197,8 @@
               "answerBoolean": true
             }
           ],
-          "linkId": "2.7",
+          "linkId": "2.5",
           "text": "O2 Sat (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyHCO3"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.8",
-          "text": "HCO3 (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyHematocrit"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.9",
-          "text": "Hematocrit (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -322,8 +219,30 @@
               "answerBoolean": true
             }
           ],
-          "linkId": "2.10",
+          "linkId": "2.6",
           "text": "PaO2 (ABG)",
+          "type": "quantity",
+          "required": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "BloodGasStudyHematocrit"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "2.3",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "2.7",
+          "text": "Hematocrit (ABG)",
           "type": "quantity",
           "required": false
         },
@@ -337,7 +256,7 @@
               }
             }
           ],
-          "linkId": "2.11",
+          "linkId": "2.8",
           "text": "Is there an expectation that home oxygen therapy will improve O2 Saturation?",
           "type": "boolean",
           "initial": [
@@ -357,7 +276,7 @@
               }
             }
           ],
-          "linkId": "2.12",
+          "linkId": "2.9",
           "text": "Does patient live or travel to an area at high elevation?",
           "type": "boolean",
           "required": false
@@ -372,8 +291,23 @@
               }
             }
           ],
-          "linkId": "2.13",
+          "linkId": "2.10",
           "text": "Does patient have a reduced O2 carrying capacity? ",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "SkinPigmentation"
+              }
+            }
+          ],
+          "linkId": "2.10",
+          "text": "Does patient have skin pigmentation ? ",
           "type": "boolean",
           "required": false
         }
@@ -410,7 +344,7 @@
             }
           ],
           "linkId": "3.2",
-          "text": "Oxygen saturation results at rest without oxygen",
+          "text": "Arterial oxygen saturation results at rest",
           "type": "quantity",
           "required": true
         },
@@ -429,43 +363,65 @@
           "type": "quantity",
           "required": false
         },
+        
         {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "ArterialOxygenSaturationResting"
+                "expression": "ArterialOxygenSaturationExerciseWithOxygen"
               }
             }
           ],
           "linkId": "3.4",
-          "text": "Pulse oximetry at rest/awake on room air",
+          "text": "Oxygen saturation results during exercise with oxygen",
           "type": "quantity",
           "required": false
         },
+        
         {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "PulseOximetryO2"
+                "expression": "NocturnalOximetryO2SAT"
               }
             }
           ],
           "enableWhen": [
             {
-              "operator": "<",
-              "question": "3.4",
-              "answerQuantity": {
-                "value": "56",
-                "unit": "mmHg"
+              "operator": "=",
+              "question": "4.5",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.5",
+          "text": "Nocturnal oxygen saturation",
+          "type": "quantity",
+          "required": false
+        },
+        
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NocturnalOximetryO2SATWithOxygen"
               }
             }
           ],
-          "linkId": "3.6",
-          "text": "Overnight oximetry results (while asleep and on room air)",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.5",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.7",
+          "text": "Nocturnal oxygen saturation with oxygen",
           "type": "quantity",
           "required": false
         },
@@ -479,7 +435,7 @@
               }
             }
           ],
-          "linkId": "3.7",
+          "linkId": "3.8",
           "text": "Date Of Testing",
           "type": "date",
           "required": true
@@ -494,7 +450,7 @@
               }
             }
           ],
-          "linkId": "3.8",
+          "linkId": "3.9",
           "text": "Is the patient mobile within the home? ",
           "type": "boolean",
           "required": false
@@ -574,6 +530,12 @@
               "valueCoding": {
                 "code": "Recurring CHF d/t Cor Pulmonale",
                 "display": "Recurring CHF d/t Cor Pulmonale"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Others",
+                "display": "Others"
               }
             }
           ]
@@ -713,7 +675,7 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "NocturnalRestlessnessStudy"
+                "expression": "PresenceOfOSA"
               }
             }
           ],
@@ -725,6 +687,63 @@
             }
           ],
           "linkId": "4.6",
+          "text": "Does the patient have Obstructive Sleep Apnea (OSA) ?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "PresenceOfPAP"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.6",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "4.7",
+          "text": "Does the patient use PAP device to treat OSA(Sleep Apnea) ?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.6",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "4.8",
+          "text": "Was the test performed after determining optimal settings of the PAP device ?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NocturnalRestlessnessStudy"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.5",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "4.9",
           "text": "Study performed in relevance to Nocturnal Restlessness",
           "type": "choice",
           "repeats": true,
@@ -738,8 +757,8 @@
             },
             {
               "valueCoding": {
-                "code": "Sleep Study",
-                "display": "Sleep Study"
+                "code": "Titration Polysomnography",
+                "display": "Titration Polysomnography"
               }
             }
           ]
@@ -754,8 +773,73 @@
               }
             }
           ],
-          "linkId": "4.7",
+          "linkId": "4.10",
           "text": "Presence of Exertional hypoxia / desaturation",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "OtherDiagnosisCode"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.1",
+              "answerCoding": {
+                "code": "Others",
+                "display": "Others"
+              }
+            }
+          ],
+          "linkId": "4.11",
+          "text": "Specify the ICD-10 code",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "OtherDiagnosisCodeDescription"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.1",
+              "answerCoding": {
+                "code": "Others",
+                "display": "Others"
+              }
+            }
+          ],
+          "linkId": "4.12",
+          "text": "Specify the ICD-10 code description",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ClusterHeadaches"
+              }
+            }
+          ],
+          "linkId": "4.13",
+          "text": "Any medical condition with distinct physiologic, cognitive, and/or functional symptoms documented in high-quality, peer-reviewed literature to be improved by oxygen therapy, such as cluster headaches ?",
           "type": "boolean",
           "required": true
         }
@@ -2160,6 +2244,7 @@
           ],
           "linkId": "8.4",
           "text": "Frequency of Use",
+          "repeats": true,
           "type": "choice",
           "required": true,
           "answerOption": [
@@ -2182,12 +2267,6 @@
               }
             }
           ]
-        },
-        {
-          "linkId": "8.5",
-          "text": "Target Oxygen Saturation",
-          "type": "quantity",
-          "required": true
         },
         {
           "extension": [
@@ -2195,34 +2274,14 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "FrequencyOfMonitoring"
+                "expression": "TargetSaturation"
               }
             }
           ],
-          "linkId": "8.6",
-          "text": "Frequency of Oxygen Monitoring",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "At rest/Awake",
-                "display": "At rest/Awake"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "During exertion",
-                "display": "During exertion"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "During Sleep",
-                "display": "During Sleep"
-              }
-            }
-          ]
+          "linkId": "8.5",
+          "text": "Target Oxygen Saturation",
+          "type": "quantity",
+          "required": true
         },
         {
           "extension": [
@@ -2236,59 +2295,20 @@
           ],
           "linkId": "8.7",
           "text": "Is the device portable?",
-          "type": "quantity",
+          "type": "boolean",
           "required": true
         },
         {
-          "enableWhen": [
+          "extension": [
             {
-              "operator": "=",
-              "question": "8.7",
-              "answerBoolean": true
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "OxygenDelivery"
+              }
             }
           ],
           "linkId": "8.8",
-          "text": "For portable device, maximum length of need for a single trip in hrs/min",
-          "type": "quantity",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "9",
-      "text": "Oxygen Supply Order Details",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceRequestDescription"
-              }
-            }
-          ],
-          "linkId": "9.1",
-          "text": "Current Order Description",
-          "type": "string"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceRequestedIsPortable"
-              }
-            }
-          ],
-          "linkId": "9.2",
-          "text": "Current Order Is For A Portable Device",
-          "type": "boolean"
-        },
-        {
-          "linkId": "9.3",
           "text": "Means of Oxygen Delivery and Accessories",
           "type": "choice",
           "required": true,
@@ -2346,12 +2366,12 @@
       ]
     },
     {
-      "linkId": "10",
+      "linkId": "9",
       "text": "Certification",
       "type": "group",
       "item": [
         {
-          "linkId": "10.1",
+          "linkId": "9.1",
           "text": "Type Of Order",
           "type": "choice",
           "required": true,
@@ -2388,14 +2408,14 @@
           ]
         },
         {
-          "linkId": "10.2",
+          "linkId": "9.2",
           "text": "Reason for Change in Status",
           "type": "choice",
           "repeats": true,
           "enableWhen": [
             {
               "operator": "=",
-              "question": "10.1",
+              "question": "9.1",
               "answerCoding": {
                 "code": "Change in status",
                 "display": "Change in status"
@@ -2425,7 +2445,7 @@
           ]
         },
         {
-          "linkId": "10.3",
+          "linkId": "9.3",
           "text": "Reason for Revision or change in equipment",
           "type": "choice",
           "repeats": true,
@@ -2433,7 +2453,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "10.1",
+              "question": "9.1",
               "answerCoding": {
                 "code": "Revision or change in equipment",
                 "display": "Revision or change in equipment"
@@ -2462,7 +2482,7 @@
           ]
         },
         {
-          "linkId": "10.4",
+          "linkId": "9.4",
           "text": "Reason for Replacement",
           "type": "choice",
           "repeats": true,
@@ -2470,7 +2490,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "10.1",
+              "question": "9.1",
               "answerCoding": {
                 "code": "Replacement",
                 "display": "Replacement"

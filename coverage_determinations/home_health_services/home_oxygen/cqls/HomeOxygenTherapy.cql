@@ -11,7 +11,7 @@ codesystem "NUCCPT": 'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/cu
 codesystem "HCPCS": 'https://hcpcs.codes/'
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 codesystem "ActEncounterCodev2": 'http://terminology.hl7.org/CodeSystem/v2-0004'
-codesystem "ActEncounterCode": 'http://terminology.hl7.org/ValueSet/v3-ActEncounterCode'
+codesystem "ActEncounterCode": 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
 codesystem "HealthCareProviderTaxonomy": 'http://terminology.hl7.org/CodeSystem/v3-HealthcareProviderTaxonomyHIPAA'
 
 valueset "Chronic Obstructive Lung Disease (COPD) ICD10CM": '2.16.840.1.113762.1.4.1219.4'
@@ -320,15 +320,10 @@ define "BloodGasStudy":
   First([Procedure] P
       where P.status.value = 'completed'
         and("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
-            or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)"
-        )
-        and(("Normalize Interval"(P.performed) starts 2 days after
-            end of "EncounterResource".period
-          )
-            and "ToCode"("EncounterResource".class) = "inpatient encounter"
-        )
-        or("ToCode"("EncounterResource".class) = "Outpatient"
-        )
+            or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
+        and((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
+            and "ToCode"("EncounterResource".class) = "inpatient encounter")
+        or("ToCode"("EncounterResource".class) = "Outpatient"))
   )
 
 define ExistsBloodGasStudy:
@@ -359,6 +354,12 @@ define BloodGasStudyPaO2:
 define "Hematocrit_lab_test_Codes":
   { '20570-8', '31100-1', '32354-3', '41654-5', '41655-2', '4544-3', '4545-0', '71829-6', '71830-4', '71832-0', '71833-8' }
 
+define HypoxemiaSymptoms:
+  exists ( [Condition] P
+      where exists ( P.code.coding P
+          where P in "Hypoxemia")
+    )
+
 // Other codes
 
 define function "GetId"(uri String):
@@ -366,10 +367,13 @@ define function "GetId"(uri String):
 
 define PulseOximetry:
   First([Procedure] P
-      where exists(P.code.coding P
-          where P in "Oxygen Saturation by Pulse Oximetry"
+      where "ToCode"(First(P.code.coding)) = "Pulse oximetry (procedure)"
+      and P.status.value = 'completed'
+      and ((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
+            and "ToCode"("EncounterResource".class) = "inpatient encounter")
+        or("ToCode"("EncounterResource".class) = "Outpatient"))
       )
-  )
+  
 
 define ExistsPulseOximetry:
   if ( "PulseOximetry" is not null ) then true 
@@ -461,6 +465,7 @@ define TestingDate:
 define PatientMobile:
   exists ( [Observation] P
       where "ToCode"(First(P.code.coding)) = "Walks indoors - usual functional ability during assessment period [CMS Assessment]"
+      and P.value = true
   )
 
 define InhaledFlowRate:
@@ -690,7 +695,7 @@ define "GeneralSymptoms":
   ) then 'night sweats / diaphoresi' 
     else 'None'
 
-define NeckReview:
+define NeckConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Spine or Neck Disorder"
@@ -701,7 +706,7 @@ define NeckReview:
   ) then 'lumps' 
     else 'None'
 
-define PulmonaryReview:
+define PulmonaryConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Cough (ICD10CM)"
@@ -734,7 +739,7 @@ define PulmonaryReview:
   ) then 'sputum production' 
     else 'None'
 
-define CardiacReview:
+define CardiacConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Chest Pain"
@@ -758,7 +763,7 @@ define CardiacReview:
   ) then 'syncope' 
     else 'None'
 
-define VascularReview:
+define VascularConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Edema"
@@ -784,7 +789,7 @@ define VascularReview:
   ) then 'ulcers' 
     else 'None'
 
-define HematologyReview:
+define HematologyConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Anemia Conditions"
@@ -800,7 +805,7 @@ define HematologyReview:
   ) then 'bleeding disorders (conditional)' 
     else 'None'
 
-define EndocrineReview:
+define EndocrineConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Diabetes"
@@ -842,7 +847,7 @@ define TreatmentsTried:
   ) then 'Anti-Inflammatory' 
     else 'None'
 
-define PsychiatricReview:
+define PsychiatricConditions:
   if exists ( [Condition] P
       where "ToCode"(First(P.code.coding)) = "Hallucinations, unspecified"
   ) then 'hallucinations' 
@@ -862,7 +867,7 @@ define PsychiatricReview:
   ) then 'mood changes' 
     else 'None'
 
-define NeurologicalReview:
+define NeurologicalConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Seizure"
@@ -937,7 +942,7 @@ define NeurologicalReview:
   ) then 'speech disorders' 
     else 'None'
 
-define MusculoskeletalReview:
+define MusculoskeletalConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Pain"
@@ -999,7 +1004,7 @@ define MusculoskeletalReview:
   ) then 'weakness' 
     else 'None'
 
-define GastrointestinalReview:
+define GastrointestinalConditions:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Dysphagia (SNOMED)"
@@ -1061,26 +1066,26 @@ define GastrointestinalReview:
   ) then 'hematemesis' 
     else 'None'
 
-define ReviewOfSystems:
-  { ( if ( "GeneralSymptoms" != 'None' ) then 'Review in General' 
+define ConditionsOfSystems:
+  { ( if ( "GeneralSymptoms" != 'None' ) then 'Conditions in General' 
       else ''
-  ), ( if ( "NeckReview" != 'None' ) then 'Review of Neck' 
+  ), ( if ( "NeckConditions" != 'None' ) then 'Conditions of Neck' 
       else ''
-  ), ( if ( "PulmonaryReview" != 'None' ) then 'Review of Pulmonary System' 
+  ), ( if ( "PulmonaryConditions" != 'None' ) then 'Conditions of Pulmonary System' 
       else ''
-  ), ( if ( "CardiacReview" != 'None' ) then 'Review of Cardiac System' 
+  ), ( if ( "CardiacConditions" != 'None' ) then 'Conditions of Cardiac System' 
       else ''
-  ), ( if ( "VascularReview" != 'None' ) then 'Review of Vascular System' 
+  ), ( if ( "VascularConditions" != 'None' ) then 'Conditions of Vascular System' 
       else ''
-  ), ( if ( "HematologyReview" != 'None' ) then 'Review of Hematology' 
+  ), ( if ( "HematologyConditions" != 'None' ) then 'Conditions of Hematology' 
       else ''
-  ), ( if ( "EndocrineReview" != 'None' ) then 'Review of Endocrine System' 
+  ), ( if ( "EndocrineConditions" != 'None' ) then 'Conditions of Endocrine System' 
       else ''
-  ), ( if ( "NeurologicalReview" != 'None' ) then 'Review of Neurological System' 
+  ), ( if ( "NeurologicalConditions" != 'None' ) then 'Conditions of Neurological System' 
       else ''
-  ), ( if ( "MusculoskeletalReview" != 'None' ) then 'Review of Musculoskeletal System' 
+  ), ( if ( "MusculoskeletalConditions" != 'None' ) then 'Conditions of Musculoskeletal System' 
       else ''
-  ), ( if ( "GastrointestinalReview" != 'None' ) then 'Review of Gastrointestinal System' 
+  ), ( if ( "GastrointestinalConditions" != 'None' ) then 'Conditions of Gastrointestinal System' 
       else ''
   ) }
 

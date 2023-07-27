@@ -915,6 +915,9 @@
           ]
         },
         {
+          "type": "Procedure"
+        },
+        {
           "type": "Procedure",
           "codeFilter": [
             {
@@ -1077,6 +1080,9 @@
               "valueSet": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113762.1.4.1222.143"
             }
           ]
+        },
+        {
+          "type": "Observation"
         },
         {
           "type": "Observation",

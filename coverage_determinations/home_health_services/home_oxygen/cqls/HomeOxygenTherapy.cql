@@ -490,9 +490,9 @@ define InhaledAverageFlowRate:
 
 define FrequencyOfUse:
 	{
-		(if ("ArterialOxygenSaturation".value < 55) then 'At rest/Awake' else ''),
-		(if ("ArterialOxygenSaturationExercise".value <56) then 'During exertion' else ''),
-		(if ("NocturnalOximetryO2SAT".value < 55) then 'During Sleep' else '')
+		(if ("ArterialPO2".value <= 55) then 'At rest/Awake' else ''),
+		(if ("ArterialPO2Exercise".value <= 55) then 'During exertion' else ''),
+		(if ("NocturnalOximetryPO2".value <= 55) then 'During Sleep' else '')
 	}
 
 define SteroidTreatment:

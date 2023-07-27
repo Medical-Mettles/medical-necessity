@@ -624,8 +624,7 @@ define PresenceOfOSA:
 
 define PresenceOfPAP:
     exists ( [Procedure] P
-      where "ToCode"(First(P.code.coding)) = "Chronic respiratory failure with hypoxia"
-        or "ToCode"(First(P.code.coding)) = "Desaturation of blood (disorder)"
+      where "ToCode"(First(P.code.coding)) = "Nocturnal continuous positive airway pressure (regime/therapy)"      
   )      
 
 define AHIndex:

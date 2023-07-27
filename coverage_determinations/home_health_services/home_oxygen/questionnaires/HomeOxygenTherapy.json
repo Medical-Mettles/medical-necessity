@@ -354,16 +354,59 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
-                "expression": "ArterialOxygenSaturationExercise"
+                "expression": "ArterialPO2"
               }
             }
           ],
           "linkId": "3.3",
+          "text": "Arterial PO2 results at rest",
+          "type": "quantity",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ArterialOxygenSaturationExercise"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.11",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.4",
           "text": "Oxygen saturation results during exercise without oxygen",
           "type": "quantity",
           "required": false
         },
-        
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ArterialPO2Exercise"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.11",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.5",
+          "text": "Arterial PO2 results during exercise without oxygen",
+          "type": "quantity",
+          "required": false
+        },
         {
           "extension": [
             {
@@ -374,12 +417,40 @@
               }
             }
           ],
-          "linkId": "3.4",
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.11",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.6",
           "text": "Oxygen saturation results during exercise with oxygen",
           "type": "quantity",
           "required": false
         },
-        
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "ArterialPO2ExerciseWithOxygen"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.11",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.7",
+          "text": "Oxygen PO2 results during exercise with oxygen",
+          "type": "quantity",
+          "required": false
+        },
         {
           "extension": [
             {
@@ -393,16 +464,37 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.5",
+              "question": "4.6",
               "answerBoolean": true
             }
           ],
-          "linkId": "3.5",
+          "linkId": "3.8",
           "text": "Nocturnal oxygen saturation",
           "type": "quantity",
           "required": false
         },
-        
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NocturnalOximetryPO2"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.6",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.9",
+          "text": "Nocturnal PO2",
+          "type": "quantity",
+          "required": false
+        },
         {
           "extension": [
             {
@@ -416,11 +508,33 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.5",
+              "question": "4.6",
               "answerBoolean": true
             }
           ],
-          "linkId": "3.7",
+          "linkId": "3.10",
+          "text": "Nocturnal oxygen saturation with oxygen",
+          "type": "quantity",
+          "required": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "NocturnalOximetryPO2WithOxygen"
+              }
+            }
+          ],
+          "enableWhen": [
+            {
+              "operator": "=",
+              "question": "4.6",
+              "answerBoolean": true
+            }
+          ],
+          "linkId": "3.11",
           "text": "Nocturnal oxygen saturation with oxygen",
           "type": "quantity",
           "required": false
@@ -435,7 +549,7 @@
               }
             }
           ],
-          "linkId": "3.8",
+          "linkId": "3.12",
           "text": "Date Of Testing",
           "type": "date",
           "required": true
@@ -450,7 +564,7 @@
               }
             }
           ],
-          "linkId": "3.9",
+          "linkId": "3.13",
           "text": "Is the patient mobile within the home? ",
           "type": "boolean",
           "required": false
@@ -546,6 +660,21 @@
               "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
               "valueExpression": {
                 "language": "text/cql",
+                "expression": "DependentEdema"
+              }
+            }
+          ],
+          "linkId": "4.2",
+          "text": "Does the patient have Dependent edema suggesting congestive heart failure? ",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
                 "expression": "SecondaryToCORPulmonale"
               }
             }
@@ -560,34 +689,16 @@
               }
             }
           ],
-          "linkId": "4.2",
-          "text": "Diagnoses secondary to Cor Pulmonale",
+          "linkId": "4.3",
+          "text": "Determination of  Cor Pulmonale",
           "type": "choice",
           "repeats": true,
           "required": true,
           "answerOption": [
             {
               "valueCoding": {
-                "code": "Recurring heart failure",
-                "display": "Recurring heart failure"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Edema",
-                "display": "Edema"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pulmonary Rales",
-                "display": "Pulmonary Rales"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Fluid on CXR",
-                "display": "Fluid on CXR"
+                "code": "Pulmonary Artery pressure",
+                "display": "Pulmonary Artery pressure"
               }
             },
             {
@@ -598,8 +709,14 @@
             },
             {
               "valueCoding": {
-                "code": "“p” Pulmonale on ECG",
-                "display": "“p” Pulmonale on ECG"
+                "code": "Echocardiogram",
+                "display": "Echocardiogram"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "“p” Pulmonale on EKG",
+                "display": "“p” Pulmonale on EKG"
               }
             }
           ]
@@ -614,17 +731,7 @@
               }
             }
           ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "4.1",
-              "answerCoding": {
-                "code": "Erythrocytosis",
-                "display": "Erythrocytosis"
-              }
-            }
-          ],
-          "linkId": "4.3",
+          "linkId": "4.4",
           "text": "Presence of Erythrocythemia",
           "type": "boolean",
           "required": true
@@ -649,7 +756,7 @@
               }
             }
           ],
-          "linkId": "4.4",
+          "linkId": "4.5",
           "text": "Hematocrit/hemoglobin result (Hct/Hgb)",
           "type": "quantity",
           "required": true
@@ -664,7 +771,7 @@
               }
             }
           ],
-          "linkId": "4.5",
+          "linkId": "4.6",
           "text": "Presence of Nocturnal restlessness, morning headache, and/or daytime somnolence",
           "type": "boolean",
           "required": true
@@ -682,11 +789,11 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.5",
+              "question": "4.6",
               "answerBoolean": true
             }
           ],
-          "linkId": "4.6",
+          "linkId": "4.7",
           "text": "Does the patient have Obstructive Sleep Apnea (OSA) ?",
           "type": "boolean",
           "required": true
@@ -704,11 +811,11 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.6",
+              "question": "4.7",
               "answerBoolean": true
             }
           ],
-          "linkId": "4.7",
+          "linkId": "4.8",
           "text": "Does the patient use PAP device to treat OSA(Sleep Apnea) ?",
           "type": "boolean",
           "required": true
@@ -717,11 +824,11 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.6",
+              "question": "4.7",
               "answerBoolean": true
             }
           ],
-          "linkId": "4.8",
+          "linkId": "4.9",
           "text": "Was the test performed after determining optimal settings of the PAP device ?",
           "type": "boolean",
           "required": true
@@ -739,11 +846,11 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "4.5",
+              "question": "4.6",
               "answerBoolean": true
             }
           ],
-          "linkId": "4.9",
+          "linkId": "4.10",
           "text": "Study performed in relevance to Nocturnal Restlessness",
           "type": "choice",
           "repeats": true,
@@ -773,9 +880,24 @@
               }
             }
           ],
-          "linkId": "4.10",
+          "linkId": "4.11",
           "text": "Presence of Exertional hypoxia / desaturation",
           "type": "boolean",
+          "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "AHIndex"
+              }
+            }
+          ],
+          "linkId": "4.12",
+          "text": "AHI/RDI in events/hour",
+          "type": "quantity",
           "required": true
         },
         {
@@ -798,7 +920,7 @@
               }
             }
           ],
-          "linkId": "4.11",
+          "linkId": "4.13",
           "text": "Specify the ICD-10 code",
           "type": "boolean",
           "required": true
@@ -823,7 +945,7 @@
               }
             }
           ],
-          "linkId": "4.12",
+          "linkId": "4.14",
           "text": "Specify the ICD-10 code description",
           "type": "boolean",
           "required": true
@@ -838,10 +960,52 @@
               }
             }
           ],
-          "linkId": "4.13",
+          "linkId": "4.15",
           "text": "Any medical condition with distinct physiologic, cognitive, and/or functional symptoms documented in high-quality, peer-reviewed literature to be improved by oxygen therapy, such as cluster headaches ?",
           "type": "boolean",
           "required": true
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+              "valueExpression": {
+                "language": "text/cql",
+                "expression": "Group4Criteria"
+              }
+            }
+          ],
+          "linkId": "4.16",
+          "text": "Does the patient suffer from any of the following conditions ?",
+          "type": "choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Angina pectoris",
+                "display": "Angina pectoris"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Dyspnea",
+                "display": "Dyspnea"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Peripheral Vascular Disease",
+                "display": "Peripheral Vascular Disease"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Terminal Illness",
+                "display": "Terminal Illness"
+              }
+            }
+          ]
+          
         }
       ]
     },

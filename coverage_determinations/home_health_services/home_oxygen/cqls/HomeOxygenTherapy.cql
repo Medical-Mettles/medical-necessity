@@ -93,6 +93,9 @@ valueset "Oxygen Saturation by Pulse Oximetry": '2.16.840.1.113762.1.4.1045.151'
 valueset "Home Oxygen Therapy Accessory": '2.16.840.1.113762.1.4.1219.130'
 
 valueset "Obstructive Sleep Apnea (ICD10CM)":'2.16.840.1.113762.1.4.1034.477'
+valueset "Dyspnea": '2.16.840.1.113762.1.4.1182.47'
+valueset "Serious or Life Threatening Illness": '2.16.840.1.113883.3.464.1003.199.11.1103'
+
 
 code "inpatient encounter": 'IMP' from "ActEncounterCode" display 'inpatient encounter'
 code "Outpatient": 'O' from "ActEncounterCodev2" display 'Outpatient'
@@ -109,6 +112,7 @@ code "I tossed and turned at night in past 7 days [PROMIS]": '62008-8' from "LOI
 code "Restlessness and agitation": 'R45.1' from "ICD10CM" display 'Restlessness and agitation'
 code "Morning headache (finding)": '162310002' from "SNOMEDCT" display 'Morning headache (finding)'
 code "Breathless - mild exertion (finding)": '161940008' from "SNOMEDCT" display 'Breathless - mild exertion (finding)'
+code "Breathless - moderate exertion (finding)": '161939006' from "SNOMEDCT" display 'Breathless - moderate exertion (finding)'
 code "Overnight pulse oximetry (procedure)": '252568001' from "SNOMEDCT" display 'Overnight pulse oximetry (procedure)'
 code "Polysomnography (procedure)": '60554003' from "SNOMEDCT" display 'Polysomnography (procedure)'
 code "Chronic respiratory failure with hypoxia": 'J96. 11' from "ICD10CM" display 'Chronic respiratory failure with hypoxia'
@@ -208,8 +212,13 @@ code "Nocturnal continuous positive airway pressure (regime/therapy)": '34281000
 
 code "Titration method (procedure)": '117007006' from "SNOMEDCT" display 'Titration method (procedure)'
 code "Pigmentation of skin or mucosa (finding)": '373923006' from "SNOMEDCT" display 'Pigmentation of skin or mucosa (finding)'
-
+code "Pulse oximetry (procedure)": '252465000' from "SNOMEDCT" display 'Pulse oximetry (procedure)'
 code "Ambulatory Health Care Facilities; Clinic/Center, Sleep Disorder Diagnostic": '261QS1200X' from "HealthCareProviderTaxonomy" display 'Ambulatory Health Care Facilities; Clinic/Center, Sleep Disorder Diagnostic'
+
+code "Apnea hypopnea index 24 hour": '69990-0' from "LOINC" display 'Apnea hypopnea index 24 hour'
+code "Respiratory disturbance index": '90566-1' from "LOINC" display 'Respiratory disturbance index'
+
+
 //Immobilization_Codes
 
 code "102491009": '102491009' from "SNOMEDCT"
@@ -373,6 +382,12 @@ define ArterialOxygenSaturation:
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
+define ArterialPO2:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+          
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialOxygenSaturationExercise:
   ( First([Observation] P
@@ -380,9 +395,23 @@ define ArterialOxygenSaturationExercise:
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
+define ArterialPO2Exercise:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
 define ArterialOxygenSaturationExerciseWithOxygen:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
+        and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+        and First(P.component).value = true
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
+define ArterialPO2ExerciseWithOxygen:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
         and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
   ) ) O
@@ -401,9 +430,25 @@ define NocturnalOximetryO2SAT:
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
+define NocturnalOximetryPO2:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
+      and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
 define NocturnalOximetryO2SATWithOxygen:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
+      and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+      and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+        and First(P.component).value = true
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
+define NocturnalOximetryPO2WithOxygen:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
       and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
@@ -523,33 +568,20 @@ define PatientDiagnoses:
   ) then 'Recurring CHF d/t Cor Pulmonale' 
     else ''
 
+define DependentEdema:
+  exists ( [Condition] P
+      where exists ( P.code.coding P
+          where (P in "Acute or Chronic Heart Failure Disorder ICD10CM"
+          and P in "Acute Pulmonary Edema"))
+      )
+
 define SecondaryToCORPulmonale:
-  if exists ( [Condition] P
-      where exists ( P.code.coding P
-          where P in "Acute or Chronic Heart Failure Disorder ICD10CM"
-      )
-  ) then 'Recurring heart failure' 
-    else if exists ( [Condition] P
-      where exists ( P.code.coding P
-          where P in "Acute Pulmonary Edema"
-      )
-  ) then 'Edema' 
-    else if exists ( [Condition] P
-      where exists ( P.code.coding P
-          where P in "Breath Sounds"
-      )
-  ) then 'Pulmonary Rales' 
-    else if exists ( [Condition] P
-      where exists ( P.code.coding P
-          where P in "Pleuritis (SNOMED)"
-      )
-  ) then 'Fluid on CXR' 
-    else if exists ( [Observation] P
+  if exists ( [Observation] P
       where "ToCode"(First(P.code.coding)) = "Cardiac blood pool imaging, gated equilibrium"
   ) then 'Gated blood pool scan' 
     else if exists ( [Observation] P
       where "ToCode"(First(P.code.coding)) = "P pulmonale by electrocardiogram"
-  ) then '“p” Pulmonale on ECG' 
+  ) then '“p” Pulmonale on EKG' 
     else ''
 
 define Erythrocythemia:
@@ -589,12 +621,40 @@ define PresenceOfPAP:
     exists ( [Procedure] P
       where "ToCode"(First(P.code.coding)) = "Chronic respiratory failure with hypoxia"
         or "ToCode"(First(P.code.coding)) = "Desaturation of blood (disorder)"
-  )        
-  
+  )      
+
+define AHIndex:
+  ( First([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Apnea hypopnea index 24 hour"
+        or "ToCode"(First(P.code.coding)) = "Respiratory disturbance index"
+  ) ) O
+    return FHIRHelpers.ToQuantity ( O.value )
+
 define ExertionalHypoxia:
   exists ( [Condition] P
-      where "ToCode"(First(P.code.coding)) = "Nocturnal continuous positive airway pressure (regime/therapy)"
+      where "ToCode"(First(P.code.coding)) = "Breathless - mild exertion (finding)"
+      or "ToCode"(First(P.code.coding)) = "Breathless - moderate exertion (finding)"
   )
+
+define Group4Criteria:
+  if exists ( [Condition] P
+      where "ToCode"(First(P.code.coding)) = "Angina pectoris, unspecified"
+      )
+    then 'Angina pectoris' 
+    else if exists ( [Condition] P
+                      where exists ( P.code.coding P
+                                    where P in "Dyspnea"))
+    then 'Dyspnea' 
+    else if exists ( [Condition] P
+      where "ToCode"(First(P.code.coding)) = "Peripheral vascular disease (disorder)"
+      )
+    then 'Peripheral Vascular Disease' 
+    else if exists ( [Condition] P
+      where exists ( P.code.coding P
+          where P in "Serious or Life Threatening Illness")
+    )
+    then 'Terminal Illness'
+    else ''
 
 define "GeneralSymptoms":
   if exists ( [Condition] P

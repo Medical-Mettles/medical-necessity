@@ -1195,6 +1195,16 @@
                   "system": "http://loinc.org",
                   "code": "19254-2",
                   "display": "Oxygen [Partial pressure] adjusted to patients actual temperature in Blood"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "161940008",
+                  "display": "Breathless - mild exertion (finding)"
+                },
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "161939006",
+                  "display": "Breathless - moderate exertion (finding)"
                 }
               ]
             }

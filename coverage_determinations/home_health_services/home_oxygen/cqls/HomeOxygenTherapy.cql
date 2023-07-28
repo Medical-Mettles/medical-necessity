@@ -618,10 +618,18 @@ define NocturnalRestlessnessStudy:
 }
       
 
-define PresenceOfOSA:
+define OSA:
   exists ( [Condition] P
       where exists ( P.code.coding C
                       where C in "Obstructive Sleep Apnea (ICD10CM)"))
+
+
+define PresenceOfOSA:
+  if ("OSA" = true)
+  then 'Yes'
+  else if ("OSA" is null)
+  then ''
+  else 'No'
 
 define PresenceOfPAP:
     exists ( [Procedure] P
@@ -1106,19 +1114,17 @@ define CannulaType:
 	
 
 define VentilatorType:
-	if(("DeviceRequest".code.coding F
+	exists("DeviceRequest".code.coding F
 		where "ToCode"(F) = "Home ventilator, any type, used with non-invasive interface, (e.g., mask, chest shell)" 
 				or "ToCode"(F) = "Home ventilator, any type, used with invasive interface, (e.g., tracheostomy tube)"
-				or "ToCode"(F) = "Home ventilator, multi-function respiratory device, also performs any or all of the additional functions of oxygen concentration, drug nebulization, aspiration, and cough stimulation, includes all accessories, components and supplies for all functions") is not null)
-	then true 
-	else false
+				or "ToCode"(F) = "Home ventilator, multi-function respiratory device, also performs any or all of the additional functions of oxygen concentration, drug nebulization, aspiration, and cough stimulation, includes all accessories, components and supplies for all functions")
+	
 
 define RespiratoryAssistType:
-	if(("DeviceRequest".code.coding F
+	exists("DeviceRequest".code.coding F
 		where "ToCode"(F) = "Respiratory assist device, bi-level pressure capability, without backup rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)"
-				or "ToCode"(F) = "Respiratory assist device, bi-level pressure capability, with back-up rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)") is not null)
-	then true 
-	else false
+				or "ToCode"(F) = "Respiratory assist device, bi-level pressure capability, with back-up rate feature, used with noninvasive interface, e.g., nasal or facial mask (intermittent assist device with continuous positive airway pressure device)")
+	
 
 define OxygenDelivery:
 	if  ("CannulaType" = true)

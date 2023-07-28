@@ -487,7 +487,7 @@
           "enableWhen": [
             {
               "operator": "=",
-              "question": "3.10",
+              "question": "3.8",
               "answerBoolean": true
             }
           ],
@@ -804,7 +804,7 @@
     },
     {
       "linkId": "5",
-      "text": "Patient Observations/Conditions",
+      "text": "Patient Conditions",
       "type": "group",
       "item": [
         {
@@ -861,8 +861,8 @@
             },
             {
               "valueCoding": {
-                "code": "Erythrocytosis",
-                "display": "Erythrocytosis"
+                "code": "Erythrocythemia",
+                "display": "Erythrocythemia"
               }
             },
             {

@@ -753,8 +753,8 @@ define NocturnalRestlessnessStudy:
    (if exists([Procedure] P 
           where "ToCode"(First(P.code.coding)) = "Overnight pulse oximetry (procedure)") 
           then 'Nocturnal oximetry'else ''),
-   (if exists([Observation] P 
-          where "ToCode"(First(P.code.coding)) = "Titration method (procedure)")
+   (if exists([Procedure] P 
+          where "ToCode"(First(P.code.coding)) = "Nocturnal continuous positive airway pressure (regime/therapy)")
           then 'Titration Polysomnography' else '')
 }
       
@@ -766,21 +766,12 @@ define OSA:
           and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed')
   
-
 define PresenceOfOSA:
-  if exists ( [Condition] P
-      where exists ( P.code.coding C
-                      where C in "Obstructive Sleep Apnea (ICD10CM)")
-          and First(P.clinicalStatus.coding).code.value = 'active'
-          and First(P.verificationStatus.coding).code.value = 'confirmed')
-  then true
-  else if exists( [Condition] P
-      where exists ( P.code.coding C
-                      where C in "Obstructive Sleep Apnea (ICD10CM)")
-          and (First(P.clinicalStatus.coding).code.value != 'active'
-          or First(P.verificationStatus.coding).code.value != 'confirmed'))
-  then false
-  else null
+  if ("OSA" = true)
+  then 'Yes'
+  else if ("OSA" is null)
+  then ''
+  else 'No'
 
 define PresenceOfPAP:
     exists ( [Procedure] P

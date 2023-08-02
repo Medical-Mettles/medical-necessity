@@ -444,7 +444,8 @@ define ExistsPulseOximetry:
       and P.status.value = 'completed'
       and ((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
             and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        or("ToCode"("EncounterResource".class) = "Outpatient")))
+        or("Normalize Interval"(P.performed) starts after "BloodGasStudyDate"
+          and "ToCode"("EncounterResource".class) = "Outpatient")))
     then true
   else if exists([Procedure] P
       where "ToCode"(First(P.code.coding)) = "Pulse oximetry (procedure)"

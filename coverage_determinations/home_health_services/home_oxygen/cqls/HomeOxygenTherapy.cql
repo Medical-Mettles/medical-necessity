@@ -458,28 +458,28 @@ define ArterialOxygenSaturation:
   ( First([Observation] P
       where ("ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
           or "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood")
-      and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   )) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialPO2:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
-          and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+          and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialOxygenSaturationExercise:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
-      and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialPO2Exercise:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
-      and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -488,7 +488,7 @@ define ArterialOxygenSaturationExerciseWithOxygen:
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
         and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
-        and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+        and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -497,19 +497,21 @@ define ArterialPO2ExerciseWithOxygen:
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
         and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
-        and (start of "Normalize Interval"(P.effective) same day as "TestingDate")
+        and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define OvernightOximetry:
   First([Procedure]P
     where "ToCode"(First(P.code.coding)) = "Overnight pulse oximetry (procedure)"
-    and P.status.value = 'completed')
+    and P.status.value = 'completed'
+    and "Normalize Interval"(P.performed) starts after "BloodGasStudyDate")
 
 define NocturnalOximetryO2SAT:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -517,6 +519,7 @@ define NocturnalOximetryPO2:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -525,6 +528,7 @@ define NocturnalOximetryO2SATWithOxygen:
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
       and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
         and First(P.component).value = true
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
@@ -534,6 +538,7 @@ define NocturnalOximetryPO2WithOxygen:
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
       and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
         and First(P.component).value = true
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
@@ -557,6 +562,7 @@ define PatientMobile:
 define InhaledFlowRate:
   ( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Inhaled oxygen flow rate"
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -564,6 +570,7 @@ define NocturnalOxygenFlowRate:
 	( First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Inhaled oxygen flow rate"
 	  	and "ToCode"(First(P.method.coding)) = "Overnight pulse oximetry (procedure)"
+      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 

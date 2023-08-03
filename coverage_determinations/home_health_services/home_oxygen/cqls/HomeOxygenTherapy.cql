@@ -351,32 +351,38 @@ define PrimaryDiagnosis:
 			 	and First(Covered.verificationStatus.coding).code.value = 'confirmed')
 
 define BloodGasStudy:
-    First([Procedure] P
+    Last([Procedure] P
       where P.status.value = 'completed'
         and("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
             or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
-        and((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        or("Normalize Interval"(P.performed) starts after "Normalize Interval"("PrimaryDiagnosis".onset)))
-    )
+        and((("Normalize Interval"(P.performed) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]
+                ))
+        sort by start of "Normalize Interval"(performed)
+    ) 
 
 define "ExistsBloodGasStudy":
   if exists([Procedure] P
       where P.status.value = 'completed'
         and("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
             or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
-        and((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        or("Normalize Interval"(P.performed) starts after "Normalize Interval"("PrimaryDiagnosis".onset)))
+        and((("Normalize Interval"(P.performed) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
   )
   then true
   else if exists([Procedure] P
       where P.status.value = 'completed'
         and("ToCode"(First(P.code.coding)) = "Blood gas analysis (procedure)"
             or "ToCode"(First(P.code.coding)) = "Blood gas measurement (procedure)")
-        and((("Normalize Interval"(P.performed) starts after (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        and("Normalize Interval"(P.performed) starts before "Normalize Interval"("PrimaryDiagnosis".onset)))
+        and((("Normalize Interval"(P.performed) starts after Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts after Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts after Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]
+                ))
   )
   then false
   else null
@@ -385,41 +391,64 @@ define BloodGasStudyDate:
   start of "Normalize Interval"("BloodGasStudy".performed)
 
 define BloodGasStudyO2Sat:
-  ( First([Observation] O
+  ( Last([Observation] O
       where "ToCode"(First(O.code.coding)) = "Oxygen saturation in Arterial blood"
-      and start of "Normalize Interval"(O.effective) same day as "BloodGasStudyDate"
+      and((("Normalize Interval"(O.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]
+              ))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define BloodGasStudyHematocrit:
-  ( First([Observation] O
+  ( Last([Observation] O
       where "ToCode"(First(O.code.coding)) = "Hematocrit [Volume Fraction] of Arterial blood"
-      and start of "Normalize Interval"(O.effective) same day as "BloodGasStudyDate"
+      and((("Normalize Interval"(O.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define BloodGasStudyPaO2:
-  ( First([Observation] O
+  ( Last([Observation] O
       where "ToCode"(First(O.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
-      and start of "Normalize Interval"(O.effective) same day as "BloodGasStudyDate"
+      and((("Normalize Interval"(O.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define "Hematocrit_lab_test_Codes":
   { '20570-8', '31100-1', '32354-3', '41654-5', '41655-2', '4544-3', '4545-0', '71829-6', '71830-4', '71832-0', '71833-8' }
 
+define HypoxemiaSigns:
+    Last([Condition] P
+      where exists ( P.code.coding P
+          where P in "Hypoxemia")
+          and First(P.clinicalStatus.coding).code.value = 'active'
+          and First(P.verificationStatus.coding).code.value = 'confirmed'
+          sort by start of "Normalize Interval"(onset))
+
 define HypoxemiaSymptoms:
   if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Hypoxemia")
           and First(P.clinicalStatus.coding).code.value = 'active'
-          and First(P.verificationStatus.coding).code.value = 'confirmed')
+          and First(P.verificationStatus.coding).code.value = 'confirmed'
+          sort by start of "Normalize Interval"(onset))
   then true
   else if exists([Condition] P
       where exists ( P.code.coding P
           where P in "Hypoxemia")
           and (First(P.clinicalStatus.coding).code.value != 'active'
-          or First(P.verificationStatus.coding).code.value != 'confirmed'))
+          or First(P.verificationStatus.coding).code.value != 'confirmed')
+          sort by start of "Normalize Interval"(onset))
   then false
   else null
 
@@ -429,12 +458,14 @@ define function "GetId"(uri String):
   Last(Split(uri, '/'))
 
 define PulseOximetry:
-  First([Procedure] P
+  Last([Procedure] P
       where "ToCode"(First(P.code.coding)) = "Pulse oximetry (procedure)"
       and P.status.value = 'completed'
-      and ((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        or("ToCode"("EncounterResource".class) = "Outpatient"))
+      and((("Normalize Interval"(P.performed) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+        sort by start of "Normalize Interval"(performed)
       )
   
 
@@ -442,105 +473,158 @@ define ExistsPulseOximetry:
   if exists([Procedure] P
       where "ToCode"(First(P.code.coding)) = "Pulse oximetry (procedure)"
       and P.status.value = 'completed'
-      and ((("Normalize Interval"(P.performed) starts before (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")
-        or("Normalize Interval"(P.performed) starts after "BloodGasStudyDate"
-          and "ToCode"("EncounterResource".class) = "Outpatient")))
+     and((("Normalize Interval"(P.performed) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+          sort by start of "Normalize Interval"(performed)
+  )
     then true
   else if exists([Procedure] P
       where "ToCode"(First(P.code.coding)) = "Pulse oximetry (procedure)"
       and P.status.value != 'completed'
-      and ((("Normalize Interval"(P.performed) starts after (end of "EncounterResource".period + 2days))
-            and "ToCode"("EncounterResource".class) = "inpatient encounter")))
+      and((("Normalize Interval"(P.performed) starts after Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts after Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts after Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+          sort by start of "Normalize Interval"(performed)
+  )
     then false
     else null
 
+
 define ArterialOxygenSaturation:
-  ( First([Observation] P
-      where ("ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"
-          or "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood")
-      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+  ( Last([Observation] P
+      where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --on room air"    
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   )) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialPO2:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
-          and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+          and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialOxygenSaturationExercise:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
-      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialPO2Exercise:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
-      and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialOxygenSaturationExerciseWithOxygen:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise"
         and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
-        and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+        and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define ArterialPO2ExerciseWithOxygen:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] adjusted to patients actual temperature in Arterial blood"
         and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
         and First(P.component).value = true
-        and ("Normalize Interval"(P.effective) starts after "BloodGasStudyDate")
+        and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define OvernightOximetry:
-  First([Procedure]P
+  Last([Procedure]P
     where "ToCode"(First(P.code.coding)) = "Overnight pulse oximetry (procedure)"
     and P.status.value = 'completed'
-    and "Normalize Interval"(P.performed) starts after "BloodGasStudyDate")
+    and((("Normalize Interval"(P.performed) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.performed) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+        sort by start of "Normalize Interval"(performed))
+    
 
 define NocturnalOximetryO2SAT:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define NocturnalOximetryPO2:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define NocturnalOximetryO2SATWithOxygen:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
       and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
-        and First(P.component).value = true
+      and First(P.component).value = true
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
+        
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define NocturnalOximetryPO2WithOxygen:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Oxygen [Partial pressure] in Arterial blood"
       and First(P.partOf).reference.value = 'Procedure/' + "OvernightOximetry".id.value
       and "ToCode"(First(First(P.component).code.coding)) = "Use of supplemental oxygen"
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
-        and First(P.component).value = true
+      and First(P.component).value = true
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
+        
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -561,17 +645,25 @@ define PatientMobile:
   else null
 
 define InhaledFlowRate:
-  ( First([Observation] P
+  ( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Inhaled oxygen flow rate"
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
 define NocturnalOxygenFlowRate:
-	( First([Observation] P
+	( Last([Observation] P
       where "ToCode"(First(P.code.coding)) = "Inhaled oxygen flow rate"
 	  	and "ToCode"(First(P.method.coding)) = "Overnight pulse oximetry (procedure)"
-      and "Normalize Interval"(P.effective) starts after "BloodGasStudyDate"
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 
@@ -749,6 +841,11 @@ define Erythrocythemia:
 define HematocritResult:
   First([Observation] P
       where "ToCode"(First(P.code.coding)) = "Hematocrit/Hemoglobin [Ratio] of Blood by Automated count"
+      and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ).value
 
 define NocturnalRestlessness:
@@ -802,6 +899,11 @@ define AHIndex:
       where ("ToCode"(First(P.code.coding)) = "Apnea hypopnea index 24 hour"
         or "ToCode"(First(P.code.coding)) = "Respiratory disturbance index")
         and P.status.value = 'final'
+        and((("Normalize Interval"(P.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
+                 and "ToCode"("EncounterResource".class) = "inpatient encounter")
+              or("Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
+                    or "Normalize Interval"(P.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
+            sort by start of "Normalize Interval"(effective)
   ) ) O
     return FHIRHelpers.ToQuantity ( O.value )
 

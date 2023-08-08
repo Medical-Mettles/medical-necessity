@@ -393,13 +393,6 @@
               }
             }
           ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
           "linkId": "3.8",
           "text": "Does the patient have Obstructive Sleep Apnea (OSA) ?",
           "type": "choice",

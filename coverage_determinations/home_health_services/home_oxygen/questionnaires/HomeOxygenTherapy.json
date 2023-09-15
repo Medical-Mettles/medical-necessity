@@ -2426,7 +2426,7 @@
         },
         {
           "linkId": "8.7",
-          "text": "Effectiveness of Treatment",
+          "text": "Effectiveness of Treatment with Bronchodilators",
           "type": "choice",
           "repeats": true,
           "required": true,
@@ -2438,7 +2438,48 @@
                 "code": "Bronchodilators",
                 "display": "Bronchodilators"
               }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "No improvement",
+                "display": "No improvement"
+              }
             },
+            {
+              "valueCoding": {
+                "code": "Limited improvement",
+                "display": "Limited improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Some improvement",
+                "display": "Some improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Able to avoid O2 except with exercise",
+                "display": "Able to avoid O2 except with exercise"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Requires nocturnal O2 only",
+                "display": "Requires nocturnal O2 only"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8.8",
+          "text": "Effectiveness of Treatment with Steroids",
+          "type": "choice",
+          "repeats": true,
+          "required": true,
+          "enableWhen": [
             {
               "operator": "=",
               "question": "8.1",
@@ -2446,7 +2487,48 @@
                 "code": "Steroids",
                 "display": "Steroids"
               }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "No improvement",
+                "display": "No improvement"
+              }
             },
+            {
+              "valueCoding": {
+                "code": "Limited improvement",
+                "display": "Limited improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Some improvement",
+                "display": "Some improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Able to avoid O2 except with exercise",
+                "display": "Able to avoid O2 except with exercise"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Requires nocturnal O2 only",
+                "display": "Requires nocturnal O2 only"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8.9",
+          "text": "Effectiveness of Treatment with Ventilation",
+          "type": "choice",
+          "repeats": true,
+          "required": true,
+          "enableWhen": [
             {
               "operator": "=",
               "question": "8.1",
@@ -2454,7 +2536,48 @@
                 "code": "Ventilation",
                 "display": "Ventilation"
               }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "No improvement",
+                "display": "No improvement"
+              }
             },
+            {
+              "valueCoding": {
+                "code": "Limited improvement",
+                "display": "Limited improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Some improvement",
+                "display": "Some improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Able to avoid O2 except with exercise",
+                "display": "Able to avoid O2 except with exercise"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Requires nocturnal O2 only",
+                "display": "Requires nocturnal O2 only"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8.10",
+          "text": "Effectiveness of Anti-Inflammatory Treatment",
+          "type": "choice",
+          "repeats": true,
+          "required": true,
+          "enableWhen": [
             {
               "operator": "=",
               "question": "8.1",
@@ -2462,13 +2585,54 @@
                 "code": "Anti-Inflammatory",
                 "display": "Anti-Inflammatory"
               }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "No improvement",
+                "display": "No improvement"
+              }
             },
+            {
+              "valueCoding": {
+                "code": "Limited improvement",
+                "display": "Limited improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Some improvement",
+                "display": "Some improvement"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Able to avoid O2 except with exercise",
+                "display": "Able to avoid O2 except with exercise"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Requires nocturnal O2 only",
+                "display": "Requires nocturnal O2 only"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8.11",
+          "text": "Effectiveness of Other Treatments",
+          "type": "choice",
+          "repeats": true,
+          "required": true,
+          "enableWhen": [
             {
               "operator": "=",
               "question": "8.1",
               "answerCoding": {
-                "code": "Other",
-                "display": "Other"
+                "code": "Others",
+                "display": "Others"
               }
             }
           ],

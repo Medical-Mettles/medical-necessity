@@ -133,12 +133,6 @@
             ]
         },
         {
-            "extension": [
-                {
-                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
-                  "valueCode": "default-closed"
-                }
-              ],
             "linkId": "1",
             "text": "Staging",
             "type": "group",
@@ -416,12 +410,6 @@
             ]
         },
         {
-            "extension": [
-                {
-                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
-                  "valueCode": "default-closed"
-                }
-              ],
             "linkId": "2",
             "text": "Pre-existing Co-morbidities",
             "type": "group",
@@ -714,12 +702,6 @@
             ]
         },
         {
-            "extension": [
-                {
-                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-collapsible",
-                  "valueCode": "default-closed"
-                }
-              ],
             "linkId": "5",
             "text": "Allergies to Regimen Drugs",
             "type": "group",

@@ -778,7 +778,7 @@ define PatientDiagnoses:
       and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed'
   ) 
-  then 'Erythrocythemia' else null,
+  then 'Erythrocytosis' else null,
   if exists ( [Condition] P
       where "ToCode"(First(P.code.coding)) = "Cor pulmonale (chronic)"
       and First(P.clinicalStatus.coding).code.value = 'active'

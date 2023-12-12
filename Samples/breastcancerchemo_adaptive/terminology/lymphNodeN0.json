@@ -1,0 +1,21 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.526.3.1310",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-12-08T07:29:46.863+00:00",
+        "source": "#LgnJz96DA3ZkCRTf"
+    },
+    "url": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113883.3.526.3.1310",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "2.16.840.1.113883.3.526.3.1310"
+        }
+    ],
+    "version": "Latest",
+    "name": "BreastCancerRegionalLymphNodeStatusN0",
+    "title": "Breast Cancer Regional Lymph Node Status N0",
+    "status": "active",
+    "publisher": "NLM"
+}

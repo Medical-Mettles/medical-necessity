@@ -279,42 +279,31 @@
       "text": "Symptoms and Diagnostic Testing",
       "type": "group",
       "item": [
-        
         {
           "linkId": "3.1",
-          "text": "Does patient live or travel to an area at high elevation?",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
+          "text": "Does the patient qualify for any of these conditions ?",
+          "type": "choice",
+          "required": false,
+          "answerOption": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "O2CarryingCapacity"
+              "valueCoding": {
+                "code": "Live or travel to an area at high elevation",
+                "display": "Live or travel to an area at high elevation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Reduced O2 carrying capacity",
+                "display": "Reduced O2 carrying capacity"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Skin Pigmentation issues",
+                "display": "Skin Pigmentation issues"
               }
             }
-          ],
-          "linkId": "3.2",
-          "text": "Does patient have a reduced O2 carrying capacity? ",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SkinPigmentation"
-              }
-            }
-          ],
-          "linkId": "3.3",
-          "text": "Does patient have skin pigmentation ? ",
-          "type": "boolean",
-          "required": false
+          ]
         },
         {
           "extension": [
@@ -379,7 +368,7 @@
             }
           ],
           "linkId": "3.7",
-          "text": "Presence of Nocturnal restlessness, morning headache, and/or daytime somnolence",
+          "text": "Presence of Nocturnal restlessness, morning headache, and/or impairment of cognitive process",
           "type": "boolean",
           "required": true
         },
@@ -891,8 +880,8 @@
             },
             {
               "valueCoding": {
-                "code": "Erythrocythemia",
-                "display": "Erythrocythemia"
+                "code": "Erythrocytosis",
+                "display": "Erythrocytosis"
               }
             },
             {
@@ -1178,8 +1167,8 @@
             },
             {
               "valueCoding": {
-                "code": "Integumental System",
-                "display": "Integumental System"
+                "code": "Integumentary System",
+                "display": "Integumentary System"
               }
             },
             {
@@ -2061,13 +2050,13 @@
               "operator": "=",
               "question": "6.1",
               "answerCoding": {
-                "code": "Integumental System",
-                "display": "Integumental System"
+                "code": "Integumentary System",
+                "display": "Integumentary System"
               }
             }
           ],
           "linkId": "6.13",
-          "text": "Integumental System",
+          "text": "Integumentary System",
           "type": "choice",
           "repeats": true,
           "required": true,

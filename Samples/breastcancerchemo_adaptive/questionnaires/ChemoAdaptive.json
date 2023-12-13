@@ -616,6 +616,77 @@
                     "text": "Are Neutrophil counts < 1500 /mm3?",
                     "type": "boolean",
                     "required": true
+                },
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                  "code": "drop-down",
+                                  "display": "Drop down"
+                                }
+                              ]
+                            }
+                        },
+                        {
+                            "extension": [
+                              {
+                                "url": "path",
+                                "valueString": "code"
+                              },
+                              {
+                                "url": "label",
+                                "valueString": "CODE"
+                              },
+                              {
+                                "url": "width",
+                                "valueQuantity": {
+                                  "value": 25,
+                                  "system": "http://unitsofmeasure.org",
+                                  "code": "%"
+                                }
+                              },
+                              {
+                                "url": "forDisplay",
+                                "valueBoolean": false
+                              }
+                            ],
+                            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn"
+                        },
+                        {
+                            "extension": [
+                              {
+                                "url": "path",
+                                "valueString": "display"
+                              },
+                              {
+                                "url": "label",
+                                "valueString": "DESCRIPTION"
+                              },
+                              {
+                                "url": "width",
+                                "valueQuantity": {
+                                  "value": 75,
+                                  "system": "http://unitsofmeasure.org",
+                                  "code": "%"
+                                }
+                              },
+                              {
+                                "url": "forDisplay",
+                                "valueBoolean": true
+                              }
+                            ],
+                            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn"
+                          }
+                    ],
+                    "linkId": "2.4",
+                    "text": "Neutrophil Observation",
+                    "type": "reference",
+                    "required": true,
+                    "answerValueset": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/2.16.840.1.113883.3.6037.1001.23.96.17"  
                 }
             ]
         },

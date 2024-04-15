@@ -7,6 +7,7 @@ include FHIRHelpers version '4.0.0' called FHIRHelpers
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
+codesystem "USPS": 'https://www.usps.com/'
 
 
 //include otherLibrary version 'x.x' called otherLibrary
@@ -15,6 +16,7 @@ codesystem "SNOMED-CT": 'http://snomed.info/sct'
 //code codeName : 'OID' from codeSystemName display 'displayName'
 //concept conceptName : {codeName1, codeName2, etc} display 'displayName'
 //parameter parameterName (dataType or default value)
+valueset "US States": 'us-core-usps-state'
 
 parameter "ServiceRequest" ServiceRequest
 parameter "Encounter" Encounter
@@ -107,12 +109,15 @@ define "PractitionerNPI": (First (
     		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
 
 define  "PractitionerRoleCode":
-    		First("EncounterResource".participant).type.coding
+    	First("EncounterResource".participant).type.coding
+
+define "PractitionerRoleFromServiceRequest":
+		First("ServiceRequest".performerType.coding)
 
 define "PractitionerRole":
-	(First (
+	Coalesce((First (
 	 "PractitionerRoleCode" T
-		where T.system.value = 'http://terminology.hl7.org/CodeSystem/v3-ParticipationType')).code.value
+		where T.system.value = 'http://terminology.hl7.org/CodeSystem/v3-ParticipationType')),"PractitionerRoleFromServiceRequest")
 
 define "PractitionerAddressLine":
 	First(First("Practitioner".address).line).value
@@ -133,15 +138,18 @@ define RequestCondition:
     	First([Condition]C where 'Condition/' + C.id.value = Coalesce(First("DeviceRequest".reasonReference), First("ServiceRequest".reasonReference),First("MedicationRequest".reasonReference)).reference.value )
 
 define Requester:
-	First([Organization] O where 'Organization/' + O.id.value = "Encounter".serviceProvider.reference.value)
+	First([Organization] O where 'Organization/' + O.id.value = Coalesce("Encounter".serviceProvider.reference.value, Patient.managingOrganization.reference.value))
 
 define RequesterName:
 	"Requester".name.value
 
-define "RequesterNPI":
+define "FromRequesterNPI":
 		(First(
   	"Requester".identifier identifier
     		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+
+define "RequesterNPI":
+	Coalesce("FromRequesterNPI","PractitionerNPI")
 
 define "RequesterAddress":
 	 "Requester".address
@@ -158,6 +166,26 @@ define "RequesterAddressCity":
 define "RequesterAddressState":
 	First("Requester".address).state.value
 
+// define "RequesterAddressStateDataCase"
+// 	Combine(Upper(SubString("RequesterAddressStateData",0,1)), Lower(SubString("RequesterAddressStateData", 1)))
+
+// define "StateCode":
+// 	"US States".code
+// 	where display = "RequesterAddressStateData"
+		
+// define function ToCode(value String, codeSystem String):
+//     Code { code: value, system: codeSystem }
+
+// define function ToDisplay(value String, codeSystem String, key String):
+// 	Code { display: value, system: codeSystem, code :key }
+
+// define "RequesterAddressState":
+// 	if "ToCode"("RequesterAddressStateData", 'https://www.usps.com/') in "US States"
+// 	then "RequesterAddressStateData"
+// 	else if "ToDisplay"("RequesterAddressStateData", 'https://www.usps.com/', 'CA') in "US States"
+// 	then "RequesterAddressStateData"
+// 	else ''
+
 define "RequesterAddressPostalCode":
 	First("Requester".address).postalCode.value
 
@@ -173,13 +201,13 @@ define RequesterContactName:
 	"RequesterContact".name
 
 define RequesterContactLastName:
-	"RequesterContactName".family.value
+	Coalesce("RequesterContactName".family.value, "PractitionerLastName")
 
 define RequesterContactMiddleInitial:
   	Substring(Combine(("RequesterContactName".given given return Substring(given.value,0,1)),', '),3)
 
 define "RequesterContactFirstName":
-	First("RequesterContactName".given).value
+	Coalesce(First("RequesterContactName".given).value, "PractitionerFirstName")
 
 define "EncounterParticipant":
 	"EncounterResource"
@@ -194,12 +222,24 @@ define EncounterCondition:
 								else null
 								)
 					)
+define ConditionWithEncounter:
+	First([Condition] C where  C.encounter.reference.value = 'Encounter/' + "EncounterResource".id.value)
+
+define ConditionCategory:
+	First([Condition]C
+				where exists(C.category.coding E where E.code.value = 'encounter-diagnosis'))
 
 define EncounterDiagnosisCode:
 	if exists("EncounterCondition" E
 				where exists(E.code.coding C where C.system.value = 'http://hl7.org/fhir/sid/icd-10-cm'))
-	then First("EncounterCondition".code.coding E
+		then First("EncounterCondition".code.coding E
 				where E.system.value = 'http://hl7.org/fhir/sid/icd-10-cm').code.value
+	else if ("ConditionWithEncounter" is not null)
+		then First("ConditionWithEncounter".code.coding C
+					where C.system.value = 'http://hl7.org/fhir/sid/icd-10-cm').code.value
+	else if ("ConditionCategory" is not null)
+			then First("ConditionCategory".code.coding C
+					where C.system.value = 'http://hl7.org/fhir/sid/icd-10-cm').code.value
 	else ''
 
 define EncounterDiagnosisSystem:

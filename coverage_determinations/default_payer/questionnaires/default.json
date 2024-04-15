@@ -259,6 +259,7 @@
           "linkId": "2.5",
           "text": "Practitioner Address:Line",
           "type": "string",
+          "maxLength": "100",
           "required": true
         },
         {
@@ -274,6 +275,7 @@
           "linkId": "2.6",
           "text": "Practitioner Address:City",
           "type": "string",
+          "maxLength": "100",
           "required": true
         },
         {
@@ -385,7 +387,7 @@
           ],
           "linkId": "3.4",
           "text": "Practitioner Role",
-          "type": "open-choice",
+          "type": "choice",
           "required": true,
           "answerOption": [
             {
@@ -590,6 +592,8 @@
           "linkId": "4.2",
           "text": "Requester's NPI",
           "type": "string",
+          "maxLength": "10",
+          "minLength": "10",
           "required": true
         },
         {
@@ -605,6 +609,7 @@
           "linkId": "4.3",
           "text": "Requester Address:Line",
           "type": "string",
+          "maxLength": "15",
           "required": true
         },
         {
@@ -620,6 +625,7 @@
           "linkId": "4.4",
           "text": "Requester Address:City",
           "type": "string",
+          "maxLength": "15",
           "required": true
         },
         {
@@ -634,7 +640,8 @@
           ],
           "linkId": "4.5",
           "text": "Requester Address:State",
-          "type": "string",
+          "type": "open-choice",
+          "answerValueSet": "https://fhir-dev.mettles.com/baseServer/fhir/ValueSet/us-core-usps-state",
           "required": true
         },
         {
@@ -650,6 +657,8 @@
           "linkId": "4.6",
           "text": "Requester Address:PostalCode",
           "type": "string",
+          "maxLength": "5",
+          "minLength": "5",
           "required": true
         },
         {
@@ -665,6 +674,8 @@
           "linkId": "4.7",
           "text": "Requester TelePhone",
           "type": "string",
+          "maxLength": "10",
+          "minLength": "10",
           "required": true
         },
         {
@@ -732,6 +743,8 @@
           "linkId": "5.2",
           "text": "Insurer Id",
           "type": "string",
+          "maxLength": "10",
+          "minLength": "10",
           "required": true
         }
       ]

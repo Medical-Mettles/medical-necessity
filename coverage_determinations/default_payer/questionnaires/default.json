@@ -328,12 +328,7 @@
           "linkId": "3.1",
           "text": "Physician/Practitioner’s First Name",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "Chris"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -348,12 +343,7 @@
           "linkId": "3.2",
           "text": "Physician/Practitioner’s Last Name",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "Niswandee"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -368,12 +358,7 @@
           "linkId": "3.3",
           "text": "Physician/Practitioner’s NPI",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "1639656713"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -490,12 +475,7 @@
           "linkId": "3.5",
           "text": "Practitioner Address:Line",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "795 E DRAGRAM"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -510,12 +490,7 @@
           "linkId": "3.6",
           "text": "Practitioner Address:City",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "TUCSON"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -530,12 +505,7 @@
           "linkId": "3.7",
           "text": "Practitioner Address:State",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "AZ"
-            }
-          ]
+          "required": true
         },
         {
           "extension": [
@@ -550,12 +520,7 @@
           "linkId": "3.8",
           "text": "Practitioner Address:PostalCode",
           "type": "string",
-          "required": true,
-          "initial": [
-            {
-              "valueString": "85705"
-            }
-          ]
+          "required": true
         }
       ]
     },

@@ -131,6 +131,39 @@ define "PractitionerAddressState":
 define "PractitionerAddressPostalCode":
 	First("Practitioner".address).postalCode.value
 
+//**********OPERATING PHYSICIAN/PRACTITIONER****************/
+
+define OperatingPracFirstName:
+	First("PractitionerName".given).value
+
+define OperatingPracLastName:
+	"PractitionerName".family.value
+
+define OperatingPracNPI:
+	(First (
+  	"Practitioner".identifier identifier
+    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+
+define OperatingPracRole:
+	Coalesce((First (
+	 "PractitionerRoleCode" T
+		where T.system.value = 'http://terminology.hl7.org/CodeSystem/v3-ParticipationType')),"PractitionerRoleFromServiceRequest")
+
+define OperatingPracAddressLine:
+	First(First("Practitioner".address).line).value
+
+define OperatingPracCity:
+	First("Practitioner".address).city.value
+
+define OperatingPracState:
+	First("Practitioner".address).state.value
+
+define OperatingPracPostalCode:
+	First("Practitioner".address).postalCode.value
+
+
+//************REQUESTER******* */
+
 define EncounterResource:
 	First([Encounter]E where 'Encounter/' + E.id.value = Coalesce("DeviceRequest".encounter, "ServiceRequest".encounter, "MedicationRequest".encounter).reference.value )
 

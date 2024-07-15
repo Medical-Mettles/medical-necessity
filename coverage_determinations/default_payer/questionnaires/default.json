@@ -735,6 +735,23 @@
           "required": true
         }
       ]
+    },
+    {
+      "linkId": "7",
+      "text": "Admission Dates",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "7.1",
+          "text": "Start Date",
+          "type": "date"
+        },
+        {
+          "linkId": "7.2",
+          "text": "End Date",
+          "type": "date"
+        }
+      ]
     }
   ]
 }

@@ -263,11 +263,11 @@ define EncounterCondition:
 
 
 define OrderingPhysician:
-  "DeviceRequest".requester PR
+    "DeviceRequest".requester PR
     return singleton from ( [Practitioner] P
         where 'Practitioner/' + P.id.value = PR.reference.value
     )
-
+   
 define OrderingPhysicianNPI:
   ( First("OrderingPhysician".identifier identifier
         where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi'
@@ -334,6 +334,13 @@ define SkinPigmentation:
   then false
   else null
 
+define inaccurracy:
+  if("TravelToHigherElevation" =true)
+    or ("O2CarryingCapacity" = true)
+    or ("SkinPigmentation" = true)
+    then true
+    else false
+
 define PrimaryDiagnosis:
   First(([Condition]C
 		where First(C.code.coding) in "Interstitial lung disease"
@@ -396,11 +403,9 @@ define BloodGasStudyO2Sat:
       and((("Normalize Interval"(O.effective) starts during Interval[end of "EncounterResource".period, end of "EncounterResource".period + 2days])
                  and "ToCode"("EncounterResource".class) = "inpatient encounter")
               or("Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("PrimaryDiagnosis".onset), Today()]
-                    or "Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]
-              ))
+                    or "Normalize Interval"(O.effective) starts during Interval[start of "Normalize Interval"("HypoxemiaSigns".onset), Today()]))
             sort by start of "Normalize Interval"(effective)
-  ) ) O
-    return FHIRHelpers.ToQuantity ( O.value )
+  ) ) 
 
 define BloodGasStudyHematocrit:
   ( Last([Observation] O
@@ -674,11 +679,13 @@ define InhaledAverageFlowRate:
 		then "InhaledFlowRate" 
 	else null
 
+
+
 define FrequencyOfUse:
-	{
-		(if ("ArterialPO2".value <= 55) then 'At rest/Awake' else ''),
-		(if ("ArterialPO2Exercise".value <= 55) then 'During exertion' else ''),
-		(if ("NocturnalOximetryPO2".value <= 55) then 'During Sleep' else '')
+	distinct{
+		(if ("ArterialOxygenSaturation".value < 89) then 'At rest/Awake' else ''),
+		(if ("ArterialOxygenSaturationExercise".value <88) then 'During exertion' else ''),
+		(if ("NocturnalOximetryO2SAT".value < 88) then 'During Sleep' else '')
 	}
 
 define SteroidTreatment:
@@ -863,6 +870,21 @@ define NocturnalRestlessness:
   then false
   else null
 
+
+define Nocturnalanswer:
+{
+  (if exists([Observation] O
+          where "ToCode"(First(O.code.coding)) = "I tossed and turned at night in past 7 days [PROMIS]") 
+          then 'Insomnia'else ''),
+   (if exists([Observation] O 
+          where "ToCode"(First(O.code.coding)) = "Restlessness and agitation")
+          then 'Nocturnal restlessness' else ''),
+   (if exists([Observation] O 
+          where "ToCode"(First(O.code.coding)) = "Morning headache (finding)")
+          then 'Morning headache' else '')
+}
+
+
 define NocturnalRestlessnessStudy:
 { 
    (if exists([Procedure] P 
@@ -883,10 +905,8 @@ define OSA:
   
 define PresenceOfOSA:
   if ("OSA" = true)
-  then 'Yes'
-  else if ("OSA" is null)
-  then ''
-  else 'No'
+  then true
+  else false
 
 define PresenceOfPAP:
     exists ( [Procedure] P
@@ -931,27 +951,27 @@ define Group4Criteria:
       and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed'
       )
-    then 'Angina pectoris' 
+    then 'Angina pectoris in the absence of hypoxemia' 
     else if exists ( [Condition] P
                       where exists ( P.code.coding P
                                     where P in "Dyspnea")
                   and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed')
-    then 'Dyspnea' 
+    then 'Dyspnea without cor pulmonale or evidence of hypoxemia' 
     else if exists ( [Condition] P
       where "ToCode"(First(P.code.coding)) = "Peripheral vascular disease (disorder)"
         and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed'
       )
-    then 'Peripheral Vascular Disease' 
+    then 'Severe peripheral vascular disease resulting in clinically evident desaturation in one or more extremities but in the absence of systemic hypoxemia' 
     else if exists ( [Condition] P
       where exists ( P.code.coding P
           where P in "Limited Life Expectancy")
           and First(P.clinicalStatus.coding).code.value = 'active'
           and First(P.verificationStatus.coding).code.value = 'confirmed'
     )
-    then 'Terminal Illness'
-    else ''
+    then 'Terminal illnesses that do not affect the ability to breathe'
+    else 'None'
 
 define "GeneralSymptoms":
   if exists ( [Condition] P
@@ -1741,15 +1761,11 @@ define PatientHasHematocritThatIsGreaterThanThreshold:
   if ( "HematocritThatIsGreaterThanThreshold" > 56 ) then true 
     else false
 
-define FrequencyOfMonitoring:
-	distinct{
-		(if ("ArterialOxygenSaturation".value < 55) then 'At rest/Awake' else ''),
-		(if ("ArterialOxygenSaturationExercise".value <55) then 'During exertion' else ''),
-		(if ("NocturnalOximetryO2SAT".value < 55) then 'During Sleep' else '')
-	}
-
 define DeviceRequestDescription:
   'HCPCS ' + First("DeviceRequest".code.coding).code.value + ' - ' + First("DeviceRequest".code.coding).display.value
+
+define OrderType:
+  'Initial or original order for certification'
 
 define DeviceRequestCode:
   First("DeviceRequest".code.coding).code.value

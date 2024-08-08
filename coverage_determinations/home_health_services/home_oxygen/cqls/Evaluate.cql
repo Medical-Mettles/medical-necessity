@@ -5,12 +5,12 @@ using FHIR version '4.0.0'
 include FHIRHelpers version '4.0.0' called FHIRHelpers
 
 parameter "questionnaireInput" Questionnaire
-parameter "QuestionnaireResponse" QuestionnaireResponse
+parameter "questionnaireResponseInput" QuestionnaireResponse
 
 context Patient
 
 define First:
-    "QuestionnaireResponse".item I
+    "questionnaireResponseInput".item I
         where I.linkId.value = '1'
 
 define FirstResponseItem:
@@ -28,7 +28,7 @@ define EncounterResponse:
         where 'Encounter/' + E.id.value = First("FirstResponseItem"))
 
 define "LastResponseItem":
-    "QuestionnaireResponse".item[Length("QuestionnaireResponse".item)-1]
+    "questionnaireResponseInput".item[Length("questionnaireResponseInput".item)-1]
 
 define "LastResponseItemLinkID":
     "LastResponseItem".linkId

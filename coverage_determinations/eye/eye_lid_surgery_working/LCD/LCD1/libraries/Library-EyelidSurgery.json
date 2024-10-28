@@ -1,0 +1,250 @@
+{
+  "resourceType": "Library",
+  "id": "library-eyelidsurgery-EyelidSurgery",
+  "url": "https://fhir-dev.mettles.com/fhir-services/Library/library-eyelidsurgery-EyelidSurgery",
+  "version": "1.0.0",
+  "name": "EyelidSurgery",
+  "title": "EyelidSurgery",
+  "status": "draft",
+  "type": {
+    "coding": [ {
+      "code": "logic-library"
+    } ]
+  },
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/Library/FHIRHelpers"
+  },
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.189"
+  }, 
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.190"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":  "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.191"
+  }, 
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.59"
+  }, 
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.25"
+  }, 
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.192"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.193"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.194"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.195"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.196"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.197"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.198"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.79"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.199"
+  },
+  {
+    "type": "depends-on",
+    "resource": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.200"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.201"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.202"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.203"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.204"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.205"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.206"
+  }, 
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.207"
+  },
+  {
+    "type": "depends-on",
+    "resource":"https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.24"
+  }
+],
+  "dataRequirement": [ {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.189"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.190"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.191"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.59"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.25"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.192"
+    } ]
+  }, {
+    "type": "Procedure",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.193"
+    } ]
+  }, {
+    "type": "Procedure",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.194"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.195"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.196"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.197"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.198"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.79"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.199"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.200"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.201"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.202"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.203"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.204"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.205"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.206"
+    } ]
+  }, {
+    "type": "Condition",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.93.207"
+    } ]
+  }, {
+    "type": "Observation",
+    "codeFilter": [ {
+      "path": "code",
+      "valueSet": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113883.3.6037.1001.23.99.24"
+    } ]
+  } ] 
+}

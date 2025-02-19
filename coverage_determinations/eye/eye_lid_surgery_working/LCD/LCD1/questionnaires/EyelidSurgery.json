@@ -4,10 +4,10 @@
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-eyelidsurgery-EyelidSurgery"
+      "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-lcd1-EyelidSurgery"
     }
   ],
-  "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-eyelidsurgery-eyelidsurgery",
+  "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-lcd1-eyelidsurgery",
   "identifier": [
     {
       "system": "http://identifiers.mettles.com/prior_authorization",
@@ -44,16 +44,10 @@
           "type": "choice",
           "answerOption": [
             {
-              "valueCoding": {
-                "code": "Cosmetic",
-                "display": "Cosmetic"
-              }
+              "valueString": "Cosmetic"
             },
             {
-              "valueCoding": {
-                "code": "Reconstructive",
-                "display": "Reconstructive"
-              }
+              "valueString": "Reconstructive"
             }
           ],
           "required": true
@@ -73,16 +67,10 @@
           "type": "choice",
           "answerOption": [
             {
-              "valueCoding": {
-                "code": "Upper Eye Lid",
-                "display": "Upper Eye Lid"
-              }
+              "valueString": "Upper Eye Lid"
             },
             {
-              "valueCoding": {
-                "code": "Lower Eye Lid",
-                "display": "Lower Eye Lid"
-              }
+              "valueString": "Lower Eye Lid"
             }
           ],
           "required": true
@@ -477,16 +465,10 @@
           "type": "choice",
           "answerOption": [
             {
-              "valueCoding": {
-                "code": "Unilateral",
-                "display": "Unilateral"
-              }
+              "valueString": "Unilateral"
             },
             {
-              "valueCoding": {
-                "code": "Bilateral",
-                "display": "Bilateral"
-              }
+              "valueString": "Bilateral"
             }
           ],
           "required": true
@@ -506,16 +488,10 @@
           "type": "choice",
           "answerOption": [
             {
-              "valueCoding": {
-                "code": "Right",
-                "display": "Right"
-              }
+              "valueString": "Right"
             },
             {
-              "valueCoding": {
-                "code": "Left",
-                "display": "Left"
-              }
+              "valueString": "Left"
             }
           ],
           "enableWhen": [

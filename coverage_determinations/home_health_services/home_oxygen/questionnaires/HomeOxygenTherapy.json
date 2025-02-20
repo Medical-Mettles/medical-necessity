@@ -1,2978 +1,2455 @@
 {
   "resourceType": "Questionnaire",
+  "id": "questionnaire-homeoxygen-homeoxygentherapy",
+  "meta": {
+      "versionId": "63",
+      "lastUpdated": "2024-01-24T13:07:59.760-05:00",
+      "source": "#dSkCUrZrPdYmeV8g"
+  },
+  "contained": [
+      {
+          "resourceType": "ValueSet",
+          "id": "gender",
+          "name": "Gender",
+          "status": "draft",
+          "description": "Gender",
+          "compose": {
+              "include": [
+                  {
+                      "concept": [
+                          {
+                              "code": "male",
+                              "display": "Male"
+                          },
+                          {
+                              "code": "female",
+                              "display": "Female"
+                          },
+                          {
+                              "code": "other",
+                              "display": "Other"
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+  ],
+  "extension": [
+      {
+          "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+          "valueCanonical": "https://drfpval.cms.gov/drfp/fhir/Library/HomeOxygenTherapy"
+      },
+      {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",
+          "valueBoolean": true
+      }
+  ],
+  "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-homeoxygen-homeoxygentherapy",
   "identifier": [
-    {
-      "system": "http://identifiers.mettles.com/prior_authorization",
-      "value": "medicare-HomeOxygenTherapy"
-    }
+      {
+          "system": "http://identifiers.mettles.com/prior_authorization",
+          "value": "medicare-HomeOxygenTherapy"
+      }
   ],
   "version": "1.0.0",
   "name": "HomeOxygenTherapy",
   "title": "HomeOxygenTherapy",
   "status": "draft",
   "subjectType": [
-    "Patient"
+      "Patient"
   ],
   "date": "2019-12-03",
   "publisher": "Mettle Solutions",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-      "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-homeoxygen-HomeOxygenTherapy"
-    }
-  ],
-  "url": "https://fhir-dev.mettles.com/baseServer/fhir/Questionnaire/questionnaire-homeoxygen-HomeOxygenTherapy",
-  "contained": [
-    {
-      "resourceType": "ValueSet",
-      "id": "gender",
-      "name": "Gender",
-      "status": "draft",
-      "description": "Gender",
-      "compose": {
-        "include": [
-          {
-            "concept": [
-              {
-                "code": "male",
-                "display": "Male"
-              },
-              {
-                "code": "female",
-                "display": "Female"
-              },
-              {
-                "code": "other",
-                "display": "Other"
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ],
   "item": [
-    {
-      "linkId": "1",
-      "text": "Order Details",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceRequestDescription"
+      {
+          "linkId": "1",
+          "text": "Order Details",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "DeviceRequestDescription"
+                          }
+                      }
+                  ],
+                  "linkId": "1.1",
+                  "text": "Ordered Device Description",
+                  "type": "text",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "DeviceRequestCode"
+                          }
+                      }
+                  ],
+                  "linkId": "1.2",
+                  "text": "HCPCS code of equipment ordered",
+                  "type": "string",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "DeviceOrderId"
+                          }
+                      }
+                  ],
+                  "linkId": "1.3",
+                  "text": "Order Id",
+                  "type": "string",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OrderingPhysicianNPI"
+                          }
+                      }
+                  ],
+                  "linkId": "1.4",
+                  "text": "Ordering Physician NPI",
+                  "type": "string",
+                  "required": true
               }
-            }
-          ],
-          "linkId": "1.1",
-          "text": "Ordered Device Description",
-          "type": "text",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceRequestCode"
-              }
-            }
-          ],
-          "linkId": "1.2",
-          "text": "HCPCS code of equipment ordered",
-          "type": "string",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceOrderId"
-              }
-            }
-          ],
-          "linkId": "1.3",
-          "text": "Order Id",
-          "type": "string",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "OrderingPhysicianNPI"
-              }
-            }
-          ],
-          "linkId": "1.4",
-          "text": "Ordering Physician NPI",
-          "type": "string",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "2",
-      "text": "Primary Details",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "InpatientHospitalStay"
-              }
-            }
-          ],
-          "linkId": "2.2",
-          "text": "Is this encounter an inpatient hospital stay?",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ExistsBloodGasStudy"
-              }
-            }
-          ],
-          "linkId": "2.3",
-          "text": "Was blood gas study ordered and evaluated?",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyDate"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.4",
-          "text": "Date of Blood Gas Study test?",
-          "type": "date",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyO2Sat"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.5",
-          "text": "O2 Sat (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyPaO2"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.6",
-          "text": "PaO2 (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "BloodGasStudyHematocrit"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "2.3",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "2.7",
-          "text": "Hematocrit (ABG)",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ImprovementWithTherapy"
-              }
-            }
-          ],
-          "linkId": "2.8",
-          "text": "Is there an expectation that home oxygen therapy will improve O2 Saturation?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PatientMobile"
-              }
-            }
-          ],
-          "linkId": "2.9",
-          "text": "Is the patient mobile within the home? ",
-          "type": "boolean",
-          "required": false
-        }
-      ]
-    },
-    {
-      "linkId": "3",
-      "text": "Symptoms and Diagnostic Testing",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "3.1",
-          "text": "Does the patient qualify for any of these conditions ?",
-          "type": "choice",
-          "required": false,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Live or travel to an area at high elevation",
-                "display": "Live or travel to an area at high elevation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Reduced O2 carrying capacity",
-                "display": "Reduced O2 carrying capacity"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Skin Pigmentation issues",
-                "display": "Skin Pigmentation issues"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "HypoxemiaSymptoms"
+      },
+      {
+          "linkId": "2",
+          "text": "Primary Details",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "InpatientHospitalStay"
+                          }
+                      }
+                  ],
+                  "linkId": "2.2",
+                  "text": "Is this encounter an inpatient hospital stay?",
+                  "type": "boolean",
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ExistsBloodGasStudy"
+                          }
+                      }
+                  ],
+                  "linkId": "2.3",
+                  "text": "Was blood gas study ordered and evaluated?",
+                  "type": "boolean",
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "BloodGasStudyDate"
+                          }
+                      }
+                  ],
+                  "linkId": "2.4",
+                  "text": "Date of Blood Gas Study test?",
+                  "type": "date",
+                  "enableWhen": [
+                      {
+                          "question": "2.3",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "BloodGasStudyO2Sat"
+                          }
+                      }
+                  ],
+                  "linkId": "2.5",
+                  "text": "O2 Sat ",
+                  "type": "reference",
+                  "enableWhen": [
+                      {
+                          "question": "2.3",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "BloodGasStudyPaO2"
+                          }
+                      }
+                  ],
+                  "linkId": "2.6",
+                  "text": "PaO2 (ABG)",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "2.3",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "BloodGasStudyHematocrit"
+                          }
+                      }
+                  ],
+                  "linkId": "2.7",
+                  "text": "Hematocrit ",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "2.3",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ImprovementWithTherapy"
+                          }
+                      }
+                  ],
+                  "linkId": "2.8",
+                  "text": "Is there an expectation that home oxygen therapy will improve O2 Saturation?",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PatientMobile"
+                          }
+                      }
+                  ],
+                  "linkId": "2.9",
+                  "text": "Is the patient mobile within the home? ",
+                  "type": "boolean",
+                  "required": false
               }
-            }
-          ],
-          "linkId": "3.4",
-          "text": "Does patient have symptoms of Hypoxemia ? ",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ExertionalHypoxia"
-              }
-            }
-          ],
-          "linkId": "3.5",
-          "text": "Presence of Exertional hypoxia / desaturation",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ExerciseTesting"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.5",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "3.6",
-          "text": "Was exercise testing performed in-person by a treating practitioner or other medical professional qualified to conduct testing ? ",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalRestlessness"
-              }
-            }
-          ],
-          "linkId": "3.7",
-          "text": "Presence of Nocturnal restlessness, morning headache, and/or impairment of cognitive process",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PresenceOfOSA"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "3.8",
-          "text": "Does the patient have Obstructive Sleep Apnea (OSA) ?",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Yes",
-                "display": "Yes"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "No",
-                "display": "No"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PresenceOfIDTF"
+      },
+      {
+          "linkId": "3",
+          "text": "Symptoms and Diagnostic Testing",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "inaccurracy"
+                          }
+                      }
+                  ],
+                  "linkId": "3.01",
+                  "text": "Does the patient have any conditions that could cause inaccuracies in the ABG/pulse oximetry results?",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "inaccurracyanswer"
+                          }
+                      }
+                  ],
+                  "linkId": "3.1",
+                  "text": "Specify condition",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "3.01",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Lives in or travels to high altitude"
+                      },
+                      {
+                          "valueString": "Age"
+                      },
+                      {
+                          "valueString": "Skin pigmentation"
+                      },
+                      {
+                          "valueString": "Reduced O2 carrying capacity"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OtherABG"
+                          }
+                      }
+                  ],
+                  "linkId": "3.2",
+                  "text": "Specify",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "3.1",
+                          "operator": "=",
+                          "answerCoding": {
+                              "code": "Other",
+                              "display": "Other"
+                          }
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "HypoxemiaSymptoms"
+                          }
+                      }
+                  ],
+                  "linkId": "3.4",
+                  "text": "Does patient have symptoms of Hypoxemia ? ",
+                  "type": "boolean",
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ExertionalHypoxia"
+                          }
+                      }
+                  ],
+                  "linkId": "3.5",
+                  "text": "Presence of Exertional hypoxia / desaturation",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ExerciseTesting"
+                          }
+                      }
+                  ],
+                  "linkId": "3.6",
+                  "text": "Was exercise testing performed in-person by a treating practitioner or other medical professional qualified to conduct testing ? ",
+                  "type": "boolean",
+                  "enableWhen": [
+                      {
+                          "question": "3.5",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalRestlessness"
+                          }
+                      }
+                  ],
+                  "linkId": "3.07",
+                  "text": "Presence of any nocturnal symptoms ?",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Nocturnalanswer"
+                          }
+                      }
+                  ],
+                  "linkId": "3.7",
+                  "text": "Specify symptoms",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "3.07",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Impairment of cognitive processes"
+                      },
+                      {
+                          "valueString": "Nocturnal restlessness"
+                      },
+                      {
+                          "valueString": "Insomnia"
+                      },
+                      {
+                          "valueString": "Morning headache"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "sufferother"
+                          }
+                      }
+                  ],
+                  "linkId": "3.711",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "3.7",
+                          "operator": "=",
+                          "answerCoding": {
+                              "code": "Other",
+                              "display": "Other"
+                          }
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PresenceOfOSA"
+                          }
+                      }
+                  ],
+                  "linkId": "3.8",
+                  "text": "Does the patient have Obstructive Sleep Apnea (OSA) ?",
+                  "type": "boolean"
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PresenceOfIDTF"
+                          }
+                      }
+                  ],
+                  "linkId": "3.9",
+                  "text": "Was nocturnal testing performed under the direction of medicare enrolled IDTF ?",
+                  "type": "boolean",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PresenceOfPAP"
+                          }
+                      }
+                  ],
+                  "linkId": "3.10",
+                  "text": "Is the patient's OSA being sufficiently treated?",
+                  "type": "boolean",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "linkId": "3.11",
+                  "text": "Was the titration study performed after determining optimal settings of the PAP device ?",
+                  "type": "boolean",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true
               }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.8",
-              "answerCoding": {
-                "code": "No",
-                "display": "No"
-              }
-            }
-          ],
-          "linkId": "3.9",
-          "text": "Was nocturnal testing performed under the direction of medicare enrolled IDTF ?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PresenceOfPAP"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.8",
-              "answerCoding": {
-                "code": "Yes",
-                "display": "Yes"
-              }
-            }
-          ],
-          "linkId": "3.10",
-          "text": "Does the patient use PAP device to treat OSA(Sleep Apnea) ?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.8",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "3.11",
-          "text": "Was the titration study performed after determining optimal settings of the PAP device ?",
-          "type": "boolean",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "4",
-      "text": "Relevant Patient Observations",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ExistsPulseOximetry"
-              }
-            }
-          ],
-          "linkId": "4.1",
-          "text": "Was Pulse Oximetry performed",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialOxygenSaturation"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "4.1",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.2",
-          "text": "Arterial oxygen saturation results at rest",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialPO2"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "4.1",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.3",
-          "text": "Arterial PO2 results at rest",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialOxygenSaturationExercise"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.5",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4,4",
-          "text": "Oxygen saturation results during exercise without oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialPO2Exercise"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.5",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.5",
-          "text": "Arterial PO2 results during exercise without oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialOxygenSaturationExerciseWithOxygen"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.5",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.6",
-          "text": "Oxygen saturation results during exercise with oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ArterialPO2ExerciseWithOxygen"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.5",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.7",
-          "text": "Oxygen PO2 results during exercise with oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalRestlessnessStudy"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.8",
-          "text": "Study performed in relevance to Nocturnal Restlessness",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Nocturnal oximetry",
-                "display": "Nocturnal oximetry"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Titration Polysomnography",
-                "display": "Titration Polysomnography"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalOximetryO2SAT"
+      },
+      {
+          "linkId": "4",
+          "text": "Relevant Patient Observations",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ExistsPulseOximetry"
+                          }
+                      }
+                  ],
+                  "linkId": "4.1",
+                  "text": "Was blood gas study performed",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialOxygenSaturation"
+                          }
+                      }
+                  ],
+                  "linkId": "4.2",
+                  "text": "Oxygen saturation results at rest",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "4.1",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialPO2"
+                          }
+                      }
+                  ],
+                  "linkId": "4.3",
+                  "text": "Arterial PO2 results at rest",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "4.1",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialOxygenSaturationExercise"
+                          }
+                      }
+                  ],
+                  "linkId": "4.4",
+                  "text": "Oxygen saturation results during exercise without oxygen",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.5",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialPO2Exercise"
+                          }
+                      }
+                  ],
+                  "linkId": "4.5",
+                  "text": "Arterial PO2 results during exercise without oxygen",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.5",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialOxygenSaturationExerciseWithOxygen"
+                          }
+                      }
+                  ],
+                  "linkId": "4.6",
+                  "text": "Oxygen saturation results during exercise with oxygen",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.5",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ArterialPO2ExerciseWithOxygen"
+                          }
+                      }
+                  ],
+                  "linkId": "4.7",
+                  "text": "Arterial PO2 results during exercise with oxygen",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.5",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalRestlessnessStudy"
+                          }
+                      }
+                  ],
+                  "linkId": "4.8",
+                  "text": "Study performed in relevance to Nocturnal Restlessness",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Nocturnal oximetry"
+                      },
+                      {
+                          "valueString": "Titration Polysomnography"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalOximetryO2SAT"
+                          }
+                      }
+                  ],
+                  "linkId": "4.9",
+                  "text": "Oxygen saturation during sleep",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalOximetryPO2"
+                          }
+                      }
+                  ],
+                  "linkId": "4.10",
+                  "text": "Arterial PO2 during sleep",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalOximetryO2SATWithOxygen"
+                          }
+                      }
+                  ],
+                  "linkId": "4.11",
+                  "text": "Oxygen saturation during sleep with oxygen",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NocturnalOximetryPO2WithOxygen"
+                          }
+                      }
+                  ],
+                  "linkId": "4.12",
+                  "text": "Arterial PO2 with oxygen during sleep",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "3.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": false
               }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.9",
-          "text": "Nocturnal oxygen saturation",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalOximetryPO2"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.10",
-          "text": "Nocturnal PO2",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalOximetryO2SATWithOxygen"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.11",
-          "text": "Nocturnal oxygen saturation with oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NocturnalOximetryPO2WithOxygen"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.12",
-          "text": "Nocturnal oxygen PO2 with oxygen",
-          "type": "quantity",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "AHIndex"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.8",
-              "answerCoding": {
-                "code": "Yes",
-                "display": "Yes"
-              }
-            }
-          ],
-          "linkId": "4.13",
-          "text": "AHI/RDI in events/hour",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "InhaledFlowRate"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.14",
-          "text": "Peak Flow Rate",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "InhaledAverageFlowRate"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "3.7",
-              "answerBoolean": true
-            }
-          ],
-          "linkId": "4.15",
-          "text": "Average Flow Rate",
-          "type": "quantity",
-          "required": true 
-        }
-      ]
-    },
-    {
-      "linkId": "5",
-      "text": "Diagnosis",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PatientDiagnoses"
-              }
-            }
-          ],
-          "linkId": "5.1",
-          "text": "Primary Diagnosis",
-          "type": "choice",
-          "required": true,
-          "repeats": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "COPD",
-                "display": "COPD"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Bronchiectasis",
-                "display": "Bronchiectasis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Hypoxemia",
-                "display": "Hypoxemia"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Diffuse interstitial lung disease",
-                "display": "Diffuse interstitial lung disease"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Cystic fibrosis",
-                "display": "Cystic fibrosis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pulmonary neoplasm",
-                "display": "Pulmonary neoplasm"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Erythrocytosis",
-                "display": "Erythrocytosis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pulmonary hypertension",
-                "display": "Pulmonary hypertension"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Recurring CHF d/t Cor Pulmonale",
-                "display": "Recurring CHF d/t Cor Pulmonale"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "OtherDiagnosisCode"
+      },
+      {
+          "linkId": "5",
+          "text": "Diagnosis",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PatientDiagnoses"
+                          }
+                      }
+                  ],
+                  "linkId": "5.1",
+                  "text": "Primary Diagnosis",
+                  "type": "choice",
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "COPD"
+                      },
+                      {
+                          "valueString": "Heart failure"
+                      },
+                      {
+                          "valueString": "COVID-19"
+                      },
+                      {
+                          "valueString": "Hypoxemia"
+                      },
+                      {
+                          "valueString": "Obstructive sleep apnea"
+                      },
+                      {
+                          "valueString": "Chronic respiratory failure with hypoxia"
+                      },
+                      {
+                          "valueString": "Acute respiratory failure with hypoxia"
+                      },
+                      {
+                          "valueString": "Interstitial pulmonary disease"
+                      },
+                      {
+                          "valueString": "Asthma"
+                      },
+                      {
+                          "valueString": "Pneumonia"
+                      },
+                      {
+                          "valueString": "Erythrocythemia"
+                      },
+                      {
+                          "valueString": "Cluster headaches"
+                      },
+                      {
+                          "valueString": "Pulmonary hypertension"
+                      },
+                      {
+                          "valueString": "Dependent edema suggesting congestive heart failure"
+                      },
+                      {
+                          "valueString": "Cor Pulmonale"
+                      },
+                      {
+                          "valueString": "Others"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OtherDiagnosisCode"
+                          }
+                      }
+                  ],
+                  "linkId": "5.2",
+                  "text": "Specify the ICD-10 code",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "5.1",
+                          "operator": "=",
+                          "answerString": "Others"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OtherDiagnosisCodeDescription"
+                          }
+                      }
+                  ],
+                  "linkId": "5.3",
+                  "text": "Specify the ICD-10 code description",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "5.1",
+                          "operator": "=",
+                          "answerString": "Others"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "SecondaryToCORPulmonale"
+                          }
+                      }
+                  ],
+                  "linkId": "5.5",
+                  "text": "Determination of  Pulmonary hypertension/Cor Pulmonale",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "5.1",
+                          "operator": "=",
+                          "answerString": "Pulmonary hypertension"
+                      },
+                      {
+                          "question": "5.1",
+                          "operator": "=",
+                          "answerString": "Cor Pulmonale"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Pulmonary Artery pressure"
+                      },
+                      {
+                          "valueString": "Gated blood pool scan"
+                      },
+                      {
+                          "valueString": "Echocardiogram"
+                      },
+                      {
+                          "valueString": "'p' Pulmonale on EKG"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "HematocritResult"
+                          }
+                      }
+                  ],
+                  "linkId": "5.7",
+                  "text": "Hematocrit/hemoglobin result (Hct/Hgb)",
+                  "type": "quantity",
+                  "enableWhen": [
+                      {
+                          "question": "5.1",
+                          "operator": "=",
+                          "answerString": "Erythrocytosis"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ClusterHeadaches"
+                          }
+                      }
+                  ],
+                  "linkId": "5.8",
+                  "text": "For normoxemic patients, are there any medical condition with distinct physiologic, cognitive, and/or functional symptoms documented in high-quality, peer-reviewed literature to be improved by oxygen therapy, such as cluster headaches ?",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "normoxemicconditions"
+                          }
+                      }
+                  ],
+                  "linkId": "5.811",
+                  "text": "Specify condition",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "5.8",
+                          "operator": "=",
+                          "answerBoolean": true
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Group4Criteria"
+                          }
+                      }
+                  ],
+                  "linkId": "5.9",
+                  "text": "Does the patient suffer from any of the following conditions ?",
+                  "type": "choice",
+                  "required": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Angina pectoris in the absence of hypoxemia"
+                      },
+                      {
+                          "valueString": "Dyspnea without cor pulmonale or evidence of hypoxemia"
+                      },
+                      {
+                          "valueString": "Severe peripheral vascular disease resulting in clinically evident desaturation in one or more extremities but in the absence of systemic hypoxemia"
+                      },
+                      {
+                          "valueString": "Terminal illnesses that do not affect the ability to breathe"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
               }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "5.1",
-              "answerCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
-          ],
-          "linkId": "5.2",
-          "text": "Specify the ICD-10 code",
-          "type": "string",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "OtherDiagnosisCodeDescription"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "5.1",
-              "answerCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
-          ],
-          "linkId": "5.3",
-          "text": "Specify the ICD-10 code description",
-          "type": "string",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DependentEdema"
-              }
-            }
-          ],
-          "linkId": "5.4",
-          "text": "Does the patient have Dependent edema suggesting congestive heart failure? ",
-          "type": "boolean",
-          "required": false
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "SecondaryToCORPulmonale"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "5.1",
-              "answerCoding": {
-                "code": "Pulmonary hypertension",
-                "display": "Pulmonary hypertension"
-              }
-            }
-          ],
-          "linkId": "5.5",
-          "text": "Determination of  Cor Pulmonale",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Pulmonary Artery pressure",
-                "display": "Pulmonary Artery pressure"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Gated blood pool scan",
-                "display": "Gated blood pool scan"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Echocardiogram",
-                "display": "Echocardiogram"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "“p” Pulmonale on EKG",
-                "display": "“p” Pulmonale on EKG"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "Erythrocythemia"
+      },
+      {
+          "linkId": "6",
+          "text": "Medical History",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ConditionsOfSystems"
+                          }
+                      }
+                  ],
+                  "linkId": "6.1",
+                  "text": "Review of Systems",
+                  "type": "choice",
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "General"
+                      },
+                      {
+                          "valueString": "HEENT"
+                      },
+                      {
+                          "valueString": "Pulmonary System"
+                      },
+                      {
+                          "valueString": "Cardiovascular System"
+                      },
+                      {
+                          "valueString": "Integumental System"
+                      },
+                      {
+                          "valueString": "Gastrointestinal System"
+                      },
+                      {
+                          "valueString": "Musculoskeletal System"
+                      },
+                      {
+                          "valueString": "Neurological System"
+                      },
+                      {
+                          "valueString": "Psychiatric Conditions"
+                      },
+                      {
+                          "valueString": "Hematology"
+                      },
+                      {
+                          "valueString": "Immunology"
+                      },
+                      {
+                          "valueString": "Endocrine System"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherother"
+                          }
+                      }
+                  ],
+                  "linkId": "6.111",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "GeneralSymptoms"
+                          }
+                      }
+                  ],
+                  "linkId": "6.2",
+                  "text": "General",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "General"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "weight gain"
+                      },
+                      {
+                          "valueString": "weight loss"
+                      },
+                      {
+                          "valueString": "sleeping problems"
+                      },
+                      {
+                          "valueString": "fatigue"
+                      },
+                      {
+                          "valueString": "fever"
+                      },
+                      {
+                          "valueString": "chills"
+                      },
+                      {
+                          "valueString": "night sweats / diaphoresi"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Othergeneral"
+                          }
+                      }
+                  ],
+                  "linkId": "6.21",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.2",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NeckConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.3",
+                  "text": "HEENT",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "HEENT"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "lumps"
+                      },
+                      {
+                          "valueString": "pain on neck movement"
+                      },
+                      {
+                          "valueString": "Nasal polyps"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherheent"
+                          }
+                      }
+                  ],
+                  "linkId": "6.31",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.3",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PulmonaryConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.4",
+                  "text": "Pulmonary System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Pulmonary System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "cough"
+                      },
+                      {
+                          "valueString": "shortness of breath"
+                      },
+                      {
+                          "valueString": "pain"
+                      },
+                      {
+                          "valueString": "wheezing"
+                      },
+                      {
+                          "valueString": "hemoptysis"
+                      },
+                      {
+                          "valueString": "sputum production"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherpulmonary"
+                          }
+                      }
+                  ],
+                  "linkId": "6.41",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.4",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "CardiacConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.5",
+                  "text": "Cardiovascular System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Cardiovascular System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "chest pain"
+                      },
+                      {
+                          "valueString": "palpitations"
+                      },
+                      {
+                          "valueString": "orthopnea"
+                      },
+                      {
+                          "valueString": "murmur"
+                      },
+                      {
+                          "valueString": "syncope"
+                      },
+                      {
+                          "valueString": "edema"
+                      },
+                      {
+                          "valueString": "claudication"
+                      },
+                      {
+                          "valueString": "varicose veins"
+                      },
+                      {
+                          "valueString": "thrombophlebitis"
+                      },
+                      {
+                          "valueString": "arterial ulcers"
+                      },
+                      {
+                          "valueString": "venous stasis ulcers"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Othercardio"
+                          }
+                      }
+                  ],
+                  "linkId": "6.51",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.5",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "GastrointestinalConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.7",
+                  "text": "Gastrointestinal System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Gastrointestinal System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerString": [
+                      {
+                          "valueString": "swallowing problems"
+                      },
+                      {
+                          "valueString": "abdominal pain"
+                      },
+                      {
+                          "valueString": "constipation"
+                      },
+                      {
+                          "valueString": "diarrhea"
+                      },
+                      {
+                          "valueString": "incontinence"
+                      },
+                      {
+                          "valueString": "nausea"
+                      },
+                      {
+                          "valueString": "vomiting"
+                      },
+                      {
+                          "valueString": "ulcers"
+                      },
+                      {
+                          "valueString": "melena"
+                      },
+                      {
+                          "valueString": "rectal bleeding"
+                      },
+                      {
+                          "valueString": "jaundice"
+                      },
+                      {
+                          "valueString": "heartburn"
+                      },
+                      {
+                          "valueString": "hematemesis"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Othergastro"
+                          }
+                      }
+                  ],
+                  "linkId": "6.71",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.7",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "MusculoskeletalConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.8",
+                  "text": "Musculoskeletal System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Musculoskeletal System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "pain"
+                      },
+                      {
+                          "valueString": "swelling"
+                      },
+                      {
+                          "valueString": "stiffness"
+                      },
+                      {
+                          "valueString": "limitation of range of motion"
+                      },
+                      {
+                          "valueString": "arthritis"
+                      },
+                      {
+                          "valueString": "gout"
+                      },
+                      {
+                          "valueString": "cramps"
+                      },
+                      {
+                          "valueString": "myalgia"
+                      },
+                      {
+                          "valueString": "fasciculation"
+                      },
+                      {
+                          "valueString": "atrophy"
+                      },
+                      {
+                          "valueString": "fracture"
+                      },
+                      {
+                          "valueString": "deformity"
+                      },
+                      {
+                          "valueString": "weakness"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherskeletal"
+                          }
+                      }
+                  ],
+                  "linkId": "6.81",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.8",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "NeurologicalConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.9",
+                  "text": "Neurological System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Neurological System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "seizures"
+                      },
+                      {
+                          "valueString": "poor memory"
+                      },
+                      {
+                          "valueString": "poor concentration"
+                      },
+                      {
+                          "valueString": "numbness / tingling"
+                      },
+                      {
+                          "valueString": "pins and needles sensation"
+                      },
+                      {
+                          "valueString": "hyperpathia"
+                      },
+                      {
+                          "valueString": "dysesthesia"
+                      },
+                      {
+                          "valueString": "weakness"
+                      },
+                      {
+                          "valueString": "paralysis"
+                      },
+                      {
+                          "valueString": "tremors"
+                      },
+                      {
+                          "valueString": "involuntary movements"
+                      },
+                      {
+                          "valueString": "unstable gait"
+                      },
+                      {
+                          "valueString": "fall"
+                      },
+                      {
+                          "valueString": "vertigo"
+                      },
+                      {
+                          "valueString": "headache"
+                      },
+                      {
+                          "valueString": "stroke"
+                      },
+                      {
+                          "valueString": "speech disorders"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherneuro"
+                          }
+                      }
+                  ],
+                  "linkId": "6.91",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.9",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "PsychiatricConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.10",
+                  "text": "Psychiatric Conditions",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Psychiatric Conditions"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "hallucinations"
+                      },
+                      {
+                          "valueString": "delusions"
+                      },
+                      {
+                          "valueString": "anxiety"
+                      },
+                      {
+                          "valueString": "nervous breakdown"
+                      },
+                      {
+                          "valueString": "mood changes"
+                      },
+                      {
+                          "valueString": "depression"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherpsychiatric"
+                          }
+                      }
+                  ],
+                  "linkId": "6.101",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.10",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "HematologyConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.11",
+                  "text": "Hematology",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Hematology"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "anemia"
+                      },
+                      {
+                          "valueString": "bruising"
+                      },
+                      {
+                          "valueString": "bleeding disorders (conditional)"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherhema"
+                          }
+                      }
+                  ],
+                  "linkId": "6.111",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.11",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "EndocrineConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.12",
+                  "text": "Endocrine System ",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Endocrine System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "heat or cold intolerance"
+                      },
+                      {
+                          "valueString": "diabetes"
+                      },
+                      {
+                          "valueString": "lipid disorders"
+                      },
+                      {
+                          "valueString": "goiter"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherendocrine"
+                          }
+                      }
+                  ],
+                  "linkId": "6.121",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.12",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "IntegumentalConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.13",
+                  "text": "Integumental System",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Integumental System"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Acne"
+                      },
+                      {
+                          "valueString": "Atopic Dermatitis"
+                      },
+                      {
+                          "valueString": "Cellulitis"
+                      },
+                      {
+                          "valueString": "Vitiligo"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherinteg"
+                          }
+                      }
+                  ],
+                  "linkId": "6.131",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.13",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "ImmunologicalConditions"
+                          }
+                      }
+                  ],
+                  "linkId": "6.14",
+                  "text": "Immunology",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "6.1",
+                          "operator": "=",
+                          "answerString": "Immunology"
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Rheumatoid Arthritis"
+                      },
+                      {
+                          "valueString": "Multiple Sclerosis"
+                      },
+                      {
+                          "valueString": "Celiac disease"
+                      },
+                      {
+                          "valueString": "Inflammatory bowel disease"
+                      },
+                      {
+                          "valueString": "Other"
+                      },
+                      {
+                          "valueString": "None"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "Otherimmuno"
+                          }
+                      }
+                  ],
+                  "linkId": "6.141",
+                  "text": "Specify other",
+                  "type": "string",
+                  "enableWhen": [
+                      {
+                          "question": "6.14",
+                          "operator": "=",
+                          "answerString": "Other"
+                      }
+                  ],
+                  "required": true
               }
-            }
-          ],
-          "linkId": "5.6",
-          "text": "Presence of Erythrocythemia",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "HematocritResult"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "5.1",
-              "answerCoding": {
-                "code": "Erythrocytosis",
-                "display": "Erythrocytosis"
-              }
-            }
-          ],
-          "linkId": "5.7",
-          "text": "Hematocrit/hemoglobin result (Hct/Hgb)",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ClusterHeadaches"
-              }
-            }
-          ],
-          "linkId": "5.8",
-          "text": "Any medical condition with distinct physiologic, cognitive, and/or functional symptoms documented in high-quality, peer-reviewed literature to be improved by oxygen therapy, such as cluster headaches ?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "Group4Criteria"
-              }
-            }
-          ],
-          "linkId": "5.9",
-          "text": "Does the patient suffer from any of the following conditions ?",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Angina pectoris",
-                "display": "Angina pectoris"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Dyspnea",
-                "display": "Dyspnea"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Peripheral Vascular Disease",
-                "display": "Peripheral Vascular Disease"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Terminal Illness",
-                "display": "Terminal Illness"
-              }
-            }
           ]
-          
-        }
-      ]
-    },
-    {
-      "linkId": "6",
-      "text": "Medical History",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ConditionsOfSystems"
+      },
+      {
+          "linkId": "7",
+          "text": "Physical Examination",
+          "type": "group",
+          "item": [
+              {
+                  "linkId": "7.1",
+                  "text": "Physician Comments",
+                  "type": "text",
+                  "required": true
               }
-            }
-          ],
-          "linkId": "6.1",
-          "text": "Review of Systems",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "General",
-                "display": "General"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "HEENT",
-                "display": "HEENT"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pulmonary System",
-                "display": "Pulmonary System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Cardio Vascular System",
-                "display": "Cardio Vascular System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Integumentary System",
-                "display": "Integumentary System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Gastrointestinal System",
-                "display": "Gastrointestinal System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Musculoskeletal System",
-                "display": "Musculoskeletal System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Neurological System",
-                "display": "Neurological System"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Psychiatric Conditions",
-                "display": "Psychiatric Conditions"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Hematology",
-                "display": "Hematology"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Immunology",
-                "display": "Immunology"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Endocrine System",
-                "display": "Endocrine System"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "GeneralSymptoms"
+      },
+      {
+          "linkId": "9",
+          "text": "Prescribed Use",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "LengthOfNeed"
+                          }
+                      }
+                  ],
+                  "linkId": "9.1",
+                  "text": "Length of need: (months) (99 = lifetime)",
+                  "type": "integer",
+                  "required": true
+              },
+              {
+                  "linkId": "maximum-flow-rate",
+                  "text": "Maximum Flow Rate (LPM)",
+                  "type": "decimal",
+                  "required": true
+              },
+              {
+                  "linkId": "minimum-flow-rate",
+                  "text": "Minimum Flow Rate (LPM)",
+                  "type": "decimal",
+                  "required": true
+              },
+              {
+                  "linkId": "9.2",
+                  "text": "Are flow rates different between any of the following?",
+                  "type": "group",
+                  "enableWhen": [
+                      {
+                          "question": "maximum-flow-rate",
+                          "operator": ">",
+                          "answerDecimal": 4
+                      },
+                      {
+                          "question": "minimum-flow-rate",
+                          "operator": "<",
+                          "answerDecimal": 1
+                      }
+                  ],
+                  "enableBehavior": "any",
+                  "item": [
+                      {
+                          "linkId": "9.2.1",
+                          "text": "Stationary vs. Portable",
+                          "type": "boolean",
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.1.1",
+                          "text": "Stationary Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.1",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.1.2",
+                          "text": "Portable Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.1",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.2",
+                          "text": "Rest vs. Exercise",
+                          "type": "boolean",
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.2.1",
+                          "text": "Rest Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.2",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.2.2",
+                          "text": "Exercise Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.2",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.3",
+                          "text": "Daytime vs. Nighttime",
+                          "type": "boolean",
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.3.1",
+                          "text": "Daytime Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.3",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      },
+                      {
+                          "linkId": "9.2.3.2",
+                          "text": "Nighttime Flow Rate",
+                          "type": "quantity",
+                          "enableWhen": [
+                              {
+                                  "question": "9.2.3",
+                                  "operator": "=",
+                                  "answerBoolean": true
+                              }
+                          ],
+                          "required": true
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "FrequencyOfUse"
+                          }
+                      }
+                  ],
+                  "linkId": "9.3",
+                  "text": "Usage Directions",
+                  "type": "choice",
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "At rest/Awake"
+                      },
+                      {
+                          "valueString": "During exertion"
+                      },
+                      {
+                          "valueString": "During Sleep"
+                      }
+                  ]
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "DeviceRequestedIsPortable"
+                          }
+                      }
+                  ],
+                  "linkId": "9.5",
+                  "text": "Is the device portable?",
+                  "type": "boolean",
+                  "required": true
+              },
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OxygenDelivery"
+                          }
+                      }
+                  ],
+                  "linkId": "9.6",
+                  "text": "Means of Oxygen Delivery and Accessories",
+                  "type": "choice",
+                  "required": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Nasal cannula"
+                      },
+                      {
+                          "valueString": "Non-rebreather"
+                      },
+                      {
+                          "valueString": "Ventilator"
+                      },
+                      {
+                          "valueString": "Mask"
+                      },
+                      {
+                          "valueString": "PAP bleed in"
+                      },
+                      {
+                          "valueString": "Oxygen conserving device"
+                      },
+                      {
+                          "valueString": "High flow oxygen therapy"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
               }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "General",
-                "display": "General"
-              }
-            }
-          ],
-          "linkId": "6.2",
-          "text": "General",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "weight gain",
-                "display": "weight gain"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "weight loss",
-                "display": "weight loss"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "sleeping problems",
-                "display": "sleeping problems"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "fatigue",
-                "display": "fatigue"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "fever",
-                "display": "fever"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "chills",
-                "display": "chills"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "night sweats / diaphoresi",
-                "display": "night sweats / diaphoresi"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NeckConditions"
+      },
+      {
+          "linkId": "10",
+          "text": "Certification",
+          "type": "group",
+          "item": [
+              {
+                  "extension": [
+                      {
+                          "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+                          "valueExpression": {
+                              "language": "text/cql",
+                              "expression": "OrderType"
+                          }
+                      }
+                  ],
+                  "linkId": "10.1",
+                  "text": "Type Of Order",
+                  "type": "choice",
+                  "required": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Initial or original order for certification"
+                      },
+                      {
+                          "valueString": "Change in status"
+                      },
+                      {
+                          "valueString": "Revision or change in equipment"
+                      },
+                      {
+                          "valueString": "Replacement"
+                      }
+                  ]
+              },
+              {
+                  "linkId": "10.2",
+                  "text": "Reason for Change in Status",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "10.1",
+                          "operator": "=",
+                          "answerString": "Change in status"          
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "Patient relocated"
+                      },
+                      {
+                          "valueString": "Different supplier"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "linkId": "10.3",
+                  "text": "Reason for Revision or change in equipment",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "10.1",
+                          "operator": "=",
+                          "answerString": "Revision or change in equipment"         
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "New Physician order"
+                      },
+                      {
+                          "valueString": "beneficiary requested upgrade with signed ABN"
+                      },
+                      {
+                          "valueString": "Other"
+                      }
+                  ]
+              },
+              {
+                  "linkId": "10.4",
+                  "text": "Reason for Replacement",
+                  "type": "choice",
+                  "enableWhen": [
+                      {
+                          "question": "10.1",
+                          "operator": "=",
+                          "answerString": "Replacement"        
+                      }
+                  ],
+                  "required": true,
+                  "repeats": true,
+                  "answerOption": [
+                      {
+                          "valueString": "lost or stolen"
+                      },
+                      {
+                          "valueString": "end of reasonable useful lifetime (5 years)"
+                      },
+                      {
+                          "valueString": "irreparable damage"
+                      }
+                  ]
               }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "HEENT",
-                "display": "HEENT"
-              }
-            }
-          ],
-          "linkId": "6.3",
-          "text": "HEENT",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "lumps",
-                "display": "lumps"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "pain on neck movement",
-                "display": "pain on neck movement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
           ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PulmonaryConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Pulmonary System",
-                "display": "Pulmonary System"
-              }
-            }
-          ],
-          "linkId": "6.4",
-          "text": "Pulmonary System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "cough",
-                "display": "cough"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "shortness of breath",
-                "display": "shortness of breath"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "pain",
-                "display": "pain"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "wheezing",
-                "display": "wheezing"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "hemoptysis",
-                "display": "hemoptysis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "sputum production",
-                "display": "sputum production"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "CardiacConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Cardio Vascular System",
-                "display": "Cardio Vascular System"
-              }
-            }
-          ],
-          "linkId": "6.5",
-          "text": "Cardio Vascular System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "chest pain",
-                "display": "chest pain"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "palpitations",
-                "display": "palpitations"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "orthopnea",
-                "display": "orthopnea"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "murmur",
-                "display": "murmur"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "syncope",
-                "display": "syncope"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "edema",
-                "display": "edema"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "claudication",
-                "display": "claudication"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "varicose veins",
-                "display": "varicose veins"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "thrombophlebitis",
-                "display": "thrombophlebitis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "ulcers",
-                "display": "ulcers"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "GastrointestinalConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Gastrointestinal System",
-                "display": "Gastrointestinal System"
-              }
-            }
-          ],
-          "linkId": "6.7",
-          "text": "Gastrointestinal System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "swallowing problems",
-                "display": "swallowing problems"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "abdominal pain",
-                "display": "abdominal pain"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "constipation",
-                "display": "constipation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "diarrhea",
-                "display": "diarrhea"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "incontinence",
-                "display": "incontinence"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "nausea",
-                "display": "nausea"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "vomiting",
-                "display": "vomiting"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "ulcers",
-                "display": "ulcers"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "melena",
-                "display": "melena"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "rectal bleeding",
-                "display": "rectal bleeding"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "jaundice",
-                "display": "jaundice"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "heartburn",
-                "display": "heartburn"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "hematemesis",
-                "display": "hematemesis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "MusculoskeletalConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Musculoskeletal System",
-                "display": "Musculoskeletal System"
-              }
-            }
-          ],
-          "linkId": "6.8",
-          "text": "Musculoskeletal System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "pain",
-                "display": "pain"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "swelling",
-                "display": "swelling"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "stiffness",
-                "display": "stiffness"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "limitation of range of motion",
-                "display": "limitation of range of motion"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "arthritis",
-                "display": "arthritis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "gout",
-                "display": "gout"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "cramps",
-                "display": "cramps"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "myalgia",
-                "display": "myalgia"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "fasciculation",
-                "display": "fasciculation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "atrophy",
-                "display": "atrophy"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "fracture",
-                "display": "fracture"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "deformity",
-                "display": "deformity"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "weakness",
-                "display": "weakness"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "NeurologicalConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Neurological System",
-                "display": "Neurological System"
-              }
-            }
-          ],
-          "linkId": "6.9",
-          "text": "Neurological System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "seizures",
-                "display": "seizures"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "poor memory",
-                "display": "poor memory"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "poor concentration",
-                "display": "poor concentration"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "numbness / tingling",
-                "display": "numbness / tingling"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "pins and needles sensation",
-                "display": "pins and needles sensation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "hyperpathia",
-                "display": "hyperpathia"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "dysesthesia",
-                "display": "dysesthesia"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "weakness",
-                "display": "weakness"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "paralysis",
-                "display": "paralysis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "tremors",
-                "display": "tremors"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "involuntary movements",
-                "display": "involuntary movements"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "unstable gait",
-                "display": "unstable gait"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "fall",
-                "display": "fall"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "vertigo",
-                "display": "vertigo"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "headache",
-                "display": "headache"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "stroke",
-                "display": "stroke"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "speech disorders",
-                "display": "speech disorders"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "PsychiatricConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Psychiatric Conditions",
-                "display": "Psychiatric Conditions"
-              }
-            }
-          ],
-          "linkId": "6.10",
-          "text": "Psychiatric Conditions",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "hallucinations",
-                "display": "hallucinations"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "delusions",
-                "display": "delusions"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "anxiety",
-                "display": "anxiety"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "nervous breakdown",
-                "display": "nervous breakdown"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "mood changes",
-                "display": "mood changes"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "HematologyConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Hematology",
-                "display": "Hematology"
-              }
-            }
-          ],
-          "linkId": "6.11",
-          "text": "Hematology",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "anemia",
-                "display": "anemia"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "bruising",
-                "display": "bruising"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "bleeding disorders (conditional)",
-                "display": "bleeding disorders (conditional)"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "EndocrineConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Endocrine System",
-                "display": "Endocrine System"
-              }
-            }
-          ],
-          "linkId": "6.12",
-          "text": "Endocrine System ",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "heat or cold intolerance",
-                "display": "heat or cold intolerance"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "diabetes",
-                "display": "diabetes"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "lipid disorders",
-                "display": "lipid disorders"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "goiter",
-                "display": "goiter"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "IntegumentalConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Integumentary System",
-                "display": "Integumentary System"
-              }
-            }
-          ],
-          "linkId": "6.13",
-          "text": "Integumentary System",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Acne",
-                "display": "Acne"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Atopic Dermatitis",
-                "display": "Atopic Dermatitis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Cellulitis",
-                "display": "Cellulitis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Vitiligo",
-                "display": "Vitiligo"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "ImmunologicalConditions"
-              }
-            }
-          ],
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "6.1",
-              "answerCoding": {
-                "code": "Immunology",
-                "display": "Immunology"
-              }
-            }
-          ],
-          "linkId": "6.14",
-          "text": "Immunology",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Rheumatoid Arthritis",
-                "display": "Rheumatoid Arthritis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Multiple Sclerosis",
-                "display": "Multiple Sclerosis"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Celiac disease",
-                "display": "Celiac disease"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Inflammatory bowel disease",
-                "display": "Inflammatory bowel disease"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "None",
-                "display": "None"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "7",
-      "text": "Physical Examination",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "7.1",
-          "text": "Physician Comments",
-          "type": "text",
-          "required": true
-        }
-      ]
-    },
-    {
-      "linkId": "8",
-      "text": "Past Treatments",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TreatmentsTried"
-              }
-            }
-          ],
-          "linkId": "8.1",
-          "text": "Treatments tried",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Bronchodilators",
-                "display": "Bronchodilators"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Steroids",
-                "display": "Steroids"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Ventilation",
-                "display": "Ventilation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Anti-Inflammatory",
-                "display": "Anti-Inflammatory"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.2",
-          "text": "Type of Bronchodilators",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Bronchodilators",
-                "display": "Bronchodilators"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Short-Acting",
-                "display": "Short-Acting"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Long-Acting",
-                "display": "Long-Acting"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.3",
-          "text": "Type of Steroids",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Steroids",
-                "display": "Steroids"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "IV",
-                "display": "IV"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "PO",
-                "display": "PO"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Inhaled",
-                "display": "Inhaled"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.4",
-          "text": "Type of Ventilation",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Ventilation",
-                "display": "Ventilation"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Non-Invasive",
-                "display": "Non-Invasive"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Invasive",
-                "display": "Invasive"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.5",
-          "text": "Type of Anti-Inflammatory Treatment",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Anti-Inflammatory",
-                "display": "Anti-Inflammatory"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Cromolyn Sodium",
-                "display": "Cromolyn Sodium"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Interleukin(IL)-10 ",
-                "display": "Interleukin(IL)-10 "
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Interferon-gamma",
-                "display": "Interferon-gamma"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Specific PDE4-inhibitors (ciolomilast and roflumilast)",
-                "display": "Specific PDE4-inhibitors (ciolomilast and roflumilast)"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "OtherTreatments"
-              }
-            }
-          ],
-          "linkId": "8.6",
-          "text": "Other Treatments",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Antibiotics",
-                "display": "Antibiotics"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Surfactin",
-                "display": "Surfactin"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "PAP/CPAP",
-                "display": "PAP/CPAP"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Pulmonary Rehabilitation",
-                "display": "Pulmonary Rehabilitation"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.7",
-          "text": "Effectiveness of Treatment with Bronchodilators",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Bronchodilators",
-                "display": "Bronchodilators"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "No improvement",
-                "display": "No improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Limited improvement",
-                "display": "Limited improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Some improvement",
-                "display": "Some improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Able to avoid O2 except with exercise",
-                "display": "Able to avoid O2 except with exercise"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Requires nocturnal O2 only",
-                "display": "Requires nocturnal O2 only"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.8",
-          "text": "Effectiveness of Treatment with Steroids",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Steroids",
-                "display": "Steroids"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "No improvement",
-                "display": "No improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Limited improvement",
-                "display": "Limited improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Some improvement",
-                "display": "Some improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Able to avoid O2 except with exercise",
-                "display": "Able to avoid O2 except with exercise"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Requires nocturnal O2 only",
-                "display": "Requires nocturnal O2 only"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.9",
-          "text": "Effectiveness of Treatment with Ventilation",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Ventilation",
-                "display": "Ventilation"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "No improvement",
-                "display": "No improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Limited improvement",
-                "display": "Limited improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Some improvement",
-                "display": "Some improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Able to avoid O2 except with exercise",
-                "display": "Able to avoid O2 except with exercise"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Requires nocturnal O2 only",
-                "display": "Requires nocturnal O2 only"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.10",
-          "text": "Effectiveness of Anti-Inflammatory Treatment",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Anti-Inflammatory",
-                "display": "Anti-Inflammatory"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "No improvement",
-                "display": "No improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Limited improvement",
-                "display": "Limited improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Some improvement",
-                "display": "Some improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Able to avoid O2 except with exercise",
-                "display": "Able to avoid O2 except with exercise"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Requires nocturnal O2 only",
-                "display": "Requires nocturnal O2 only"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "8.11",
-          "text": "Effectiveness of Other Treatments",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "8.1",
-              "answerCoding": {
-                "code": "Others",
-                "display": "Others"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "No improvement",
-                "display": "No improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Limited improvement",
-                "display": "Limited improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Some improvement",
-                "display": "Some improvement"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Able to avoid O2 except with exercise",
-                "display": "Able to avoid O2 except with exercise"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Requires nocturnal O2 only",
-                "display": "Requires nocturnal O2 only"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "9",
-      "text": "Prescribed Use",
-      "type": "group",
-      "item": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "LengthOfNeed"
-              }
-            }
-          ],
-          "linkId": "9.1",
-          "text": "Length of need: (months) (99 = lifetime)",
-          "type": "integer",
-          "required": true
-        },
-        {
-          "linkId": "9.2",
-          "text": "Prescribed Flow Rate",
-          "type": "quantity",
-          "required": true 
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "FrequencyOfUse"
-              }
-            }
-          ],
-          "linkId": "9.3",
-          "text": "Usage Directions",
-          "repeats": true,
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "At rest/Awake",
-                "display": "At rest/Awake"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "During exertion",
-                "display": "During exertion"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "During Sleep",
-                "display": "During Sleep"
-              }
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "TargetSaturation"
-              }
-            }
-          ],
-          "linkId": "9.4",
-          "text": "Target Oxygen Saturation",
-          "type": "quantity",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "DeviceRequestedIsPortable"
-              }
-            }
-          ],
-          "linkId": "9.5",
-          "text": "Is the device portable?",
-          "type": "boolean",
-          "required": true
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-              "valueExpression": {
-                "language": "text/cql",
-                "expression": "OxygenDelivery"
-              }
-            }
-          ],
-          "linkId": "9.6",
-          "text": "Means of Oxygen Delivery and Accessories",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Nasal cannula",
-                "display": "Nasal cannula"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Non-rebreather",
-                "display": "Non-rebreather"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Ventilator",
-                "display": "Ventilator"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Mask",
-                "display": "Mask"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "PAP bleed in",
-                "display": "PAP bleed in"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Oxygen conserving device",
-                "display": "Oxygen conserving device"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "High flow oxygen therapy ",
-                "display": "High flow oxygen therapy "
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Other",
-                "display": "Other"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "10",
-      "text": "Certification",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "10.1",
-          "text": "Type Of Order",
-          "type": "choice",
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Initial or original order for certification",
-                "display": "Initial or original order for certification"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Change in status",
-                "display": "Change in status"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Revision or change in equipment",
-                "display": "Revision or change in equipment"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Replacement",
-                "display": "Replacement"
-              }
-            }
-          ],
-          "initial": [
-            {
-              "valueString": "Initial or original order for certification"
-            }
-          ]
-        },
-        {
-          "linkId": "10.2",
-          "text": "Reason for Change in Status",
-          "type": "choice",
-          "repeats": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "10.1",
-              "answerCoding": {
-                "code": "Change in status",
-                "display": "Change in status"
-              }
-            }
-          ],
-          "required": true,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "Patient relocated",
-                "display": "Patient relocated"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Different supplier ",
-                "display": "Different supplier "
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Other",
-                "display": "Other"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "10.3",
-          "text": "Reason for Revision or change in equipment",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "10.1",
-              "answerCoding": {
-                "code": "Revision or change in equipment",
-                "display": "Revision or change in equipment"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "New Physician order",
-                "display": "New Physician order"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "beneficiary requested upgrade with signed ABN",
-                "display": "beneficiary requested upgrade with signed ABN"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "Other",
-                "display": "Other"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "10.4",
-          "text": "Reason for Replacement",
-          "type": "choice",
-          "repeats": true,
-          "required": true,
-          "enableWhen": [
-            {
-              "operator": "=",
-              "question": "10.1",
-              "answerCoding": {
-                "code": "Replacement",
-                "display": "Replacement"
-              }
-            }
-          ],
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "lost or stolen",
-                "display": "lost or stolen"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "end of lifetime",
-                "display": "end of lifetime"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "repair exceeds 60% of cost",
-                "display": "repair exceeds 60% of cost"
-              }
-            }
-          ]
-        }
-      ]
-    }
+      }
   ]
 }

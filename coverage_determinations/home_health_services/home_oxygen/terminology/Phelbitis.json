@@ -6,7 +6,7 @@
         "lastUpdated": "2023-04-12T09:30:08.000+00:00",
         "source": "#uYlPgw7TpfPEAa5c"
     },
-    "url": "https://fhir-dev.mettles.com/fhir-services/ValueSet/2.16.840.1.113762.1.4.1200.195",
+    "url": "2.16.840.1.113762.1.4.1200.195",
     "identifier": [
         {
             "system": "urn:ietf:rfc:3986",

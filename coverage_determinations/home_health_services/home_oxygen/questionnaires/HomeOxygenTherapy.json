@@ -38,7 +38,7 @@
   "extension": [
       {
           "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
-          "valueCanonical": "https://drfpval.cms.gov/drfp/fhir/Library/HomeOxygenTherapy"
+          "valueCanonical": "https://fhir-dev.mettles.com/baseServer/fhir/Library/library-homeoxygen-HomeOxygenTherapy"
       },
       {
           "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-questionnaireAdaptive",

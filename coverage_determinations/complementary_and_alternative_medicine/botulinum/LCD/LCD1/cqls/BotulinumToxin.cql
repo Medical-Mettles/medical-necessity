@@ -40,80 +40,80 @@ define ServiceEncounter:
 	
 define QualifiedConditions:
 	First([Condition]C
-		where exists(C.code.coding C where C in "BotulinumToxin Diagnosis Codes")
+		where exists(C.code.coding Con where Con in "BotulinumToxin Diagnosis Codes")
 			and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Esophagoscopy:
 	First([Condition]C
-		where exists(C.code.coding C where C in "Esophagoscopy Codes")
+		where exists(C.code.coding Con where Con in "Esophagoscopy Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Sialorrhea:
 	First([Condition]C
-		where exists(C.code.coding C where C in "Sialorrhea Diagnosis Codes")
+		where exists(C.code.coding Con where Con in "Sialorrhea Diagnosis Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define AnalFissure:
 	First([Condition]C
-		where exists(C.code.coding C where C in "AnalFissure Codes")
+		where exists(C.code.coding Con where Con in "AnalFissure Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Cystourethroscopy:
 	First([Condition]C
-		where exists(C.code.coding C where C in "Cystourethroscopy Codes")
+		where exists(C.code.coding Con where Con in "Cystourethroscopy Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Blepharospasm:
 	First([Condition]C
-		where exists(C.code.coding C where C in "Blepharospasm Codes")
+		where exists(C.code.coding Con where Con in "Blepharospasm Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 
 define CervicalDystonia:
 	First([Condition]C
-		where exists(C.code.coding C where C in "CervicalDystonia Codes")
+		where exists(C.code.coding Con where Con in "CervicalDystonia Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ChemodenervationOfOneExtremity:
 	First([Condition]C
-		where exists(C.code.coding C where C in "ChemodenervationOfOneExtremity Codes")
+		where exists(C.code.coding Con where Con in "ChemodenervationOfOneExtremity Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Hyperhidrosis:
 	First([Condition]C
-		where exists(C.code.coding C where C in "Hyperhidrosis Codes")
+		where exists(C.code.coding Con where Con in "Hyperhidrosis Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ExtraOcularMuscle:
 	First([Condition]C
-		where exists(C.code.coding C where C in "ExtraOcularMuscle Codes")
+		where exists(C.code.coding Con where Con in "ExtraOcularMuscle Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define ChemodenervationOfNeckMuscle:
 	First([Condition]C
-		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding Con where Con in "ChemodenervationOfNeckMuscle Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define MigraineWithoutAura:
 	First([Condition]C
-		where exists(C.code.coding C where C in "MigraineWithoutAura Codes")
+		where exists(C.code.coding Con where Con in "MigraineWithoutAura Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 
 define Headaches:
 	exists([Condition]C
-		where exists(C.code.coding C where C in "ChemodenervationOfNeckMuscle Codes")
+		where exists(C.code.coding Con where Con in "ChemodenervationOfNeckMuscle Codes")
 		and First(C.clinicalStatus.coding).code.value = 'active'
 			and First(C.verificationStatus.coding).code.value = 'confirmed')
 

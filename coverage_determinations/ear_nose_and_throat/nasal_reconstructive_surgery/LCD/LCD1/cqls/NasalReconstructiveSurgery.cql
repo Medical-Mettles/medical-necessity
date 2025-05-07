@@ -57,32 +57,35 @@ define Request:
 
 define NasalObstructionCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Nasal Obstruction")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con 
+						where Con in "Nasal Obstruction")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define NasalSeptumDeviationCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Deviated Nasal Septum")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con 
+						where Con in "Deviated Nasal Septum")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define SurgeryPurpose:
 	if (exists("NasalObstructionCondition")
-				or exists("NasalSeptumDeviationCondition"))
-								then 'Reconstructive'
-									else 'Cosmetic'
+			or exists("NasalSeptumDeviationCondition"))
+							then 'Reconstructive'
+								else 'Cosmetic'
 
 define NasalAirwayObstruction:
 	if exists("NasalObstructionCondition")
-			then true
-				else false
+		then true
+			else false
 
 define CongenitalDeflectDiagnosis:
   [Condition]C
-    where exists(C.code.coding C where C in "Congenital Deflect Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con 
+						where Con in "Congenital Deflect Diagnosis")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define CongenitalDefect:
 	if exists("CongenitalDeflectDiagnosis")
@@ -91,9 +94,10 @@ define CongenitalDefect:
 
 define SecondaryFunctionalImpairmentConditions:
 	[Condition]C
-    where exists(C.code.coding C where C in "Functional Impairments Secondary To Nasal Obstruction")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con 
+						where Con in "Functional Impairments Secondary To Nasal Obstruction")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define FunctionalImpairment:
 	if exists("SecondaryFunctionalImpairmentConditions")
@@ -102,7 +106,8 @@ define FunctionalImpairment:
 
 define VestibularStenosisCondition:
   [Condition]C
-    where exists(C.code.coding C where C in "Vestibular Symptoms")
+    where exists(C.code.coding Con 
+					where Con in "Vestibular Symptoms")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
@@ -113,13 +118,15 @@ define VestibularStenosis:
 
 define NasalTrauma:
   [Condition]C
-    where exists(C.code.coding C where C in "Nasal Trauma")
+    where exists(C.code.coding Con 
+					where Con in "Nasal Trauma")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define NasalFracture:
   [Condition]C
-    where exists(C.code.coding C where C in "Nasal Fracture")
+    where exists(C.code.coding Con 
+					where Con in "Nasal Fracture")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed'
 
@@ -136,20 +143,20 @@ define NasalBoneFracture:
 
 define BenignDiseases:
   [Condition]C
-    where exists(C.code.coding C where C in "Qualified Nasal Reconstructive Diseases")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Qualified Nasal Reconstructive Diseases")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define BenignDiseasesCausingNasalObstruction:
 	if exists("BenignDiseases")
-			then true
-				else false
+		then true
+			else false
 
 define ObstructiveSleepDisorderCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Obstructive Sleep Disorder")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Obstructive Sleep Disorder")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define ObstructiveSleepDisorder:
 	if exists("ObstructiveSleepDisorderCondition")
@@ -158,9 +165,9 @@ define ObstructiveSleepDisorder:
 
 define SeptalDeviation:
 	[Condition]C
-    where exists(C.code.coding C where C in "Deviated Nasal Septum")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Deviated Nasal Septum")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define NasalSeptumDeviationOrDeformity:
 	if exists("SeptalDeviation")
@@ -169,34 +176,34 @@ define NasalSeptumDeviationOrDeformity:
 
 define CleftLipOrPalateCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Cleft Lip Or Cleft Palate Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'active'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Cleft Lip Or Cleft Palate Diagnosis")
+			and First(C.clinicalStatus.coding).code.value = 'active'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define ClefLipOrPalateRepair:
 	if (exists("CleftLipOrPalateCondition")
-				and ("NasalSeptumDeviationOrDeformity" = true)
-					and ("FunctionalImpairment" = true))
-						then true
-							else false
+			and ("NasalSeptumDeviationOrDeformity" = true)
+				and ("FunctionalImpairment" = true))
+					then true
+						else false
 
 define RecurrentEpistaxisCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Epistaxis Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'recurrence'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Epistaxis Diagnosis")
+			and First(C.clinicalStatus.coding).code.value = 'recurrence'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define RecurrentEpistaxis:
- if (exists("RecurrentEpistaxisCondition")
-		and ("NasalSeptumDeviationOrDeformity" = true))
-			then true
-				else false
+	if (exists("RecurrentEpistaxisCondition")
+			and ("NasalSeptumDeviationOrDeformity" = true))
+				then true
+					else false
 
 define RecurrentSinusitisCondition:
 	[Condition]C
-    where exists(C.code.coding C where C in "Chronic Sinusitis Diagnosis")
-      and First(C.clinicalStatus.coding).code.value = 'recurrence'
-        and First(C.verificationStatus.coding).code.value = 'confirmed'
+		where exists(C.code.coding Con where Con in "Chronic Sinusitis Diagnosis")
+			and First(C.clinicalStatus.coding).code.value = 'recurrence'
+				and First(C.verificationStatus.coding).code.value = 'confirmed'
 
 define RecurrentSinusitis:
 	if (exists("RecurrentSinusitisCondition")
@@ -205,21 +212,21 @@ define RecurrentSinusitis:
 				else false
 
 define IntranasalSurgeriesContraindication:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'not-done','stopped'}
+	[Procedure]P where P.status.value in {'not-done','stopped'}
 		and exists(P.code.coding C where C in "Intranasal Surgeries")
-		and P.statusReason.coding in "Deviated Nasal Septum"
+			and P.statusReason.coding in "Deviated Nasal Septum"
 
 define IntranasalSurgeriesInterference:
- if (exists("IntranasalSurgeriesContraindication")
-			and ("NasalAirwayObstruction" = false)
-				and ("NasalSeptumDeviationOrDeformity" = true))
+	if (exists("IntranasalSurgeriesContraindication")
+		and ("NasalAirwayObstruction" = false)
+			and ("NasalSeptumDeviationOrDeformity" = true))
 				then true
 					else false
 
 define RehabilitationProsthesisTherapy:
-	[Procedure]P where P.status.value = 'completed'
-		and exists(P.code.coding C where C in "Rehabilitation Prosthesis")
+	[Procedure]P 
+		where exists(P.code.coding C where C in "Rehabilitation Prosthesis")
+			and P.status.value = 'completed'
 
 define RehabilitationProsthesis:
 	if exists("RehabilitationProsthesisTherapy")
@@ -238,46 +245,45 @@ define ProsthesisForSixWeeks:
 			else null
 
 define ImprovementPostProsthesis:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and exists(P.code.coding C where C in "Rehabilitation Prosthesis")
-		and ((First(P.outcome.coding) in "Successful") or First(P.outcome.coding) in "Partially successful"))
+	exists([Procedure]P 
+ 		where P.status.value = 'completed'
+			and exists(P.code.coding C where C in "Rehabilitation Prosthesis")
+				and ((First(P.outcome.coding) in "Successful") or First(P.outcome.coding) in "Partially successful"))
 
 define CPAPInterference:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 					and P.status.value in {'not-done','stopped'}
-						and exists(P.code.coding C where C in "Moderate Respiratory Complications Procedures")
-							and P.statusReason.coding in "Deviated Nasal Septum")
+	exists([Procedure]P where P.status.value in {'not-done','stopped'}
+				and exists(P.code.coding C where C in "Moderate Respiratory Complications Procedures")
+					and P.statusReason.coding in "Deviated Nasal Septum")
 
 define ContraindicationOfCPAP:
 	if (("CPAPInterference" = true)
-				and exists("ObstructiveSleepDisorderCondition"))
-					then true
-						else false
+			and exists("ObstructiveSleepDisorderCondition"))
+	then true
+		else false
 
 define AntiHistaminesMedicationAdministration:
 	[MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
-	and First((M.medication as CodeableConcept).coding) in "Intranasal Antihistamines"
+		where M.status.value = 'completed'
+			and First((M.medication as CodeableConcept).coding) in "Intranasal Antihistamines"
 
 define AntiHistamineProcedureResources:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Antihistamine Prophylaxis")
+	[Procedure]P 
+		where P.status.value = 'completed'
+			and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Antihistamine Prophylaxis")
 
 define CheckAntiHistamineAdministration:
 	"AntiHistaminesMedicationAdministration" M
 		with "AntiHistamineProcedureResources" P
-			such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+			such that exists(P.partOf PO 
+								where PO.reference.value = 'MedicationAdministration/'+M.id.value)
 
 define SpecifyAntiHistamineAdministrationMedicationCode:
 		"AntiHistaminesMedicationAdministration".medication M
 
 define AntiHistamineMedicalTherapy:
   if Last("CheckAntiHistamineAdministration") is not null
-		then true
-			else false
+	then true
+	else false
 
 define AntiHistamineTherapyForSixWeeks:
 	exists("AntiHistaminesMedicationAdministration" M
@@ -291,19 +297,19 @@ define SpecifyAntiHistamineMedication:
 
 define PostAntiHistamineSuccessfulOutcome:
 	if exists("AntiHistaminesMedicationAdministration" M
-							with "AntiHistamineProcedureResources" P
-								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
-					then true
-						else false
+				with "AntiHistamineProcedureResources" P
+					such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+							and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+	then true
+	else false
 
 define PostAntiHistamineUnsuccessfulOutcome:
 	if exists("AntiHistaminesMedicationAdministration" M
-							with "AntiHistamineProcedureResources" P
-								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
- 										and First(P.outcome.coding) in "Unsuccessful")
-					then true
-						else false
+				with "AntiHistamineProcedureResources" P
+					such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
+							and First(P.outcome.coding) in "Unsuccessful")
+	then true
+	else false
 
 define ImprovementPostAntiHistamineMedicalTherapy:
 	if ("PostAntiHistamineSuccessfulOutcome" = true)
@@ -314,13 +320,12 @@ define ImprovementPostAntiHistamineMedicalTherapy:
 
 define AntibioticsMedicationAdministration:
 	[MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
-	and First((M.medication as CodeableConcept).coding) in "Antibiotics Oral and Injectables"
+		where M.status.value = 'completed'
+		and First((M.medication as CodeableConcept).coding) in "Antibiotics Oral and Injectables"
 
 define AntibioticsProcedureResources:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
+	[Procedure]P 
+	where P.status.value = 'completed'
 		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Antibiotic Medical Therapy")
 
 define CheckAntibioticsAdministration:
@@ -351,16 +356,16 @@ define PostAntibioticsSuccessfulOutcome:
 							with "AntibioticsProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
-					then true
-						else false
+	then true
+	else false
 
 define PostAntibioticsUnsuccessfulOutcome:
 	if exists("AntibioticsMedicationAdministration" M
 							with "AntibioticsProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
-					then true
-						else false
+	then true
+	else false
 
 define PostAntibioticMedicalTherapy:
 	if ("PostAntibioticsSuccessfulOutcome" = true)
@@ -371,14 +376,13 @@ define PostAntibioticMedicalTherapy:
 
 define ImmunosuppressantsMedicationAdministration:
 	[MedicationAdministration]M
-	where M.subject.reference.value = 'Patient/'+ Patient.id.value
-	and M.status.value = 'completed'
-	and First((M.medication as CodeableConcept).coding) in "Intranasal Corticosteroids"
+		where M.status.value = 'completed'
+			and First((M.medication as CodeableConcept).coding) in "Intranasal Corticosteroids"
 
 define ImmunosuppressantsProcedureResources:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Immunosuppressants Drug Therapy")
+	[Procedure]P 
+		where P.status.value = 'completed'
+			and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Immunosuppressants Drug Therapy")
 
 define CheckImmunosuppressantsAdministration:
 	"ImmunosuppressantsMedicationAdministration" M
@@ -408,16 +412,16 @@ define PostImmunosuppressantsSuccessfulOutcome:
 							with "ImmunosuppressantsProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
-					then true
-						else false
+	then true
+		else false
 
 define PostImmunosuppressantsUnsuccessfulOutcome:
 	if exists("ImmunosuppressantsMedicationAdministration" M
 							with "ImmunosuppressantsProcedureResources" P
 								such that exists(P.partOf PO where PO.reference.value = 'MedicationAdministration/'+M.id.value)
  										and First(P.outcome.coding) in "Unsuccessful")
-					then true
-						else false
+	then true
+		else false
 
 define PostImmunosuppressantsMedicalTherapy:
 	if ("PostImmunosuppressantsSuccessfulOutcome" = true)
@@ -428,14 +432,13 @@ define PostImmunosuppressantsMedicalTherapy:
 
 define DecongestantsMedicalAdministration:
 	[MedicationAdministration]M
-		where M.subject.reference.value = 'Patient/'+ Patient.id.value
-			and M.status.value = 'completed'
+		where M.status.value = 'completed'
 				and First((M.medication as CodeableConcept).coding) in "Acetaminophen / Dextromethorphan / Doxylamine / Pseudoephedrine"
 
 define DecongestantsProcedureResources:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Instillation Of Nasal Spray")
+	[Procedure]P 
+		where P.status.value = 'completed'
+			and (First(P.code.coding) in "Procedure for Medication Administration" or First(P.code.coding) in "Instillation Of Nasal Spray")
 
 define CheckDecongestantsAdministration:
 	"DecongestantsMedicalAdministration" M
@@ -480,8 +483,8 @@ define PostDecongestantsMedicalTherapy:
 					else null
 
 define PreviousSeptoplastyOrTurbinectomyProcedure:
-	[Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
-		and P.status.value = 'completed'
+	[Procedure]P 
+		where P.status.value = 'completed'
 			and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes")
 
 define PreviousSeptoplastyOrTurbinectomy:
@@ -491,31 +494,33 @@ define PreviousSeptoplastyOrTurbinectomy:
 
 define NasalObstructionImprovementPostSeptoplastyOrTurbinectomy:
 	exists(([Condition]C where First(C.clinicalStatus.coding).code.value in {'active', 'resolved'}
-		and First(C.code.coding C where C in "Nasal Obstruction") is not null
-        and First(C.verificationStatus.coding).code.value = 'confirmed') C
+		and First(C.code.coding Con where Con in "Nasal Obstruction") is not null
+        and First(C.verificationStatus.coding).code.value = 'confirmed') Cond
 		with "PreviousSeptoplastyOrTurbinectomyProcedure" P
-			such that end of "Normalize Interval"(C.onset) after end of "Normalize Interval"(P.performed))
+			such that end of "Normalize Interval"(Cond.onset) after end of "Normalize Interval"(P.performed))
 
 define SeptalDeviationImprovementPostSeptoplastyOrTurbinectomy:
 	exists(([Condition]C where First(C.clinicalStatus.coding).code.value in {'resolved', 'inactive'}
-		and exists(C.code.coding C where C in "Deviated Nasal Septum")
-        and First(C.verificationStatus.coding).code.value = 'confirmed') Co
+		and exists(C.code.coding Con where Con in "Deviated Nasal Septum")
+        and First(C.verificationStatus.coding).code.value = 'confirmed') Cond
 		with "PreviousSeptoplastyOrTurbinectomyProcedure" P
-		such that end of "Normalize Interval"(Co.onset) after end of "Normalize Interval"(P.performed)
+		such that end of "Normalize Interval"(Cond.onset) after end of "Normalize Interval"(P.performed)
 	sort by end of "Normalize Interval"(onset)
 	)
 
 define SeptoplastyOrTurbinectomySuccessfulOutcome:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes")
-		and (First(P.outcome.coding) in "Successful" or First(P.outcome.coding) in "Partially successful"))
+	exists([Procedure]P 
+		where P.status.value = 'completed'
+			and (First(P.code.coding) in "Septoplasty Procedure Codes" 
+					or First(P.code.coding) in "Turbinectomy Procedure Codes")
+			and (First(P.outcome.coding) in "Successful" 
+					or First(P.outcome.coding) in "Partially successful"))
 
 define SeptoplastyOrTurbinectomyUnsuccessfulOutcome:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value = 'completed'
-		and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes")
-		and (First(P.outcome.coding) in "Unsuccessful"))
+	exists([Procedure]P 
+			where P.status.value = 'completed'
+				and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes")
+				and (First(P.outcome.coding) in "Unsuccessful"))
 
 define SeptoplastyOrTurbinectomyOutcome:
 	if ("SeptoplastyOrTurbinectomySuccessfulOutcome" = true)
@@ -525,13 +530,14 @@ define SeptoplastyOrTurbinectomyOutcome:
 					else null
 
 define AdditionalSurgeries:
-	exists([Procedure]P where P.subject.reference.value = 'Patient/'+ Patient.id.value
- 		and P.status.value in {'preparation','in-progress'}
-		and (First(P.code.coding) in "Septoplasty Procedure Codes" or First(P.code.coding) in "Turbinectomy Procedure Codes"))
+	exists([Procedure]P 
+		where P.status.value in {'preparation','in-progress'}
+			and (First(P.code.coding) in "Septoplasty Procedure Codes" 
+					or First(P.code.coding) in "Turbinectomy Procedure Codes"))
 
 define BleedingDisorders:
 	exists([Condition]C
-    where exists(C.code.coding C where C in "Bleeding Disorder")
+    where exists(C.code.coding Con where Con in "Bleeding Disorder")
       and First(C.clinicalStatus.coding).code.value = 'active'
         and First(C.verificationStatus.coding).code.value = 'confirmed')
 
@@ -543,12 +549,13 @@ define SteroidsAdverseReactions:
 define AmoxicillinAllergy:
 	exists([AllergyIntolerance]A
 		where First(A.clinicalStatus.coding).code.value = 'active'
-    and exists(A.code.coding x where x in "Allergy to Amoxicillin"))
+   			 and exists(A.code.coding x 
+			 				where x in "Allergy to Amoxicillin"))
 
 define AntiHistaminesAdverseReaction:
 	exists([AdverseEvent]A
-					where A.actuality in {'actual', 'potential'}
-      			and First((A.event as CodeableConcept).coding) in "Antihistamines Adverse Reaction")
+				where A.actuality in {'actual', 'potential'}
+      				and First((A.event as CodeableConcept).coding) in "Antihistamines Adverse Reaction")
 
 
 define function "Normalize Interval Procedure"(choice Choice<FHIR.dateTime, FHIR.Age, FHIR.Period, FHIR.Range, FHIR.string>):
